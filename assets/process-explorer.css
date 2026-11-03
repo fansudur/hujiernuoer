@@ -35,3 +35,14 @@
 #process-explorer .px-pane-max{top:59px}
 #px-clock-background{display:block;width:100%;font:inherit;padding:8px;margin-top:6px}#px-clock-background-detail{background:#edf3f6;padding:10px;border-left:3px solid #4a788e}
 @media(max-width:760px){.px-date-strip{top:28px;font-size:11px;height:19px;line-height:19px}}
+/* Linked historical DSM inspection. Scoped to avoid altering other chart styles. */
+#process-explorer #px-profile-chart:not([hidden]){display:block!important;height:auto;max-height:260px;flex:0 0 auto;background:#f8fcfd;border-top:1px solid #91aeb9;padding:6px 12px;overflow:auto}
+#px-profile-chart[hidden]{display:none!important}
+#px-profile-chart .px-profile-interactive,.px-profile-expanded .px-profile-interactive{display:block;width:100%;height:auto;min-width:0;min-height:0;max-height:145px;touch-action:none;cursor:crosshair}
+.px-profile-readout{background:#123e50;color:#fff;font-size:16px;font-weight:750;line-height:1.4;padding:7px 10px;border-radius:5px;font-variant-numeric:tabular-nums}
+.px-profile-slider-label{display:flex;align-items:center;gap:10px;font-size:12px;color:#193747;margin:3px 0}.px-profile-slider{min-width:0;flex:1;accent-color:#006d80;min-height:24px}.px-profile-slider:focus-visible{outline:3px solid #087a98;outline-offset:2px}.px-profile-help{font-size:11px!important;line-height:1.4;margin:3px 0;color:#375563}
+.px-profile-expanded{overflow:visible}.px-profile-expanded .px-profile-interactive{max-height:none}.px-profile-dialog{max-width:96vw;max-height:90dvh;overflow:auto;padding:18px}.px-profile-dialog .dialog-head{position:sticky;top:-18px;background:#fff;z-index:2}.px-profile-dialog .px-profile-help{font-size:13px!important}
+#process-explorer #px-profile-open{display:inline-block}
+.px-profile-map-marker{position:absolute;z-index:40;pointer-events:none;transform:translate(-50%,-50%);white-space:nowrap}.px-profile-map-marker[hidden]{display:none}.px-profile-map-marker i{display:block;width:20px;height:20px;border:3px solid #143a4e;background:#00e5f0;border-radius:50%;box-shadow:0 0 0 2px #fff}.px-profile-map-marker span{position:absolute;top:27px;left:50%;transform:translateX(-50%);padding:4px 7px;background:#123e50;color:#fff;border:1px solid #fff;border-radius:4px;font-size:12px;font-weight:700}
+@media(max-width:760px){#process-explorer #px-profile-chart:not([hidden]){padding:4px 8px;max-height:190px}.px-profile-readout{font-size:13px;padding:5px 7px}#px-profile-chart .px-profile-interactive{max-height:80px}.px-profile-slider-label{margin:0}.px-profile-help{font-size:10px!important}.px-profile-dialog{padding:12px}.px-profile-expanded .px-profile-interactive{min-height:100px}.px-profile-map-marker span{display:none}}
+#process-explorer .px-profile-expand{flex:0 0 auto;min-height:30px;padding:3px 9px;font-size:12px;background:#e3f3f5;color:#123e50;border:1px solid #568b98}

@@ -1,3 +1,4 @@
+import {installProfileMarkers} from './profile-linkage.js';
 import { WATER_BLUE, WATER_FILL_ALPHA, readableRunoffRoutes, hasNativeOfficeLabel, drawLabelPlate, previewMapReadability, mapChromeBoxes, placeMapLabel, focusLabelBox, officeMapLabel } from './map-readability-model.js';
 import {drapeTriangles, splitGroundLine} from './terrain-drape.js';
 import {installAttention} from './attention-scene.js';
@@ -188,3 +189,5 @@ installImmersiveEnvironment(ProcessScene);
 installNativeSpatial(ProcessScene);
 
 installAttention(ProcessScene);
+
+installProfileMarkers(ProcessScene);
