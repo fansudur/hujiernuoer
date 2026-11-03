@@ -1,9 +1,9 @@
-import {createProfileLinkage} from './profile-linkage.js?v=profile-linkage-20261103b';
+import {createProfileLinkage} from './profile-linkage.js?v=profile-linkage-20261103c';
 import {buildShoreObservationNote} from './shore-observation-note.js';
 import {imageryRenderSpec,referenceDateLabel,selectReferenceContext,preferSameDateCoverage} from './imagery-background-model.js';
 import {attachTopNavigation,attachSplitWorkspace} from './viewport-controls.js';
 import {sceneDate,solarAtDate,selectSameMonthSatellite,selectMonthlyWind} from './scene-time-model.js';
-import {ProcessScene,polygons} from './process-scene.js?v=profile-linkage-20261103b';
+import {ProcessScene,polygons} from './process-scene.js?v=profile-linkage-20261103c';
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const read=async p=>{const r=await fetch(p);if(!r.ok)throw Error(p);return r.json();};
 const [index,terrain,contextTerrain,boundary,sat,profiles,solar,flow,wind,roads,office,windrose,fixedContext]=await Promise.all(['data/linked/shoreline_index.json','data/terrain_local.json','data/spatial/terrain_expanded.json','data/boundary.geojson','data/spatial/imagery-v13/manifest.json','data/process/terrain_profiles.json','data/process/solar_geometry_display.json','data/process/potential_descent_paths.geojson','data/linked/wind.json','data/reference/roads.geojson','data/office_reference.geojson','data/process/monthly_windrose.json','data/process/context_background_manifest.json'].map(read));
@@ -66,9 +66,9 @@ function renderSolarValue(){const p=scene.state.solar?.[state.sunIndex];if(!p)re
 const profileLinkage=createProfileLinkage(sample=>scene.setProfileSample(sample));
 let disposeInlineProfile=null,profileDialog=null;
 function renderProfile(p){disposeInlineProfile?.();profileLinkage.setProfile(p);disposeInlineProfile=profileLinkage.mount($('px-profile-chart'));const expand=document.createElement('button');expand.type='button';expand.className='px-profile-expand';expand.textContent='展开';expand.setAttribute('aria-label','展开交互地形剖面图');expand.onclick=openProfileDialog;$('px-profile-chart').querySelector('.px-profile-slider-label').append(expand);}
-function openProfileDialog(){
+function openProfileDialog(event){
  if(profileDialog?.open)return;
- const opener=document.activeElement,inlineOpener=opener?.classList?.contains('px-profile-expand');
+ const opener=event?.currentTarget||document.activeElement,inlineOpener=opener?.classList?.contains('px-profile-expand');
  // The chart can be expanded while renderTheme is still awaiting map data.
  // Build from the already-loaded frozen samples, not from pending inline markup.
  renderProfile(profiles.profiles[state.profile]);
@@ -76,7 +76,8 @@ function openProfileDialog(){
  const d=document.createElement('dialog');profileDialog=d;d.className='px-profile-dialog';d.setAttribute('aria-label','历史地表高程剖面');
  d.innerHTML=`<div class="dialog-head"><h2>${esc(profiles.profiles[state.profile].name)}</h2><button type="button">关闭</button></div><p>青色选点与二维、三维地图位置同步。关闭后保留选点，不移动镜头。</p><div class="px-profile-expanded"></div>`;
  document.body.append(d);const dispose=profileLinkage.mount(d.querySelector('.px-profile-expanded'));
- d.querySelector('button').onclick=()=>d.close();d.addEventListener('close',()=>{dispose();d.remove();if(profileDialog===d)profileDialog=null;const target=inlineOpener?$('px-profile-chart').querySelector('.px-profile-expand'):opener;if(target?.isConnected&&target.getClientRects().length)target.focus({preventScroll:true});});d.showModal();
+ d.querySelector('button').onclick=()=>d.close();d.addEventListener('close',()=>{dispose();d.remove();if(profileDialog===d)profileDialog=null;// Escape/native close may restore focus after this event; wait until that restoration finishes.
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{if(profileDialog?.open)return;const target=inlineOpener?$('px-profile-chart').querySelector('.px-profile-expand'):opener;if(target?.isConnected&&target.getClientRects().length)target.focus({preventScroll:true});}));});d.showModal();
 }
 function describeBackground(s){const dsm=!!scene.dsmDisplay,regional=scene.terrain!==contextTerrain&&(scene.terrain.bounds[2]-scene.terrain.bounds[0])>.4;const base=dsm?'历史地形高低＋路网（影像暂时隐藏）':['matched','fixed'].includes(state.background)?(regional?'区域参考 ':'定位底图 ')+referenceDateLabel(state.currentReference||fixedContext)+'（固定参考，非当期）':'中性地形定位＋路网（未开启DSM色阶）';const failed=!!s&&!!scene.satelliteError,clearFraction=s?.uniform_canvas?.original_source?.display_quality?.full_window_scl_screen_clear_fraction,cloudNotice=Number.isFinite(clearFraction)&&clearFraction<.98?'；当期实拍含云，云区不可当作地表变化':'';const observation=dsm?'可点“关闭DSM高低图”返回影像显示':failed?'该期影像 '+s.date+' 加载失败；当前未显示该影像，可重新选择本月重试':s?`${regional?'本湖周边实拍':'当期观测'} ${s.date} · ${s.sensor||(/Landsat/i.test(s.label)?'Landsat':'Sentinel-2')} · 统一画幅${s.uniform_canvas?.not_full_scene?(state.background==='matched'?'，局部观测，外围为独立日期定位底图':'，局部观测，外围留空'):'，完整范围（无值处留空）'}`:(state.background==='fixed'||state.background==='terrain'?'当期影像已关闭':'本月无匹配观测影像，不借其他期补观测');$('px-background-label').textContent=(scene.contextError&&['matched','fixed'].includes(state.background)?'固定全域背景载入失败，暂用中性地形':base)+'；'+observation+cloudNotice+(regional?'；呼和诺尔未接入该月实拍，所选年月对应水域分类，不对应区域底图拍摄日':'')+'。日照 '+sceneDate(state.date,state.sceneDay)+' '+hourLabel()+' 真太阳时。';$('px-background-label').title=$('px-background-label').textContent;const compact=(dsm?'DSM高低图':['matched','fixed'].includes(state.background)?(regional?'区域参考 ':'定位底图 ')+referenceDateLabel(state.currentReference||fixedContext):'背景中性地形')+'｜'+(dsm?'影像暂隐藏':failed?'影像'+s.date+'加载失败':s?(regional?'本湖实拍':'观测')+s.date:state.background==='fixed'||state.background==='terrain'?'观测关闭':'无当期影像')+(s?.uniform_canvas?.not_full_scene?'｜影像仅局部覆盖（非分类有效率）':'');host.querySelectorAll('[data-px-dates]').forEach(el=>{el.textContent=compact;el.title=$('px-background-label').textContent;});if($('px-clock-background-detail'))$('px-clock-background-detail').textContent=$('px-background-label').textContent+' 固定背景只供定位，不当作所选年月的观测；当期影像矩形内的QA缺测保留中性，不用背景填补。';if($('px-clock-background'))$('px-clock-background').value=state.background;}
 async function setBackground(value){stop();state.background=value;scene.setDSMDisplay?.(value==='terrain');$('px-background').value=value;if($('px-clock-background'))$('px-clock-background').value=value;await background();window.dispatchEvent(new CustomEvent('lake-process-rendered',{detail:{theme:state.theme,date:state.date}}));}
