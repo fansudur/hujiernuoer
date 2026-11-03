@@ -5,7 +5,7 @@ window.lakeVersion={id:'spatial-narrative-v14',entry:'index.html',legacy:'legacy
 function loadingStep(done,label){const p=document.getElementById('canonical-loading-progress'),s=document.getElementById('canonical-loading-stage'),d=document.getElementById('canonical-loading-detail');if(p)p.value=done;if(s)s.textContent=label;if(d)d.textContent=done+' / 6 项准备完成 · 实际准备步骤，不是下载百分比';}
 try {
   loadingStep(0,'正在读取地形、影像索引与水面记录…');
-  await import('./process-explorer.js');loadingStep(1,'地图基础已就绪，正在整理讲解章节…');
+  await import('./process-explorer.js?v=profile-linkage-20261103b');loadingStep(1,'地图基础已就绪，正在整理讲解章节…');
   await import('./unified-story.js');loadingStep(2,'章节已就绪，正在定位各专业图层…');
   await import('./native-spatial-story.js');loadingStep(3,'空间图层已就绪，正在准备地图操作…');
   await import('./attention-director.js');

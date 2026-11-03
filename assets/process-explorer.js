@@ -1,9 +1,9 @@
-import {createProfileLinkage} from './profile-linkage.js';
+import {createProfileLinkage} from './profile-linkage.js?v=profile-linkage-20261103b';
 import {buildShoreObservationNote} from './shore-observation-note.js';
 import {imageryRenderSpec,referenceDateLabel,selectReferenceContext,preferSameDateCoverage} from './imagery-background-model.js';
 import {attachTopNavigation,attachSplitWorkspace} from './viewport-controls.js';
 import {sceneDate,solarAtDate,selectSameMonthSatellite,selectMonthlyWind} from './scene-time-model.js';
-import {ProcessScene,polygons} from './process-scene.js';
+import {ProcessScene,polygons} from './process-scene.js?v=profile-linkage-20261103b';
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const read=async p=>{const r=await fetch(p);if(!r.ok)throw Error(p);return r.json();};
 const [index,terrain,contextTerrain,boundary,sat,profiles,solar,flow,wind,roads,office,windrose,fixedContext]=await Promise.all(['data/linked/shoreline_index.json','data/terrain_local.json','data/spatial/terrain_expanded.json','data/boundary.geojson','data/spatial/imagery-v13/manifest.json','data/process/terrain_profiles.json','data/process/solar_geometry_display.json','data/process/potential_descent_paths.geojson','data/linked/wind.json','data/reference/roads.geojson','data/office_reference.geojson','data/process/monthly_windrose.json','data/process/context_background_manifest.json'].map(read));
