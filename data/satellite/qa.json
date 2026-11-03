@@ -1,0 +1,500 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "asset": "2017-07-12_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2017-07-12_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2018-07-19_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2018-07-19_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2018-08-28_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2018-08-28_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2019-07-09_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2019-07-09_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2019-07-12_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2019-07-12_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2019-07-17_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2019-07-17_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2019-08-03_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2019-08-03_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2020-07-06_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2020-07-06_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2020-07-08_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2020-07-08_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2020-07-23_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2020-07-23_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2020-07-26_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2020-07-26_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2021-07-16_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2021-07-16_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2021-07-21_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2021-07-21_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2021-08-22_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2021-08-22_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2021-08-30_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2021-08-30_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2022-07-01_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2022-07-01_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2022-07-21_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2022-07-21_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2022-08-05_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2022-08-05_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2022-08-27_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2022-08-27_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-11_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-11_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-16_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-16_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-18_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-18_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-26_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-26_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-28_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-07-28_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-08-10_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-08-10_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-08-25_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-08-25_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-08-27_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2023-08-27_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2024-07-02_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2024-07-02_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2024-07-30_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2024-07-30_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2024-08-16_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2024-08-16_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2025-07-24_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2025-07-24_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2025-08-04_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2025-08-04_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2025-08-06_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2025-08-06_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2026-08-08_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2026-08-08_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2026-08-14_truecolor_mercator.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    },
+    {
+      "asset": "2026-08-14_truecolor_geographic.png",
+      "exists": true,
+      "hash_ok": true,
+      "rgba": true,
+      "size_ok": true
+    }
+  ],
+  "source_grid_verified_count": 35,
+  "visual_inspection": [
+    "2023-08-25_truecolor_mercator.png"
+  ],
+  "safety": "Only existing truecolor georeferenced rasters used; no report screenshots stretched."
+}

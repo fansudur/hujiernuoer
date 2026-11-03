@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "audio_verified",
+  "engine": "Microsoft Edge online speech service via edge-tts",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "rate": "-3%",
+  "synthetic": true,
+  "listeningReview": "not performed",
+  "segments": [
+    {
+      "id": "sg01",
+      "frameIndex": 0,
+      "src": "assets/audio/simple-sg01.mp3",
+      "plannedSrc": "assets/audio/simple-sg01.mp3",
+      "text": "先看二零二一年七月。固定统计范围内，当月检出的明水是一百点一三公顷。地图上的蓝色范围和边线，表示这期认出的水域。先记住它的位置，下一幕再比较另一年的同一个月份。这里看的是卫星记录，不是现场测得的水位；缺测也不代表没有水。",
+      "durationSeconds": 24.504,
+      "sha256": "ac96dd3aac79c47784bc64fcf0ef63f343d3f3f3a8706d83f2a974d4e24501ab",
+      "textSha256": "a46719d0921c380dd9bde920507c656f3da099cebfd116532c8dd39b1fa1e793",
+      "bytes": 147024,
+      "meanVolumeDb": -19.6,
+      "decodeVerified": true
+    },
+    {
+      "id": "sg02",
+      "frameIndex": 1,
+      "src": "assets/audio/simple-sg02.mp3",
+      "plannedSrc": "assets/audio/simple-sg02.mp3",
+      "text": "再看二零二四年七月。同一统计范围内，当月检出的明水是一百三十二点一四公顷，比二零二一年七月多约三十二公顷。橙色边线保留二零二一年的位置。两期放在一起看，是为了讨论岸边活动和设施要留多少变化余地，不是直接划出安全通行或施工的边界。",
+      "durationSeconds": 25.488,
+      "sha256": "29a7b103bb9546871e4182a38b81fbe22fd4620b42c5d4a41a821b0be945fe74",
+      "textSha256": "3ed0e613d3f15a842b145c631ed644eb15f4255a9518f9230224617c696c03e6",
+      "bytes": 152928,
+      "meanVolumeDb": -19.3,
+      "decodeVerified": true
+    },
+    {
+      "id": "sg03",
+      "frameIndex": 2,
+      "src": "assets/audio/simple-sg03.mp3",
+      "plannedSrc": "assets/audio/simple-sg03.mp3",
+      "text": "现在看外围这三块草地。它们是固定的比较窗口，不是施工分区。二零二四年七月，西侧窗口的绿度是零点五七，高于北侧的零点四一和南侧的零点四七。绿度说的是卫星看到的植被有多绿，方便比较不同位置的表现，但不等于草量，也不能直接说明牧草品质。",
+      "durationSeconds": 25.296,
+      "sha256": "de2cea87ef703ca4e33e3de3b642143e4aae4250a5d10fe4a0d569d043bbe11f",
+      "textSha256": "f660053c52b1c5eda9887b0a14ca902bf641a5578dc3f335787fc0d3fd6503c1",
+      "bytes": 151776,
+      "meanVolumeDb": -19.7,
+      "decodeVerified": true
+    },
+    {
+      "id": "sg04",
+      "frameIndex": 3,
+      "src": "assets/audio/simple-sg04.mp3",
+      "plannedSrc": "assets/audio/simple-sg04.mp3",
+      "text": "换到二零二五年七月，仍然看同样的三个窗口。北侧、西侧和南侧的绿度，大约是零点五六、零点六三和零点五二，都高于前一年同月。固定位置、比较相同月份，才能把变化放在一起讨论。这些记录可以帮助比较护草的优先位置，缺测的地方不能当作零。",
+      "durationSeconds": 25.512,
+      "sha256": "17857b9a2a919f7314577d84e3d86f2087e89163c5422de6a79c5b4b33a64a0d",
+      "textSha256": "9665b3373ac68a2abbe83e268717f62f27aa2083f4c6881c1832067fc127c3f6",
+      "bytes": 153072,
+      "meanVolumeDb": -19.3,
+      "decodeVerified": true
+    },
+    {
+      "id": "sg05",
+      "frameIndex": 4,
+      "src": "assets/audio/simple-sg05.mp3",
+      "plannedSrc": "assets/audio/simple-sg05.mp3",
+      "text": "接着看地势。蓝色箭头表示根据地表高低推导的潜在下降方向，不是现场观测到的水流。把办公院、坡面和近湖低处放在一起看，可以找到值得重点比较冲刷和护草条件的位置。实际有没有来水、沿哪条路走、出口在哪里，仍然需要到现场核查。",
+      "durationSeconds": 24.528,
+      "sha256": "6b1ff1111be3aa99d8c8ed3aa2e7d627514822144aee267749fbfa3c65d2f157",
+      "textSha256": "af538099366a6cd69b5eb3dee155b6661cb42b5d1434bba290bede30455f657e",
+      "bytes": 147168,
+      "meanVolumeDb": -20.1,
+      "decodeVerified": true
+    },
+    {
+      "id": "sg06",
+      "frameIndex": 5,
+      "src": "assets/audio/simple-sg06.mp3",
+      "plannedSrc": "assets/audio/simple-sg06.mp3",
+      "text": "最后比较三种方向。护住草皮，先看现有植被、放牧和踩踏情况。减速分流，先查清来水、出口和涵洞连通，避免把水集中冲向下游。局部恢复，要先区分盐碱、软泥和积水的原因，再做小范围试验。点选卡片可以定位相关位置；这里比较的是适用条件，不是已经确定的施工方案。",
+      "durationSeconds": 29.376,
+      "sha256": "968f272d62337d9a33d476bea675d45a1b2bf500cd558f89ca68c5f28d6bdf7a",
+      "textSha256": "23d0d91c526ec59f1eb4fca452de753279f27a1ea80cc4cea2e3d96e55e96a00",
+      "bytes": 176256,
+      "meanVolumeDb": -19.9,
+      "decodeVerified": true
+    }
+  ],
+  "createdUTC": "2026-10-31T02:39:11.014192+00:00",
+  "totalDurationSeconds": 154.704
+}

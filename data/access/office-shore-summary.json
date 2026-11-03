@@ -1,0 +1,1471 @@
+{
+  "schema_version": 1,
+  "kind": "office_to_classified_water_boundary_proximity_not_route",
+  "office": [
+    119.66093779576451,
+    49.1409469769002
+  ],
+  "office_source_sha256": "f98e21ba9dcac7defb516551c5a10e599073790e343d885efca7b928d6114ad2",
+  "method": "Local equirectangular segment projection centred at office; choose minimum candidate haversine distance. EPSG:4326 inputs. Includes polygon hole boundaries. Map-plane distance, no terrain/obstacle/routing cost.",
+  "limits": [
+    "Office point is user-identified approximate reference, not surveyed doorway.",
+    "Water boundaries are native JRC monthly pixel classifications, not surveyed water level or safe ground.",
+    "Inside-water office or observed-zero water produces no approach line; no fabricated endpoint.",
+    "Each month chooses its own closest boundary point: differences are proximity changes, not motion of one fixed shoreline point.",
+    "A geometric line is not a recommended walking/driving path and has no safety or land-rights meaning."
+  ],
+  "rows": [
+    {
+      "date": "1985-07",
+      "area_ha": 103.52640901617707,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/1985-07_water.geojson",
+      "source_sha256": "f5da40a0003d353098a71dab85ae03b5f0d20c56fc6c9874b0584709f91dc20e",
+      "status": "outside_water",
+      "distance_m": 1370.561038040324,
+      "point": [
+        119.67650000000016,
+        49.134
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67650000000016,
+          49.134
+        ]
+      ]
+    },
+    {
+      "date": "1999-07",
+      "area_ha": 109.66405625869632,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/1999-07_water.geojson",
+      "source_sha256": "2cf73f0f2ed7b61920f7e7f0fcade706cb885c90d5e92e96fe56e0d185b4c8e2",
+      "status": "outside_water",
+      "distance_m": 1324.8465406156486,
+      "point": [
+        119.67600000000016,
+        49.13425
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67600000000016,
+          49.13425
+        ]
+      ]
+    },
+    {
+      "date": "2000-08",
+      "area_ha": 107.33093220051526,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2000-08_water.geojson",
+      "source_sha256": "3c26622d4a83c73ea183c0bbcfbcff8bc7805d04e80280dd4a91d1d223bbe50d",
+      "status": "outside_water",
+      "distance_m": 1370.561038040324,
+      "point": [
+        119.67650000000016,
+        49.134
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67650000000016,
+          49.134
+        ]
+      ]
+    },
+    {
+      "date": "2001-06",
+      "area_ha": 105.35250735443236,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2001-06_water.geojson",
+      "source_sha256": "385c062faa4170cbdbcef67a5f54d3c9cded1cd7e079788544ae00170e8a3f19",
+      "status": "outside_water",
+      "distance_m": 1370.561038040324,
+      "point": [
+        119.67650000000016,
+        49.134
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67650000000016,
+          49.134
+        ]
+      ]
+    },
+    {
+      "date": "2001-07",
+      "area_ha": 102.4611712663874,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2001-07_water.geojson",
+      "source_sha256": "8f5f89931feecc1cccae983fdaef9f0d6fefa4b4e95ee07aff881eb153602500",
+      "status": "outside_water",
+      "distance_m": 1387.9999756754796,
+      "point": [
+        119.67750000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67750000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2001-08",
+      "area_ha": 103.1207328600064,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2001-08_water.geojson",
+      "source_sha256": "8f9a7d81e922760af53e93ff7e7c15a98ded05f671a184b85ae6672f23cf83f0",
+      "status": "outside_water",
+      "distance_m": 1387.9999756754796,
+      "point": [
+        119.67750000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67750000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2002-05",
+      "area_ha": 91.60628480563761,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2002-05_water.geojson",
+      "source_sha256": "204c5f9ae21ea2ffbdd598420539b6be929cfadd852de8accbfaa2878674cacb",
+      "status": "outside_water",
+      "distance_m": 1435.6183036164596,
+      "point": [
+        119.67825000000016,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67825000000016,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2002-06",
+      "area_ha": 84.60642841981947,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2002-06_water.geojson",
+      "source_sha256": "8e20afb42237e9c2852c8683020c60c109f1fff2dd6636b728aa6c9aa5903f12",
+      "status": "outside_water",
+      "distance_m": 1435.6183036164596,
+      "point": [
+        119.67825000000016,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67825000000016,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2002-08",
+      "area_ha": 82.32420849211067,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2002-08_water.geojson",
+      "source_sha256": "c016d74c59b16d1fcc102f4c7d089a0608a3464c794e379145df57600b55815c",
+      "status": "outside_water",
+      "distance_m": 1454.784679082669,
+      "point": [
+        119.67875000000016,
+        49.135
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67875000000016,
+          49.135
+        ]
+      ]
+    },
+    {
+      "date": "2004-06",
+      "area_ha": 63.60683169088959,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2004-06_water.geojson",
+      "source_sha256": "da24d11f3dea3ca556782375f829ed09c65763d32489c5c617f77dfaac4e93f0",
+      "status": "outside_water",
+      "distance_m": 1585.7610892156194,
+      "point": [
+        119.68075000000016,
+        49.135
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68075000000016,
+          49.135
+        ]
+      ]
+    },
+    {
+      "date": "2004-07",
+      "area_ha": 37.48452213970274,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2004-07_water.geojson",
+      "source_sha256": "a5ddd736fd1d4764b6b703c62dc9106bc4c1e4265f041c80e02d9a78292d95f5",
+      "status": "outside_water",
+      "distance_m": 1646.94955094126,
+      "point": [
+        119.68150000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68150000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2004-08",
+      "area_ha": 62.44019532139748,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2004-08_water.geojson",
+      "source_sha256": "d915622945b7f7ff76d1eaa1dc5eb69361b1880f5bca1bfc1df2735b07d469e6",
+      "status": "outside_water",
+      "distance_m": 1585.7610892156194,
+      "point": [
+        119.68075000000016,
+        49.135
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68075000000016,
+          49.135
+        ]
+      ]
+    },
+    {
+      "date": "2005-08",
+      "area_ha": 62.23743095073998,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2005-08_water.geojson",
+      "source_sha256": "8de8f15aa0757f264f5d6b67acb8a5637b3e9dcebaf8610d5dec193495a36bda",
+      "status": "outside_water",
+      "distance_m": 1519.9427756782768,
+      "point": [
+        119.67975000000017,
+        49.135
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67975000000017,
+          49.135
+        ]
+      ]
+    },
+    {
+      "date": "2006-05",
+      "area_ha": 0.20288700371980667,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2006-05_water.geojson",
+      "source_sha256": "4cb7d5aa938e721e74ccedbed9f73cc801ef1a03bae9ced9a771ec963b31be12",
+      "status": "outside_water",
+      "distance_m": 2425.7066222372805,
+      "point": [
+        119.69350000000017,
+        49.13625
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.69350000000017,
+          49.13625
+        ]
+      ]
+    },
+    {
+      "date": "2006-06",
+      "area_ha": 38.14373200663478,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2006-06_water.geojson",
+      "source_sha256": "0139ce809c41780df252c77e5d184470644536fc30816a6bd9af945ae88d2adc",
+      "status": "outside_water",
+      "distance_m": 1581.1676390301523,
+      "point": [
+        119.68050000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68050000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2006-08",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2006-08_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2006-09",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2006-09_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2007-06",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2007-06_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2007-07",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2007-07_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2007-08",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2007-08_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2007-10",
+      "area_ha": 0.25361741538345817,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2007-10_water.geojson",
+      "source_sha256": "b9ca2b31687a5212e86a8ff981c02323f496d71df9609f361df069b83a687fb2",
+      "status": "outside_water",
+      "distance_m": 2500.50659890176,
+      "point": [
+        119.69375000000016,
+        49.13425
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.69375000000016,
+          49.13425
+        ]
+      ]
+    },
+    {
+      "date": "2008-04",
+      "area_ha": 0.050722319887578485,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2008-04_water.geojson",
+      "source_sha256": "c9bc789070fe3fe4e206d8a6b5ab0b475aa7caa4dc9732b0314e7f15f8b7c8ab",
+      "status": "outside_water",
+      "distance_m": 2522.4252413190075,
+      "point": [
+        119.69450000000016,
+        49.13525
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.69450000000016,
+          49.13525
+        ]
+      ]
+    },
+    {
+      "date": "2008-05",
+      "area_ha": 0.9129676200851797,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2008-05_water.geojson",
+      "source_sha256": "83f5a545585500cc1b393522d836664837ff821a0ceddfee9dc84a74b6095802",
+      "status": "outside_water",
+      "distance_m": 2503.2665118063537,
+      "point": [
+        119.69500000000016,
+        49.13775
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.69500000000016,
+          49.13775
+        ]
+      ]
+    },
+    {
+      "date": "2008-06",
+      "area_ha": 0,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2008-06_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2008-07",
+      "area_ha": 0,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2008-07_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2008-08",
+      "area_ha": 0.10144767417311669,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2008-08_water.geojson",
+      "source_sha256": "0ad0acdaf9b214175f9bfe75caf5837a94aca0e89fa04194b720544e681a8162",
+      "status": "outside_water",
+      "distance_m": 2431.5866179212358,
+      "point": [
+        119.69250000000017,
+        49.13375
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.69250000000017,
+          49.13375
+        ]
+      ]
+    },
+    {
+      "date": "2008-09",
+      "area_ha": 0,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2008-09_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2008-10",
+      "area_ha": 0,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2008-10_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2009-05",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2009-05_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2009-06",
+      "area_ha": 0.15217530417740344,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2009-06_water.geojson",
+      "source_sha256": "6ddf0876ef62116d96f904f25143caa737558f9ed4c63e786ae4721f6d0ac602",
+      "status": "outside_water",
+      "distance_m": 2897.9046518549167,
+      "point": [
+        119.69875000000016,
+        49.13275
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.69875000000016,
+          49.13275
+        ]
+      ]
+    },
+    {
+      "date": "2009-07",
+      "area_ha": 0.5072290148541332,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2009-07_water.geojson",
+      "source_sha256": "8945edbd788084e9845c906a42742a628fedc33e0773f9bf404852e8f4c96095",
+      "status": "outside_water",
+      "distance_m": 1569.2491443440447,
+      "point": [
+        119.68050000000017,
+        49.135
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68050000000017,
+          49.135
+        ]
+      ]
+    },
+    {
+      "date": "2009-08",
+      "area_ha": 0.15216594816446305,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2009-08_water.geojson",
+      "source_sha256": "5c3407c9b3dee51e86c551966c29c4a4819be5ca49430c91abf356ffe94d906b",
+      "status": "outside_water",
+      "distance_m": 2023.2510853180243,
+      "point": [
+        119.68800000000016,
+        49.13675
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68800000000016,
+          49.13675
+        ]
+      ]
+    },
+    {
+      "date": "2010-06",
+      "area_ha": 60.2589876439318,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2010-06_water.geojson",
+      "source_sha256": "f46e498ec74f97f408b34552978b5f1f01e49ef64f463be30aaeda3159abe0d6",
+      "status": "outside_water",
+      "distance_m": 1581.1676390301523,
+      "point": [
+        119.68050000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68050000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2010-07",
+      "area_ha": 63.30249726621658,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2010-07_water.geojson",
+      "source_sha256": "99318f12bc04814c7fe29db5f30169760a0b57b92c277d567fe7187fa128bd89",
+      "status": "outside_water",
+      "distance_m": 1581.1676390301523,
+      "point": [
+        119.68050000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68050000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2010-09",
+      "area_ha": 45.85390063503236,
+      "classification_disputed": true,
+      "water_asset": "linked/shorelines/2010-09_water.geojson",
+      "source_sha256": "5e4d33a112e8a5d37b476b64f4c5a6e55e7878f33798344e88dcb353581ae29d",
+      "status": "outside_water",
+      "distance_m": 1508.0530915947206,
+      "point": [
+        119.67975000000017,
+        49.13525
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67975000000017,
+          49.13525
+        ]
+      ]
+    },
+    {
+      "date": "2011-06",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2011-06_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2011-08",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2011-08_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2012-06",
+      "area_ha": 3.9058004338026056,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2012-06_water.geojson",
+      "source_sha256": "f673f1dbb2d214a7b50a53527087477516d4e9c2dc0efb2b5420a27bfe600bb1",
+      "status": "outside_water",
+      "distance_m": 2139.1798875384543,
+      "point": [
+        119.68925000000017,
+        49.13575
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68925000000017,
+          49.13575
+        ]
+      ]
+    },
+    {
+      "date": "2012-07",
+      "area_ha": 31.144075125032664,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2012-07_water.geojson",
+      "source_sha256": "1d79741d877b02890d56d58cdcdef9864556ec91a8e5ed7372fb1d1dc95fd4f9",
+      "status": "outside_water",
+      "distance_m": 1581.1676390301523,
+      "point": [
+        119.68050000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68050000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2012-08",
+      "area_ha": 23.281872793549304,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2012-08_water.geojson",
+      "source_sha256": "557dd67de4f8b479fdb823a7a2d8a90a6a05f1e00ee818a8c5cef79ee7a500d4",
+      "status": "outside_water",
+      "distance_m": 1981.7613307546262,
+      "point": [
+        119.68675000000016,
+        49.13525
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68675000000016,
+          49.13525
+        ]
+      ]
+    },
+    {
+      "date": "2013-06",
+      "area_ha": 87.7007357033372,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2013-06_water.geojson",
+      "source_sha256": "dfa3005b12be7767c572245626cda0badbcbec2bc47322af997573a88cf26751",
+      "status": "outside_water",
+      "distance_m": 1435.6183036164596,
+      "point": [
+        119.67825000000016,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67825000000016,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2014-07",
+      "area_ha": 104.89599610763342,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2014-07_water.geojson",
+      "source_sha256": "55a54ebb566dc93fb169347b079752f1a37b82f53d8e223f1ba4c02db3066b05",
+      "status": "outside_water",
+      "distance_m": 1370.561038040324,
+      "point": [
+        119.67650000000016,
+        49.134
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67650000000016,
+          49.134
+        ]
+      ]
+    },
+    {
+      "date": "2014-08",
+      "area_ha": 108.09184311016054,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2014-08_water.geojson",
+      "source_sha256": "e7feecad7818c6f3c3970f4f51bd5fd73484cdaf6e4277bb0fd8e0ceb2de7077",
+      "status": "outside_water",
+      "distance_m": 1370.561038040324,
+      "point": [
+        119.67650000000016,
+        49.134
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67650000000016,
+          49.134
+        ]
+      ]
+    },
+    {
+      "date": "2015-06",
+      "area_ha": 98.5047706423372,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2015-06_water.geojson",
+      "source_sha256": "4326524e73107d9493b80fa51c22f0790cb28c94c82d84348a2360eaca8fea7a",
+      "status": "outside_water",
+      "distance_m": 1402.010987366388,
+      "point": [
+        119.67750000000017,
+        49.1345
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67750000000017,
+          49.1345
+        ]
+      ]
+    },
+    {
+      "date": "2015-07",
+      "area_ha": 100.12788664734663,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2015-07_water.geojson",
+      "source_sha256": "ea9bc7b00b0ad591d1462f60b9e63a9b05f3ae9958c012aa8a337084cd630a0b",
+      "status": "outside_water",
+      "distance_m": 1402.010987366388,
+      "point": [
+        119.67750000000017,
+        49.1345
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67750000000017,
+          49.1345
+        ]
+      ]
+    },
+    {
+      "date": "2015-09",
+      "area_ha": 97.13541364602894,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2015-09_water.geojson",
+      "source_sha256": "72eae0a515c889a19a7ef7bf346eaeb42782dbb5a2ce0220fda32c7788bf9fc3",
+      "status": "outside_water",
+      "distance_m": 1417.671383014567,
+      "point": [
+        119.67775000000016,
+        49.1345
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67775000000016,
+          49.1345
+        ]
+      ]
+    },
+    {
+      "date": "2016-07",
+      "area_ha": 90.49040666459649,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2016-07_water.geojson",
+      "source_sha256": "b19e04cb720abd6ceba1eea98f4f6fbbcc44168f4a8afee96ae41482368deb18",
+      "status": "outside_water",
+      "distance_m": 1471.0074948266295,
+      "point": [
+        119.67900000000016,
+        49.135
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67900000000016,
+          49.135
+        ]
+      ]
+    },
+    {
+      "date": "2017-06",
+      "area_ha": 0.608667332918942,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2017-06_water.geojson",
+      "source_sha256": "71fc14b21b3a804f0b955e1e24ad9037ddc31e91084c8811736bcdd30a49b2ca",
+      "status": "outside_water",
+      "distance_m": 2189.6668356791683,
+      "point": [
+        119.68975000000016,
+        49.13525
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68975000000016,
+          49.13525
+        ]
+      ]
+    },
+    {
+      "date": "2017-07",
+      "area_ha": 0.10144919133782387,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2017-07_water.geojson",
+      "source_sha256": "f0fff0bca85bcff89217ae1538699538c0084fa1827a060569ca9896cecb6e6e",
+      "status": "outside_water",
+      "distance_m": 2257.985439912664,
+      "point": [
+        119.68950000000017,
+        49.133
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68950000000017,
+          49.133
+        ]
+      ]
+    },
+    {
+      "date": "2017-08",
+      "area_ha": 22.774751499937473,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2017-08_water.geojson",
+      "source_sha256": "ca5f548e59692ac65a61f909f43db01d75abd0ee09780cbae43ba47c8075e2f6",
+      "status": "outside_water",
+      "distance_m": 1622.3194281639708,
+      "point": [
+        119.68075000000016,
+        49.13425
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68075000000016,
+          49.13425
+        ]
+      ]
+    },
+    {
+      "date": "2017-09",
+      "area_ha": 12.021623464612663,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2017-09_water.geojson",
+      "source_sha256": "bd60f7e24befea463b08d4d6ba46f1a8371f87a7f544c4f666af488e65322119",
+      "status": "outside_water",
+      "distance_m": 2160.1013352291634,
+      "point": [
+        119.68975000000016,
+        49.13625
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68975000000016,
+          49.13625
+        ]
+      ]
+    },
+    {
+      "date": "2018-05",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2018-05_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2018-06",
+      "area_ha": 18.9705228856951,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2018-06_water.geojson",
+      "source_sha256": "aced392b683d5f800e659a277907f3ba9af9c70557ec66e1c1145b0b6e14d45d",
+      "status": "outside_water",
+      "distance_m": 1571.52446067688,
+      "point": [
+        119.67975000000017,
+        49.134
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67975000000017,
+          49.134
+        ]
+      ]
+    },
+    {
+      "date": "2018-08",
+      "area_ha": 36.11598491179496,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2018-08_water.geojson",
+      "source_sha256": "fd8c5fbb298e7793e2b62c9f19037c129877e1eae3464ff707145e5f94a9aa57",
+      "status": "outside_water",
+      "distance_m": 1597.5564842928673,
+      "point": [
+        119.68075000000016,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68075000000016,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2019-03",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2019-03_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2019-04",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2019-04_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2019-05",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2019-05_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2019-06",
+      "area_ha": 0,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2019-06_water.geojson",
+      "source_sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+      "status": "observed_zero",
+      "distance_m": null,
+      "point": null,
+      "line": null
+    },
+    {
+      "date": "2019-08",
+      "area_ha": 8.115819748435914,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2019-08_water.geojson",
+      "source_sha256": "b2d184f708b3cd67f5f2041fa96601d38f4a7b6acdf735bcd7c47405da5fff03",
+      "status": "outside_water",
+      "distance_m": 1503.5879885321197,
+      "point": [
+        119.67950000000016,
+        49.135
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67950000000016,
+          49.135
+        ]
+      ]
+    },
+    {
+      "date": "2020-06",
+      "area_ha": 2.231808626009524,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2020-06_water.geojson",
+      "source_sha256": "248f452524850bb5d33f85d3aea48a0d5e133885c6cfb3277bedaa579f0c3ef2",
+      "status": "outside_water",
+      "distance_m": 2154.873938133038,
+      "point": [
+        119.68925000000017,
+        49.13525
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.68925000000017,
+          49.13525
+        ]
+      ]
+    },
+    {
+      "date": "2020-07",
+      "area_ha": 0.4057843750372529,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2020-07_water.geojson",
+      "source_sha256": "8fdd69b818a4047cecd3d0235593907d14af240e4c4efa3d327be67155ce50dc",
+      "status": "outside_water",
+      "distance_m": 2207.082403221776,
+      "point": [
+        119.69000000000017,
+        49.13525
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.69000000000017,
+          49.13525
+        ]
+      ]
+    },
+    {
+      "date": "2021-07",
+      "area_ha": 100.12821965809465,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2021-07_water.geojson",
+      "source_sha256": "05e2b71f7766d82fde9b46f85487e88ebd21e081de361cb8ee34f672bd7f3e22",
+      "status": "outside_water",
+      "distance_m": 1417.671383014567,
+      "point": [
+        119.67775000000016,
+        49.1345
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67775000000016,
+          49.1345
+        ]
+      ]
+    },
+    {
+      "date": "2021-08",
+      "area_ha": 100.3818494630471,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2021-08_water.geojson",
+      "source_sha256": "5b633a8f59e2bcb0b116244ee9a1d5429333ec48bb48580ab8eddf22ddceae1d",
+      "status": "outside_water",
+      "distance_m": 1417.671383014567,
+      "point": [
+        119.67775000000016,
+        49.1345
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67775000000016,
+          49.1345
+        ]
+      ]
+    },
+    {
+      "date": "2022-06",
+      "area_ha": 99.36713302074224,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2022-06_water.geojson",
+      "source_sha256": "e2eb197bb508d33905445a94e82e231a8e2bcc8d200a8937efe2fe684912b2e9",
+      "status": "outside_water",
+      "distance_m": 1390.3796228290676,
+      "point": [
+        119.67775000000016,
+        49.135
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67775000000016,
+          49.135
+        ]
+      ]
+    },
+    {
+      "date": "2022-08",
+      "area_ha": 101.3454362493232,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2022-08_water.geojson",
+      "source_sha256": "0b3f971b96dd49d2112a47ad2a78bb2fda024079a33712566dad5bfe1c75e121",
+      "status": "outside_water",
+      "distance_m": 1387.9999756754796,
+      "point": [
+        119.67750000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67750000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2022-09",
+      "area_ha": 101.95432330956609,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2022-09_water.geojson",
+      "source_sha256": "2b097a1d4aeb21568b1b24d8331923cdd97a135374f9ef5c3f9afc989c462da3",
+      "status": "outside_water",
+      "distance_m": 1402.010987366388,
+      "point": [
+        119.67750000000017,
+        49.1345
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67750000000017,
+          49.1345
+        ]
+      ]
+    },
+    {
+      "date": "2023-06",
+      "area_ha": 91.20058286631405,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2023-06_water.geojson",
+      "source_sha256": "7be33269d2f7265201b816288b0828ee3785f21bbdb30e4e203ff850744055b4",
+      "status": "outside_water",
+      "distance_m": 1417.671383014567,
+      "point": [
+        119.67775000000016,
+        49.1345
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67775000000016,
+          49.1345
+        ]
+      ]
+    },
+    {
+      "date": "2023-07",
+      "area_ha": 100.68596441449226,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2023-07_water.geojson",
+      "source_sha256": "792a11c12269507ebe31c8a93fa6dc81e6b078b72eb176da5a51f9289a9ea01e",
+      "status": "outside_water",
+      "distance_m": 1387.9999756754796,
+      "point": [
+        119.67750000000017,
+        49.13475
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67750000000017,
+          49.13475
+        ]
+      ]
+    },
+    {
+      "date": "2023-09",
+      "area_ha": 61.2230088224262,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2023-09_water.geojson",
+      "source_sha256": "2a06271f72e08446af15b6405be243c008a8faa5c84d3d6c854cf8449c75c5c4",
+      "status": "outside_water",
+      "distance_m": 1309.8441242242764,
+      "point": [
+        119.67575000000016,
+        49.13425
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67575000000016,
+          49.13425
+        ]
+      ]
+    },
+    {
+      "date": "2024-06",
+      "area_ha": 128.78815450732412,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2024-06_water.geojson",
+      "source_sha256": "2e73d19b9126b62cf3ec07ee2f663c021754b86fd94ec77394390ab8da76b652",
+      "status": "outside_water",
+      "distance_m": 1309.8441242242764,
+      "point": [
+        119.67575000000016,
+        49.13425
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67575000000016,
+          49.13425
+        ]
+      ]
+    },
+    {
+      "date": "2024-07",
+      "area_ha": 132.1363181545347,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2024-07_water.geojson",
+      "source_sha256": "6a9fce20e32700c11b2bab78f6db032e18f6c9db5ec57b124baa4f16cf2cce66",
+      "status": "outside_water",
+      "distance_m": 1296.4578397165074,
+      "point": [
+        119.67525000000016,
+        49.134
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67525000000016,
+          49.134
+        ]
+      ]
+    },
+    {
+      "date": "2024-08",
+      "area_ha": 130.766474918136,
+      "classification_disputed": false,
+      "water_asset": "linked/shorelines/2024-08_water.geojson",
+      "source_sha256": "774a809bc65b28b7ea0625d45ae3a4245c0e5ccd65157c054ed959341a4f1cfe",
+      "status": "outside_water",
+      "distance_m": 1294.239806157861,
+      "point": [
+        119.67575000000016,
+        49.1345
+      ],
+      "line": [
+        [
+          119.66093779576451,
+          49.1409469769002
+        ],
+        [
+          119.67575000000016,
+          49.1345
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+numpy
+Pillow
+# Install the GDAL Python bindings matching the system GDAL version (original run GDAL 3.10.3).

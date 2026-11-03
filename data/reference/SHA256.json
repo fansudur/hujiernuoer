@@ -1,0 +1,23 @@
+{
+  "qa_reference.py": "833030b48339fb4ddcc8f839ff8b86c7a24d080e3415453df1e6bf026ab85ecb",
+  "terrain_relief_local.png": "bcdad997941ea56cb73a330c9eb0b273aae2f2ad272daab340590f72542f3000",
+  "qa_overlay.png": "1ac0509c895b99e941bc8721b97076b88a54bcd382c07c349b7783037d28046b",
+  "qa.json": "1bb3f8a292c276f37b9578fb5fdcf16f8a60568b71bb5973192447a52445b66f",
+  "contours_context.geojson": "e0f98972540c4bf33ac6e9fde627e3514e46cf54ac596e63b8f0665c4fc23462",
+  "places_local.geojson": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+  "roads_context.geojson": "6e4acfe281bfa4c42fe5b0ff1446c2413d36812e37fe1479e73d67cfe7240311",
+  "office_reference.geojson": "f98e21ba9dcac7defb516551c5a10e599073790e343d885efca7b928d6114ad2",
+  "manifest.json": "1f9e2f0379dece6803dcbe8a412b592cd936393a185d4aac2f60a7c225ef8ad2",
+  "study_boundary.geojson": "322d42a0ac3293488f6e365d7b803d231a23b60816c5d1c52a162eb4746fbfd4",
+  "terrain_relief_context.png": "cafbd69ac54eb5b9bfca07634be3ee28c56e60b29244ffcb191b0d8687457e08",
+  "contours_local.geojson": "1c87b4faaba3390021770e036443e3993231bcc0431e62e5c5e5ccd2cf5a2dbd",
+  "hillshade_context.png": "7d0ce9676cde0c6709c881e65a429f4c04b99f82538186df6a66e9680ffa546e",
+  "copernicus_license.txt": "46bc3848b8705aa64f8bad1bc5179e5fb5eaf2ee2203f99049ba3cfd8c3679ad",
+  "README.md": "a9d5922eb99e9ee0ccaa0f4415f5683bf2b13c38d3a13fef277b7298596fb3f0",
+  "places_context.geojson": "c9f688c9ccae48eeef675e42ad1de896ed4c2153c25a39f5d75b2b23c083895d",
+  "osm_context.xml": "b0198a35ad1887c33cda82efb3bc33b8eb06723c9e27784072e1fbc4396abe13",
+  "roads_local.geojson": "9829878d7e9e06155864b9c0ed34e31c4c37e097a3488e0f0bd221e5eaa2e47a",
+  "build_reference.py": "9986112c9ba94964163e5ce5fed2a47c11e15909ca3059dee5c502f41c03fc50",
+  "hillshade_local.png": "63698047c9cd8606d77cf12ce9f761e3dd2e0ce9f7066dc40a695f6db5d70594",
+  "osm_context_full.xml": "bf7ee177fc9fda19d2c9175007f447849e701ee0cdf84381dbccf3e01fb8d8b5"
+}

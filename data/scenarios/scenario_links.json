@@ -1,0 +1,59 @@
+{
+  "note": "为解释关系而连点，不是道路、管线、汇流路径或工程轴线。观察实线，候选虚线。",
+  "links": [
+    {
+      "id": "OBS01",
+      "from": "lake-observation",
+      "to": "historical-water-screen",
+      "kind": "observation",
+      "label": "已展示历史样本见水范围",
+      "report_pages": [
+        14,
+        65,
+        69
+      ],
+      "consequence": "固定亲水设施与全年同一路线不能由当前水线决定。"
+    },
+    {
+      "id": "CAN01",
+      "from": "grass-W",
+      "to": "water-service-check",
+      "kind": "candidate",
+      "label": "草质/盐负荷与饮水联评",
+      "report_pages": [
+        67,
+        68,
+        76,
+        80
+      ],
+      "consequence": "草量收益扣除新增供水/补饲成本；缺合格水则该版本不成立。"
+    },
+    {
+      "id": "CAN02",
+      "from": "water-service-check",
+      "to": "historical-water-screen",
+      "kind": "candidate",
+      "label": "可能少踩湖岸，也可能造新泥圈",
+      "report_pages": [
+        67,
+        76,
+        84
+      ],
+      "consequence": "新点扰动抵消改善时，重新比较位置与管理，不计两次恢复收益。"
+    },
+    {
+      "id": "CAN03",
+      "from": "office-service",
+      "to": "lake-observation",
+      "kind": "candidate",
+      "label": "陆上内容配状态式远观",
+      "report_pages": [
+        69,
+        73,
+        74,
+        76
+      ],
+      "consequence": "湿软/冻融关闭时保留陆上替代；按实际开放与订单核算。"
+    }
+  ]
+}

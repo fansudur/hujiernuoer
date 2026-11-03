@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "title": "从图源年代到可直接对照的卫星记录",
+  "display_kind": "contextual_chronology_at_current_reference_anchor",
+  "spatial_anchor": {
+    "coordinates": [
+      119.69156942008443,
+      49.132794782364805
+    ],
+    "crs": "EPSG:4326",
+    "meaning": "Current lake research reference center, only a contextual anchor for records",
+    "not_historical_map_coordinate": true,
+    "not_historical_shoreline_or_lake_symbol_georeference": true
+  },
+  "time_axis": "Use true years/precision; do not impute January1 for year-only events",
+  "events": [
+    {
+      "id": "source-1942",
+      "year": 1942,
+      "date_precision": "year",
+      "label": "1942 · 被采用的日本图源",
+      "kind": "source_year",
+      "text": "1951年AMS图的编绘注记列出1942年日本参谋本部1:200,000图源。该年份是被采用资料的年份，不是本湖统一实测日期。",
+      "not_supported": "不能把图上每个地物都定年为1942，也不能称日本原图已独立核验。",
+      "evidence_id": "A006",
+      "source": "AMS L542 NM50-9 compilation note"
+    },
+    {
+      "id": "compilation-1951",
+      "year": 1951,
+      "date_precision": "year",
+      "label": "1951 · AMS地图编绘",
+      "kind": "map_compilation",
+      "text": "AMS海拉尔图在南屯与伊敏河西侧画有湖泊符号。相对位置和印刷格网支持本湖所在湖泊地带的历史存在。",
+      "not_supported": "不是1951年实测岸线；正式旧今湖名对应、水深和入湖沟未由此确定。",
+      "evidence_id": "A006",
+      "source": "AMS L542 NM50-9 First Edition, 1:250,000"
+    },
+    {
+      "id": "satellite-1987-07-08",
+      "date": "1987-07-08",
+      "year": 1987,
+      "date_precision": "day",
+      "label": "1987-07-08 · Landsat同位置红波段",
+      "kind": "satellite_acquisition",
+      "text": "真实获取日期的红波段灰阶地理影像，查看固定检查窗内宏观条带是否可辨。不是报告截图。",
+      "not_supported": "亮暗不能直接当盐度、水量或草量；不能重建米级沟网和实际流向。",
+      "evidence_id": "A009",
+      "source": "LT05_L2SP_123026_19870708_02_T1",
+      "texture_date": "1987-07-08",
+      "native_resolution_m": 30,
+      "valid_fraction_native_window": 0.7589198036006547,
+      "valid_fraction_native_check_window": 1.0
+    },
+    {
+      "id": "satellite-1992-07-05",
+      "date": "1992-07-05",
+      "year": 1992,
+      "date_precision": "day",
+      "label": "1992-07-05 · Landsat同位置红波段",
+      "kind": "satellite_acquisition",
+      "text": "真实获取日期的红波段灰阶地理影像，查看固定检查窗内宏观条带是否可辨。不是报告截图。",
+      "not_supported": "亮暗不能直接当盐度、水量或草量；不能重建米级沟网和实际流向。",
+      "evidence_id": "A009",
+      "source": "LT05_L2SP_123026_19920705_02_T1",
+      "texture_date": "1992-07-05",
+      "native_resolution_m": 30,
+      "valid_fraction_native_window": 1.0,
+      "valid_fraction_native_check_window": 1.0
+    },
+    {
+      "id": "satellite-2007-07-31",
+      "date": "2007-07-31",
+      "year": 2007,
+      "date_precision": "day",
+      "label": "2007-07-31 · Landsat同位置红波段",
+      "kind": "satellite_acquisition",
+      "text": "真实获取日期的红波段灰阶地理影像，查看固定检查窗内宏观条带是否可辨。不是报告截图。",
+      "not_supported": "亮暗不能直接当盐度、水量或草量；不能重建米级沟网和实际流向。",
+      "evidence_id": "A009",
+      "source": "LT05_L2SP_123026_20070731_02_T1",
+      "texture_date": "2007-07-31",
+      "native_resolution_m": 30,
+      "valid_fraction_native_window": 1.0,
+      "valid_fraction_native_check_window": 1.0
+    },
+    {
+      "id": "satellite-2021-07-21",
+      "date": "2021-07-21",
+      "year": 2021,
+      "date_precision": "day",
+      "label": "2021-07-21 · Landsat同位置红波段",
+      "kind": "satellite_acquisition",
+      "text": "真实获取日期的红波段灰阶地理影像，查看固定检查窗内宏观条带是否可辨。不是报告截图。",
+      "not_supported": "亮暗不能直接当盐度、水量或草量；不能重建米级沟网和实际流向。",
+      "evidence_id": "A009",
+      "source": "LC08_L2SP_123026_20210721_02_T1",
+      "texture_date": "2021-07-21",
+      "native_resolution_m": 30,
+      "valid_fraction_native_window": 0.9890343698854337,
+      "valid_fraction_native_check_window": 0.9992559523809523
+    }
+  ],
+  "limits": [
+    "The temporal stem is a presentation device, not terrain height or historical lake-level change.",
+    "1942 and1951 events do not change current water geometry or current meteorology.",
+    "The historical scan remains backup: Bessel-datum toWGS84 transformation has not been established.",
+    "Do not create an approximate historical shoreline, area or uncertaintyhalo without defensible error model."
+  ],
+  "source_url": "https://maps.lib.utexas.edu/maps/ams/manchuria/txu-oclc-6614368-nm50-9.jpg",
+  "map_crs_note": "Printed transverseMercator/Bessel grid; local6control affine exists but crossdatum transform notestablished",
+  "original_scan_sha256": "eb34d0f10320d7dbe7a7acc9bcb39c7159f8e04ef1d3d0e1d14c230c29412402",
+  "original_scan_size_px": [
+    5000,
+    3783
+  ],
+  "coarse_control_sha256": "bec032ba8f947633063489898f3cc4a2f0f62eac9f476abc3df76ded21186f1f"
+}

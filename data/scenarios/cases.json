@@ -1,0 +1,385 @@
+{
+  "schema_version": "1.0",
+  "title": "案例只迁移机制，不复制项目",
+  "image_policy": "所有图为本次原创SVG机制示意，不使用外网照片，不模拟本地建成效果。来源链接沿用已读综合报告；未重新查询当前运营。",
+  "cases": [
+    {
+      "id": "C01",
+      "title": "Böddi szék · 分区恢复与使用",
+      "kind": "匈牙利季节盐湖",
+      "report_pages": [
+        79
+      ],
+      "source_refs": [
+        "R01",
+        "R02",
+        "R03",
+        "R04"
+      ],
+      "sources": [
+        {
+          "id": "R01",
+          "text": "R01　Kiskunság国家公园 Böddi-szék项目结项通报\n2025-12-06。管理机构工程自报；渠线和连通湖盆。",
+          "report_page": 104,
+          "urls": [
+            "https://www.knp.hu/hu/hirek/sikeresen-ujraegyesitettek-a-csatornaval-kettevagott-szikes-tavat-a-kiskunsagban-762"
+          ]
+        },
+        {
+          "id": "R02",
+          "text": "R02　Kiskunság国家公园 Pannonic sodic wetlands项目资料\n早期计划页面。预算及资助比例；计划终期非实际结项。",
+          "report_page": 104,
+          "urls": [
+            "https://www.knp.hu/hu/pannon-szikes-vizi-elohelyek-helyreallitasa-a-kiskunsagban"
+          ]
+        },
+        {
+          "id": "R03",
+          "text": "R03　Kiskunság国家公园 Sóballa自然步道\n未标发布日期。步道长度与季节淹水段设施。",
+          "report_page": 104,
+          "urls": [
+            "https://www.knp.hu/hu/soballa-tanosveny"
+          ]
+        },
+        {
+          "id": "R04",
+          "text": "R04　Ábrám等 Böddi-szék生态状态对比研究\n2024。2010与2021比较；含项目相关作者。",
+          "report_page": 104,
+          "urls": [
+            "https://ojs.bibl.u-szeged.hu/index.php/rard/article/view/45956"
+          ]
+        }
+      ],
+      "fact": "管理机构2025年结项自报水文与草场恢复；2024论文比较2010和2021，仅评价轻度改善，观察时段早于最终结项。",
+      "why_comparable": "季节性盐湖需要把湖盆、草场与访客组织一起考虑。",
+      "why_not_copy": "当地有国家公园与既定水工项目；本地西北沟路尚未证实连续过水，不复制渠道绕行、动物配置或工程尺寸。",
+      "local_application": "草地筛查区留对照；湖盆保留动态岸带；不从外地工程推定本地应开渠。",
+      "cost_warning": "工程支出和财政资助不是经营利润，且长期维护不能省略。",
+      "image": "assets/C01.svg",
+      "image_kind": "原创机制示意，非现场照片/建成效果",
+      "labels": [
+        "草地分区",
+        "动态盐湖",
+        "有限观察"
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "Chaplin · 季节导览与牧场共存",
+      "kind": "加拿大寒冷草原盐湖",
+      "report_pages": [
+        79
+      ],
+      "source_refs": [
+        "R07",
+        "R08",
+        "R10",
+        "R11"
+      ],
+      "sources": [
+        {
+          "id": "R07",
+          "text": "R07　Chaplin村政府 自然中心介绍\n未标发布日期。中心功能与季节开放。",
+          "report_page": 104,
+          "urls": [
+            "https://www.villageofchaplin.ca/chaplin-nature-centre/"
+          ]
+        },
+        {
+          "id": "R08",
+          "text": "R08　Chaplin Nature Centre Bird Tours\n未标发布日期。运营者路线、挂牌价与雨后通行条件。",
+          "report_page": 104,
+          "urls": [
+            "https://www.chaplinnaturecentre.ca/bird-tours/"
+          ]
+        },
+        {
+          "id": "R10",
+          "text": "R10　Nature Conservancy of Canada NHCP年度报告\n2020—2021。页10；Mackie Ranch保育与放牧。",
+          "report_page": 104,
+          "urls": [
+            "https://www.natureconservancy.ca/assets/documents/nat/nhcp/NCC-NHCP-21-EN-Final.pdf"
+          ]
+        },
+        {
+          "id": "R11",
+          "text": "R11　Mitacs 萨省盐湖水鸟合作研究\n未标发布日期。研究活动及合作主体介绍。",
+          "report_page": 104,
+          "urls": [
+            "https://www.mitacs.ca/fr-ca/nos-projets/factors-influencing-shorebird-use-of-managed-and-unmanaged-saline-lakes-in-saskatchewan/"
+          ]
+        }
+      ],
+      "fact": "自然中心季节开放；运营者说明雨后路线需干燥；保育牧场仍保留放牧。公开导览价格不等于完整净利。",
+      "why_comparable": "寒冷草原盐湖也可从观察、讲解与研究形成内容，而不要求改造整湖。",
+      "why_not_copy": "湖约6070公顷且邻横贯加拿大公路；物种、盐矿资源、到访量与交通市场不等本地。当地雨后等待天数不能照搬。",
+      "local_application": "办公院轻展示候选＋状态合适才开放的远观内容；不画保证开放的环湖路线。",
+      "cost_warning": "按真实订单、开放天数、讲解、卫生和取消费用核算，不将矿业收入嫁接导览。",
+      "image": "assets/C03.svg",
+      "image_kind": "原创机制示意，非现场照片/建成效果",
+      "labels": [
+        "陆上中心",
+        "条件式导览",
+        "雨后关闭"
+      ]
+    },
+    {
+      "id": "C06",
+      "title": "长岭 · 先做小对照，不铺满草场",
+      "kind": "东北盐碱草地研究",
+      "report_pages": [
+        80
+      ],
+      "source_refs": [
+        "R28",
+        "R29"
+      ],
+      "sources": [
+        {
+          "id": "R28",
+          "text": "R28　王奕涵等 草种及生物炭添加对东北苏打盐碱地改良及牧草生长的影响\n2026-05-20。草业学报35卷5期139—150；2022—2023年实测研究。",
+          "report_page": 104,
+          "urls": [
+            "https://cjournal.hep.com.cn/1004-5759/CN/10.11686/cyxb2025213"
+          ]
+        },
+        {
+          "id": "R29",
+          "text": "R29　中国科学院东北地理所 松嫩盐碱化草地植被恢复研究进展\n页面路径2021-09-02。官方索引文本；全覆沙投入与局部客土播种。",
+          "report_page": 104,
+          "urls": [
+            "https://www.iga.cas.cn/news/research/202109/t20210902_6184928.html"
+          ]
+        }
+      ],
+      "fact": "2022—2023年研究用15平方米小区、5次重复；首年pH和电导率无显著变化，次年出现差异，未有完整经济账。",
+      "why_comparable": "可借鉴跨季对照、把草量和土壤指标分开看的方法。",
+      "why_not_copy": "土壤盐碱类型、材料成本、积水与管理不同；不复制生物炭剂量或增产率。",
+      "local_application": "在北/西/南既有研究区先筛真实退化且适用的小段，保留不处理对照，图上矩形不是施料区。",
+      "cost_warning": "材料、运输、维护和机会成本全部列入；植被更绿不直接计草料收入。",
+      "image": "assets/C06.svg",
+      "image_kind": "原创机制示意，非现场照片/建成效果",
+      "labels": [
+        "未处理对照",
+        "小尺度处理",
+        "跨季再测"
+      ]
+    },
+    {
+      "id": "C07",
+      "title": "Seewinkel · 放牧强度随生境调整",
+      "kind": "奥地利季节浅盐湖",
+      "report_pages": [
+        80
+      ],
+      "source_refs": [
+        "R35",
+        "R36",
+        "R37",
+        "R38",
+        "R39",
+        "R40",
+        "R41"
+      ],
+      "sources": [
+        {
+          "id": "R35",
+          "text": "R35　LIFE Pannonic Salt 项目介绍与任务\n2023—2028项目期。预算与目标；运行中项目非验收。",
+          "report_page": 104,
+          "urls": [
+            "https://www.life-pannonic-salt.eu/en/information-about-the-project.html"
+          ]
+        },
+        {
+          "id": "R36",
+          "text": "R36　LIFE Pannonic Salt 项目数字及措施\n2023—2028项目期。约1201万欧元及1200公顷目标。",
+          "report_page": 104,
+          "urls": [
+            "https://www.life-pannonic-salt.eu/en/facts-and-figures.html"
+          ]
+        },
+        {
+          "id": "R37",
+          "text": "R37　Korner等 Neusiedler See Seewinkel放牧监测\n2008。1990—2007年长期植被监测；研究摘要。",
+          "report_page": 104,
+          "urls": [
+            "https://www.parcs.at/npns/pdf_public/2021/39533_20210416_125617_Korneretal_2008_VegoekBeweidungsmonitoringNPNeusSee_AZBG_37_0001-0084.pdf"
+          ]
+        },
+        {
+          "id": "R38",
+          "text": "R38　国家公园管理机构 Beweidung\n未标发布日期。官方放牧管理与年度调整做法。",
+          "report_page": 104,
+          "urls": [
+            "https://www.nationalparkneusiedlersee.at/de/naturraummanagement/beweidung"
+          ]
+        },
+        {
+          "id": "R39",
+          "text": "R39　奥地利审计院 BUND 2020 29\n2020。审计2014—2018；印刷页25—26、68—69、75—78。",
+          "report_page": 104,
+          "urls": [
+            "https://www.parlament.gv.at/dokument/XXVII/III/169/imfname_831367.pdf"
+          ]
+        },
+        {
+          "id": "R40",
+          "text": "R40　Wind dispersal results in a gradient of dispersal limitation and environmental match among discrete aquatic habitats\n2017。34个盐湖的原始生态研究。",
+          "report_page": 104,
+          "urls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC5438046/"
+          ]
+        },
+        {
+          "id": "R41",
+          "text": "R41　Remote Sensing 15卷4659 Seewinkel浅盐湖水文研究\n2023。季节干湿变化与地下水气象分析。",
+          "report_page": 104,
+          "urls": [
+            "https://www.mdpi.com/2072-4292/15/19/4659/html"
+          ]
+        }
+      ],
+      "fact": "长期监测支持适度放牧改善部分盐生岸带；国家公园与畜群合作、随降雨和生境调整，并非增加牲畜就能修复。",
+      "why_comparable": "把现有牧用和生境维护一起管理，而不是自动排斥牧业。",
+      "why_not_copy": "保护管理制度、公共资金和气候水系不同；不能套用畜种、载畜或预算。",
+      "local_application": "草地轻干预应先核既有使用、植物与季节状态；进入与退出规则比一条永久围线更重要。",
+      "cost_warning": "公共财政收入不等市场经营收益；维护与临时减少牧用面积有代价。",
+      "image": "assets/C07.svg",
+      "image_kind": "原创机制示意，非现场照片/建成效果",
+      "labels": [
+        "草地状态",
+        "调整使用",
+        "复查生境"
+      ]
+    },
+    {
+      "id": "C08",
+      "title": "Katanning/Anameka · 饲草不能脱离饮水",
+      "kind": "澳大利亚盐地饲草",
+      "report_pages": [
+        80
+      ],
+      "source_refs": [
+        "R30",
+        "R31",
+        "R32",
+        "R33",
+        "R34"
+      ],
+      "sources": [
+        {
+          "id": "R30",
+          "text": "R30　西澳农业部门 Savouring the benefit of saving supplementary feeding with saltbush\n2024-07-29 更新07-31。70公顷研究站示范自报。",
+          "report_page": 104,
+          "urls": [
+            "https://www.wa.gov.au/government/announcements/savouring-the-benefit-of-saving-supplementary-feeding-saltbush"
+          ]
+        },
+        {
+          "id": "R31",
+          "text": "R31　Agriculture Victoria Saltbush for saline land\n未标发布日期。官方技术指导；饮水与日粮、适地条件。",
+          "report_page": 104,
+          "urls": [
+            "https://agriculture.vic.gov.au/farm-management/water/saltbush-for-saline-land"
+          ]
+        },
+        {
+          "id": "R32",
+          "text": "R32　CSIRO Anameka Saltbush\n2023-07-05更新。机构推广统计；潜在经济影响为估计。",
+          "report_page": 104,
+          "urls": [
+            "https://www.csiro.au/en/about/corporate-governance/ensuring-our-impact/impact-case-studies/future-industries/anameka-saltbush"
+          ]
+        },
+        {
+          "id": "R33",
+          "text": "R33　Norman等 Livestock preference and feeding value as key determinants for forage improvement\n2023-07-04。Animal Production Science 63卷；育种综述与模型。",
+          "report_page": 104,
+          "urls": [
+            "https://doi.org/10.1071/AN23140"
+          ]
+        },
+        {
+          "id": "R34",
+          "text": "R34　Hardy与Ryder 盐地多年生灌木饲料经济分析\n2013。西澳技术报告374；经济模型。",
+          "report_page": 104,
+          "urls": [
+            "https://library.dpird.wa.gov.au/rmtr/349/"
+          ]
+        }
+      ],
+      "fact": "官方70公顷示范报道秋季补饲最多减少30%；技术指导明确盐灌木需合格饮水及其他饲草，不能独立保证营养。",
+      "why_comparable": "草质、盐摄入、补饲、饮水和实际少购料应一起算。",
+      "why_not_copy": "澳洲物种、气候与牧场条件不等呼伦贝尔；模型利润不是本地实收，不引种照搬。",
+      "local_application": "草地候选与办公院附近饮水接口核查关联；独立水源还没有确认，不在地图标已建井。",
+      "cost_warning": "只计真实购料节省或销售之一；新增饮水、日粮、建植和维护费用可能抵销收益。",
+      "image": "assets/C08.svg",
+      "image_kind": "原创机制示意，非现场照片/建成效果",
+      "labels": [
+        "盐地饲草",
+        "饮水＋日粮",
+        "净节支核对"
+      ]
+    },
+    {
+      "id": "C14",
+      "title": "Lake Tyrrell · 把人留在可管理的节点",
+      "kind": "澳大利亚季节盐湖",
+      "report_pages": [
+        82
+      ],
+      "source_refs": [
+        "R42",
+        "R43",
+        "R44",
+        "R45"
+      ],
+      "sources": [
+        {
+          "id": "R42",
+          "text": "R42　维州政府 Landmark Tourism Boost For Iconic Lake Tyrrell\n2017-06-29。建设投资及预期客流；预测非实际。",
+          "report_page": 104,
+          "urls": [
+            "https://www.premier.vic.gov.au/landmark-tourism-boost-iconic-lake-tyrrell"
+          ]
+        },
+        {
+          "id": "R43",
+          "text": "R43　Buloke Shire Council Annual Report 2020 2021\n2021。官方索引文本；印刷页14项目25确认开放。",
+          "report_page": 104,
+          "urls": [
+            "https://www.buloke.vic.gov.au/articledocuments/1262/buloke%20shire%20council%20annual%20report%202020-2021.pdf.aspx"
+          ]
+        },
+        {
+          "id": "R44",
+          "text": "R44　维州DELWP Direl文化景观管理方案问答\n2021。页1管理分工；页2—3赛车路线与文化审查。",
+          "report_page": 104,
+          "urls": [
+            "https://www.forestsandreserves.vic.gov.au/__data/assets/pdf_file/0015/552201/FAQs-Lake-Tyrell-Direl-CMP.pdf"
+          ]
+        },
+        {
+          "id": "R45",
+          "text": "R45　Direl Cultural Landscape Conservation Management Plan公开报告\n2021。大型季节盐湖与文化景观背景。",
+          "report_page": 104,
+          "urls": [
+            "https://www.forestsandreserves.vic.gov.au/__data/assets/pdf_file/0024/552327/Direl_CMP_Public_Report-Draft-for-comment.pdf"
+          ]
+        }
+      ],
+      "fact": "市政年报确认集中观景设施2020年开放；文化景观调查指出既有赛车路线损伤遗存，历史客流预测不等实际实现。",
+      "why_comparable": "集中服务节点、动态观察和文化内容需要一起核查。",
+      "why_not_copy": "湖泊尺度、交通、文化权利与客源不同；不能复制停车场/栈道体量，不因曾经有人开车就认为本地可用车。",
+      "local_application": "先比较既有院落轻展示和核实的陆上远观；地方内容由真实资料与授权支撑，不套用外地文化符号。",
+      "cost_warning": "实际设施维护、卫生、交通和文化参与费用不能被游客预测掩盖。",
+      "image": "assets/C14.svg",
+      "image_kind": "原创机制示意，非现场照片/建成效果",
+      "labels": [
+        "固定节点",
+        "远观季节湖",
+        "文化核查"
+      ]
+    }
+  ]
+}

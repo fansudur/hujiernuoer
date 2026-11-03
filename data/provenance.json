@@ -1,0 +1,23 @@
+{
+  "/workspace/shared/lake_integrated_20261026/analysis/input/lake_quality.csv": "faa318579a08c93447adbfc30f60c79478548bdddee03d29dc43d5db52d59030",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2001_07_context.tif": "7c1723527a321fca3349e834cacb3d12a4559a19f9e776129c1bf5bbce13e02f",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2006_08_context.tif": "362b4844c65e3aadf4f87ae3f6e1ac9ddc60526e425fd575aabeb9f030d753b8",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2007_07_context.tif": "362b4844c65e3aadf4f87ae3f6e1ac9ddc60526e425fd575aabeb9f030d753b8",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2010_07_context.tif": "6b805dbb8ff532831afbc338ef1dddf49771a1e2c98f7cb6a414a55ce49ca62c",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2011_08_context.tif": "362b4844c65e3aadf4f87ae3f6e1ac9ddc60526e425fd575aabeb9f030d753b8",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2012_07_context.tif": "f26995f62db85ced9bbc73e87b2a9f484c863820fca5ce7d1eb47fb4fb80fd0d",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2014_08_context.tif": "d36921d65f95ce1f436fc7e67fcfd4fee75be093e1f1dfd81ca18ea2d3273705",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2017_07_context.tif": "9219d40427982e75e89186e0fc5474dd977dd98e4f7472d40557512ad92dfdc8",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2018_08_context.tif": "c28fb2655102feb5ee8a255e4b82e1d8155f09bb1253cdff93210e8053a07dc6",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2021_08_context.tif": "2f45fb70a09250ae8c594ea95fb83ba8849c3e7ccd9be30b47589ddc2216a387",
+  "/workspace/shared/alkali_long_window_water/source/selected_monthly_rasters/monthly_2024_08_context.tif": "ad896081b861e02dc8856256b7bfda57beb832432945a05b485497334f103f45",
+  "/workspace/shared/lake_integrated_20261026/analysis/tables/unified_monthly_skeleton_1956_2025.csv": "632b6fc3f148534d7034142231f637dd4b673abf7ccf0508f9bf66a6c488ca2a",
+  "/workspace/shared/lake_integrated_20261026/analysis/tables/monthly_integrated_198409_202608.csv": "ec595acf86f5068db35af6c93d0e93b79d4b4755f124885e1b98327521861b74",
+  "/workspace/shared/lake_integrated_20261026/analysis/input/ndvi_seasons.csv": "89777e023197d9505fcfa73b2265ac62da981067d8340db011cdc6be634f8394",
+  "/workspace/shared/alkali_dem/data/dem_native_wgs84.tif": "1dd3fed584b0847b6d0453f3990a40e1b4582465cf1692c36618253ddd661e07",
+  "/workspace/shared/alkali_dem/study_boundary_wgs84.geojson": "fb8a28c358695b16410ae41265120998e5f5d58ff2142f3e4658a7a2c238ac14",
+  "/workspace/shared/alkali_local_inflow/data/visual_anchor_points.geojson": "94d6a0ddb810271219ccdb429dc0c81fe7c3b4f1e2f36d120cdd661a5b6d9619",
+  "/workspace/shared/alkali_local_inflow/source/nw_office_esri_export.json": "036b9b463e59a1f0fab96c3bb380a13f054dd075e081c819f00fdae6efe2b816",
+  "/workspace/shared/lake_web_geodata_20261027/osm_context.xml": "14becafeb2bb9c9f401b0772c35bb33d720bce3c5bb8a1db9453b502bc3c66df",
+  "/workspace/shared/lake_integrated_20261026/analysis/tables/lake_primary_59_pairs.csv": "55905b239bc602db08ba995fa00eef97f391246d5fb9070baa41f6c37b3a80e8"
+}

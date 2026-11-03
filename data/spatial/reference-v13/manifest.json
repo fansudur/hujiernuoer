@@ -1,0 +1,240 @@
+{
+  "contexts": {
+    "local": {
+      "date": "2026-08-08",
+      "dates": [
+        "2026-08-08"
+      ],
+      "datetime": "2026-08-08T03:04:32.443000Z",
+      "id": "S2A_T50UPV_20260808T030153_L2A",
+      "sensor": "Sentinel-2 sentinel-2a",
+      "purpose": "Fixed actual-date geographical reference only, not selected-year observation",
+      "bounds_wgs84": [
+        119.53943514644351,
+        49.069522613065324,
+        119.81056485355649,
+        49.260477386934674
+      ],
+      "crs": "EPSG:4326",
+      "size_px": [
+        658,
+        709
+      ],
+      "display_pixel_m": 30,
+      "native_rgb_pixel_m": 10,
+      "native_scl_pixel_m": 20,
+      "source_crop_utm_bounds": [
+        684690,
+        5438220,
+        705360,
+        5460300
+      ],
+      "valid_fraction": 0.9999485554807704,
+      "invalid_pixels": 24,
+      "qa_rule": "SCL 0,1,3,8,9,10,11 excluded; one 30m cross dilation; all RGB DN>0; nearest sampling and reprojection, no filling.",
+      "display_transform": "Per STAC asset reflectance scale/offset then clip(reflectance/0.3,0,1)^(1/1.6).",
+      "assets": {
+        "geographic": {
+          "path": "data/spatial/reference-v13/local_2026-08-08.png",
+          "sha256": "e29076f12ea5687e48086203784348cb869c2415b21db01638f55469b8d584bb",
+          "bounds": [
+            119.53943514644351,
+            49.069522613065324,
+            119.81056485355649,
+            49.260477386934674
+          ],
+          "crs": "EPSG:4326",
+          "size_px": [
+            658,
+            709
+          ]
+        }
+      },
+      "sources": {
+        "red": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/B04.tif",
+          "crop_path": "local/red.tif",
+          "crop_sha256": "404f6935781826f408d55a29da55511fda5acd0c6f90ace07d2209a7b4a87d02",
+          "radiometric_metadata": [
+            {
+              "nodata": 0,
+              "data_type": "uint16",
+              "spatial_resolution": 10,
+              "scale": 0.0001,
+              "offset": -0.1
+            }
+          ]
+        },
+        "green": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/B03.tif",
+          "crop_path": "local/green.tif",
+          "crop_sha256": "c266cf4d773a9ea07af9b61aee11a5d326430783559e705da4d723b86991fb2f",
+          "radiometric_metadata": [
+            {
+              "nodata": 0,
+              "data_type": "uint16",
+              "spatial_resolution": 10,
+              "scale": 0.0001,
+              "offset": -0.1
+            }
+          ]
+        },
+        "blue": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/B02.tif",
+          "crop_path": "local/blue.tif",
+          "crop_sha256": "d432fbcaad47dcdd9f7efb758998cd7dd0ab54196fc99c25c8cdcf10718d5f80",
+          "radiometric_metadata": [
+            {
+              "nodata": 0,
+              "data_type": "uint16",
+              "spatial_resolution": 10,
+              "scale": 0.0001,
+              "offset": -0.1
+            }
+          ]
+        },
+        "scl": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/SCL.tif",
+          "crop_path": "local/scl.tif",
+          "crop_sha256": "8c7c104465e06939ad65b42a6bb1b333b08b4ce9dac98a09acdee0a70839ce41",
+          "radiometric_metadata": [
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 20
+            }
+          ]
+        }
+      },
+      "attribution": "Contains modified Copernicus Sentinel data (2026). Earth Search public COG distribution.",
+      "license_references": [
+        "https://cds.climate.copernicus.eu/licences/ec-sentinel",
+        "https://dataspace.copernicus.eu/terms-and-conditions"
+      ],
+      "fixed_background_not_temporal_observation": true,
+      "warnings": [
+        "Reference date differs from historical selected observations.",
+        "Invalid/cloud pixels remain transparent.",
+        "30m display sampling does not increase native detail."
+      ]
+    },
+    "regional": {
+      "date": "2026-07-25",
+      "dates": [
+        "2026-07-25"
+      ],
+      "datetime": "2026-07-25T03:14:13.654000Z",
+      "id": "S2B_T50UPV_20260725T030522_L2A",
+      "sensor": "Sentinel-2 sentinel-2b",
+      "purpose": "Fixed actual-date geographical reference only, not selected-year observation",
+      "bounds_wgs84": [
+        119.16,
+        49.055,
+        119.82,
+        49.36
+      ],
+      "crs": "EPSG:4326",
+      "size_px": [
+        1601,
+        1132
+      ],
+      "display_pixel_m": 30,
+      "native_rgb_pixel_m": 10,
+      "native_scl_pixel_m": 20,
+      "source_crop_utm_bounds": [
+        656760,
+        5435730,
+        706110,
+        5471370
+      ],
+      "valid_fraction": 0.9929063769772867,
+      "invalid_pixels": 12856,
+      "qa_rule": "SCL 0,1,3,8,9,10,11 excluded; one 30m cross dilation; all RGB DN>0; nearest sampling and reprojection, no filling.",
+      "display_transform": "Per STAC asset reflectance scale/offset then clip(reflectance/0.3,0,1)^(1/1.6).",
+      "assets": {
+        "geographic": {
+          "path": "data/spatial/reference-v13/regional_2026-07-25.png",
+          "sha256": "5e78058693162e2ed715e86bf57f75899da9b62c8ac9c4572442b3d79a371c4e",
+          "bounds": [
+            119.16,
+            49.055,
+            119.82,
+            49.36
+          ],
+          "crs": "EPSG:4326",
+          "size_px": [
+            1601,
+            1132
+          ]
+        }
+      },
+      "sources": {
+        "red": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/7/S2B_T50UPV_20260725T030522_L2A/B04.tif",
+          "crop_path": "regional_2026-07-25/red.tif",
+          "crop_sha256": "f565e4b7a525c845a234f6c299dc013c7e33ad6f0e0a2c2794b75191b403a0f5",
+          "radiometric_metadata": [
+            {
+              "nodata": 0,
+              "data_type": "uint16",
+              "spatial_resolution": 10,
+              "scale": 0.0001,
+              "offset": -0.1
+            }
+          ]
+        },
+        "green": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/7/S2B_T50UPV_20260725T030522_L2A/B03.tif",
+          "crop_path": "regional_2026-07-25/green.tif",
+          "crop_sha256": "c5c83ff610db6b5a0a66188017332aba06033fe60c34ca9c8338e7f07baa2b80",
+          "radiometric_metadata": [
+            {
+              "nodata": 0,
+              "data_type": "uint16",
+              "spatial_resolution": 10,
+              "scale": 0.0001,
+              "offset": -0.1
+            }
+          ]
+        },
+        "blue": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/7/S2B_T50UPV_20260725T030522_L2A/B02.tif",
+          "crop_path": "regional_2026-07-25/blue.tif",
+          "crop_sha256": "28a44569202ffd47ad64f80029f2be7ae9798d37221c6e61ff4ca77f6ace2052",
+          "radiometric_metadata": [
+            {
+              "nodata": 0,
+              "data_type": "uint16",
+              "spatial_resolution": 10,
+              "scale": 0.0001,
+              "offset": -0.1
+            }
+          ]
+        },
+        "scl": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/7/S2B_T50UPV_20260725T030522_L2A/SCL.tif",
+          "crop_path": "regional_2026-07-25/scl.tif",
+          "crop_sha256": "bb82feef7d20d336386583810aa54fa6ae9db69e2065dcc3a88e1fe511c5291e",
+          "radiometric_metadata": [
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 20
+            }
+          ]
+        }
+      },
+      "attribution": "Contains modified Copernicus Sentinel data (2026). Earth Search public COG distribution.",
+      "license_references": [
+        "https://cds.climate.copernicus.eu/licences/ec-sentinel",
+        "https://dataspace.copernicus.eu/terms-and-conditions"
+      ],
+      "fixed_background_not_temporal_observation": true,
+      "warnings": [
+        "Reference date differs from historical selected observations.",
+        "Invalid/cloud pixels remain transparent.",
+        "30m display sampling does not increase native detail."
+      ]
+    }
+  }
+}

@@ -1,0 +1,3810 @@
+{
+  "version": 1,
+  "title": "原地理栅格重投影的同域 Sentinel-2 真彩色",
+  "attribution": "Contains modified Copernicus Sentinel data. 来源：现有 Earth Search Sentinel-2 L2A COG 裁剪档案。",
+  "display_transform": "原脚本以校正反射率 R/G/B：clip(reflectance/0.3,0,1) ** (1/1.6) * 255；所有日期相同显示转换，原始10m可见光已按平均法降到20m。此次仅双线性重投影，不新增地物细节。",
+  "alignment": {
+    "status": "source_grid_identical_and_reprojected_to_common_grid",
+    "verified_all_dates": true,
+    "source_crs": "EPSG:32650",
+    "source_bounds": [
+      694600,
+      5444400,
+      698000,
+      5446800
+    ],
+    "source_grid": [
+      170,
+      120
+    ],
+    "ground_control_validation": false,
+    "caution": "已验证共同CRS/仿射变换/网格；依赖产品正射地理参考，未做地面控制点亚像元配准检验。不得声称达到实测地籍精度。",
+    "usage": "2D Web Mercator 地图用 mercator；Cesium geographic rectangle 用 geographic。所有日期bbox一致。"
+  },
+  "bbox_wgs84": [
+    119.66719518334996,
+    49.120519122680285,
+    119.71491954811452,
+    49.143170160282914
+  ],
+  "image_count": 35,
+  "default_pair": [
+    "2023-08-25",
+    "2024-08-16"
+  ],
+  "comparison_pairs": [
+    {
+      "id": "same_month",
+      "label": "同月跨年：2023-08-25 ↔ 2024-08-16",
+      "dates": [
+        "2023-08-25",
+        "2024-08-16"
+      ],
+      "caution": "同为8月，不同具体日；不据此单独判断全年单调趋势。"
+    },
+    {
+      "id": "same_year",
+      "label": "同年季节内：2023-07-26 ↔ 2023-08-25",
+      "dates": [
+        "2023-07-26",
+        "2023-08-25"
+      ],
+      "caution": "同年不同月对比，不是跨年趋势。"
+    },
+    {
+      "id": "recent",
+      "label": "近期同月：2025-08-04 ↔ 2026-08-08",
+      "dates": [
+        "2025-08-04",
+        "2026-08-08"
+      ],
+      "caution": "2026夏季仅两景合格8月观测；不能推断7月。"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S2B_50UPV_20170712_1_L2A",
+      "date": "2017-07-12",
+      "datetime": "2017-07-12T03:14:00.331000Z",
+      "label": "2017-07-12 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2017-07-12_truecolor_mercator.png",
+          "sha256": "9cbb767a925373e1e8a37ddc55397bc76a0a90ec399ef90ab47a1ab6e84af9d7",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2017-07-12_truecolor_geographic.png",
+          "sha256": "5d113eee173aae9ed212a14ed059da018c093d710cc7c53e5a0159ee34cfb52e",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_50UPV_20170712_1_L2A_rgb.tif",
+        "sha256": "127f07b04ad87030f40131eca85fbd5c4b95aeb79a4a928d51304d92f565b773",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_50UPV_20170712_1_L2A",
+        "band_urls": {
+          "red": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2017/7/S2B_50UPV_20170712_1_L2A/B04.tif",
+          "green": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2017/7/S2B_50UPV_20170712_1_L2A/B03.tif",
+          "blue": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2017/7/S2B_50UPV_20170712_1_L2A/B02.tif"
+        },
+        "license_links": [
+          "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        ]
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9946097697922516,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 0.0,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20180719T025950_L2A",
+      "date": "2018-07-19",
+      "datetime": "2018-07-19T03:04:16.488000Z",
+      "label": "2018-07-19 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2018-07-19_truecolor_mercator.png",
+          "sha256": "e0e6744f8e56803a08dd927ce35057a2111644fa7ff3572eeec1e63f14116a21",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2018-07-19_truecolor_geographic.png",
+          "sha256": "6353ab2c80faeb0790ed062f876bf24fd4225197235f7cb53c8a73857d3cb841",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20180719T025950_L2A_rgb.tif",
+        "sha256": "459d6cbecf675b2bf2dc5ea3cd8504ff00138fb22bf14b3a00305f501a8bc767",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20180719T025950_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2018/7/S2A_T50UPV_20180719T025950_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2018/7/S2A_T50UPV_20180719T025950_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2018/7/S2A_T50UPV_20180719T025950_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": false,
+        "valid_fraction_fixed_lake_window": 0.9655249859629421,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": true
+      },
+      "context_only_original_spectral_water_ha": 24.400000000000002,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20180828T025543_L2A",
+      "date": "2018-08-28",
+      "datetime": "2018-08-28T03:04:13.907000Z",
+      "label": "2018-08-28 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2018-08-28_truecolor_mercator.png",
+          "sha256": "5eda64785922dab3adb763534127bb9e62291ef866109c7cb9a3c11606e53903",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2018-08-28_truecolor_geographic.png",
+          "sha256": "ef518086fb7b5b353d6211147ce1eaabd9ac5d557b56235a93036d74781d9bc5",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20180828T025543_L2A_rgb.tif",
+        "sha256": "670b088a41c8c179a9ac19a459096bfb09f812b1a5e24ea0323968c7aee62193",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20180828T025543_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2018/8/S2A_T50UPV_20180828T025543_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2018/8/S2A_T50UPV_20180828T025543_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2018/8/S2A_T50UPV_20180828T025543_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": false,
+        "valid_fraction_fixed_lake_window": 0.9434025828186412,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": true
+      },
+      "context_only_original_spectral_water_ha": 46.6,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20190709T030237_L2A",
+      "date": "2019-07-09",
+      "datetime": "2019-07-09T03:04:24.305000Z",
+      "label": "2019-07-09 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2019-07-09_truecolor_mercator.png",
+          "sha256": "900c049b4af00790c1aecbda0f9f264e33e580321d6194c9a37c0e177f863628",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2019-07-09_truecolor_geographic.png",
+          "sha256": "afda17e697ef4e66e72afff3897cd9e3764b3cf3ac15c9bd4eb70498baf8bfbe",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20190709T030237_L2A_rgb.tif",
+        "sha256": "a9c4bac720bf69bbc4b99e7a437a57f8aec0933ec412823c5ada09ccb01808bd",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20190709T030237_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2B_T50UPV_20190709T030237_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2B_T50UPV_20190709T030237_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2B_T50UPV_20190709T030237_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 52.800000000000004,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20190712T030822_L2A",
+      "date": "2019-07-12",
+      "datetime": "2019-07-12T03:14:21.872000Z",
+      "label": "2019-07-12 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2019-07-12_truecolor_mercator.png",
+          "sha256": "833df8fe34708f7212acb5592aaca983a5e8f4f51b8330f4f89110ced78f5fe7",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2019-07-12_truecolor_geographic.png",
+          "sha256": "ab0857293ea6c368fd309c34d0aeb76cae93582395c4a7708001702aa303c6ef",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20190712T030822_L2A_rgb.tif",
+        "sha256": "f1d698610845f3b33d984fe3ace740b5f8c7932eea671777c3c7e509e07f7015",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20190712T030822_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2B_T50UPV_20190712T030822_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2B_T50UPV_20190712T030822_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2B_T50UPV_20190712T030822_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 47.160000000000004,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20190717T031148_L2A",
+      "date": "2019-07-17",
+      "datetime": "2019-07-17T03:14:18.229000Z",
+      "label": "2019-07-17 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2019-07-17_truecolor_mercator.png",
+          "sha256": "e533d1526eeb274d3216fd8b81084a0b8c4d933f23a4fc0ddfd31c257e0b51fb",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2019-07-17_truecolor_geographic.png",
+          "sha256": "6f447c09098a101ab5b4bd0281b904003c3466f6f988255fd9ad518b85553bed",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20190717T031148_L2A_rgb.tif",
+        "sha256": "225134d1239a9f3b65ad42e54a4ba40c3d2c74ce2882e14a156275762951acb0",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20190717T031148_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2A_T50UPV_20190717T031148_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2A_T50UPV_20190717T031148_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/7/S2A_T50UPV_20190717T031148_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 49.120000000000005,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20190803T025853_L2A",
+      "date": "2019-08-03",
+      "datetime": "2019-08-03T03:04:19.966000Z",
+      "label": "2019-08-03 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2019-08-03_truecolor_mercator.png",
+          "sha256": "f6b1c83e8b9b764b26c4d770b08e031aeb5d3793645483c3b404c4fda07b941f",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2019-08-03_truecolor_geographic.png",
+          "sha256": "fb768b36ce9392f0820286f8cd731d8f1006f4427ee8e9029203fb377f2f0036",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20190803T025853_L2A_rgb.tif",
+        "sha256": "38556cadc85916ddb399a9145208ad1681e7ff5c9077b2f3a5b4e098bbd69447",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20190803T025853_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/8/S2A_T50UPV_20190803T025853_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/8/S2A_T50UPV_20190803T025853_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2019/8/S2A_T50UPV_20190803T025853_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9979786636720943,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 55.2,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20200706T030815_L2A",
+      "date": "2020-07-06",
+      "datetime": "2020-07-06T03:14:15.162000Z",
+      "label": "2020-07-06 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2020-07-06_truecolor_mercator.png",
+          "sha256": "e9a4f3a7e896fccf1a22748b3181c54697a440ccaf3f63c37ff493b69c68c1e6",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2020-07-06_truecolor_geographic.png",
+          "sha256": "e0cc77a43f2276e67591fdd61d4de0f86de46e490e4343e0745c12f915196dd1",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20200706T030815_L2A_rgb.tif",
+        "sha256": "9ead94760ec0d73bfe476376ce73ba5add91f7ca81dd415f98337532bf0d2ba3",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20200706T030815_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200706T030815_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200706T030815_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200706T030815_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 0.0,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20200708T030138_L2A",
+      "date": "2020-07-08",
+      "datetime": "2020-07-08T03:04:19.748000Z",
+      "label": "2020-07-08 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2020-07-08_truecolor_mercator.png",
+          "sha256": "b926d1f1261496f6600c5b0c9e590b0bb1e63453fb97c2370a6447a11ddc605f",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2020-07-08_truecolor_geographic.png",
+          "sha256": "007983de7790165ac8b0d218f80d105eb8364615b4875cb79461078bee6988a0",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20200708T030138_L2A_rgb.tif",
+        "sha256": "2718d7c73f62b9784aed1e9caa254adff8595c12a4e6664f8409605dbfbbbaa6",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20200708T030138_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2A_T50UPV_20200708T030138_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2A_T50UPV_20200708T030138_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2A_T50UPV_20200708T030138_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.997080291970803,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 0.0,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20200723T030230_L2A",
+      "date": "2020-07-23",
+      "datetime": "2020-07-23T03:04:17.592000Z",
+      "label": "2020-07-23 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2020-07-23_truecolor_mercator.png",
+          "sha256": "26fd10a3cde9595ecb094dcdc4da5eb90a986f0ff09121d6e55ddec8b5786d9a",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2020-07-23_truecolor_geographic.png",
+          "sha256": "02cb30b3c39f505ebcff3e3a103fd40e2d3f2942f2dc828a989d72571df55a8b",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20200723T030230_L2A_rgb.tif",
+        "sha256": "f5c1521d29c4d5183058251209d6f617279a6a79b4dc76cf3ee3a7cc35f9ca34",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20200723T030230_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200723T030230_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200723T030230_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200723T030230_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 40.6,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20200726T031145_L2A",
+      "date": "2020-07-26",
+      "datetime": "2020-07-26T03:14:15.406000Z",
+      "label": "2020-07-26 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2020-07-26_truecolor_mercator.png",
+          "sha256": "18893a0757b252ed9a3e642b169f99ef3e82bb97f8cb258ab975d55a0936f8e0",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2020-07-26_truecolor_geographic.png",
+          "sha256": "07f22920cfeec1e23bd665c27f675cf1f3471dbb2445e72e4ac0d775fc21c0ab",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20200726T031145_L2A_rgb.tif",
+        "sha256": "02c117c074b4fdcbc2e05ff5e40821718ceb887195948178da969e96c3c456da",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20200726T031145_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200726T031145_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200726T031145_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2020/7/S2B_T50UPV_20200726T031145_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 37.28,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20210716T030545_L2A",
+      "date": "2021-07-16",
+      "datetime": "2021-07-16T03:14:16.294000Z",
+      "label": "2021-07-16 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2021-07-16_truecolor_mercator.png",
+          "sha256": "429aae06ba47fe4733d31199b085d1dc595df6c9bf07c6a4df03df0dc0b416df",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2021-07-16_truecolor_geographic.png",
+          "sha256": "3ca70107c09a7b3d884eaaea3ff6f32299ef02c848f84de8921e6481f6dc29c6",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20210716T030545_L2A_rgb.tif",
+        "sha256": "35f405c9b9bcc30c41ac02cd7a31facabc425c19caf6c89e757792f6e16e87c2",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20210716T030545_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/7/S2A_T50UPV_20210716T030545_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/7/S2A_T50UPV_20210716T030545_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/7/S2A_T50UPV_20210716T030545_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 99.92,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20210721T030913_L2A",
+      "date": "2021-07-21",
+      "datetime": "2021-07-21T03:14:15.130000Z",
+      "label": "2021-07-21 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2021-07-21_truecolor_mercator.png",
+          "sha256": "22ce5f4e3d7d666ac3d7d5d1b9823c9ccf9bc1233186f0b8e0942c756636ec19",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2021-07-21_truecolor_geographic.png",
+          "sha256": "1e8f4e211baed5d160fa8aae71f4bf336a3f3e340d1a20e10dd34f21afb86e32",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20210721T030913_L2A_rgb.tif",
+        "sha256": "55ac594f5aab3e58672b82ab368a8352ffe3577364b9852f982372e87f7ccc24",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20210721T030913_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/7/S2B_T50UPV_20210721T030913_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/7/S2B_T50UPV_20210721T030913_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/7/S2B_T50UPV_20210721T030913_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 105.72,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20210822T025546_L2A",
+      "date": "2021-08-22",
+      "datetime": "2021-08-22T03:04:17.716000Z",
+      "label": "2021-08-22 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2021-08-22_truecolor_mercator.png",
+          "sha256": "a80876a89c5954ca38fe0772c86f8af0beeb702692741253c8dc810b73d7099f",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2021-08-22_truecolor_geographic.png",
+          "sha256": "39975e9695a818355b2db0e1de743ed80b8266ece0be3abedcdae435b4b915c0",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20210822T025546_L2A_rgb.tif",
+        "sha256": "cdfdad2c4a7bff1f46585f1ed414a5ee374f6fef3f193bd391862c5e05ab684b",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20210822T025546_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/8/S2A_T50UPV_20210822T025546_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/8/S2A_T50UPV_20210822T025546_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/8/S2A_T50UPV_20210822T025546_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 103.72,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20210830T030539_L2A",
+      "date": "2021-08-30",
+      "datetime": "2021-08-30T03:14:10.359000Z",
+      "label": "2021-08-30 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2021-08-30_truecolor_mercator.png",
+          "sha256": "042e8447e8bc99a3a01a04de9e7e92a7e0db642c2dd6af34966ad6bc2b272c53",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2021-08-30_truecolor_geographic.png",
+          "sha256": "4be94732b5eb842c5f657f8805b818ea197f79ee4e9caf27f79ee440ea34f254",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20210830T030539_L2A_rgb.tif",
+        "sha256": "5bb427a29445c2f587aafc5f5b9a729724597b176a0102418ddb500a1ed6eb91",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20210830T030539_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/8/S2B_T50UPV_20210830T030539_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/8/S2B_T50UPV_20210830T030539_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2021/8/S2B_T50UPV_20210830T030539_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9968556990454801,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 104.04,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_50UPV_20220701_0_L2A",
+      "date": "2022-07-01",
+      "datetime": "2022-07-01T03:14:26.045000Z",
+      "label": "2022-07-01 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2022-07-01_truecolor_mercator.png",
+          "sha256": "f4645ea0ae6cca8e647f4c0ec5bc54975ccfc4690cd578dbad47ad49ebcdae42",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2022-07-01_truecolor_geographic.png",
+          "sha256": "e9635117a60a39e12dc1ab007f92a7ab2559053c49abb7e74e6a848514f780ac",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_50UPV_20220701_0_L2A_rgb.tif",
+        "sha256": "04321934d0a7a6c46732ef2946cf170a6cb91837994e7559e2cb8840f11a4480",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_50UPV_20220701_0_L2A",
+        "band_urls": {
+          "red": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/7/S2A_50UPV_20220701_0_L2A/B04.tif",
+          "green": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/7/S2A_50UPV_20220701_0_L2A/B03.tif",
+          "blue": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/7/S2A_50UPV_20220701_0_L2A/B02.tif"
+        },
+        "license_links": [
+          "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        ]
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 99.96000000000001,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_50UPV_20220721_0_L2A",
+      "date": "2022-07-21",
+      "datetime": "2022-07-21T03:14:24.452000Z",
+      "label": "2022-07-21 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2022-07-21_truecolor_mercator.png",
+          "sha256": "f5d2f0060065bd9a4cf29172dbec035277053c6f1c6ec4b94a92804244159b75",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2022-07-21_truecolor_geographic.png",
+          "sha256": "0933b1c38f2afbdcb9314e01163a0f8cb1b259651ae363a43e9d7d914d3de332",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_50UPV_20220721_0_L2A_rgb.tif",
+        "sha256": "07275ee90c0cec00e2b44fcae51e928030048f041258c7106961728b65a90889",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_50UPV_20220721_0_L2A",
+        "band_urls": {
+          "red": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/7/S2A_50UPV_20220721_0_L2A/B04.tif",
+          "green": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/7/S2A_50UPV_20220721_0_L2A/B03.tif",
+          "blue": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/7/S2A_50UPV_20220721_0_L2A/B02.tif"
+        },
+        "license_links": [
+          "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        ]
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9980909601347557,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 103.48,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_50UPV_20220805_0_L2A",
+      "date": "2022-08-05",
+      "datetime": "2022-08-05T03:14:17.516000Z",
+      "label": "2022-08-05 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2022-08-05_truecolor_mercator.png",
+          "sha256": "1fd5630eb0bc75b48133b29a12744eeda21dff1da91ae374cc82e180d467576c",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2022-08-05_truecolor_geographic.png",
+          "sha256": "7d708ce3e05d20be36a1672327a0268c856af0c889c8542fc1fb11aa14a0abc6",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_50UPV_20220805_0_L2A_rgb.tif",
+        "sha256": "bcd6069a5b66bf3f151c076bec5bb1d5ec303a6d99d1de4950f62ba37ca90527",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_50UPV_20220805_0_L2A",
+        "band_urls": {
+          "red": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/8/S2B_50UPV_20220805_0_L2A/B04.tif",
+          "green": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/8/S2B_50UPV_20220805_0_L2A/B03.tif",
+          "blue": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/8/S2B_50UPV_20220805_0_L2A/B02.tif"
+        },
+        "license_links": [
+          "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        ]
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 107.08,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_50UPV_20220827_0_L2A",
+      "date": "2022-08-27",
+      "datetime": "2022-08-27T03:04:28.047000Z",
+      "label": "2022-08-27 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2022-08-27_truecolor_mercator.png",
+          "sha256": "b71ea58d7e0b803684145ebaba8574735b881b00c7b08fbb9f673b7619f6f08a",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2022-08-27_truecolor_geographic.png",
+          "sha256": "6166ee41868612259e7e7488548498f129d3b5eee3637360911816f955614f73",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_50UPV_20220827_0_L2A_rgb.tif",
+        "sha256": "cb89c9be82cee5ef7622f22e50ff7a13690cb873a0757bd78b53dd10933241ae",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_50UPV_20220827_0_L2A",
+        "band_urls": {
+          "red": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/8/S2A_50UPV_20220827_0_L2A/B04.tif",
+          "green": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/8/S2A_50UPV_20220827_0_L2A/B03.tif",
+          "blue": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/50/U/PV/2022/8/S2A_50UPV_20220827_0_L2A/B02.tif"
+        },
+        "license_links": [
+          "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        ]
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 105.4,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20230711T030657_L2A",
+      "date": "2023-07-11",
+      "datetime": "2023-07-11T03:14:18.042000Z",
+      "label": "2023-07-11 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2023-07-11_truecolor_mercator.png",
+          "sha256": "f0eca91c90ac9e7dd165d77aaea1b1cf8c778e54e63a3257452f1ccc5afeb96f",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2023-07-11_truecolor_geographic.png",
+          "sha256": "72b05bc3d0fae17d5bd16dcc93f23f1ac1c396beb78245ec33613eccaace3007",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20230711T030657_L2A_rgb.tif",
+        "sha256": "78fd20e1eaa033239e7a2264941acb75a86fe8a333645ddbbd94ad5974a9fa17",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20230711T030657_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230711T030657_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230711T030657_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230711T030657_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9989893318360472,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 100.44,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20230716T031211_L2A",
+      "date": "2023-07-16",
+      "datetime": "2023-07-16T03:14:17.850000Z",
+      "label": "2023-07-16 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2023-07-16_truecolor_mercator.png",
+          "sha256": "fb585d3d5fcb312541e2a6289a3ec3fc58649b752d32d37acf47e13aa6bea4d9",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2023-07-16_truecolor_geographic.png",
+          "sha256": "9c6d286c7b915e5d02ff0f23414cac2e6a8e16ff5e323801fcb4d2d51cd4fb0d",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20230716T031211_L2A_rgb.tif",
+        "sha256": "5f72b069ef08ea757742236067ca732aefd4d1ac94f291789c09ef90bdb18df4",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20230716T031211_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2A_T50UPV_20230716T031211_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2A_T50UPV_20230716T031211_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2A_T50UPV_20230716T031211_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9986524424480628,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 101.96000000000001,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20230718T030322_L2A",
+      "date": "2023-07-18",
+      "datetime": "2023-07-18T03:04:21.073000Z",
+      "label": "2023-07-18 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2023-07-18_truecolor_mercator.png",
+          "sha256": "2a13031b65f7a3e3596e3b74f298592783b573c0a4d17c68f4050b79b04b628c",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2023-07-18_truecolor_geographic.png",
+          "sha256": "208ca2497b9fa8f298a5ed4efe9ba0799cbec5802e199dafc4b4df69565ee619",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20230718T030322_L2A_rgb.tif",
+        "sha256": "edc44b4193b02c608d8e8e0df297c3a4eebffe64a4118c06a2ec9f30b0e3297a",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20230718T030322_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230718T030322_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230718T030322_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230718T030322_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 99.96000000000001,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20230726T030845_L2A",
+      "date": "2023-07-26",
+      "datetime": "2023-07-26T03:14:18.007000Z",
+      "label": "2023-07-26 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2023-07-26_truecolor_mercator.png",
+          "sha256": "1576654c69dffc9a9ba09e8ab8dd9fa13dfbb76b304a813792ccfc5c59db422a",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2023-07-26_truecolor_geographic.png",
+          "sha256": "556dbcb2ea181f52886be92cb084392d4d3afaa712e1fbc792fe8ff382110090",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20230726T030845_L2A_rgb.tif",
+        "sha256": "8f959f1f9cec8ab9d262e6667b0e9df7330d8aa7404a492a496f467d940b9642",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20230726T030845_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2A_T50UPV_20230726T030845_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2A_T50UPV_20230726T030845_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2A_T50UPV_20230726T030845_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 107.92,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20230728T030325_L2A",
+      "date": "2023-07-28",
+      "datetime": "2023-07-28T03:04:21.255000Z",
+      "label": "2023-07-28 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2023-07-28_truecolor_mercator.png",
+          "sha256": "d37d856fef57c3764e0120f4cce4abe46eff1b0abe4358bd02ac94fae099a3d8",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2023-07-28_truecolor_geographic.png",
+          "sha256": "b0f85f0485f385515901efb95849a3836ac2f47b4f2aa20265283bb6a0669811",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20230728T030325_L2A_rgb.tif",
+        "sha256": "f76e61691800ec763afb623efa22bf053fa88212a6dedfdb0e78ee2406d28d0f",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20230728T030325_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230728T030325_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230728T030325_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/7/S2B_T50UPV_20230728T030325_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9939359910162829,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 105.48,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20230810T031200_L2A",
+      "date": "2023-08-10",
+      "datetime": "2023-08-10T03:14:18.551000Z",
+      "label": "2023-08-10 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2023-08-10_truecolor_mercator.png",
+          "sha256": "c9696b92f56cf691ba1f141bbd958dfbad16da6deb460f3c34a6f57a3222584b",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2023-08-10_truecolor_geographic.png",
+          "sha256": "22e9c8b8c47c6373adbd27303a1ab2cb2e6deb38cd33ff0177b371d177e88676",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20230810T031200_L2A_rgb.tif",
+        "sha256": "95444ba7540eb2cab9f11b27f9c900c488e0bb69793bb4300ae7fbdcbeaeeb31",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20230810T031200_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2B_T50UPV_20230810T031200_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2B_T50UPV_20230810T031200_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2B_T50UPV_20230810T031200_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9979786636720943,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 126.28,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20230825T031321_L2A",
+      "date": "2023-08-25",
+      "datetime": "2023-08-25T03:14:19.113000Z",
+      "label": "2023-08-25 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2023-08-25_truecolor_mercator.png",
+          "sha256": "ddd157eefe33773ec223d25b5fe9b76a7d40e31f246ec8d4e003edfe62950e84",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2023-08-25_truecolor_geographic.png",
+          "sha256": "940e1781bc3a794e34101b6b2d7efd7b35b61f0b4296f668ec31c80962adad8d",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20230825T031321_L2A_rgb.tif",
+        "sha256": "494a62c7a1b5a6fa01b2e6a376443d94ad9fc143fde7f1e795ee50492314f3ad",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20230825T031321_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2A_T50UPV_20230825T031321_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2A_T50UPV_20230825T031321_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2A_T50UPV_20230825T031321_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 0.9979786636720943,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 141.32,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20230827T025713_L2A",
+      "date": "2023-08-27",
+      "datetime": "2023-08-27T03:04:19.852000Z",
+      "label": "2023-08-27 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2023-08-27_truecolor_mercator.png",
+          "sha256": "90ffb8343ce7a142be62200a1525f2486f9fb4b607d7aea0aa630284ae6aa330",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2023-08-27_truecolor_geographic.png",
+          "sha256": "0a3d6e9aa94ecbb3b7ba5f1ce75ef1c9f625e41a54cc6e7689d70b5995990d32",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20230827T025713_L2A_rgb.tif",
+        "sha256": "fc010d557afdda8e937f534f986439f441662a987af41e72f088442352e55fd2",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20230827T025713_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2B_T50UPV_20230827T025713_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2B_T50UPV_20230827T025713_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2023/8/S2B_T50UPV_20230827T025713_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 141.24,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20240702T025820_L2A",
+      "date": "2024-07-02",
+      "datetime": "2024-07-02T03:04:19.332000Z",
+      "label": "2024-07-02 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2024-07-02_truecolor_mercator.png",
+          "sha256": "9c7ab557ea86c123e2d14fbe2f82d65643d51d3fd081f441b733bb4a6c6d162f",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2024-07-02_truecolor_geographic.png",
+          "sha256": "65688f8c10dc595ba819d582c39eed6e3cca4355122638c64efd37c588eac684",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20240702T025820_L2A_rgb.tif",
+        "sha256": "780554e66c176a811350bc649ba541e30bf06d598d476855a22d1b59c5f33a74",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20240702T025820_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/7/S2B_T50UPV_20240702T025820_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/7/S2B_T50UPV_20240702T025820_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/7/S2B_T50UPV_20240702T025820_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 130.64000000000001,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20240730T030644_L2A",
+      "date": "2024-07-30",
+      "datetime": "2024-07-30T03:14:15.707000Z",
+      "label": "2024-07-30 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2024-07-30_truecolor_mercator.png",
+          "sha256": "ac71e124338aa144c65ed1267ce18f1cb261ce790c811aa70172f60d48b5a49a",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2024-07-30_truecolor_geographic.png",
+          "sha256": "de1a2fb861f9f6f37f80efa108072cc2c2f5ee5757bd7171cd104f180e74674b",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20240730T030644_L2A_rgb.tif",
+        "sha256": "e0f23e3655fc492593a655b04101d96a44018b0ef9ce058ceff07cdadd02f3bb",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20240730T030644_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/7/S2A_T50UPV_20240730T030644_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/7/S2A_T50UPV_20240730T030644_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/7/S2A_T50UPV_20240730T030644_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 133.16,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20240816T025921_L2A",
+      "date": "2024-08-16",
+      "datetime": "2024-08-16T03:04:16.383000Z",
+      "label": "2024-08-16 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2024-08-16_truecolor_mercator.png",
+          "sha256": "d6c67ad5b798fd764bfb70d4f54dbfee33bb229b18ed1c4c089508a05d964817",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2024-08-16_truecolor_geographic.png",
+          "sha256": "5f2c5ff95da5201e5a76d9f28655ffbf078154beaedd6f60dfa7cd5d12a7d5d5",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20240816T025921_L2A_rgb.tif",
+        "sha256": "24d1fdf856c89b35e7a10dba34cf23c691e2a320409dc907ddd30b713003f158",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20240816T025921_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/8/S2A_T50UPV_20240816T025921_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/8/S2A_T50UPV_20240816T025921_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2024/8/S2A_T50UPV_20240816T025921_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 129.04,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20250724T030155_L2A",
+      "date": "2025-07-24",
+      "datetime": "2025-07-24T03:04:34.564000Z",
+      "label": "2025-07-24 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2025-07-24_truecolor_mercator.png",
+          "sha256": "e65368c4ec52987ed29919ac807668110479cd2aeee9573e835f3a38b67effd3",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2025-07-24_truecolor_geographic.png",
+          "sha256": "68ef03143abc7e20ccc06ce80fa17c1fc90f4de3feec724f158d608cc1b6bc35",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20250724T030155_L2A_rgb.tif",
+        "sha256": "7cf9ae79490771624506e7724865baf0a4c39392a63ba694989e234c22569218",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20250724T030155_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/7/S2A_T50UPV_20250724T030155_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/7/S2A_T50UPV_20250724T030155_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/7/S2A_T50UPV_20250724T030155_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 150.12,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2C_T50UPV_20250804T031127_L2A",
+      "date": "2025-08-04",
+      "datetime": "2025-08-04T03:14:33.063000Z",
+      "label": "2025-08-04 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2025-08-04_truecolor_mercator.png",
+          "sha256": "bacbabf9aa6fd7dbd9cc4d9fa727dae20ccdb7cd93f18820cd70721af1f1d6e9",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2025-08-04_truecolor_geographic.png",
+          "sha256": "af9edb6c324ab8a4231f4ebcf470bfec5978955677c363e17930a41dacb57746",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2C_T50UPV_20250804T031127_L2A_rgb.tif",
+        "sha256": "414dedde26e58200f22416b2c8631d9d6f30c2642573bd52ea37c8f4953335be",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2C_T50UPV_20250804T031127_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/8/S2C_T50UPV_20250804T031127_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/8/S2C_T50UPV_20250804T031127_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/8/S2C_T50UPV_20250804T031127_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 148.96,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20250806T031151_L2A",
+      "date": "2025-08-06",
+      "datetime": "2025-08-06T03:14:28.872000Z",
+      "label": "2025-08-06 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2025-08-06_truecolor_mercator.png",
+          "sha256": "d6cfea4f33bca9accf5f9c0d16765ede0e013581b7af2bea48f27dbeadbe7582",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2025-08-06_truecolor_geographic.png",
+          "sha256": "cbd4fb030843d929d6d21d1f957c9109e60f1c912f2e65ec1b30bbc97b1ae18b",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20250806T031151_L2A_rgb.tif",
+        "sha256": "684cb72830ce160be22b6c445efec058211d107d26abc89af28c7edc63a7f3fc",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20250806T031151_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/8/S2A_T50UPV_20250806T031151_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/8/S2A_T50UPV_20250806T031151_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/8/S2A_T50UPV_20250806T031151_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 148.08,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2A_T50UPV_20260808T030153_L2A",
+      "date": "2026-08-08",
+      "datetime": "2026-08-08T03:04:32.443000Z",
+      "label": "2026-08-08 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2026-08-08_truecolor_mercator.png",
+          "sha256": "5f93325d04a5ba83a4b931e8b5c4790fb45bd6e0c9432284ab479016eca19484",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2026-08-08_truecolor_geographic.png",
+          "sha256": "f597ada487a7b020f73c9307f35efffec1e8b20a8576c341e7b86a7198c33b5f",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2A_T50UPV_20260808T030153_L2A_rgb.tif",
+        "sha256": "cdcdfb8a21bb19c4c3527d2c87dde50ec998880d5d6eeaf670f84b0ad6590cee",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20260808T030153_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 157.0,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20260814T031356_L2A",
+      "date": "2026-08-14",
+      "datetime": "2026-08-14T03:14:10.959000Z",
+      "label": "2026-08-14 · Sentinel-2 真彩色（B04/B03/B02）",
+      "kind": "satellite_true_color",
+      "bands": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "assets": {
+        "mercator": {
+          "path": "2026-08-14_truecolor_mercator.png",
+          "sha256": "10372ea73f4c3ae5aaff1f356f291a5253924a79d42895a136d51d8af7f7c239",
+          "crs": "EPSG:3857",
+          "bounds": [
+            13321291.232469797,
+            6295335.764083666,
+            13326603.88445382,
+            6299189.382598128
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        },
+        "geographic": {
+          "path": "2026-08-14_truecolor_geographic.png",
+          "sha256": "ff3d6780ac75083c801ef940662657de26d756b071bb46c32905cb0d2dbd1236",
+          "crs": "EPSG:4326",
+          "bounds": [
+            119.66719518334996,
+            49.120519122680285,
+            119.71491954811452,
+            49.143170160282914
+          ],
+          "size_px": [
+            176,
+            128
+          ]
+        }
+      },
+      "bounds_wgs84": [
+        119.66719518334996,
+        49.120519122680285,
+        119.71491954811452,
+        49.143170160282914
+      ],
+      "coordinates": [
+        [
+          119.66719518334996,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.143170160282914
+        ],
+        [
+          119.71491954811452,
+          49.120519122680285
+        ],
+        [
+          119.66719518334996,
+          49.120519122680285
+        ]
+      ],
+      "source": {
+        "local_path": "/workspace/shared/alkali_annual_water/roi/S2B_T50UPV_20260814T031356_L2A_rgb.tif",
+        "sha256": "e4e680691a8630dd0bf87ea616a771e760a84a317a8cd2b91d1e98de74f83d70",
+        "crs": "EPSG:32650",
+        "geotransform": [
+          694600.0,
+          20.0,
+          0.0,
+          5446800.0,
+          0.0,
+          -20.0
+        ],
+        "size_px": [
+          170,
+          120
+        ],
+        "pixel_m": 20,
+        "nodata_tag": null,
+        "stac": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20260814T031356_L2A",
+        "band_urls": {
+          "red": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2B_T50UPV_20260814T031356_L2A/B04.tif",
+          "green": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2B_T50UPV_20260814T031356_L2A/B03.tif",
+          "blue": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2B_T50UPV_20260814T031356_L2A/B02.tif"
+        },
+        "license_links": []
+      },
+      "quality": {
+        "usable_in_original_summer_series": true,
+        "valid_fraction_fixed_lake_window": 1.0,
+        "display_transparent_nodata_pixels": 0,
+        "clouds_not_hidden": "云/阴影仍可见；透明仅用于原始无数据（SCL=0或RGB任一原波段DN=0），不能把云当水面变化。",
+        "partial_observation": false
+      },
+      "context_only_original_spectral_water_ha": 156.36,
+      "warnings": [
+        "这是可见光反射率真彩色显示，不是水分类图。",
+        "代表景不能替代全年/同月多景统计；0检出不等于干涸。"
+      ]
+    }
+  ],
+  "provenance_files": [
+    {
+      "path": "/workspace/shared/alkali_annual_water/analyze_annual.py",
+      "sha256": "09549a16c92cced53450e58f7e73fe49825f75af00db02b8da7e15aa3016d609"
+    },
+    {
+      "path": "/workspace/shared/alkali_annual_water/source_manifest.json",
+      "sha256": "63989dda72cb3162fca00e0e219a60a4323e652bf5185623b99d34d20960157b"
+    },
+    {
+      "path": "/workspace/shared/alkali_annual_water/scene_results.json",
+      "sha256": "14f218e102b5c847e7b4a3f8a8a39b712bc7700aa6bb5e4ebfe3f89046132aed"
+    },
+    {
+      "path": "/workspace/shared/alkali_annual_water/grid_and_windows.json",
+      "sha256": "77d7ba63c0c8f44ae4fcc07bdab69319b254f56f94ce501254f022bf05fef84e"
+    }
+  ],
+  "intentional_omissions": [
+    "不复制原始多波段大栅格与2GB档案。",
+    "不把水面分类栅格当真彩色。",
+    "未对无配准的报告截图作贴地处理。",
+    "2016无真实影像、2018两景仅部分观测；不补零、不假造图像。"
+  ]
+}

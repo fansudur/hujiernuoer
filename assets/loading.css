@@ -1,0 +1,5 @@
+#canonical-loading{gap:8px;padding:18px;background:#f2f6f3}
+#canonical-loading b{font-size:clamp(20px,4vw,29px);letter-spacing:1px}
+#canonical-loading>span{font-size:13px;color:#4b6d65}
+#canonical-loading img{width:min(560px,85vw);max-height:46vh;object-fit:contain;border:1px solid #c5d6d1;border-radius:12px;background:#eaf1ed}
+#canonical-loading p{margin:4px 0}#canonical-loading progress{width:min(380px,80vw);height:12px;accent-color:#155b60}#canonical-loading small{font-size:11px;color:#49665e}

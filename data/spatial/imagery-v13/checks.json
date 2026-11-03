@@ -1,0 +1,257 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "file": "1992-07-05_landsat_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2007-07-31_landsat_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2017-07-12_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2018-07-19_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2018-08-28_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2019-07-09_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2019-07-12_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2019-07-17_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2019-08-03_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2020-07-06_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2020-07-08_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2020-07-23_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2020-07-26_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2021-07-16_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2021-07-21_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2021-07-21_landsat_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2021-08-22_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2021-08-30_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2022-07-01_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2022-07-21_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2022-08-05_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2022-08-27_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2023-07-11_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2023-07-16_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2023-07-18_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2023-07-26_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2023-07-28_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2023-08-10_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2023-08-25_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2023-08-27_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2024-07-02_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2024-07-30_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2024-08-16_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2025-07-24_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2025-08-04_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2025-08-06_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2026-08-08_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2026-08-14_sentinel_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "1987-07-08_red_gray_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "1992-07-05_red_gray_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2007-07-31_red_gray_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    },
+    {
+      "file": "2021-07-21_red_gray_uniform.png",
+      "inverse_center_samples": 4000,
+      "rgba_mismatch": 0,
+      "alpha_binary": true
+    }
+  ]
+}

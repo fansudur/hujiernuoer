@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lake research dataset catalog",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "datasets",
+    "global_rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lake-research-contract/1.0"
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "layer",
+          "temporal_grain",
+          "sha256",
+          "missing_value_policy"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^data/"
+          },
+          "layer": {
+            "enum": [
+              "source_index",
+              "derived_spatial",
+              "derived_analytics",
+              "report_evidence",
+              "narrative",
+              "conditional_scenario",
+              "presentation"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

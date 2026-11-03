@@ -1,0 +1,38 @@
+{
+  "version": "access-prototype-1",
+  "generated": "2026-10-28",
+  "crs": "EPSG:4326",
+  "lengthUnit": "m",
+  "method": "Shared exact coordinate vertices; UI default assumes line endpoints at equal coordinates connect across layer tags, with strict-layer sensitivity option. No geometric intersection splitting or snapping. Haversine metres; Dijkstra distance; edge-state Dijkstra minimum cumulative absolute bearing change in degrees, metres tie-break.",
+  "source": "../reference/roads.geojson",
+  "referenceSource": "../spatial/spatial_features.geojson",
+  "referenceIds": [
+    "local-Ncross",
+    "local-Wcross1",
+    "local-Wcross2"
+  ],
+  "referenceLabels": {
+    "local-Ncross": "北路条带参照附近路网点",
+    "local-Wcross1": "西路中北段参照附近路网点",
+    "local-Wcross2": "西路中南段参照附近路网点"
+  },
+  "defaultDestination": "local-Wcross2",
+  "defaultMode": "pedestrian",
+  "candidateConnectionDefault": false,
+  "restrictions": "Exclude access=no/private; pedestrian excludes motorway/trunk; service scenario excludes footway/path/steps/cycleway/pedestrian/bridleway and respects oneway when present. Missing tags are unknown, not permission.",
+  "closure": "User-selected edge removed only in an illustrative sensitivity scenario. Not a measured seasonal or water-based closure.",
+  "limitations": [
+    "Source extract does not preserve original OSM node identifiers; shared coordinate is a topology proxy, not confirmed junction.",
+    "Same-position crossings can have unknown vertical separation. Default shared-coordinate line-endpoint joins are an explicit hypothesis. Strict-layer option can artificially disconnect bridge/tunnel approaches.",
+    "No legal access, fence, gate, current surface, actual traffic, animal behavior or bearing-capacity survey.",
+    "Road tags and timestamps represent a frozen mixed-date extract, not any selected historical lake month.",
+    "Straight office connector is a candidate assumption, not a measured path or construction recommendation.",
+    "No formal space-syntax integration/choice, visibility graph, normalized centrality or CFD is computed."
+  ],
+  "defaultTopology": "shared-endpoints",
+  "topologyOptions": [
+    "shared-endpoints",
+    "strict-layer"
+  ],
+  "angularCost": "Sum smallest absolute heading differences at every source vertex; not formal space-syntax integration/choice. Geometry resolution affects cost."
+}

@@ -1,0 +1,6 @@
+/* Editable visual skin. Keep data, labels, dates and evidence unchanged. */
+:root{--lake-accent:#15536d;--lake-paper:#f5f8fa;--lake-ink:#173a4c;--lake-highlight:#b76b16;--lake-border:#b6cad5;--lake-font:system-ui,-apple-system,'Microsoft YaHei',sans-serif}
+body{font-family:var(--lake-font);color:var(--lake-ink);background:var(--lake-paper)}
+#process-explorer .px-header{background:var(--lake-accent)}
+#process-explorer .px-story{border-color:var(--lake-border)}
+#process-explorer button[aria-pressed=true],#process-explorer button[aria-selected=true]{background:var(--lake-accent);border-color:var(--lake-accent);color:white}

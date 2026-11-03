@@ -1,0 +1,25 @@
+{
+  "schema_version": "historical-facsimile/1",
+  "map": "AMS L542 NM50-9 First Edition",
+  "compilation_year": 1951,
+  "cited_source_year": 1942,
+  "cited_source": "Japanese General Staff 1:200,000, as printed on the 1951 AMS compilation note",
+  "independent_japanese_original_verified": false,
+  "display": "Facsimile image board spatially linked to CURRENT study reference point; not georeferenced to current terrain.",
+  "anchor_wgs84": [
+    119.69156942008443,
+    49.132794782364805
+  ],
+  "historical_to_modern_datum_transform_verified": false,
+  "assets": [
+    {
+      "path": "data/history-map/ams1951-local.png",
+      "sha256": "14db3887a8fbc562578eb7ab43811182ea76b5ee653428e3c8d69b191c571678"
+    },
+    {
+      "path": "data/history-map/ams1951-source-note.png",
+      "sha256": "792ebdddb1a43b34617ff81c23d788ffe3d7e0e05d03051f53cd27874c80a1db"
+    }
+  ],
+  "interpretation": "Historic lake symbols west of the river and near Nan-tun establish historical cartographic context, not a surveyed historical shoreline, depth, or confirmed modern lake-name identity."
+}

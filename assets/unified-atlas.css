@@ -1,0 +1,145 @@
+/* Opt-in atlas theme. Values/geometry/semantic map colors stay controller-owned. */
+html.lake-design-preview-root:has(body:not(.lake-simple-mode)){height:auto;overflow:auto!important}
+body.lake-design-preview:not(.lake-simple-mode){height:auto;overflow:auto!important}
+body.lake-design-preview #process-explorer[data-reading-mode=expert]{position:relative!important;inset:auto!important;height:auto!important;max-height:none!important;min-height:100dvh;overflow:visible!important;display:flex!important;flex-direction:column;background:var(--atlas-field);color:var(--atlas-ink);font-family:inherit}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header{min-height:88px;padding:20px 28px;background:#fff;color:var(--atlas-ink);border-bottom:1px solid var(--atlas-line);gap:18px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header b{font-size:28px;letter-spacing:.05em}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header>div>span{color:#536f79;font-size:13px;display:inline-block}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header nav{flex-wrap:wrap;align-items:center;gap:10px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header :is(button,a){background:#fff;color:var(--atlas-ink);font-size:13px;padding:10px 12px;min-height:44px;border-radius:3px;text-underline-offset:5px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-tabs{padding:12px 24px 8px;background:white;gap:5px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .story-stage-nav button{padding:10px 14px!important;min-height:44px;font-size:14px!important;border:0;border-bottom:3px solid transparent;border-radius:0;background:white;color:#486572}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .story-stage-nav button[aria-selected=true]{border-bottom-color:var(--atlas-water);color:var(--atlas-water);font-weight:700;background:#edf5f8}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .expert-chapter-hint{font-size:12px;line-height:1.5}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .expert-nav-arrow{min-height:44px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-workspace{display:grid!important;grid-template-columns:minmax(0,1fr) 340px!important;grid-template-rows:auto!important;padding:18px 24px;gap:24px;align-items:start;overflow:visible}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-area{grid-column:1;grid-row:1;padding:0!important;min-width:0;display:flex!important;gap:10px;overflow:visible}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-canvases{flex:none;height:clamp(420px,58vh,680px);min-height:420px;width:100%}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map{border-radius:3px;border-color:var(--atlas-line)}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-toolbar{border:0;padding:0;background:transparent;gap:8px;flex-wrap:wrap!important;overflow:visible!important;white-space:normal}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-toolbar button{min-height:44px;font-size:13px!important;padding:9px 12px!important;border-radius:3px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-toolbar #px-animate{background:var(--atlas-ink);border-color:var(--atlas-ink);font-weight:500;min-width:0}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-date-strip{height:auto;min-height:28px;font-size:12px;white-space:normal;overflow:visible;line-height:1.6;padding:5px 9px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-title{font-size:13px;min-height:33px;height:auto;flex-basis:auto;flex-wrap:wrap}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-title span{font-size:12px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-key{font-size:13px;line-height:1.7;max-height:none;overflow:visible;gap:7px 16px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] #expert-evidence-key{font-size:12px!important;line-height:1.7!important;min-height:44px;padding:8px 0!important;white-space:normal}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story{grid-column:2;grid-row:1;display:block!important;padding:24px;background:#fff;border:0;border-left:1px solid var(--atlas-line);border-radius:0;max-height:calc(58vh + 190px);min-height:420px;overflow:auto}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story h1{font-size:25px;line-height:1.55;white-space:normal;overflow:visible;letter-spacing:0;margin:12px 0}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story p{font-size:15px;line-height:1.85;margin:10px 0}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-kicker{font-size:12px;line-height:1.6;letter-spacing:0}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .story-section-label{font-size:12px;letter-spacing:0;margin-top:22px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] #px-metric{background:#edf2f4;border-radius:0;margin:16px 0;padding:14px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] #px-metric strong{font-size:26px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] #px-metric span{font-size:12px;line-height:1.6}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .story-conclusion{background:#edf5f8;border-left-color:var(--atlas-water);padding:12px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .story-conclusion b{font-size:13px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story details{font-size:14px;padding-top:14px;margin:16px 0}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story summary{font-size:14px;min-height:44px;line-height:1.7;cursor:pointer;padding:8px 0}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story button{min-height:44px;white-space:normal;line-height:1.6}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story .atlas-disclosure{border-top:1px solid var(--atlas-line)}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] #attention-director{margin:0;background:#edf2f4;border:0;border-radius:0;padding:12px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] #attention-director button{font-size:13px!important;padding:10px!important;min-height:44px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] #attention-mobile-toggle{display:none!important}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-timebar{display:flex!important;flex-direction:column!important;padding:16px 24px!important;min-height:0!important;overflow:visible;gap:8px!important}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-time-head{display:flex;flex-wrap:wrap;gap:8px}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-time-head>div{white-space:normal!important;overflow:visible!important}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] #expert-observation-timeline{flex:none!important;min-width:0;width:100%;font-family:inherit;padding:12px 0;background:transparent}
+body.lake-design-preview .ot-compact-head{flex-wrap:wrap;gap:8px 16px}
+body.lake-design-preview .ot-compact-head>b{font-size:14px}
+body.lake-design-preview .ot-compact-note,body.lake-design-preview .ot-outside{font-size:12px;line-height:1.6}
+body.lake-design-preview .ot-compact-chart svg{height:82px}
+body.lake-design-preview .ot-expand{min-height:44px;font-size:13px!important}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .atlas-evidence-board{position:relative!important;inset:auto!important;width:auto!important;max-width:none!important;min-height:0;max-height:none;height:auto;margin:0 24px 24px;border:1px solid var(--atlas-line);border-radius:3px;box-shadow:none;background:white;backdrop-filter:none}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .atlas-evidence-board #story-board-body{padding:24px;overflow:visible;max-width:1040px;width:100%;margin:auto}
+body.lake-design-preview .atlas-evidence-board .story-board-head{padding:12px 20px;background:#edf2f4}
+body.lake-design-preview .atlas-evidence-board :is(h3,.story-board-head b){font-size:18px}
+body.lake-design-preview .atlas-evidence-board p,body.lake-design-preview .atlas-evidence-board details{font-size:15px;line-height:1.85}
+body.lake-design-preview .atlas-evidence-board .story-board-tabs{padding:10px 20px;flex-wrap:wrap}
+body.lake-design-preview #process-explorer .atlas-evidence-board button{font-size:14px!important;min-height:44px;white-space:normal}
+body.lake-design-preview .atlas-evidence-board .story-main-image img{max-height:520px!important}
+body.lake-design-preview .atlas-evidence-board .season-chart{max-height:none;width:100%;max-width:760px;margin:auto;display:block}
+body.lake-design-preview .atlas-evidence-board .story-figure-caption{max-height:none;overflow:visible}
+body.lake-design-preview #process-explorer[data-reading-mode=simple]>.atlas-evidence-board{display:none!important}
+body.lake-design-preview #process-explorer[data-reading-mode=expert][data-expert-transition]>.atlas-evidence-board{visibility:hidden!important}
+body.lake-design-preview #expert-tools-panel{position:fixed;top:24px;bottom:24px;right:24px;width:min(470px,calc(100% - 48px));border-radius:3px;border-color:var(--atlas-line)}
+body.lake-design-preview #expert-tools-panel :is(button,a,select){min-height:44px;font-size:14px!important}
+/* Report, source, chart and original-figure reading are one quiet secondary layer. */
+body.lake-design-preview dialog{font-family:inherit;color:var(--atlas-ink);background:#fff;border:1px solid var(--atlas-line);border-radius:4px;padding:28px;max-width:min(1040px,96vw);overflow-wrap:anywhere}
+body.lake-design-preview dialog :is(p,li){font-size:16px;line-height:1.85}
+body.lake-design-preview dialog .dialog-head,body.lake-design-preview .ot-dialog-head{position:sticky;top:-28px;background:#fff;padding:14px 0;z-index:4;gap:16px}
+body.lake-design-preview dialog :is(button,select,input){min-height:44px;font-size:14px;border-radius:3px;max-width:100%;white-space:normal}
+body.lake-design-preview dialog h2{font-size:24px;line-height:1.5}
+body.lake-design-preview dialog h3{font-size:19px;line-height:1.6}
+body.lake-design-preview .reader-tabs{padding:16px 0 8px;border-bottom:1px solid #d8e1e5;gap:8px}
+body.lake-design-preview .evidence-toolbar{gap:12px;padding:18px 0}
+body.lake-design-preview .evidence-section summary{font-size:17px;line-height:1.8;min-height:44px}
+body.lake-design-preview .evidence-section summary small{font-size:13px;white-space:nowrap;font-weight:400}
+body.lake-design-preview .evidence-section figcaption{font-size:14px;line-height:1.8}
+body.lake-design-preview .table-wrap{max-width:100%;overflow:auto}
+body.lake-design-preview .table-wrap td,body.lake-design-preview .table-wrap th{font-size:14px;line-height:1.7;padding:12px}
+body.lake-design-preview .gallery-card{border-radius:3px;padding:14px}
+body.lake-design-preview .gallery-card strong{font-size:16px;line-height:1.7}
+body.lake-design-preview .gallery-card p{font-size:14px}
+body.lake-design-preview .ot-selection{font-size:15px;line-height:1.8;padding:16px}
+body.lake-design-preview :is(input,select,summary,[tabindex]):focus-visible{outline:3px solid var(--atlas-water)!important;outline-offset:3px}
+@media(max-width:1000px) and (min-width:761px){body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-workspace{grid-template-columns:minmax(0,1fr) 300px!important;gap:14px;padding:14px}body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header>div>span{display:block;margin:6px 0 0}}
+@media(max-width:760px){
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header{padding:18px 16px;align-items:flex-start;flex-direction:column;gap:12px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header b{font-size:26px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header>div>span{display:block;margin:5px 0 0;font-size:12px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header nav{width:100%;gap:8px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header :is(button,a){font-size:12px;padding:8px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-tabs{padding:8px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .story-stage-nav button{font-size:13px!important;padding:10px!important}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-workspace{display:flex!important;flex-direction:column!important;padding:14px 12px;gap:18px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-area{order:0;width:100%;flex:none!important;gap:10px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-canvases{height:390px!important;min-height:390px!important;flex:none!important}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-toolbar{gap:8px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-toolbar button{font-size:12px!important;padding:9px!important}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-map-title span{font-size:11px;max-width:100%}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story{order:1;width:100%;display:block!important;flex:none!important;min-height:0!important;max-height:none!important;height:auto!important;overflow:visible!important;padding:22px 18px!important;border-left:0;border-top:1px solid var(--atlas-line)}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story:not(.access-active)>:not([hidden]):not(#attention-mobile-toggle){display:block!important}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story .story-prevnext{display:flex!important}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story :is(.px-meaning,#story-impacts,#story-examples,.attention-heading,.attention-beats,#attention-explanation,#attention-status){display:block}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story #attention-director{display:block!important}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story .attention-actions{display:flex!important;flex-wrap:wrap}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story #attention-status{white-space:normal;max-height:none;line-height:1.7}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story #px-theme-controls{display:block;white-space:normal;overflow:visible}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story #px-theme-controls label{display:block;font-size:14px;margin:10px 0}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story #px-theme-controls :is(select,input){width:100%;max-width:100%;font-size:14px;min-height:44px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-timebar{padding:16px!important}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .atlas-evidence-board{margin:0 12px 18px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .atlas-evidence-board #story-board-body{padding:18px}
+ body.lake-design-preview .atlas-evidence-board .story-board-head b{white-space:normal;max-height:none;font-size:16px}
+ body.lake-design-preview dialog{padding:18px;width:96vw;max-height:94dvh}
+ body.lake-design-preview dialog .dialog-head,body.lake-design-preview .ot-dialog-head{top:-18px}
+ body.lake-design-preview dialog h2{font-size:21px}
+ body.lake-design-preview .gallery-grid{grid-template-columns:1fr}
+ body.lake-design-preview .gallery-card img{height:180px}
+ body.lake-design-preview .evidence-toolbar>*{width:100%;min-width:0}
+ body.lake-design-preview #expert-tools-panel{top:12px;bottom:12px;right:12px;width:calc(100% - 24px)}
+}
+/* Match the old :has(#attention-director) specificity: the atlas is a document,
+   not the original collapsed mobile strip. No controller state is changed. */
+@media(max-width:760px){body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story.mobile-expanded:has(#attention-director){min-height:0!important;max-height:none!important;height:auto!important;overflow:visible!important;padding:22px 18px!important}}
+/* The original horizontal access header used flex-basis:0 for its nav and
+   104px for its title. In the atlas's mobile column those become heights. */
+@media(max-width:760px){
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header{overflow:visible}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header>div{flex:0 0 auto;min-width:0;width:100%;overflow:visible;white-space:normal}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header nav{display:flex!important;flex:0 0 auto;min-height:44px;height:auto;overflow:visible;flex-wrap:wrap;white-space:normal}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-header nav>:is(button,a){display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:44px}
+}
+
+/* Access analysis owns this alternate panel, even in the expanded atlas layout. */
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story.access-active>:not(#access-panel){display:none!important}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story>[hidden]{display:none!important}
+
+/* Keep the rail end scrollable: final actions must clear the lower clipping edge.
+   This changes only the rail, never the map height or the narration player. */
+@media(min-width:761px){
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story{min-height:0;max-height:min(calc(58vh + 190px),max(240px,calc(100dvh - 210px)));overflow-y:scroll;scrollbar-gutter:stable;scroll-padding-block:24px 48px;padding-bottom:48px}
+ body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story::after{content:'';display:block;height:16px;clear:both}
+}
+body.lake-design-preview #process-explorer[data-reading-mode=expert] .px-story>button{max-width:100%;height:auto;min-height:44px;overflow-wrap:anywhere;scroll-margin-block:24px}

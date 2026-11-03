@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "counts": {
+    "1985_2024_all_dual95": 72,
+    "1985_2024_JJAS": 61,
+    "2000_2024_JJAS": 59,
+    "2000_2024_JJA": 52
+  },
+  "primary_59_exact_date_and_area_match": true,
+  "missing_null_distinct_from_observed_zero": true,
+  "restored_core_months": [
+    "2008-06",
+    "2008-07",
+    "2008-08",
+    "2008-09"
+  ],
+  "root_cause": "Erroneously applied local_2008_conflict sensitivity flag as main exclusion; removed 2008 Jun-Sep from 59. Corrected, no frozen source modified."
+}

@@ -1,0 +1,31 @@
+{
+  "small_band_requests": 66,
+  "small_band_success": 66,
+  "small_crop_total_bytes": 5179594,
+  "full_band_requests": 12,
+  "full_band_success": 12,
+  "full_crop_total_bytes": 15547547,
+  "full_dates_overlap_and_cloud_quality": [
+    {
+      "id": "S2A_T50UPV_20250724T030155_L2A",
+      "red_overlap_pixels": 51300,
+      "red_overlap_mismatch": 0,
+      "full_window_scl_screen_clear_fraction": 0.9979420626462685,
+      "full_window_cloud_shadow_snow_not_removed_from_display": true
+    },
+    {
+      "id": "S2A_T50UPV_20240730T030644_L2A",
+      "red_overlap_pixels": 51300,
+      "red_overlap_mismatch": 0,
+      "full_window_scl_screen_clear_fraction": 0.7584052357466816,
+      "full_window_cloud_shadow_snow_not_removed_from_display": true
+    },
+    {
+      "id": "S2B_T50UPV_20240702T025820_L2A",
+      "red_overlap_pixels": 51300,
+      "red_overlap_mismatch": 0,
+      "full_window_scl_screen_clear_fraction": 1.0,
+      "full_window_cloud_shadow_snow_not_removed_from_display": true
+    }
+  ]
+}

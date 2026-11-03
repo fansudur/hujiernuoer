@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "title": "一年不是一个夏天：先看季节，再谈场地怎么用",
+  "window": "2000–2025",
+  "window_id": "2000-2025_main_common",
+  "n_years": 26,
+  "headline": "同一块场地，冬季维护、春季软泥、夏季活动和秋季撤收面对的是不同约束。",
+  "main_conclusion": "季节日历的价值，是把经营可能性、恢复时机和维护负担放到同一张时间表上；不是给每年写死一个开放日。",
+  "aggregation": "先逐年逐月按完整日表计算，再对26个同月指标等权平均；日期日界为UTC，不是北京时间午夜。",
+  "scope": "区域格网历史统计，不是湖边气象站或今年预报；POWER返回格网平均高程724.23m，不是约617m场地高程，未作局地温度订正。雪为水当量毫米，不是厘米雪厚；平均风不是阵风。",
+  "series_units": {
+    "temperature_mean_C": "℃",
+    "daily_min_mean_C": "℃",
+    "daily_max_mean_C": "℃",
+    "DTR_mean_C": "℃",
+    "frost_days": "日/月（多年平均）",
+    "ice_days": "日/月（多年平均）",
+    "cross_zero_days": "日/月（多年平均）",
+    "wind10m_mean_m_s": "m/s",
+    "shortwave_daily_mean_MJ_m2_day": "MJ/m²/日",
+    "SWE_mean_mm": "mm水当量（存量）",
+    "SWE_days_ge1mm": "日/月（多年平均）",
+    "snowfall_water_mm": "mm水当量/月（新增量）",
+    "precipitation_mm": "mm/月（含固态降水）",
+    "soil0_7cm_temperature_mean_C": "℃"
+  },
+  "months": [
+    {
+      "month": 1,
+      "title": "严寒与存雪",
+      "plain_language": "白天也常在零下，夜间更冷；雪留在地面，不等于这个月新下了很多雪。",
+      "meaning_for_herders_collective_and_business": "牲畜饮水设备、室外管线和工作人员停留需要按冬季工况讨论；冬季体验只能建立在独立冰况与场地安全评估上。",
+      "map_example": "候选暖棚、饮水点与现有道路一同定位，展示避风与冬季维护动线；不把雪白处涂成可行车冰面。",
+      "conclusion": "饮水防冻、保暖空间和冬季维护，是全年使用方案的成本项；不能用夏季设施价格代表全年运营成本。",
+      "statistics": {
+        "temperature_mean_C": -23.423560794044665,
+        "daily_min_mean_C": -28.153709677419354,
+        "daily_max_mean_C": -18.802171215880893,
+        "DTR_mean_C": 9.351538461538462,
+        "frost_days": 31,
+        "ice_days": 31,
+        "cross_zero_days": 0,
+        "wind10m_mean_m_s": 4.19424317617866,
+        "shortwave_daily_mean_MJ_m2_day": 6.264429280397023,
+        "SWE_mean_mm": 15.611624008560794,
+        "SWE_days_ge1mm": 31,
+        "snowfall_water_mm": 6.970708180769231,
+        "precipitation_mm": 7.099230769230769,
+        "soil0_7cm_temperature_mean_C": -19.191587938957817
+      }
+    },
+    {
+      "month": 2,
+      "title": "严寒后段",
+      "plain_language": "气温仍很低，地表存雪背景延续，阳光逐渐增强也不代表地面已经融化。",
+      "meaning_for_herders_collective_and_business": "冬季经营的结束时间不能只按节假日安排；撤场、清洁和恢复需要与随后融冻期衔接。",
+      "map_example": "在既有道路和候选活动区旁提示“撤场与春融衔接”，不画确定封冰边界。",
+      "conclusion": "冬季活动与春季恢复需要接续安排，冬季收入不能脱离撤场、清洁和地表恢复成本单独比较。",
+      "statistics": {
+        "temperature_mean_C": -19.471838291019324,
+        "daily_min_mean_C": -25.11173787419477,
+        "daily_max_mean_C": -13.69917061386889,
+        "DTR_mean_C": 11.412567260325881,
+        "frost_days": 28.26923076923077,
+        "ice_days": 28.076923076923077,
+        "cross_zero_days": 0.19230769230769232,
+        "wind10m_mean_m_s": 4.472158961727927,
+        "shortwave_daily_mean_MJ_m2_day": 10.97097290640394,
+        "SWE_mean_mm": 17.801963901046797,
+        "SWE_days_ge1mm": 28.153846153846153,
+        "snowfall_water_mm": 6.538634134615385,
+        "precipitation_mm": 6.513076923076923,
+        "soil0_7cm_temperature_mean_C": -16.282374137140014
+      }
+    },
+    {
+      "month": 3,
+      "title": "春前转折",
+      "plain_language": "白天转暖和夜间结冰可以交替出现；区域雪水开始减少，但不同年份进程不一样。",
+      "meaning_for_herders_collective_and_business": "车辆退出、材料堆放和牲畜路线若挡住低处通路，可能放大春季积水问题；这是需结合地形判断的风险机制。",
+      "map_example": "叠加历史低地、候选下坡路径与道路，显示“可能汇水的交叉位置”，不是已经查明的堵点。",
+      "conclusion": "春季风险不只来自湖边；地形低处与道路交叉位置也值得在场地分析中显示，便于辨认可能受汇水影响的路线。",
+      "statistics": {
+        "temperature_mean_C": -9.134441687344912,
+        "daily_min_mean_C": -14.696129032258066,
+        "daily_max_mean_C": -3.2242928039702234,
+        "DTR_mean_C": 11.471836228287842,
+        "frost_days": 30.846153846153847,
+        "ice_days": 21.115384615384617,
+        "cross_zero_days": 9.692307692307692,
+        "wind10m_mean_m_s": 4.880285359801489,
+        "shortwave_daily_mean_MJ_m2_day": 16.429330024813897,
+        "SWE_mean_mm": 10.873885220099256,
+        "SWE_days_ge1mm": 23.384615384615383,
+        "snowfall_water_mm": 11.977257611538462,
+        "precipitation_mm": 11.616153846153846,
+        "soil0_7cm_temperature_mean_C": -7.220827517369727
+      }
+    },
+    {
+      "month": 4,
+      "title": "融冻与通行敏感期",
+      "plain_language": "月平均已经转正，仍有大量夜间低于零度的日子；“不太冷了”不等于地面能承重。",
+      "meaning_for_herders_collective_and_business": "春季更适合讨论临时避让、候选备用通道和恢复窗口；不能直接用四月作为人车全面开放时间。",
+      "map_example": "用湖岸多期变化带、地形下降路径与道路叠加说明为什么要保留可调整的通行边界。",
+      "conclusion": "四月的日融夜冻背景说明，仅凭水面退缩不能判定新露地可通行；路线讨论必须保留地基状态这一独立条件。",
+      "statistics": {
+        "temperature_mean_C": 2.2542948717948716,
+        "daily_min_mean_C": -3.227871794871795,
+        "daily_max_mean_C": 8.397038461538461,
+        "DTR_mean_C": 11.624910256410256,
+        "frost_days": 24.923076923076923,
+        "ice_days": 2.5,
+        "cross_zero_days": 22.423076923076923,
+        "wind10m_mean_m_s": 5.523474358974359,
+        "shortwave_daily_mean_MJ_m2_day": 19.53924358974359,
+        "SWE_mean_mm": 0.9635372034615385,
+        "SWE_days_ge1mm": 3.8076923076923075,
+        "snowfall_water_mm": 11.539264326923076,
+        "precipitation_mm": 19.44192307692308,
+        "soil0_7cm_temperature_mean_C": 1.946559933076923
+      }
+    },
+    {
+      "month": 5,
+      "title": "转绿前后",
+      "plain_language": "气温明显回升，但仍可能有低温，区域平均风较强、昼夜温差较大；用户观察五月末开始泛绿。",
+      "meaning_for_herders_collective_and_business": "草地恢复、种植试验、饮水设施与早季游览应考虑晚霜、风和裸地扰动，不能因看见一点绿色就推定草量充足。",
+      "map_example": "保留恢复草地与活动区的分区示意；用地面照片与同月卫星图解释返青，不凭气温生成真实植被图。",
+      "conclusion": "五月不能直接按盛夏使用：晚霜与较强平均风仍是设施、植物试验和早季户外活动的实际约束。",
+      "statistics": {
+        "temperature_mean_C": 10.654739454094292,
+        "daily_min_mean_C": 3.94258064516129,
+        "daily_max_mean_C": 17.299069478908187,
+        "DTR_mean_C": 13.356488833746898,
+        "frost_days": 5.230769230769231,
+        "ice_days": 0,
+        "cross_zero_days": 5.230769230769231,
+        "wind10m_mean_m_s": 5.1071960297766745,
+        "shortwave_daily_mean_MJ_m2_day": 22.32573200992556,
+        "SWE_mean_mm": 0.02920026129032258,
+        "SWE_days_ge1mm": 0.2692307692307692,
+        "snowfall_water_mm": 2.507120373076923,
+        "precipitation_mm": 35.10307692307692,
+        "soil0_7cm_temperature_mean_C": 11.113502960918114
+      }
+    },
+    {
+      "month": 6,
+      "title": "生长与夏季活动起步",
+      "plain_language": "温度和光照条件更适合暖季活动；此处日短波月均在六月最高，但热量、雨水和草势并不同步。",
+      "meaning_for_herders_collective_and_business": "户外停留可考虑遮阴与避风的组合，牧草和水面仍需看当年雨水及前期状态。",
+      "map_example": "将候选停留点放在既有通达条件背景上，配遮阴与饮水设施参考图；位置仅为讨论示意。",
+      "conclusion": "暖季停留点既要考虑太阳暴晒，也要考虑风；遮阴与挡风不能各自选址后再拼在一起。",
+      "statistics": {
+        "temperature_mean_C": 17.945282051282053,
+        "daily_min_mean_C": 11.36376923076923,
+        "daily_max_mean_C": 24.292333333333335,
+        "DTR_mean_C": 12.928564102564103,
+        "frost_days": 0,
+        "ice_days": 0,
+        "cross_zero_days": 0,
+        "wind10m_mean_m_s": 3.9519358974358973,
+        "shortwave_daily_mean_MJ_m2_day": 23.090692307692308,
+        "SWE_mean_mm": 1.579230769230769e-06,
+        "SWE_days_ge1mm": 0,
+        "snowfall_water_mm": 0.0,
+        "precipitation_mm": 67.9826923076923,
+        "soil0_7cm_temperature_mean_C": 18.274751771410255
+      }
+    },
+    {
+      "month": 7,
+      "title": "暖季高峰",
+      "plain_language": "区域月均气温最高，降水月均也最高；用户观察七八月最绿，不等于每年或每片草地都最好。",
+      "meaning_for_herders_collective_and_business": "可能有草原观赏、短时停留等暖季需求，也可能与暴雨、软泥边界扩张和放牧活动发生冲突。",
+      "map_example": "用同年七月水面、影像和草地数据联动，说明活动空间随实际水面变化，不以一张好看的图固定经营边界。",
+      "conclusion": "盛夏可能同时拥有景观吸引力和更高降雨背景；经营活动的入口、停留点与牧业通行不宜只按晴天照片安排。",
+      "statistics": {
+        "temperature_mean_C": 20.574330024813897,
+        "daily_min_mean_C": 14.666228287841191,
+        "daily_max_mean_C": 26.429875930521092,
+        "DTR_mean_C": 11.763647642679901,
+        "frost_days": 0,
+        "ice_days": 0,
+        "cross_zero_days": 0,
+        "wind10m_mean_m_s": 3.7011910669975188,
+        "shortwave_daily_mean_MJ_m2_day": 21.13394540942928,
+        "SWE_mean_mm": 0.0,
+        "SWE_days_ge1mm": 0,
+        "snowfall_water_mm": 0.0,
+        "precipitation_mm": 117.39807692307693,
+        "soil0_7cm_temperature_mean_C": 20.71208204305211
+      }
+    },
+    {
+      "month": 8,
+      "title": "盛夏延续",
+      "plain_language": "仍属暖季，湖面和草地有前期积累影响；同是八月也可能呈现很不同的水面范围。",
+      "meaning_for_herders_collective_and_business": "比较历年八月，可以为可移动设施、备用路线和经营季节安排提供边界参考，不能据此认定土地使用权或安全线。",
+      "map_example": "播放真实八月岸线，标签显示年、月、检出水面积和质量；保留往年轮廓痕迹。",
+      "conclusion": "历年同为八月的水面变化，可以识别反复变化的空间，作为可移动设施与备用路线的参考，而不是划定永久安全边界。",
+      "statistics": {
+        "temperature_mean_C": 17.95667493796526,
+        "daily_min_mean_C": 12.168362282878412,
+        "daily_max_mean_C": 23.98760545905707,
+        "DTR_mean_C": 11.81924317617866,
+        "frost_days": 0,
+        "ice_days": 0,
+        "cross_zero_days": 0,
+        "wind10m_mean_m_s": 3.7203970223325062,
+        "shortwave_daily_mean_MJ_m2_day": 19.00379652605459,
+        "SWE_mean_mm": 0.0,
+        "SWE_days_ge1mm": 0,
+        "snowfall_water_mm": 0.0,
+        "precipitation_mm": 85.9723076923077,
+        "soil0_7cm_temperature_mean_C": 18.12761132431762
+      }
+    },
+    {
+      "month": 9,
+      "title": "秋季转冷",
+      "plain_language": "昼夜温差明显，区域资料已出现霜日；用户观察月底落叶并可能见雪，具体植物和年份仍有差异。",
+      "meaning_for_herders_collective_and_business": "秋季景观与短时活动仍有可能性，但服务时段、保温和设施撤收不宜沿用盛夏假设。",
+      "map_example": "用秋季照片与九月影像说明变化，植物落叶日期标为当地观察，不伪装成卫星反演结果。",
+      "conclusion": "秋季仍可能有景观与短时活动价值，但延长经营季不等于照搬盛夏的停留时长和服务配置。",
+      "statistics": {
+        "temperature_mean_C": 10.827217948717948,
+        "daily_min_mean_C": 4.943487179487179,
+        "daily_max_mean_C": 17.67378205128205,
+        "DTR_mean_C": 12.730294871794872,
+        "frost_days": 3.9615384615384617,
+        "ice_days": 0,
+        "cross_zero_days": 3.9615384615384617,
+        "wind10m_mean_m_s": 4.461115384615384,
+        "shortwave_daily_mean_MJ_m2_day": 15.233551282051282,
+        "SWE_mean_mm": 0.03131745205128205,
+        "SWE_days_ge1mm": 0.19230769230769232,
+        "snowfall_water_mm": 1.588099276923077,
+        "precipitation_mm": 46.59461538461539,
+        "soil0_7cm_temperature_mean_C": 11.616539153205128
+      }
+    },
+    {
+      "month": 10,
+      "title": "霜冻与设施转换",
+      "plain_language": "月均温接近零度，但多数日子最低温低于零度，月均数字容易掩盖夜间条件。",
+      "meaning_for_herders_collective_and_business": "饮水、供水和露天服务需要切换冬季工况；国庆活动不能默认温暖，也不代表已经形成安全湖冰。",
+      "map_example": "显示供水点、暖空间与道路的关系示意，配“国庆前后低温”时间标签，不作现有设施完工承诺。",
+      "conclusion": "国庆前后低温是有历史数据支持的情景；秋季方案需要单列保暖、防冻和撤收成本，不能照搬较暖地区的露营季。",
+      "statistics": {
+        "temperature_mean_C": 0.5623945409429281,
+        "daily_min_mean_C": -3.9300248138957814,
+        "daily_max_mean_C": 6.489032258064516,
+        "DTR_mean_C": 10.419057071960298,
+        "frost_days": 26.26923076923077,
+        "ice_days": 4.038461538461538,
+        "cross_zero_days": 22.23076923076923,
+        "wind10m_mean_m_s": 4.647667493796526,
+        "shortwave_daily_mean_MJ_m2_day": 10.40605459057072,
+        "SWE_mean_mm": 0.3121503632754343,
+        "SWE_days_ge1mm": 3.1923076923076925,
+        "snowfall_water_mm": 8.557819346153845,
+        "precipitation_mm": 19.193076923076923,
+        "soil0_7cm_temperature_mean_C": 1.3258708777915633
+      }
+    },
+    {
+      "month": 11,
+      "title": "入冬与雪累积",
+      "plain_language": "区域月均温降至零下，雪水储量开始累积；低温与有雪并不能证明湖冰可承载。",
+      "meaning_for_herders_collective_and_business": "寒季使用可能性必须与冬季设施、维护和独立安全条件一起讨论，而不是只展示冰雪经济收益。",
+      "map_example": "冬季候选活动放在地面和道路背景上展示，湖面标注冰况未知，不能绘制可行驶范围。",
+      "conclusion": "低温和开始存雪只说明入冬背景，不能证明冰面承重；冬季经营可能性与冰况核验是两件不同的事。",
+      "statistics": {
+        "temperature_mean_C": -10.84574358974359,
+        "daily_min_mean_C": -14.894282051282051,
+        "daily_max_mean_C": -6.343628205128205,
+        "DTR_mean_C": 8.550653846153846,
+        "frost_days": 30,
+        "ice_days": 24.692307692307693,
+        "cross_zero_days": 5.3076923076923075,
+        "wind10m_mean_m_s": 4.72825641025641,
+        "shortwave_daily_mean_MJ_m2_day": 5.7343717948717945,
+        "SWE_mean_mm": 3.4919963939743592,
+        "SWE_days_ge1mm": 18.76923076923077,
+        "snowfall_water_mm": 10.933282242307692,
+        "precipitation_mm": 11.003461538461538,
+        "soil0_7cm_temperature_mean_C": -8.803064819102564
+      }
+    },
+    {
+      "month": 12,
+      "title": "长寒季",
+      "plain_language": "日照能量较低、低温和存雪延续；冬季既有使用机会，也有持续供水、保暖和清雪成本。",
+      "meaning_for_herders_collective_and_business": "集体收益讨论需要同步列入维护、能源、淡旺季和恢复成本；本分析未计算净收益。",
+      "map_example": "用夏冬情景对照呈现同一候选点的不同使用与维护需求，不把情景渲染当已建项目。",
+      "conclusion": "全年价值提升不等于全年高强度经营；冬季服务范围、能源与维护负担可与季节性使用方案并列比较。",
+      "statistics": {
+        "temperature_mean_C": -21.09516129032258,
+        "daily_min_mean_C": -25.141774193548386,
+        "daily_max_mean_C": -16.952803970223325,
+        "DTR_mean_C": 8.188970223325063,
+        "frost_days": 31,
+        "ice_days": 30.96153846153846,
+        "cross_zero_days": 0.038461538461538464,
+        "wind10m_mean_m_s": 4.4760049627791565,
+        "shortwave_daily_mean_MJ_m2_day": 4.450086848635236,
+        "SWE_mean_mm": 10.228747863399503,
+        "SWE_days_ge1mm": 30.03846153846154,
+        "snowfall_water_mm": 8.445576930769231,
+        "precipitation_mm": 8.777692307692307,
+        "soil0_7cm_temperature_mean_C": -16.72678188275434
+      }
+    }
+  ],
+  "representative_findings": [
+    {
+      "title": "四月均温转正，不等于已适合通车",
+      "evidence": "2000–2025年4月区域月均温2.25℃，平均仍有24.92天的日最低温低于0℃。",
+      "meaning": "给春季通行与恢复留下弹性窗口，不能将气温阈值直接转成地基承载或湖冰安全。"
+    },
+    {
+      "title": "国庆前后接近零度，有实际数据背景",
+      "evidence": "2000–2025年10月1日区域日最低温均值−0.44℃，26年中13年低于0℃；并非每年都冻结。",
+      "meaning": "秋季活动的保暖、饮水防冻和撤收安排应独立于盛夏方案。"
+    },
+    {
+      "title": "最冷月、最大平均风和最强短波不在同一月",
+      "evidence": "同窗月均温最低在1月（−23.42℃），平均10m风速最高在4月（5.52m/s），日短波月均最高在6月（23.09 MJ/m²/日）。",
+      "meaning": "不能把“冬天风大、夏天晒”当成一套固定画面；春季风与裸地、夏季遮阴等需要分别表达。月均不评价冬季阵风或风吹雪。"
+    },
+    {
+      "title": "退雪、气温转暖与土温转暖不是同一天",
+      "evidence": "既有2000–2025春季摘要：连续7日SWE<1mm首段中位3月26日（25有效年）；0–7cm土温连续7日日均>0℃中位4月15日（26年）。25个低雪年中19年之后又有SWE≥1mm日。",
+      "meaning": "“雪看起来退了”不能直接作为地面干硬、冻土全解或可以开工的证明。"
+    }
+  ],
+  "user_observation": {
+    "source_message": "Sentinel_a8c0e59e6f34819183897be87f1784d1",
+    "status": "用户当地生活观察，未独立量化为物候或积雪日期",
+    "text": "9月末落叶并可能初雪，10月基本落叶，冬季积雪且风大，4—5月化雪，5月末开始泛绿，6月更绿，7—8月最绿。",
+    "do_not_convert_to": "统一树种落叶日、固定初雪日、场地雪厚、放牧开放日或逐年实测返青日"
+  },
+  "sources": [
+    {
+      "id": "POWER",
+      "label": "NASA POWER / MERRA-2，固定查询49.13279N、119.69157E；气象格网0.5°×0.625°",
+      "url": "https://power.larc.nasa.gov/docs/methodology/meteorology/"
+    },
+    {
+      "id": "POWER_SOLAR",
+      "label": "NASA POWER全天空地表短波，单位来自冻结API响应；不是日照小时数",
+      "url": "https://power.larc.nasa.gov/docs/methodology/data/sources/"
+    },
+    {
+      "id": "ERA5",
+      "label": "ERA5 0.25°最近格点49.25N、119.75E；水当量与0–7cm模型土温",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview"
+    }
+  ],
+  "do_not_claim": [
+    "不将区域气温极值说成本湖现场纪录。",
+    "不将SWE毫米画成同数值厘米积雪。",
+    "不将气温或雪水阈值用作人车冰面承载标准。",
+    "不将用户物候观察当作逐年遥感统计。",
+    "不把POWER总降水与ERA5降雪再次相加。",
+    "不把太阳短波辐射改称日照时数或实际蒸发量。"
+  ]
+}

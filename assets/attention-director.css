@@ -1,0 +1,21 @@
+#attention-director{border:1px solid #b88b36;background:#fff8e8;border-radius:9px;padding:10px;margin:0 0 12px;color:#243b44;line-height:1.45}.attention-heading{display:flex;justify-content:space-between;align-items:center;gap:5px}.attention-heading>b{font-size:13px;color:#805a13}.attention-beats{display:flex;flex-direction:column;gap:5px;margin:8px 0}.attention-beats button{white-space:normal!important;text-align:left;font-size:12px!important;line-height:1.4!important;padding:6px 8px!important;background:#fff!important;color:#344b56!important;border:1px solid #c5cdd0!important}.attention-beats button[aria-pressed=true]{background:#174f63!important;color:#fff!important;border-color:#ffcc66!important;box-shadow:inset 4px 0 #ffcc66}.attention-actions{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}.attention-actions button,.attention-heading button{font-size:10px!important;padding:5px 6px!important;white-space:normal!important}.attention-actions button:hover{background:#dcebf0!important}#attention-explanation{font-size:12px;margin:7px 0!important}#attention-status{font-size:10px;display:block;margin-top:8px;color:#52656c}.attention-actions button[aria-pressed=true]{background:#d4e9ec!important;color:#164b5c!important}
+@media(max-width:760px){#attention-director{padding:6px;margin:0;border-radius:0}.attention-heading,.attention-beats,#attention-explanation,#attention-status{display:none}.attention-actions{display:inline-flex;margin:0 4px 2px 0;gap:3px}.attention-actions button{font-size:10px!important;padding:3px 5px!important}#attention-director .attention-actions:first-of-type{display:flex}.px-story:not(.access-active):has(#attention-director){max-height:140px!important;overflow:auto!important}}
+
+/* Status remains visible on narrow screens, including unsupported WebGL feedback. */
+@media(max-width:760px){#attention-status{display:block;font-size:10px;margin-top:4px;padding:3px 5px;background:#fff4d9;color:#394c55}}
+
+#attention-mobile-toggle{display:none}
+@media(max-width:760px){
+ #process-explorer .px-story:not(.access-active):has(#attention-director){display:block;min-height:0!important;max-height:82px!important;padding:3px 5px!important;overflow:auto!important}
+ #attention-mobile-toggle{display:block;width:100%;font-size:11px!important;min-height:24px;padding:3px 6px!important;text-align:left}
+ .px-story:not(.access-active):not(.mobile-expanded)>:not(#attention-mobile-toggle):not(#attention-director){display:none!important}
+ .px-story:not(.access-active):not(.mobile-expanded) #attention-director{border:0;padding:2px 0}
+ .px-story:not(.access-active):not(.mobile-expanded) .attention-actions{display:none!important}
+ .px-story:not(.access-active):not(.mobile-expanded) .attention-actions:has(#attention-prev){display:flex!important;flex-wrap:nowrap;margin:0}
+ .px-story:not(.access-active):not(.mobile-expanded) #attention-status{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:16px;max-height:19px;padding:1px 4px;margin:2px 0 0}
+ #process-explorer .px-story:not(.access-active).mobile-expanded:has(#attention-director){max-height:42dvh!important}
+ .px-story:not(.access-active).mobile-expanded .attention-heading,.px-story:not(.access-active).mobile-expanded .attention-beats,.px-story:not(.access-active).mobile-expanded #attention-explanation{display:block}
+ .px-story:not(.access-active).mobile-expanded #attention-status{white-space:normal;max-height:none}
+}
+
+@media(max-width:760px){.px-story.access-active #attention-mobile-toggle{display:none!important}}

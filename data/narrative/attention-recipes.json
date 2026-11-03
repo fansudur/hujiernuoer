@@ -1,0 +1,648 @@
+{
+  "schema_version": 1,
+  "title": "镜头与注意力脚本",
+  "kind": "narrative_display_not_observation",
+  "notes": [
+    "anchor来自已有坐标或研究窗口几何中心；取景尺度、方位、重点属于展示参数。",
+    "镜头机位不表示安全可到达位置；地形为历史DSM，非当前精测。"
+  ],
+  "stages": {
+    "history": {
+      "label": "先看长期可见的条带",
+      "beats": [
+        {
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 28,
+          "duration_ms": 1400,
+          "chart_ids": [],
+          "layers": [],
+          "id": "history-context-overview",
+          "label": "先分清图源年代与影像日期",
+          "meaning": "地图内直接展示1951年AMS原件和编绘注记，可切换查看它引用1942年日本图源的依据。展示板连到现今参照点，但不是精确贴地的历史岸线。四期卫星变化由本章主播放控制。",
+          "feature_ids": [
+            "source-1942",
+            "compilation-1951",
+            "satellite-1987-07-08",
+            "satellite-1992-07-05",
+            "satellite-2007-07-31",
+            "satellite-2021-07-21",
+            "historical-context-axis"
+          ]
+        },
+        {
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 28,
+          "duration_ms": 1400,
+          "chart_ids": [],
+          "layers": [],
+          "id": "history-context-source-1942",
+          "label": "1942 · 被采用的日本图源",
+          "meaning": "1951年AMS图的编绘注记列出1942年日本参谋本部1:200,000图源。该年份是被采用资料的年份，不是本湖统一实测日期。 不能把图上每个地物都定年为1942，也不能称日本原图已独立核验。",
+          "feature_ids": [
+            "source-1942"
+          ]
+        },
+        {
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 28,
+          "duration_ms": 1400,
+          "chart_ids": [],
+          "layers": [],
+          "id": "history-context-compilation-1951",
+          "label": "1951 · AMS地图编绘",
+          "meaning": "AMS海拉尔图在南屯与伊敏河西侧画有湖泊符号。相对位置和印刷格网支持本湖所在湖泊地带的历史存在。 不是1951年实测岸线；正式旧今湖名对应、水深和入湖沟未由此确定。",
+          "feature_ids": [
+            "compilation-1951"
+          ]
+        },
+        {
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 28,
+          "duration_ms": 1400,
+          "chart_ids": [],
+          "layers": [],
+          "id": "history-context-satellite-1987-07-08",
+          "label": "1987-07-08 · Landsat同位置红波段",
+          "meaning": "真实获取日期的红波段灰阶地理影像，查看固定检查窗内宏观条带是否可辨。不是报告截图。 亮暗不能直接当盐度、水量或草量；不能重建米级沟网和实际流向。",
+          "feature_ids": [
+            "satellite-1987-07-08"
+          ],
+          "texture_date": "1987-07-08"
+        },
+        {
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 28,
+          "duration_ms": 1400,
+          "chart_ids": [],
+          "layers": [],
+          "id": "history-context-satellite-1992-07-05",
+          "label": "1992-07-05 · Landsat同位置红波段",
+          "meaning": "真实获取日期的红波段灰阶地理影像，查看固定检查窗内宏观条带是否可辨。不是报告截图。 亮暗不能直接当盐度、水量或草量；不能重建米级沟网和实际流向。",
+          "feature_ids": [
+            "satellite-1992-07-05"
+          ],
+          "texture_date": "1992-07-05"
+        },
+        {
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 28,
+          "duration_ms": 1400,
+          "chart_ids": [],
+          "layers": [],
+          "id": "history-context-satellite-2007-07-31",
+          "label": "2007-07-31 · Landsat同位置红波段",
+          "meaning": "真实获取日期的红波段灰阶地理影像，查看固定检查窗内宏观条带是否可辨。不是报告截图。 亮暗不能直接当盐度、水量或草量；不能重建米级沟网和实际流向。",
+          "feature_ids": [
+            "satellite-2007-07-31"
+          ],
+          "texture_date": "2007-07-31"
+        },
+        {
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 28,
+          "duration_ms": 1400,
+          "chart_ids": [],
+          "layers": [],
+          "id": "history-context-satellite-2021-07-21",
+          "label": "2021-07-21 · Landsat同位置红波段",
+          "meaning": "真实获取日期的红波段灰阶地理影像，查看固定检查窗内宏观条带是否可辨。不是报告截图。 亮暗不能直接当盐度、水量或草量；不能重建米级沟网和实际流向。",
+          "feature_ids": [
+            "satellite-2021-07-21"
+          ],
+          "texture_date": "2021-07-21"
+        },
+        {
+          "id": "history-strip",
+          "label": "先看长期可见的条带",
+          "meaning": "四期同位置灰阶影像用来区分长期地貌与近期扰动；亮暗不是盐分或水深。",
+          "feature_ids": [
+            "history-strip-window"
+          ],
+          "chart_ids": [],
+          "layers": [],
+          "anchor": [
+            119.66969089522021,
+            49.136166379506165
+          ],
+          "span_km": 3,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        },
+        {
+          "id": "history-office",
+          "label": "再看高地、办公院与近湖道路",
+          "meaning": "把可识别位置放回地形，区分高地服务界面与动态湖岸。",
+          "feature_ids": [
+            "local-office",
+            "local-road-*",
+            "profile-A_office_to_lake"
+          ],
+          "chart_ids": [],
+          "layers": [],
+          "anchor": [
+            119.66093779576451,
+            49.1409469769002
+          ],
+          "span_km": 1.7,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        },
+        {
+          "id": "history-pool",
+          "label": "最后看小池与南向窄带",
+          "meaning": "这里只确认相对位置；虚线连接不表示已经查明水路。",
+          "feature_ids": [
+            "inflow-pool_bowl",
+            "inflow-south_neck",
+            "inflow-road_visual"
+          ],
+          "chart_ids": [],
+          "layers": [],
+          "anchor": [
+            119.66710939580783,
+            49.14573503579958
+          ],
+          "span_km": 1.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        }
+      ]
+    },
+    "shore": {
+      "label": "关注当月水域与岸线",
+      "beats": [
+        {
+          "id": "shore-area",
+          "label": "关注当月水域与岸线",
+          "meaning": "这是真实月份分类轮廓；面积不是水位，也不是可用土地。",
+          "feature_ids": [],
+          "chart_ids": [],
+          "layers": [
+            "water"
+          ],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.8,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        },
+        {
+          "id": "shore-change",
+          "label": "再比较新增与退出位置",
+          "meaning": "变化落在哪里，比只看总面积更能提示活动路线需要调整的地段。",
+          "feature_ids": [],
+          "chart_ids": [],
+          "layers": [
+            "water",
+            "changes",
+            "traces"
+          ],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.0,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        }
+      ]
+    },
+    "season": {
+      "label": "看一年内冷暖怎样转换",
+      "beats": [
+        {
+          "id": "season-cycle",
+          "label": "看一年内冷暖怎样转换",
+          "meaning": "图形表示区域多年同月统计，不是场地每一点的温度分布。",
+          "feature_ids": [],
+          "chart_ids": [
+            "temperature_mean_C",
+            "frost_days",
+            "wind10m_mean_m_s",
+            "shortwave_daily_mean_MJ_m2_day",
+            "bayantuohai_areal_precip_mm",
+            "POWER_annual_P_mm"
+          ],
+          "layers": [],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 4,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        },
+        {
+          "id": "season-use",
+          "label": "把季节变化联系到已有院落",
+          "meaning": "冬季防冻、春融通行、夏季服务是不同工况；位置仅为讨论参考。",
+          "feature_ids": [
+            "local-office"
+          ],
+          "chart_ids": [
+            "temperature_mean_C",
+            "frost_days",
+            "wind10m_mean_m_s",
+            "shortwave_daily_mean_MJ_m2_day",
+            "bayantuohai_areal_precip_mm",
+            "POWER_annual_P_mm"
+          ],
+          "layers": [],
+          "anchor": [
+            119.66093779576451,
+            49.1409469769002
+          ],
+          "span_km": 2.5,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        }
+      ]
+    },
+    "runoff": {
+      "label": "从西侧浅带开始",
+      "beats": [
+        {
+          "id": "runoff-high",
+          "label": "从西侧浅带开始",
+          "meaning": "先辨认高低与坡面下降方向；不把粗地形路径当成实测流量。",
+          "feature_ids": [
+            "inflow-upstream_swale"
+          ],
+          "chart_ids": [],
+          "layers": [
+            "paths"
+          ],
+          "anchor": [
+            119.65476619572117,
+            49.14729318004254
+          ],
+          "span_km": 2,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        },
+        {
+          "id": "runoff-pool",
+          "label": "沿小池与窄带观察",
+          "meaning": "集中来水是否经过这里仍待现场核实，候选联系以虚线区分。",
+          "feature_ids": [
+            "inflow-pool_bowl",
+            "inflow-south_neck"
+          ],
+          "chart_ids": [],
+          "layers": [
+            "paths"
+          ],
+          "anchor": [
+            119.66710939580783,
+            49.14573503579958
+          ],
+          "span_km": 1.4,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        },
+        {
+          "id": "runoff-road",
+          "label": "看过路位置与下游",
+          "meaning": "此处关系到导流会不会把冲刷或泥泞转移到下游，图中不预设涵洞。",
+          "feature_ids": [
+            "inflow-road_visual",
+            "inflow-downstream_band",
+            "local-Ncross"
+          ],
+          "chart_ids": [],
+          "layers": [
+            "paths"
+          ],
+          "anchor": [
+            119.66851695371247,
+            49.14219361666055
+          ],
+          "span_km": 1.2,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        }
+      ]
+    },
+    "exposure": {
+      "label": "先辨认区域风的来向",
+      "beats": [
+        {
+          "id": "exposure-wind",
+          "label": "先辨认区域风的来向",
+          "meaning": "箭头表达区域月统计，不是场地局地 CFD；避风与扬尘需要分别看。",
+          "feature_ids": [],
+          "chart_ids": [
+            "wind10m_mean_m_s",
+            "shortwave_daily_mean_MJ_m2_day"
+          ],
+          "layers": [
+            "wind"
+          ],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.6,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400,
+          "native_mode": "energy"
+        },
+        {
+          "id": "exposure-sun",
+          "label": "再看太阳与场景光照",
+          "meaning": "太阳位置驱动渲染；晴空光影是机制演示，不是当天真实天气复原。",
+          "feature_ids": [],
+          "chart_ids": [
+            "wind10m_mean_m_s",
+            "shortwave_daily_mean_MJ_m2_day"
+          ],
+          "layers": [
+            "solar"
+          ],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 3.2,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400,
+          "native_mode": "energy"
+        }
+      ]
+    },
+    "production": {
+      "label": "北侧草地参照",
+      "beats": [
+        {
+          "id": "grass-n",
+          "label": "北侧草地参照",
+          "meaning": "NDVI可以理解为卫星测得的植被绿度：同一块草地、同一个月份比较哪年更绿。它可帮助找变化位置，但不直接等于草有多高、产多少草、盐分多少。图像与绿度各自标明真实日期。",
+          "feature_ids": [
+            "grass-N"
+          ],
+          "chart_ids": [
+            "grass-N*"
+          ],
+          "layers": [],
+          "anchor": [
+            119.68471094215602,
+            49.14135092800049
+          ],
+          "span_km": 3,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400,
+          "native_mode": "main"
+        },
+        {
+          "id": "grass-w",
+          "label": "西侧草地参照",
+          "meaning": "NDVI可以理解为卫星测得的植被绿度：同一块草地、同一个月份比较哪年更绿。它可帮助找变化位置，但不直接等于草有多高、产多少草、盐分多少。图像与绿度各自标明真实日期。",
+          "feature_ids": [
+            "grass-W"
+          ],
+          "chart_ids": [
+            "grass-W*"
+          ],
+          "layers": [],
+          "anchor": [
+            119.673203030281,
+            49.13136202260014
+          ],
+          "span_km": 3,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400,
+          "native_mode": "main"
+        },
+        {
+          "id": "grass-regional",
+          "label": "把近湖草地放回区域背景",
+          "meaning": "NDVI可以理解为卫星测得的植被绿度：同一块草地、同一个月份比较哪年更绿。它可帮助找变化位置，但不直接等于草有多高、产多少草、盐分多少。图像与绿度各自标明真实日期。",
+          "feature_ids": [
+            "modis*",
+            "grass-*"
+          ],
+          "chart_ids": [
+            "grass-*"
+          ],
+          "layers": [],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 8,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400,
+          "native_mode": "regional"
+        }
+      ]
+    },
+    "context": {
+      "label": "从本湖开始对照",
+      "beats": [
+        {
+          "id": "context-local",
+          "label": "从本湖开始对照",
+          "meaning": "曲线高度表示面积数值，不代表湖水高度；各湖采用各自固定统计窗。",
+          "feature_ids": [],
+          "chart_ids": [
+            "water-local_KMZ"
+          ],
+          "layers": [],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 7,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400,
+          "native_mode": "main"
+        },
+        {
+          "id": "context-n1",
+          "label": "北侧近邻 N1",
+          "meaning": "只在同年同月比较合格值；邻近并不证明水力连通。",
+          "feature_ids": [
+            "neighbor-N1",
+            "neighbor-center-N1"
+          ],
+          "chart_ids": [
+            "water-N1*"
+          ],
+          "layers": [],
+          "anchor": [
+            119.69576868656051,
+            49.15327345230564
+          ],
+          "span_km": 6,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400,
+          "native_mode": "main"
+        },
+        {
+          "id": "context-all",
+          "label": "把四个湖泡一起比较",
+          "meaning": "共同变化提示区域背景，差异提示局部条件；参照线不是输水联系。",
+          "feature_ids": [
+            "neighbor-*"
+          ],
+          "chart_ids": [
+            "water-*"
+          ],
+          "layers": [],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 12,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400,
+          "native_mode": "main"
+        }
+      ]
+    },
+    "livelihoods": {
+      "label": "先看既有院落接口",
+      "beats": [
+        {
+          "id": "use-office",
+          "label": "先看既有院落接口",
+          "meaning": "这是用户指认位置，不是已经核定的游客中心、井点或建设用地。",
+          "feature_ids": [
+            "local-office"
+          ],
+          "chart_ids": [],
+          "layers": [
+            "scenario"
+          ],
+          "anchor": [
+            119.66093779576451,
+            49.1409469769002
+          ],
+          "span_km": 2.2,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        },
+        {
+          "id": "use-separate",
+          "label": "把生产、饮水与动态岸带分开",
+          "meaning": "情景联系说明条件与影响，不是施工路线或收益预测。",
+          "feature_ids": [],
+          "chart_ids": [],
+          "layers": [
+            "scenario"
+          ],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 4,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        }
+      ]
+    },
+    "synthesis": {
+      "label": "湖岸变化决定哪些条件不能写死",
+      "beats": [
+        {
+          "id": "end-water",
+          "label": "湖岸变化决定哪些条件不能写死",
+          "meaning": "历史见水范围提供风险线索，但不是批准边界或设计洪水线。",
+          "feature_ids": [],
+          "chart_ids": [],
+          "layers": [
+            "water",
+            "traces"
+          ],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 4,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        },
+        {
+          "id": "end-whole",
+          "label": "回到四类问题的联系",
+          "meaning": "护草、水盐、可靠饮水和活动空间分别判断，再讨论相互作用。",
+          "feature_ids": [
+            "grass-*",
+            "local-office"
+          ],
+          "chart_ids": [],
+          "layers": [
+            "water",
+            "scenario"
+          ],
+          "anchor": [
+            119.69156942008443,
+            49.132794782364805
+          ],
+          "span_km": 6,
+          "azimuth_deg": 150,
+          "tilt_deg": 40,
+          "duration_ms": 1400
+        }
+      ]
+    }
+  }
+}

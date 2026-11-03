@@ -1,0 +1,3504 @@
+{
+  "summary": {
+    "schema_version": "1.0",
+    "audited_at": "2026-10-28",
+    "source_commit": "8eb5fcd9178b5631ca38aa85ae203ebd244c0d99",
+    "indexed_A_records": 104,
+    "numbered_range": 106,
+    "unresolved_A_ids": [
+      "A001",
+      "A004"
+    ],
+    "A_records_with_figures": 69,
+    "A_records_without_original_figures": 35,
+    "current_report_figures": 45,
+    "historical_figure_occurrences": 95,
+    "historical_unique_source_images": 73,
+    "all_asset_paths_exist": true,
+    "note": "A编号是证据记录，不是每条都有图片。A001和A004仅在整体编号范围中出现，现有证据定位索引无条目，本次不补造。95幅历史阅读器图像含22个与其他模块重复源图。存在可读素材不等于当前讲解主线可见。"
+  },
+  "figures": [
+    {
+      "kind": "current_report",
+      "id": "figure-01",
+      "title": "湖盆与周边位置关系",
+      "page": 6,
+      "caption": "图内500米标签仅作原图定位参考，本图不用于工程距离量测。 2025年8月4日Sentinel-2影像仅作位置底图，不作为长期变化证据。粉线是KMZ水面统计范围，约167.09公顷矢量面积；不是道路示意的整体讨论范围，也不是权属或安全边界。矢量面积与30米格网统计面积略有差别。来源SRC-D09。",
+      "asset": {
+        "src": "assets/figure-01.webp",
+        "width": 1540,
+        "height": 1100,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_001.png",
+        "source_sha256": "c660fb00fd5c094832f7163a0f20a49d8ee08a7e0adfc122be848964a7844360",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-02",
+      "title": "真实共同样本与资料末日",
+      "page": 9,
+      "caption": "1956–2025完整年骨架；2026仅既有部分年另列。JRC深色竖线为72个双95%合格月，不是连续完整观测。",
+      "asset": {
+        "src": "assets/figure-02.webp",
+        "width": 1710,
+        "height": 698,
+        "source_path": "/workspace/shared/lake_integrated_20261026/analysis/figures/01_source_coverage.png",
+        "source_sha256": "9847625633e6ccea0756e570169b902f89d7e4a6ebb949752f036dccc254740a",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-03",
+      "title": "完整月份台账与合格观测不是一回事",
+      "page": 10,
+      "caption": "图内“图2”为历史原图编号，本册按图3引用。 暖季1984至2024年合格61个月；2000至2024年6至9月59个月才对应135.33公顷空间并集。冬季缺测不等于无水。",
+      "asset": {
+        "src": "assets/figure-03.webp",
+        "width": 2400,
+        "height": 2297,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_003.png",
+        "source_sha256": "78cc29903b2701c9e30f4cd42ee64039720a780e4449a4ec20fb37486c6a7248",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-04",
+      "title": "历史地图支持湖泊地带早已存在但不还原小沟",
+      "page": 13,
+      "caption": "原图局部保留地名、格网与地形符号。1951年是编绘年，不把图中全部地物统一认作同年调查；旧图湖形不与现代岸线相减计算增减。来源SRC-T03。",
+      "asset": {
+        "src": "assets/figure-04.webp",
+        "width": 1000,
+        "height": 850,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_004.png",
+        "source_sha256": "14db3887a8fbc562578eb7ab43811182ea76b5ee653428e3c8d69b191c571678",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-05",
+      "title": "长期水面记录与近期位置的差别",
+      "page": 14,
+      "caption": "新6至9月空间层按每个像元实际有效记录统计；2008已知分类冲突保留，零检出不是现场干湖。不是全年淹水概率、软泥边界或可建设面积。资料SRC-D04。",
+      "asset": {
+        "src": "assets/figure-05.webp",
+        "width": 1562,
+        "height": 1803,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_010.png",
+        "source_sha256": "e5da764330d6a934d7a45cc8b460df31cad0d5f89d648c8aca91c946abe3bdea",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-06",
+      "title": "六月至九月各自回到完整历史",
+      "page": 15,
+      "caption": "同月跨年分别比较，不以一个月填补整个季节。1980至1990年代观测稀疏，2022年处理变化均保留标记；所示为月分类检出量，非现场水位。",
+      "asset": {
+        "src": "assets/figure-06.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_007.png",
+        "source_sha256": "e12d27050fb99bb00883a97d6efbb8ef1ac7cc533ab810134544a697c816832d",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-07",
+      "title": "六月全部合格轮廓",
+      "page": 16,
+      "caption": "2000至2024年19个合格6月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+      "asset": {
+        "src": "assets/figure-07.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_008.png",
+        "source_sha256": "4b57719f0d28d33f2874dd50b7eb16395e8e2c8f7fa33e6c0dacba2853309d9b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-08",
+      "title": "七月全部合格轮廓",
+      "page": 17,
+      "caption": "2000至2024年15个合格7月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+      "asset": {
+        "src": "assets/figure-08.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_009.png",
+        "source_sha256": "c800ae7a32ce2bb1030658582b89acdb315dce3ceb3e1d2cf3acae6d26744418",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-09",
+      "title": "八月全部合格轮廓",
+      "page": 18,
+      "caption": "2000至2024年18个合格8月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+      "asset": {
+        "src": "assets/figure-09.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_010.png",
+        "source_sha256": "f5f083a04b243c59b28ed2c27ea4480e3de5fa81e76718eb476febd322183af8",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-10",
+      "title": "同年三夏月比较 第一组",
+      "page": 19,
+      "caption": "仅6、7、8月齐全，不代表全年完整观测。2008月分类与原片光谱存在冲突，不以低检出认定干湖。",
+      "asset": {
+        "src": "assets/figure-10.webp",
+        "width": 1704,
+        "height": 2040,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_011.png",
+        "source_sha256": "b91e1a47f757e30193fd1e3b25ac647432e96bcae6413173c882f2c7ce9b1fc0",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-11",
+      "title": "同年三夏月比较 第二组",
+      "page": 20,
+      "caption": "同一年不同月仍为月复合边界，不是连续水位曲线。只在共同看清区域讨论变化；不能把轮廓间距当高程、泥层或安全退让距离。",
+      "asset": {
+        "src": "assets/figure-11.webp",
+        "width": 1704,
+        "height": 2040,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_012.png",
+        "source_sha256": "7588c214d69549596e23686a0f4f6ef040ee3818e6f578559592beb7364de9eb",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-12",
+      "title": "加入九月后的完整样本边界",
+      "page": 21,
+      "caption": "2017年6至9月共同可见区的分类轮廓；左侧保留该年实际产品记录，冰雪及缺测不解释为无水。",
+      "asset": {
+        "src": "assets/figure-12.webp",
+        "width": 1562,
+        "height": 1210,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_013.png",
+        "source_sha256": "dccfb3323e565dc121dbf5497b449b089c791564183758cd38f95508fed6b78b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-13",
+      "title": "相近水面曾回到相近位置",
+      "page": 22,
+      "caption": "同月份月复合，共同可见范围比较；一像元处理是敏感性情景，不是真实误差界或法定退让距离。",
+      "asset": {
+        "src": "assets/figure-13.webp",
+        "width": 1633,
+        "height": 1334,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_014.png",
+        "source_sha256": "ac1a646fadd1dfd12de7164538e09db9a3fc9342516d067b9011577b5f8c997f",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-14",
+      "title": "东南副盆不能由主盆代替",
+      "page": 23,
+      "caption": "跨越2022年产品处理变化，保留边缘敏感性和来源变化的限制；面积不是新增可经营或不可经营面积。",
+      "asset": {
+        "src": "assets/figure-14.webp",
+        "width": 1633,
+        "height": 1334,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_015.png",
+        "source_sha256": "c4a5b364250b261d31bb5ac3aae57d7a18a20624d735f1cd8fb6f2d51d1183f6",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-15",
+      "title": "2007年低开阔水的原片核查",
+      "page": 24,
+      "caption": "SWIR 近红外 红光假彩，非自然色；不从亮色推断盐度。JRC与原片均属于Landsat资料族。",
+      "asset": {
+        "src": "assets/figure-15.webp",
+        "width": 1633,
+        "height": 1610,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_022.png",
+        "source_sha256": "ea2c5f695883fa11ed81a2c582cccf6cb31c80b6543c874a27047687844c7594",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-16",
+      "title": "2008年和2010年分类冲突的保留与撤回",
+      "page": 25,
+      "caption": "2010年7月23日，质量波段仅标水0.09公顷，固定光谱规则却检出约63.72至71.46公顷候选水。低NDVI也可能来自水体，未被QA标水不等于陆地；不能据此把低绿度部分认作盐泥或退水后的草场。",
+      "asset": {
+        "src": "assets/figure-16.webp",
+        "width": 1633,
+        "height": 1748,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_071.png",
+        "source_sha256": "d8be9bc832ed26c2a5ab15c31b7bb278d4dbb91378106e02159354ff9a9f9b21",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-17",
+      "title": "1985年和1999年早期月分类仅作历史锚点",
+      "page": 26,
+      "caption": "1985年7月与1999年7月JRC月复合分类，非自然色照片或某日实测岸线。原始Landsat个别日期虽可另作辅助，也不填补中间完整月序列；不据图推定水质、盐度或承载力。",
+      "asset": {
+        "src": "assets/figure-17.webp",
+        "width": 1633,
+        "height": 1035,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_072.png",
+        "source_sha256": "60c12a81110da00d2b9939e7c57758f8ea2ffd0905cad8c12cd5c188674847c6",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-18",
+      "title": "共同气候背景与地方资料差异",
+      "page": 28,
+      "caption": "地方年度序列与全球模型采用相同年份并列比较。两者空间支持与重建方法不同，不能拼接为一条连续实测曲线。",
+      "asset": {
+        "src": "assets/figure-18.webp",
+        "width": 1704,
+        "height": 2208,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_016.png",
+        "source_sha256": "b6af35601e07920fe535e1b9d5d79dee407eb19baa5ae0da11a5daf717ca1dfc",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-19",
+      "title": "长期丰枯反复不支持固定周期",
+      "page": 29,
+      "caption": "下图蓝线没有达到橙色判定线，当前样本不足以认定固定周期。地方序列的空间重建局限仍适用于此图，检验不是旱年预测。",
+      "asset": {
+        "src": "assets/figure-19.webp",
+        "width": 1704,
+        "height": 2160,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_044.png",
+        "source_sha256": "664b2d1326a8a3fd0c8429f533be65dd0e10487d525637adf549c61d199a1446",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-20",
+      "title": "冬季积累与春季转换",
+      "page": 30,
+      "caption": "冷季按下一年春夏归属；SWE为毫米水当量。个别季节退雪时间受观测起点限制，相应关联不将其当作完整日期。",
+      "asset": {
+        "src": "assets/figure-20.webp",
+        "width": 1704,
+        "height": 2280,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_045.png",
+        "source_sha256": "fe0bb58695366c74b336e9ff9ab26bc089103b1ad7526e111c4865d74bbef734",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-21",
+      "title": "区域风的季节性与方向分散",
+      "page": 32,
+      "caption": "区域日平均来向的季节分布（1991–2020）。同一径向尺度，分母为有效日，日平均方向不等于小时或阵风来向；不是局地CFD。",
+      "asset": {
+        "src": "assets/figure-21.webp",
+        "width": 1776,
+        "height": 2190,
+        "source_path": "/workspace/shared/lake_integrated_20261026/microclimate/figures/01_区域日均风向_季节玫瑰.png",
+        "source_sha256": "04afc7b8695febdad6723fb7a665b3589c34116cecc4ad14e47d494fd398e890",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-22",
+      "title": "同月基准与日照相关物理量",
+      "page": 34,
+      "caption": "统一月份而不混淆物理量：2m/10m风速、描述性日均阈值频率、地表短波/大气层顶几何辐射及天文日长分别展示。气象基准1991–2020；太阳几何非闰年模板。",
+      "asset": {
+        "src": "assets/figure-22.webp",
+        "width": 2133,
+        "height": 1586,
+        "source_path": "/workspace/shared/lake_integrated_20261026/microclimate/figures/02_风辐射日长_不同物理量.png",
+        "source_sha256": "e940a77396d61a114584bce689a5f1f5e7ae86e11d70578b0215a4eaa4645073",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-23",
+      "title": "相同月份在不同年份怎样偏离基准",
+      "page": 36,
+      "caption": "1985–2025同月距平，固定1991–2020基准。颜色并非统计显著性；2001年前后辐射源产品转换需结合分期和独立源检验。",
+      "asset": {
+        "src": "assets/figure-23.webp",
+        "width": 2032,
+        "height": 1797,
+        "source_path": "/workspace/shared/lake_integrated_20261026/microclimate/figures/04_同月跨年_风与短波距平.png",
+        "source_sha256": "0b51eabb359f6010ede64a5a3e236e651ba983c7807fec89d8a9c67b56583356",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-24",
+      "title": "太阳几何与粗地形地平线筛查",
+      "page": 37,
+      "caption": "历史DSM的28点、90m–10km粗地形地平线。点间范围非置信区间；近距离建筑/树冠及10km外未纳入，不表现场总遮阴或风场。",
+      "asset": {
+        "src": "assets/figure-24.webp",
+        "width": 2148,
+        "height": 900,
+        "source_path": "/workspace/shared/lake_integrated_20261026/microclimate/figures/03_DSM地平线_开阔性筛查.png",
+        "source_sha256": "0760140946ac1321b5b1434616aa9f481044715a3559e13d0257be371b592fca",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-25",
+      "title": "前月风为何降为条件性线索",
+      "page": 39,
+      "caption": "系数均以主59月前月风总SD=0.608859m/s为尺度；线为按年CR1聚类95%边际区间，未作本轮家族校正。五年时段FE为追加探索。32月模型需同一样本前后对比。",
+      "asset": {
+        "src": "assets/figure-25.webp",
+        "width": 1755,
+        "height": 962,
+        "source_path": "/workspace/shared/lake_integrated_20261026/analysis/figures/02_wind_sensitivity_downgrade.png",
+        "source_sha256": "a6ef3b51a6c4a50ed7a358be09f3748344bd3a6c3d03b52acf325fc1db034102",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-26",
+      "title": "水分背景与湖面 草地的跨专业方向比较",
+      "page": 42,
+      "caption": "2000–2024共同日历窗；湖面按6/7/8/9月分列，其余按注明季节/全年。各行以自身可用年均值/SD标准化，灰格×保留缺测，不能跨行比较物理量。",
+      "asset": {
+        "src": "assets/figure-26.webp",
+        "width": 1784,
+        "height": 1052,
+        "source_path": "/workspace/shared/lake_integrated_20261026/analysis/figures/03_joint_calendar_anomaly_matrix.png",
+        "source_sha256": "b2bc8f013892dd7ca8e1d98929ed854a80b8a1bb3a9a3302cfac16a4ca40df97",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-27",
+      "title": "质量合格月份仍有天气相关可观测性风险",
+      "page": 43,
+      "caption": "2000–2024年6–9月100应有月份，比较59合格与41不合格月；气象先去月份/线性趋势，差值以全100月残差SD标准化，仅诊断分布差异，不补湖面或估计偏差大小。",
+      "asset": {
+        "src": "assets/figure-27.webp",
+        "width": 1410,
+        "height": 755,
+        "source_path": "/workspace/shared/lake_integrated_20261026/analysis/figures/04_observation_selection_diagnostic.png",
+        "source_sha256": "c018ed72ea7663c9fff1d780d3bf54281f8cc288e0e4457bdccf693bda3e1802",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-28",
+      "title": "雨水累积时段与湖面关系的既有检验",
+      "page": 44,
+      "caption": "按同月共同有效年份分析；正相关表示在这些样本中倾向同向变化，不等于因果、预测能力或已完成湖泊水量平衡。全部预设关系及敏感性同时保留。",
+      "asset": {
+        "src": "assets/figure-28.webp",
+        "width": 1846,
+        "height": 2392,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_048.png",
+        "source_sha256": "2e30c69b7981a7141e98976a9ec0ae16dc0769db6aba3761bdaec18206dbec16",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-29",
+      "title": "季节联表中的实际共同年份",
+      "page": 45,
+      "caption": "图中各过程覆盖与缺测按实际资料保留。后续水面与植被联表使用共同有效年份，不能将26年框架写成26个完整配对样本。",
+      "asset": {
+        "src": "assets/figure-29.webp",
+        "width": 1704,
+        "height": 2400,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_046.png",
+        "source_sha256": "4ca29e48d2d6dfb36bf082eb6aad0284524bb1f4cc0a27eea9229db32f6146ce",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-30",
+      "title": "年表排列不等于完整因果链",
+      "page": 46,
+      "caption": "颜色在各列内部比较，不跨单位比较；×为未满足相应完整观测要求。区域格点、区域植被参照与KMZ水面具有不同空间支持。 水面列是JRC产品结果；2008年存在月分类与原片光谱冲突，不能将该列直接当作实际水位。",
+      "asset": {
+        "src": "assets/figure-30.webp",
+        "width": 1704,
+        "height": 2220,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_047.png",
+        "source_sha256": "2bc7370340cb5b6af7e508aa95d0402194be4eb048dfc2256aad3ea85c90ec9d",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-31",
+      "title": "前期降水与同期降水对植被的比较",
+      "page": 48,
+      "caption": "点越靠右表示样本中同向变化越明显，接近0表示未见稳定单调关系；横线显示重采样结果的变化范围。两类降雨相关之差仍跨0，不能据此确定谁更重要。",
+      "asset": {
+        "src": "assets/figure-31.webp",
+        "width": 1633,
+        "height": 1587,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_051.png",
+        "source_sha256": "5eb20dd3c74aa65530a8a582183ebfc09adf5bfafac06f36d8c9371d48ba12b7",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-32",
+      "title": "北池至西北沟带的候选接续",
+      "page": 49,
+      "caption": "精细历史影像用于辨认池洼、窄带与道路的相对位置，不把它们画成已证水流。2004年日期为界面显示日期，目标片原始元数据未核；跨路连通、流向和过水能力仍待核对。",
+      "asset": {
+        "src": "assets/figure-32.webp",
+        "width": 1917,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_005.png",
+        "source_sha256": "15332b9529a26a422e29373e5fbbfc5403de9a45e6c2ae3bfdc40abf1d31ed37",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-33",
+      "title": "西北高地 办公院与道路位置",
+      "page": 50,
+      "caption": "P为北路外候选浅盆，G为路南沟状带，N为道路候选核查段；这些是形态定位，不是输水箭头或已查明过水口。历史地表模型显示区域起伏，湖面编辑值不作为现时水位、湖底或道路控制高程。",
+      "asset": {
+        "src": "assets/figure-33.webp",
+        "width": 1633,
+        "height": 1909,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_006.png",
+        "source_sha256": "d261785e5d1ee4d63b493ef28027ce6c614ef41c2b76ea55fc83814120f1e473",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-34",
+      "title": "历史影像中持续存在的宏观条带",
+      "page": 51,
+      "caption": "四景均为7月红波段灰阶，固定检查框有效率均至少99.9%；1987整幅展示窗仅75.9%有效。较宽条带多期存在，不等于同一细沟网连续38年不变，也不由亮暗差计算水量或盐度。",
+      "asset": {
+        "src": "assets/figure-34.webp",
+        "width": 1775,
+        "height": 1800,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_007.png",
+        "source_sha256": "a4727d11a8dd6c60a3c4b8439c8267905c6d74e051c30ee70ffe56f15275c4e3",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-35",
+      "title": "粗地形与实际过路能力",
+      "page": 52,
+      "caption": "办公院参照点至湖中心直线约2.41公里，不是实测水路。图中616米平台来自历史水面编辑，不是当日湖位、湖底或水深。各廊道分位数表示横向地形差异，不是置信界；道路参考轴附近阴影不是实际路宽。",
+      "asset": {
+        "src": "assets/figure-35.webp",
+        "width": 1623,
+        "height": 2400,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_009.png",
+        "source_sha256": "af9662e84c5c3e87efa032048de51fd772c83077e708b8907e882d1a84b3469b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-36",
+      "title": "近邻比较提供背景而非连通证明",
+      "page": 54,
+      "caption": "正式湖名与精确行政归属待核。距离为参考中心至本湖中心，并非现状岸线距离；KMZ是本湖统计范围。高程为历史地表模型，不是当日水位。资料SRC-R09 SRC-R10。",
+      "asset": {
+        "src": "assets/figure-36.webp",
+        "width": 2130,
+        "height": 2400,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_020.png",
+        "source_sha256": "5e659f3e7179c36757cfe008c378f467c3f589df57abc42ecb70455ffaa90b1f",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-37",
+      "title": "近邻距离与起伏地形",
+      "page": 55,
+      "caption": "三条直线及左右各500米有限廊道反映地表起伏；横截面最低点未必相连，未识别全部绕行通路。编辑湖面高程不是同步水头，不据高差推地下水方向或封闭盆地。资料SRC-R09 SRC-R10。",
+      "asset": {
+        "src": "assets/figure-37.webp",
+        "width": 2130,
+        "height": 2250,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_024.png",
+        "source_sha256": "ba7385186158d21f665e0e9bd78a5644f506b295cebdb3324b12f2d8c112302c",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-38",
+      "title": "同期变化应同时展示全部预设对照",
+      "page": 56,
+      "caption": "全部预设对象同时列出。正数倾向同向，负数倾向反向；不等于因果。暖季月内异常控制月份，不等于控制降雨、地下水和人工调控。",
+      "asset": {
+        "src": "assets/figure-38.webp",
+        "width": 1602,
+        "height": 1436,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_021.png",
+        "source_sha256": "2810e47563f4cd7cafe9a6122c95abc6122767eb046aacf65cf2a08349fd77b2",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-39",
+      "title": "零至三个月滞后仍不能确认水路延迟",
+      "page": 57,
+      "caption": "主比较固定本湖9月，四个滞后使用共同年份；副比较扩大月份但样本组成随滞后改变。全部结果披露，不按最大相关选模型。",
+      "asset": {
+        "src": "assets/figure-39.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_039.png",
+        "source_sha256": "48753e801d3cbd9b253e4433219febd7bd373a51d3ee9f826a7feed89e5cc37e",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-40",
+      "title": "区域高地 河谷与有限剖面",
+      "page": 58,
+      "caption": "历史地表模型用于辨认区域高地和河谷，不是2026年水位、裸地测绘或地下水面。矩形为展示范围；河网是参考几何，不能据邻近直接认定本湖连通。资料 SRC-R09 SRC-R10。",
+      "asset": {
+        "src": "assets/figure-40.webp",
+        "width": 2130,
+        "height": 1860,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_040.png",
+        "source_sha256": "21a7757c5718fb6a4961d301fb4832cccd91e7f5bba66bf623f9c07831e0ff65",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-41",
+      "title": "城市和高地景观变化的证据边界",
+      "page": 60,
+      "caption": "同为7月原片，缺测保留灰色。2021北部例区仅8.1%有效，不能完整比较，也不以2021静态树覆替补缺测。1992条带形态不证明樟子松树种或同龄森林。图不估计耗水或本湖补给。资料 SRC-D06 SRC-D07 SRC-R11。",
+      "asset": {
+        "src": "assets/figure-41.webp",
+        "width": 1704,
+        "height": 2280,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_042.png",
+        "source_sha256": "ab6a927d387709862122f34c242a6544d8efcfda89bd969ca5da55069af96ea3",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-42",
+      "title": "区域与近湖植被证据的空间差异",
+      "page": 62,
+      "caption": "区域参照与近湖参照是统计位置，不是牧场或权属范围。水文分析窗以外没有本次水面频次证据，不能画成从未见水。",
+      "asset": {
+        "src": "assets/figure-42.webp",
+        "width": 1633,
+        "height": 1885,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_018.png",
+        "source_sha256": "64e6c80716725ab1700df7004b9ace7fc1b1ab125c99e57c3fc365775ce4b8dc",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-43",
+      "title": "生长季绿度而非单张盛夏照片",
+      "page": 63,
+      "caption": "外部稳定陆地参照，非湖岸整个草场。相同合成时间位置并不等于真实返青日或物候阶段完全相同。",
+      "asset": {
+        "src": "assets/figure-43.webp",
+        "width": 1633,
+        "height": 1978,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_050.png",
+        "source_sha256": "c1e17627747510e3f779284516bb30166cf842ff08f4b1e1f66ea265ae553f24",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-44",
+      "title": "固定曾水带的绿度分账",
+      "page": 64,
+      "caption": "固定约135公顷分析格网；每年按质量选择7月单景，不按绿度挑选。8个合格年保留全部，其余留缺。2007年本图为7月15日，下一图为7月31日，数值不能混为同日。高绿度阈值不是植被覆盖率或可食牧草面积。",
+      "asset": {
+        "src": "assets/figure-44.webp",
+        "width": 1633,
+        "height": 1725,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_019.png",
+        "source_sha256": "9dd86df1345c0f7db419894f805053199938ee5170261b2951722803b5bfec2e",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "current_report",
+      "id": "figure-45",
+      "title": "四个实际日期的水谱与绿度交叉核查",
+      "page": 65,
+      "caption": "同一约135公顷带内按共同有效像元比较，光谱候选不等于现场水面真值。2007低检出与2008分类分歧需区别。基准候选水规则含NDVI小于0.3，因此与高绿度类互斥来自定义，不能当成独立生态验证；三种规则差异不是统计置信区间。",
+      "asset": {
+        "src": "assets/figure-45.webp",
+        "width": 1633,
+        "height": 1725,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_054.png",
+        "source_sha256": "1bbf4523909501429fdddfbb383235760acaf02888545eb1bd9ef84249a7f6ff",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。"
+      },
+      "exists": true
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-004-figure-1",
+      "title": "湖盆与周边位置关系",
+      "historical_module": "supp-01-004",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-01.webp",
+        "width": 1540,
+        "height": 1100,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_001.png",
+        "source_sha256": "c660fb00fd5c094832f7163a0f20a49d8ee08a7e0adfc122be848964a7844360",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 67480,
+        "web_sha256": "82688889732e492ec6cb413a831580dc6e0fcb037823653b64b31a60c2efe3fc",
+        "module_id": "supp-01-004",
+        "block_index": 1,
+        "caption": "2025年8月4日Sentinel-2影像仅作位置底图，不作为长期变化证据。粉线是KMZ水面统计范围，约167.09公顷矢量面积；不是道路示意的整体讨论范围，也不是权属或安全边界。矢量面积与30米格网统计面积略有差别。来源SRC-D09。",
+        "current_report_figures": [
+          {
+            "id": "figure-01",
+            "title": "湖盆与周边位置关系",
+            "page": 6,
+            "src": "assets/figure-01.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-006-figure-1",
+      "title": "统一时间线与真实数据覆盖",
+      "historical_module": "supp-01-006",
+      "document": "01",
+      "asset": {
+        "src": "assets/supp-01-006-001.webp",
+        "width": 2400,
+        "height": 1466,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_002.png",
+        "source_sha256": "7e1122fa3531c5468c407956829265871969ef1853deabb2173bdf165d831c87",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 162198,
+        "web_sha256": "ae0530e09de51ac0a66bd5eaa82bc96954480e94ffa296bc34e625804b55ce21",
+        "module_id": "supp-01-006",
+        "block_index": 1,
+        "caption": "同一横轴不意味着各变量连续观测。E07和E08分别保留子数据集；现场水盐泥与运营证据空缺明确显示。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-011-figure-1",
+      "title": "完整月份台账与合格观测不是一回事",
+      "historical_module": "supp-01-011",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-03.webp",
+        "width": 2400,
+        "height": 2297,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_003.png",
+        "source_sha256": "78cc29903b2701c9e30f4cd42ee64039720a780e4449a4ec20fb37486c6a7248",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 187904,
+        "web_sha256": "396bc29ebffb57010beeb2de2c3d005baffbb5746080fc4a07fc82b477d615a2",
+        "module_id": "supp-01-011",
+        "block_index": 1,
+        "caption": "暖季1984至2024年合格61个月；2000至2024年6至9月59个月才对应135.33公顷空间并集。冬季缺测不等于无水。",
+        "current_report_figures": [
+          {
+            "id": "figure-03",
+            "title": "完整月份台账与合格观测不是一回事",
+            "page": 10,
+            "src": "assets/figure-03.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-013-figure-3",
+      "title": "历史地图支持湖泊地带早已存在但不还原小沟",
+      "historical_module": "supp-01-013",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-04.webp",
+        "width": 1000,
+        "height": 850,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_004.png",
+        "source_sha256": "14db3887a8fbc562578eb7ab43811182ea76b5ee653428e3c8d69b191c571678",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 170000,
+        "web_sha256": "29511233d151fcfc59173be35d316c9fec46b3cbb35c12d015380f05a81f76ac",
+        "module_id": "supp-01-013",
+        "block_index": 3,
+        "caption": "原图局部保留地名、格网与地形符号。1951年是编绘年，不把图中全部地物统一认作同年调查；旧图湖形不与现代岸线相减计算增减。来源SRC-T03。",
+        "current_report_figures": [
+          {
+            "id": "figure-04",
+            "title": "历史地图支持湖泊地带早已存在但不还原小沟",
+            "page": 13,
+            "src": "assets/figure-04.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-014-figure-1",
+      "title": "G1 北池至西北沟带的候选接续位置",
+      "historical_module": "supp-01-014",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-32.webp",
+        "width": 1917,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_005.png",
+        "source_sha256": "15332b9529a26a422e29373e5fbbfc5403de9a45e6c2ae3bfdc40abf1d31ed37",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 288912,
+        "web_sha256": "b0ad1253546bdabad6b139412c115ab8b0e0d3595c3798977470b71c83527d55",
+        "module_id": "supp-01-014",
+        "block_index": 1,
+        "caption": "精细历史影像用于辨认池洼、窄带与道路的相对位置，不把它们画成已证水流。2004年日期为界面显示日期，目标片原始元数据未核；跨路连通、流向和过水能力仍待核对。",
+        "current_report_figures": [
+          {
+            "id": "figure-32",
+            "title": "北池至西北沟带的候选接续",
+            "page": 49,
+            "src": "assets/figure-32.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-015-figure-1",
+      "title": "西北高地 办公院与近湖道路的相对位置",
+      "historical_module": "supp-01-015",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-33.webp",
+        "width": 1633,
+        "height": 1909,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_006.png",
+        "source_sha256": "d261785e5d1ee4d63b493ef28027ce6c614ef41c2b76ea55fc83814120f1e473",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 230500,
+        "web_sha256": "82a2132dac25ecd472c212a7bd7a5270fef231170a1771119f331d48bb18cb2d",
+        "module_id": "supp-01-015",
+        "block_index": 1,
+        "caption": "P为北路外候选浅盆，G为路南沟状带，N为道路候选核查段；这些是形态定位，不是输水箭头或已查明过水口。历史地表模型显示区域起伏，湖面编辑值不作为现时水位、湖底或道路控制高程。",
+        "current_report_figures": [
+          {
+            "id": "figure-33",
+            "title": "西北高地 办公院与道路位置",
+            "page": 50,
+            "src": "assets/figure-33.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-020-figure-1",
+      "title": "G2 本湖各月水面变化在独立时间线上",
+      "historical_module": "supp-01-020",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-06.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_007.png",
+        "source_sha256": "e12d27050fb99bb00883a97d6efbb8ef1ac7cc533ab810134544a697c816832d",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 105940,
+        "web_sha256": "94e4148f2552ed20f5d9a2623359f15e341d5122113f4c3eddb1d1f2e48b327a",
+        "module_id": "supp-01-020",
+        "block_index": 1,
+        "caption": "同月跨年分别比较，不以一个月填补整个季节。1980至1990年代观测稀疏，2022年处理变化均保留标记；所示为月分类检出量，非现场水位。",
+        "current_report_figures": [
+          {
+            "id": "figure-06",
+            "title": "六月至九月各自回到完整历史",
+            "page": 15,
+            "src": "assets/figure-06.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-021-figure-1",
+      "title": "G2 六月全部合格水岸线比较",
+      "historical_module": "supp-01-021",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-07.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_008.png",
+        "source_sha256": "4b57719f0d28d33f2874dd50b7eb16395e8e2c8f7fa33e6c0dacba2853309d9b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 179666,
+        "web_sha256": "98a9d95da5d3c79653b105f44839715e4ed4896776d2f4d6b50b6a056eef3b76",
+        "module_id": "supp-01-021",
+        "block_index": 1,
+        "caption": "2000至2024年19个合格6月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+        "current_report_figures": [
+          {
+            "id": "figure-07",
+            "title": "六月全部合格轮廓",
+            "page": 16,
+            "src": "assets/figure-07.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-022-figure-1",
+      "title": "G2 七月全部合格水岸线比较",
+      "historical_module": "supp-01-022",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-08.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_009.png",
+        "source_sha256": "c800ae7a32ce2bb1030658582b89acdb315dce3ceb3e1d2cf3acae6d26744418",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 164536,
+        "web_sha256": "adb06977d67dfc168c71fd18683e404b9dc271a9069e3ee3fadd78db64fbf5e0",
+        "module_id": "supp-01-022",
+        "block_index": 1,
+        "caption": "2000至2024年15个合格7月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+        "current_report_figures": [
+          {
+            "id": "figure-08",
+            "title": "七月全部合格轮廓",
+            "page": 17,
+            "src": "assets/figure-08.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-023-figure-1",
+      "title": "G2 八月全部合格水岸线比较",
+      "historical_module": "supp-01-023",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-09.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_010.png",
+        "source_sha256": "f5f083a04b243c59b28ed2c27ea4480e3de5fa81e76718eb476febd322183af8",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 174478,
+        "web_sha256": "0ab44ed2c86b68f78be9e8be07c7bca6e1318a355efbc724b64623a40a5f2001",
+        "module_id": "supp-01-023",
+        "block_index": 1,
+        "caption": "2000至2024年18个合格8月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+        "current_report_figures": [
+          {
+            "id": "figure-09",
+            "title": "八月全部合格轮廓",
+            "page": 18,
+            "src": "assets/figure-09.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-024-figure-1",
+      "title": "G2 同年夏季岸线变化之一",
+      "historical_module": "supp-01-024",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-10.webp",
+        "width": 1704,
+        "height": 2040,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_011.png",
+        "source_sha256": "b91e1a47f757e30193fd1e3b25ac647432e96bcae6413173c882f2c7ce9b1fc0",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 167834,
+        "web_sha256": "57b739e39f5aee1e38d79af4eff895104fef935a6640e5f3ffa4b9b9ff9bf4eb",
+        "module_id": "supp-01-024",
+        "block_index": 1,
+        "caption": "仅6、7、8月齐全，不代表全年完整观测。2008月分类与原片光谱存在冲突，不以低检出认定干湖。",
+        "current_report_figures": [
+          {
+            "id": "figure-10",
+            "title": "同年三夏月比较 第一组",
+            "page": 19,
+            "src": "assets/figure-10.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-025-figure-1",
+      "title": "G2 同年夏季岸线变化之二",
+      "historical_module": "supp-01-025",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-11.webp",
+        "width": 1704,
+        "height": 2040,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_012.png",
+        "source_sha256": "7588c214d69549596e23686a0f4f6ef040ee3818e6f578559592beb7364de9eb",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 165948,
+        "web_sha256": "10d7e36112bd35fafa8a253507ad2f43970a20d15218317398eaa0492fc30831",
+        "module_id": "supp-01-025",
+        "block_index": 1,
+        "caption": "同一年不同月仍为月复合边界，不是连续水位曲线。只在共同看清区域讨论变化；不能把轮廓间距当高程、泥层或安全退让距离。",
+        "current_report_figures": [
+          {
+            "id": "figure-11",
+            "title": "同年三夏月比较 第二组",
+            "page": 20,
+            "src": "assets/figure-11.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-026-figure-3",
+      "title": "G2 九月加入后可比年内样本的边界",
+      "historical_module": "supp-01-026",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-12.webp",
+        "width": 1562,
+        "height": 1210,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_013.png",
+        "source_sha256": "dccfb3323e565dc121dbf5497b449b089c791564183758cd38f95508fed6b78b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 71358,
+        "web_sha256": "99c7b9e216945131e1a48eaa99f82a3a333e72ed235b207e248000cc235c9d22",
+        "module_id": "supp-01-026",
+        "block_index": 3,
+        "caption": "2017年6至9月共同可见区的分类轮廓；左侧保留该年实际产品记录，冰雪及缺测不解释为无水。",
+        "current_report_figures": [
+          {
+            "id": "figure-12",
+            "title": "加入九月后的完整样本边界",
+            "page": 21,
+            "src": "assets/figure-12.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-034-figure-3",
+      "title": "G4 反复见水空间与候选边缘",
+      "historical_module": "supp-01-034",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-13.webp",
+        "width": 1633,
+        "height": 1334,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_014.png",
+        "source_sha256": "ac1a646fadd1dfd12de7164538e09db9a3fc9342516d067b9011577b5f8c997f",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 72720,
+        "web_sha256": "c8327bbb95d217914b40be957a6c5f7b973636f871f92ff8913e7d318fcde443",
+        "module_id": "supp-01-034",
+        "block_index": 3,
+        "caption": "同月份月复合，共同可见范围比较；一像元处理是敏感性情景，不是真实误差界或法定退让距离。",
+        "current_report_figures": [
+          {
+            "id": "figure-13",
+            "title": "相近水面曾回到相近位置",
+            "page": 22,
+            "src": "assets/figure-13.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-035-figure-3",
+      "title": "G4 东南副盆保留独立判断",
+      "historical_module": "supp-01-035",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-14.webp",
+        "width": 1633,
+        "height": 1334,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_015.png",
+        "source_sha256": "c4a5b364250b261d31bb5ac3aae57d7a18a20624d735f1cd8fb6f2d51d1183f6",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 80290,
+        "web_sha256": "595724de993bbe29239aba1d19123c4413d1d3787d5542a49060b95cf0cbb5ea",
+        "module_id": "supp-01-035",
+        "block_index": 3,
+        "caption": "跨越2022年产品处理变化，保留边缘敏感性和来源变化的限制；面积不是新增可经营或不可经营面积。",
+        "current_report_figures": [
+          {
+            "id": "figure-14",
+            "title": "东南副盆不能由主盆代替",
+            "page": 23,
+            "src": "assets/figure-14.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-037-figure-5",
+      "title": "共同气候背景与地方资料差异",
+      "historical_module": "supp-01-037",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-18.webp",
+        "width": 1704,
+        "height": 2208,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_016.png",
+        "source_sha256": "b6af35601e07920fe535e1b9d5d79dee407eb19baa5ae0da11a5daf717ca1dfc",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 159986,
+        "web_sha256": "05665813a91ec7e1d453c1d293c4f4b7105b2ad9fcf3628e99fd02cc607a32a1",
+        "module_id": "supp-01-037",
+        "block_index": 5,
+        "caption": "地方年度序列与全球模型采用相同年份并列比较。两者空间支持与重建方法不同，不能拼接为一条连续实测曲线。",
+        "current_report_figures": [
+          {
+            "id": "figure-18",
+            "title": "共同气候背景与地方资料差异",
+            "page": 28,
+            "src": "assets/figure-18.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-039-figure-1",
+      "title": "季节过程在共同年份中比较",
+      "historical_module": "supp-01-039",
+      "document": "01",
+      "asset": {
+        "src": "assets/supp-01-039-001.webp",
+        "width": 1704,
+        "height": 2400,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_017.png",
+        "source_sha256": "4ca29e48d2d6dfb36bf082eb6aad0284524bb1f4cc0a27eea9229db32f6146ce",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 162582,
+        "web_sha256": "82d030c143d8502385eaa4359577d2cecfd2e109bb38fa9099dc2b5fe5d1d60f",
+        "module_id": "supp-01-039",
+        "block_index": 1,
+        "caption": "图中各过程覆盖与缺测按实际资料保留。后续水面与植被联表使用共同有效年份，不能将26年框架写成26个完整配对样本。",
+        "current_report_figures": [
+          {
+            "id": "figure-29",
+            "title": "季节联表中的实际共同年份",
+            "page": 45,
+            "src": "assets/figure-29.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-040-figure-1",
+      "title": "区域与近湖植被证据的空间差异",
+      "historical_module": "supp-01-040",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-42.webp",
+        "width": 1633,
+        "height": 1885,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_018.png",
+        "source_sha256": "64e6c80716725ab1700df7004b9ace7fc1b1ab125c99e57c3fc365775ce4b8dc",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 142736,
+        "web_sha256": "869918e9d82ab53e283a401c4c7d3017bddf7b214dcfbb0127c0db09cfe92b09",
+        "module_id": "supp-01-040",
+        "block_index": 1,
+        "caption": "区域参照与近湖参照是统计位置，不是牧场或权属范围。水文分析窗以外没有本次水面频次证据，不能画成从未见水。",
+        "current_report_figures": [
+          {
+            "id": "figure-42",
+            "title": "区域与近湖植被证据的空间差异",
+            "page": 62,
+            "src": "assets/figure-42.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-042-figure-1",
+      "title": "固定曾水带的绿度分账",
+      "historical_module": "supp-01-042",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-44.webp",
+        "width": 1633,
+        "height": 1725,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_019.png",
+        "source_sha256": "9dd86df1345c0f7db419894f805053199938ee5170261b2951722803b5bfec2e",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 142922,
+        "web_sha256": "5c0b594250755aba5e3d312a1a8cada2274297318668bcdef039023e8478102f",
+        "module_id": "supp-01-042",
+        "block_index": 1,
+        "caption": "固定约135公顷分析格网；每年按质量选择7月单景，不按绿度挑选。8个合格年保留全部，其余留缺。2007年本图为7月15日，下一图为7月31日，数值不能混为同日。高绿度阈值不是植被覆盖率或可食牧草面积。",
+        "current_report_figures": [
+          {
+            "id": "figure-44",
+            "title": "固定曾水带的绿度分账",
+            "page": 64,
+            "src": "assets/figure-44.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-043-figure-1",
+      "title": "近邻比较提供背景而非连通证明",
+      "historical_module": "supp-01-043",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-36.webp",
+        "width": 2130,
+        "height": 2400,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_020.png",
+        "source_sha256": "5e659f3e7179c36757cfe008c378f467c3f589df57abc42ecb70455ffaa90b1f",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 174684,
+        "web_sha256": "73b3acd60442da57a6f5fdecc13b0b98e689a7a52fbdce22199fa91cca9ac45f",
+        "module_id": "supp-01-043",
+        "block_index": 1,
+        "caption": "正式湖名与精确行政归属待核。距离为参考中心至本湖中心，并非现状岸线距离；KMZ是本湖统计范围。高程为历史地表模型，不是当日水位。资料SRC-R09 SRC-R10。",
+        "current_report_figures": [
+          {
+            "id": "figure-36",
+            "title": "近邻比较提供背景而非连通证明",
+            "page": 54,
+            "src": "assets/figure-36.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-045-figure-1",
+      "title": "同期变化应同时展示全部预设对照",
+      "historical_module": "supp-01-045",
+      "document": "01",
+      "asset": {
+        "src": "assets/figure-38.webp",
+        "width": 1602,
+        "height": 1436,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_021.png",
+        "source_sha256": "2810e47563f4cd7cafe9a6122c95abc6122767eb046aacf65cf2a08349fd77b2",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 99848,
+        "web_sha256": "2ebbc618bc5ac7c0b0555fea4ce2245167ca528585e2a23f14b939a838d9e0eb",
+        "module_id": "supp-01-045",
+        "block_index": 1,
+        "caption": "全部预设对象同时列出。正数倾向同向，负数倾向反向；不等于因果。暖季月内异常控制月份，不等于控制降雨、地下水和人工调控。",
+        "current_report_figures": [
+          {
+            "id": "figure-38",
+            "title": "同期变化应同时展示全部预设对照",
+            "page": 56,
+            "src": "assets/figure-38.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-047-figure-1",
+      "title": "四目标共用证据但不互相代替",
+      "historical_module": "supp-01-047",
+      "document": "01",
+      "asset": {
+        "src": "assets/supp-01-047-001.webp",
+        "width": 2400,
+        "height": 1729,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_022.png",
+        "source_sha256": "04a59865f4f480f4ff3fb25a2c200bc5088b14beeb359a94040e56e2f65e1157",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 163708,
+        "web_sha256": "f8902e6d294b426755d3cfcf1384114cc291e0cc766d07c80cfef49b8c8d7445",
+        "module_id": "supp-01-047",
+        "block_index": 1,
+        "caption": "矩阵表示资料对问题的适用关系，不是因果强度、实施优先级或投资评分。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-01-054-figure-1",
+      "title": "关联与待检机制放在同一关系图中",
+      "historical_module": "supp-01-054",
+      "document": "01",
+      "asset": {
+        "src": "assets/supp-01-054-001.webp",
+        "width": 2400,
+        "height": 1493,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/01_assets/image_023.png",
+        "source_sha256": "0e7d42255fdaaeedef6a724f3ac2fa754e2ff30ff2aeb3ddae74b6283fd046b6",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 150024,
+        "web_sha256": "333b35b62dd8c80963a01b296e415f332914c422410aaca4549305b302145504",
+        "module_id": "supp-01-054",
+        "block_index": 1,
+        "caption": "实线与虚线含义见图例。REL01至REL10保持与证据关系表、方法矩阵和案例册一致；未验证的机制不作为既成事实。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-002-figure-1",
+      "title": "关联与待检机制放在同一关系图中",
+      "historical_module": "supp-03-002",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-002-001.webp",
+        "width": 2400,
+        "height": 1493,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_001.png",
+        "source_sha256": "0e7d42255fdaaeedef6a724f3ac2fa754e2ff30ff2aeb3ddae74b6283fd046b6",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 150024,
+        "web_sha256": "333b35b62dd8c80963a01b296e415f332914c422410aaca4549305b302145504",
+        "module_id": "supp-03-002",
+        "block_index": 1,
+        "caption": "实线与虚线含义见图例。REL01至REL10保持与证据关系表、方法矩阵和案例册一致；未验证的机制不作为既成事实。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-003-figure-1",
+      "title": "四目标共用证据但不互相代替",
+      "historical_module": "supp-03-003",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-003-001.webp",
+        "width": 2400,
+        "height": 1729,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_002.png",
+        "source_sha256": "04a59865f4f480f4ff3fb25a2c200bc5088b14beeb359a94040e56e2f65e1157",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 163708,
+        "web_sha256": "f8902e6d294b426755d3cfcf1384114cc291e0cc766d07c80cfef49b8c8d7445",
+        "module_id": "supp-03-003",
+        "block_index": 1,
+        "caption": "矩阵表示资料对问题的适用关系，不是因果强度、实施优先级或投资评分。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-004-figure-2",
+      "title": "完整月份台账与合格观测不是一回事",
+      "historical_module": "supp-03-004",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-004-002.webp",
+        "width": 2400,
+        "height": 2297,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_003.png",
+        "source_sha256": "78cc29903b2701c9e30f4cd42ee64039720a780e4449a4ec20fb37486c6a7248",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 187904,
+        "web_sha256": "396bc29ebffb57010beeb2de2c3d005baffbb5746080fc4a07fc82b477d615a2",
+        "module_id": "supp-03-004",
+        "block_index": 2,
+        "caption": "暖季1984至2024年合格61个月；2000至2024年6至9月59个月才对应135.33公顷空间并集。冬季缺测不等于无水。",
+        "current_report_figures": [
+          {
+            "id": "figure-03",
+            "title": "完整月份台账与合格观测不是一回事",
+            "page": 10,
+            "src": "assets/figure-03.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-005-figure-1",
+      "title": "统一时间线与真实数据覆盖",
+      "historical_module": "supp-03-005",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-005-001.webp",
+        "width": 2400,
+        "height": 1466,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_004.png",
+        "source_sha256": "7e1122fa3531c5468c407956829265871969ef1853deabb2173bdf165d831c87",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 162198,
+        "web_sha256": "ae0530e09de51ac0a66bd5eaa82bc96954480e94ffa296bc34e625804b55ce21",
+        "module_id": "supp-03-005",
+        "block_index": 1,
+        "caption": "同一横轴不意味着各变量连续观测。E07和E08分别保留子数据集；现场水盐泥与运营证据空缺明确显示。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-018-figure-2",
+      "title": "A006 历史地图支持湖泊地带早已存在但不还原小沟",
+      "historical_module": "supp-03-018",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-018-002.webp",
+        "width": 1000,
+        "height": 850,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_005.png",
+        "source_sha256": "14db3887a8fbc562578eb7ab43811182ea76b5ee653428e3c8d69b191c571678",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 170000,
+        "web_sha256": "29511233d151fcfc59173be35d316c9fec46b3cbb35c12d015380f05a81f76ac",
+        "module_id": "supp-03-018",
+        "block_index": 2,
+        "caption": "原图局部保留地名、格网与地形符号。1951年是编绘年，不把图中全部地物统一认作同年调查；旧图湖形不与现代岸线相减计算增减。来源SRC-T03。",
+        "current_report_figures": [
+          {
+            "id": "figure-04",
+            "title": "历史地图支持湖泊地带早已存在但不还原小沟",
+            "page": 13,
+            "src": "assets/figure-04.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-020-figure-0",
+      "title": "A008 北路外小池与向南窄带提供具体的接续核查线索",
+      "historical_module": "supp-03-020",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-020-000.webp",
+        "width": 1917,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_006.png",
+        "source_sha256": "15332b9529a26a422e29373e5fbbfc5403de9a45e6c2ae3bfdc40abf1d31ed37",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 288912,
+        "web_sha256": "b0ad1253546bdabad6b139412c115ab8b0e0d3595c3798977470b71c83527d55",
+        "module_id": "supp-03-020",
+        "block_index": 0,
+        "caption": "精细历史影像用于辨认池洼、窄带与道路的相对位置，不把它们画成已证水流。2004年日期为界面显示日期，目标片原始元数据未核；跨路连通、流向和过水能力仍待核对。",
+        "current_report_figures": [
+          {
+            "id": "figure-32",
+            "title": "北池至西北沟带的候选接续",
+            "page": 49,
+            "src": "assets/figure-32.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-021-figure-0",
+      "title": "A009 同位置多期影像显示宏观条带并非近期才出现",
+      "historical_module": "supp-03-021",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-34.webp",
+        "width": 1775,
+        "height": 1800,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_007.png",
+        "source_sha256": "a4727d11a8dd6c60a3c4b8439c8267905c6d74e051c30ee70ffe56f15275c4e3",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 166580,
+        "web_sha256": "9bf956b3a924d3837fc60bfe1e0f59820da93b113da1e107052d2327ffc17d0c",
+        "module_id": "supp-03-021",
+        "block_index": 0,
+        "caption": "四景均为7月红波段灰阶，固定检查框有效率均至少99.9%；1987整幅展示窗仅75.9%有效。较宽条带多期存在，不等于同一细沟网连续38年不变，也不由亮暗差计算水量或盐度。",
+        "current_report_figures": [
+          {
+            "id": "figure-34",
+            "title": "历史影像中持续存在的宏观条带",
+            "page": 51,
+            "src": "assets/figure-34.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-022-figure-0",
+      "title": "A010 西北高地 办公院与近湖道路的相对位置",
+      "historical_module": "supp-03-022",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-022-000.webp",
+        "width": 1633,
+        "height": 1909,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_008.png",
+        "source_sha256": "d261785e5d1ee4d63b493ef28027ce6c614ef41c2b76ea55fc83814120f1e473",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 230500,
+        "web_sha256": "82a2132dac25ecd472c212a7bd7a5270fef231170a1771119f331d48bb18cb2d",
+        "module_id": "supp-03-022",
+        "block_index": 0,
+        "caption": "P为北路外候选浅盆，G为路南沟状带，N为道路候选核查段；这些是形态定位，不是输水箭头或已查明过水口。历史地表模型显示区域起伏，湖面编辑值不作为现时水位、湖底或道路控制高程。",
+        "current_report_figures": [
+          {
+            "id": "figure-33",
+            "title": "西北高地 办公院与道路位置",
+            "page": 50,
+            "src": "assets/figure-33.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-023-figure-0",
+      "title": "A011 地形总体向湖降低但过路能力仍需另查",
+      "historical_module": "supp-03-023",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-35.webp",
+        "width": 1623,
+        "height": 2400,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_009.png",
+        "source_sha256": "af9662e84c5c3e87efa032048de51fd772c83077e708b8907e882d1a84b3469b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 200656,
+        "web_sha256": "485ea1239253a028fb94f4109cf2d809508e5f40527eb0c4a5ce07de729af448",
+        "module_id": "supp-03-023",
+        "block_index": 0,
+        "caption": "办公院参照点至湖中心直线约2.41公里，不是实测水路。图中616米平台来自历史水面编辑，不是当日湖位、湖底或水深。各廊道分位数表示横向地形差异，不是置信界；道路参考轴附近阴影不是实际路宽。",
+        "current_report_figures": [
+          {
+            "id": "figure-35",
+            "title": "粗地形与实际过路能力",
+            "page": 52,
+            "src": "assets/figure-35.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-025-figure-4",
+      "title": "A013 近期常见的水面不等于长期固定的水景",
+      "historical_module": "supp-03-025",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-05.webp",
+        "width": 1562,
+        "height": 1803,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_010.png",
+        "source_sha256": "e5da764330d6a934d7a45cc8b460df31cad0d5f89d648c8aca91c946abe3bdea",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 197516,
+        "web_sha256": "899a77b0190406cc4b34c5187053c84caff084750df9893784dbc52bd3082ad7",
+        "module_id": "supp-03-025",
+        "block_index": 4,
+        "caption": "新6至9月空间层按每个像元实际有效记录统计；2008已知分类冲突保留，零检出不是现场干湖。不是全年淹水概率、软泥边界或可建设面积。资料SRC-D04。",
+        "current_report_figures": [
+          {
+            "id": "figure-05",
+            "title": "长期水面记录与近期位置的差别",
+            "page": 14,
+            "src": "assets/figure-05.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-026-figure-0",
+      "title": "A014 本湖也逐月核查 冬季缺少可靠开阔水观测",
+      "historical_module": "supp-03-026",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-026-000.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_011.png",
+        "source_sha256": "03b73826af10c687c61a3a0c3779c8013a89f036b7dbbb722d5485bd9e8e57ae",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 105076,
+        "web_sha256": "f0acf645fcbbf190e74cb174e00acdc76804870901442741ed5fd96495115b44",
+        "module_id": "supp-03-026",
+        "block_index": 0,
+        "caption": "1984年4月至2024年12月489个日历月已全部检查，取数齐全不表示有效观测齐全。11、12、1、2月无合格记录；6/7/8/9月全期合格次数19/17/18/7，其中7月含1985与1999两个早期锚点。2000至2024三夏月仍为原52次。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-027-figure-0",
+      "title": "A015 本湖六月至九月各自放回完整历史",
+      "historical_module": "supp-03-027",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-027-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_012.png",
+        "source_sha256": "e12d27050fb99bb00883a97d6efbb8ef1ac7cc533ab810134544a697c816832d",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 105940,
+        "web_sha256": "94e4148f2552ed20f5d9a2623359f15e341d5122113f4c3eddb1d1f2e48b327a",
+        "module_id": "supp-03-027",
+        "block_index": 0,
+        "caption": "同月跨年分别比较，不以一个月填补整个季节。1980至1990年代观测稀疏，2022年处理变化均保留标记；所示为月分类检出量，非现场水位。",
+        "current_report_figures": [
+          {
+            "id": "figure-06",
+            "title": "六月至九月各自回到完整历史",
+            "page": 15,
+            "src": "assets/figure-06.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-028-figure-0",
+      "title": "A016 同月跨年 6月全部合格轮廓",
+      "historical_module": "supp-03-028",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-028-000.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_013.png",
+        "source_sha256": "4b57719f0d28d33f2874dd50b7eb16395e8e2c8f7fa33e6c0dacba2853309d9b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 179666,
+        "web_sha256": "98a9d95da5d3c79653b105f44839715e4ed4896776d2f4d6b50b6a056eef3b76",
+        "module_id": "supp-03-028",
+        "block_index": 0,
+        "caption": "2000至2024年19个合格6月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+        "current_report_figures": [
+          {
+            "id": "figure-07",
+            "title": "六月全部合格轮廓",
+            "page": 16,
+            "src": "assets/figure-07.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-029-figure-0",
+      "title": "A017 同月跨年 7月全部合格轮廓",
+      "historical_module": "supp-03-029",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-029-000.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_014.png",
+        "source_sha256": "c800ae7a32ce2bb1030658582b89acdb315dce3ceb3e1d2cf3acae6d26744418",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 164536,
+        "web_sha256": "adb06977d67dfc168c71fd18683e404b9dc271a9069e3ee3fadd78db64fbf5e0",
+        "module_id": "supp-03-029",
+        "block_index": 0,
+        "caption": "2000至2024年15个合格7月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+        "current_report_figures": [
+          {
+            "id": "figure-08",
+            "title": "七月全部合格轮廓",
+            "page": 17,
+            "src": "assets/figure-08.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-030-figure-0",
+      "title": "A018 同月跨年 8月全部合格轮廓",
+      "historical_module": "supp-03-030",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-030-000.webp",
+        "width": 1704,
+        "height": 2112,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_015.png",
+        "source_sha256": "f5f083a04b243c59b28ed2c27ea4480e3de5fa81e76718eb476febd322183af8",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 174478,
+        "web_sha256": "0ab44ed2c86b68f78be9e8be07c7bca6e1318a355efbc724b64623a40a5f2001",
+        "module_id": "supp-03-030",
+        "block_index": 0,
+        "caption": "2000至2024年18个合格8月，全部纳入并分年代显示。每条线来自月复合分类，不是某一天实测；零检出保留在图例，缺测不补轮廓。2008存在原片分类分歧，2022起处理变化另标。不同月份的年数不同，不比较为固定淹水概率。",
+        "current_report_figures": [
+          {
+            "id": "figure-09",
+            "title": "八月全部合格轮廓",
+            "page": 18,
+            "src": "assets/figure-09.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-032-figure-0",
+      "title": "A020 8个完整三夏月样本 之一",
+      "historical_module": "supp-03-032",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-032-000.webp",
+        "width": 1704,
+        "height": 2040,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_016.png",
+        "source_sha256": "b91e1a47f757e30193fd1e3b25ac647432e96bcae6413173c882f2c7ce9b1fc0",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 167834,
+        "web_sha256": "57b739e39f5aee1e38d79af4eff895104fef935a6640e5f3ffa4b9b9ff9bf4eb",
+        "module_id": "supp-03-032",
+        "block_index": 0,
+        "caption": "仅6、7、8月齐全，不代表全年完整观测。2008月分类与原片光谱存在冲突，不以低检出认定干湖。",
+        "current_report_figures": [
+          {
+            "id": "figure-10",
+            "title": "同年三夏月比较 第一组",
+            "page": 19,
+            "src": "assets/figure-10.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-033-figure-0",
+      "title": "A021 8个完整三夏月样本 之二",
+      "historical_module": "supp-03-033",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-033-000.webp",
+        "width": 1704,
+        "height": 2040,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_017.png",
+        "source_sha256": "7588c214d69549596e23686a0f4f6ef040ee3818e6f578559592beb7364de9eb",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 165948,
+        "web_sha256": "10d7e36112bd35fafa8a253507ad2f43970a20d15218317398eaa0492fc30831",
+        "module_id": "supp-03-033",
+        "block_index": 0,
+        "caption": "同一年不同月仍为月复合边界，不是连续水位曲线。只在共同看清区域讨论变化；不能把轮廓间距当高程、泥层或安全退让距离。",
+        "current_report_figures": [
+          {
+            "id": "figure-11",
+            "title": "同年三夏月比较 第二组",
+            "page": 20,
+            "src": "assets/figure-11.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-034-figure-2",
+      "title": "A022 扩展到九月后 可比年内样本进一步减少",
+      "historical_module": "supp-03-034",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-034-002.webp",
+        "width": 1562,
+        "height": 1210,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_018.png",
+        "source_sha256": "dccfb3323e565dc121dbf5497b449b089c791564183758cd38f95508fed6b78b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 71358,
+        "web_sha256": "99c7b9e216945131e1a48eaa99f82a3a333e72ed235b207e248000cc235c9d22",
+        "module_id": "supp-03-034",
+        "block_index": 2,
+        "caption": "2017年6至9月共同可见区的分类轮廓；左侧保留该年实际产品记录，冰雪及缺测不解释为无水。",
+        "current_report_figures": [
+          {
+            "id": "figure-12",
+            "title": "加入九月后的完整样本边界",
+            "page": 21,
+            "src": "assets/figure-12.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-035-figure-0",
+      "title": "A023 近期8月实际单景与长期8月背景",
+      "historical_module": "supp-03-035",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-035-000.webp",
+        "width": 1704,
+        "height": 1608,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_019.png",
+        "source_sha256": "1d0db041e845742526e8741c13eb2156f02b25b40295d9e1969e34096f20c54a",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 158346,
+        "web_sha256": "49208d05f0979da1fad7129b633816c07a6737650dde1663318927ee1d0bd469",
+        "module_id": "supp-03-035",
+        "block_index": 0,
+        "caption": "灰色背景来自2000至2024年18个合格8月的JRC月复合包络；彩线是2021至2026年每年真实8月影像中接近该年样本面积中位数的一景，不是平均或最大岸线。两层传感器、算法和时间含义不同，不能直接相减为多年增量；包络以外不等于安全区。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-036-figure-2",
+      "title": "A024 较大的水面曾回到相近的湖盆位置",
+      "historical_module": "supp-03-036",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-036-002.webp",
+        "width": 1633,
+        "height": 1334,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_020.png",
+        "source_sha256": "ac1a646fadd1dfd12de7164538e09db9a3fc9342516d067b9011577b5f8c997f",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 72720,
+        "web_sha256": "c8327bbb95d217914b40be957a6c5f7b973636f871f92ff8913e7d318fcde443",
+        "module_id": "supp-03-036",
+        "block_index": 2,
+        "caption": "同月份月复合，共同可见范围比较；一像元处理是敏感性情景，不是真实误差界或法定退让距离。",
+        "current_report_figures": [
+          {
+            "id": "figure-13",
+            "title": "相近水面曾回到相近位置",
+            "page": 22,
+            "src": "assets/figure-13.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-037-figure-2",
+      "title": "A025 东南副盆的变化需要单独解释",
+      "historical_module": "supp-03-037",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-037-002.webp",
+        "width": 1633,
+        "height": 1334,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_021.png",
+        "source_sha256": "c4a5b364250b261d31bb5ac3aae57d7a18a20624d735f1cd8fb6f2d51d1183f6",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 80290,
+        "web_sha256": "595724de993bbe29239aba1d19123c4413d1d3787d5542a49060b95cf0cbb5ea",
+        "module_id": "supp-03-037",
+        "block_index": 2,
+        "caption": "跨越2022年产品处理变化，保留边缘敏感性和来源变化的限制；面积不是新增可经营或不可经营面积。",
+        "current_report_figures": [
+          {
+            "id": "figure-14",
+            "title": "东南副盆不能由主盆代替",
+            "page": 23,
+            "src": "assets/figure-14.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-038-figure-2",
+      "title": "A026 原始影像复查支持一次低开阔水检出",
+      "historical_module": "supp-03-038",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-15.webp",
+        "width": 1633,
+        "height": 1610,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_022.png",
+        "source_sha256": "ea2c5f695883fa11ed81a2c582cccf6cb31c80b6543c874a27047687844c7594",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 195232,
+        "web_sha256": "ba7c00a2889c3f3b955f948f7c90fce6f64f6d21310af9c40707d5550cbfa0cc",
+        "module_id": "supp-03-038",
+        "block_index": 2,
+        "caption": "SWIR 近红外 红光假彩，非自然色；不从亮色推断盐度。JRC与原片均属于Landsat资料族。",
+        "current_report_figures": [
+          {
+            "id": "figure-15",
+            "title": "2007年低开阔水的原片核查",
+            "page": 24,
+            "src": "assets/figure-15.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-040-figure-0",
+      "title": "A028 本湖与三个近邻的固定位置关系",
+      "historical_module": "supp-03-040",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-040-000.webp",
+        "width": 2130,
+        "height": 2400,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_023.png",
+        "source_sha256": "5e659f3e7179c36757cfe008c378f467c3f589df57abc42ecb70455ffaa90b1f",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 174684,
+        "web_sha256": "73b3acd60442da57a6f5fdecc13b0b98e689a7a52fbdce22199fa91cca9ac45f",
+        "module_id": "supp-03-040",
+        "block_index": 0,
+        "caption": "正式湖名与精确行政归属待核。距离为参考中心至本湖中心，并非现状岸线距离；KMZ是本湖统计范围。高程为历史地表模型，不是当日水位。资料SRC-R09 SRC-R10。",
+        "current_report_figures": [
+          {
+            "id": "figure-36",
+            "title": "近邻比较提供背景而非连通证明",
+            "page": 54,
+            "src": "assets/figure-36.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-041-figure-0",
+      "title": "A029 近距离也跨越起伏地形 不等于共享同一水路",
+      "historical_module": "supp-03-041",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-37.webp",
+        "width": 2130,
+        "height": 2250,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_024.png",
+        "source_sha256": "ba7385186158d21f665e0e9bd78a5644f506b295cebdb3324b12f2d8c112302c",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 199970,
+        "web_sha256": "df1ab5077f7e00adb14be332c428c7ce1711227046e42739a4df0ab8b4618b12",
+        "module_id": "supp-03-041",
+        "block_index": 0,
+        "caption": "三条直线及左右各500米有限廊道反映地表起伏；横截面最低点未必相连，未识别全部绕行通路。编辑湖面高程不是同步水头，不据高差推地下水方向或封闭盆地。资料SRC-R09 SRC-R10。",
+        "current_report_figures": [
+          {
+            "id": "figure-37",
+            "title": "近邻距离与起伏地形",
+            "page": 55,
+            "src": "assets/figure-37.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-042-figure-0",
+      "title": "A030 同一日期影像与周边地类提供可比环境背景",
+      "historical_module": "supp-03-042",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-042-000.webp",
+        "width": 2130,
+        "height": 1170,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_025.png",
+        "source_sha256": "6dc2db62ade69ecb1f5de83769a5292d91abbb6d4dfe26676ddc2c439301e54b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 158064,
+        "web_sha256": "ba95eaeed4ae0f99d93ce4b9aca080e9729de2406a7040be1ffe96d2c1f21f62",
+        "module_id": "supp-03-042",
+        "block_index": 0,
+        "caption": "2021年7月21日同景Landsat与WorldCover单年类别用于定位。500米环带不是集水区；草地、耕地和建设类别不等于现场确权、树种或取排水量。资料SRC-D06 SRC-D07。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-043-figure-0",
+      "title": "A031 北侧近邻 N1的独立全年资料与各月分布",
+      "historical_module": "supp-03-043",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-043-000.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_026.png",
+        "source_sha256": "bfe3cec5a81c7b25c3e02e35e624162212a67a22024982df25bf3066636b0e9b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 115266,
+        "web_sha256": "29392af239d626ca29dfd0e4ef9935764d97c825d570f6ffda58d1dec66d4393",
+        "module_id": "supp-03-043",
+        "block_index": 0,
+        "caption": "已核每个日历月，不以本湖是否有影像来删减邻湖资料。灰色为无有效观测，空心点为合格零检出，两者不同；冬季不能据零值认定干湖。正式名称和天然成因尚未核定。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-044-figure-0",
+      "title": "A032 北侧近邻 N1的同月跨年变化",
+      "historical_module": "supp-03-044",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-044-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_027.png",
+        "source_sha256": "5872cbb3e4ffcc0797e20682940595a3855e5384abb2ce0e04318ed047f97bda",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 99090,
+        "web_sha256": "5f4b5aec8f8176b4cbed0f1ad468fee8c4b42c1e23a2fbfd66810110b7ba8bdf",
+        "module_id": "supp-03-044",
+        "block_index": 0,
+        "caption": "6至9月各自跨年比较，保留全部合格记录和缺口。不同月份不能混成同一年度数；2022年产品处理改变，跨段差异需同时考虑。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-045-figure-0",
+      "title": "A033 北侧近邻 N1的反复见水位置与历史轮廓",
+      "historical_module": "supp-03-045",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-045-000.webp",
+        "width": 1562,
+        "height": 1803,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_028.png",
+        "source_sha256": "a53937b2c9e1f42920d836e49cef5267c77766613399cf002fad213a2d958577",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 142880,
+        "web_sha256": "0e450b3d33417e5a7718347a4005090a0aca156e05513c56ecbedc776ec4c10e",
+        "module_id": "supp-03-045",
+        "block_index": 0,
+        "caption": "2000至2024年6至9月共81个月，涉及25年，样本曾检水约25.10公顷，均曾被判水及非水。频次不是未来淹水概率；黑线为固定比较窗，非水边或安全界线。小泡边缘混合像元影响尤其需要谨慎。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-046-figure-0",
+      "title": "A034 北侧近邻 N1的年内变化与代表状态",
+      "historical_module": "supp-03-046",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-046-000.webp",
+        "width": 1562,
+        "height": 1935,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_029.png",
+        "source_sha256": "c1ad8659e6fb5288e4fc3de7cbade375cf00bb1ce891b05dbf60dc75047d0736",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 115820,
+        "web_sha256": "ef3a78598e894d486bf16eaf730d7341c0737f4f88e3e3cd20a16df8ac5fc956",
+        "module_id": "supp-03-046",
+        "block_index": 0,
+        "caption": "仅从6至9月四个月全合格的年份按四月均值选低、中、高检出状态，依次为2006、2014、2004年；不是气候干湿分类。左侧展示这些年份实际产品记录，冰雪或过渡月不据此判无水；右侧仅在共同可见区域叠线。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-047-figure-0",
+      "title": "A035 西北近邻 N2的独立全年资料与各月分布",
+      "historical_module": "supp-03-047",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-047-000.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_030.png",
+        "source_sha256": "1e588c1f7b97235f690b2c56e8213bf58da3fc27441148bb7d6a778783df92af",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 106634,
+        "web_sha256": "d3ff5e614cd005c477317c62b545d9f1148b6012e6058abc5a43a4f368390a8f",
+        "module_id": "supp-03-047",
+        "block_index": 0,
+        "caption": "已核每个日历月，不以本湖是否有影像来删减邻湖资料。灰色为无有效观测，空心点为合格零检出，两者不同；冬季不能据零值认定干湖。正式名称和天然成因尚未核定。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-048-figure-0",
+      "title": "A036 西北近邻 N2的同月跨年变化",
+      "historical_module": "supp-03-048",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-048-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_031.png",
+        "source_sha256": "aedd65be1d1cbeb17056ed024afeb0a1aaea2b7514fda4dec93090c2e5820c4d",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 111624,
+        "web_sha256": "7b0226d816bcbcd69d1b60801407075a6f1ab0c8f4aec4197a70349b6f7d34b3",
+        "module_id": "supp-03-048",
+        "block_index": 0,
+        "caption": "6至9月各自跨年比较，保留全部合格记录和缺口。不同月份不能混成同一年度数；2022年产品处理改变，跨段差异需同时考虑。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-049-figure-0",
+      "title": "A037 西北近邻 N2的反复见水位置与历史轮廓",
+      "historical_module": "supp-03-049",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-049-000.webp",
+        "width": 1562,
+        "height": 1803,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_032.png",
+        "source_sha256": "7846b88f4fbfd192f3333f83d37ca656bbbe2c97352ccac2f8339b071c94a8c5",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 175028,
+        "web_sha256": "9e30d65a2492bdaf1d690b0c333d78056de7af5323e6cb7377e6367c62ebc649",
+        "module_id": "supp-03-049",
+        "block_index": 0,
+        "caption": "2000至2024年6至9月共82个月，涉及25年，样本曾检水约27.23公顷，均曾被判水及非水。频次不是未来淹水概率；黑线为固定比较窗，非水边或安全界线。小泡边缘混合像元影响尤其需要谨慎。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-050-figure-0",
+      "title": "A038 西北近邻 N2的年内变化与代表状态",
+      "historical_module": "supp-03-050",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-050-000.webp",
+        "width": 1562,
+        "height": 1935,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_033.png",
+        "source_sha256": "a38f6849426aace5b1edeaceb50fb8580f3e7d5121629e5617a63cf42e384d25",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 128962,
+        "web_sha256": "04bc4bda2cf1871e9824a5f54d0ea4f94d2f1620e795caf0f4f31d62d9326bb6",
+        "module_id": "supp-03-050",
+        "block_index": 0,
+        "caption": "仅从6至9月四个月全合格的年份按四月均值选低、中、高检出状态，依次为2010、2015、2024年；不是气候干湿分类。左侧展示这些年份实际产品记录，冰雪或过渡月不据此判无水；右侧仅在共同可见区域叠线。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-051-figure-0",
+      "title": "A039 南侧近邻小泡 S1的独立全年资料与各月分布",
+      "historical_module": "supp-03-051",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-051-000.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_034.png",
+        "source_sha256": "76eb885956180478331014158f37783773cc6abce6ab4ef33109e6b114f56594",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 108644,
+        "web_sha256": "fa96d22690423c9cfb815edbc8549c89557b9314de9bae3e6ee5cdc2db60597e",
+        "module_id": "supp-03-051",
+        "block_index": 0,
+        "caption": "已核每个日历月，不以本湖是否有影像来删减邻湖资料。灰色为无有效观测，空心点为合格零检出，两者不同；冬季不能据零值认定干湖。正式名称和天然成因尚未核定。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-052-figure-0",
+      "title": "A040 南侧近邻小泡 S1的同月跨年变化",
+      "historical_module": "supp-03-052",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-052-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_035.png",
+        "source_sha256": "4d985b5deffc92784a94a726d891d6dfa427c3e8555b3eafa2f403e244730df3",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 105150,
+        "web_sha256": "5c5fa0ac7f283c73fab29e662f0d27f192e1295836bacfb8b4cb1670fa54c99f",
+        "module_id": "supp-03-052",
+        "block_index": 0,
+        "caption": "6至9月各自跨年比较，保留全部合格记录和缺口。不同月份不能混成同一年度数；2022年产品处理改变，跨段差异需同时考虑。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-053-figure-0",
+      "title": "A041 南侧近邻小泡 S1的反复见水位置与历史轮廓",
+      "historical_module": "supp-03-053",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-053-000.webp",
+        "width": 1562,
+        "height": 1803,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_036.png",
+        "source_sha256": "2e8cd7f9f521584849952f8d2e0b3a700b5e2199110a1928dc89e1a89011d899",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 150058,
+        "web_sha256": "93205875f31dd03944e5a63f7aae9fc2ce0e0d86fae1db2e570db3a79d36e81e",
+        "module_id": "supp-03-053",
+        "block_index": 0,
+        "caption": "2000至2024年6至9月共70个月，涉及24年，样本曾检水约6.60公顷，均曾被判水及非水。频次不是未来淹水概率；黑线为固定比较窗，非水边或安全界线。小泡边缘混合像元影响尤其需要谨慎。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-054-figure-0",
+      "title": "A042 南侧近邻小泡 S1的年内变化与代表状态",
+      "historical_module": "supp-03-054",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-054-000.webp",
+        "width": 1562,
+        "height": 1935,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_037.png",
+        "source_sha256": "90da641759ef345219bd384bdb6f0fcdde4bca6dc7becdf087f70b6058c14355",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 115348,
+        "web_sha256": "7a42005ed840b15544071039ba2e7cbdadf4ecacbd27d5bcdafc4091e060a962",
+        "module_id": "supp-03-054",
+        "block_index": 0,
+        "caption": "仅从6至9月四个月全合格的年份按四月均值选低、中、高检出状态，依次为2007、2001、2009年；不是气候干湿分类。左侧展示这些年份实际产品记录，冰雪或过渡月不据此判无水；右侧仅在共同可见区域叠线。 2009只是在四个月齐全子样本中的较高代表，不是历史最大：全部合格暖月单月较大检出约6.24公顷出现在2021年7月。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-056-figure-0",
+      "title": "A044 近邻与远参照 同期变化完整对照",
+      "historical_module": "supp-03-056",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-056-000.webp",
+        "width": 1602,
+        "height": 1436,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_038.png",
+        "source_sha256": "2810e47563f4cd7cafe9a6122c95abc6122767eb046aacf65cf2a08349fd77b2",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 99848,
+        "web_sha256": "2ebbc618bc5ac7c0b0555fea4ce2245167ca528585e2a23f14b939a838d9e0eb",
+        "module_id": "supp-03-056",
+        "block_index": 0,
+        "caption": "全部预设对象同时列出。正数倾向同向，负数倾向反向；不等于因果。暖季月内异常控制月份，不等于控制降雨、地下水和人工调控。",
+        "current_report_figures": [
+          {
+            "id": "figure-38",
+            "title": "同期变化应同时展示全部预设对照",
+            "page": 56,
+            "src": "assets/figure-38.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-057-figure-0",
+      "title": "A045 0至3个月滞后 为什么仍不能确定延迟",
+      "historical_module": "supp-03-057",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-39.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_039.png",
+        "source_sha256": "48753e801d3cbd9b253e4433219febd7bd373a51d3ee9f826a7feed89e5cc37e",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 174268,
+        "web_sha256": "1b5d01b658c183f2853ff94da4a1f76c9b23edf03fda024c64373702f338bdea",
+        "module_id": "supp-03-057",
+        "block_index": 0,
+        "caption": "主比较固定本湖9月，四个滞后使用共同年份；副比较扩大月份但样本组成随滞后改变。全部结果披露，不按最大相关选模型。",
+        "current_report_figures": [
+          {
+            "id": "figure-39",
+            "title": "零至三个月滞后仍不能确认水路延迟",
+            "page": 57,
+            "src": "assets/figure-39.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-060-figure-0",
+      "title": "A048 山丘与河谷使区域联系不能按平地距离理解",
+      "historical_module": "supp-03-060",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-40.webp",
+        "width": 2130,
+        "height": 1860,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_040.png",
+        "source_sha256": "21a7757c5718fb6a4961d301fb4832cccd91e7f5bba66bf623f9c07831e0ff65",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 194868,
+        "web_sha256": "33309b7e15984e6a944b0d6a8ba36a05c2f4d9a1232596f91c11c7730a1d555f",
+        "module_id": "supp-03-060",
+        "block_index": 0,
+        "caption": "历史地表模型用于辨认区域高地和河谷，不是2026年水位、裸地测绘或地下水面。矩形为展示范围；河网是参考几何，不能据邻近直接认定本湖连通。资料 SRC-R09 SRC-R10。",
+        "current_report_figures": [
+          {
+            "id": "figure-40",
+            "title": "区域高地 河谷与有限剖面",
+            "page": 58,
+            "src": "assets/figure-40.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-061-figure-0",
+      "title": "A049 有限廊道确有高地 仍未识别全部可能水路",
+      "historical_module": "supp-03-061",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-061-000.webp",
+        "width": 2130,
+        "height": 2280,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_041.png",
+        "source_sha256": "cad2ac4cfd555948dc76fdf70c377b9f6d93db74f24ac928b19d8f130e870a9e",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 250090,
+        "web_sha256": "49bbeb78bd16590c081f4acc2b51e6382ad25498a6b45c3f4db2142124f341dd",
+        "module_id": "supp-03-061",
+        "block_index": 0,
+        "caption": "本湖至呼和诺尔、伊敏河和海拉尔河参考点的直线与有限宽廊道均穿过高地。横断面最低点不一定连续相接，也未穷尽绕行路径；不能据此认定完整分水岭或地下水隔绝。历史水面编辑高程不用于推算水头坡降。资料 SRC-R09 SRC-R10。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-063-figure-2",
+      "title": "A051 城市与高地条带景观提供不同的环境线索",
+      "historical_module": "supp-03-063",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-41.webp",
+        "width": 1704,
+        "height": 2280,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_042.png",
+        "source_sha256": "ab6a927d387709862122f34c242a6544d8efcfda89bd969ca5da55069af96ea3",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 369868,
+        "web_sha256": "e2e119135e18ed26d9b30524135b634170e9a7be0827059b13d977cb17347cc8",
+        "module_id": "supp-03-063",
+        "block_index": 2,
+        "caption": "同为7月原片，缺测保留灰色。2021北部例区仅8.1%有效，不能完整比较，也不以2021静态树覆替补缺测。1992条带形态不证明樟子松树种或同龄森林。图不估计耗水或本湖补给。资料 SRC-D06 SRC-D07 SRC-R11。",
+        "current_report_figures": [
+          {
+            "id": "figure-41",
+            "title": "城市和高地景观变化的证据边界",
+            "page": 60,
+            "src": "assets/figure-41.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-065-figure-4",
+      "title": "A053 两套长期雨量各自说明什么",
+      "historical_module": "supp-03-065",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-065-004.webp",
+        "width": 1704,
+        "height": 2208,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_043.png",
+        "source_sha256": "b6af35601e07920fe535e1b9d5d79dee407eb19baa5ae0da11a5daf717ca1dfc",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 159986,
+        "web_sha256": "05665813a91ec7e1d453c1d293c4f4b7105b2ad9fcf3628e99fd02cc607a32a1",
+        "module_id": "supp-03-065",
+        "block_index": 4,
+        "caption": "地方年度序列与全球模型采用相同年份并列比较。两者空间支持与重建方法不同，不能拼接为一条连续实测曲线。",
+        "current_report_figures": [
+          {
+            "id": "figure-18",
+            "title": "共同气候背景与地方资料差异",
+            "page": 28,
+            "src": "assets/figure-18.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-066-figure-3",
+      "title": "A054 丰枯会反复 但不能按固定年数安排用途",
+      "historical_module": "supp-03-066",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-19.webp",
+        "width": 1704,
+        "height": 2160,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_044.png",
+        "source_sha256": "664b2d1326a8a3fd0c8429f533be65dd0e10487d525637adf549c61d199a1446",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 159970,
+        "web_sha256": "1862e4e7fa073e1ba20d8b910e07804185231f5d5ec57a06a00952c784dc4f99",
+        "module_id": "supp-03-066",
+        "block_index": 3,
+        "caption": "下图蓝线没有达到橙色判定线，当前样本不足以认定固定周期。地方序列的空间重建局限仍适用于此图，检验不是旱年预测。",
+        "current_report_figures": [
+          {
+            "id": "figure-19",
+            "title": "长期丰枯反复不支持固定周期",
+            "page": 29,
+            "src": "assets/figure-19.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-067-figure-6",
+      "title": "A055 冬季积累与春季转换是一个连续过程",
+      "historical_module": "supp-03-067",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-20.webp",
+        "width": 1704,
+        "height": 2280,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_045.png",
+        "source_sha256": "fe0bb58695366c74b336e9ff9ab26bc089103b1ad7526e111c4865d74bbef734",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 205016,
+        "web_sha256": "86487d45858034ef41b6e62255367257e0189c4a9ea8278fcfed7937823b2caa",
+        "module_id": "supp-03-067",
+        "block_index": 6,
+        "caption": "冷季按下一年春夏归属；SWE为毫米水当量。个别季节退雪时间受观测起点限制，相应关联不将其当作完整日期。",
+        "current_report_figures": [
+          {
+            "id": "figure-20",
+            "title": "冬季积累与春季转换",
+            "page": 30,
+            "src": "assets/figure-20.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-068-figure-4",
+      "title": "A056 用共同年份追问季节之间的联系",
+      "historical_module": "supp-03-068",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-29.webp",
+        "width": 1704,
+        "height": 2400,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_046.png",
+        "source_sha256": "4ca29e48d2d6dfb36bf082eb6aad0284524bb1f4cc0a27eea9229db32f6146ce",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 162582,
+        "web_sha256": "82d030c143d8502385eaa4359577d2cecfd2e109bb38fa9099dc2b5fe5d1d60f",
+        "module_id": "supp-03-068",
+        "block_index": 4,
+        "caption": "图中各过程覆盖与缺测按实际资料保留。后续水面与植被联表使用共同有效年份，不能将26年框架写成26个完整配对样本。",
+        "current_report_figures": [
+          {
+            "id": "figure-29",
+            "title": "季节联表中的实际共同年份",
+            "page": 45,
+            "src": "assets/figure-29.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-069-figure-3",
+      "title": "A057 同一张年表保留各要素的状态与缺口",
+      "historical_module": "supp-03-069",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-30.webp",
+        "width": 1704,
+        "height": 2220,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_047.png",
+        "source_sha256": "2bc7370340cb5b6af7e508aa95d0402194be4eb048dfc2256aad3ea85c90ec9d",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 217946,
+        "web_sha256": "ac18ae45fff291a502dc9def7ddaa833e9e5ef3426d8233b48f2a8b5e6c9a266",
+        "module_id": "supp-03-069",
+        "block_index": 3,
+        "caption": "颜色在各列内部比较，不跨单位比较；×为未满足相应完整观测要求。区域格点、区域植被参照与KMZ水面具有不同空间支持。 水面列是JRC产品结果；2008年存在月分类与原片光谱冲突，不能将该列直接当作实际水位。",
+        "current_report_figures": [
+          {
+            "id": "figure-30",
+            "title": "年表排列不等于完整因果链",
+            "page": 46,
+            "src": "assets/figure-30.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-071-figure-5",
+      "title": "A059 水面与较长前期水分积累的联系值得进一步核查",
+      "historical_module": "supp-03-071",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-28.webp",
+        "width": 1846,
+        "height": 2392,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_048.png",
+        "source_sha256": "2e30c69b7981a7141e98976a9ec0ae16dc0769db6aba3761bdaec18206dbec16",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 199908,
+        "web_sha256": "efcf52d3a91aec3093b7efc4e986ab2e944d53bbbbaf2d5e6f7a4a5f6dbe1b8a",
+        "module_id": "supp-03-071",
+        "block_index": 5,
+        "caption": "按同月共同有效年份分析；正相关表示在这些样本中倾向同向变化，不等于因果、预测能力或已完成湖泊水量平衡。全部预设关系及敏感性同时保留。",
+        "current_report_figures": [
+          {
+            "id": "figure-28",
+            "title": "雨水累积时段与湖面关系的既有检验",
+            "page": 44,
+            "src": "assets/figure-28.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-072-figure-3",
+      "title": "A060 区域草地背景与近湖参照回答不同的问题",
+      "historical_module": "supp-03-072",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-072-003.webp",
+        "width": 1633,
+        "height": 1885,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_049.png",
+        "source_sha256": "64e6c80716725ab1700df7004b9ace7fc1b1ab125c99e57c3fc365775ce4b8dc",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 142736,
+        "web_sha256": "869918e9d82ab53e283a401c4c7d3017bddf7b214dcfbb0127c0db09cfe92b09",
+        "module_id": "supp-03-072",
+        "block_index": 3,
+        "caption": "区域参照与近湖参照是统计位置，不是牧场或权属范围。水文分析窗以外没有本次水面频次证据，不能画成从未见水。",
+        "current_report_figures": [
+          {
+            "id": "figure-42",
+            "title": "区域与近湖植被证据的空间差异",
+            "page": 62,
+            "src": "assets/figure-42.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-073-figure-3",
+      "title": "A061 用整个生长季观察长势而不只挑一张盛夏照片",
+      "historical_module": "supp-03-073",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-43.webp",
+        "width": 1633,
+        "height": 1978,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_050.png",
+        "source_sha256": "c1e17627747510e3f779284516bb30166cf842ff08f4b1e1f66ea265ae553f24",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 99638,
+        "web_sha256": "e1169ecc46bf9a52bbe4e497b7ae81fa3107cab055386491e2573ff2c72346b5",
+        "module_id": "supp-03-073",
+        "block_index": 3,
+        "caption": "外部稳定陆地参照，非湖岸整个草场。相同合成时间位置并不等于真实返青日或物候阶段完全相同。",
+        "current_report_figures": [
+          {
+            "id": "figure-43",
+            "title": "生长季绿度而非单张盛夏照片",
+            "page": 63,
+            "src": "assets/figure-43.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-074-figure-3",
+      "title": "A062 雨量与绿度有关 但前雨并未被证明更重要",
+      "historical_module": "supp-03-074",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-31.webp",
+        "width": 1633,
+        "height": 1587,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_051.png",
+        "source_sha256": "5eb20dd3c74aa65530a8a582183ebfc09adf5bfafac06f36d8c9371d48ba12b7",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 86018,
+        "web_sha256": "0bfa79783769dcebadef6d3a27d699a0eee0c3e514fe47741016c72a665eb108",
+        "module_id": "supp-03-074",
+        "block_index": 3,
+        "caption": "点越靠右表示样本中同向变化越明显，接近0表示未见稳定单调关系；横线显示重采样结果的变化范围。两类降雨相关之差仍跨0，不能据此确定谁更重要。",
+        "current_report_figures": [
+          {
+            "id": "figure-31",
+            "title": "前期降水与同期降水对植被的比较",
+            "page": 48,
+            "src": "assets/figure-31.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-076-figure-0",
+      "title": "A064 近湖参照的同月历史变化",
+      "historical_module": "supp-03-076",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-076-000.webp",
+        "width": 1633,
+        "height": 1564,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_052.png",
+        "source_sha256": "1cc0febeda92e668e32aacbd63fa19a344b690d511a5ed6e0cc2b8cc36e71408",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 94674,
+        "web_sha256": "206b795b2fbfda66bacc52f77c0a3751701072632db202817c9047824bd8bc8f",
+        "module_id": "supp-03-076",
+        "block_index": 0,
+        "caption": "每点为实际单景，非月均；N、W、S为北、西、南固定近湖参照。51个固定首选场景取得50个完整结果，另合并既有历史影像，共64景；2024年7月缺波段及其他质量不足位置留缺。各样区有效年份不同，不拼接跨传感器的绝对长期趋势。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-077-figure-0",
+      "title": "A065 固定曾水带的同月绿度分账",
+      "historical_module": "supp-03-077",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-077-000.webp",
+        "width": 1633,
+        "height": 1725,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_053.png",
+        "source_sha256": "9dd86df1345c0f7db419894f805053199938ee5170261b2951722803b5bfec2e",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 142922,
+        "web_sha256": "5c0b594250755aba5e3d312a1a8cada2274297318668bcdef039023e8478102f",
+        "module_id": "supp-03-077",
+        "block_index": 0,
+        "caption": "固定约135公顷分析格网；每年按质量选择7月单景，不按绿度挑选。8个合格年保留全部，其余留缺。2007年本图为7月15日，下一图为7月31日，数值不能混为同日。高绿度阈值不是植被覆盖率或可食牧草面积。",
+        "current_report_figures": [
+          {
+            "id": "figure-44",
+            "title": "固定曾水带的绿度分账",
+            "page": 64,
+            "src": "assets/figure-44.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-078-figure-0",
+      "title": "A066 四个实际日期的候选水体与绿度对照",
+      "historical_module": "supp-03-078",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-45.webp",
+        "width": 1633,
+        "height": 1725,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_054.png",
+        "source_sha256": "1bbf4523909501429fdddfbb383235760acaf02888545eb1bd9ef84249a7f6ff",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 90320,
+        "web_sha256": "7ff1aeb7efd5f74f929c923f5b1b38da2a9806f41eebe6e43e387a94918de5a5",
+        "module_id": "supp-03-078",
+        "block_index": 0,
+        "caption": "同一约135公顷带内按共同有效像元比较，光谱候选不等于现场水面真值。2007低检出与2008分类分歧需区别。基准候选水规则含NDVI小于0.3，因此与高绿度类互斥来自定义，不能当成独立生态验证；三种规则差异不是统计置信区间。",
+        "current_report_figures": [
+          {
+            "id": "figure-45",
+            "title": "四个实际日期的水谱与绿度交叉核查",
+            "page": 65,
+            "src": "assets/figure-45.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-080-figure-0",
+      "title": "A086 呼和诺尔 全年月历与月份分布",
+      "historical_module": "supp-03-080",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-080-000.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_055.png",
+        "source_sha256": "f53edb3bdb343b68e0865d81248eb4d18e3be61a33514835ce4c36299cc3f6d2",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 102848,
+        "web_sha256": "e4ba3c9f23033bcc6f972a3f9e2659f6a11bcfbd81ebc32c4f573b447ec440cb",
+        "module_id": "supp-03-080",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-081-figure-0",
+      "title": "A087 呼和诺尔 相同月份的历年过程",
+      "historical_module": "supp-03-081",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-081-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_056.png",
+        "source_sha256": "232cd8a59888fa0ace093755bf2da33dc9e6568f059ee2bd5ee6dc26ef22d49a",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 111048,
+        "web_sha256": "b86112fa7a34202d8d16c4206b83c4f75606ac827a252acaa547b30a073f5900",
+        "module_id": "supp-03-081",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-082-figure-0",
+      "title": "A088 呼和诺尔 可观测年份的年内过程",
+      "historical_module": "supp-03-082",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-082-000.webp",
+        "width": 1562,
+        "height": 1078,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_057.png",
+        "source_sha256": "8813cedc6e7b539a9d87e7e01dd0a0a98c509063a10f53b3e5b27efe8f76017b",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 58950,
+        "web_sha256": "dfb4b2e123df148d705158b4d723fca02c477f0fafa6a4626dfbe53640bd7238",
+        "module_id": "supp-03-082",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-083-figure-0",
+      "title": "A089 伊敏河邻近河段 全年月历与月份分布",
+      "historical_module": "supp-03-083",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-083-000.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_058.png",
+        "source_sha256": "fa85c7e90de80e44612b486d0a3797c05d1d687eac42d209e4f775a1c0d28281",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 105166,
+        "web_sha256": "a54dcd1a07cb646cb5414f2b10a305882489d94dd1b60f3699fcc60dbbc50315",
+        "module_id": "supp-03-083",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-084-figure-0",
+      "title": "A090 伊敏河邻近河段 相同月份的历年过程",
+      "historical_module": "supp-03-084",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-084-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_059.png",
+        "source_sha256": "b2071a8c5d8b9ebe86ac83c11f374d7319879fe104b01740805a8d33d3ca54c6",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 106272,
+        "web_sha256": "6b3e5d93c5e1125e86200fcc831a0910f91ac6dae2a0516d18598c55e7bae322",
+        "module_id": "supp-03-084",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-085-figure-0",
+      "title": "A091 伊敏河邻近河段 可观测年份的年内过程",
+      "historical_module": "supp-03-085",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-085-000.webp",
+        "width": 1562,
+        "height": 1078,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_060.png",
+        "source_sha256": "0912e7bbeb75647939bfcfb6a8bf344ac1a99221a5751f39e5b39a1feec8340e",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 52574,
+        "web_sha256": "7707642d3b24a6f671fb39d43e5d54017992ee1a9534e7ee691c494de8b143a9",
+        "module_id": "supp-03-085",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-086-figure-0",
+      "title": "A092 海拉尔河汇口前河段 全年月历与月份分布",
+      "historical_module": "supp-03-086",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-086-000.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_061.png",
+        "source_sha256": "dec54007926d540b87e0e510e511471384ae4bb0dd6d559f8a14b2a58bca15ca",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 106202,
+        "web_sha256": "1c24e85015e529624f1819003c3bffa686638051c07ad01bc572fb170560e5d7",
+        "module_id": "supp-03-086",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-087-figure-0",
+      "title": "A093 海拉尔河汇口前河段 相同月份的历年过程",
+      "historical_module": "supp-03-087",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-087-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_062.png",
+        "source_sha256": "ced060bd591d488c2bf52b95e8d06de45f66e193c46f6ca16872cbe65313c175",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 104854,
+        "web_sha256": "0d81c24b6b08ede720e2657b90e9c7b5ddfe987ac30cb6dcee9d6e3d0e71dd88",
+        "module_id": "supp-03-087",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-088-figure-0",
+      "title": "A094 海拉尔河汇口前河段 可观测年份的年内过程",
+      "historical_module": "supp-03-088",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-088-000.webp",
+        "width": 1562,
+        "height": 1078,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_063.png",
+        "source_sha256": "a44826f266b668a86483f40ceb2c6259fa9cc0c4c30e68614f2ceffb9f740993",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 61762,
+        "web_sha256": "df78c63f94a130aa3c44dbca5d4135d1fd881744c873d3c1dda79666c6b1f795",
+        "module_id": "supp-03-088",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-089-figure-0",
+      "title": "A095 海拉尔河汇口后河段 全年月历与月份分布",
+      "historical_module": "supp-03-089",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-089-000.webp",
+        "width": 1562,
+        "height": 1782,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_064.png",
+        "source_sha256": "fdfed75d5b81d3d465486781e7f0c0f826ff25062775e5b4a0373107b842c2ac",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 108460,
+        "web_sha256": "874788fefc57e0125b04b8cbf30b9b2ebd8c291d4f47ef6af9330143734d3f93",
+        "module_id": "supp-03-089",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-090-figure-0",
+      "title": "A096 海拉尔河汇口后河段 相同月份的历年过程",
+      "historical_module": "supp-03-090",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-090-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_065.png",
+        "source_sha256": "94778d59ca2c361607483ec8b8580399285c6acdf4b33c54a17babcd11e4128d",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 120564,
+        "web_sha256": "225bf5339af91deaa6d2b2213d5f0b950d6f9e43576201dbab3775a6b795cb63",
+        "module_id": "supp-03-090",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-091-figure-0",
+      "title": "A097 海拉尔河汇口后河段 可观测年份的年内过程",
+      "historical_module": "supp-03-091",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-091-000.webp",
+        "width": 1562,
+        "height": 1078,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_066.png",
+        "source_sha256": "484c7de99696537145d6f29e60db9c1f072f34dc513ac6def7509b437bdfe3ec",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 68248,
+        "web_sha256": "94bae6402d2f764b87b7891f0c4378066791ceafb7cbcf5c736e0fd3651c84b4",
+        "module_id": "supp-03-091",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-092-figure-0",
+      "title": "A098 红花尔基固定库盆 全年月历与月份分布",
+      "historical_module": "supp-03-092",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-092-000.webp",
+        "width": 1562,
+        "height": 1892,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_067.png",
+        "source_sha256": "fd98cc4568fccfb0fb3c0c7cce8c2aa49d919405819bf422d7806595efab6c3d",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 115358,
+        "web_sha256": "e0cdae5e85d2e7b8c5710fcafb024f4d9befe01e5a48fc7bf1af8c5942523e5c",
+        "module_id": "supp-03-092",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。2011年起为蓄水后比较期，建库前背景不混入水库代表排序。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-093-figure-0",
+      "title": "A099 红花尔基固定库盆 相同月份的历年过程",
+      "historical_module": "supp-03-093",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-093-000.webp",
+        "width": 1562,
+        "height": 1540,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_068.png",
+        "source_sha256": "150a195a47044520e26773b34266a98047226b9862f079ba5a25f76a95b2bcb1",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 117664,
+        "web_sha256": "686c63d7c937b30d691a40eb92ec1422bae0d4d3bfaefe7c89cd0095a42ee297",
+        "module_id": "supp-03-093",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。2011年起为蓄水后比较期，建库前背景不混入水库代表排序。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-094-figure-0",
+      "title": "A100 红花尔基固定库盆 可观测年份的年内过程",
+      "historical_module": "supp-03-094",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-094-000.webp",
+        "width": 1562,
+        "height": 1078,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_069.png",
+        "source_sha256": "4a89d25c287a4b9a62af8623964ad414b9078bc6faf87f6f48955c41838048a7",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 61320,
+        "web_sha256": "ab34201bb007c0523137e6d00321c2642334d9e517f75b02be7c626a0e72e568",
+        "module_id": "supp-03-094",
+        "block_index": 0,
+        "caption": "按该对象自身质量筛选，不以本湖缺测删月。分类检出量不是现场水位或水量；冷月记录不直接解释为开阔水。2011年起为蓄水后比较期，建库前背景不混入水库代表排序。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-095-figure-0",
+      "title": "A101 方法参照 固定距离圈的建筑覆盖产品",
+      "historical_module": "supp-03-095",
+      "document": "03",
+      "asset": {
+        "src": "assets/supp-03-095-000.webp",
+        "width": 1633,
+        "height": 1932,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_070.png",
+        "source_sha256": "616f1e151efae0af89fb3642ec4124f1bf44f6f28426c3630cd30447cc00baee",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 164374,
+        "web_sha256": "2a04b304acfec15bba379ef6c14e8234e169b464fc420e068179d1f264ee3655",
+        "module_id": "supp-03-095",
+        "block_index": 0,
+        "caption": "固定距离圈不是流域或可建边界。建筑覆盖产品的历史回溯含单调约束与插值外推，不能作为四次独立实测；空间扩展并不直接给出取水、排水或入湖径流变化。资料 SRC-R11。",
+        "current_report_figures": []
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-099-figure-0",
+      "title": "A105 方法核查 低绿度与质量标记不能代替水陆判别",
+      "historical_module": "supp-03-099",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-16.webp",
+        "width": 1633,
+        "height": 1748,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_071.png",
+        "source_sha256": "d8be9bc832ed26c2a5ab15c31b7bb278d4dbb91378106e02159354ff9a9f9b21",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 182390,
+        "web_sha256": "fe4a3f3d7c84682e8e1e14d5f95806268a7ef88103e2c5f985a38cbbba2636b6",
+        "module_id": "supp-03-099",
+        "block_index": 0,
+        "caption": "2010年7月23日，质量波段仅标水0.09公顷，固定光谱规则却检出约63.72至71.46公顷候选水。低NDVI也可能来自水体，未被QA标水不等于陆地；不能据此把低绿度部分认作盐泥或退水后的草场。",
+        "current_report_figures": [
+          {
+            "id": "figure-16",
+            "title": "2008年和2010年分类冲突的保留与撤回",
+            "page": 25,
+            "src": "assets/figure-16.webp"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_supplement",
+      "id": "supp-03-100-figure-0",
+      "title": "A106 早期月分类提供历史锚点但不填补连续缺测",
+      "historical_module": "supp-03-100",
+      "document": "03",
+      "asset": {
+        "src": "assets/figure-17.webp",
+        "width": 1633,
+        "height": 1035,
+        "source_path": "/workspace/shared/lake_integrated_20261026/report/editorial/03_assets/image_072.png",
+        "source_sha256": "60c12a81110da00d2b9939e7c57758f8ea2ffd0905cad8c12cd5c188674847c6",
+        "display": "floating_evidence",
+        "georeferenced": false,
+        "registration_note": "报告证据图无独立地理配准，不贴地、不用于距离量测。",
+        "exists": true,
+        "bytes": 86162,
+        "web_sha256": "1466ee3020117d19d43309469446a955d69a2c38927487fea9f2c11bcee19855",
+        "module_id": "supp-03-100",
+        "block_index": 0,
+        "caption": "1985年7月与1999年7月JRC月复合分类，非自然色照片或某日实测岸线。原始Landsat个别日期虽可另作辅助，也不填补中间完整月序列；不据图推定水质、盐度或承载力。",
+        "current_report_figures": [
+          {
+            "id": "figure-17",
+            "title": "1985年和1999年早期月分类仅作历史锚点",
+            "page": 26,
+            "src": "assets/figure-17.webp"
+          }
+        ]
+      }
+    }
+  ]
+}

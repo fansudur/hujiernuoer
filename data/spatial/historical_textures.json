@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "source": "已冻结4期同月Landsat原始红波段与QA",
+  "coordinate_reference_system": "EPSG:4326",
+  "bounds": [
+    119.65659937856664,
+    49.12891569176883,
+    119.69616315248511,
+    49.14733339230635
+  ],
+  "native_utm_bounds": [
+    693795,
+    5445285,
+    696615,
+    5447235
+  ],
+  "native_shape": [
+    65,
+    94
+  ],
+  "images": [
+    {
+      "id": "LT05_L2SP_123026_19870708_02_T1",
+      "date": "1987-07-08",
+      "src": "historical_textures/1987-07-08_red_gray.png",
+      "bounds": [
+        119.65659937856664,
+        49.12891569176883,
+        119.69616315248511,
+        49.14733339230635
+      ],
+      "extent_wgs84": {
+        "west": 119.65659937856664,
+        "south": 49.12891569176883,
+        "east": 119.69616315248511,
+        "north": 49.14733339230635
+      },
+      "kind": "actual_red_surface_reflectance_grayscale",
+      "native_resolution_m": 30,
+      "pixel_width": 100,
+      "pixel_height": 70,
+      "display_stretch_SR": [
+        0.02,
+        0.35
+      ],
+      "valid_fraction_native_window": 0.7589198036006547,
+      "valid_fraction_native_check_window": 1.0,
+      "source_sha256": {
+        "red": "f1ffbdfcbfa18a6b409b8c254fbfa955b89c3f92644cfcb8825c02dbb03c80e8",
+        "nir08": "07448502d7ff59dc3f382af985a5e9a8fb48c5471e2c22f6bbc50ce90157312d",
+        "qa_pixel": "7dfea7dbb0f591b36a489ccaf8802aa6ca08e48957f540b11fcc17e99ed13f18",
+        "qa_radsat": "342ff09928cfb2b4303bba09bf0eb5d511aef25c4db9b22dceb2a06fc73f6099"
+      },
+      "output_sha256": "489df43d97871cf1ec97913ff79382878d60c7d37d0e3d430c10628c80a9c42c",
+      "note": "真实红波段地理配准栅格，不是报告截图或真彩色；透明处质量剔除，不能用其他年份填补。高分辨率放大不增加原30米细节。"
+    },
+    {
+      "id": "LT05_L2SP_123026_19920705_02_T1",
+      "date": "1992-07-05",
+      "src": "historical_textures/1992-07-05_red_gray.png",
+      "bounds": [
+        119.65659937856664,
+        49.12891569176883,
+        119.69616315248511,
+        49.14733339230635
+      ],
+      "extent_wgs84": {
+        "west": 119.65659937856664,
+        "south": 49.12891569176883,
+        "east": 119.69616315248511,
+        "north": 49.14733339230635
+      },
+      "kind": "actual_red_surface_reflectance_grayscale",
+      "native_resolution_m": 30,
+      "pixel_width": 100,
+      "pixel_height": 70,
+      "display_stretch_SR": [
+        0.02,
+        0.35
+      ],
+      "valid_fraction_native_window": 1.0,
+      "valid_fraction_native_check_window": 1.0,
+      "source_sha256": {
+        "red": "b8699809027cc238ee9ba93e6f73294b265fd9594e3fb106a76f675dad88255f",
+        "nir08": "248a328b107b70d798ca4f672d7005aba9734d29adb302af3318499572fc54ab",
+        "qa_pixel": "ca4a7f7a99981232707d4827bd0e4dfbfe95afddf80259261b57df3502b73e20",
+        "qa_radsat": "e3260b56b9e3a144abcd8346507999c301b66be9bcc7bccecc8b4bfd97c740cf"
+      },
+      "output_sha256": "96bcab48bfdfdc6fa52f57f5c02ddc48e4cb51f464838d47250f2690b3f26331",
+      "note": "真实红波段地理配准栅格，不是报告截图或真彩色；透明处质量剔除，不能用其他年份填补。高分辨率放大不增加原30米细节。"
+    },
+    {
+      "id": "LT05_L2SP_123026_20070731_02_T1",
+      "date": "2007-07-31",
+      "src": "historical_textures/2007-07-31_red_gray.png",
+      "bounds": [
+        119.65659937856664,
+        49.12891569176883,
+        119.69616315248511,
+        49.14733339230635
+      ],
+      "extent_wgs84": {
+        "west": 119.65659937856664,
+        "south": 49.12891569176883,
+        "east": 119.69616315248511,
+        "north": 49.14733339230635
+      },
+      "kind": "actual_red_surface_reflectance_grayscale",
+      "native_resolution_m": 30,
+      "pixel_width": 100,
+      "pixel_height": 70,
+      "display_stretch_SR": [
+        0.02,
+        0.35
+      ],
+      "valid_fraction_native_window": 1.0,
+      "valid_fraction_native_check_window": 1.0,
+      "source_sha256": {
+        "red": "3a3d0b89d3068fe91fb3116d867ac941889d53a7ebb0b074748db31e2c4b6f71",
+        "nir08": "c159001a09585263290992537d37ece99dc4e9d34f004af3c5ddd9a0dc44687d",
+        "qa_pixel": "3dd089c92e4bc435e02c113c853a33a6a90a4db013823579d0afbf1cf7d8ccd6",
+        "qa_radsat": "fa32fb6c22a0ef52fcd741f62f2a4b6ff7dfc8eab550ca295a4d4fa4f225f701"
+      },
+      "output_sha256": "ee7a78771debf24b04d76d4d1210ea48944659bfa116d1ee764e268726b7806c",
+      "note": "真实红波段地理配准栅格，不是报告截图或真彩色；透明处质量剔除，不能用其他年份填补。高分辨率放大不增加原30米细节。"
+    },
+    {
+      "id": "LC08_L2SP_123026_20210721_02_T1",
+      "date": "2021-07-21",
+      "src": "historical_textures/2021-07-21_red_gray.png",
+      "bounds": [
+        119.65659937856664,
+        49.12891569176883,
+        119.69616315248511,
+        49.14733339230635
+      ],
+      "extent_wgs84": {
+        "west": 119.65659937856664,
+        "south": 49.12891569176883,
+        "east": 119.69616315248511,
+        "north": 49.14733339230635
+      },
+      "kind": "actual_red_surface_reflectance_grayscale",
+      "native_resolution_m": 30,
+      "pixel_width": 100,
+      "pixel_height": 70,
+      "display_stretch_SR": [
+        0.02,
+        0.35
+      ],
+      "valid_fraction_native_window": 0.9890343698854337,
+      "valid_fraction_native_check_window": 0.9992559523809523,
+      "source_sha256": {
+        "red": "21211802d115c05e247818922cbf917f64c6f4b9e0102d902c783cb50bacba4e",
+        "nir08": "dd441c415e2fedb66079e499d01f350e4cd792a9df54433f59f637c862e92755",
+        "qa_pixel": "5f02f6f7af53a505b2abb2e78b93cc528476063ff9ebfebce47565946eb6f460",
+        "qa_radsat": "1a54cc3b1bfb62f4ff0c80d68cc88dee75d9960de219308477bdd2e8c50bc875"
+      },
+      "output_sha256": "2cdafc4151e54f499d38cb9802594f6e78f54d42efb730ecf4c9e6b33ac03f1b",
+      "note": "真实红波段地理配准栅格，不是报告截图或真彩色；透明处质量剔除，不能用其他年份填补。高分辨率放大不增加原30米细节。"
+    }
+  ],
+  "scope_feature_id": "history-strip-window",
+  "comparison_conclusion": "同位置宏观条带多期可辨；不代表同一细沟连续不变，不表示水深、水流方向或盐分。"
+}

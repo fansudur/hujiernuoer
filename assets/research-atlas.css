@@ -1,0 +1,22 @@
+/* Explicit ?theme=atlas only. The independent research contract is unchanged. */
+html.research-atlas{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;color:#173b48;background:#edf2f4}
+.research-atlas header,.research-atlas main,.research-atlas footer{max-width:1120px;padding:28px}
+.research-atlas header{gap:20px;flex-wrap:wrap;background:#fff;border-color:#bdccd1}
+.research-atlas header a{min-height:44px;display:flex;align-items:center}
+.research-atlas h1{font-size:36px;line-height:1.5;letter-spacing:.02em;margin:20px 0}
+.research-atlas h2{line-height:1.6;margin-top:32px}
+.research-atlas p,.research-atlas li{font-size:16px;line-height:1.85}
+.research-atlas .eyebrow{letter-spacing:.04em;color:#536f79}
+.research-atlas .lede{font-size:18px;max-width:48em}
+.research-atlas .card{border-radius:3px;border-color:#bdccd1}
+.research-atlas .notice{line-height:1.85;border-radius:0}
+.research-atlas .research-technical{background:#fff;border-block:1px solid #bdccd1;padding:16px 20px;margin:24px 0}
+.research-atlas summary{cursor:pointer;font-size:17px;font-weight:600;min-height:44px;padding:8px 0}
+.research-atlas .links a{border-radius:3px;background:#173b48;min-height:44px}
+.research-atlas .links a.alt{background:#fff;color:#176b9b}
+.research-atlas .search :is(input,select){min-height:48px;border-radius:3px;min-width:0}
+.research-atlas .table-wrap{border-radius:3px;max-width:100%}
+.research-atlas td,.research-atlas th{font-size:14px;line-height:1.8}
+.research-atlas :is(a,input,select,summary):focus-visible{outline:3px solid #176b9b;outline-offset:3px}
+@media(max-width:760px){.research-atlas header,.research-atlas main,.research-atlas footer{padding:20px 16px}.research-atlas h1{font-size:28px}.research-atlas .lede{font-size:16px}.research-atlas .search{flex-direction:column}.research-atlas .search>*{width:100%}.research-atlas .research-technical{padding:12px}.research-atlas .split{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.research-atlas *{scroll-behavior:auto!important}}

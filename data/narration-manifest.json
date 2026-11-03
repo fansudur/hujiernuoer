@@ -1,0 +1,134 @@
+{
+  "created_utc": "2026-10-27T03:44:17.803828+00:00",
+  "engine": "Microsoft Edge online speech service via edge-tts 7.3.1",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "rate": "-3%",
+  "tls": "verified using system CA bundle",
+  "script_source": "20261026最终报告/editorial/全文审读.txt",
+  "total_duration_seconds": 353.952,
+  "checks": "full ffmpeg decode, positive duration, non-silent mean volume, unique file and text checksums; no human listening review",
+  "segments": [
+    {
+      "id": "s01",
+      "duration_seconds": 30.36,
+      "bytes": 182160,
+      "decode_ok": true,
+      "mean_volume_db": -19.7,
+      "max_volume_db": -3.4,
+      "sha256": "a0f643e27e83e750f7f6ece67833f47f4b8b4501d839e0432f4071c9ac23b9c7",
+      "text_sha256": "15e7bbe45ae4fa5f9da3082fe37aa00b93a65471f0b3f4c7af5c61a35964157c"
+    },
+    {
+      "id": "s02",
+      "duration_seconds": 24.912,
+      "bytes": 149472,
+      "decode_ok": true,
+      "mean_volume_db": -19.2,
+      "max_volume_db": -3.6,
+      "sha256": "73e19e9a52f20149f74190f702c19edc3c327e41ca97f9b66003a9e8e72d2262",
+      "text_sha256": "2765ee4d57f22d41acc8bce116773db0f6d18cc51998a517fd0c6118433d29bf"
+    },
+    {
+      "id": "s03",
+      "duration_seconds": 29.016,
+      "bytes": 174096,
+      "decode_ok": true,
+      "mean_volume_db": -18.9,
+      "max_volume_db": -3.0,
+      "sha256": "d589aa4698a891fbeeb3bfe055d2dcf4b1794d6df22cf0e773530112f47ea956",
+      "text_sha256": "1ab54a066645fa749ca28e3374b712e929042a6f2aeb7565283ccdd891dae6aa"
+    },
+    {
+      "id": "s04",
+      "duration_seconds": 27.48,
+      "bytes": 164880,
+      "decode_ok": true,
+      "mean_volume_db": -19.9,
+      "max_volume_db": -4.6,
+      "sha256": "56f706795526f4bb8099cecc58abc09c3891dc4d19d504432306b18e382b1676",
+      "text_sha256": "d588cd2ec5189cf9e95c293cabbe3f1c40885c9db06408722d014a31a68e83ee"
+    },
+    {
+      "id": "s05",
+      "duration_seconds": 30.432,
+      "bytes": 182592,
+      "decode_ok": true,
+      "mean_volume_db": -19.7,
+      "max_volume_db": -2.1,
+      "sha256": "2cb026d9cfa59cbf1e938e6d41dd648686516a3d15569b9220d59e59152f5926",
+      "text_sha256": "9ee8013cb19057edb82888d7fd4df3d9333b7c0085b810c6a8b52e65a67db8b3"
+    },
+    {
+      "id": "s06",
+      "duration_seconds": 30.72,
+      "bytes": 184320,
+      "decode_ok": true,
+      "mean_volume_db": -19.8,
+      "max_volume_db": -3.5,
+      "sha256": "db38969d58bb07aedcbe3df9db966a57cb12e12071c0e645ce72cf9c478518c9",
+      "text_sha256": "b0f90ab8fbcd4863918f6749217efe56d971513b2bbdedb1fd2723827a9d62f3"
+    },
+    {
+      "id": "s07",
+      "duration_seconds": 28.68,
+      "bytes": 172080,
+      "decode_ok": true,
+      "mean_volume_db": -19.9,
+      "max_volume_db": -3.4,
+      "sha256": "faff69706a7c62d3f882f21cabdc8dfb6242155a9b9c6d84bdec0cf8ffbf2b5b",
+      "text_sha256": "b7c38d6b5684fcb5c3308c7c7a4c9eca7a6eb4c38351473e80d6747562ebe330"
+    },
+    {
+      "id": "s08",
+      "duration_seconds": 29.592,
+      "bytes": 177552,
+      "decode_ok": true,
+      "mean_volume_db": -19.6,
+      "max_volume_db": -2.9,
+      "sha256": "71075a690b1be10e68d14109e6db295f63c621d5a43ce7fe2901eeeb001ea3d1",
+      "text_sha256": "09bda074d5ee7fbb25fc5881951443f5687555e44caf50977046a6c62bea10d4"
+    },
+    {
+      "id": "s09",
+      "duration_seconds": 29.952,
+      "bytes": 179712,
+      "decode_ok": true,
+      "mean_volume_db": -19.8,
+      "max_volume_db": -3.2,
+      "sha256": "1413bbe13313be9901fe3022c04d96c10bfca154d36d116d4f6250ea95557cb5",
+      "text_sha256": "ca8466dd4c5e2c27d79352239266d956238f8000caf7a8ff194a1a67de26b695"
+    },
+    {
+      "id": "s10",
+      "duration_seconds": 30.888,
+      "bytes": 185328,
+      "decode_ok": true,
+      "mean_volume_db": -19.6,
+      "max_volume_db": -4.0,
+      "sha256": "646aa60fb019a9095ce0495438f9caae3c6247dfc854be33822a80305f95c4b3",
+      "text_sha256": "945b5edc990a1c8104712b800427c1d09556bce108de907af56ff1b0448582d1"
+    },
+    {
+      "id": "s11",
+      "duration_seconds": 28.344,
+      "bytes": 170064,
+      "decode_ok": true,
+      "mean_volume_db": -19.7,
+      "max_volume_db": -3.7,
+      "sha256": "c3289502be0567b3a79a92ce6bbc378d79aa36c8d92cfbb54f2abc8e3fb6a860",
+      "text_sha256": "104848cad4dfe6209aa176b91a8b384358b1f25c93d8c1e0ad1c4877b5b7d657"
+    },
+    {
+      "id": "s12",
+      "duration_seconds": 33.576,
+      "bytes": 201456,
+      "decode_ok": true,
+      "mean_volume_db": -19.8,
+      "max_volume_db": -3.6,
+      "sha256": "bf874d92af582e74c7a6f5165077d0e84ecbdbb8087f4334fa299680bec7abd9",
+      "text_sha256": "307cca1814af5eb5755240e1add9a1f2ce1c14ecb9f9462aa79575c71f1d0bb6"
+    }
+  ],
+  "version": "plain_language_final",
+  "user_authorized_external_tts": true
+}

@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0",
+  "status": "audio_verified",
+  "source_sha256": "f49d8084f25b09e17defdc4b2deaf38b40bae373781312b57ce839bcf5f99cb3",
+  "stories": [
+    {
+      "id": "r01",
+      "storyId": "july-return",
+      "title": "同是七月，水域又向外出现",
+      "text": "同样是七月，水面位置也会变。先看二零二一年：在两个月都看清的范围里，认出的水域约一百点一三公顷。再看二零二四年，同一范围达到一百三十二点零三公顷，新增三十一点九一公顷。这提醒我们，陆上服务可以先研究既有院落，近岸活动则留出随季节调整的余地。这里比较的是两个月的卫星分类记录，处理方法也有阶段差别，不是精确量出的自然增水。",
+      "parts": [
+        "同样是七月，水面位置也会变。先看二零二一年：在两个月都看清的范围里，认出的水域约一百点一三公顷。",
+        "再看二零二四年，同一范围达到一百三十二点零三公顷，新增三十一点九一公顷。这提醒我们，陆上服务可以先研究既有院落，近岸活动则留出随季节调整的余地。这里比较的是两个月的卫星分类记录，处理方法也有阶段差别，不是精确量出的自然增水。"
+      ],
+      "src": "assets/audio/representative-r01.mp3",
+      "plannedSrc": "assets/audio/representative-r01.mp3",
+      "durationSeconds": 35.328,
+      "cues": [
+        {
+          "stepIndex": 0,
+          "atSeconds": 0,
+          "textBoundary": 0
+        },
+        {
+          "stepIndex": 1,
+          "atSeconds": 10.8891742,
+          "textBoundary": 48
+        }
+      ],
+      "minimumVisualSeconds": 36.328,
+      "endRule": "wait_for_audio_ended_and_visual_sequence_completed",
+      "sourceStorySteps": [
+        {
+          "date": "2021-07",
+          "satellite": "2021-07-16",
+          "seconds": 12,
+          "caption": "起点：共同可见区检出 100.13 ha，记住轮廓位置。",
+          "exploded": false,
+          "tab": "shore",
+          "camera": "lake",
+          "scene": "lake",
+          "changeGeoJSON": "shorelines/change_2021-07_2024-07.geojson",
+          "waterA": "shorelines/2021-07_water.geojson",
+          "waterB": "shorelines/2024-07_water.geojson"
+        },
+        {
+          "date": "2024-07",
+          "satellite": "2024-07-02",
+          "seconds": 12,
+          "caption": "终点：同一区域检出 132.03 ha；新增 31.91 ha、退水分类 0.00 ha。",
+          "exploded": true,
+          "tab": "shore",
+          "camera": "lake",
+          "scene": "lake",
+          "changeGeoJSON": "shorelines/change_2021-07_2024-07.geojson",
+          "waterA": "shorelines/2021-07_water.geojson",
+          "waterB": "shorelines/2024-07_water.geojson"
+        }
+      ],
+      "sha256": "cac583ccbffb51cc2fb18645f88edb20468edfb7335321fb72eb4bf2e266f271",
+      "textSha256": "7a81a3fd693ff70f4bdc8f19d8ffb34094bd56f6b741883c63a1428808f1006c",
+      "meanVolumeDb": -19.4,
+      "decodeVerified": true,
+      "groupDurationSeconds": 36.328
+    },
+    {
+      "id": "r02",
+      "storyId": "within-2024",
+      "title": "面积差不多，识别到的位置不完全相同",
+      "text": "总面积差不多，认出水的位置却不完全一样。二零二四年七月，两个月都看清的范围里，认出的水域是一百三十二点一四公顷。八月是一百三十点七七公顷。总数很接近，但有二点三八公顷从非水变成水，三点七五公顷从水变成非水。所以选近岸活动位置，除了看总面积，还要看变化落在哪里。七月底和八月中旬的卫星照片可供对照；这仍是不同卫星产品之间的核对，不是现场确认的岸线。",
+      "parts": [
+        "总面积差不多，认出水的位置却不完全一样。二零二四年七月，两个月都看清的范围里，认出的水域是一百三十二点一四公顷。",
+        "八月是一百三十点七七公顷。总数很接近，但有二点三八公顷从非水变成水，三点七五公顷从水变成非水。所以选近岸活动位置，除了看总面积，还要看变化落在哪里。七月底和八月中旬的卫星照片可供对照；这仍是不同卫星产品之间的核对，不是现场确认的岸线。"
+      ],
+      "src": "assets/audio/representative-r02.mp3",
+      "plannedSrc": "assets/audio/representative-r02.mp3",
+      "durationSeconds": 39.744,
+      "cues": [
+        {
+          "stepIndex": 0,
+          "atSeconds": 0,
+          "textBoundary": 0
+        },
+        {
+          "stepIndex": 1,
+          "atSeconds": 12.5128854,
+          "textBoundary": 56
+        }
+      ],
+      "minimumVisualSeconds": 40.744,
+      "endRule": "wait_for_audio_ended_and_visual_sequence_completed",
+      "sourceStorySteps": [
+        {
+          "date": "2024-07",
+          "satellite": "2024-07-30",
+          "seconds": 12,
+          "caption": "七月共域水分类132.14 ha；7月30日真实影像定位水岸。",
+          "exploded": false,
+          "tab": "shore",
+          "camera": "lake",
+          "waterVisible": true
+        },
+        {
+          "date": "2024-08",
+          "satellite": "2024-08-16",
+          "seconds": 12,
+          "caption": "八月共域130.77 ha，净变仅-1.37 ha；展开后看新增2.38/退出3.75 ha的边缘斑块。",
+          "exploded": true,
+          "tab": "shore",
+          "camera": "lake",
+          "waterVisible": true
+        }
+      ],
+      "sha256": "f0caf08eb99d68c0a9edb5213c72b36556f3205b5b07cb80692621d125fa0356",
+      "textSha256": "c0b002955d7e585eb384fcb7d42f0ee16632a15382a83d0f1bbb9587d29e8bab",
+      "meanVolumeDb": -19.6,
+      "decodeVerified": true,
+      "groupDurationSeconds": 40.744
+    },
+    {
+      "id": "r03",
+      "storyId": "seasonal-measures",
+      "title": "防风与遮阴，不必挤在同一个季节",
+      "text": "防风和遮阴，可以分季节考虑。多年平均里，四月的十米高度风速最高，约每秒五点四九米，春季先比较怎样保护地表、减少迎风。六月则是太阳短波能量的峰值，约每天每平方米二十三点三零兆焦。这时可以重点比较遮阴和活动时段。这组图说的是一九九一到二零二零年的区域季节背景，不是某一年湖边的实测风，也不能直接当施工参数。",
+      "parts": [
+        "防风和遮阴，可以分季节考虑。多年平均里，四月的十米高度风速最高，约每秒五点四九米，春季先比较怎样保护地表、减少迎风。",
+        "六月则是太阳短波能量的峰值，约每天每平方米二十三点三零兆焦。这时可以重点比较遮阴和活动时段。这组图说的是一九九一到二零二零年的区域季节背景，不是某一年湖边的实测风，也不能直接当施工参数。"
+      ],
+      "src": "assets/audio/representative-r03.mp3",
+      "plannedSrc": "assets/audio/representative-r03.mp3",
+      "durationSeconds": 34.056,
+      "cues": [
+        {
+          "stepIndex": 0,
+          "atSeconds": 0,
+          "textBoundary": 0
+        },
+        {
+          "stepIndex": 1,
+          "atSeconds": 13.324741,
+          "textBoundary": 58
+        }
+      ],
+      "minimumVisualSeconds": 35.056,
+      "endRule": "wait_for_audio_ended_and_visual_sequence_completed",
+      "sourceStorySteps": [
+        {
+          "date": "2024-04",
+          "satellite": "none",
+          "seconds": 12,
+          "caption": "4月风速月气候峰：5.49 m/s；图表全年12月，先看春季暴露。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "chartmodel": "monthly-climatology-1991-2020",
+          "highlight_month": 4
+        },
+        {
+          "date": "2024-06",
+          "satellite": "none",
+          "seconds": 12,
+          "caption": "6月短波辐射月气候峰：23.30 MJ/m²/day；分层把区域背景与现场地物分开。",
+          "exploded": true,
+          "tab": "time",
+          "camera": "lake",
+          "chartmodel": "monthly-climatology-1991-2020",
+          "highlight_month": 6
+        }
+      ],
+      "sha256": "545393a4bfbb8500aab0a88031233c8064d9c0b097d972e5aaec34ba8b8421fc",
+      "textSha256": "6849eec53a14f39bff914bc8b319becdeb058c6a17ea058b8c9f7e57187476be",
+      "meanVolumeDb": -19.1,
+      "decodeVerified": true,
+      "groupDurationSeconds": 35.056
+    },
+    {
+      "id": "r04",
+      "storyId": "shared-moisture",
+      "title": "水分背景，同时连着湖面与草地",
+      "text": "看湖面，也要一起看土壤和草地的干湿。湖面分析里，前一个月浅层土壤越湿，水面往往也较大，调整后的相关数约为正零点五一。再看草地，两种调整方法里，土壤较湿都对应较高绿度。方案比较可以把湖面、保水和草地状态放在一起，而不只追求水面变大。这些是不同范围、不同样本里的统计线索，图上的连线不是水流，也不证明给湖补水就能让草长好。",
+      "parts": [
+        "看湖面，也要一起看土壤和草地的干湿。湖面分析里，前一个月浅层土壤越湿，水面往往也较大，调整后的相关数约为正零点五一。",
+        "再看草地，两种调整方法里，土壤较湿都对应较高绿度。方案比较可以把湖面、保水和草地状态放在一起，而不只追求水面变大。这些是不同范围、不同样本里的统计线索，图上的连线不是水流，也不证明给湖补水就能让草长好。"
+      ],
+      "src": "assets/audio/representative-r04.mp3",
+      "plannedSrc": "assets/audio/representative-r04.mp3",
+      "durationSeconds": 35.856,
+      "cues": [
+        {
+          "stepIndex": 0,
+          "atSeconds": 0,
+          "textBoundary": 0
+        },
+        {
+          "stepIndex": 1,
+          "atSeconds": 13.1443287,
+          "textBoundary": 58
+        }
+      ],
+      "minimumVisualSeconds": 36.856,
+      "endRule": "wait_for_audio_ended_and_visual_sequence_completed",
+      "sourceStorySteps": [
+        {
+          "date": "2021-07",
+          "satellite": "2021-07-16",
+          "seconds": 12,
+          "caption": "湖面模型：前月土湿偏r +0.51；当前湿度偏r +0.16且beta区间跨零。",
+          "exploded": false,
+          "tab": "relations",
+          "family": "lake_crossdiscipline_screen_all12",
+          "camera": "lake",
+          "relationshipId": "lake_crossdiscipline_screen_all12-11"
+        },
+        {
+          "date": "2024-07",
+          "satellite": "2024-07-02",
+          "seconds": 12,
+          "caption": "草地模型：5–8月土湿在两种调整下均同向（偏r +0.72 / +0.74）；连线表示统计关联，不是水流。",
+          "exploded": true,
+          "tab": "relations",
+          "family": "NDVI_crossdiscipline_screen_all",
+          "camera": "lake",
+          "relationshipId": "NDVI_crossdiscipline_screen_all-53"
+        }
+      ],
+      "sha256": "d26cb1993251f30c88dbd1b6022b6ec9dc2fc51508fb6441c8117129e710b966",
+      "textSha256": "187482bff7d53bc1fee8c0bf58a4322f22052b8705b2c0bc48ee65b772df3b13",
+      "meanVolumeDb": -19.5,
+      "decodeVerified": true,
+      "groupDurationSeconds": 36.856
+    },
+    {
+      "id": "r05",
+      "storyId": "real-scenes-2023",
+      "title": "同一夏季，连续几景核对变化是否持续",
+      "text": "这组把二零二三年现有的八张夏季影像全部按日期排开，不只挑变化最大的两张。按原专题的识别方法，七月几景可能是水的面积为九十九点九六到一百零七点九二公顷，八月为一百二十六点二八到一百四十一点三二公顷。多景一起看，有助于判断变化是否持续。接下来留些时间观察；这些仍是离散照片和候选水域，不是每天的真实岸线。",
+      "parts": [
+        "这组把二零二三年现有的八张夏季影像全部按日期排开，不只挑变化最大的两张。按原专题的识别方法，七月几景可能是水的面积为九十九点九六到一百零七点九二公顷，八月为一百二十六点二八到一百四十一点三二公顷。多景一起看，有助于判断变化是否持续。接下来留些时间观察；这些仍是离散照片和候选水域，不是每天的真实岸线。"
+      ],
+      "src": "assets/audio/representative-r05.mp3",
+      "plannedSrc": "assets/audio/representative-r05.mp3",
+      "durationSeconds": 33.576,
+      "cues": [
+        {
+          "stepIndex": 0,
+          "atSeconds": 0
+        },
+        {
+          "stepIndex": 1,
+          "atSeconds": 12
+        },
+        {
+          "stepIndex": 2,
+          "atSeconds": 24
+        },
+        {
+          "stepIndex": 3,
+          "atSeconds": 36
+        },
+        {
+          "stepIndex": 4,
+          "atSeconds": 48
+        },
+        {
+          "stepIndex": 5,
+          "atSeconds": 60
+        },
+        {
+          "stepIndex": 6,
+          "atSeconds": 72
+        },
+        {
+          "stepIndex": 7,
+          "atSeconds": 84
+        }
+      ],
+      "minimumVisualSeconds": 96,
+      "endRule": "wait_for_audio_ended_and_visual_sequence_completed",
+      "sourceStorySteps": [
+        {
+          "date": "2023-07",
+          "satellite": "2023-07-11",
+          "seconds": 12,
+          "caption": "2023-07-11：原专题水谱候选 100.44 ha；7月JRC为月背景，非同日。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "waterVisible": true
+        },
+        {
+          "date": "2023-07",
+          "satellite": "2023-07-16",
+          "seconds": 12,
+          "caption": "2023-07-16：原专题水谱候选 101.96 ha；7月JRC为月背景，非同日。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "waterVisible": true
+        },
+        {
+          "date": "2023-07",
+          "satellite": "2023-07-18",
+          "seconds": 12,
+          "caption": "2023-07-18：原专题水谱候选 99.96 ha；7月JRC为月背景，非同日。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "waterVisible": true
+        },
+        {
+          "date": "2023-07",
+          "satellite": "2023-07-26",
+          "seconds": 12,
+          "caption": "2023-07-26：原专题水谱候选 107.92 ha；7月JRC为月背景，非同日。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "waterVisible": true
+        },
+        {
+          "date": "2023-07",
+          "satellite": "2023-07-28",
+          "seconds": 12,
+          "caption": "2023-07-28：原专题水谱候选 105.48 ha；7月JRC为月背景，非同日。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "waterVisible": true
+        },
+        {
+          "date": "2023-08",
+          "satellite": "2023-08-10",
+          "seconds": 12,
+          "caption": "2023-08-10：原专题水谱候选 126.28 ha；无同期合格JRC，仅显示这张真实影像。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "waterVisible": false
+        },
+        {
+          "date": "2023-08",
+          "satellite": "2023-08-25",
+          "seconds": 12,
+          "caption": "2023-08-25：原专题水谱候选 141.32 ha；无同期合格JRC，仅显示这张真实影像。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "waterVisible": false
+        },
+        {
+          "date": "2023-08",
+          "satellite": "2023-08-27",
+          "seconds": 12,
+          "caption": "2023-08-27：原专题水谱候选 141.24 ha；无同期合格JRC，仅显示这张真实影像。",
+          "exploded": false,
+          "tab": "time",
+          "camera": "lake",
+          "waterVisible": false
+        }
+      ],
+      "sha256": "f02d835b5a996b20837a90a6c968af5b5dd523a3aa6fa87b7a361ec8dda9f76d",
+      "textSha256": "d6026addfb426532c466c8fb24d51d7860e1495b73f2f363b8e9e658d11c49c0",
+      "meanVolumeDb": -19.6,
+      "decodeVerified": true,
+      "groupDurationSeconds": 96
+    }
+  ],
+  "engine": "Microsoft Edge speech / edge-tts 7.3.1",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "rate": "-3%",
+  "listeningReview": "not performed"
+}

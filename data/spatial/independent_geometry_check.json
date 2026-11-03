@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "independent_check": "Rasterize each output MultiPolygon back to original frozen grid and compare every cell to original class matrix. Includes explicit zero months.",
+  "class_month_checks": 726,
+  "grid_cells_compared": 1028724,
+  "mismatches": 0
+}

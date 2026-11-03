@@ -1,0 +1,1 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"office","source":"user marked imagery cross-matched to georeferenced Esri image; imagery date unverified","definition":"用户蓝圈办公院影像对应，建筑身份按用户描述；非实测地坪","surveyed":false},"geometry":{"type":"Point","coordinates":[119.66093779576451,49.1409469769002]}}]}
