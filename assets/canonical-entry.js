@@ -15,6 +15,7 @@ try {
   const {initEvidenceTools}=await import('./evidence-tools.js');initEvidenceTools();
   const {initAccessUI}=await import('./access-ui.js');await initAccessUI();
   const dataLink=document.createElement('a');dataLink.id='px-data-core';dataLink.href='research-core/index.html';dataLink.target='_blank';dataLink.rel='noopener';dataLink.textContent='数据与复算';dataLink.style.cssText='color:inherit;font:inherit;padding:6px 9px;white-space:nowrap';document.querySelector('.px-header nav')?.append(dataLink);
+  const waterLink=document.createElement('a');waterLink.id='px-water-network';waterLink.href='water-network.html';waterLink.textContent='水路分析';waterLink.style.cssText=dataLink.style.cssText;document.querySelector('.px-header nav')?.append(waterLink);
   loadingStep(4,'地图操作已就绪，正在准备观测时间轴…');
   const {initExpertControls}=await import('./expert-controls.js');initExpertControls();
   const {initObservationTimeline}=await import('./observation-timeline.js');await initObservationTimeline();

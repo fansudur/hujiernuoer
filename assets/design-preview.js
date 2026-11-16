@@ -50,7 +50,7 @@ function enhanceAtlas(){
  header.querySelector('h1').textContent='呼吉尔诺尔';
  const subtitle=document.createElement('p');subtitle.className='atlas-subtitle';subtitle.textContent='湖泊与草地前期研究';header.firstElementChild.append(subtitle);
  const links=document.createElement('nav');links.className='atlas-links';links.setAttribute('aria-label','版本与模式');
- const original=document.createElement('a');original.textContent='对照旧版';bindEntryLink(original,'original.html',()=>({mode:'simple',index:guide.getState().index}));links.append(original,document.getElementById('sg-expert'));header.append(links);
+ const original=document.createElement('a');original.textContent='对照旧版';bindEntryLink(original,'original.html',()=>({mode:'simple',index:guide.getState().index}));const waterLink=document.createElement('a');waterLink.href='water-network.html';waterLink.textContent='水路分析';links.append(waterLink,original,document.getElementById('sg-expert'));header.append(links);
  const sidebar=host.querySelector('.sg-sidebar');sidebar.setAttribute('aria-label','六幕地图讲解');
  const steps=document.createElement('nav');steps.className='atlas-steps';steps.setAttribute('aria-label','选择讲解幕次');
  const labels=['2021 水边','2024 对比','三块草地','换年比较','地势方向','比较选择'];
