@@ -46,7 +46,7 @@ body.lake-design-preview #process-explorer .sg-option strong{font-size:11px;disp
 body.lake-design-preview #process-explorer .sg-option[aria-pressed=true]{background:#edf5f9;border-color:#176b9b;box-shadow:inset 3px 0 #176b9b;padding-left:12px;padding-right:8px}
 body.lake-design-preview #sg-options .sg-option-note{font-size:11px;color:#647b86;line-height:1.65;margin-top:4px}
 body.lake-design-preview .sg-map-caption[data-comparison=true]>h2{font-size:22px;margin:15px 0 5px}
-body.lake-design-preview .sg-map-caption[data-comparison=true]>p:not(.atlas-map-note){display:none}
+body.lake-design-preview .sg-map-caption[data-comparison=true]>p:not(.atlas-map-note){display:block;font-size:14px;line-height:1.75;margin-bottom:12px}
 body.lake-design-preview .sg-map-caption[data-comparison=true] .atlas-map-note{display:none}
 body.lake-design-preview .sg-map-caption[data-comparison=true]>small{margin-top:14px}
 body.lake-design-preview .sg-evidence-dialog{border-radius:4px;font-family:inherit;color:#173b48;border-color:#bdccd1}

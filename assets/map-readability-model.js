@@ -69,7 +69,7 @@ export function hasDrawableWaterFocus(scene){
 }
 
 // Editorial labels only. The office remains an imagery/user reference, not a survey.
-export const OFFICE_MAP_LABEL='办公院 · 用户指认';
+export const OFFICE_MAP_LABEL='西侧办公院 · 用户指认';
 export function officeMapLabel(){return previewMapReadability()?OFFICE_MAP_LABEL:'办公院参照';}
 export function nativeMapLabel(label,id){return previewMapReadability()&&id==='local-office'?OFFICE_MAP_LABEL:label;}
 export function selectMapLabels(scene,labels,{spanKm}={}){

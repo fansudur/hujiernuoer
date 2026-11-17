@@ -7,7 +7,7 @@ try {
   loadingStep(0,'正在读取地形、影像索引与水面记录…');
   await import('./process-explorer.js?v=profile-linkage-20261103c');loadingStep(1,'地图基础已就绪，正在整理讲解章节…');
   await import('./unified-story.js');loadingStep(2,'章节已就绪，正在定位各专业图层…');
-  await import('./native-spatial-story.js');loadingStep(3,'空间图层已就绪，正在准备地图操作…');
+  await import('./native-spatial-story.js?v=review-20261117');loadingStep(3,'空间图层已就绪，正在准备地图操作…');
   await import('./attention-director.js');
   const {initHistoricalSourceBoard}=await import('./historical-source-board.js');initHistoricalSourceBoard();
   const {initVisualControls}=await import('./visual-controls.js');initVisualControls();
@@ -20,7 +20,7 @@ try {
   const {initExpertControls}=await import('./expert-controls.js');initExpertControls();
   const {initObservationTimeline}=await import('./observation-timeline.js');await initObservationTimeline();
   loadingStep(5,'时间轴已就绪，正在准备第一幕影像…');
-  const {initSimpleGuide}=await import('./simple-guide.js');await initSimpleGuide();
+  const {initSimpleGuide}=await import('./simple-guide.js?v=review-20261117');await initSimpleGuide();
   const {initShareState}=await import('./share-state.js');await initShareState();
   loadingStep(6,'地图已准备完成');
   document.getElementById('canonical-loading')?.remove();

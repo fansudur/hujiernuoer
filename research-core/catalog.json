@@ -12578,7 +12578,7 @@
       "crs": "EPSG:4326 longitude, latitude",
       "units": {},
       "interpretation": "Approximate anchors, reference windows and sourced footprints; evidence_kind is binding.",
-      "sha256": "4c5cef8f09c620abfee26052a8e1f8a7385840f8e261faeefab766626cf7ae62",
+      "sha256": "b3cf63833b1bc2f7fe94d34cacf00003301276a45f68918f61a571aee775adcf",
       "bytes": 104684,
       "collection_counts": {
         "features": 90
@@ -12808,7 +12808,7 @@
       "crs": "dataset_specific_or_not_spatial",
       "units": {},
       "interpretation": "Editable narrative, examples and references; not raw scientific data.",
-      "sha256": "0305407b986478d7ab2dadeb39f13d26160ed694cc83059d422e4ddbc6a85056",
+      "sha256": "98d2373ced8f7ef321e74897322b2fe8043a859f902809b404830b2edd3fb8db",
       "bytes": 31328,
       "collection_counts": {
         "stages": 9
