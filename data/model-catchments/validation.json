@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "valid_geometry": true,
+    "cluster_union_equals_total": true,
+    "no_cluster_area_overlap": true,
+    "rasterized_total_equals_original_cached_model": true
+  },
+  "total_pixels": 19200,
+  "total_area_km2": 17.28,
+  "unassigned_total_pixels": 0,
+  "scope": "Complete partition of this model catchment only; not proof of real geographic watershed completeness.",
+  "geometry_comparison_tolerance_deg2": 1e-09,
+  "wgs84_symdiff_deg2": 5.639672480607657e-11,
+  "wgs84_cluster_overlap_deg2": 9.929381102058432e-12,
+  "note": "WGS84 segment reprojection introduces sub-square-metre slivers; exact partition holds on model grid."
+}

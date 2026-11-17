@@ -1,0 +1,537 @@
+{
+  "schema_version": 1,
+  "requested_bounds_wgs84": [
+    119.61,
+    49.105,
+    119.73,
+    49.175
+  ],
+  "created_utc": "2026-11-17",
+  "selection": {
+    "candidate_months": [
+      "2025-05",
+      "2026-05"
+    ],
+    "candidate_count": 33,
+    "ranking": "Largest SCL-retained fraction in integer 20m window enclosing ROI; tie-break lower full-scene cloud percentage, then item id. Retained classes 2,4,5,6,7; no claim of ground-verified or absolute optimal quality.",
+    "selected_may_item": "S2B_T50UPV_20250528T030137_L2A"
+  },
+  "scenes": [
+    {
+      "id": "S2A_T50UPV_20260808T030153_L2A",
+      "date": "2026-08-08",
+      "datetime": "2026-08-08T03:04:32.443000Z",
+      "source_collection": "sentinel-2-c1-l2a",
+      "source_stac_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2A_T50UPV_20260808T030153_L2A",
+      "source_assets": {
+        "visual": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/TCI.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "title": "True color image",
+          "eo:bands": [
+            {
+              "name": "B04",
+              "common_name": "red",
+              "center_wavelength": 0.665,
+              "full_width_half_max": 0.038
+            },
+            {
+              "name": "B03",
+              "common_name": "green",
+              "center_wavelength": 0.56,
+              "full_width_half_max": 0.045
+            },
+            {
+              "name": "B02",
+              "common_name": "blue",
+              "center_wavelength": 0.49,
+              "full_width_half_max": 0.098
+            }
+          ],
+          "raster:bands": [
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 10
+            },
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 10
+            },
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 10
+            }
+          ],
+          "gsd": 10,
+          "proj:shape": [
+            10980,
+            10980
+          ],
+          "proj:transform": [
+            10,
+            0,
+            600000,
+            0,
+            -10,
+            5500020
+          ],
+          "file:checksum": "1220b937c11d130497e24a5c9b223a4385bec3a04e2d6d167dadf0caf8f8cf772947",
+          "file:size": 93619117,
+          "roles": [
+            "visual"
+          ]
+        },
+        "scl": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2026/8/S2A_T50UPV_20260808T030153_L2A/SCL.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "title": "Scene classification map (SCL)",
+          "gsd": 20,
+          "proj:shape": [
+            5490,
+            5490
+          ],
+          "proj:transform": [
+            20,
+            0,
+            600000,
+            0,
+            -20,
+            5500020
+          ],
+          "raster:bands": [
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 20
+            }
+          ],
+          "file:checksum": "1220456967e5802c2bb04cd30e311e8d538cddc2c6de8ef92d31163a1ac4fa3aa4f1",
+          "file:size": 668667,
+          "roles": [
+            "data"
+          ]
+        }
+      },
+      "source_metadata": {
+        "path": "data/spatial/core-water-imagery/2026-08-08_sentinel2_tci_source-stac.json",
+        "sha256": "8f738781b67eaa779c6ecf85169551d6dd8116987e407dbbf97b6bf0bde0948f",
+        "bytes": 25582
+      },
+      "native": {
+        "path": "data/spatial/core-water-imagery/2026-08-08_sentinel2_tci_native10m.tif",
+        "sha256": "6fcbb7e3e4b512263602793a743419f8805be4cdc9631e8c321b7c04def67243",
+        "bytes": 1906405,
+        "crs": "EPSG:32650",
+        "resolution_m": [
+          10,
+          10
+        ],
+        "size_px": [
+          903,
+          810
+        ],
+        "affine_transform": [
+          10.0,
+          0.0,
+          690220.0,
+          0.0,
+          -10.0,
+          5450500.0
+        ],
+        "source_window_col_row_width_height": [
+          9022,
+          4952,
+          903,
+          810
+        ],
+        "source_transform": [
+          10.0,
+          0.0,
+          600000.0,
+          0.0,
+          -10.0,
+          5500020.0
+        ],
+        "source_shape": [
+          10980,
+          10980
+        ],
+        "corners_wgs84_TL_TR_BR_BL": [
+          [
+            119.61010860682327,
+            49.17779021688401
+          ],
+          [
+            119.73386935466557,
+            49.17492472618281
+          ],
+          [
+            119.72986634974988,
+            49.102144899217095
+          ],
+          [
+            119.606286303206,
+            49.105003090826
+          ]
+        ],
+        "bounds_wgs84": [
+          119.606286303206,
+          49.102144899217095,
+          119.73386935466557,
+          49.17779021688401
+        ],
+        "rgb_resampled": false
+      },
+      "display": {
+        "path": "data/spatial/core-water-imagery/2026-08-08_sentinel2_tci_wgs84_nearest.png",
+        "sha256": "77690456476a5bb9068bcef5681cbe5d0b4aaf6182ac8311974c4b417c321a10",
+        "bytes": 1417458,
+        "crs": "EPSG:4326",
+        "bounds_wgs84": [
+          119.61,
+          49.105,
+          119.73,
+          49.175
+        ],
+        "corners_wgs84_TL_TR_BR_BL": [
+          [
+            119.61,
+            49.175
+          ],
+          [
+            119.73,
+            49.175
+          ],
+          [
+            119.73,
+            49.105
+          ],
+          [
+            119.61,
+            49.105
+          ]
+        ],
+        "size_px": [
+          878,
+          779
+        ],
+        "affine_transform": [
+          0.00013667425968109858,
+          0.0,
+          119.61,
+          0.0,
+          -8.985879332477572e-05,
+          49.175
+        ],
+        "resampling": "nearest",
+        "native_grid": false
+      },
+      "quality": {
+        "alpha_rule": "Inside requested WGS84 ROI by native pixel centre AND all TCI channels >0 AND SCL in [2,4,5,6,7]. SCL is 20m categorical data mapped by nearest neighbour; no dilation, gap filling, interpolation or multi-date composite.",
+        "valid_native_pixels": 681725,
+        "roi_native_pixels": 681725,
+        "retained_fraction_roi": 1.0
+      },
+      "interpretation_limits": [
+        "TCI is provider-rendered true colour, not calibrated reflectance or water classification.",
+        "Transparent pixels mean excluded/cloud/shadow/snow/no-data/outside ROI, not dry land.",
+        "This single May scene does not reproduce the monthly repeated-water hotspot statistic.",
+        "Native UTM grid corners are not an axis-aligned WGS84 rectangle; use transform/CRS for exact placement. WGS84 PNG is a separately labelled nearest-neighbour display derivative.",
+        "SCL is automated 20m quality classification; remaining atmospheric artefacts are possible."
+      ]
+    },
+    {
+      "id": "S2B_T50UPV_20250528T030137_L2A",
+      "date": "2025-05-28",
+      "datetime": "2025-05-28T03:04:16.792000Z",
+      "source_collection": "sentinel-2-c1-l2a",
+      "source_stac_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T50UPV_20250528T030137_L2A",
+      "source_assets": {
+        "visual": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/5/S2B_T50UPV_20250528T030137_L2A/TCI.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "title": "True color image",
+          "eo:bands": [
+            {
+              "name": "B04",
+              "common_name": "red",
+              "center_wavelength": 0.665,
+              "full_width_half_max": 0.038
+            },
+            {
+              "name": "B03",
+              "common_name": "green",
+              "center_wavelength": 0.56,
+              "full_width_half_max": 0.045
+            },
+            {
+              "name": "B02",
+              "common_name": "blue",
+              "center_wavelength": 0.49,
+              "full_width_half_max": 0.098
+            }
+          ],
+          "raster:bands": [
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 10
+            },
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 10
+            },
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 10
+            }
+          ],
+          "gsd": 10,
+          "proj:shape": [
+            10980,
+            10980
+          ],
+          "proj:transform": [
+            10,
+            0,
+            600000,
+            0,
+            -10,
+            5500020
+          ],
+          "file:checksum": "1220f4e56599c770ebc25ce562f2bed191fbf98e1063311cb52a8de077de26848500",
+          "file:size": 106665766,
+          "roles": [
+            "visual"
+          ]
+        },
+        "scl": {
+          "href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/U/PV/2025/5/S2B_T50UPV_20250528T030137_L2A/SCL.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "title": "Scene classification map (SCL)",
+          "gsd": 20,
+          "proj:shape": [
+            5490,
+            5490
+          ],
+          "proj:transform": [
+            20,
+            0,
+            600000,
+            0,
+            -20,
+            5500020
+          ],
+          "raster:bands": [
+            {
+              "nodata": 0,
+              "data_type": "uint8",
+              "spatial_resolution": 20
+            }
+          ],
+          "file:checksum": "12207d362e698cbe58cd00d3f49a78a90ff2ce216eb953c6e90f0c09ab6b6023b054",
+          "file:size": 714033,
+          "roles": [
+            "data"
+          ]
+        }
+      },
+      "source_metadata": {
+        "path": "data/spatial/core-water-imagery/2025-05-28_sentinel2_tci_source-stac.json",
+        "sha256": "6340e823686e77d654e498a300b26de0ad620e3e39699f355d9d0e587330685e",
+        "bytes": 25398
+      },
+      "native": {
+        "path": "data/spatial/core-water-imagery/2025-05-28_sentinel2_tci_native10m.tif",
+        "sha256": "f8dd3c58b270056aa9bb4d6eed53b258472e73cf237610c9a9dbcb23b599830d",
+        "bytes": 2079653,
+        "crs": "EPSG:32650",
+        "resolution_m": [
+          10,
+          10
+        ],
+        "size_px": [
+          903,
+          810
+        ],
+        "affine_transform": [
+          10.0,
+          0.0,
+          690220.0,
+          0.0,
+          -10.0,
+          5450500.0
+        ],
+        "source_window_col_row_width_height": [
+          9022,
+          4952,
+          903,
+          810
+        ],
+        "source_transform": [
+          10.0,
+          0.0,
+          600000.0,
+          0.0,
+          -10.0,
+          5500020.0
+        ],
+        "source_shape": [
+          10980,
+          10980
+        ],
+        "corners_wgs84_TL_TR_BR_BL": [
+          [
+            119.61010860682327,
+            49.17779021688401
+          ],
+          [
+            119.73386935466557,
+            49.17492472618281
+          ],
+          [
+            119.72986634974988,
+            49.102144899217095
+          ],
+          [
+            119.606286303206,
+            49.105003090826
+          ]
+        ],
+        "bounds_wgs84": [
+          119.606286303206,
+          49.102144899217095,
+          119.73386935466557,
+          49.17779021688401
+        ],
+        "rgb_resampled": false
+      },
+      "display": {
+        "path": "data/spatial/core-water-imagery/2025-05-28_sentinel2_tci_wgs84_nearest.png",
+        "sha256": "53a54048ba396bd0934b057175fe5599b1e065f21d9c9a293ef1e9f8702c051a",
+        "bytes": 1535395,
+        "crs": "EPSG:4326",
+        "bounds_wgs84": [
+          119.61,
+          49.105,
+          119.73,
+          49.175
+        ],
+        "corners_wgs84_TL_TR_BR_BL": [
+          [
+            119.61,
+            49.175
+          ],
+          [
+            119.73,
+            49.175
+          ],
+          [
+            119.73,
+            49.105
+          ],
+          [
+            119.61,
+            49.105
+          ]
+        ],
+        "size_px": [
+          878,
+          779
+        ],
+        "affine_transform": [
+          0.00013667425968109858,
+          0.0,
+          119.61,
+          0.0,
+          -8.985879332477572e-05,
+          49.175
+        ],
+        "resampling": "nearest",
+        "native_grid": false
+      },
+      "quality": {
+        "alpha_rule": "Inside requested WGS84 ROI by native pixel centre AND all TCI channels >0 AND SCL in [2,4,5,6,7]. SCL is 20m categorical data mapped by nearest neighbour; no dilation, gap filling, interpolation or multi-date composite.",
+        "valid_native_pixels": 681673,
+        "roi_native_pixels": 681725,
+        "retained_fraction_roi": 0.9999237229087975
+      },
+      "interpretation_limits": [
+        "TCI is provider-rendered true colour, not calibrated reflectance or water classification.",
+        "Transparent pixels mean excluded/cloud/shadow/snow/no-data/outside ROI, not dry land.",
+        "This single May scene does not reproduce the monthly repeated-water hotspot statistic.",
+        "Native UTM grid corners are not an axis-aligned WGS84 rectangle; use transform/CRS for exact placement. WGS84 PNG is a separately labelled nearest-neighbour display derivative.",
+        "SCL is automated 20m quality classification; remaining atmospheric artefacts are possible."
+      ]
+    }
+  ],
+  "may_quality_table": {
+    "path": "data/spatial/core-water-imagery/may-scene-quality.json",
+    "sha256": "9b52929f6a61957dcd5c0f4848cef9858be1b4d8f6c3effb8000c5088c02962e"
+  },
+  "license": {
+    "notice_url": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "provider_collection_license_label": "proprietary",
+    "attribution": "Contains modified Copernicus Sentinel data (2025, 2026), processed from Earth Search Sentinel-2 Collection 1 Level-2A TCI.",
+    "note": "Follow Copernicus Sentinel Data Legal Notice; do not mislabel as a Creative Commons license."
+  },
+  "reproducibility": {
+    "entrypoint": "export_truecolor.py",
+    "inputs": "sources/ contains cached STAC responses and quality ranking; source COG URLs are in STAC metadata. Source data fetched by integer window reads.",
+    "dependencies": [
+      "numpy",
+      "rasterio",
+      "pyproj",
+      "Pillow",
+      "requests"
+    ],
+    "validation": "Native raster 903x810, 10m UTM zone 50N, RGBA; WGS84 PNG 878x779, nearest-neighbour; SHA256 for products in scene records."
+  },
+  "supporting_files": [
+    {
+      "path": "data/spatial/core-water-imagery/evaluate_may_quality.py",
+      "sha256": "900836e980c4c3763cba35a2f818dc6bfdb753d2b0d92f8a9a906c07b37dfbb3",
+      "bytes": 1527
+    },
+    {
+      "path": "data/spatial/core-water-imagery/export_truecolor.py",
+      "sha256": "9c1f78ff4e43adb37a2d6321e384d2f535f3f6ebb8f302ab01ea9fba11628ab7",
+      "bytes": 6469
+    },
+    {
+      "path": "data/spatial/core-water-imagery/query_stac.py",
+      "sha256": "c7355b252bd7883f0b51c8e00dd415c9295bf2917763fa6b90fa338de31d55c2",
+      "bytes": 757
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/aug_item.json",
+      "sha256": "0b6c702404a78f9815f3776a176b2eb3ced0eda93b8f00f02a6858ba97c11116",
+      "bytes": 18742
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/collection.json",
+      "sha256": "394e0041229524bea18861743ec2dbe93643a96c5e9f8c5266c9faff8cf7032a",
+      "bytes": 20153
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/may2025.json",
+      "sha256": "c3b0754b95306b5804421b49de0704c2cc8918bf6b1cd8fcf3abff8b1f14dc60",
+      "bytes": 299178
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/may2026.json",
+      "sha256": "c7f5601b4c72c43ad051d539c45669c323aae3c05d31a3c7f8941d4d4ad2b90e",
+      "bytes": 319460
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/quality.json",
+      "sha256": "9b52929f6a61957dcd5c0f4848cef9858be1b4d8f6c3effb8000c5088c02962e",
+      "bytes": 11351
+    }
+  ]
+}

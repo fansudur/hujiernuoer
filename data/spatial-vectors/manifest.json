@@ -1,0 +1,119 @@
+{
+  "status": "partial_source_backed_export",
+  "source_repository": "https://github.com/fansudur/hujiernuoer",
+  "source_commit": "9366e3f51cb03af73b850aeb2434c56ba6221559",
+  "sources": [
+    {
+      "path": "data/water-network/evidence.json",
+      "sha256": "7a182e509a3902232766530f703dcf196f7693c4a607c633578d50045c5a92cf"
+    },
+    {
+      "path": "data/reference/roads_context.geojson",
+      "sha256": "6e4acfe281bfa4c42fe5b0ff1446c2413d36812e37fe1479e73d67cfe7240311"
+    },
+    {
+      "path": "data/reference/README.md",
+      "sha256": "a9d5922eb99e9ee0ccaa0f4415f5683bf2b13c38d3a13fef277b7298596fb3f0"
+    },
+    {
+      "path": "data/reference/manifest.json",
+      "sha256": "1f9e2f0379dece6803dcbe8a412b592cd936393a185d4aac2f60a7c225ef8ad2"
+    }
+  ],
+  "datasets": [
+    {
+      "path": "data/spatial-vectors/profiles.geojson",
+      "sha256": "cb90500d82b9e4aec67d6f7f0a59ad6d3c5395063789d4038893a6c7a3d3317c",
+      "bytes": 26576,
+      "crs": "EPSG:4326",
+      "coordinate_order": "longitude,latitude",
+      "bounds_wgs84": [
+        119.6638568769238,
+        49.14893495678548,
+        119.69869140568377,
+        49.16017953019164
+      ],
+      "feature_count": 5
+    },
+    {
+      "path": "data/spatial-vectors/profile_zero_anchors.geojson",
+      "sha256": "dba10f92362fca93d6881219fb15804add6d1fd8043440ee7d6232829f2b5094",
+      "bytes": 2463,
+      "crs": "EPSG:4326",
+      "coordinate_order": "longitude,latitude",
+      "bounds_wgs84": [
+        119.6638568769238,
+        49.15108756194332,
+        119.69828097263093,
+        49.16017953019164
+      ],
+      "feature_count": 5
+    },
+    {
+      "path": "data/spatial-vectors/secondary_roads.geojson",
+      "sha256": "83ef6f96e67e7daf42a895e15f005886e487bf80b5d7bcc7e9eeaa73108dbcd4",
+      "bytes": 80611,
+      "crs": "EPSG:4326",
+      "coordinate_order": "longitude,latitude",
+      "bounds_wgs84": [
+        119.60319444444445,
+        49.0911053,
+        119.7608671,
+        49.185972222222226
+      ],
+      "feature_count": 75
+    },
+    {
+      "path": "data/spatial-vectors/hotspot_reference_segment.geojson",
+      "sha256": "4862fab8e1b635a2b7489c0c33e2180831b456262769b7e55edebec7fe7ac2fc",
+      "bytes": 654,
+      "crs": "EPSG:4326",
+      "coordinate_order": "longitude,latitude",
+      "bounds_wgs84": [
+        119.69624088067327,
+        49.151475144984616,
+        119.69855297252529,
+        49.151665283426425
+      ],
+      "feature_count": 1
+    },
+    {
+      "path": "data/spatial-vectors/hotspot_may_summary.json",
+      "sha256": "c2e082797eb5b55cd73a52af2cef1eb05a92329cbc9ccc7df429bb6962f281f9",
+      "bytes": 1305
+    }
+  ],
+  "road_source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL 1.0",
+    "copyright_url": "https://www.openstreetmap.org/copyright",
+    "retrieved_at_from_source": "2026-10-27T03:37Z",
+    "source_manifest": "data/reference/manifest.json",
+    "original_scope": "Original OSM API bounded map query about 13×12km; source geometries already clipped to DSM context extent. See source manifest.",
+    "selection": "highway present AND ref not containing G332 AND at least one segment intersects [119.61,49.105,119.73,49.175]; original coordinates/properties retained.",
+    "limitations": "OSM community references, not complete road survey. osm_timestamp is last object edit, not imagery/survey date. North road / west road local labels are not assigned without source identification. Roads do not prove passability, culverts or hydraulic connections."
+  },
+  "missing": [
+    {
+      "id": "E_S_20_100_strip",
+      "reason": "No original strip geometry, raster transform or reproducible projection/buffer definition recovered; reference chainage segment is not the statistical strip."
+    },
+    {
+      "id": "hotspot_repeat_pixels_2025_05_2026_05",
+      "reason": "Only aggregate 0.56ha/0.84ha source statistics recovered. No source pixel identities, repeated-observation masks or raster georeferencing. No polygons fabricated."
+    },
+    {
+      "id": "C_crossroad_analysis_and_paired_control_boxes",
+      "reason": "No original window/control corner coordinates recovered. Approximate point 119.65684,49.12513 does not define extents. C_ROAD_1/2 geometric intersections are distinct and not replacements."
+    }
+  ],
+  "validation": {
+    "profile_count": 5,
+    "anchors_count": 5,
+    "unique_exact_zero_per_profile": true,
+    "profile_coordinates_copied_without_interpolation": true,
+    "road_count": 75,
+    "road_features_exact_source_subsets": true,
+    "no_frontend_changes": true
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "status": "aggregate_only_geometry_missing",
+  "source_path": "data/water-network/evidence.json",
+  "observations": [
+    {
+      "year": 2025,
+      "month": 5,
+      "quality": "valid",
+      "zone": "E_S_20_100",
+      "dates": 9,
+      "pixels": 159,
+      "eligible": 159,
+      "eligible_pct": 100.0,
+      "mean_observations": 5.251572327044025,
+      "adequate": true,
+      "candidate_repeat_ha": 0.56,
+      "candidate_mean_fraction": 0.10566037735849057,
+      "broad_repeat_ha": 0.56,
+      "broad_mean_fraction": 0.1238993710691824,
+      "strict_repeat_ha": 0.56,
+      "strict_mean_fraction": 0.10566037735849057
+    },
+    {
+      "year": 2026,
+      "month": 5,
+      "quality": "valid",
+      "zone": "E_S_20_100",
+      "dates": 11,
+      "pixels": 159,
+      "eligible": 154,
+      "eligible_pct": 96.85534591194968,
+      "mean_observations": 7.018867924528302,
+      "adequate": true,
+      "candidate_repeat_ha": 0.84,
+      "candidate_mean_fraction": 0.13095238095238096,
+      "broad_repeat_ha": 0.84,
+      "broad_mean_fraction": 0.14134199134199132,
+      "strict_repeat_ha": 0.84,
+      "strict_mean_fraction": 0.13095238095238096
+    }
+  ],
+  "interpretation": "Preserved source statistics only. Areas do not identify pixels and cannot reconstruct water-mask polygons."
+}

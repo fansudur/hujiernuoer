@@ -1,0 +1,90 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "P1_0m",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6638568769238,
+          49.15645851420159
+        ]
+      },
+      "properties": {
+        "profile_id": "P1",
+        "station_m": 0,
+        "anchor_status": "exact source station 0 coordinate; not field-surveyed",
+        "placement_caveat": "Original transect was approximately positioned from screenshot; decimal precision does not imply positioning accuracy."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "P2_0m",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.67284623244805,
+          49.16017953019164
+        ]
+      },
+      "properties": {
+        "profile_id": "P2",
+        "station_m": 0,
+        "anchor_status": "exact source station 0 coordinate; not field-surveyed",
+        "placement_caveat": "Original transect was approximately positioned from screenshot; decimal precision does not imply positioning accuracy."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "T6_0m",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.69010122198429,
+          49.15108756194332
+        ]
+      },
+      "properties": {
+        "profile_id": "T6",
+        "station_m": 0,
+        "anchor_status": "exact source station 0 coordinate; not field-surveyed",
+        "placement_caveat": "Source reference-line intersection, not surveyed boundary"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "T7_0m",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.69419460502722,
+          49.15134374779364
+        ]
+      },
+      "properties": {
+        "profile_id": "T7",
+        "station_m": 0,
+        "anchor_status": "exact source station 0 coordinate; not field-surveyed",
+        "placement_caveat": "Source reference-line intersection, not surveyed boundary"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "T8_0m",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.69828097263093,
+          49.151642847757
+        ]
+      },
+      "properties": {
+        "profile_id": "T8",
+        "station_m": 0,
+        "anchor_status": "exact source station 0 coordinate; not field-surveyed",
+        "placement_caveat": "Source reference-line intersection, not surveyed boundary"
+      }
+    }
+  ]
+}

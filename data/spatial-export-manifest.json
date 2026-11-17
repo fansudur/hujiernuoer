@@ -1,0 +1,348 @@
+{
+  "schema_version": 1,
+  "base_commit": "9366e3f51cb03af73b850aeb2434c56ba6221559",
+  "scope": "Data only. Existing research baseline and frontend unchanged.",
+  "status": "partial_source_backed_delivery",
+  "groups": [
+    {
+      "request": 1,
+      "status": "complete",
+      "manifest": "data/spatial/core-water-imagery/manifest.json"
+    },
+    {
+      "request": 2,
+      "status": "complete_for_existing_qualified_months",
+      "manifest": "data/spatial/lake_geometry_manifest.json"
+    },
+    {
+      "request": 3,
+      "status": "partial_profiles_and_reference_only",
+      "manifest": "data/spatial-vectors/manifest.json"
+    },
+    {
+      "request": 4,
+      "status": "partial_secondary_roads_only",
+      "manifest": "data/spatial-vectors/manifest.json"
+    },
+    {
+      "request": 5,
+      "status": "complete_historical_endpoint_model",
+      "manifest": "data/model-catchments/manifest.json"
+    }
+  ],
+  "missing": [
+    {
+      "id": "E_S_20_100_strip",
+      "reason": "No original strip geometry, raster transform or reproducible projection/buffer definition recovered; reference chainage segment is not the statistical strip."
+    },
+    {
+      "id": "hotspot_repeat_pixels_2025_05_2026_05",
+      "reason": "Only aggregate 0.56ha/0.84ha source statistics recovered. No source pixel identities, repeated-observation masks or raster georeferencing. No polygons fabricated."
+    },
+    {
+      "id": "C_crossroad_analysis_and_paired_control_boxes",
+      "reason": "No original window/control corner coordinates recovered. Approximate point 119.65684,49.12513 does not define extents. C_ROAD_1/2 geometric intersections are distinct and not replacements."
+    }
+  ],
+  "validation": {
+    "existing_contract_datasets": 389,
+    "existing_contract_evidence_bindings": 46,
+    "existing_contract_pass": true,
+    "water_export_byte_reproduction": true,
+    "vector_export_byte_reproduction": true,
+    "catchment_recomputed_total_km2": 17.28,
+    "catchment_recomputed_terminal_pixels": 1443,
+    "catchment_cross_platform_max_hausdorff_degrees": 2.842170943040401e-14,
+    "catchment_note": "Source output preserved. Linux re-run agrees in properties and geometry within 1e-11 degree; floating-point coordinate serialization differs slightly from Windows run.",
+    "native_imagery_grid_and_alpha_pass": true,
+    "all_component_manifest_hashes_pass": true
+  },
+  "files": [
+    {
+      "path": "data/export-methods/export_lake_geometry.py",
+      "bytes": 6666,
+      "sha256": "d57b4ab142fe9144dfaf91922bdbca951415e22cb67192dc1a671066f396f380"
+    },
+    {
+      "path": "data/export-methods/export_vectors.py",
+      "bytes": 6862,
+      "sha256": "e52997f9993f7f46642e694f5fc3e28a102ed08158b300ff5ff7ea405cb7ae19"
+    },
+    {
+      "path": "data/export-methods/lake_geometry_README.md",
+      "bytes": 2033,
+      "sha256": "46efa10dcbd33413349ba0aef668fe2917f7943d23aaa6f24f0e1006bc528eeb"
+    },
+    {
+      "path": "data/model-catchments/README.md",
+      "bytes": 1880,
+      "sha256": "f756e499f68b7cd7c2f049f3cb3df190885ebb844d4a12e5d46ad48c6831d29f"
+    },
+    {
+      "path": "data/model-catchments/catchment_entry_clusters.geojson",
+      "bytes": 65236,
+      "sha256": "f088eabce3818cb84a83168d9d643f6a35dbab66444a61f3d7b3d0554dfbc82c",
+      "bounds_wgs84": [
+        119.63059957325544,
+        49.105902954380234,
+        119.71576971762445,
+        49.1488405614866
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/model-catchments/catchment_total.geojson",
+      "bytes": 24126,
+      "sha256": "3b2b3e0c4621672700ef1bb6869a0349ba32d7aaf7265aca4fc2d713a9719388",
+      "bounds_wgs84": [
+        119.63059957325544,
+        49.105902954380234,
+        119.71576971762445,
+        49.1488405614866
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/model-catchments/historical_sample_water_input.geojson",
+      "bytes": 34761,
+      "sha256": "362615b315737b498b5934390f62978186ab6e6a327796f6ef000e2c483cd123",
+      "bounds_wgs84": [
+        119.67525000000016,
+        49.126,
+        119.70650000000016,
+        49.13825
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/model-catchments/manifest.json",
+      "bytes": 5188,
+      "sha256": "976afe963a8a9b2e4d017f741b7e4132fe91d9d111f6122f44cf9efb24933ddd"
+    },
+    {
+      "path": "data/model-catchments/provenance.json",
+      "bytes": 1111,
+      "sha256": "5d40c9847ed98ad54622d1b0ee42fa177002a9f0fbd1bbd550a136b78597007c"
+    },
+    {
+      "path": "data/model-catchments/reproduce.py",
+      "bytes": 6836,
+      "sha256": "11dfeecbbde5e6168e2bc209b5f1bc3acdd3d0780458b8c3722388a84e7486ee"
+    },
+    {
+      "path": "data/model-catchments/routing_dsm_30m.tif",
+      "bytes": 3276533,
+      "sha256": "77a8e7ceca6461568cb83686fb9354082f4d5831eeab3c6e4a0edf951f9d207c",
+      "spatial_metadata_manifest": "data/model-catchments/manifest.json"
+    },
+    {
+      "path": "data/model-catchments/terminal_mask.geojson",
+      "bytes": 7192,
+      "sha256": "724be94a1481caeca63f2b6abe43992ab022ec9953210a7c34178a2d5d5439ee",
+      "bounds_wgs84": [
+        119.6754394248808,
+        49.12621506226098,
+        119.70638141183616,
+        49.13837367693437
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/model-catchments/validation.json",
+      "bytes": 662,
+      "sha256": "fb939b406c7ec9cfde69f1f6b356c7fccbe96a858b71d5fb91d67345f98ef865"
+    },
+    {
+      "path": "data/spatial-vectors/README.md",
+      "bytes": 2327,
+      "sha256": "853eee0824ac1779a10c5fd9e72f42c210e9240e513a39818c2978b75049ab08"
+    },
+    {
+      "path": "data/spatial-vectors/hotspot_may_summary.json",
+      "bytes": 1305,
+      "sha256": "c2e082797eb5b55cd73a52af2cef1eb05a92329cbc9ccc7df429bb6962f281f9"
+    },
+    {
+      "path": "data/spatial-vectors/hotspot_reference_segment.geojson",
+      "bytes": 654,
+      "sha256": "4862fab8e1b635a2b7489c0c33e2180831b456262769b7e55edebec7fe7ac2fc",
+      "bounds_wgs84": [
+        119.69624088067327,
+        49.151475144984616,
+        119.69855297252529,
+        49.151665283426425
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/spatial-vectors/manifest.json",
+      "bytes": 4584,
+      "sha256": "f0cb1b018d2cab773ec53fd9f52c424baa9faad6d057deabae7ca7ba6144ed95"
+    },
+    {
+      "path": "data/spatial-vectors/profile_zero_anchors.geojson",
+      "bytes": 2463,
+      "sha256": "dba10f92362fca93d6881219fb15804add6d1fd8043440ee7d6232829f2b5094",
+      "bounds_wgs84": [
+        119.6638568769238,
+        49.15108756194332,
+        119.69828097263093,
+        49.16017953019164
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/spatial-vectors/profiles.geojson",
+      "bytes": 26576,
+      "sha256": "cb90500d82b9e4aec67d6f7f0a59ad6d3c5395063789d4038893a6c7a3d3317c",
+      "bounds_wgs84": [
+        119.6638568769238,
+        49.14893495678548,
+        119.69869140568377,
+        49.16017953019164
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/spatial-vectors/secondary_roads.geojson",
+      "bytes": 80611,
+      "sha256": "83ef6f96e67e7daf42a895e15f005886e487bf80b5d7bcc7e9eeaa73108dbcd4",
+      "bounds_wgs84": [
+        119.60319444444445,
+        49.0911053,
+        119.7608671,
+        49.185972222222226
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/2025-05-28_sentinel2_tci_native10m.tif",
+      "bytes": 2079653,
+      "sha256": "f8dd3c58b270056aa9bb4d6eed53b258472e73cf237610c9a9dbcb23b599830d",
+      "spatial_metadata_manifest": "data/spatial/core-water-imagery/manifest.json"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/2025-05-28_sentinel2_tci_source-stac.json",
+      "bytes": 25398,
+      "sha256": "6340e823686e77d654e498a300b26de0ad620e3e39699f355d9d0e587330685e"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/2025-05-28_sentinel2_tci_wgs84_nearest.png",
+      "bytes": 1535395,
+      "sha256": "53a54048ba396bd0934b057175fe5599b1e065f21d9c9a293ef1e9f8702c051a",
+      "spatial_metadata_manifest": "data/spatial/core-water-imagery/manifest.json"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/2026-08-08_sentinel2_tci_native10m.tif",
+      "bytes": 1906405,
+      "sha256": "6fcbb7e3e4b512263602793a743419f8805be4cdc9631e8c321b7c04def67243",
+      "spatial_metadata_manifest": "data/spatial/core-water-imagery/manifest.json"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/2026-08-08_sentinel2_tci_source-stac.json",
+      "bytes": 25582,
+      "sha256": "8f738781b67eaa779c6ecf85169551d6dd8116987e407dbbf97b6bf0bde0948f"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/2026-08-08_sentinel2_tci_wgs84_nearest.png",
+      "bytes": 1417458,
+      "sha256": "77690456476a5bb9068bcef5681cbe5d0b4aaf6182ac8311974c4b417c321a10",
+      "spatial_metadata_manifest": "data/spatial/core-water-imagery/manifest.json"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/README.md",
+      "bytes": 2342,
+      "sha256": "a5c952c5134fb1479599ddaf32ae0c7982023bb39459397a7b75f95e7f3c1e92"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/evaluate_may_quality.py",
+      "bytes": 1527,
+      "sha256": "900836e980c4c3763cba35a2f818dc6bfdb753d2b0d92f8a9a906c07b37dfbb3"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/export_truecolor.py",
+      "bytes": 6469,
+      "sha256": "9c1f78ff4e43adb37a2d6321e384d2f535f3f6ebb8f302ab01ea9fba11628ab7"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/manifest.json",
+      "bytes": 16533,
+      "sha256": "9c68a69d2d20ad935a5e6fb46b76265faedb5f3641de44d86a8c752ca28587e0"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/may-scene-quality.json",
+      "bytes": 11351,
+      "sha256": "9b52929f6a61957dcd5c0f4848cef9858be1b4d8f6c3effb8000c5088c02962e"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/query_stac.py",
+      "bytes": 757,
+      "sha256": "c7355b252bd7883f0b51c8e00dd415c9295bf2917763fa6b90fa338de31d55c2"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/aug_item.json",
+      "bytes": 18742,
+      "sha256": "0b6c702404a78f9815f3776a176b2eb3ced0eda93b8f00f02a6858ba97c11116"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/collection.json",
+      "bytes": 20153,
+      "sha256": "394e0041229524bea18861743ec2dbe93643a96c5e9f8c5266c9faff8cf7032a"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/may2025.json",
+      "bytes": 299178,
+      "sha256": "c3b0754b95306b5804421b49de0704c2cc8918bf6b1cd8fcf3abff8b1f14dc60"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/may2026.json",
+      "bytes": 319460,
+      "sha256": "c7f5601b4c72c43ad051d539c45669c323aae3c05d31a3c7f8941d4d4ad2b90e"
+    },
+    {
+      "path": "data/spatial/core-water-imagery/sources/quality.json",
+      "bytes": 11351,
+      "sha256": "9b52929f6a61957dcd5c0f4848cef9858be1b4d8f6c3effb8000c5088c02962e"
+    },
+    {
+      "path": "data/spatial/lake_geometry_checks.json",
+      "bytes": 20208,
+      "sha256": "0eb94dab1b8fbdf3131cff431d81395068f083fefce26c3685a1a3c54f1135ca"
+    },
+    {
+      "path": "data/spatial/lake_geometry_index.json",
+      "bytes": 256624,
+      "sha256": "0bafdbd22f77d5b51bfafcd457822edc0ac61dd32c13a57a0feb03ef63b1d594"
+    },
+    {
+      "path": "data/spatial/lake_geometry_manifest.json",
+      "bytes": 19245,
+      "sha256": "264c491a3e3944847d81127a6f83c69cc51b922ac26eca9e0276ea98579ade5e"
+    },
+    {
+      "path": "data/spatial/lake_nodata.geojson",
+      "bytes": 118704,
+      "sha256": "91183a81a43f7d3501cb0674c1eb8fe020fdb6c32bf0f8600836e3e9d92f60e8",
+      "bounds_wgs84": [
+        119.67700000000016,
+        49.12525,
+        119.70650000000016,
+        49.13875
+      ],
+      "crs": "EPSG:4326"
+    },
+    {
+      "path": "data/spatial/lake_water.geojson",
+      "bytes": 205629,
+      "sha256": "4214e32d6f94d6b38538f0e69b6c34d117d08b3abe14a351ead2c6961933fb96",
+      "bounds_wgs84": [
+        119.67525000000016,
+        49.126,
+        119.70650000000016,
+        49.13825
+      ],
+      "crs": "EPSG:4326"
+    }
+  ],
+  "hash_scope": "All files newly added by this export except this aggregate manifest itself (to avoid recursive hashing). Component manifests are hashed here; their outputs are hashed in the component manifests."
+}

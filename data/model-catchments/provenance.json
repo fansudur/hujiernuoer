@@ -1,0 +1,34 @@
+{
+  "original_dsm": {
+    "filename": "cop30.tif",
+    "source_description": "Copernicus GLO-30 DSM, N49 E119 tile; source attribution in original route.py",
+    "sha256": "4f3312d9192aaf6daed3f1bd809c02567b688b77a2377a8b3d10a39ac03551ed",
+    "native_crs": "EPSG:4326",
+    "native_shape": [
+      3600,
+      3600
+    ]
+  },
+  "model_grid_generation": {
+    "source_window_wgs84": [
+      119.54,
+      49.07,
+      119.81,
+      49.26
+    ],
+    "method": "rasterio rounded source window; calculate_default_transform to EPSG:32650 at 30m; bilinear reproject, exactly as original route.py",
+    "scope": "Delivered routing_dsm_30m.tif is the exact cached model input; no new DEM preparation in this export"
+  },
+  "original_script_hashes": {
+    "route.py": "614ff883f6b49be86fe40d93ef887ed1a354eb07cd29ebfc207772c62d496224",
+    "recheck.py": "34dd5d101f54c061fdcb95fe28960c306bada7231883489fccdfab3d2ae86222"
+  },
+  "runtime": {
+    "python": "3.14.3",
+    "numpy": "2.4.6",
+    "rasterio": "1.5.2",
+    "scipy": "1.18.0",
+    "shapely": "2.2.0",
+    "pyproj": "3.8.0"
+  }
+}

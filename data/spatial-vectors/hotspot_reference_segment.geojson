@@ -1,0 +1,28 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "yard_reference_2100_2270m",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.69624088067327,
+            49.151475144984616
+          ],
+          [
+            119.69855297252529,
+            49.151665283426425
+          ]
+        ]
+      },
+      "properties": {
+        "source_path": "data/water-network/evidence.json",
+        "interpretation": "line interpolation, not observed flow or parcel geometry",
+        "not_a_statistical_strip": true,
+        "not_a_water_polygon": true
+      }
+    }
+  ]
+}

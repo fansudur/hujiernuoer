@@ -1,0 +1,156 @@
+{
+  "id": "model-catchments-historical-sample-union-v1",
+  "created_utc": "2026-11-17",
+  "crs": "EPSG:4326",
+  "model_grid": {
+    "crs": "EPSG:32650",
+    "transform": [
+      30.0,
+      0.0,
+      684804.1578209245,
+      0.0,
+      -30.0,
+      5460159.374512062
+    ],
+    "shape": [
+      728,
+      682
+    ],
+    "resolution_m": 30
+  },
+  "terminal": {
+    "source": "historical_sample_water_input.geojson",
+    "selection": "class_code == 2 and quality_qualified == true",
+    "feature_count": 25,
+    "dates": [
+      "2001-07",
+      "2010-07",
+      "2012-07",
+      "2014-08",
+      "2017-07",
+      "2018-08",
+      "2021-08",
+      "2024-08"
+    ],
+    "mask_rule": "UTM rasterization at pixel center; union of 25 features from 8 sampled months, NOT 25 months or the full monthly sequence",
+    "area_m2": 1298700
+  },
+  "algorithm": {
+    "flow": "D8 steepest descent",
+    "filling": "priority flood with lake pixels and grid edges seeded as sinks, epsilon 0.0001 m",
+    "diagonal_distance_m": 42.43,
+    "entry_threshold_ha": 10,
+    "clustering": "3 iterations of 3x3 binary dilation of major entry pixels, connected-component labeling; small entries pooled as 9999",
+    "upstream_propagation": "ascending filled elevation",
+    "area": "pixel count * 900 square metres in EPSG:32650",
+    "vectorization": "exact pixel footprints, no smoothing"
+  },
+  "total_area_km2": 17.28,
+  "limits": [
+    "Terrain partition only; not water volume or flood peak fractions.",
+    "Not measured flow directions or proof of culvert connectivity.",
+    "DSM includes surface objects; original GLO-30 was bilinearly reprojected to this 30m model grid.",
+    "Endpoint is the historical sampled union, not newly complete monthly union; new masks require a separately versioned rerun.",
+    "The 90m dilation radius is not a strict 90m pairwise merge-distance: dilated neighborhoods may join farther-spaced entries.",
+    "Do not equate entry clusters with Wcross/B/C without a separate spatial relationship check."
+  ],
+  "files": [
+    {
+      "path": "routing_dsm_30m.tif",
+      "sha256": "77a8e7ceca6461568cb83686fb9354082f4d5831eeab3c6e4a0edf951f9d207c",
+      "bytes": 3276533
+    },
+    {
+      "path": "historical_sample_water_input.geojson",
+      "sha256": "362615b315737b498b5934390f62978186ab6e6a327796f6ef000e2c483cd123",
+      "bytes": 34761
+    },
+    {
+      "path": "catchment_total.geojson",
+      "sha256": "3b2b3e0c4621672700ef1bb6869a0349ba32d7aaf7265aca4fc2d713a9719388",
+      "bytes": 24126,
+      "bounds_wgs84": [
+        119.63059957325544,
+        49.105902954380234,
+        119.71576971762445,
+        49.1488405614866
+      ]
+    },
+    {
+      "path": "catchment_entry_clusters.geojson",
+      "sha256": "f088eabce3818cb84a83168d9d643f6a35dbab66444a61f3d7b3d0554dfbc82c",
+      "bytes": 65236,
+      "bounds_wgs84": [
+        119.63059957325544,
+        49.105902954380234,
+        119.71576971762445,
+        49.1488405614866
+      ]
+    },
+    {
+      "path": "terminal_mask.geojson",
+      "sha256": "724be94a1481caeca63f2b6abe43992ab022ec9953210a7c34178a2d5d5439ee",
+      "bytes": 7192,
+      "bounds_wgs84": [
+        119.6754394248808,
+        49.12621506226098,
+        119.70638141183616,
+        49.13837367693437
+      ]
+    },
+    {
+      "path": "reproduce.py",
+      "sha256": "11dfeecbbde5e6168e2bc209b5f1bc3acdd3d0780458b8c3722388a84e7486ee",
+      "bytes": 6836
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "5d40c9847ed98ad54622d1b0ee42fa177002a9f0fbd1bbd550a136b78597007c",
+      "bytes": 1111
+    },
+    {
+      "path": "README.md",
+      "bytes": 1880,
+      "sha256": "f756e499f68b7cd7c2f049f3cb3df190885ebb844d4a12e5d46ad48c6831d29f"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 662,
+      "sha256": "fb939b406c7ec9cfde69f1f6b356c7fccbe96a858b71d5fb91d67345f98ef865"
+    }
+  ],
+  "provenance": {
+    "original_dsm": {
+      "filename": "cop30.tif",
+      "source_description": "Copernicus GLO-30 DSM, N49 E119 tile; source attribution in original route.py",
+      "sha256": "4f3312d9192aaf6daed3f1bd809c02567b688b77a2377a8b3d10a39ac03551ed",
+      "native_crs": "EPSG:4326",
+      "native_shape": [
+        3600,
+        3600
+      ]
+    },
+    "model_grid_generation": {
+      "source_window_wgs84": [
+        119.54,
+        49.07,
+        119.81,
+        49.26
+      ],
+      "method": "rasterio rounded source window; calculate_default_transform to EPSG:32650 at 30m; bilinear reproject, exactly as original route.py",
+      "scope": "Delivered routing_dsm_30m.tif is the exact cached model input; no new DEM preparation in this export"
+    },
+    "original_script_hashes": {
+      "route.py": "614ff883f6b49be86fe40d93ef887ed1a354eb07cd29ebfc207772c62d496224",
+      "recheck.py": "34dd5d101f54c061fdcb95fe28960c306bada7231883489fccdfab3d2ae86222"
+    },
+    "runtime": {
+      "python": "3.14.3",
+      "numpy": "2.4.6",
+      "rasterio": "1.5.2",
+      "scipy": "1.18.0",
+      "shapely": "2.2.0",
+      "pyproj": "3.8.0"
+    }
+  }
+}
