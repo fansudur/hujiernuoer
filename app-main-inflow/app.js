@@ -6751,18 +6751,24 @@ function readGuideHistory(step){
  host.replaceChildren();
  if(!step.historyCard)return;
  const note=$('#guided-history-note');
- note.textContent=step.id==='history-201309'
-  ?'本段三维底图为 2013-09 全区画幅；以下同位近景来自 2004-05 和 2021-09，不能替代 2013。'
-  :'两张原图用同一地理裁窗，不用作水面统计。三维背景是 2021-09 文件标记，桌面窄屏都可单独认方位。';
+ const unavailable='本公开版未收录此处对照旧影像。当前底图仅用于定位，不代表旁白所述年代。';
+ note.textContent=unavailable;
  const path=new URL('./native-detail/history-review/old-turn-cards.json',location.href);
  guideHistoryCards??=fetch(path).then(r=>r.ok?r.json():null).catch(()=>null);
- void guideHistoryCards.then(doc=>{
+ void guideHistoryCards.then(async doc=>{
   if(panel.dataset.step!==step.id||doc?.schema!=='hjn-native-local-comparison/v1'||!Array.isArray(doc.cards))return;
-  host.replaceChildren(...doc.cards.filter(c=>/^cards\/old-turn-(200405|202109)\.png$/.test(c.file)).map(c=>{
+  const cards=doc.cards.filter(c=>/^cards\/old-turn-(200405|202109)\.png$/.test(c.file)&&typeof c.title==='string');
+  const figures=await Promise.all(cards.map(async c=>{
    const fig=document.createElement('figure'),img=document.createElement('img'),cap=document.createElement('figcaption');
-   img.alt=c.title;img.loading='lazy';img.src=new URL(c.file,path);
+   img.alt=c.title;img.src=new URL(c.file,path);
+   try{await img.decode();}catch{return null;}
    cap.textContent=c.title;fig.append(img,cap);return fig;
   }));
+  if(panel.dataset.step!==step.id)return;
+  const ready=figures.filter(Boolean);
+  if(!ready.length)return;
+  note.textContent='对照图日期以各图标注为准；当前底图仅用于定位。不用作水面统计。';
+  host.replaceChildren(...ready);
  });
 }
 function showCorridorSketch(step){
