@@ -6826,6 +6826,7 @@ function archivedGuideMedia(step,mark){
  return null;
 }
 function directorEvidenceBoard(step,point=0){
+ $('#guide-landscape-open').hidden=!['chapter-opening','runoff-main-entrance-context','lake-office-caution','chapter-closing'].includes(step.id);
  const d=step.director,root=$('#guided-director-board'),mb=$('#guided-board-media');
  if(!d){root.hidden=true;return;}
  root.hidden=false;
@@ -7680,7 +7681,7 @@ function wireGuidedTour(){
  $('#guided-tour-play').onclick=()=>{if(t.playing||t.handoff){cancelGuideHandoff();holdGuidedTour();readTourHUD('已暂停；不会自动继续。');}else void playGuidedTour();};
  $('#guided-tour-voice').onchange=e=>{if(!e.target.checked)t.voice?.pause();else if(t.playing){holdGuidedTour();void playGuidedTour();}};
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&t.active&&(t.playing||t.handoff)){cancelGuideHandoff();holdGuidedTour();readTourHUD('切离页面，已暂停。');}});
- window.addEventListener('keydown',e=>{if(e.code==='Escape'&&t.active){const options=$('#guide-play-toggles');if(options.matches(':popover-open')){options.hidePopover();$('#guided-play-options').focus({preventScroll:true});e.preventDefault();e.stopImmediatePropagation();return;}if($('#guided-camera-dialog').open||e.target?.closest?.('.v83-photo-frame.is-lens'))return;e.preventDefault();e.stopImmediatePropagation();const idxDrawer=document.getElementById('v93-index-drawer');if(idxDrawer&&!idxDrawer.hidden){idxDrawer.hidden=true;document.getElementById('v93-index-toggle')?.setAttribute('aria-expanded','false');return;}if(!$('#guided-photo-preview').hidden){setGuidePhoto(false,{focus:true});return;}if(state.studioOpen){closeStudioDrawer();return;}if(t.observer){closeGuideObserver();return;}if(t.manualCamera){followGuideCamera();return;}if(t.playing||t.handoff){cancelGuideHandoff();holdGuidedTour();readTourHUD('已暂停。');}else closeGuidedTour();}},{capture:true});
+ window.addEventListener('keydown',e=>{if(e.code==='Escape'&&t.active){const options=$('#guide-play-toggles');if(options.matches(':popover-open')){options.hidePopover();$('#guided-play-options').focus({preventScroll:true});e.preventDefault();e.stopImmediatePropagation();return;}if($('#guided-camera-dialog').open||$('#landscape-dialog')?.open||e.target?.closest?.('.v83-photo-frame.is-lens'))return;e.preventDefault();e.stopImmediatePropagation();const idxDrawer=document.getElementById('v93-index-drawer');if(idxDrawer&&!idxDrawer.hidden){idxDrawer.hidden=true;document.getElementById('v93-index-toggle')?.setAttribute('aria-expanded','false');return;}if(!$('#guided-photo-preview').hidden){setGuidePhoto(false,{focus:true});return;}if(state.studioOpen){closeStudioDrawer();return;}if(t.observer){closeGuideObserver();return;}if(t.manualCamera){followGuideCamera();return;}if(t.playing||t.handoff){cancelGuideHandoff();holdGuidedTour();readTourHUD('已暂停。');}else closeGuidedTour();}},{capture:true});
  installV93Bridge();
 }
 const v93SyncCallbacks=new Set();

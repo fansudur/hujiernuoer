@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="guide-review.css?v=105.10">
   <link rel="stylesheet" href="v74-director.css?v=105">
   <link rel="stylesheet" href="mobile-atlas.css?v=105.5">
+  <link rel="stylesheet" href="./landscape-reference.css">
 </head>
 <body data-local-preview="true">
   <div class="observatory" id="observatory" data-view-preset="home">
@@ -59,6 +60,7 @@
             <strong id="hdr-basemap">2026-08-08</strong>
             <span class="caret" aria-hidden="true">▾</span>
           </button>
+          <button class="date-chip landscape-open" type="button" data-landscape="202107" aria-haspopup="dialog" aria-controls="landscape-dialog" title="查看 2021 年 7 月高清静态全景">全景</button>
         </div>
 
         <!-- Layer 3 (Desktop / Mid only): Single Quiet Place & Peripheral Comparison Switcher -->
@@ -220,6 +222,7 @@
         <div class="guide-board-copy"><small id="guided-board-kind"></small><strong id="guided-board-focus"></strong><small id="guided-board-note"></small></div>
         <div class="guide-board-side">
           <div id="guided-board-media" hidden></div>
+          <button class="deck-btn landscape-guide-open" type="button" id="guide-landscape-open" data-landscape="202109" aria-haspopup="dialog" aria-controls="landscape-dialog" hidden>看高清全景</button>
 
         </div>
       </div>
@@ -655,7 +658,7 @@
   </dialog>
 
   <script src="../hujiernuoer-handoff-v2/vendor/three-r160.1.min.js"></script>
-  <script type="module" src="app.js?v=105.15.3"></script>
+  <script type="module" src="app.js?v=105.15.4"></script>
   <script type="module" src="v74-panels.js"></script>
   <script type="module" src="v93-chapter1.js?v=105.11"></script>
 <dialog id="guided-camera-dialog" aria-labelledby="guided-camera-heading">
@@ -665,6 +668,21 @@
   <textarea id="guided-camera-json" aria-label="机位数据" readonly rows="5"></textarea>
  </form>
 </dialog>
+
+<dialog id="landscape-dialog" aria-labelledby="landscape-title">
+ <header class="landscape-head">
+  <div><h2 id="landscape-title"></h2><p id="landscape-credit"></p></div>
+  <form method="dialog"><button class="deck-btn" type="submit" autofocus>关闭</button></form>
+ </header>
+ <div class="landscape-tools">
+  <button type="button" class="deck-btn" id="landscape-load">加载原尺寸高清图</button>
+  <button type="button" class="deck-btn" id="landscape-zoom" aria-pressed="false" hidden>按原像素查看</button>
+  <span id="landscape-status" role="status"></span>
+ </div>
+ <div class="landscape-display" tabindex="0" aria-label="可滚动的全景影像"><img id="landscape-image" alt=""></div>
+ <p class="landscape-note">日期为导出文件标记；拼接分块的采集日未核实。公开图局部已做隐私遮盖；仅用于定位和对照，不作面积量测。</p>
+</dialog>
+<script type="module" src="./landscape-reference.js"></script>
 </body>
 </html>
 
