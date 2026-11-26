@@ -1,0 +1,550 @@
+{
+  "schema": "hjn-route-narrative/v1",
+  "title": "主湖来水｜先看水面变化，再查可能来路",
+  "summary": "主湖为什么在有些年份涨得多、又在什么时候退水？先对照同月水面、影像和降雨，再用地形找可能的来水方向。湖面直接受雨、坡地径流和地下水交换各占多少，目前没有实测定量。",
+  "rules": [
+    "影像可见段只表示地形或地表纹理，看不见的段落保留断口；两条图线接触也不证明同场过水。",
+    "模型虚线只表示该套地形和计算条件；桥孔、路下连通、流向、水量及改造影响未据此确定。",
+    "Google Earth 日期按文件标记显示，拼接区内实拍日期可能不同；遥感水类只代表相应水体/月份，照片位置为相机位置。"
+  ],
+  "sections": [
+    {
+      "id": "west-bridge",
+      "title": "三八水库中桥｜西坡、桥位和桥东旧槽",
+      "summary": "桥西可见弯槽、现场桥位与桥东影像分段查看；缺口保留。",
+      "items": [
+        {
+          "id": "west-slope",
+          "title": "西坡：丘脚低带与汇合",
+          "status": "影像可见",
+          "body": "西南坡脚和中央弯槽有可辨的形态交会；靠路一段仍清楚。两套地形对少量上游范围有交集，模型边界与影像所见的槽线分开看。更远西坡的路径、来水量和进入哪幅桥孔仍待核。",
+          "featureIds": [
+            "f1-ge-west-branched-meander-outer",
+            "f1-ge-west-middle-hummock-toe",
+            "f1-ge-sw-to-central-junction",
+            "f1-west-visible-meander"
+          ],
+          "profileIds": [],
+          "imageryIds": [
+            "ge-root-202109",
+            "ge-root-202504",
+            "ge-01-200405",
+            "ge-01-201507",
+            "ge-01-202109"
+          ],
+          "photos": [],
+          "sources": [
+            {
+              "label": "桥西多期地貌与模型",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/F1-上下游联合核查-20261123/"
+            }
+          ],
+          "focusFeatureId": "f1-ge-sw-to-central-junction",
+          "focusLabel": "定位桥西会合段"
+        },
+        {
+          "id": "bridge",
+          "title": "三八水库中桥：桥位已识别",
+          "status": "现场识别",
+          "body": "桥牌记载 2011-12-01 通车。现场记录者于 2026-11-22 在桥边看到了桥下敞开的过水空间；因边坡陡且有护栏未下到桥底。桥牌与照片用于确认桥位和桥侧环境。仍要核对的是西、东侧低带怎样分别接到桥口，以及流向和流量。北侧国道另有模型相交窗，不是这座桥。",
+          "featureIds": [
+            "f1-east-bridge-location-ref",
+            "west-slope-model-cross"
+          ],
+          "profileIds": [
+            "hjn-seasonal-road-f1-G332_W-section-0",
+            "hjn-seasonal-road-f1-G332_W-long",
+            "hjn-seasonal-road-f1-G332_E-long"
+          ],
+          "imageryIds": [
+            "ge-01-201111",
+            "ge-01-202109"
+          ],
+          "photos": [
+            "field-photo-2026",
+            "field-photo-2027",
+            "field-photo-2028",
+            "field-photo-2029"
+          ],
+          "sources": [],
+          "focusFeatureId": "f1-east-bridge-location-ref",
+          "focusLabel": "定位三八水库中桥"
+        },
+        {
+          "id": "east-apron",
+          "title": "桥东：旧低带到转折附近",
+          "status": "影像可见",
+          "body": "桥东旧低带与转折东南另一段弯槽之间，图线端点直距约 148 米；这段不接线，未确认过水或分流。桥东旧低带在 2009-04-04 QuickBird-2 影像中已可辨，早于桥牌所载通车日；不因此认定桥孔与低带相通。",
+          "featureIds": [
+            "f1-ge-imagefirst-east-apron",
+            "f1-east-old-turn-review",
+            "owner-20261123-blue-5",
+            "owner-20261123-blue-6",
+            "owner-20261123-blue-7",
+            "f1-se-visible-arc-to-basin"
+          ],
+          "profileIds": [],
+          "imageryIds": [
+            "ge-01-200405",
+            "ge-01-200909",
+            "ge-01-202109",
+            "ge-root-201909",
+            "ge-root-200405",
+            "ge-root-202107-2",
+            "ge-root-202109"
+          ],
+          "photos": [],
+          "sources": [
+            {
+              "label": "桥东早期弯槽与源景复查",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/Downstream-Branches-20261123/F1-历史弯槽复查_20261123.md"
+            }
+          ],
+          "focusFeatureId": "f1-ge-imagefirst-east-apron",
+          "focusLabel": "定位桥东可见低带",
+          "compareLinks": [
+            {
+              "featureId": "f1-ge-imagefirst-east-apron",
+              "label": "西端：桥东低带"
+            },
+            {
+              "featureId": "f1-se-visible-arc-to-basin",
+              "label": "东端：东南弯槽起段"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southeast-village",
+      "title": "桥东东南｜村北低地、道路四点和主湖",
+      "summary": "村北低地、沿路四点、路南共同弯槽，分别核查。四点构造和局地走向见现场记录，与桥东低带和主湖的连接未确认。",
+      "items": [
+        {
+          "id": "village-in",
+          "title": "旧转折东南：到村北低地边缘",
+          "status": "影像可见",
+          "body": "从旧转折东南，以多期真彩追出弯槽，进到村北大片低地的西北边。200405 图中同位深暗水样斑醒目，较后影像转为绿带或褐色粗纹。槽进宽低地后不能续成一条特定沟。",
+          "featureIds": [
+            "f1-se-visible-arc-to-basin",
+            "f1-se-middle-unresolved-after-wide-low-ground",
+            "road03-ge-north-depression-core"
+          ],
+          "profileIds": [],
+          "imageryIds": [
+            "ge-01-200405",
+            "ge-01-200909",
+            "ge-01-202109",
+            "ge-root-201707",
+            "ge-root-201806"
+          ],
+          "photos": [],
+          "sources": [
+            {
+              "label": "桥东至村北逐段影像",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/F1-上下游联合核查-20261123/F1-Google-Earth-影像逐段判读/middle-method.md"
+            }
+          ],
+          "focusFeatureId": "f1-se-visible-arc-to-basin",
+          "focusLabel": "定位村北低地前的弯槽"
+        },
+        {
+          "id": "village-rims",
+          "title": "村北低地两侧：西侧窄带、东侧暗痕",
+          "status": "影像可见",
+          "body": "西缘绿带朝院落西侧收窄，在 201707、201806 原图可复核，201906 色差较弱；院角与路北缘分别保留断口。东缘直线便道或田界旁也有暗斑，在院墙和横便道附近不再连续。两侧都值得查，未证明两条出口或堵点。",
+          "featureIds": [
+            "road03-ge-north-basin-west-rim",
+            "road03-ge-pin1-north-village-low-belt",
+            "road03-ge-pin1-north-green-belt",
+            "road03-ge-pin1-north-yard-edge",
+            "road03-ge-pin1-north-court-gap",
+            "road03-ge-pin1-north-road-verge",
+            "road03-ge-north-basin-east-pockets",
+            "road03-ge-north-basin-east-gap",
+            "road03-ge-north-basin-road-east-verge"
+          ],
+          "profileIds": [],
+          "imageryIds": [
+            "ge-root-201707",
+            "ge-root-201806",
+            "ge-root-201906",
+            "ge-03-202109",
+            "ge-03-202504"
+          ],
+          "photos": [],
+          "sources": [
+            {
+              "label": "1 号点北侧多期绿带",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/F1-上下游联合核查-20261123/F1-Google-Earth-影像逐段判读/03-补标1北侧绿带/README.md"
+            }
+          ],
+          "focusFeatureId": "road03-ge-north-basin-west-rim",
+          "focusLabel": "定位村北低地西缘"
+        },
+        {
+          "id": "four-pins",
+          "title": "道路 1–4 号：从西到东逐点核",
+          "status": "待现场核查",
+          "body": "据现场记录：1 号双侧圆形涵洞连通；2 号南侧有涵，北侧疑似填埋；3 号双侧涵洞连通；4 号路南沟渠汇入低点后继续向下游，这是汇水低点，不是涵洞。四点保留原 KMZ 独立位置，不据此连出入湖水路。 记录者在 Google Earth 页脚显示 2009-09-05 的卫星图上沿蓝线辨读，提出旧低带可能经过第 2 点，后来可能改为由第 3 点过路。这是历史判读线索，尚未证实改线、改线时间或过水方向。 可另打开 2019-09 用户蓝线作空间对照，保持手绘断口，不当成确认水路。",
+          "featureIds": [
+            "hjn-03-road-pin-01",
+            "hjn-03-road-pin-02",
+            "hjn-03-road-pin-03",
+            "hjn-03-road-pin-04",
+            "road03-ge-pin1-local",
+            "road03-ge-pin3-local",
+            "owner-20261123-blue-8",
+            "owner-20261123-blue-9"
+          ],
+          "profileIds": [
+            "hjn-seasonal-road-ge03-local-long",
+            "hjn-seasonal-road-ge03-local-section-0"
+          ],
+          "imageryIds": [
+            "ge-03-201404",
+            "ge-03-202107",
+            "ge-03-202504",
+            "ge-root-201909",
+            "ge-root-200405",
+            "ge-root-202107-2",
+            "ge-root-202109"
+          ],
+          "photos": [
+            "field-photo-2007",
+            "field-photo-2009",
+            "field-photo-2012",
+            "field-photo-2013",
+            "field-photo-2014",
+            "field-photo-2015"
+          ],
+          "sources": [
+            {
+              "label": "四点与照片距离、朝向复核",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/03道路双侧通道_四点及照片复核_20261123.md"
+            }
+          ],
+          "focusFeatureId": "hjn-03-road-pin-03",
+          "focusLabel": "定位优先核查的 3 号点"
+        },
+        {
+          "id": "main-nw",
+          "title": "道路南侧：两片低地和共同弯槽",
+          "status": "影像可见",
+          "body": "2 号路南可沿窄弯沟追踪约 503 米；4 号路南是宽低带，中心不连续，只另描下部约 103 米弧槽。两条可见沟形在下段接触。随后共同弯槽约 998 米，止在主湖西北岸附近；不同期岸缘位置不同。路下、4 号上段与弧槽之间及最后一处实测入湖口均仍待核。",
+          "featureIds": [
+            "road03-ge-pin2-south-gully",
+            "road03-ge-pin4-diffuse",
+            "road03-ge-pin4-lower-arc",
+            "road03-ge-lower-confluence",
+            "road03-ge-common-reach",
+            "road03-ge-shore-review"
+          ],
+          "profileIds": [
+            "main-profile-west-inlet"
+          ],
+          "imageryIds": [
+            "ge-03-200405",
+            "ge-03-201404",
+            "ge-03-202107",
+            "ge-03-202109",
+            "ge-03-202504"
+          ],
+          "photos": [],
+          "sources": [
+            {
+              "label": "道路 03 多期影像对照",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/F1-上下游联合核查-20261123/F1-Google-Earth-影像逐段判读/"
+            },
+            {
+              "label": "原件取景系列",
+              "ref": "google earth/03/"
+            }
+          ],
+          "focusFeatureId": "road03-ge-common-reach",
+          "focusLabel": "定位路南共同弯槽",
+          "crossAccess": [
+            "southeast"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "northeast",
+      "title": "桥东东北｜东部泥沼、东池与西长湖对照",
+      "summary": "东部泥沼是中间地貌核查区，东池是独立水体，西长湖是另一项对照。",
+      "items": [
+        {
+          "id": "ne-fades",
+          "title": "暗纹淡出与东部泥沼",
+          "status": "待现场核查",
+          "body": "旧转折东北方向的纹理在泥沼西边淡出。泥沼内虽有斑纹和浅低地，现有图像没有可一路追到东池的单一沟形。图上把两处线索、过渡区与东池分类水面分开。",
+          "featureIds": [
+            "f1-ge-imagefirst-marsh-west-gap",
+            "f1-east-marsh-field-review",
+            "f1-ge-imagefirst-marsh-to-pond-gap",
+            "f1-east-pool-shore-ref"
+          ],
+          "profileIds": [],
+          "imageryIds": [
+            "ge-root-200405",
+            "ge-root-202107-2",
+            "ge-root-202109",
+            "ge-root-202209-2"
+          ],
+          "photos": [],
+          "sources": [],
+          "focusFeatureId": "f1-east-marsh-field-review",
+          "focusLabel": "定位东部泥沼核查区"
+        },
+        {
+          "id": "ne-model",
+          "title": "从东北搜索窗另起的地形模型",
+          "status": "地形模型",
+          "body": "Copernicus 与 AW3D30 在 30 米网格填洼后，从东北搜索窗另起都指向东池。原地表线只在局部停止。从桥东肩起算时两套填洼模型去向不同。不能由此推出桥水到达东北窗、确定两处实际相通或比较分水比例。",
+          "featureIds": [
+            "Cop_frozen30_filled_F1_NE_fade_east_pool_2025-09-22_G3320_minor0",
+            "AW3D30_sameUTM_filled_F1_NE_fade_east_pool_2025-09-22_G3320_minor0",
+            "f1-east-pool-shore-ref",
+            "f1-east-marsh-field-review"
+          ],
+          "profileIds": [],
+          "imageryIds": [],
+          "photos": [],
+          "sources": [
+            {
+              "label": "两种地形模型与起算窗口",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/Downstream-Branches-20261123/README.md"
+            }
+          ],
+          "focusFeatureId": "f1-east-pool-shore-ref",
+          "focusLabel": "定位东池水面参照"
+        },
+        {
+          "id": "westlake-old-guess",
+          "title": "西长湖：保留早期上支草图 / 2019-09 九条蓝线",
+          "status": "历史假设",
+          "body": "早期西坡草图画过上、中、下三支。上支靠近西长湖南侧，单独保留对照，不算进这轮 F1 的东南/东北两个核查方向；也不把“两方向”解释成实地总共有两支。西长湖正西 S7 与国道相交模型窗需要另核。 可另打开 2019-09 用户蓝线作空间对照，保持手绘断口，不当成确认水路。 九条点开分别显示多期判读：7 多期可辨；1、5、6、8、9 部分可辨；2、3、4 待核。固定影像只切底图，不换水面月份。",
+          "featureIds": [
+            "sketch-blue-west-long-lake",
+            "g332-wf1-review",
+            "hjn-seasonal-wf1-cross-cop",
+            "hjn-seasonal-wf1-cross-aw",
+            "owner-20261123-blue-1",
+            "owner-20261123-blue-2",
+            "owner-20261123-blue-3",
+            "owner-20261123-blue-4",
+            "owner-20261123-blue-5",
+            "owner-20261123-blue-6",
+            "owner-20261123-blue-7",
+            "owner-20261123-blue-8",
+            "owner-20261123-blue-9"
+          ],
+          "profileIds": [
+            "hjn-seasonal-road-s7-cop-window-G332_W-long",
+            "hjn-seasonal-road-s7-aw-window-G332_W-long"
+          ],
+          "imageryIds": [
+            "ge-root-201909",
+            "ge-root-202107",
+            "ge-root-202109",
+            "ge-root-200405",
+            "ge-root-202107-2"
+          ],
+          "photos": [],
+          "sources": [
+            {
+              "label": "原始草图与独立地形比较",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/West-Source-Branches/README.md"
+            },
+            {
+              "label": "九条蓝线六期原图逐笔判读",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/Wcross西坡与201909蓝线-逐段联合核查/blue-imagery/blue-nine-assessments.json"
+            }
+          ],
+          "focusFeatureId": "sketch-blue-west-long-lake",
+          "focusLabel": "定位西长湖旧草图上支"
+        }
+      ]
+    },
+    {
+      "id": "independent-main-paths",
+      "title": "主湖来水｜三处入口与独立线索",
+      "summary": "主湖先看西侧、南中、东南。办公院与地方道路圆涵另看，不从桥东或 03 四点接出一条确定水路。",
+      "items": [
+        {
+          "id": "office",
+          "title": "嘎查办公院：实际出水口未确认",
+          "status": "地形模型",
+          "body": "办公院地标已定位，实际出水口未确认。E02、E03 是两条地形剖面，不是沟线。两套原地形试算均在局地停止；填洼后才可到历史主湖终点。先从公共边缘核对雨后实际出水处，再沿水迹确认第一个下游连接。",
+          "featureIds": [
+            "office-service",
+            "atlas-office-trace-main_raw",
+            "atlas-office-trace-main_historical_filled",
+            "office-field-of_b"
+          ],
+          "profileIds": [
+            "profile-B_nw_slope_to_office",
+            "profile-A_office_to_lake"
+          ],
+          "imageryIds": [
+            "ge-03-202109",
+            "ge-03-202504"
+          ],
+          "photos": [],
+          "sources": [
+            {
+              "label": "11 月 24 日出水口桌面对照",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/Office-Outlet-Review-20261124/README.md"
+            }
+          ],
+          "focusFeatureId": "office-service",
+          "focusLabel": "定位办公院地标（不是出水口）"
+        },
+        {
+          "id": "round",
+          "title": "地方道路圆涵与 Wcross1 / Wcross2",
+          "status": "现场识别",
+          "body": "先看路西田缘、2004 年旧横纹和路肩浅洼；再对照两套 30 米地形各自的路西搜索窗。影像未把这些迹象连成沟。地方道路圆涵看得见开口，但相机点不是洞口坐标。Wcross1、Wcross2 是独立归档的 30 米地形示意。附近原地表模型约 420 米停下，填洼线指向历史主湖；圆涵东口、下游浅洼到主湖之间不画成实线。 Wcross1／2 各自可以查看整个范围：路西 Cop 原地形段分别约 710／525 米，地方道路之间留灰色证据缺口约 135／124 米，下游仍是原来的独立模型线。AW 不填洼对照约 42／247 米；两套数据都不是现场水路。 另可打开 G332 以西坡地对照：Wcross1 不填洼有几何延伸，Wcross2 远端仅填洼情景出现。国道位置均留断口，不认定跨路。",
+          "featureIds": [
+            "wcross-ge-w1-west-parcel-line",
+            "wcross-ge-w1-west-road-margin",
+            "wcross-ge-w2-200405-west-trace",
+            "wcross-ge-w2-west-road-patch",
+            "wcross1-west-shoulder-wide",
+            "wcross2-west-shoulder-wide",
+            "archive-route-wcross1",
+            "archive-route-wcross2",
+            "wc2-review-near",
+            "wc2-review-stop",
+            "wc2-review-fringe",
+            "wcross1-west-extension-approach",
+            "wcross1-west-extension-road-gap",
+            "wcross1-west-extension-aw-strict",
+            "wcross2-west-extension-approach",
+            "wcross2-west-extension-road-gap",
+            "wcross2-west-extension-aw-strict",
+            "wcross1-westward-g332-cop-strict-high-west",
+            "wcross2-westward-g332-cop-edgefill-high-west"
+          ],
+          "profileIds": [
+            "hjn-seasonal-road-round-local-long",
+            "hjn-seasonal-road-round-local-section-0",
+            "wcross1-west-extension-approach",
+            "wcross1-west-extension-aw-strict",
+            "wcross2-west-extension-approach",
+            "wcross2-west-extension-aw-strict"
+          ],
+          "imageryIds": [
+            "ge-root-200405",
+            "ge-02-200405",
+            "ge-root-202504",
+            "ge-02-202109"
+          ],
+          "photos": [
+            "field-photo-2019",
+            "field-photo-2020"
+          ],
+          "sources": [
+            {
+              "label": "圆涵东侧复查与原地形停点",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/Downstream-Branches-20261123/README.md"
+            },
+            {
+              "label": "Wcross1／2 路西两套地形和道路缺口复核",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/Wcross西坡与201909蓝线-逐段联合核查/README.md"
+            }
+          ],
+          "focusFeatureId": "archive-route-wcross2",
+          "focusLabel": "定位圆涵附近 Wcross2（保留断口）"
+        },
+        {
+          "id": "lake-profiles",
+          "title": "主湖三处入口：西侧、南中、东南",
+          "status": "地形参照",
+          "body": "17.28 km² 是 30 米地表模型在 8 个抽样月的历史水面终点条件下算出的外围汇水区，已扣除终点水面；不是整个流域、实测来水量或分水比例。西侧、南中、东南是三个较大的模型分区。剖面用于对照地势，不是沟线或湖底测深。",
+          "featureIds": [
+            "main-profile-west-inlet",
+            "main-profile-south-central-inlet",
+            "main-profile-southeast-inlet"
+          ],
+          "profileIds": [
+            "main-profile-west-inlet",
+            "main-profile-south-central-inlet",
+            "main-profile-southeast-inlet",
+            "main-profile-east-west-axis",
+            "main-profile-north-south-axis"
+          ],
+          "imageryIds": [],
+          "photos": [],
+          "sources": [
+            {
+              "label": "主湖南侧时序与影像交叉核查",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/South-Inlet-Observation/README.md"
+            }
+          ],
+          "focusFeatureId": "main-profile-west-inlet",
+          "focusLabel": "定位主湖西侧入口剖面",
+          "crossAccess": [
+            "southeast"
+          ]
+        },
+        {
+          "id": "north-preserve",
+          "title": "北侧旧调查：保留为独立题目",
+          "status": "待现场核查",
+          "body": "西长湖、北小湖近西岸及院墙调查可以对照低地、路肩和附近标记，既有样点与剖面继续看。这些线索不替代本页主湖路径，也不当作 F1 已有的第三条实测支流。 区域影像可查看西长湖和院墙周边；04 近景仅用于北小湖，不作为院墙或国道点位的影像证据。",
+          "featureIds": [
+            "hjn-seasonal-wf1-cross-cop",
+            "hjn-seasonal-wf1-cross-aw",
+            "wall-check-s1",
+            "wall-check-s2"
+          ],
+          "profileIds": [],
+          "imageryIds": [
+            "ge-root-202107",
+            "ge-04-202107"
+          ],
+          "photos": [],
+          "sources": [
+            {
+              "label": "北小湖近西岸地貌核查",
+              "ref": "06_Spatial-Research/Site-Analysis-20261122/North-Pool-West-Gully-20261123/README.md"
+            }
+          ],
+          "focusFeatureId": "wall-check-s1",
+          "focusLabel": "定位北侧独立核查点"
+        }
+      ],
+      "leadItemId": "lake-profiles"
+    }
+  ],
+  "readingOrder": [
+    "independent-main-paths",
+    "west-bridge",
+    "southeast-village",
+    "northeast"
+  ],
+  "mainEntries": [
+    {
+      "featureId": "main-profile-west-inlet",
+      "label": "定位主湖西侧",
+      "segment": "西侧"
+    },
+    {
+      "featureId": "main-profile-south-central-inlet",
+      "label": "定位主湖南中",
+      "segment": "南中"
+    },
+    {
+      "featureId": "main-profile-southeast-inlet",
+      "label": "定位主湖东南",
+      "segment": "东南"
+    }
+  ],
+  "crossAccess": [
+    "southeast",
+    "cases",
+    "history"
+  ]
+}

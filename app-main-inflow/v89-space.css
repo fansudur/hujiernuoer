@@ -1,0 +1,18 @@
+/* Decorative stage backdrop. The map canvas is transparent in both themes. */
+#map-3d-stage{
+ isolation:isolate;
+ background:#080c16 radial-gradient(ellipse at 48% 54%,#192538 0%,#0c1320 56%,#070a12 100%);
+}
+#map-3d-stage::before{
+ content:'';
+ position:absolute;
+ inset:0;
+ z-index:-1;
+ pointer-events:none;
+ background:url('./v89-stars.svg') center/cover no-repeat;
+ opacity:.48;
+}
+html[data-theme="light"] #map-3d-stage{
+ background:#e6e1d6 radial-gradient(ellipse at 47% 36%,#f2efe7 0%,#e5e0d5 66%,#d7d1c5 100%);
+}
+html[data-theme="light"] #map-3d-stage::before{display:none;}

@@ -1,0 +1,249 @@
+/* Chapter-one docks use the edges of the actual header cards, not the photograph state. */
+#observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel){
+ position:absolute;box-sizing:border-box;left:var(--guide-left,12px);right:auto;top:var(--guide-script-y,128px);bottom:auto;transform:none;
+ width:var(--guide-left-w,380px);max-height:min(34dvh,305px);z-index:65;
+}
+#observatory.guided-tour-active #guided-observer-script{min-height:0;max-height:none}
+#observatory.guided-tour-active #guided-tour-panel #guided-tour-select{max-width:min(49vw,100%);}
+#observatory.guided-tour-active #guided-nav-map:not(.v74-custom-panel){
+ position:absolute;box-sizing:border-box;left:auto;right:var(--guide-right,12px);top:var(--guide-map-y,58px);bottom:auto;
+ width:clamp(98px,10.4vw,150px);visibility:visible;pointer-events:auto;
+}
+#observatory.guided-tour-active #guided-nav-map{display:block}
+#observatory.guided-tour-active #guided-nav-map[hidden]{display:none}
+#observatory.guided-tour-active #guided-photo-preview:not(.v74-custom-panel){
+ box-sizing:border-box;left:auto;right:var(--guide-right,12px);top:var(--guide-photo-y,185px);bottom:auto;
+ width:var(--guide-right-w,425px);max-height:min(66dvh,calc(100dvh - var(--guide-photo-y,185px) - var(--v75-nav-space,76px) - 8px));
+}
+#observatory.guided-tour-active #guided-photo-preview:not(.v74-custom-panel) #guided-photo-enlarged{max-height:min(44dvh,470px)}
+#observatory.guided-tour-active #guided-location-card:not(.embedded):not(.v74-custom-panel){
+ left:var(--guide-left,12px);top:var(--guide-location-y,460px)!important;max-height:65px;overflow:auto;
+}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-expanded="true"][data-tour-profile]:not(.v74-custom-panel){
+ box-sizing:border-box;left:var(--guide-left,12px);right:auto;top:var(--guide-profile-y,345px);bottom:auto;
+ transform:none;width:var(--guide-left-w,380px)!important;transition:none;
+ height:var(--guide-profile-h,156px);max-height:var(--guide-profile-h,156px);
+}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile]{
+ padding-top:27px;overflow:hidden;
+}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] :is(#deck-grip,#deck-bar,#deck-subbar,.profile-meta-bar,.profile-foot-note,.mobile-nav-strip){display:none}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] .deck-body{padding:0 4px;max-height:none;overflow:visible}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] svg.profile-svg{
+ display:block;width:100%;height:calc(var(--v74-h,var(--guide-profile-h,156px)) - 30px);max-height:none;
+}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile]::before{
+ content:attr(data-v74-profile-label) " · 30 m 地表";position:absolute;left:62px;right:76px;top:8px;
+ font-size:10px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;color:var(--ink-2);pointer-events:none;
+}
+#observatory.guided-tour-active #map-3d-stage canvas{touch-action:none;cursor:grab}
+#observatory.guided-tour-active #map-3d-stage canvas:active{cursor:grabbing}
+#guided-camera-follow[aria-pressed="false"]{color:#14202b;background:#f2e5b7}
+@media(max-width:760px){
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel){
+  padding:6px 8px;max-height:clamp(120px,22dvh,180px);
+ }
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) #guided-director-board{
+  padding:3px 5px;min-height:29px;
+ }
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) :is(#guided-board-note,#guided-sides-caption){display:none}
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) .walk-row{margin-bottom:3px}
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) :is(.deck-btn,.deck-select){min-height:25px;height:auto}
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel)>.walk-row:first-child strong{font-size:12px}
+ #observatory.guided-tour-active #guided-tour-panel #guided-map-inset{display:none}
+ #observatory.guided-tour-active #guided-photo-preview:not(.v74-custom-panel) #guided-photo-enlarged{max-height:37dvh}
+ #observatory.guided-tour-active #guided-photo-preview:not(.v74-custom-panel).v75-paired-media .v75-evidence-media img{max-height:29dvh}
+ #observatory.guided-tour-active #guided-tour-nav-strip .deck-btn{padding:3px 5px;font-size:11px;min-height:33px}
+}
+@media(max-height:515px) and (orientation:landscape){
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel){max-height:30dvh}
+ #observatory.guided-tour-active #guided-nav-map:not(.v74-custom-panel){width:84px}
+}
+
+
+.guide-mobile-tools{display:none}
+#observatory.guided-tour-active.studio-open #chart-deck[data-tour-profile]{visibility:hidden}
+#observatory.guided-tour-active.studio-open #studio-drawer{z-index:82}
+@media(max-width:760px){
+ #observatory.guided-tour-active #guided-tour-nav-strip .guide-mobile-tools{display:inline-flex}
+ #observatory.guided-tour-active #guided-director-board #guided-board-media img{height:34px}
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel){padding-bottom:7px}
+ #observatory.guided-tour-active #guided-observer-script{min-height:22px}
+}
+
+@media(min-width:761px){
+ #observatory.guided-tour-active #guided-tour-nav-strip:not(.v74-custom-panel){width:max-content;max-width:calc(100vw - 24px)}
+ #observatory.guided-tour-active #guided-tour-panel #guided-board-media img{height:47px}
+ #observatory.guided-tour-active #guided-tour-panel #guided-map-inset{max-width:103px}
+}
+#observatory.guided-tour-active #guided-tour-panel .guided-tour-detail h2{margin-block:0 3px;font-size:13px}
+#observatory.guided-tour-active #guided-tour-panel .guided-tour-detail p{margin-top:0}
+@media(max-width:760px){
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel)>.walk-row:first-child strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+
+@media(max-width:760px){
+ #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile]{
+  border:1px solid var(--hairline-med);border-radius:var(--radius-lg);
+ }
+}
+
+@media(max-width:760px){
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) #guided-tour-elevation{display:none}
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) #guided-tour-select{max-width:40vw}
+}@media(max-width:350px){
+ #observatory.guided-tour-active #guided-director-board #guided-board-media .guide-board-frame{display:none}
+ #observatory.guided-tour-active #guided-director-board #guided-board-media button{min-height:26px;padding:2px 3px}
+}
+
+/* One right rail. The two scopes swap inside a single fixed-height map pane. */
+#guided-reference-dock[hidden],#guided-reference-credit[hidden],#guided-location-card[hidden]{display:none}
+#observatory.guided-tour-active #guided-reference-dock:not([hidden]){
+ box-sizing:border-box;position:absolute;left:auto;right:var(--guide-right,12px);top:var(--guide-map-y,61px);
+ width:var(--guide-right-w,425px);max-height:calc(100dvh - var(--guide-map-y,61px) - var(--v75-nav-space,77px) - 8px);
+ display:flex;flex-direction:column;gap:0;z-index:79;padding:0;overflow:hidden;
+ color:#e8f4fc;background:#152332f5;border:1px solid #728ca591;border-radius:10px;
+}
+#guided-reference-dock .guided-reference-title{display:flex;justify-content:space-between;align-items:center;padding:5px 9px;min-height:34px;gap:8px;font-size:12px;flex:0 0 auto}
+#guided-reference-dock .guided-reference-title div{display:flex;align-items:center;gap:2px}
+#guided-reference-dock .guided-reference-title button{min-height:26px;border-color:transparent;border-radius:5px;padding:2px 9px}
+#guided-reference-dock .guided-reference-title button[aria-pressed="true"]{background:#3a5a71;color:#fff}
+#guided-map-pane{height:111px;flex:0 0 auto;position:relative;border-top:1px solid #7893af42;border-bottom:1px solid #7893af42;background:#172936}
+#observatory.guided-tour-active #guided-reference-dock #guided-nav-map:not([hidden]),
+#observatory.guided-tour-active #guided-reference-dock #guided-location-card:not([hidden]){
+ position:static!important;inset:auto!important;visibility:visible!important;box-sizing:border-box;margin:0;width:100%!important;max-width:none!important;height:100%;max-height:none;
+ overflow:hidden;padding:4px 10px;border:0;border-radius:0;background:transparent;pointer-events:auto;
+}
+#observatory.guided-tour-active #guided-reference-dock #guided-nav-map>svg{width:auto;height:100%;max-width:100%;margin:0 auto;overflow:hidden}
+#guided-reference-dock #guided-location-card strong{margin:1px 0 3px;color:#eef8ff}
+#guided-reference-dock #guided-location-card small{margin:3px 0 0;font-size:10px}
+#guided-reference-dock #guided-location-card #guided-four-inset:not([hidden]){height:55px;width:184px;max-width:100%;margin:0 auto}
+#guided-map-pane[data-view="overview"] #guided-location-card,#observatory #guided-map-pane[data-view="local"] #guided-nav-map{display:none!important}
+#guided-reference-credit{flex:0 0 auto;overflow:hidden;font-size:11px}
+#guided-reference-credit>summary{cursor:pointer;padding:7px 10px;color:#f0e5c4}
+#guided-reference-dock #fixed-history-credit:not([hidden]){
+ display:block;box-sizing:border-box;width:100%;max-width:none;margin:0;padding:2px 10px 8px;
+ border:0;border-radius:0;background:transparent;white-space:normal;overflow-wrap:anywhere;line-height:1.45;
+}
+#guided-reference-content{min-height:0}
+#observatory.guided-tour-active #guided-reference-dock .guided-reference-content{min-height:0;overflow:auto;overscroll-behavior:contain}
+#observatory.guided-tour-active #guided-reference-dock #guided-photo-preview:not([hidden]){
+ position:static;inset:auto;box-sizing:border-box;width:100%;max-width:none;max-height:none;margin:0;
+ border:0;border-top:1px solid #7893af53;border-radius:0;box-shadow:none;overflow:visible;z-index:auto;
+}
+#observatory.guided-tour-active #guided-reference-dock #guided-photo-preview:not([hidden]) #guided-photo-enlarged{max-height:min(41dvh,490px)}
+#observatory.guided-tour-active.studio-open #studio-drawer{z-index:82}
+#guided-kmz-profiles:not([hidden]){display:flex;flex-wrap:wrap;gap:4px;margin:0 0 5px}
+#guided-kmz-profiles .deck-btn{min-height:24px;padding:2px 7px}
+#guided-kmz-profiles .deck-btn[aria-pressed="true"]{border-color:#83cddd;color:#d8f8ff;background:#2b5065}
+@media(max-width:760px){
+ #guided-map-pane{height:82px}
+ #guided-reference-dock .guided-reference-title{padding:3px 7px;min-height:29px}
+ #guided-reference-credit>summary{padding:4px 8px}
+ #observatory.guided-tour-active #guided-reference-dock #guided-photo-preview:not([hidden]) #guided-photo-enlarged{max-height:37dvh}
+ #guided-reference-dock .guided-reference-title button{min-height:25px}
+ #guided-reference-dock #guided-location-card small{display:none}
+}
+@media(max-height:480px) and (orientation:landscape){
+ #guided-map-pane{height:54px}
+ #guided-reference-dock #guided-location-card #guided-four-inset:not([hidden]){height:31px}
+ #guided-reference-dock #guided-location-card small{display:none}
+}
+
+
+#guided-map-pane[data-view="local"]{height:202px}
+#guided-reference-dock #guided-map-pane #guided-map-inset{
+ display:none;box-sizing:border-box;width:100%;max-width:none;height:100%;margin:0;padding:5px 8px;
+}
+#guided-reference-dock #guided-map-pane[data-view="local"]:not(:has(#guided-location-card:not([hidden]))) #guided-map-inset:not([hidden]){display:block}
+#guided-reference-dock #guided-map-pane[data-view="local"] #guided-four-inset:not([hidden]){height:min(115px,68%);width:100%}
+@media(max-width:760px){
+ #guided-map-pane[data-view="local"]{height:149px}
+ #guided-reference-dock #guided-map-pane[data-view="local"] #guided-four-inset:not([hidden]){height:min(87px,68%)}
+}
+@media(max-height:480px) and (orientation:landscape){
+ #guided-map-pane[data-view="local"]{height:90px}
+ #guided-reference-dock #guided-map-pane[data-view="local"] #guided-four-inset:not([hidden]){height:48px}
+}
+
+#observatory.guided-tour-active #guided-reference-dock .guided-reference-content{display:flex;flex:0 1 auto;overflow:hidden}
+#observatory.guided-tour-active #guided-reference-dock #guided-photo-preview:not([hidden]){flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain}
+
+#guided-profile-ground-cursor[hidden],#observatory:not(.guided-tour-active) #guided-profile-ground-cursor{display:none}
+#guided-profile-ground-cursor:not([hidden]){
+ display:block;position:absolute;left:0;top:0;width:19px;height:19px;box-sizing:border-box;
+ z-index:53;border-radius:50%;border:2px solid #fff;background:#dd3a35;
+ box-shadow:0 0 0 2px #162334,0 0 0 4px #fff8;pointer-events:none;transition:none;
+}
+#guided-profile-ground-cursor::after{content:"";position:absolute;inset:5px;border-radius:50%;background:white}
+
+
+/* Draw the vector into the usable map viewport, not a fixed-height picture box. */
+#guided-reference-dock{container-type:inline-size}
+@media(min-width:761px) and (min-height:481px){
+ #guided-map-pane[data-view="overview"]{height:clamp(111px,41cqw,190px)}
+ #guided-map-pane[data-view="local"]{height:clamp(160px,56cqw,262px)}
+}
+#guided-reference-dock.v74-custom-panel #guided-map-pane{height:auto;min-height:48px;flex:1 1 0;overflow:hidden}
+#guided-reference-dock.v74-custom-panel:has(.guided-reference-content #guided-photo-preview:not([hidden])) #guided-map-pane{flex:5 1 0}
+#observatory.guided-tour-active #guided-reference-dock.v74-custom-panel:has(#guided-photo-preview:not([hidden])) .guided-reference-content{flex:4 1 0}
+#observatory.guided-tour-active #guided-reference-dock #guided-nav-map>svg{width:100%;height:100%}
+#observatory.guided-tour-active #guided-reference-dock #guided-map-pane[data-view="local"] #guided-location-card:not([hidden]){
+ display:flex;flex-direction:column;gap:2px;
+}
+#observatory.guided-tour-active #guided-reference-dock #guided-map-pane[data-view="local"] #guided-four-inset:not([hidden]){
+ width:100%;height:auto;min-height:24px;flex:1 1 0;
+}
+#guided-reference-dock.v74-custom-panel #guided-reference-credit[open] #guided-credit-slot{max-height:20dvh;overflow:auto}
+
+#guided-east-controls:not([hidden]){display:grid;gap:5px;margin:4px 0 8px}
+#guided-east-controls>div{display:flex;flex-wrap:wrap;gap:4px}
+#guided-east-controls .deck-btn{min-height:24px;padding:2px 6px;font-size:11px}
+#guided-east-controls .deck-btn[aria-pressed="true"]{background:#3a5a71;color:#fff;border-color:#86bfd3}
+#guided-east-controls>small{line-height:1.4;color:#a9becc}
+#guided-east-legend{font-size:11px;overflow:auto;max-height:min(24dvh,185px);flex:0 0 auto}
+#guided-east-legend>summary{padding:6px 10px;cursor:pointer;color:#e1ecf5}
+#guided-east-layers{padding:2px 9px 7px;display:grid;gap:3px}
+#guided-east-layers label{display:grid;grid-template-columns:18px 27px 1fr;align-items:center;gap:5px;min-height:25px;line-height:1.3;cursor:pointer}
+#guided-east-layers svg{width:27px;height:12px}
+#guided-east-layers input{accent-color:#8acaef}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-expanded="true"][data-tour-profile]:not(.v74-custom-panel){
+ left:var(--guide-profile-x,var(--guide-left,12px));width:var(--guide-profile-w,var(--guide-left-w,380px))!important
+}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck.v81-profile-avoid[data-tour-profile]{
+ top:var(--guide-profile-y)!important;left:var(--guide-profile-x)!important;width:var(--guide-profile-w)!important;height:var(--guide-profile-h)!important
+}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck.v81-profile-avoid[data-tour-profile] svg.profile-svg{height:calc(var(--guide-profile-h) - 30px)}
+.guide-continuity-pin{box-sizing:border-box;inline-size:max-content;max-inline-size:min(170px,44vw);overflow-wrap:anywhere;text-align:center}
+#hud-top-left .hud-meta-pills,#hud-top-left #btn-guide-chapter-one{inline-size:var(--atlas-home-card-width,100%);max-inline-size:100%;box-sizing:border-box}
+#hud-top-left #fixed-history-credit{inline-size:100%;max-inline-size:100%;box-sizing:border-box;white-space:normal;overflow-wrap:anywhere}
+
+
+/* Main script uses its content’s natural height until the available left lane is full. */
+#observatory.guided-tour-active #guided-tour-panel:not([hidden]):not(.v74-custom-panel){
+ height:auto;max-height:var(--guide-script-max,52dvh);overflow:hidden;
+}
+#observatory.guided-tour-active #guided-tour-panel #guided-observer-script:not([hidden]){
+ flex:0 1 auto;min-height:0;max-height:none;overflow-y:auto;scrollbar-gutter:auto;
+}
+#observatory.guided-tour-active.v74-tour-profile-open #guided-tour-panel.v74-custom-panel:not([hidden]){
+ height:min(var(--v74-h),var(--guide-script-max,52dvh))!important;
+}
+#observatory.guided-tour-active #guided-tour-panel #guided-observer-script[hidden]{display:none}
+@media(max-height:515px) and (orientation:landscape){
+ #observatory.guided-tour-active #guided-reference-dock:not(.v74-custom-panel){max-height:135px}
+}
+
+@media (max-height:515px) and (min-width:500px) and (max-width:760px) and (orientation:landscape){
+ #observatory.guided-tour-active #guided-tour-panel #guided-tour-elevation{display:none}
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) .walk-row{margin-block:0 2px;gap:4px}
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) #guided-director-board{min-height:24px;margin-block:0 2px}
+ #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) #guided-board-media img{height:27px}
+}
+
+/* Leave room to read broad model basins on the main map. Manual resizing still wins. */
+#observatory.guided-tour-active.guide-catchment-stop #guided-reference-dock:not([hidden]):not(.v74-custom-panel){height:198px}
+@media(max-width:760px){
+ #observatory.guided-tour-active.guide-catchment-stop #guided-reference-dock:not([hidden]):not(.v74-custom-panel){height:154px}
+ #observatory.guided-tour-active.guide-catchment-stop #guided-tour-panel:not([hidden]):not(.v74-custom-panel){max-height:min(var(--guide-script-max,42dvh),194px)}
+}

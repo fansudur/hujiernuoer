@@ -1,0 +1,1058 @@
+{
+  "type": "FeatureCollection",
+  "name": "Owner sketch from 2-D map; hypotheses, each original stroke retained; no flow arrows",
+  "method": {
+    "source_image": "image(5).png",
+    "source_image_sha256": "d9d917a478f84fd6f5538d2a8ce80d86c3ac5d3a237fb7b7921b66aafd7fb92b",
+    "image6_not_digitized": "3D exaggerated oblique view; cannot independently approximate WGS84 geometry from 2D controls.",
+    "placement": "separate unjoined exact blue color components; red outline color isolated. Skeleton centerline simplified 1.35 display pixels. Fitted constrained north-up Web Mercator with one scale from four user KMZ pins (not snapped). Decimal coordinates for computational fidelity, not surveyed accuracy.",
+    "control_lonlat": [
+      [
+        119.6654463447027,
+        49.14203019679017
+      ],
+      [
+        119.6666261414633,
+        49.14201719526098
+      ],
+      [
+        119.6676516412598,
+        49.14226065651743
+      ],
+      [
+        119.6687125095413,
+        49.14224324057505
+      ]
+    ],
+    "control_image_xy": [
+      [
+        1264.95,
+        844.55
+      ],
+      [
+        1294.75,
+        845.05
+      ],
+      [
+        1319.45,
+        835.25
+      ],
+      [
+        1344.85,
+        836.15
+      ]
+    ],
+    "fit_control_residual_px": [
+      0.452,
+      0.638,
+      0.441,
+      0.416
+    ],
+    "fit_holdout": [
+      {
+        "id": "F1 approximate bridge marker",
+        "lonlat": [
+          119.6495,
+          49.14652
+        ],
+        "image_xy_observed": [
+          874,
+          677
+        ],
+        "image_xy_predicted": [
+          875.091,
+          676.321
+        ],
+        "image_residual_px": 1.285
+      },
+      {
+        "id": "F1 east old turn archive anchor",
+        "lonlat": [
+          119.6591,
+          49.1479
+        ],
+        "image_xy_observed": [
+          1109,
+          624
+        ],
+        "image_xy_predicted": [
+          1110.01,
+          624.695
+        ],
+        "image_residual_px": 1.226
+      }
+    ],
+    "red_is_sketch_only": true,
+    "uncertainty": "Sketch endpoints and line order not hydrologic directions. No channel, hydrologic connection, facility or throughput verified."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-1",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6514578,
+            49.1526496
+          ],
+          [
+            119.6519073,
+            49.1525694
+          ],
+          [
+            119.6523977,
+            49.1523823
+          ],
+          [
+            119.6526837,
+            49.1523556
+          ],
+          [
+            119.6528063,
+            49.1522754
+          ],
+          [
+            119.6543592,
+            49.1520616
+          ],
+          [
+            119.6576693,
+            49.1520616
+          ],
+          [
+            119.659263,
+            49.1521685
+          ],
+          [
+            119.6609385,
+            49.15281
+          ],
+          [
+            119.6618784,
+            49.1534247
+          ],
+          [
+            119.6619601,
+            49.1534247
+          ],
+          [
+            119.6646164,
+            49.1552421
+          ],
+          [
+            119.664739,
+            49.1554292
+          ],
+          [
+            119.664739,
+            49.1557499
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 1 · 国道东侧至西长湖南缘（部分可辨）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            923,
+            447
+          ],
+          [
+            934,
+            450
+          ],
+          [
+            946,
+            457
+          ],
+          [
+            953,
+            458
+          ],
+          [
+            956,
+            461
+          ],
+          [
+            994,
+            469
+          ],
+          [
+            1075,
+            469
+          ],
+          [
+            1114,
+            465
+          ],
+          [
+            1155,
+            441
+          ],
+          [
+            1178,
+            418
+          ],
+          [
+            1180,
+            418
+          ],
+          [
+            1245,
+            350
+          ],
+          [
+            1248,
+            343
+          ],
+          [
+            1248,
+            331
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "200405、201909、202107-2、202109 可见国道东侧内陆宽带与西长湖南缘向东折的亮暗地貌；弯折处位置相近。202504 泥泞样暗斑更多，但大部分浅深带并非一条窄槽。草图从国道东侧起，不是穿国道线；末端擦近湖岸外缘，不是确认入湖口。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "部分可辨",
+        "review_files": [
+          "google earth/200405.jpg",
+          "google earth/201909.jpg",
+          "google earth/202107-2.jpg",
+          "google earth/202109.jpg",
+          "google earth/202504.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201909",
+          "ge-root-202107-2",
+          "ge-root-202109",
+          "ge-root-202504"
+        ],
+        "related_ids": [
+          "wayback-source-west_long",
+          "g332-wf1-review",
+          "sketch-blue-west-long-lake"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-2",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6645347,
+            49.154574
+          ],
+          [
+            119.6654746,
+            49.1541998
+          ],
+          [
+            119.6663736,
+            49.153986
+          ],
+          [
+            119.6673544,
+            49.1538791
+          ],
+          [
+            119.6688255,
+            49.1538791
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 2 · 西长湖东南外缘独立短笔（待核）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            1243,
+            375
+          ],
+          [
+            1266,
+            389
+          ],
+          [
+            1288,
+            397
+          ],
+          [
+            1312,
+            401
+          ],
+          [
+            1348,
+            401
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "200405 可辨斜向细纹和局部暗凹；201909、202107-2 右段在多纹理浅斑里消散；202504 东端附近有深色水样小斑，但没有一条可逐年在同位从西到东追通的沟。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "待核",
+        "review_files": [
+          "google earth/200405.jpg",
+          "google earth/201909.jpg",
+          "google earth/202107-2.jpg",
+          "google earth/202504.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201909",
+          "ge-root-202107-2",
+          "ge-root-202504"
+        ],
+        "related_ids": [
+          "wayback-source-west_long",
+          "f1-east-marsh-field-review"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-3",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6631044,
+            49.1515805
+          ],
+          [
+            119.6658832,
+            49.1524892
+          ],
+          [
+            119.6665779,
+            49.15281
+          ],
+          [
+            119.6673135,
+            49.1532911
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 3 · 中部东侧斜向短笔（待核）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            1208,
+            487
+          ],
+          [
+            1276,
+            453
+          ],
+          [
+            1293,
+            441
+          ],
+          [
+            1311,
+            423
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "200405、201909、202107-2 在多条平行斜纹间可辨部分细带，202504 显出短暗痕但与草图各段不持续同位。不能从这些痕迹判断它与第 2 笔或更东泥沼相通。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "待核",
+        "review_files": [
+          "google earth/200405.jpg",
+          "google earth/201909.jpg",
+          "google earth/202107-2.jpg",
+          "google earth/202504.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201909",
+          "ge-root-202107-2",
+          "ge-root-202504"
+        ],
+        "related_ids": [
+          "f1-ge-imagefirst-marsh-west-gap",
+          "f1-east-marsh-field-review"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-4",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6596717,
+            49.1520349
+          ],
+          [
+            119.6605299,
+            49.1518478
+          ],
+          [
+            119.661388,
+            49.151527
+          ],
+          [
+            119.6616332,
+            49.1515003
+          ],
+          [
+            119.6620419,
+            49.1513132
+          ],
+          [
+            119.6628183,
+            49.1511796
+          ],
+          [
+            119.6637991,
+            49.1508856
+          ],
+          [
+            119.6645755,
+            49.1505113
+          ],
+          [
+            119.6649842,
+            49.1502173
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 4 · 西长湖南侧旁向东南（待核）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            1124,
+            470
+          ],
+          [
+            1145,
+            477
+          ],
+          [
+            1166,
+            489
+          ],
+          [
+            1172,
+            490
+          ],
+          [
+            1182,
+            497
+          ],
+          [
+            1201,
+            502
+          ],
+          [
+            1225,
+            513
+          ],
+          [
+            1244,
+            527
+          ],
+          [
+            1254,
+            538
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "草图由宽带边折入斜坡。200405 与201404 可见斜向多重地表纹，201909 中段穿过若干不同方向的浅纹，202107-2 为宽绿带、202504 斑纹断续。未找到可从起点追到草图南端的独立沟槽。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "待核",
+        "review_files": [
+          "google earth/200405.jpg",
+          "google earth/201404.jpg",
+          "google earth/201909.jpg",
+          "google earth/202107-2.jpg",
+          "google earth/202504.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201404",
+          "ge-root-201909",
+          "ge-root-202107-2",
+          "ge-root-202504"
+        ],
+        "related_ids": [
+          "sketch-blue-west-long-lake",
+          "f1-ge-imagefirst-marsh-west-gap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-5",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6524386,
+            49.146689
+          ],
+          [
+            119.6530107,
+            49.1468226
+          ],
+          [
+            119.6550131,
+            49.1475711
+          ],
+          [
+            119.6551765,
+            49.147678
+          ],
+          [
+            119.6566477,
+            49.1481057
+          ],
+          [
+            119.6574241,
+            49.1484265
+          ],
+          [
+            119.6587318,
+            49.1492016
+          ],
+          [
+            119.6606116,
+            49.1508054
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 5 · 桥东可见低带与向东北的长笔（部分可辨）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            947,
+            670
+          ],
+          [
+            961,
+            665
+          ],
+          [
+            1010,
+            637
+          ],
+          [
+            1014,
+            633
+          ],
+          [
+            1050,
+            617
+          ],
+          [
+            1069,
+            605
+          ],
+          [
+            1101,
+            576
+          ],
+          [
+            1147,
+            516
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "200405、201909、202107-2、202109 在草图靠桥东起段可复认弯曲低带；向东北后的草图穿越扇形平行条纹及局部路迹，不能把这段续成沟。它也不从三八水库中桥孔口开始。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "部分可辨",
+        "review_files": [
+          "google earth/200405.jpg",
+          "google earth/201909.jpg",
+          "google earth/202107-2.jpg",
+          "google earth/202109.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201909",
+          "ge-root-202107-2",
+          "ge-root-202109"
+        ],
+        "related_ids": [
+          "f1-east-bridge-location-ref",
+          "f1-ge-imagefirst-east-apron",
+          "f1-east-old-turn-review"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-6",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6614289,
+            49.148079
+          ],
+          [
+            119.6621645,
+            49.1482393
+          ],
+          [
+            119.6627774,
+            49.1482393
+          ],
+          [
+            119.6632678,
+            49.1481324
+          ],
+          [
+            119.6639625,
+            49.1478651
+          ],
+          [
+            119.6651476,
+            49.147277
+          ],
+          [
+            119.6655971,
+            49.1471434
+          ],
+          [
+            119.666537,
+            49.146983
+          ],
+          [
+            119.666864,
+            49.1468226
+          ],
+          [
+            119.6674769,
+            49.146689
+          ],
+          [
+            119.667763,
+            49.1464751
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 6 · 桥东低地北侧至场院北缘（部分可辨）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            1167,
+            618
+          ],
+          [
+            1185,
+            612
+          ],
+          [
+            1200,
+            612
+          ],
+          [
+            1212,
+            616
+          ],
+          [
+            1229,
+            626
+          ],
+          [
+            1258,
+            648
+          ],
+          [
+            1269,
+            653
+          ],
+          [
+            1292,
+            659
+          ],
+          [
+            1300,
+            665
+          ],
+          [
+            1315,
+            670
+          ],
+          [
+            1322,
+            678
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "草图与多期向东展宽的低地及旧暗斑边缘相近；200405 近末端有大块深暗外观，201909、202109 表现为植被或暗色盆形。草图中间多处横过较浅地表或田缘，分段看，不沿整笔画通道。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "部分可辨",
+        "review_files": [
+          "google earth/200405.jpg",
+          "google earth/201909.jpg",
+          "google earth/202107-2.jpg",
+          "google earth/202109.jpg",
+          "google earth/202504.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201909",
+          "ge-root-202107-2",
+          "ge-root-202109",
+          "ge-root-202504"
+        ],
+        "related_ids": [
+          "f1-se-visible-arc-to-basin",
+          "f1-se-middle-unresolved-after-wide-low-ground",
+          "road03-ge-north-depression-core",
+          "road03-ge-north-basin-inlet-form"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-7",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6566477,
+            49.1474909
+          ],
+          [
+            119.6585683,
+            49.1475711
+          ],
+          [
+            119.6595082,
+            49.1473572
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 7 · 桥东旧转折附近短笔（多期可辨）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            1050,
+            640
+          ],
+          [
+            1097,
+            637
+          ],
+          [
+            1120,
+            645
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "200405、201909、202107-2、202109 均可辨相近位置的曲折暗／浅槽形；01 局部原图 200405、200909、202109 提供更细同位对照。短笔邻近已有数化弯槽，比周围草图段更具重复性；仍只是弯槽形态。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "多期可辨",
+        "review_files": [
+          "google earth/200405.jpg",
+          "google earth/201909.jpg",
+          "google earth/202107-2.jpg",
+          "google earth/202109.jpg",
+          "google earth/01/200405.jpg",
+          "google earth/01/200909.jpg",
+          "google earth/01/202109.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201909",
+          "ge-root-202107-2",
+          "ge-root-202109",
+          "ge-01-200405",
+          "ge-01-200909",
+          "ge-01-202109"
+        ],
+        "related_ids": [
+          "f1-ge-imagefirst-east-apron",
+          "f1-east-old-turn-review"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-8",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6603664,
+            49.1472503
+          ],
+          [
+            119.6607751,
+            49.1470899
+          ],
+          [
+            119.6612246,
+            49.1467157
+          ],
+          [
+            119.6613472,
+            49.146689
+          ],
+          [
+            119.6618375,
+            49.1462078
+          ],
+          [
+            119.6629818,
+            49.1454059
+          ],
+          [
+            119.664126,
+            49.1443366
+          ],
+          [
+            119.6651885,
+            49.1427326
+          ],
+          [
+            119.665352,
+            49.1421178
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 8 · 村北低地西缘至第 1 点附近（部分可辨）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            1141,
+            649
+          ],
+          [
+            1151,
+            655
+          ],
+          [
+            1162,
+            669
+          ],
+          [
+            1165,
+            670
+          ],
+          [
+            1177,
+            688
+          ],
+          [
+            1205,
+            718
+          ],
+          [
+            1233,
+            758
+          ],
+          [
+            1259,
+            818
+          ],
+          [
+            1263,
+            841
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "靠北一段邻可见弯槽及低地边缘；201707、201806、201906 原图和 03/201707、202109、202504 支持院落西侧绿带／窄带一再出现。草图中段未能沿同一细槽追通，院角有视线断口，路北低痕和路南浅凹分开。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "部分可辨",
+        "review_files": [
+          "google earth/200405.jpg",
+          "google earth/201707.jpg",
+          "google earth/201806.jpg",
+          "google earth/201906.jpg",
+          "google earth/201909.jpg",
+          "google earth/202109.jpg",
+          "google earth/202504.jpg",
+          "google earth/03/201707.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201707",
+          "ge-root-201806",
+          "ge-root-201906",
+          "ge-root-201909",
+          "ge-root-202109",
+          "ge-root-202504",
+          "ge-03-202109",
+          "ge-03-202504"
+        ],
+        "related_ids": [
+          "road03-ge-pin1-north-village-low-belt",
+          "road03-ge-pin1-north-green-belt",
+          "road03-ge-pin1-north-yard-edge",
+          "road03-ge-pin1-north-court-gap",
+          "hjn-03-road-pin-01"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "owner-20261123-blue-9",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.6680899,
+            49.1460474
+          ],
+          [
+            119.6682125,
+            49.1459138
+          ],
+          [
+            119.668376,
+            49.1451118
+          ],
+          [
+            119.6687029,
+            49.1442831
+          ],
+          [
+            119.6688664,
+            49.1423316
+          ]
+        ]
+      },
+      "properties": {
+        "name": "蓝笔 9 · 村北低地东缘至第 4 点附近（部分可辨）",
+        "status": "candidate",
+        "ink": "blue",
+        "source": "image(5).png",
+        "source_pixel_xy_zero_based": [
+          [
+            1330,
+            694
+          ],
+          [
+            1333,
+            699
+          ],
+          [
+            1337,
+            729
+          ],
+          [
+            1345,
+            760
+          ],
+          [
+            1349,
+            833
+          ]
+        ],
+        "source_skeleton_fraction_retained": 1.0,
+        "manually_not_snapped_to_pins": true,
+        "direction": null,
+        "closed_in_source": false,
+        "layer": "owner-blue-201909",
+        "feature_role": "owner_blue_sketch",
+        "description": "201909、202107-2、202109、202504 可复认便道或田界旁成列暗痕，近道路处另见分开的暗斑；01/202109 与 03/202504 分别支持两端地表外观。暗痕不等于开放水渠，院墙、横向便道和到道路之间不具连续证据，也不与路南宽低带直接接通。",
+        "placement_caveat": "这是草图配准的查看位置；不是已观测水流、实测水沟或涵洞坐标，不代表水流方向。",
+        "original_status": "owner_sketch_hypothesis_not_observed",
+        "review_status": "部分可辨",
+        "review_files": [
+          "google earth/201909.jpg",
+          "google earth/202107-2.jpg",
+          "google earth/202109.jpg",
+          "google earth/202504.jpg",
+          "google earth/01/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "review_imagery_ids": [
+          "ge-root-201909",
+          "ge-root-202107-2",
+          "ge-root-202109",
+          "ge-root-202504",
+          "ge-01-202109",
+          "ge-03-202504"
+        ],
+        "related_ids": [
+          "road03-ge-north-basin-east-pockets",
+          "road03-ge-north-basin-east-gap",
+          "road03-ge-north-basin-road-east-verge",
+          "hjn-03-road-pin-04",
+          "road03-ge-pin4-diffuse"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+/* Guide-specific review controls: the map, photo viewer and reference keep their own layouts. */
+#guided-camera-dialog{width:min(34rem,calc(100vw - 2rem));max-width:100%;border:1px solid var(--v93-border-strong);border-radius:.9rem;background:var(--v93-bg-elevated);color:var(--v93-ink);padding:.9rem}
+#guided-camera-dialog::backdrop{background:#0c172557}
+#guided-camera-dialog form>div{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+#guided-camera-dialog textarea{width:100%;box-sizing:border-box;background:var(--v93-bg-soft);color:inherit;border:1px solid var(--v93-border-strong);border-radius:.4rem;padding:.45rem;font:12px monospace}
+#guided-camera-dialog p{margin:.55rem 0;font-size:.85rem}
+#guide-play-toggles{
+  position:fixed;inset:auto max(10px,env(safe-area-inset-right),var(--guide-options-right,14px)) max(14px,env(safe-area-inset-bottom),var(--guide-options-bottom,76px)) auto;
+  margin:0;padding:6px;max-width:calc(100vw - 28px);
+  background:var(--v93-bg-elevated);color:var(--v93-ink);border:1px solid var(--v93-border-strong);
+  border-radius:12px;box-shadow:var(--v93-shadow);backdrop-filter:blur(16px);
+}
+#guide-play-toggles:popover-open{display:grid;gap:4px}
+#observatory #guide-play-toggles label{display:flex;align-items:center;gap:7px;min-height:40px;padding:0 9px;cursor:pointer;color:var(--v93-ink);background:transparent}
+#guide-play-toggles label:focus-within{outline:2px solid var(--accent-border);outline-offset:-2px;border-radius:6px}
+#observatory #guide-play-toggles label:hover{background:var(--v93-bg-soft);border-radius:6px}
+#observatory #guided-tour-nav-strip:has(#guide-play-toggles:popover-open) #guided-play-options{
+ background:var(--v93-accent-gold-bg);border-color:var(--v93-accent-gold);color:var(--v93-ink);
+}
+@media(max-width:760px){
+ #observatory.guided-tour-active #guided-tour-nav-strip:not(.v74-custom-panel){
+   position:fixed!important;left:8px!important;right:8px!important;bottom:max(6px,env(safe-area-inset-bottom))!important;top:auto!important;
+   width:calc(100vw - 16px)!important;min-width:0!important;max-width:none!important;height:46px!important;
+   padding:3px 4px!important;transform:none!important;box-sizing:border-box!important;
+ }
+ #observatory.guided-tour-active #guided-tour-nav-strip:not(.v74-custom-panel) .guided-tour-controls{
+   width:100%!important;flex-wrap:nowrap!important;justify-content:center!important;overflow:visible!important;gap:3px!important;
+ }
+ #observatory.guided-tour-active #guided-tour-nav-strip .guided-tour-controls>.deck-btn{
+   flex:1 1 0!important;min-width:0!important;padding:3px 0!important;font-size:10px!important;height:36px!important;min-height:36px!important;
+ }
+ #observatory.guided-tour-active :is(#guided-tour-panel,#chart-deck,#guided-reference-dock){bottom:calc(52px + max(6px,env(safe-area-inset-bottom)))!important}
+ #observatory.guided-tour-active.v74-tour-profile-open[data-v93-mob-tab="profile"] #chart-deck[data-expanded="true"][data-tour-profile]:not(.v74-custom-panel){width:auto!important;max-width:none!important;min-width:0!important;box-sizing:border-box;}
+ #observatory.guided-tour-active #v93-mob-tabs{bottom:calc(248px + max(6px,env(safe-area-inset-bottom)))}
+ #observatory.guided-tour-active.v93-mob-expanded #v93-mob-tabs{bottom:calc(min(56dvh, 470px) - 4px + max(6px,env(safe-area-inset-bottom)))}
+ #observatory.guided-tour-active #guided-photo-preview:not([hidden]){
+   bottom:calc(54px + max(6px,env(safe-area-inset-bottom)))!important;
+   background:var(--v93-bg-deep)!important;
+ }
+ #v93-prologue:not([hidden]){display:flex;flex-direction:column}
+ #v93-prologue .v93-pro-actions{order:-1;margin:0 0 9px}
+ #v93-prologue .v93-pro-head{order:-3}
+ #v93-prologue .v93-pro-lead{order:-2}
+ #v93-prologue .v93-btn-primary,#v93-prologue .v93-btn-secondary{min-height:44px;padding:8px;white-space:normal}
+}
+@media(max-width:380px),(pointer:coarse) and (max-height:500px){
+ #v93-prologue .v93-ev-card small{display:none}
+}
+@media (pointer:coarse) and (orientation:landscape) and (min-width:761px) and (max-height:500px){
+ #v93-prologue{display:flex;flex-direction:column;top:122px;max-height:calc(100dvh - 190px);padding:10px 12px}
+ #v93-prologue .v93-pro-head{order:-3}
+ #v93-prologue .v93-pro-lead{order:-2;margin:.3rem 0 .5rem}
+ #v93-prologue .v93-pro-actions{order:-1;margin-bottom:.45rem}
+ #observatory.guided-tour-active #guided-photo-preview:not([hidden]):not(.v74-custom-panel){
+  top:61px!important;bottom:66px!important;height:auto!important;max-height:none!important;width:min(43vw,460px)!important;
+ }
+ #observatory.guided-tour-active #guided-photo-preview .v82-photo-viewport{min-height:105px}
+
+}
+
+/* The reference map is UI chrome, not the satellite evidence layer. */
+html[data-theme="light"] {
+ --guide-reference-ground:#e5e9e4;
+ --guide-reference-label:#fcfaf4;
+ --guide-reference-ink:#203645;
+ --guide-reference-stem:#526e7b;
+ --guide-media-matte:#ece8dd;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock:not([hidden]),
+html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip,
+html[data-theme="light"] #observatory.guided-tour-active #guided-photo-preview:not([hidden]){
+ background:var(--v93-bg-elevated)!important;color:var(--v93-ink);border-color:var(--v93-border-strong);
+}
+html[data-theme="light"] #guided-reference-dock #guided-map-pane,
+html[data-theme="light"] #guided-reference-dock #guided-nav-map>svg,
+html[data-theme="light"] #guided-reference-dock #guided-map-inset:not([hidden]){
+ background:var(--guide-reference-ground);border-color:var(--v93-border);
+}
+html[data-theme="light"] #guided-reference-dock [data-inset-label]>rect{fill:var(--guide-reference-label)}
+html[data-theme="light"] #guided-reference-dock :is(.v84-label,[data-fixed-north]){fill:var(--guide-reference-ink)}
+html[data-theme="light"] #guided-reference-dock .v84-stem{stroke:var(--guide-reference-stem)}
+html[data-theme="light"] #guided-reference-dock #guided-four-inset text{fill:var(--guide-reference-ink)}
+html[data-theme="light"] #guided-reference-dock #guided-location-card strong,
+html[data-theme="light"] #guided-reference-dock #guided-reference-credit>summary,
+html[data-theme="light"] #guided-reference-dock .v82-zoom button,
+html[data-theme="light"] #guided-east-legend>summary,
+html[data-theme="light"] #guided-east-controls>small{color:var(--v93-ink-body)}
+html[data-theme="light"] #guided-reference-dock [role="group"] button[aria-pressed="true"],
+html[data-theme="light"] #guided-kmz-profiles .deck-btn[aria-pressed="true"],
+html[data-theme="light"] #guided-east-controls .deck-btn[aria-pressed="true"]{
+ background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-border);
+}
+html[data-theme="light"] #guided-reference-dock :is(.v82-zoom,#guided-credit-slot),
+html[data-theme="light"] #guided-tour-nav-strip .deck-btn,
+html[data-theme="light"] #guided-transition-label{
+ background:var(--v93-bg-elevated);color:var(--v93-ink);border-color:var(--v93-border-strong);
+}
+html[data-theme="light"] #observatory .guide-v74-measure-list{
+ background:var(--v93-bg-elevated)!important;color:var(--v93-ink)!important;border-color:var(--v93-border-strong)!important;
+}
+html[data-theme="light"] #guided-photo-preview :is(.v82-photo-viewport,img,#guided-photo-thumbs img),
+html[data-theme="light"] #guided-board-media img,
+html[data-theme="light"] #guided-history-pictures img{background:var(--guide-media-matte)}
+html[data-theme="light"] #guided-photo-preview .v75-date-label{color:var(--v93-ink-body)}
+html[data-theme="light"] .v93-idx-tag[data-t="profile"]{color:var(--accent-ink)}
+html[data-theme="light"] #guided-reference-dock [data-actual-road]{stroke:#83621c;stroke-opacity:.86}
+html[data-theme="light"] #guided-reference-dock [data-national-road]{stroke:#a6333d;stroke-opacity:.90}
+html[data-theme="light"] #guided-reference-dock [data-current-evidence]{
+ filter:drop-shadow(0 0 .6px #203645);
+}
+.guide-camera-adjustments{display:grid;grid-template-columns:repeat(2,minmax(70px,1fr));gap:4px;padding:5px 4px 0;border-top:1px solid var(--v93-border)}
+.guide-camera-adjustments button{min-height:38px;padding:4px 8px;border:0;border-radius:6px;background:var(--v93-bg-soft);color:var(--v93-ink);font:inherit;font-size:12px;cursor:pointer}
+.guide-camera-adjustments button:last-child{grid-column:1/-1}
+.guide-camera-adjustments button:focus-visible{outline:2px solid var(--v93-accent-gold);outline-offset:-2px}
+.guide-camera-adjustments small{grid-column:1/-1;color:var(--v93-ink-muted);font-size:11px;padding:2px 0}
+
+/* In portrait the original image opens as a bottom sheet; the map stays live above it. */
+@media(max-width:760px){
+ #observatory.guided-tour-active:has(#guided-photo-preview:not([hidden])) :is(#guided-tour-panel,#chart-deck,#guided-reference-dock,#guided-location-card,#v93-mob-tabs){
+   visibility:hidden!important;pointer-events:none!important;
+ }
+ #observatory.guided-tour-active #guided-photo-preview:not([hidden]){
+   top:auto!important;height:min(40dvh,370px)!important;max-height:calc(100dvh - 145px)!important;
+   min-height:0!important;overflow:auto!important;overscroll-behavior:contain;
+ }
+ #observatory.guided-tour-active #guided-photo-preview > header{
+   position:sticky;top:0;z-index:2;background:var(--v93-bg-deep);
+ }
+ #observatory.guided-tour-active #guided-photo-preview .v82-photo-viewport{
+   flex:1 0 min(22dvh,208px);min-height:100px;overflow:hidden;
+ }
+ #observatory.guided-tour-active #guided-photo-preview :is(.v75-evidence-media,#guided-photo-enlarged){
+   max-height:100%;
+ }
+}
+
+
+/* Ground points are never moved for collision avoidance; text is connected by leaders. */
+#guide-ground-anchors{display:none;position:absolute;inset:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:48}
+#observatory.guided-tour-active #guide-ground-anchors{display:block}
+#guide-ground-anchors circle{stroke:#11232e;stroke-width:1.5;paint-order:stroke fill}
+#guide-ground-anchors line{stroke-width:1.5;stroke-opacity:.95}
+#guided-prior-landmarks .guide-continuity-pin::before,#guided-four-map .guide-mark::after{content:none}
+#observatory #guided-prior-landmarks .guide-continuity-pin[style*="--guide-label-tone"]{
+ color:var(--guide-label-tone)!important;border-color:var(--guide-label-tone)!important;
+ background:#122431!important;box-shadow:0 2px 8px #000a!important;
+}
+
+#guide-v74-measurements .guide-measure-stem{stroke:#fff7e3;stroke-width:1.1;stroke-opacity:.83}
+
+html[data-theme="light"] #observatory.guided-tour-active #guided-camera-follow[aria-pressed="false"] {
+ background:#89320d!important;border-color:#6f2608!important;color:#fff8ef!important;
+ box-shadow:0 0 0 2px #89320d35;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-camera-follow[aria-pressed="false"]:hover{
+ background:#702708!important;
+}

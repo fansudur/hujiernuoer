@@ -1,0 +1,277 @@
+{
+  "voice": "Microsoft Huihui (local WinRT, zh-CN)",
+  "sampleRate": 16000,
+  "sourceSha256": "1c619d381cf81d286c2fbe23dec1f48cdd3334ae07fd252c1a82473706bd999f",
+  "steps": {
+    "chapter-opening": {
+      "file": "chapter-opening.wav",
+      "durationMs": 76520,
+      "frames": 1224320,
+      "sha256": "530eddd3241cdd0ab7283d1b0d964f8f86b21aa40064a88f9d9f96f0000d090c",
+      "body": "先从呼吉尔诺尔主湖看整个场地。以主湖为参照，沿西北坡和中桥，逐段看水往哪里走。先看主湖西北方向的大沟壑。从外坡沿几段可辨的低槽往下看，最后到国道三三二上的三八水库中桥。过了中桥，先认桥东低带和旧转折。下游分两个方向核查，不把缺口画成已经通水的沟。一个方向向东南看零三道路的四个现场点，再看二号、四号路南的沟形怎样经共同弯槽朝主湖西北岸延伸。另一个方向顺桥东低带往东北和东侧看，分别核查东部泥沼和东池。它们是可能的受水区，实际通水还待确认。看完西北坡、中桥和下游两个方向，再另走南边的地方道路，由南往北，先看东南 B，再看南中 C。最后到地方道路圆涵，分开看西侧候选来向和东侧低线。",
+      "tour": "opening",
+      "kind": "station"
+    },
+    "runoff-upper-slope": {
+      "file": "runoff-upper-slope.wav",
+      "durationMs": 29530,
+      "frames": 472480,
+      "sha256": "1f5901bd1f5d89f908201c2f1181bd18b39e74b3c87a2a7417c5d7173f714466",
+      "body": "先看主湖西北方向的外围坡地。青色分段是多期影像辨出的丘脚暗带、弯槽和较靠桥的会合段。两套三十米地表显示这些段落总体向低处降，但影像中间有间断，不能把整条大沟或整个上游汇水都接到中桥。下一站往东收近，看最后一段坡脚如何接近桥位。",
+      "tour": "runoff",
+      "kind": "station"
+    },
+    "runoff-west": {
+      "file": "runoff-west.wav",
+      "durationMs": 19305,
+      "frames": 308880,
+      "sha256": "a345bbbd7453b78c6f72a0d9b3b7999c8732d78dc63a871f624652ba643d05a5",
+      "body": "顺着刚才的大沟壑方向，另看更靠中桥的坡脚一段。图上高亮的青线，是坡脚反复可辨的弯形低带。线的东端已经标出来：这里到三八水库中桥桥位，直线约二十四米。",
+      "tour": "runoff",
+      "kind": "travel"
+    },
+    "runoff-bridge": {
+      "file": "runoff-bridge.wav",
+      "durationMs": 29055,
+      "frames": 464880,
+      "sha256": "9d8d9dd80686be2859e439e55d7ae5ea6245ee2b582f8ba3d34a8c66f8df864d",
+      "body": "这就是三八水库中桥。十一月二十二日，现场记录者在桥边看到桥下有敞开的过水空间。桥边坡陡、有护栏，当天没有下到桥底。桥牌和照片确认了桥位，也记录了桥两侧的地形。还要查的是坡脚的水怎样接到桥口，出桥后又怎样接到影像可辨的低带。",
+      "tour": "runoff",
+      "kind": "station"
+    },
+    "runoff-cross-gap": {
+      "file": "runoff-cross-gap.wav",
+      "durationMs": 20185,
+      "frames": 322960,
+      "sha256": "c3d1392709bbe0323bc2c569142c80ce526cde293bd5a62148b9e5aa90eaba72",
+      "body": "现在看桥位两侧：从桥西低带末端到桥位，直距约二十四米；从桥位到东低带起点，约八十三米。桥下留有过水空间。图上两根白线只标距离，桥外低带没有画成一条沟。",
+      "tour": "runoff",
+      "kind": "gap"
+    },
+    "runoff-east": {
+      "file": "runoff-east.wav",
+      "durationMs": 20615,
+      "frames": 329840,
+      "sha256": "2d3ee3e2fdf9c9b5a2ce76a85eb3593081293d220e35bd1e13bd0cc599dd0032",
+      "body": "桥东这段低带在不同时期能认出来。往旧转折方向追踪，在已辨认的末端停下。在旧转折附近分两路核查：先向东南找零三道路与主湖西北岸，再回看东北和东侧的泥沼、东池。",
+      "tour": "runoff",
+      "kind": "travel"
+    },
+    "runoff-bend-gap": {
+      "file": "runoff-bend-gap.wav",
+      "durationMs": 24055,
+      "frames": 384880,
+      "sha256": "eff21fa32e7e4b7a2b3ffa4c784044317c763c48a7032d74cefdb9507a034ace",
+      "body": "先看原先辨出的两端：东低带的末端和东南弯槽的起点，直距约一百四十八米。新标的零一道线与旧东低带相交，另一条共同上游线与东南弯槽相交。两个交点把地图线索对了起来。看图时仍可认出原地貌的间隔。",
+      "tour": "runoff",
+      "kind": "gap"
+    },
+    "runoff-se": {
+      "file": "runoff-se.wav",
+      "durationMs": 11465,
+      "frames": 183440,
+      "sha256": "feb8d23728c3c36021d4a88c549fa8667076d723bce4c0e088d69f0174b58cd3",
+      "body": "跨过无法核实的转折区，另看薄色低地上的东南弯槽。它能追到村北宽低地的西北缘，在那里停住。",
+      "tour": "runoff",
+      "kind": "travel"
+    },
+    "runoff-apron-gap": {
+      "file": "runoff-apron-gap.wav",
+      "durationMs": 22805,
+      "frames": 364880,
+      "sha256": "e2362ffba4fe4370271e5ae8d540c9c2bef7421136211a0de97d68704bc863c0",
+      "body": "白色标尺量的是东南弯槽的末端到零三道路第二点的直距，不是水走的路线。新标绘把重点转到两个过路点：西边零一号有较长的来路，东边零三号有单独的北侧支路。下一站把两条来路和共同低带放在一起看。",
+      "tour": "runoff",
+      "kind": "gap"
+    },
+    "kmz-north-to-crossings": {
+      "file": "kmz-north-to-crossings.wav",
+      "durationMs": 30400,
+      "frames": 486400,
+      "sha256": "e1a9b9709d7106cf0987885264a7bba9dba980e6f8edd94b04d6a40be8fc31f8",
+      "body": "青色实线是原来在影像里辨出的低带，青色短虚线是新标的来路。西侧的一号线与桥东低带在图上相交，再沿坡走到零三道路的第一点，两套地形数据都显示整体下降。共同上游线向东跨过原来的弯槽。三号线从北端走到第三点附近；它与共同线之间还差约一百五十九米。",
+      "tour": "runoff",
+      "kind": "station"
+    },
+    "history-200405": {
+      "file": "history-200405.wav",
+      "durationMs": 24100,
+      "frames": 385600,
+      "sha256": "38234e27f0b0917165a0a14fff7c917257bd12351bacdae0cae5385ee380dccc",
+      "body": "从桥东旧转折到零三道路，把两张影像放在同一个更大的范围内看。左图是二〇〇四年五月，右图是二〇二一年九月。两期都能认出北侧低带的部分轮廓；靠近道路的院落与沟形并不完全一样。打开原图可分区放大。",
+      "tour": "history",
+      "kind": "station"
+    },
+    "history-201309": {
+      "file": "history-201309.wav",
+      "durationMs": 13315,
+      "frames": 213040,
+      "sha256": "14da5c7a8b091bd43c50aaca6de286ea02e4ee3f76991c8796b19339f2b1dba7",
+      "body": "二〇一三年九月的旧影像适合看道路和场地的大形状。小沟以清晰的二〇二一年影像为背景，再打开旧影像做同位对照。",
+      "tour": "history",
+      "kind": "station"
+    },
+    "history-202109": {
+      "file": "history-202109.wav",
+      "durationMs": 17585,
+      "frames": 281360,
+      "sha256": "c374d829e3f8a9d0697a2790c1fd6773157e2c047c6571b2443ef1c4ca3ac06e",
+      "body": "回到同位对照的右图。二〇二一年九月还能认出旧转折和低带，但仍不能从画面追到一段连续的水迹。下一站先说这个断口怎么复核，再到零三道路逐点核对。",
+      "tour": "history",
+      "kind": "station"
+    },
+    "history-conditional": {
+      "file": "history-conditional.wav",
+      "durationMs": 22110,
+      "frames": 353760,
+      "sha256": "d75eb01f170c739fc8d9602f3111039d00be708fabf47ff38da7522c73419d40",
+      "body": "早期和近期近景帮助我们认出旧转折；二〇一三年的全区图只提供背景。约一百四十八米的断口仍然留空。下一场有径流时，可在同一时段分别记录两端湿痕和方向；两端都有湿痕不等于中间过水。",
+      "tour": "history",
+      "kind": "station"
+    },
+    "road-nw-approach": {
+      "file": "road-nw-approach.wav",
+      "durationMs": 16230,
+      "frames": 259680,
+      "sha256": "88c79654e4ed2d1b154a8c41d77aba7ee8da9191166d11d27163299a2ec2e9b8",
+      "body": "现在沿桥东分支的东南方向，来到零三道路。路旁四个编号对应原始标记。下一站从东向西，逐点看涵洞、沟槽和向主湖延伸的线索。",
+      "tour": "road",
+      "kind": "travel"
+    },
+    "road-nw-gully": {
+      "file": "road-nw-gully.wav",
+      "durationMs": 61630,
+      "frames": 986080,
+      "sha256": "d4d2d78556a104b356e687f2d700d707785870484223da7a16318a357a45ba2f",
+      "body": "沿零三道路从东向西看四处。先看东端四号点，这里不是涵洞。几条浅沟在路南低处汇合，再朝主湖方向延伸。再往西看三号点。两侧涵洞有现场连通记录。青色短虚线是三号北侧的来路线索，到低地边缘为止。二号点南侧有涵，北侧疑似填埋。路南还有一段在历年影像里反复可见的沟。它和三号点不是同一处。最后到西端一号点。两侧圆涵有现场连通记录。北侧青色短虚线是新标的一号来路，靠近原定位点。再看路南。二号南沟和四号下部弧槽分别接进共同弯槽，沿这条弯槽朝主湖西北岸看。",
+      "tour": "road",
+      "kind": "station"
+    },
+    "runoff-main-entrance-context": {
+      "file": "runoff-main-entrance-context.wav",
+      "durationMs": 37230,
+      "frames": 595680,
+      "sha256": "430146e81e77591291414f9427e4de7cf44f0b8a73b3938bbca09a37db661e51",
+      "body": "把刚才分开看的线索放回同一张图。由西北坡到中桥，桥东向东南一侧，零三道路南边的共同弯槽朝主湖西北岸延伸；向东北和东侧，分别看到泥沼低地与东池，两处没有画成相通的沟。北面的西长湖是另一处可能接纳坡地来水的水域，不能据此说是中桥分过去的。接下来镜头移向南侧地方道路，先看东南 B，再往北看南中 C。",
+      "tour": "corridor-to-lake",
+      "kind": "station"
+    },
+    "kmz-outer-options": {
+      "file": "kmz-outer-options.wav",
+      "durationMs": 25385,
+      "frames": 406160,
+      "sha256": "23333925cb2127c64d43f9b3c01275b0a0b612846c3c03584f747882bef412c9",
+      "body": "东侧先看这两条琥珀色虚线。一条标出待核走水位置，另一条把观察往东延伸到后院方向。原标绘两条线不相交，也没有证据证明已通水或水进了院。它们提示从哪里继续找低地；下一站先看东部泥沼，再向东查东池。",
+      "tour": "corridor-to-lake",
+      "kind": "station"
+    },
+    "east-marsh-source": {
+      "file": "east-marsh-source.wav",
+      "durationMs": 34440,
+      "frames": 551040,
+      "sha256": "ad2b5ae9160abc31515c346f8b804adc404dba116b44179850848fc3dd3966ff",
+      "body": "看完两条待核虚线，再沿桥东低带方向往东北看，旧转折再向东北，有一段斜向纹理。纹理在东部泥沼西边渐渐散开。琥珀色轮廓是要核查的低地区，不是这一整片都有水。东西横剖可以看地势起伏，但不是水流路线。低地可能接纳邻近浅洼汇水，也值得查西侧来水；目前两者都没有现场证实。",
+      "tour": "east-water",
+      "kind": "station"
+    },
+    "east-pool-source": {
+      "file": "east-pool-source.wav",
+      "durationMs": 33245,
+      "frames": 531920,
+      "sha256": "e862330a6161a7752c11b3a29a8c2f92176e9705dee40230fb0cb0bf9ce75e96",
+      "body": "再向东认一下东池。蓝色轮廓是二零二五年九月二十二日的分类水面。长短不同的紫色虚线是两套填洼地形情景，从东北搜索窗独立起算，都到东池参考水面，但走法不同。不填洼时，从这个窗口起算的路径都在局部停下。这里只把西侧低带列为候选，池边实际入口和其他水源还没有核实。",
+      "tour": "east-water",
+      "kind": "station"
+    },
+    "east-connection-check": {
+      "file": "east-connection-check.wav",
+      "durationMs": 44230,
+      "frames": 707680,
+      "sha256": "86222239c576fc9091d28a09537cbd4361bb55a686efcaab1187421f3203ce98",
+      "body": "最后把东部泥沼和东池放在同一张图上。两者之间能看见开阔浅低地，但多期影像没有可一路追到池岸的连续沟。从中桥东肩另算，两个填洼模型，一个到主湖，一个到东池。所以中桥、泥沼和东池之间还不能画成一条已通水的线。下一步应在同一场雨后，看泥沼西边、过渡低地、东池西岸哪里先有水。看完中桥下游的这组线索，接下来另走南边的地方道路，从东南 B 向北看南中 C。",
+      "tour": "east-water",
+      "kind": "station"
+    },
+    "road-b-southeast": {
+      "file": "road-b-southeast.wav",
+      "durationMs": 31395,
+      "frames": 502320,
+      "sha256": "5ee9797167f7e9df823cd7d2b658600be14a3f344eb6a425f6e85a6aecc187a6",
+      "body": "先看黄色的东南汇水分区，约五点三三平方公里，是这套模型最大的分区。名字说的是下游：上游从湖西偏南的坡地起算，紫色候选线沿湖的南侧绕向东南历史水面。道路上两套地表模型选出的低点不同，可在下方剖面看高差。黄色是模型汇水面积，不是积水范围或来水量。",
+      "tour": "road-context",
+      "kind": "station"
+    },
+    "road-c-approach": {
+      "file": "road-c-approach.wav",
+      "durationMs": 11595,
+      "frames": 185520,
+      "sha256": "f2673b8a04bdd3c51b9c6b77b54412aca7780087842094eb695ceaa9bcebc29b",
+      "body": "沿同一条地方道路继续向北。下一站是南中 C，仍保留南向北的观看方向，停下来后看紫线两侧。",
+      "tour": "road-context",
+      "kind": "travel"
+    },
+    "road-c-south-central": {
+      "file": "road-c-south-central.wav",
+      "durationMs": 25965,
+      "frames": 415440,
+      "sha256": "5bc12bdbf2c09cee69fd0ce6afdecc08b97c1d896f13ca3f3db7268fe977771f",
+      "body": "现在亮起的是南中分区，约三点五三平方公里。它也从湖西偏南的坡地来，但紫色候选线在道路东侧继续下降，终点朝历史主湖主体，不是刚才东南 B 所指的子区。看下方剖面，可以核对这条线的起伏；过路、入湖仍需现场核对。",
+      "tour": "road-context",
+      "kind": "station"
+    },
+    "road-round-approach": {
+      "file": "road-round-approach.wav",
+      "durationMs": 16170,
+      "frames": 258720,
+      "sha256": "3f55901e899d7991b9c600e12983ed5b3fd57a2d276495159fbafd2a09a3e258",
+      "body": "从 C 沿同一条道路继续向北。紫色虚线已经显示圆涵西侧坡脚的候选来向，以及东侧独立的低线。下一站看现场照片和连续里程的地表剖面。",
+      "tour": "road-context",
+      "kind": "travel"
+    },
+    "road-round": {
+      "file": "road-round.wav",
+      "durationMs": 24375,
+      "frames": 390000,
+      "sha256": "5701b03e7a9b46a207170654659b6173a263c240197bb5afcb7f8b3224eca510",
+      "body": "继续朝东看圆涵和它两边。现场照片拍到了管口和另一头透光。西面坡脚和路沟是来水候选；东侧另有一段低线，原地表模型走到局部浅洼就停。圆涵两端如何接上地面沟，以及涵内水向，留给现场核对。",
+      "tour": "road-context",
+      "kind": "station"
+    },
+    "lake-west": {
+      "file": "lake-west.wav",
+      "durationMs": 26255,
+      "frames": 420080,
+      "sha256": "7a4b8b328cd3c4b08867b957c72aa0d3f4e6cd18dd5e3d34db62b76f9d75a5c5",
+      "body": "最后从湖边回望西坡。黄色的西侧分区约五点零八平方公里。坡地在模型中向主湖西缘收拢；两条紫色模型支路是这个方向的参照，底部剖面取其中一条。沿线能看出总体下降，但近湖端是历史水面范围，不是已经找到的入湖口。",
+      "tour": "lake-inflow",
+      "kind": "station"
+    },
+    "lake-office-caution": {
+      "file": "lake-office-caution.wav",
+      "durationMs": 25580,
+      "frames": 409280,
+      "sha256": "361124c6fbdf413c4d2026d935d6b4a47665208b03b267a0f5acf86d27796f88",
+      "body": "回看整张图。国道三三二上的标点是三八水库中桥，主湖在桥的东南方向。北边零三道路一号、三号来路看青色短虚线。紫色三条线是地形对照：南中指向历史主湖，东南指向独立历史水面；圆涵东侧低线止在近路浅洼。",
+      "tour": "lake-inflow",
+      "kind": "station"
+    },
+    "chapter-closing": {
+      "file": "chapter-closing.wav",
+      "durationMs": 56465,
+      "frames": 903440,
+      "sha256": "8781b396813cdbef02786ec8f290774eae3397ccca52461a4b0fa8f2e1cc4809",
+      "body": "回到场地全景。先从西北坡大沟壑看向国道三三二上的三八水库中桥，再看北侧新增的来路和零三道路四点。共同上游线与东南弯槽在图上交会；一号与三号是两条分别标出的来路。路南二号和四号朝着共同弯槽与主湖西北岸。紫色线仍是地形候选。再看东侧，琥珀轮廓是东部泥沼核查区，蓝色轮廓是东池的单日水面。两处之间没有确认相通。南段另走的路线依次是东南 B、南中 C 和地方道路圆涵。下一步优先复核三号北端的间隔、各涵口与路边沟的衔接，以及共同弯槽近岸最后一段。",
+      "tour": "closing",
+      "kind": "station"
+    },
+    "runoff-field-bands-05": {
+      "file": "runoff-field-bands-05.wav",
+      "durationMs": 45500,
+      "frames": 728000,
+      "sha256": "97ff631574dd46f14daef4f89fa32bd8d581bf24965546dfdcdb1e699691404f",
+      "body": "先看二〇二一年四月的原图。田间这条深色弯带比夏景醒目，但暗色不一定是水。再把二〇一五年七月和二〇二一年七月并排，沿同一位置找重复出现的弯折。图上四条虚线是季节性走水候选。二号线和零一来路在图上相交，线尾离零一现场点还有约一百四十米。一号线西端离中桥约六十五米，不能接到桥孔。第三、第四线只作旁证。是否在丰水年份更明显，还要用同月降水和水面核对。",
+      "tour": "runoff",
+      "kind": "station"
+    }
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "type": "FeatureCollection",
+  "name": "右圈浅色斑与地方路独立核查线索",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "slope-bright-patch-200405",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.6506,
+              49.1281
+            ],
+            [
+              119.6524,
+              49.1281
+            ],
+            [
+              119.6524,
+              49.1292
+            ],
+            [
+              119.6506,
+              49.1292
+            ],
+            [
+              119.6506,
+              49.1281
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "slope-road-clues",
+        "name": "右圈浅色斑 · 影像查找范围",
+        "description": "这是浅色斑的粗略找图范围，不是原画绿圈边界，也不是冲刷、沙地、植被或湿地测绘面。标作2004-05的图上较亮；标作2014-05、2015-05、2017-05的同位斑偏暗。没有跨期规则植株行列可确认人工栽植。",
+        "feature_role": "bright-patch",
+        "status": "observed",
+        "source": "用户右圈截图与2004-05文件标记的本地Google Earth底图；多期同窗目视",
+        "surveyed": false,
+        "flowDirection": null,
+        "throughRoadConnection": "not_verified",
+        "two_d_anchor_wgs84": [
+          119.6514,
+          49.1285
+        ],
+        "three_d_anchor_wgs84": [
+          119.651554,
+          49.128454
+        ],
+        "display_geometry_role": "aoi_search_window_not_feature_boundary",
+        "evidence_scope": "visible_tonal_pattern_only"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "slope-owner-blue-upper",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.655345,
+          49.129631
+        ]
+      },
+      "properties": {
+        "layer": "slope-road-clues",
+        "name": "蓝笔上段 · 用户示意点",
+        "description": "蓝笔可配准的上端，位于G332东侧。与右圈浅斑中间隔着国道；不接线。",
+        "feature_role": "owner-blue-control",
+        "status": "candidate",
+        "source": "用户3D截图（8倍现代地表）；以归档C线解释成像后从截图独立反投影",
+        "surveyed": false,
+        "flowDirection": null,
+        "throughRoadConnection": "not_verified",
+        "source_pixel_xy": [
+          852,
+          406
+        ],
+        "placement_m_order_of_magnitude": [
+          5,
+          15
+        ],
+        "display_geometry_role": "perspective_registered_owner_mark_control_only"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "slope-owner-blue-middle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.658804,
+          49.130588
+        ]
+      },
+      "properties": {
+        "layer": "slope-road-clues",
+        "name": "蓝笔中段 · 用户示意点",
+        "description": "斜视截图上可独立定位的中点。净坡降不证明连续沟底，不从中点构造现状水路。",
+        "feature_role": "owner-blue-control",
+        "status": "candidate",
+        "source": "用户3D截图（8倍现代地表）；以归档C线解释成像后从截图独立反投影",
+        "surveyed": false,
+        "flowDirection": null,
+        "throughRoadConnection": "not_verified",
+        "source_pixel_xy": [
+          883,
+          447
+        ],
+        "placement_m_order_of_magnitude": [
+          5,
+          15
+        ],
+        "display_geometry_role": "perspective_registered_owner_mark_control_only"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "slope-owner-blue-tip",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.663162,
+          49.131844
+        ]
+      },
+      "properties": {
+        "layer": "slope-road-clues",
+        "name": "蓝笔路西末段 · 用户示意点",
+        "description": "蓝笔路西端与另一条地方路中心线约相隔12.5米；这一笔没有画过该道路。不是已看见的洞口或入湖口。",
+        "feature_role": "owner-blue-control",
+        "status": "candidate",
+        "source": "用户3D截图（8倍现代地表）；以归档C线解释成像后从截图独立反投影",
+        "surveyed": false,
+        "flowDirection": null,
+        "throughRoadConnection": "not_verified",
+        "source_pixel_xy": [
+          935,
+          527
+        ],
+        "placement_m_order_of_magnitude": [
+          5,
+          15
+        ],
+        "display_geometry_role": "perspective_registered_owner_mark_control_only"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "slope-local-road-search",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.66332853,
+          49.13186968
+        ]
+      },
+      "properties": {
+        "layer": "slope-road-clues",
+        "name": "地方路两肩 · 优先现场核查",
+        "description": "这是蓝笔末端到地方路中心线的最近参照，不是实测洞口。可沿路前后约60米寻找西侧近路沟与东侧同位出口并量相对沟底；若两侧不对应，不把此段接为过路通道。距现有圆涵照片相机约372米，二者分别保留。",
+        "feature_role": "road-search",
+        "status": "candidate",
+        "source": "蓝笔路西末点与冻结OSM way/162036946的平面几何量测；两套DSM横断",
+        "surveyed": false,
+        "flowDirection": null,
+        "throughRoadConnection": "not_verified",
+        "reference_road_osm": "way/162036946",
+        "on_road_search_half_length_m": 60,
+        "display_geometry_role": "road_center_reference_only"
+      }
+    }
+  ],
+  "provenance": {
+    "date": "2026-11-23",
+    "geometry": "WGS84 lon,lat; approximate registration; no channel or hydraulic geometry",
+    "input_audit_sha256": "7c7c47f4cb5531e50d135638351a96333a91f2b674e911834a51ead3f726eeeb",
+    "input_camera_script_sha256": "d8622361cf4d210ae1c21e675cdae1e63452b7f10597df3cc8d2fb3f6d503394",
+    "reference_image_sha256": {
+      "slope-1.png": "bbd1941fed292e751dcd1b56f70ee5df50561361b557df89cc026008efe46e48",
+      "slope-2.png": "308f816ba890e501abf06a8e5129f0463566196bc8971c8a85b646d003bed2e3",
+      "slope-3.png": "820b21ac9ac1fbf9a1582dff86cf49ddffa2390e93ca5a91c4948c029626c2ce"
+    },
+    "left_circle_excluded": true,
+    "no_connector": true,
+    "source_caveat": "All imagery months mentioned are archive file labels, not locally verified capture dates."
+  }
+}

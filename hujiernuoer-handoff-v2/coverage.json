@@ -1,0 +1,2975 @@
+{
+  "schema": "hujiernuoer/atlas-coverage/v2",
+  "baseline": {
+    "repository": "https://github.com/fansudur/hujiernuoer",
+    "commit": "470fa0fcac5866229cbc9419325dc8a27788cda6",
+    "science": "2026-10-26 冻结报告加有来源的衍生扩展；本包不改写科学基线",
+    "files": [
+      {
+        "path": "baseline/REBUILD_BRIEF.md",
+        "source": "",
+        "sha256": "5a5545be2bd1d21dea84534faadcc1e013ee0a29af38282addbc75017ac3cfdb"
+      },
+      {
+        "path": "baseline/catalog.json",
+        "source": "",
+        "sha256": "de0f5b9a933302b33f1bd52a0177f0e29aab59ab10ca4eecf80403ccfcab566e"
+      }
+    ]
+  },
+  "count": 389,
+  "baseline_layers": {
+    "source_index": "Sources, asset indices and provenance",
+    "derived_spatial": "Sourced geometry, classified footprints or derived terrain",
+    "derived_analytics": "Calculated records and summaries",
+    "report_evidence": "Report text/images retained for evidence",
+    "narrative": "Human explanation and sequence, replaceable",
+    "conditional_scenario": "Conditional concepts, not observations",
+    "presentation": "Display controls, replaceable"
+  },
+  "package_overlay": "现有离线图谱是接口和回归预览，独立资产＋数据目录才是新界面的科学输入。group disposition 是交接用途，目录条目保留版本/路径/哈希不声称已逐一重新下载。",
+  "groups": [
+    {
+      "id": "paired-shorelines",
+      "title": "主湖成对岸线／增减／缺测",
+      "disposition": "preserve-baseline",
+      "package_paths": [],
+      "rule": "原 JRC 归档岸线和已有成对增减保留，设计按原分类和共同有效像元判读；本包主湖月度水面/缺测是兼容的显示资产，不重写原始变化图。",
+      "count": 241,
+      "baseline_datasets": [
+        {
+          "id": "shoreline-change-pairs",
+          "path": "data/linked/shoreline_changes.json",
+          "layer": "derived_analytics",
+          "sha256": "033ba91df9dd6566390ec48f3d6b886e9f818afe66d9f6a0a133dc6f8dbbbc15",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "shoreline-index",
+          "path": "data/linked/shoreline_index.json",
+          "layer": "derived_spatial",
+          "sha256": "da39bf1e0d90670473d1c1ab3a39b45d902ac2e96f062d0bb93df8461b87cee5",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-1985-07_nodata",
+          "path": "data/linked/shorelines/1985-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "843b02f9f1b07bc48ffd75afa50af5e4f5ad982951e333e3ec85b423ababbe85",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-1985-07_shoreline",
+          "path": "data/linked/shorelines/1985-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "b5cf7e43ac7f7f83b68a35dc9fcb152191b1089f3bd2f03312bb7794d27608f9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-1985-07_water",
+          "path": "data/linked/shorelines/1985-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f5da40a0003d353098a71dab85ae03b5f0d20c56fc6c9874b0584709f91dc20e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-1999-07_nodata",
+          "path": "data/linked/shorelines/1999-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-1999-07_shoreline",
+          "path": "data/linked/shorelines/1999-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "55953298129453432d728ee2c73a4f6ec2fa31f60cd7093652f47baf63fbf0da",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-1999-07_water",
+          "path": "data/linked/shorelines/1999-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "2cf73f0f2ed7b61920f7e7f0fcade706cb885c90d5e92e96fe56e0d185b4c8e2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2000-08_nodata",
+          "path": "data/linked/shorelines/2000-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d5dd7f43ea9d8726abb38fef8f5a7ef68134fbec146f57ba5eb882bec87ea8ce",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2000-08_shoreline",
+          "path": "data/linked/shorelines/2000-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "2b9c06dc6d031e7161cf8f59cc0bcbdb48ee48110f241a2ecf770b9bfcc502db",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2000-08_water",
+          "path": "data/linked/shorelines/2000-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "3c26622d4a83c73ea183c0bbcfbcff8bc7805d04e80280dd4a91d1d223bbe50d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-06_nodata",
+          "path": "data/linked/shorelines/2001-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f76fb4d9aa24e8af7c197f950bfc9ebc6499de6af7823ca99d1903f9bd1efac9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-06_shoreline",
+          "path": "data/linked/shorelines/2001-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "3cf07953765b0ddd372d74be0e7d1cd2a71c9baa1cfb315c00481e69d11f991d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-06_water",
+          "path": "data/linked/shorelines/2001-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "385c062faa4170cbdbcef67a5f54d3c9cded1cd7e079788544ae00170e8a3f19",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-07_nodata",
+          "path": "data/linked/shorelines/2001-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-07_shoreline",
+          "path": "data/linked/shorelines/2001-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "772b92530181a7fd2204fe7d162f4df7ff3a4bc50ba1c048e27aac57ceb6e21c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-07_water",
+          "path": "data/linked/shorelines/2001-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8f5f89931feecc1cccae983fdaef9f0d6fefa4b4e95ee07aff881eb153602500",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-08_nodata",
+          "path": "data/linked/shorelines/2001-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "7e80c272b01573b551fb8249b2e04aba92dfff94ff147a1b79e1ee7b6393cf71",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-08_shoreline",
+          "path": "data/linked/shorelines/2001-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ddb138f7c1ae970928393bbb405eff4d58800ef8a368aebe8314d494d59e7bc3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2001-08_water",
+          "path": "data/linked/shorelines/2001-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8f9a7d81e922760af53e93ff7e7c15a98ded05f671a184b85ae6672f23cf83f0",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-05_nodata",
+          "path": "data/linked/shorelines/2002-05_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e445c33dfd8b9a37cc5c769011e009e26d3f396e73dc26a0b0c829968f3df31e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-05_shoreline",
+          "path": "data/linked/shorelines/2002-05_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "6129bc3ac469a9a2096a19775a3c5afb932cd1608147b6afb80a7e84a3855455",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-05_water",
+          "path": "data/linked/shorelines/2002-05_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "204c5f9ae21ea2ffbdd598420539b6be929cfadd852de8accbfaa2878674cacb",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-06_nodata",
+          "path": "data/linked/shorelines/2002-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "75ec6c583e735699231270502e00c1501c10309ee526b7b51c6400ddd08a6c2f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-06_shoreline",
+          "path": "data/linked/shorelines/2002-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ec9ce8de3e237371b9127b14b1c693ee11a61a8f8d920105528fbdd793af25a5",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-06_water",
+          "path": "data/linked/shorelines/2002-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8e20afb42237e9c2852c8683020c60c109f1fff2dd6636b728aa6c9aa5903f12",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-08_nodata",
+          "path": "data/linked/shorelines/2002-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "47fae7dc22423ecaf90b56a20cce983a2d31090bb831ed4438164d1714560234",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-08_shoreline",
+          "path": "data/linked/shorelines/2002-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "0f5af71a57796914c7652c45949bb75e340cf97958afcaf546e60962a8e0a57f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2002-08_water",
+          "path": "data/linked/shorelines/2002-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c016d74c59b16d1fcc102f4c7d089a0608a3464c794e379145df57600b55815c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-06_nodata",
+          "path": "data/linked/shorelines/2004-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-06_shoreline",
+          "path": "data/linked/shorelines/2004-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "1baeb3dca51d9e319a82a673a562418acb79ea456c659fa099cf6ad25336e689",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-06_water",
+          "path": "data/linked/shorelines/2004-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "da24d11f3dea3ca556782375f829ed09c65763d32489c5c617f77dfaac4e93f0",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-07_nodata",
+          "path": "data/linked/shorelines/2004-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-07_shoreline",
+          "path": "data/linked/shorelines/2004-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "124caa99c87011a1fd5979952c3aeff87bc28a0e5a74bc1f370877206346568b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-07_water",
+          "path": "data/linked/shorelines/2004-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "a5ddd736fd1d4764b6b703c62dc9106bc4c1e4265f041c80e02d9a78292d95f5",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-08_nodata",
+          "path": "data/linked/shorelines/2004-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f702c4b70bcf7962bc15b8a36f10d129671766d350459d37c49ba33f64e7ca04",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-08_shoreline",
+          "path": "data/linked/shorelines/2004-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f5f545ac0fa472ff2d4f757f00e65f0d4c759da8108b0f3ba5d3722c6725e78d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2004-08_water",
+          "path": "data/linked/shorelines/2004-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d915622945b7f7ff76d1eaa1dc5eb69361b1880f5bca1bfc1df2735b07d469e6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2005-08_nodata",
+          "path": "data/linked/shorelines/2005-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "16cb28c8ebd04ce9d6f10f661ed798bf4c98091965819ca46718dc88cea924f6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2005-08_shoreline",
+          "path": "data/linked/shorelines/2005-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "3b70db24b8e18a2775fb17aef475d15eae3a94a440cfd383cbfb98fee91fb27f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2005-08_water",
+          "path": "data/linked/shorelines/2005-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8de8f15aa0757f264f5d6b67acb8a5637b3e9dcebaf8610d5dec193495a36bda",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-05_nodata",
+          "path": "data/linked/shorelines/2006-05_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "871cfde638d2a85ab67c22519725bd0987dd627f361a254d8196964ccc5ee332",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-05_shoreline",
+          "path": "data/linked/shorelines/2006-05_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "5f032a554c4543493d5c6d48cf86eb41362a7bc88701f642ebe5cfd2208697cd",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-05_water",
+          "path": "data/linked/shorelines/2006-05_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "4cb7d5aa938e721e74ccedbed9f73cc801ef1a03bae9ced9a771ec963b31be12",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-06_nodata",
+          "path": "data/linked/shorelines/2006-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-06_shoreline",
+          "path": "data/linked/shorelines/2006-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f9012286a819da1fe2d6bfffa9d1fb6d9f1a261960c959e49b9a8503f53cb6f5",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-06_water",
+          "path": "data/linked/shorelines/2006-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "0139ce809c41780df252c77e5d184470644536fc30816a6bd9af945ae88d2adc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-08_nodata",
+          "path": "data/linked/shorelines/2006-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-08_shoreline",
+          "path": "data/linked/shorelines/2006-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-08_water",
+          "path": "data/linked/shorelines/2006-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-09_nodata",
+          "path": "data/linked/shorelines/2006-09_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c965ab38ef727689a59aa23fe1de22b7f8fe17cca1d6e932f29f4b7f53762961",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-09_shoreline",
+          "path": "data/linked/shorelines/2006-09_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2006-09_water",
+          "path": "data/linked/shorelines/2006-09_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-06_nodata",
+          "path": "data/linked/shorelines/2007-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-06_shoreline",
+          "path": "data/linked/shorelines/2007-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-06_water",
+          "path": "data/linked/shorelines/2007-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-07_nodata",
+          "path": "data/linked/shorelines/2007-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-07_shoreline",
+          "path": "data/linked/shorelines/2007-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-07_water",
+          "path": "data/linked/shorelines/2007-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-08_nodata",
+          "path": "data/linked/shorelines/2007-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-08_shoreline",
+          "path": "data/linked/shorelines/2007-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-08_water",
+          "path": "data/linked/shorelines/2007-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-10_nodata",
+          "path": "data/linked/shorelines/2007-10_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-10_shoreline",
+          "path": "data/linked/shorelines/2007-10_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "18f68530fc84cdb0b068506ca318515773a16db376de64ea4e1aa5436ce6b8bc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2007-10_water",
+          "path": "data/linked/shorelines/2007-10_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "b9ca2b31687a5212e86a8ff981c02323f496d71df9609f361df069b83a687fb2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-04_nodata",
+          "path": "data/linked/shorelines/2008-04_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c9b2d3ae886abec5cdc34b0bafb3d7ed2ed5fadb950a525e6c6eefd1293ecf53",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-04_shoreline",
+          "path": "data/linked/shorelines/2008-04_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "942d51ea0eddc1146c79de644d7b7ee528c15529e36150a9cf12296069584824",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-04_water",
+          "path": "data/linked/shorelines/2008-04_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c9bc789070fe3fe4e206d8a6b5ab0b475aa7caa4dc9732b0314e7f15f8b7c8ab",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-05_nodata",
+          "path": "data/linked/shorelines/2008-05_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8d6ea9034fa9754d5ba07297442919f6b980d7a2b04ff35430f837059f920416",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-05_shoreline",
+          "path": "data/linked/shorelines/2008-05_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "46c52addd4f68bf36eb5a6e25604a929c309b1b6966159ddfcd85e0742f1f353",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-05_water",
+          "path": "data/linked/shorelines/2008-05_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "83f5a545585500cc1b393522d836664837ff821a0ceddfee9dc84a74b6095802",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-06_nodata",
+          "path": "data/linked/shorelines/2008-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "738aca06a842010ac082fd7beed9eb2d15b2a3c4c21a0215185d6367ddcdf4de",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-06_shoreline",
+          "path": "data/linked/shorelines/2008-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-06_water",
+          "path": "data/linked/shorelines/2008-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-07_nodata",
+          "path": "data/linked/shorelines/2008-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "5e27459a8f39b1303961c822b98dce4038fbe770e14fa02aaeb3d9ae131aade9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-07_shoreline",
+          "path": "data/linked/shorelines/2008-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-07_water",
+          "path": "data/linked/shorelines/2008-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-08_nodata",
+          "path": "data/linked/shorelines/2008-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "98d3d4be7a7e67b068e091c742eb09877eb76da3cbc64168e28332a0670d403f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-08_shoreline",
+          "path": "data/linked/shorelines/2008-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f096c188eea17499e693e912ed35a18c6a21f83a545cffe2d1de94427a189d66",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-08_water",
+          "path": "data/linked/shorelines/2008-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "0ad0acdaf9b214175f9bfe75caf5837a94aca0e89fa04194b720544e681a8162",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-09_nodata",
+          "path": "data/linked/shorelines/2008-09_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "76017b1f1391a7a66811d6ed21190b4af97bb523b8a7b244694901a5103be3aa",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-09_shoreline",
+          "path": "data/linked/shorelines/2008-09_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-09_water",
+          "path": "data/linked/shorelines/2008-09_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-10_nodata",
+          "path": "data/linked/shorelines/2008-10_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "a0b8fb94de48d407f28e497cdd86955c3b35e26818a2f75b7b245634aecb8160",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-10_shoreline",
+          "path": "data/linked/shorelines/2008-10_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2008-10_water",
+          "path": "data/linked/shorelines/2008-10_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-05_nodata",
+          "path": "data/linked/shorelines/2009-05_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "169b40b38a16bdfe485c687627446053e18ef0f2bf8315c185ae42cee98ca98e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-05_shoreline",
+          "path": "data/linked/shorelines/2009-05_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-05_water",
+          "path": "data/linked/shorelines/2009-05_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-06_nodata",
+          "path": "data/linked/shorelines/2009-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-06_shoreline",
+          "path": "data/linked/shorelines/2009-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "7e512ef27815a1ccfe59fbf16964cb5342d6f2d85be1c2ed99956ee58d7e2785",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-06_water",
+          "path": "data/linked/shorelines/2009-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "6ddf0876ef62116d96f904f25143caa737558f9ed4c63e786ae4721f6d0ac602",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-07_nodata",
+          "path": "data/linked/shorelines/2009-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "186da898d8720c259f7cdeeaca5362d862434b7a143e746366b2a4f6600f6c1a",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-07_shoreline",
+          "path": "data/linked/shorelines/2009-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "fdf2ca439749060b75d5c9c49f820eb1461d8ae00b81b05ea10be37cf632343c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-07_water",
+          "path": "data/linked/shorelines/2009-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8945edbd788084e9845c906a42742a628fedc33e0773f9bf404852e8f4c96095",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-08_nodata",
+          "path": "data/linked/shorelines/2009-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "708e2df6a354261d4d928151a3fe81b82e712482df3a821d60aad35037ebacfc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-08_shoreline",
+          "path": "data/linked/shorelines/2009-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "7fa1a8658c5885a18da1d7ad1259711a921a5b087f662444651364a4c61d5bfd",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2009-08_water",
+          "path": "data/linked/shorelines/2009-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "5c3407c9b3dee51e86c551966c29c4a4819be5ca49430c91abf356ffe94d906b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-06_nodata",
+          "path": "data/linked/shorelines/2010-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "5db29ad76fabe54f9740af10021e24cedb9b3175585350a7761b7dc0b179da97",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-06_shoreline",
+          "path": "data/linked/shorelines/2010-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "3374914d30a4c1a444ddaa5dba30d3fa6ac92b8d8d5dc6a47309f5f536d43d19",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-06_water",
+          "path": "data/linked/shorelines/2010-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f46e498ec74f97f408b34552978b5f1f01e49ef64f463be30aaeda3159abe0d6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-07_nodata",
+          "path": "data/linked/shorelines/2010-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-07_shoreline",
+          "path": "data/linked/shorelines/2010-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d439a1b8bd7fda1f8d4214637e516aa7403dc24144b9259c8cdfbd5a4ca72c0e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-07_water",
+          "path": "data/linked/shorelines/2010-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "99318f12bc04814c7fe29db5f30169760a0b57b92c277d567fe7187fa128bd89",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-09_nodata",
+          "path": "data/linked/shorelines/2010-09_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "5f40581b89092a2af322891a82d1c417fc674eb3b49bb5e92fc6599de94da9bc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-09_shoreline",
+          "path": "data/linked/shorelines/2010-09_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f2e8d649a54ddb23fe544fc1a615c4ef32c15895cc4eb828a03250b04f633f72",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2010-09_water",
+          "path": "data/linked/shorelines/2010-09_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "5e4d33a112e8a5d37b476b64f4c5a6e55e7878f33798344e88dcb353581ae29d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2011-06_nodata",
+          "path": "data/linked/shorelines/2011-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2011-06_shoreline",
+          "path": "data/linked/shorelines/2011-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2011-06_water",
+          "path": "data/linked/shorelines/2011-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2011-08_nodata",
+          "path": "data/linked/shorelines/2011-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2011-08_shoreline",
+          "path": "data/linked/shorelines/2011-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2011-08_water",
+          "path": "data/linked/shorelines/2011-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-06_nodata",
+          "path": "data/linked/shorelines/2012-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "aefcb7926acb0aee908759d4c6949e1fc03db7c40ac49406361411b510312a3f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-06_shoreline",
+          "path": "data/linked/shorelines/2012-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "823621f07bae3620b24fb41f2fa02d4bcdba66f60881c661d6571b8f4b97fcaa",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-06_water",
+          "path": "data/linked/shorelines/2012-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f673f1dbb2d214a7b50a53527087477516d4e9c2dc0efb2b5420a27bfe600bb1",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-07_nodata",
+          "path": "data/linked/shorelines/2012-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "91681f4edb66a583a8c535ed1f4f6fbc201e3767745a5fa0a75c75bca4e5c038",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-07_shoreline",
+          "path": "data/linked/shorelines/2012-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e8b48f41ab2355c169c6cf15766f86ef8f8d678e98d14a3988b258fff1bcf21d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-07_water",
+          "path": "data/linked/shorelines/2012-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "1d79741d877b02890d56d58cdcdef9864556ec91a8e5ed7372fb1d1dc95fd4f9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-08_nodata",
+          "path": "data/linked/shorelines/2012-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "fa841a1bff71c87116def1334f86c750bb831025b3e9ebdf9bf03106d88691a0",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-08_shoreline",
+          "path": "data/linked/shorelines/2012-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c66b13d3c22bd8b365c49b915aed5e2fff400c14e43f6b2e722269dd1e82ddb9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2012-08_water",
+          "path": "data/linked/shorelines/2012-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "557dd67de4f8b479fdb823a7a2d8a90a6a05f1e00ee818a8c5cef79ee7a500d4",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2013-06_nodata",
+          "path": "data/linked/shorelines/2013-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "4bdcaf9e3d3496f774adeb4b5a8f74c25bc26b8167a99c284da24bf14dfc4039",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2013-06_shoreline",
+          "path": "data/linked/shorelines/2013-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "0f79c2a029de1bca1e1152eb4a4fbdda56889dba09de729fe9aa9d4a2b3a14de",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2013-06_water",
+          "path": "data/linked/shorelines/2013-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "dfa3005b12be7767c572245626cda0badbcbec2bc47322af997573a88cf26751",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2014-07_nodata",
+          "path": "data/linked/shorelines/2014-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e741f85a3a133ac63601c0883b36c5ffe5e4f4bebc0cda922a2a70056fa02d2e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2014-07_shoreline",
+          "path": "data/linked/shorelines/2014-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "2d265e0a38c4a8ee2c522b5736c9348e5d7c60a53941b325f39de24c2e9a30a6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2014-07_water",
+          "path": "data/linked/shorelines/2014-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "55a54ebb566dc93fb169347b079752f1a37b82f53d8e223f1ba4c02db3066b05",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2014-08_nodata",
+          "path": "data/linked/shorelines/2014-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "9bcaa7165a07b88b55c042dc1dbe3a7bdf512f43405ac648b59391d2560a09ac",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2014-08_shoreline",
+          "path": "data/linked/shorelines/2014-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "871cc5aa56ceb77cde430fe15902d6e89f1875b9edc7bc898cd2a5c853ad0715",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2014-08_water",
+          "path": "data/linked/shorelines/2014-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e7feecad7818c6f3c3970f4f51bd5fd73484cdaf6e4277bb0fd8e0ceb2de7077",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-06_nodata",
+          "path": "data/linked/shorelines/2015-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "419d45590ea03c16b980edaa776185004d80d21f973ef7126669f6403f611e67",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-06_shoreline",
+          "path": "data/linked/shorelines/2015-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "dbc4855d005ac555c261ddb16b243218be0d635160dbde775c489bf8515874a8",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-06_water",
+          "path": "data/linked/shorelines/2015-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "4326524e73107d9493b80fa51c22f0790cb28c94c82d84348a2360eaca8fea7a",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-07_nodata",
+          "path": "data/linked/shorelines/2015-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-07_shoreline",
+          "path": "data/linked/shorelines/2015-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "31471c530488262d39e11e297707b9ddddbaf27c3f496c4dc7d82ef0df052e71",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-07_water",
+          "path": "data/linked/shorelines/2015-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ea9bc7b00b0ad591d1462f60b9e63a9b05f3ae9958c012aa8a337084cd630a0b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-09_nodata",
+          "path": "data/linked/shorelines/2015-09_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "44ced73e605d83c063f91de399a84f982d4076d6b9ac390de2f50fa38b4830ed",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-09_shoreline",
+          "path": "data/linked/shorelines/2015-09_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ef0037bc324214c027b2756bc5073eb3d5eb558d22bf7bfcf5e8210ec53328c2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2015-09_water",
+          "path": "data/linked/shorelines/2015-09_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "72eae0a515c889a19a7ef7bf346eaeb42782dbb5a2ce0220fda32c7788bf9fc3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2016-07_nodata",
+          "path": "data/linked/shorelines/2016-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8e6def2e00527cb7e197e29b045b0db4076b97aa52ba006f7221d005e64648dc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2016-07_shoreline",
+          "path": "data/linked/shorelines/2016-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d89b6151d0ff8ca1640d75fb4b6c089f387d5e2fe6a40ac9de2c7411130e1967",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2016-07_water",
+          "path": "data/linked/shorelines/2016-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "b19e04cb720abd6ceba1eea98f4f6fbbcc44168f4a8afee96ae41482368deb18",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-06_nodata",
+          "path": "data/linked/shorelines/2017-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-06_shoreline",
+          "path": "data/linked/shorelines/2017-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "6cd9b594fc2bd87e32781bb111c1ff208a08a462c5b186145c4da9bc9137c1d0",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-06_water",
+          "path": "data/linked/shorelines/2017-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "71fc14b21b3a804f0b955e1e24ad9037ddc31e91084c8811736bcdd30a49b2ca",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-07_nodata",
+          "path": "data/linked/shorelines/2017-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "01ceced999d43752550634242374e5b5a2c88d29021aba999ad323ca8d7d33c2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-07_shoreline",
+          "path": "data/linked/shorelines/2017-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c7815079254ab54e194a9d487922f89f29909fdf7a2fce9590fbf8d340dbedd1",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-07_water",
+          "path": "data/linked/shorelines/2017-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f0fff0bca85bcff89217ae1538699538c0084fa1827a060569ca9896cecb6e6e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-08_nodata",
+          "path": "data/linked/shorelines/2017-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-08_shoreline",
+          "path": "data/linked/shorelines/2017-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "98dcfca071cfe810d6c109d8bc2829bc8fac8ad8d27fa72e99ff70a88ece238c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-08_water",
+          "path": "data/linked/shorelines/2017-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ca5f548e59692ac65a61f909f43db01d75abd0ee09780cbae43ba47c8075e2f6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-09_nodata",
+          "path": "data/linked/shorelines/2017-09_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "76244fb584ecb1a0ea5837b313e32a227b21e74a9b15afe9fbf3a80ab3eac762",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-09_shoreline",
+          "path": "data/linked/shorelines/2017-09_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "0efff9d867f2a54bf3f530a9ae99709d44435d7d30b925cf0de879a54f95939b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2017-09_water",
+          "path": "data/linked/shorelines/2017-09_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "bd60f7e24befea463b08d4d6ba46f1a8371f87a7f544c4f666af488e65322119",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-05_nodata",
+          "path": "data/linked/shorelines/2018-05_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-05_shoreline",
+          "path": "data/linked/shorelines/2018-05_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-05_water",
+          "path": "data/linked/shorelines/2018-05_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-06_nodata",
+          "path": "data/linked/shorelines/2018-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-06_shoreline",
+          "path": "data/linked/shorelines/2018-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c8614b8251bd520c5ea05917063c86f75d3020fd1dc497f0b35afe3376d3c205",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-06_water",
+          "path": "data/linked/shorelines/2018-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "aced392b683d5f800e659a277907f3ba9af9c70557ec66e1c1145b0b6e14d45d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-08_nodata",
+          "path": "data/linked/shorelines/2018-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c492e06ed988fc238729e468e3bd6ce29edec9a22639c5012b7ca67226248f7a",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-08_shoreline",
+          "path": "data/linked/shorelines/2018-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "2d1340a4e19c06641858c161bb34f01f48995e2adc307dad9627a2223f656a34",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2018-08_water",
+          "path": "data/linked/shorelines/2018-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "fd8c5fbb298e7793e2b62c9f19037c129877e1eae3464ff707145e5f94a9aa57",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-03_nodata",
+          "path": "data/linked/shorelines/2019-03_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-03_shoreline",
+          "path": "data/linked/shorelines/2019-03_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-03_water",
+          "path": "data/linked/shorelines/2019-03_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-04_nodata",
+          "path": "data/linked/shorelines/2019-04_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-04_shoreline",
+          "path": "data/linked/shorelines/2019-04_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-04_water",
+          "path": "data/linked/shorelines/2019-04_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-05_nodata",
+          "path": "data/linked/shorelines/2019-05_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "b1555207d6f198df7d0676ff6d29cf885a1f731aaaa90062b6f9ccb2435937bc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-05_shoreline",
+          "path": "data/linked/shorelines/2019-05_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-05_water",
+          "path": "data/linked/shorelines/2019-05_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-06_nodata",
+          "path": "data/linked/shorelines/2019-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-06_shoreline",
+          "path": "data/linked/shorelines/2019-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-06_water",
+          "path": "data/linked/shorelines/2019-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-08_nodata",
+          "path": "data/linked/shorelines/2019-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "4b836bcb5fa283ea65abaa218ff9d59d3f9c5998b0258316c848368fccb2222a",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-08_shoreline",
+          "path": "data/linked/shorelines/2019-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "684903d04fb411eb5698e86ba4dbc2723de077523a02d14de64f9e8fa1747424",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2019-08_water",
+          "path": "data/linked/shorelines/2019-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "b2d184f708b3cd67f5f2041fa96601d38f4a7b6acdf735bcd7c47405da5fff03",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2020-06_nodata",
+          "path": "data/linked/shorelines/2020-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2020-06_shoreline",
+          "path": "data/linked/shorelines/2020-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "57fcc8183979cc798312228091ea47191651598914c9c45098108d6631d6208c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2020-06_water",
+          "path": "data/linked/shorelines/2020-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "248f452524850bb5d33f85d3aea48a0d5e133885c6cfb3277bedaa579f0c3ef2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2020-07_nodata",
+          "path": "data/linked/shorelines/2020-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2020-07_shoreline",
+          "path": "data/linked/shorelines/2020-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "14d20ae91882771fb3bf42152c420f173f215bb8051cd2427cf6a83dad9a8e4f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2020-07_water",
+          "path": "data/linked/shorelines/2020-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8fdd69b818a4047cecd3d0235593907d14af240e4c4efa3d327be67155ce50dc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2021-07_nodata",
+          "path": "data/linked/shorelines/2021-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "cef116e6ec09d8efc96eb74a8195e53d6f34f27563c47ebcf88c0c24ad93a22c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2021-07_shoreline",
+          "path": "data/linked/shorelines/2021-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "b22f0325e2717209ad938cf19bc201cb1778205343009e341179f2c9e8c50881",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2021-07_water",
+          "path": "data/linked/shorelines/2021-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "05e2b71f7766d82fde9b46f85487e88ebd21e081de361cb8ee34f672bd7f3e22",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2021-08_nodata",
+          "path": "data/linked/shorelines/2021-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e9a2dbf5c29622669cf065fa001dc619f37c1ea15bb9c7b49c56ce24e8722999",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2021-08_shoreline",
+          "path": "data/linked/shorelines/2021-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "1759904782f43c6368bbfaf533484d85efd1f37ce77a4a4effc28a8dabc719bf",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2021-08_water",
+          "path": "data/linked/shorelines/2021-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "5b633a8f59e2bcb0b116244ee9a1d5429333ec48bb48580ab8eddf22ddceae1d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-06_nodata",
+          "path": "data/linked/shorelines/2022-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-06_shoreline",
+          "path": "data/linked/shorelines/2022-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "582cbec6faa1f21066b49526972d8b2d9dbc6fc6286fe32626470d4d61b1c5c7",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-06_water",
+          "path": "data/linked/shorelines/2022-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e2eb197bb508d33905445a94e82e231a8e2bcc8d200a8937efe2fe684912b2e9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-08_nodata",
+          "path": "data/linked/shorelines/2022-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-08_shoreline",
+          "path": "data/linked/shorelines/2022-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "fe937f1f2f87abc49cd425677be1eeefe0cb49a1a1f586d986c92177df2dc698",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-08_water",
+          "path": "data/linked/shorelines/2022-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "0b3f971b96dd49d2112a47ad2a78bb2fda024079a33712566dad5bfe1c75e121",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-09_nodata",
+          "path": "data/linked/shorelines/2022-09_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "55509d3da5371ccf9f909f2f01fcb0fa8cd0ed43c9ab138c49b6cec736a454f4",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-09_shoreline",
+          "path": "data/linked/shorelines/2022-09_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "bd29172aae6d3c52a22edb6797f7bedd5a1847603de5c0bc5144b4171a162984",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2022-09_water",
+          "path": "data/linked/shorelines/2022-09_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "2b097a1d4aeb21568b1b24d8331923cdd97a135374f9ef5c3f9afc989c462da3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-06_nodata",
+          "path": "data/linked/shorelines/2023-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-06_shoreline",
+          "path": "data/linked/shorelines/2023-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "81fcac5bf71f4d23994c15c4fbccdfc798904521de0d6c48549492ac173c2c09",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-06_water",
+          "path": "data/linked/shorelines/2023-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "7be33269d2f7265201b816288b0828ee3785f21bbdb30e4e203ff850744055b4",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-07_nodata",
+          "path": "data/linked/shorelines/2023-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-07_shoreline",
+          "path": "data/linked/shorelines/2023-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "a7e57b8287aecaae496028faaf6de066346f6a21db4eb6a9b7c15938cc209d53",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-07_water",
+          "path": "data/linked/shorelines/2023-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "792a11c12269507ebe31c8a93fa6dc81e6b078b72eb176da5a51f9289a9ea01e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-09_nodata",
+          "path": "data/linked/shorelines/2023-09_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e8ab38448eb115e3f1b232295d043d50ed42b189c14e874414540c7dba70091b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-09_shoreline",
+          "path": "data/linked/shorelines/2023-09_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "a7c980ef164cd021269efdf5d699633ed2aab2c3038e1b0f3bc63ec161755ada",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2023-09_water",
+          "path": "data/linked/shorelines/2023-09_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "2a06271f72e08446af15b6405be243c008a8faa5c84d3d6c854cf8449c75c5c4",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-06_nodata",
+          "path": "data/linked/shorelines/2024-06_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-06_shoreline",
+          "path": "data/linked/shorelines/2024-06_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "22f2134f1e0785185449879e76857cddc1f4b1e53dcbc9ffcbc0504891119f67",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-06_water",
+          "path": "data/linked/shorelines/2024-06_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "2e73d19b9126b62cf3ec07ee2f663c021754b86fd94ec77394390ab8da76b652",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-07_nodata",
+          "path": "data/linked/shorelines/2024-07_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-07_shoreline",
+          "path": "data/linked/shorelines/2024-07_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "450fc5b4ca2da70394b9f3e9b1fbf0bf0e42f7b1a384bf0e3eab8386a3ebe072",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-07_water",
+          "path": "data/linked/shorelines/2024-07_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "6a9fce20e32700c11b2bab78f6db032e18f6c9db5ec57b124baa4f16cf2cce66",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-08_nodata",
+          "path": "data/linked/shorelines/2024-08_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-08_shoreline",
+          "path": "data/linked/shorelines/2024-08_shoreline.geojson",
+          "layer": "derived_spatial",
+          "sha256": "5610690d67e19f693f507d4b16fbdf7bdf5d94e2458fc3593d672acbeabc534b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-2024-08_water",
+          "path": "data/linked/shorelines/2024-08_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "774a809bc65b28b7ea0625d45ae3a4245c0e5ccd65157c054ed959341a4f1cfe",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_1985-07_1999-07",
+          "path": "data/linked/shorelines/change_1985-07_1999-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "0d7869a3f2283e905d94b60696488f215903395d3c49b2b6aeb5d5b69dc10866",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_1999-07_2001-07",
+          "path": "data/linked/shorelines/change_1999-07_2001-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d30a19db436193d4a3074bb88091018e12e49771d2e0a5f45248c0aa0b0f261d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2000-08_2004-08",
+          "path": "data/linked/shorelines/change_2000-08_2004-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d0b3a4ed9dfc872bd0535b7faa8252c254ee5b1a56d2badafa4138e0d2c980dc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2001-06_2001-07",
+          "path": "data/linked/shorelines/change_2001-06_2001-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "541c5b438ac273babee0e69b88abf06606e30473d85306760f0808d1c35e1082",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2001-07_2001-08",
+          "path": "data/linked/shorelines/change_2001-07_2001-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f3c576b482a4b0f7ed557f13661533714865499dd1e9e5ec0a3ac5b8f694ee86",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2001-07_2012-07",
+          "path": "data/linked/shorelines/change_2001-07_2012-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "60c156d1df8c293653fd366e4d23b2fae7c14a7f58663afb86fbeb9da0110976",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2004-08_2012-08",
+          "path": "data/linked/shorelines/change_2004-08_2012-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "9650b606d33b450b247e0c72120f7e70f6cd03ae3b6b63ecaecb80b55c0102fc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2012-07_2014-07",
+          "path": "data/linked/shorelines/change_2012-07_2014-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "020543ef906eccbe0d6f7c61eccfd9d521de295347240c0d44df1090cc0bd153",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2012-08_2014-08",
+          "path": "data/linked/shorelines/change_2012-08_2014-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "05dbca7e68b0a2899c0c39ca3a2bf282715b6385c0d1592cc331d3d37df17fe2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2014-07_2021-07",
+          "path": "data/linked/shorelines/change_2014-07_2021-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "16939d6d9ee46b1c3d4d7a610f1c3a13221a9d6b879b2fc73077c87ec927b661",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2014-08_2017-08",
+          "path": "data/linked/shorelines/change_2014-08_2017-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "13b2d40409bb0e87fd26f56fd77bdefb8b23a231902c11e834e3151375edf6a7",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2017-06_2017-07",
+          "path": "data/linked/shorelines/change_2017-06_2017-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "10441dd175814747a15a6eaa7374dbdd0ddd1534ae7f7a7307b4e3da5332c576",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2017-07_2017-08",
+          "path": "data/linked/shorelines/change_2017-07_2017-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "af7711e105babd319dc2dda9da39842f41f8b40b3224129c27e8222e53e55b90",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2017-08_2017-09",
+          "path": "data/linked/shorelines/change_2017-08_2017-09.geojson",
+          "layer": "derived_spatial",
+          "sha256": "171e6029a4cf5561aea20148410f6c9a000fd85545edc8b9f856e1112619a61f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2017-08_2018-08",
+          "path": "data/linked/shorelines/change_2017-08_2018-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "3617af6326efbf3b97c2e865cb6c183961ab62e27f7c6c6e7e99259e5853d898",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2018-08_2021-08",
+          "path": "data/linked/shorelines/change_2018-08_2021-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "72e5d6471d0e1e8249b4fe4d293f8ea92e96727285573ad07ec4d0640f76b1c0",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2021-07_2024-07",
+          "path": "data/linked/shorelines/change_2021-07_2024-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "29feba71f1fd4ecd0ce3438372360cc8f94625ed28d545227869fee2bdce8dfe",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2021-08_2024-08",
+          "path": "data/linked/shorelines/change_2021-08_2024-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d53ea394fca915ba78e285689c336eeaee722493bdecc40cf56cd7e14bd4bd22",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2024-06_2024-07",
+          "path": "data/linked/shorelines/change_2024-06_2024-07.geojson",
+          "layer": "derived_spatial",
+          "sha256": "bce5449e8e1e25fa8b6356d6ec76c7e59b6348959de42192d68880039c469603",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-shorelines-change_2024-07_2024-08",
+          "path": "data/linked/shorelines/change_2024-07_2024-08.geojson",
+          "layer": "derived_spatial",
+          "sha256": "1021256c7ba43b4a598e8fef82ec9109c21855e36f9ca42b88e5b8e06b095044",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "water_nodata",
+          "path": "data/water_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e87fdb355409f382a2055f481aef5a4600eb0356e1681df68a60691807510da9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "water_sample_index",
+          "path": "data/water_sample_index.json",
+          "layer": "derived_analytics",
+          "sha256": "0601345c2eaeea69ec9b035afada80db6f19263acfe1aa4ebb9a631bcacbda65",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "water_samples",
+          "path": "data/water_samples.geojson",
+          "layer": "derived_spatial",
+          "sha256": "362615b315737b498b5934390f62978186ab6e6a327796f6ef000e2c483cd123",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "lake-monthly",
+      "title": "主湖月序列、覆盖与固定边界",
+      "disposition": "active-mapped",
+      "package_paths": [
+        "water-index.json",
+        "analysis.geojson"
+      ],
+      "rule": "采用独立固定窗、覆盖阈值、正值/零值/缺测和独立争议字段。另提供 WF1；当月路径缺失不作无水。",
+      "count": 3,
+      "baseline_datasets": [
+        {
+          "id": "boundary",
+          "path": "data/boundary.geojson",
+          "layer": "derived_spatial",
+          "sha256": "322d42a0ac3293488f6e365d7b803d231a23b60816c5d1c52a162eb4746fbfd4",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "monthly-observations",
+          "path": "data/monthly.json",
+          "layer": "derived_analytics",
+          "sha256": "fde19d86b84db3d3d3cadddc41a6ecbbdf4bb3353f43d9e18d63712c58fa55a5",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "qualification_regression",
+          "path": "data/qualification_regression.json",
+          "layer": "source_index",
+          "sha256": "a911d724a99153eaef6909efa6ee4ce80306026a2e5f6e95deb1c9cd9608018b",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "vegetation",
+      "title": "草地／NDVI／季节配对",
+      "disposition": "preserve-tables-and-maps",
+      "package_paths": [],
+      "rule": "保留冻结草地分析和筛查分母；新增 S7 的 5 点对照不是区域草地生产力指标，不替代草地版专题。",
+      "count": 6,
+      "baseline_datasets": [
+        {
+          "id": "linked-stable_grassland_scope",
+          "path": "data/linked/stable_grassland_scope.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c38a4319dc620326694fbb83bea5910f1ea666650e4bf9a9f4e181619f164c9f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_input__ndvi_seasons",
+          "path": "data/linked/tables/analysis_input__ndvi_seasons.json",
+          "layer": "derived_analytics",
+          "sha256": "253cef6e3689bec92694db13fe5e12ee878bc826ac31f2b9501c6507aae61b78",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__NDVI_crossdiscipline_screen_all",
+          "path": "data/linked/tables/analysis_tables__NDVI_crossdiscipline_screen_all.json",
+          "layer": "derived_analytics",
+          "sha256": "f2109c5f9236f17eaa0984ee177bf27a978827e5bbe5fa1affe6b160ee05a0de",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__NDVI_seasonal_exact_pairs_2000_2024",
+          "path": "data/linked/tables/analysis_tables__NDVI_seasonal_exact_pairs_2000_2024.json",
+          "layer": "derived_analytics",
+          "sha256": "e61123a1582ef155544cfbe6545dfa866aa2e0d8a58f18f2b588e26e1ec9e5b9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__lake_NDVI_same_year_by_lake_month",
+          "path": "data/linked/tables/analysis_tables__lake_NDVI_same_year_by_lake_month.json",
+          "layer": "derived_analytics",
+          "sha256": "c087809145f1ff4a326dc1d46f725ffbf21b033ce2c0965d9404a9c203d315a5",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "grass-pixel-seasons",
+          "path": "data/spatial/grass_pixel_seasons.json",
+          "layer": "derived_analytics",
+          "sha256": "905f84a5e657ad226a69771ab9e702d2e1dc2b0d8b3f8c9f508b2f5b7e7984d3",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "hydroclimate",
+      "title": "降雨、地表径流、风、积雪、日照、地表温度等",
+      "disposition": "preserve-tables-and-maps",
+      "package_paths": [],
+      "rule": "保留站点、再分析与卫星各自时空支持，风和日照剖面按观测/模型分别呈现。近期降雨/雪沾附证据卡不替代原气候表。",
+      "count": 36,
+      "baseline_datasets": [
+        {
+          "id": "linked-tables-analysis_input__era5_daily",
+          "path": "data/linked/tables/analysis_input__era5_daily.json",
+          "layer": "derived_analytics",
+          "sha256": "0e9f3dac56e0c593a2635ac5bde3fb8f9f7cbcfc72a2c4a141baf37bb4f28347",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_input__local_precip_yearly",
+          "path": "data/linked/tables/analysis_input__local_precip_yearly.json",
+          "layer": "derived_analytics",
+          "sha256": "f02d6d3340bb2bad409a3cc76550260f8b2ded7bece100174edfa0739f9cd5de",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_input__local_runoff_yearly",
+          "path": "data/linked/tables/analysis_input__local_runoff_yearly.json",
+          "layer": "derived_analytics",
+          "sha256": "d7bb1142c370ec2968b5263246550794a761565870017e2bd28c2362c8deb5f2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_input__power_daily",
+          "path": "data/linked/tables/analysis_input__power_daily.json",
+          "layer": "derived_analytics",
+          "sha256": "89b15de942df1bd4834360a741e613b261e588353e47a01f24e745dc99a432ad",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_input__snow_yearly",
+          "path": "data/linked/tables/analysis_input__snow_yearly.json",
+          "layer": "derived_analytics",
+          "sha256": "f394e5d05bf2def2a7b2586f52e9725d101a6c3e07db1a845745b40d91f4fb7e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_input__thermal_daily",
+          "path": "data/linked/tables/analysis_input__thermal_daily.json",
+          "layer": "derived_analytics",
+          "sha256": "0e4dca29774d0e60a519885a4f37e7123d96038ad9a606adb4b92a0b95192657",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__annual_precip_source_comparison",
+          "path": "data/linked/tables/analysis_tables__annual_precip_source_comparison.json",
+          "layer": "derived_analytics",
+          "sha256": "c526950dcdce5996d955da9d8dc867ddf482220f72fa3a8baa5aa708758465eb",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__common_window_actual_counts",
+          "path": "data/linked/tables/analysis_tables__common_window_actual_counts.json",
+          "layer": "derived_analytics",
+          "sha256": "a33d0dcf4df1314ee164d0010e9317e30935a2d9d5c9ff2782a20ea147df32bb",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__recent_extension_snow_soil_indicators_2026",
+          "path": "data/linked/tables/analysis_tables__recent_extension_snow_soil_indicators_2026.json",
+          "layer": "derived_analytics",
+          "sha256": "71ae96f07f8594d6cd11b736617c7b2ce7c5c0b0538cdaf4a846fd8f0ef8e1ba",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__weather_observability_diagnostic",
+          "path": "data/linked/tables/analysis_tables__weather_observability_diagnostic.json",
+          "layer": "derived_analytics",
+          "sha256": "8b6866c18c4a65ba700812db397b82e75fbc7ab84d3b05b328a855421768bc73",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__wind_sensitivity_all",
+          "path": "data/linked/tables/analysis_tables__wind_sensitivity_all.json",
+          "layer": "derived_analytics",
+          "sha256": "16d997e50a66a584c44900c319f755c0a6375aba0813c5ea8fa2080c0d945a4a",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__complete_season_year_statistics",
+          "path": "data/linked/tables/microclimate_tables__complete_season_year_statistics.json",
+          "layer": "derived_analytics",
+          "sha256": "720bd1edce5384a0030d22e3452d985b3c122446bf64e40f7631634e5708933c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__daily_regional_wind_solar_flags_1985_2025",
+          "path": "data/linked/tables/microclimate_tables__daily_regional_wind_solar_flags_1985_2025.json",
+          "layer": "derived_analytics",
+          "sha256": "9f08a819ece1733bea19ac4cccdaf7a3acbdf3462b39d79890b64f9d41b10b27",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__dailymean_windrose",
+          "path": "data/linked/tables/microclimate_tables__dailymean_windrose.json",
+          "layer": "derived_analytics",
+          "sha256": "bc10b244de66ef2fb8e874cb193c0d1a903aac8c237832fb1e3b7d5275cfa91b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__direction_frequencies",
+          "path": "data/linked/tables/microclimate_tables__direction_frequencies.json",
+          "layer": "derived_analytics",
+          "sha256": "e408fa217638fb5d30b148fc99ec82264c24d0a1a02177d4c1fbc094491a57b0",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__mechanism_evidence_matrix",
+          "path": "data/linked/tables/microclimate_tables__mechanism_evidence_matrix.json",
+          "layer": "derived_analytics",
+          "sha256": "2989e72af801ab9e5987c5f7ca8ee1c7fe7fa788260c790eaf7789a5a5debeeb",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__model_readiness_matrix",
+          "path": "data/linked/tables/microclimate_tables__model_readiness_matrix.json",
+          "layer": "derived_analytics",
+          "sha256": "35d35d333d8d6fb421abfda897c7b1451341c212abd1ea15da74fb1f05f171b6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__monthly_climatology_1991_2020",
+          "path": "data/linked/tables/microclimate_tables__monthly_climatology_1991_2020.json",
+          "layer": "derived_analytics",
+          "sha256": "f78ab8efb68b3f1663d127a1675cbad45c29a6656bcaf079b7d2cd55b714af3f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__monthly_physical_quantity_comparison",
+          "path": "data/linked/tables/microclimate_tables__monthly_physical_quantity_comparison.json",
+          "layer": "derived_analytics",
+          "sha256": "96898bcf8722bec32d4042e19df69502912edbe2226d2bba48ff879ae9fc6b7e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__monthly_same_month_anomalies_492",
+          "path": "data/linked/tables/microclimate_tables__monthly_same_month_anomalies_492.json",
+          "layer": "derived_analytics",
+          "sha256": "68b30862779383eff53a4c70e0989caf230c45e25fe33da7a2f3b920009054bc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__monthly_wind_solar_492",
+          "path": "data/linked/tables/microclimate_tables__monthly_wind_solar_492.json",
+          "layer": "derived_analytics",
+          "sha256": "406a37873cb4ae8c758867653e4bae43b490b0f7bb9ece9a488f4f51a4838b81",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__season_year_completeness_all",
+          "path": "data/linked/tables/microclimate_tables__season_year_completeness_all.json",
+          "layer": "derived_analytics",
+          "sha256": "3a51e38830d9f408d943131f74c813f58d9fbcfb65d76e16fd7ce0976bfd1efb",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__seasonal_common_window_comparison",
+          "path": "data/linked/tables/microclimate_tables__seasonal_common_window_comparison.json",
+          "layer": "derived_analytics",
+          "sha256": "877e3eca69d3e11dbfcb7d505a8757d50293e4cdbce5a09991cd4a1614eecdee",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__seasonal_wind_solar_summary",
+          "path": "data/linked/tables/microclimate_tables__seasonal_wind_solar_summary.json",
+          "layer": "derived_analytics",
+          "sha256": "03e95079cc36544d5eeba882550f0ed5b81cf52975956a19572a339becf9aebe",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__solar_annual_geometry_by_receptor",
+          "path": "data/linked/tables/microclimate_tables__solar_annual_geometry_by_receptor.json",
+          "layer": "derived_analytics",
+          "sha256": "121b2e0edf8576cc24634b51dcaa15fabdd1bfa32b3da0b0aaaedf350dec6960",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__solar_geometry_daily_all_receptors",
+          "path": "data/linked/tables/microclimate_tables__solar_geometry_daily_all_receptors.json",
+          "layer": "derived_spatial",
+          "sha256": "3f2bc29eaab92b5165ec9346abaddbaf8ed7aa0623cb7df0aa107abcab0944b3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__terrain_horizon_profiles",
+          "path": "data/linked/tables/microclimate_tables__terrain_horizon_profiles.json",
+          "layer": "derived_spatial",
+          "sha256": "aa6964a5c03f4ead92e60111d99a453fda22134819fa630ead3dd7600884310d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__terrain_receptors",
+          "path": "data/linked/tables/microclimate_tables__terrain_receptors.json",
+          "layer": "derived_spatial",
+          "sha256": "41ef5011f4f5f50e219ad5526961cfc8eb9f0cdacc3494856511df02bec80a27",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__terrain_solar_sensitivity_center",
+          "path": "data/linked/tables/microclimate_tables__terrain_solar_sensitivity_center.json",
+          "layer": "derived_spatial",
+          "sha256": "9dadee7c2870f221d44c249e2c6adbcb465e5fd9fcdac13c8095d0176bfb7952",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-microclimate_tables__wind_P90_thresholds_1991_2020_by_month",
+          "path": "data/linked/tables/microclimate_tables__wind_P90_thresholds_1991_2020_by_month.json",
+          "layer": "derived_analytics",
+          "sha256": "5d18ccf79b94400bcd071eea2db961fada0d360836d8f9469e7217a6035a0247",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-wind",
+          "path": "data/linked/wind.json",
+          "layer": "derived_analytics",
+          "sha256": "6333b03bd3fa1e7dd816e5726c746762cee2c95f7c8477501c57d094274cc9c0",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "monthly-windrose",
+          "path": "data/process/monthly_windrose.json",
+          "layer": "derived_analytics",
+          "sha256": "339304c5c0d775236539a281301101452adce3d32c258d47abdcecccf47e9117",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "process-solar_geometry",
+          "path": "data/process/solar_geometry.json",
+          "layer": "derived_spatial",
+          "sha256": "2d6036ac0e1dda04a759cfe2b5a06058577ae274c5116bfbb71076d5d618d50d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "process-solar_geometry_display",
+          "path": "data/process/solar_geometry_display.json",
+          "layer": "derived_spatial",
+          "sha256": "d455ef9660666d12f17efce31c0757d0bbc2d104fc2da857e54e7c6238de3dd3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "regional-annual-rainfall",
+          "path": "data/spatial/regional_rainfall_comparison.json",
+          "layer": "derived_analytics",
+          "sha256": "6f3fc26e71ea76ee68c6e02d29544d710fa6047f13add301ed9af606b95b473d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "seasonal-climatology",
+          "path": "data/story/seasonal-calendar.json",
+          "layer": "derived_analytics",
+          "sha256": "b3ef231a940b2a2e8725e6cf1b122a8c81fce9d134b0ab1134290f49495f4d49",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "satellite-terrain",
+      "title": "现状影像、地形、范围、剖面与来源",
+      "disposition": "active-preview-subset",
+      "package_paths": [
+        "terrain/manifest.json",
+        "analysis.geojson"
+      ],
+      "rule": "局地 4 期真彩和 DSM 口径均可核对；本包有效范围和分辨率不替代目录中的区域DEM、季节影像、历史波段及原范围。",
+      "count": 14,
+      "baseline_datasets": [
+        {
+          "id": "process-context_background_manifest",
+          "path": "data/process/context_background_manifest.json",
+          "layer": "source_index",
+          "sha256": "5eef55c80588c7d38d7a82aeee32924fe28f54345220691382eedd46d2750a8f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "satellite-scenes",
+          "path": "data/process/imagery_manifest.json",
+          "layer": "source_index",
+          "sha256": "8bc9ce9721c52e5532b26316b1462425f9e1947068cb2eaac581618cbdf48102",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "process-potential_descent_paths",
+          "path": "data/process/potential_descent_paths.geojson",
+          "layer": "derived_spatial",
+          "sha256": "8cc0da9a4080df6f8206f8200c88178e615406e800dcb0ba4b35abde3f663882",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "process-terrain_profiles",
+          "path": "data/process/terrain_profiles.json",
+          "layer": "derived_spatial",
+          "sha256": "7fccd98c10ee9df72dc9480b7280c1159895a8f58269d85a9ceffc82a3b07dbe",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "satellite-manifest",
+          "path": "data/satellite/manifest.json",
+          "layer": "source_index",
+          "sha256": "b72014ae81adaed43a80fa6c4b2ca328077c828f46176483d16c8857637b9d1e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "satellite-qa",
+          "path": "data/satellite/qa.json",
+          "layer": "source_index",
+          "sha256": "a43d3b9b36e6a09400af3f26017b400303d029cf11568ec1a44de57c297f4a6b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "historical-red-band-scenes",
+          "path": "data/spatial/historical_textures.json",
+          "layer": "source_index",
+          "sha256": "5535fbdf3b1142b7460874267a10557cb86ead689d6ca2987ce2deba3c50373e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "spatial-terrain_expanded",
+          "path": "data/spatial/terrain_expanded.json",
+          "layer": "derived_spatial",
+          "sha256": "bb447b3c46ccf7fe7b6bd0bb3ac22d63ed8b5aea69b12375f6ff402aba9b801e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "terrain_context",
+          "path": "data/terrain_context.json",
+          "layer": "derived_spatial",
+          "sha256": "2109f7e40f07f148854eb272fea487e236386f95dde352ef2f985b4f0a146daa",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "terrain_local",
+          "path": "data/terrain_local.json",
+          "layer": "derived_spatial",
+          "sha256": "8707f9facd497225797c87907a98a3e86b60bdd8b1e7858003134ce360448f98",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-regional-terrain",
+          "path": "data/spatial/regional-terrain.json",
+          "layer": "derived_spatial",
+          "sha256": "84559cfa79080f49359b72c483eabe4f0b1c594aa9473734f027c16b65c4352e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-manifest",
+          "path": "data/spatial/imagery-v11/manifest.json",
+          "layer": "source_index",
+          "sha256": "d629f65217420bec8c28d15b41bfa171923f0e82b7df3f18ac20fd95ea06c7ae",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-checks",
+          "path": "data/spatial/imagery-v11/checks.json",
+          "layer": "source_index",
+          "sha256": "c09d5b1e30c847958af34822bbcdf4fab6a8378b7360f0d70f33b14e46710e19",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-inverse_pixel_check",
+          "path": "data/spatial/imagery-v11/inverse_pixel_check.json",
+          "layer": "source_index",
+          "sha256": "50f9679a78d1c3cb79aff764f3d4e90802aca80581f9a169af11afb4609f4ecb",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "neighbors",
+      "title": "外围湖及呼和系列",
+      "disposition": "preserve-baseline-with-preview-subset",
+      "package_paths": [
+        "analysis.geojson",
+        "water-index.json"
+      ],
+      "rule": "WF1 是新增独立月序列。东池、北小湖先以少数单景落图，已有 N2 和呼和、其他外围系列沿用原对象ID与固定窗。",
+      "count": 13,
+      "baseline_datasets": [
+        {
+          "id": "linked-tables-analysis_input__regional_lake_quality",
+          "path": "data/linked/tables/analysis_input__regional_lake_quality.json",
+          "layer": "derived_analytics",
+          "sha256": "ed44607c35d65a9a0fde08f998a2024289c1101b9423818fd06b6b4cb8142f0c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_input__regional_window_metadata",
+          "path": "data/linked/tables/analysis_input__regional_window_metadata.json",
+          "layer": "derived_analytics",
+          "sha256": "ffd83c4cc0cea46ef691ca332f624926c3c99a31d38fd5a64614bbf5a7a5debe",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "neighbor-water",
+          "path": "data/spatial/neighbor_water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d41f7cd15e5a087db640e52b1fe3ee0f1318704891912902ea66eac11a6c515b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "neighbor-nodata",
+          "path": "data/spatial/neighbor_nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "0bab046aeed998b5b9bb585f4c849e17ce817fb22f963073359b683635ac319e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "neighbor-geometry-index",
+          "path": "data/spatial/neighbor_geometry_index.json",
+          "layer": "derived_spatial",
+          "sha256": "c72108d1c6ff02dfcb816eb1af0386c6706037d2a5f9fe96fc5c99689b5be901",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "neighbor-geometry-checks",
+          "path": "data/spatial/neighbor_geometry_checks.json",
+          "layer": "source_index",
+          "sha256": "b744ea1406eb64bf50bdc87cb79299f66cc275018bef73999f14793de7c50045",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-huhe-series",
+          "path": "data/spatial/huhe-series.json",
+          "layer": "derived_spatial",
+          "sha256": "b75e862b225b9abf524c2a2b367f67ea21e0785ebf4dd97bb4856d2b351a55c9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-huhe-source-checks",
+          "path": "data/spatial/huhe-source-checks.json",
+          "layer": "source_index",
+          "sha256": "6009a29294479740c95f1e2f2c9cfb209ad7c5375bf8f143cc91bca6e4e24be1",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-huhe-geometry-index",
+          "path": "data/spatial/huhe-geometry-index.json",
+          "layer": "derived_spatial",
+          "sha256": "dbad2965b826dcfd40786276e37af69ce20e41ed4af7515ddc6bf63d6bd557d6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-huhe-independent-geometry-check",
+          "path": "data/spatial/huhe-independent-geometry-check.json",
+          "layer": "source_index",
+          "sha256": "65a46ad100db5f5528f0f12c5b9cbfb2796aba9c71942862b39627973047b860",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-huhe-reference",
+          "path": "data/spatial/huhe-reference.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f161a0f205e54ecaf6e12ee4a84e610a63e0bb33a53055353df96e949f4b75c6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-huhe-water",
+          "path": "data/spatial/huhe-water.geojson",
+          "layer": "derived_spatial",
+          "sha256": "7e2be89481c0fe84e92dcd11202d85015d1d5b20993270d83cf0368b27cf4d64",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-huhe-nodata",
+          "path": "data/spatial/huhe-nodata.geojson",
+          "layer": "derived_spatial",
+          "sha256": "87ba4cb113e895dff57d11f1e0297ed0c478579f1e237b0be5cd0d2a3582083f",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "historical",
+      "title": "早期图档及历史语境",
+      "disposition": "preserve-context",
+      "package_paths": [
+        "evidence.json"
+      ],
+      "rule": "历史事件和图档来源保留；早期图档不拿来代替月度像元岸线。",
+      "count": 2,
+      "baseline_datasets": [
+        {
+          "id": "historical-context-events",
+          "path": "data/narrative/historical-context-events.json",
+          "layer": "narrative",
+          "sha256": "e6d0bf35caaa0f921c1e31e093e3186a40e91c6a488f5a4ed0a94f2af6cbe127",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-provenance",
+          "path": "data/history-map/provenance.json",
+          "layer": "source_index",
+          "sha256": "28f423b20ecc16a12e08ad368e07cffead081b01def0e7e6b576f48beeceda98",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "management-access",
+      "title": "场地、建筑、通达与条件方案",
+      "disposition": "preserve-baseline-nonobservational",
+      "package_paths": [],
+      "rule": "条件管理方案、入口与路线须保留但按原情景性质展现；不与西北坡水文学三情景混用。",
+      "count": 10,
+      "baseline_datasets": [
+        {
+          "id": "buildings",
+          "path": "data/buildings.geojson",
+          "layer": "derived_spatial",
+          "sha256": "d054adffd7f7f0214cfcce62541f687972d18be456e1ba438b6f8ac665a98a72",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "office_reference",
+          "path": "data/office_reference.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f98e21ba9dcac7defb516551c5a10e599073790e343d885efca7b928d6114ad2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-office_reference",
+          "path": "data/reference/office_reference.geojson",
+          "layer": "derived_spatial",
+          "sha256": "f98e21ba9dcac7defb516551c5a10e599073790e343d885efca7b928d6114ad2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "scenarios-cases",
+          "path": "data/scenarios/cases.json",
+          "layer": "derived_analytics",
+          "sha256": "0f70467a7b7f8087ecf65f76be19b41f2c27e3cde803a7171b559a2ac1d675ca",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "scenario-geometries",
+          "path": "data/scenarios/scenario_geometries.geojson",
+          "layer": "conditional_scenario",
+          "sha256": "73860d6da69e560164df490196cd682d7c584b4e73297917724df515caf55148",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "scenario-links",
+          "path": "data/scenarios/scenario_links.json",
+          "layer": "conditional_scenario",
+          "sha256": "70e10596299531827d72249beee902874aa3e2e398b9364d2be664b76565f640",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "conditional-scenarios",
+          "path": "data/scenarios/scenarios.json",
+          "layer": "conditional_scenario",
+          "sha256": "646bea3071fd721f0cdcfa23d396276e2983712a67f7650ccdf0c9c449b335eb",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "access-prototype-config",
+          "path": "data/access/config.json",
+          "layer": "conditional_scenario",
+          "sha256": "8ac7a94dd7e6e7124852d8f4c9eb841b258a18496190759f4d23ac543ab6565f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "access-route-comparisons",
+          "path": "data/access/analysis-summary.json",
+          "layer": "derived_analytics",
+          "sha256": "ac0a31b23ff8e4b7685a8c2a4ba771a5782d080fa66cb7bf788b19fee20cc9e6",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "v11-office-shore-summary",
+          "path": "data/access/office-shore-summary.json",
+          "layer": "derived_spatial",
+          "sha256": "238835a705525a7d7b3f296fb4c78822cc84676157b1ba1d9f5b6f17e9f17073",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "geographic-references",
+      "title": "道路／地名／地形参照及质量",
+      "disposition": "active-preview-subset",
+      "package_paths": [
+        "analysis.geojson"
+      ],
+      "rule": "使用现有上下文、精简后道路；不把 OSM 当工程设施台账，把道路底图当参照。",
+      "count": 12,
+      "baseline_datasets": [
+        {
+          "id": "reference-SHA256",
+          "path": "data/reference/SHA256.json",
+          "layer": "source_index",
+          "sha256": "568305dfddae44d37e65ee2a6b37b156c95f1f4076af3f73009afd0617fae06e",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-contours_context",
+          "path": "data/reference/contours_context.geojson",
+          "layer": "derived_spatial",
+          "sha256": "e0f98972540c4bf33ac6e9fde627e3514e46cf54ac596e63b8f0665c4fc23462",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-contours_local",
+          "path": "data/reference/contours_local.geojson",
+          "layer": "derived_spatial",
+          "sha256": "1c87b4faaba3390021770e036443e3993231bcc0431e62e5c5e5ccd2cf5a2dbd",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-manifest",
+          "path": "data/reference/manifest.json",
+          "layer": "source_index",
+          "sha256": "1f9e2f0379dece6803dcbe8a412b592cd936393a185d4aac2f60a7c225ef8ad2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-places",
+          "path": "data/reference/places.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c9f688c9ccae48eeef675e42ad1de896ed4c2153c25a39f5d75b2b23c083895d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-places_context",
+          "path": "data/reference/places_context.geojson",
+          "layer": "derived_spatial",
+          "sha256": "c9f688c9ccae48eeef675e42ad1de896ed4c2153c25a39f5d75b2b23c083895d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-places_local",
+          "path": "data/reference/places_local.geojson",
+          "layer": "derived_spatial",
+          "sha256": "ed778c73ea51338d6576fb5992b189f2b94d9f3d5e199f46c1af520d6b0b3e6c",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-qa",
+          "path": "data/reference/qa.json",
+          "layer": "source_index",
+          "sha256": "1bb3f8a292c276f37b9578fb5fdcf16f8a60568b71bb5973192447a52445b66f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-roads",
+          "path": "data/reference/roads.geojson",
+          "layer": "derived_spatial",
+          "sha256": "6e4acfe281bfa4c42fe5b0ff1446c2413d36812e37fe1479e73d67cfe7240311",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-roads_context",
+          "path": "data/reference/roads_context.geojson",
+          "layer": "derived_spatial",
+          "sha256": "6e4acfe281bfa4c42fe5b0ff1446c2413d36812e37fe1479e73d67cfe7240311",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-roads_local",
+          "path": "data/reference/roads_local.geojson",
+          "layer": "derived_spatial",
+          "sha256": "9829878d7e9e06155864b9c0ed34e31c4c37e097a3488e0f0bd221e5eaa2e47a",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "reference-study_boundary",
+          "path": "data/reference/study_boundary.geojson",
+          "layer": "derived_spatial",
+          "sha256": "322d42a0ac3293488f6e365d7b803d231a23b60816c5d1c52a162eb4746fbfd4",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "method-and-tables",
+      "title": "其他冻结分析、数据质量与索引",
+      "disposition": "preserve-tables-and-archives",
+      "package_paths": [],
+      "rule": "与目录的源文件、筛选方法、口径和哈希一同保留。设计可以决定优先级，但不可静默省略有作用的结论或把数据标成不存在。",
+      "count": 37,
+      "baseline_datasets": [
+        {
+          "id": "linked-analysis_metadata",
+          "path": "data/linked/analysis_metadata.json",
+          "layer": "derived_analytics",
+          "sha256": "25722325af661b37d00b1217311309f651a72ba49263bbeadbbe935d152d944b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-coverage",
+          "path": "data/linked/coverage.json",
+          "layer": "derived_analytics",
+          "sha256": "4824af5f62136ec432dc997f7e1e310956c9d07a6770e741bed13df550a0447a",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "native-tables",
+          "path": "data/linked/native_tables.json",
+          "layer": "derived_analytics",
+          "sha256": "6d2f997ac7b08a8279bfa2aeb13a14891f4770386d18180d9f72412c5cd2c430",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_input__lake_quality",
+          "path": "data/linked/tables/analysis_input__lake_quality.json",
+          "layer": "derived_analytics",
+          "sha256": "2dea4f4075687702d3149cdf8fb226c8878046404d78183bc49e4a1d66b7e5e3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__core_claim_evidence",
+          "path": "data/linked/tables/analysis_tables__core_claim_evidence.json",
+          "layer": "derived_analytics",
+          "sha256": "66510e3e2d6ab13417abbd06fd8a44bdcf5b3e6d461a971c8a311ca91dced4ae",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__coverage_and_missingness",
+          "path": "data/linked/tables/analysis_tables__coverage_and_missingness.json",
+          "layer": "derived_analytics",
+          "sha256": "562096f33876f485c44ab95c256dc6a097591567f4704ce2ef8fc8297d7d0813",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__daily_integrated_198409_202608",
+          "path": "data/linked/tables/analysis_tables__daily_integrated_198409_202608.json",
+          "layer": "derived_analytics",
+          "sha256": "42b219b6b93862baad71b5ae19d5e19975fc7c7103c81db30ae79ec2866cdca4",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__joint_same_year_display_zscores",
+          "path": "data/linked/tables/analysis_tables__joint_same_year_display_zscores.json",
+          "layer": "derived_analytics",
+          "sha256": "6b47524766059a31aa2de51a83119f88d58b9252cff3b7a009f009ad6316e930",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__joint_same_year_exact_values_2000_2024",
+          "path": "data/linked/tables/analysis_tables__joint_same_year_exact_values_2000_2024.json",
+          "layer": "derived_analytics",
+          "sha256": "943b665b41d81329ab1ff4820957dde06d688f3b32abb92eca63e2af4666b093",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__lake_all_monthly_pairs_with_calendar_lags",
+          "path": "data/linked/tables/analysis_tables__lake_all_monthly_pairs_with_calendar_lags.json",
+          "layer": "derived_analytics",
+          "sha256": "7a3f8bec08b11e67a61a7491458de32993e9bfb455aec676bfffed4c7def227b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__lake_crossdiscipline_screen_all12",
+          "path": "data/linked/tables/analysis_tables__lake_crossdiscipline_screen_all12.json",
+          "layer": "derived_analytics",
+          "sha256": "5ea7feb76e7694ea9431fdc94f14de812596479ddacacdf2eb88adb78fb7ac18",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__lake_missingness_reason_counts",
+          "path": "data/linked/tables/analysis_tables__lake_missingness_reason_counts.json",
+          "layer": "derived_analytics",
+          "sha256": "b73005f8af276a821fe5856e8baf07012021625b66f122c7fda93536e7253be2",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__lake_persistence_lag12_exact_pairs",
+          "path": "data/linked/tables/analysis_tables__lake_persistence_lag12_exact_pairs.json",
+          "layer": "derived_analytics",
+          "sha256": "2242337c6d819e71dbb6779004f6964e5eecb8b5ed0177914a9e1a3052fcfc88",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__lake_persistence_lag1_exact_pairs",
+          "path": "data/linked/tables/analysis_tables__lake_persistence_lag1_exact_pairs.json",
+          "layer": "derived_analytics",
+          "sha256": "fb597ba5c0c9be3e687acba38f54d25eb9906c40fbc22e2ae325c28c2e6aa100",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__lake_persistence_warm_only_26_exact_pairs",
+          "path": "data/linked/tables/analysis_tables__lake_persistence_warm_only_26_exact_pairs.json",
+          "layer": "derived_analytics",
+          "sha256": "7f9764b98023d5ece574c2b6b855cf862974e0ab0414537f974768c0390b0057",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__lake_primary_59_pairs",
+          "path": "data/linked/tables/analysis_tables__lake_primary_59_pairs.json",
+          "layer": "derived_analytics",
+          "sha256": "677a8f87053c9509bb9d22f9ba087ccd0e68548bdf0b6fe33e8364e3e5c743d4",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__monthly_anomalies_1991_2020_reference",
+          "path": "data/linked/tables/analysis_tables__monthly_anomalies_1991_2020_reference.json",
+          "layer": "derived_analytics",
+          "sha256": "ed75395d425837052c0a8c1227a43ccc858e4ac860393b80814e2031127b0175",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__monthly_integrated_198409_202608",
+          "path": "data/linked/tables/analysis_tables__monthly_integrated_198409_202608.json",
+          "layer": "derived_analytics",
+          "sha256": "cc701f8f3eb5297075acb931f735701ec73671c9cdfe6dfe1bf7d606608b8346",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__monthly_reference_1991_2020",
+          "path": "data/linked/tables/analysis_tables__monthly_reference_1991_2020.json",
+          "layer": "derived_analytics",
+          "sha256": "fa298856f640636493535d26ccc6a2c7a11e4af6c8324dbc3edb02d06749778d",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__observability_by_calendar_month",
+          "path": "data/linked/tables/analysis_tables__observability_by_calendar_month.json",
+          "layer": "derived_analytics",
+          "sha256": "1b584bf0d514a36d8c96c9fe90178d7c03d809eda2a1a8b9bf355c22480bfb87",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__primary_sample_distribution",
+          "path": "data/linked/tables/analysis_tables__primary_sample_distribution.json",
+          "layer": "derived_analytics",
+          "sha256": "b938ee7c7bbbe91ed1e0065fabd55b373d3308b48a6e9217600b6b51195022d1",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__recent_extension_months_2026",
+          "path": "data/linked/tables/analysis_tables__recent_extension_months_2026.json",
+          "layer": "derived_analytics",
+          "sha256": "9f4bbb4c4ea4a20d31e4a6a9f95cd3f53263965bf165aabd7f1c6985d1de0f30",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__recent_extension_seasons_2026",
+          "path": "data/linked/tables/analysis_tables__recent_extension_seasons_2026.json",
+          "layer": "derived_analytics",
+          "sha256": "cb3a1699db803f999ee52c4ef74c380dc6ea0718a21594ef4c75ad3f29fbcc46",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__same_month_cross_year_descriptive",
+          "path": "data/linked/tables/analysis_tables__same_month_cross_year_descriptive.json",
+          "layer": "derived_analytics",
+          "sha256": "903520b26c4106e877f97e1418a5728b19bd7b4b292742ba774f33f61a7e17c3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__same_year_adjacent_month_associations",
+          "path": "data/linked/tables/analysis_tables__same_year_adjacent_month_associations.json",
+          "layer": "derived_analytics",
+          "sha256": "92a030d4ec430a3da8be3c02fb5226f1db0365edfb205626478cd9f507a2c573",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__same_year_adjacent_month_exact_pairs",
+          "path": "data/linked/tables/analysis_tables__same_year_adjacent_month_exact_pairs.json",
+          "layer": "derived_analytics",
+          "sha256": "5023ff0c6a96c1cc402469da300fd36927a1f82c796b7df028bdab257981a916",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__seasonal_integrated_1985_2026",
+          "path": "data/linked/tables/analysis_tables__seasonal_integrated_1985_2026.json",
+          "layer": "derived_analytics",
+          "sha256": "de48bc1642bb60c933f86a079d8680ff033289648e9213430714c5dde99ca15b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__unified_annual_skeleton_1956_2025",
+          "path": "data/linked/tables/analysis_tables__unified_annual_skeleton_1956_2025.json",
+          "layer": "derived_analytics",
+          "sha256": "62b42fe80d28b5f80f64dd264b31a9a8270e51de43aa601d45dbf286ea9f454b",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__unified_monthly_skeleton_1956_2025",
+          "path": "data/linked/tables/analysis_tables__unified_monthly_skeleton_1956_2025.json",
+          "layer": "derived_analytics",
+          "sha256": "be3d7143fece8b9f8f7285ed9b1b3567362d48170113d132107a8db874665bfc",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-tables-analysis_tables__warm_persistence_quality_addendum",
+          "path": "data/linked/tables/analysis_tables__warm_persistence_quality_addendum.json",
+          "layer": "derived_analytics",
+          "sha256": "924544a6dbc1779a9bc4a958148908f9a1df41b17ecc36cd0ad5500043ccd80f",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "manifest",
+          "path": "data/manifest.json",
+          "layer": "source_index",
+          "sha256": "a66c9611df5636111091e64e48338127eecf37e74ca3335edda647e3cf101482",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "narration-manifest",
+          "path": "data/narration-manifest.json",
+          "layer": "source_index",
+          "sha256": "3e36bd04a1b694586395f9999ea3738ceed590ed72572c54c225c22ced38cdff",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "provenance",
+          "path": "data/provenance.json",
+          "layer": "source_index",
+          "sha256": "a66c9611df5636111091e64e48338127eecf37e74ca3335edda647e3cf101482",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "anchored-series",
+          "path": "data/spatial/anchored_series.json",
+          "layer": "derived_analytics",
+          "sha256": "b768acd5a48e259f60378c013a160511015ed4934599351a935893db88013458",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "spatial-source_manifest",
+          "path": "data/spatial/source_manifest.json",
+          "layer": "source_index",
+          "sha256": "670df4ed853a2b6aec28e862cecb78d518c0efe7bb31daafb941cd958589beb3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "spatial-features",
+          "path": "data/spatial/spatial_features.geojson",
+          "layer": "derived_spatial",
+          "sha256": "b3cf63833b1bc2f7fe94d34cacf00003301276a45f68918f61a571aee775adcf",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "independent-geometry-check",
+          "path": "data/spatial/independent_geometry_check.json",
+          "layer": "source_index",
+          "sha256": "33e9bba47fe5c4315c85421ed4eca9e4e347dbfffc30c7fd7bc3e6d559020378",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "narrative",
+      "title": "证据联动、图文和报告档案",
+      "disposition": "preserve-source-narrative-can-redesign",
+      "package_paths": [
+        "evidence.json"
+      ],
+      "rule": "保留观察、模型、未知边界和引用关系；图例、叙事排布、交互可重设计。报告历史需以目录保持可追溯。",
+      "count": 14,
+      "baseline_datasets": [
+        {
+          "id": "content",
+          "path": "data/content.json",
+          "layer": "report_evidence",
+          "sha256": "7fa7f94e45d5d5f782b0c12e6a2706dc0414e7463df9bbd522dbdce432d58e45",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-chart_specs",
+          "path": "data/linked/chart_specs.json",
+          "layer": "derived_analytics",
+          "sha256": "d79dd8ccc6f664f810b8c517d3cd020a86529e7e64cd0874819436027372a1c9",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-map_anchors",
+          "path": "data/linked/map_anchors.json",
+          "layer": "derived_analytics",
+          "sha256": "2adc99728e7a75f15ae7ad30f6035392b024bf18a54d02f1b55f4efde0ae4c81",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-relationships",
+          "path": "data/linked/relationships.json",
+          "layer": "derived_analytics",
+          "sha256": "58f3fd49b2865dd7ccfbc24ce65e6d6facd29dea4a8c6074fcb67aa506c79af4",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-representative_stories",
+          "path": "data/linked/representative_stories.json",
+          "layer": "narrative",
+          "sha256": "f49d8084f25b09e17defdc4b2deaf38b40bae373781312b57ce839bcf5f99cb3",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "linked-story_groups",
+          "path": "data/linked/story_groups.json",
+          "layer": "narrative",
+          "sha256": "b1924ba94c72baed3946dd272bc2d110096a6b7a10dc3c3aba9998352ee40ba1",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "narration",
+          "path": "data/narration.json",
+          "layer": "narrative",
+          "sha256": "573c23ff5d3de7fc58479d355aea3195ce41062b3c5721bddfb3f0ecb59ba697",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "process-process_claims",
+          "path": "data/process/process_claims.json",
+          "layer": "derived_analytics",
+          "sha256": "1de19010464cea2ce65e47c5d5e09660e85a29a39fec9512e0d07f4f71e9e644",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "report",
+          "path": "data/report.json",
+          "layer": "report_evidence",
+          "sha256": "b931e49af05617b571ffaba2f55d5d45e2fa8650e4e68764ac37576eadbf2370",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "representative_narration",
+          "path": "data/representative_narration.json",
+          "layer": "narrative",
+          "sha256": "6582dc236a2a0b1f8686c5676ec7adb504d5ae5b155dcb846a57864c5acaaa13",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "story-all-figures",
+          "path": "data/story/all-figures.json",
+          "layer": "report_evidence",
+          "sha256": "926744ee4e0a867d89db3c8297438da9fdc7a77e8845ab4da50684f2e97bacf1",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "story-evidence-catalog",
+          "path": "data/story/evidence-catalog.json",
+          "layer": "report_evidence",
+          "sha256": "b84302468db10bc62cc84c83c936a1d7d40ab032ff8d38aeff7c254b9e4c82ba",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "narrative-stages",
+          "path": "data/story/stages.json",
+          "layer": "narrative",
+          "sha256": "98d2373ced8f7ef321e74897322b2fe8043a859f902809b404830b2edd3fb8db",
+          "upstream_raw_url": ""
+        },
+        {
+          "id": "supplements",
+          "path": "data/supplements.json",
+          "layer": "report_evidence",
+          "sha256": "ede2e81ca54b5b40fd7c1b4a63101ebfa4effc866ac68c805682856739a84b92",
+          "upstream_raw_url": ""
+        }
+      ]
+    },
+    {
+      "id": "presentation",
+      "title": "原视图控件／展示脚本",
+      "disposition": "replaceable-presentation",
+      "package_paths": [],
+      "rule": "不冻结窗口布局、控件、镜头、色彩、图形、渲染器或动作设计；切换不得改变科学输入。",
+      "count": 1,
+      "baseline_datasets": [
+        {
+          "id": "view-config",
+          "path": "data/story/view-config.json",
+          "layer": "presentation",
+          "sha256": "303b8e49107ead464ebea9c511cfa22bb7c234294c6aa797ce4a48016cd60d51",
+          "upstream_raw_url": ""
+        }
+      ]
+    }
+  ],
+  "additional_ready": [
+    {
+      "id": "wf1-months",
+      "paths": [
+        "water-index.json",
+        "water-data/"
+      ],
+      "scope": "WF1 双湖并列，独立统计窗"
+    },
+    {
+      "id": "aligned-sentinel-dem",
+      "paths": [
+        "terrain/manifest.json"
+      ],
+      "scope": "4 个配准 Sentinel-2 真彩与一个地形显示网格"
+    },
+    {
+      "id": "audited-analysis",
+      "paths": [
+        "analysis.geojson",
+        "analysis-manifest.json",
+        "evidence.json"
+      ],
+      "scope": "新增可追溯地图证据和未落图判断"
+    },
+    {
+      "id": "portable-evidence-sidecars",
+      "paths": [
+        "evidence-sources/"
+      ],
+      "scope": "辅助验收，不替代冻结基线"
+    }
+  ],
+  "missing_geometry": [
+    {
+      "id": "nw-native-grid-paths",
+      "label": "西北坡本轮 A/B/C 原始格链",
+      "state": "not_recovered",
+      "replacement": "文字情景卡，管理方案图层及旧 Wcross1/2、B、C 绝不是替代路线",
+      "evidence_id": "northwest-terrain-hypotheses"
+    },
+    {
+      "id": "es-20-100-strip",
+      "label": "E_S_20_100 原始统计条带边界",
+      "state": "not_recovered",
+      "replacement": "只保留汇总和独立精确参考段；不画统计窗",
+      "evidence_id": "east-may-hotspot"
+    },
+    {
+      "id": "east-may-native-repeats",
+      "label": "2025-05／2026-05 五月重复水样原生像元面",
+      "state": "not_recovered",
+      "replacement": "只发 0.56/0.84 ha 与覆盖分母；不画水面",
+      "evidence_id": "east-may-hotspot"
+    },
+    {
+      "id": "c-cross-g332-paired-windows",
+      "label": "C 线原跨路检查框及配对对照框",
+      "state": "not_recovered",
+      "replacement": "保留归档 C 线模型及西长湖正西独立核查窗，两者都不代替原 C 框",
+      "evidence_id": "east-may-hotspot"
+    },
+    {
+      "id": "g332-target-drainage-structure",
+      "label": "西长湖正西 G332 目标桩号、实体、两幅连接及进出高程",
+      "state": "unverified",
+      "replacement": "显示待核范围，不画涵洞实体／真实通水线",
+      "evidence_id": "g332-crossing"
+    },
+    {
+      "id": "town-actual-outfall",
+      "label": "镇区三条街实建排口、末端和雨时观测",
+      "state": "unverified",
+      "replacement": "公开规划作为背景，不画实际接入主湖排水线",
+      "evidence_id": "town-drainage"
+    },
+    {
+      "id": "local-rain-gauge-daily",
+      "label": "巴彦托海镇雨量站逐日原始记录",
+      "state": "unavailable_in_public_plan",
+      "replacement": "保留站点位置及规划 1960–2022 资料覆盖，按背景展示",
+      "evidence_id": "regional-gauge"
+    }
+  ]
+}

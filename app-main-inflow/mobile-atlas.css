@@ -1,0 +1,102 @@
+
+/* Browse and guided-tour surfaces: one edge per panel, hierarchy inside by spacing. */
+#v93-prologue-details {display:none}
+#v93-prologue .v93-ev-card {border:0;border-radius:0;background:none;padding-inline:0;box-shadow:none}
+#v93-prologue .v93-stage-jump {border:0;background:none;box-shadow:none}
+#v93-prologue .v93-stage-jump:hover {background:var(--v93-bg-soft)}
+@media(min-width:761px){
+ #observatory #v93-prologue {max-height:max(0px,calc(var(--browse-deck-top,calc(100dvh - 82px)) - var(--v95-prologue-top,158px) - 10px))}
+}
+@media(max-width:760px){
+ #observatory #v93-prologue:not([hidden]){
+  top:auto;bottom:calc(100dvh - var(--browse-deck-top,calc(100dvh - 112px)) + 8px);
+  max-height:min(50dvh,23rem);box-sizing:border-box;padding:8px 12px 10px;
+  border:0;border-radius:13px;background:var(--v93-bg-elevated);gap:2px;overflow-x:hidden;
+ }
+ #v93-prologue .v93-pro-head {order:0;align-items:center;margin:0;min-width:0}
+ #v93-prologue .v93-pro-title {font-size:17px;margin:0;line-height:1.25}
+ #v93-prologue .v93-pro-kicker {display:none}
+ #v93-prologue .v93-pro-close {border:0;box-shadow:none;background:none;min-width:42px;min-height:42px}
+ #v93-prologue-details {display:block;order:2;background:none;border:0;color:var(--v93-ink-body);font:inherit;font-size:12px;min-height:36px;text-align:center}
+ #v93-prologue-body {display:none;order:3;padding-top:6px}
+ #v93-prologue-details[aria-expanded="true"] + #v93-prologue-body {display:block}
+ #v93-prologue .v93-pro-stages-lbl {display:block}
+ #v93-prologue .v93-pro-stages {display:flex;flex-wrap:wrap;gap:2px 8px}
+ #v93-prologue .v93-stage-jump {min-height:36px}
+ #v93-prologue .v93-pro-actions {order:1;margin:0;gap:6px;align-items:stretch}
+ #v93-prologue .v93-btn-primary {min-width:0;border:0;box-shadow:none;border-radius:8px;font-size:12px}
+ #v93-prologue .v93-btn-secondary {border:0;box-shadow:none;font-size:12px}
+ #observatory.guided-tour-active #guided-tour-nav-strip .guided-tour-controls>.deck-btn,
+ #observatory.guided-tour-active #v93-mob-tabs :is(.v93-mob-tab,.v93-mob-expand) {border:0!important;box-shadow:none}
+ #observatory.guided-tour-active #v93-mob-tabs .v93-mob-tab[aria-selected=true] {
+  border-radius:0;background:none;box-shadow:inset 0 -2px var(--v93-accent-gold);color:var(--v93-ink);
+ }
+ #observatory.guided-tour-active #guided-director-board {
+  border:0!important;border-radius:0!important;box-shadow:none!important;background:none!important;
+ }
+ #observatory.guided-tour-active #guided-director-board :is(.guide-board-copy,.guide-board-side){
+  border:0;box-shadow:none;background:none;
+ }
+ #observatory.guided-tour-active #v93-index-drawer .v93-idx-item {
+  border:0;border-radius:0;box-shadow:none;border-bottom:1px solid var(--v93-border);
+ }
+ #observatory #v93-prologue :focus-visible,
+ #observatory.guided-tour-active :is(#v93-mob-tabs,#guided-tour-nav-strip,#v93-index-drawer) button:focus-visible {
+  outline:2px solid var(--v93-accent-gold);outline-offset:-2px;
+ }
+}
+
+
+@media(max-width:760px){
+ /* Compact attribution keeps its full text and leaves hierarchy to the dates. */
+ #hud-top-left #fixed-history-credit:not([hidden]){
+  background:var(--v93-bg-elevated);color:var(--v93-ink-muted);
+  border:0;box-shadow:none;border-radius:5px;font-size:10px;line-height:1.35;padding:4px 7px;
+ }
+ #observatory #v93-tour-topbar :is(.v93-index-btn,.v93-dual-dates,#guided-tour-close) {
+  border:0!important;background:none!important;box-shadow:none!important;min-height:34px;
+ }
+ #observatory #v93-tour-topbar .v93-stop-pill {
+  border-radius:0;background:none;padding-inline:0;color:var(--v93-ink-muted);
+ }
+ #observatory:not(.guided-tour-active) #chart-deck :is(.mode-switch,.deck-quick-controls .deck-select,#btn-deck-expand,#btn-tl-play,#btn-tl-prev,#btn-tl-next) {
+  border:0;box-shadow:none;background:transparent;
+ }
+ #observatory:not(.guided-tour-active) #chart-deck .mode-btn[aria-selected=true] {
+  background:none;color:var(--v93-ink);border-radius:0;box-shadow:inset 0 -2px var(--v93-accent-gold);
+ }
+ #observatory :is(#chart-deck,#v93-tour-topbar) :focus-visible{
+  outline:2px solid var(--v93-accent-gold);outline-offset:-2px;
+ }
+}
+
+
+/* The free map is a real viewport above the drawer, not a full canvas under it. */
+@media(max-width:760px){
+ #observatory #btn-guide-chapter-one {display:none!important}
+ #observatory:not(.guided-tour-active,.walk-active) #map-stage{
+  height:var(--browse-deck-top,calc(100dvh - 142px));
+ }
+ #observatory:not(.guided-tour-active,.walk-active):has(#v93-prologue:not([hidden])) #map-stage{
+  height:calc(var(--browse-deck-top,calc(100dvh - 142px)) - 64px);
+ }
+ #observatory:not(.guided-tour-active,.walk-active) #chart-deck #deck-body{
+  max-height:min(var(--deck-body-max,42dvh),
+    max(60px,calc(100dvh - var(--browse-deck-chrome,142px) - 144px - env(safe-area-inset-top,0px) - clamp(110px,26dvh,210px) - env(safe-area-inset-bottom))));
+ }
+ #observatory:not(.guided-tour-active) #deck-subbar:has(#mobile-timeline-lakes){
+  display:flex;flex-wrap:nowrap;justify-content:space-between;gap:6px;overflow:visible;
+ }
+ #observatory #deck-subbar [aria-label="双湖图层视图"]{display:none}
+ #observatory #deck-subbar :is(.sub-seg,.sub-seg-btn,#mobile-timeline-lakes){
+  box-shadow:none;border:0;background:transparent;
+ }
+ #observatory #deck-subbar .sub-seg-btn.active{
+  color:var(--v93-ink);border-radius:0;box-shadow:inset 0 -2px var(--v93-accent-gold);
+ }
+ #observatory #mobile-timeline-lakes{display:block!important;min-height:34px;min-width:72px}
+ #observatory #deck-subbar .sub-seg-btn{min-height:34px}
+}
+@media(min-width:761px){#mobile-timeline-lakes{display:none!important}}
+
+@media(max-width:760px){#observatory:not(.guided-tour-active,.walk-active) #chart-deck>:is(.v75-title,.v75-window-edge){display:none}}

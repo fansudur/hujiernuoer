@@ -1,0 +1,40 @@
+[
+  {
+    "file": "wide-corridor-200405.jpg",
+    "source": "google earth/200405.jpg",
+    "sourceSha256": "e1886b53ffdd0dfedced4515d7d915bbc6dc01049b5885d4bdadc6d9d49e5597",
+    "bounds_wgs84": [
+      119.6515,
+      49.1388,
+      119.6733,
+      49.1513
+    ],
+    "dimensions": [
+      457,
+      400
+    ],
+    "sha256": "c25a4d34c2053793ea97826e6b959ac2d9cded26dd253afcfe491f8294c4e7f6",
+    "attribution": "Google Earth；各景供应商版权见对应原始 JPG 下缘",
+    "dates": "文件标记，非核实采集日",
+    "local_only": true
+  },
+  {
+    "file": "wide-corridor-202109.jpg",
+    "source": "google earth/202109.jpg",
+    "sourceSha256": "4cff19fd17625ddba7813c13cb024a43752e02b27d689802c19f1054f6ed0b6b",
+    "bounds_wgs84": [
+      119.6515,
+      49.1388,
+      119.6733,
+      49.1513
+    ],
+    "dimensions": [
+      457,
+      400
+    ],
+    "sha256": "8a849e2fc3de0d77f19969b4f4b990961f3ef9310be44b8007072a70d099b17b",
+    "attribution": "Google Earth；各景供应商版权见对应原始 JPG 下缘",
+    "dates": "文件标记，非核实采集日",
+    "local_only": true
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "source": "google earth/03/200405.jpg",
+    "sourceSha256": "773315fef20afc28917b17f5ae3fabee689af735f90d3055738b5748be21c05e",
+    "sourcePixels": [
+      1486,
+      47,
+      6555,
+      3959
+    ],
+    "size": [
+      5069,
+      3912
+    ],
+    "file": "road03-native-frame-200405.jpg",
+    "sha256": "3a228aca613c2c8d32e937019f75de9d2456e3c830eac52c4e7fdf4470dd8c0d"
+  },
+  {
+    "source": "google earth/03/202109.jpg",
+    "sourceSha256": "77753ab1fe827ee552709b3eebb433702f549ead48c9b4ce69065006558189b9",
+    "sourcePixels": [
+      1486,
+      47,
+      6555,
+      3959
+    ],
+    "size": [
+      5069,
+      3912
+    ],
+    "file": "road03-native-frame-202109.jpg",
+    "sha256": "c4f4127787890e0706bd74f75921f4010e21fb38dee96189eac9f54015119a09"
+  }
+]

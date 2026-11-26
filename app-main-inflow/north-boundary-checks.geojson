@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "wall-check-s1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.69583162479421, 49.1514488684655]
+      },
+      "properties": {
+        "layer": "north-boundary-checks",
+        "status": "candidate",
+        "feature_role": "wall-boundary-check",
+        "name": "院墙调查 S1 · 东段低值带",
+        "description": "11 月 10 日修订院墙调查的东段低值带核查控制点（约 2.07 km 处）。距中支示意末端约 1.98 km，距东部泥沼查看点约 0.89 km；三处独立命名，不能用中支湿痕或单张湿地照片推断水已到达 S1 或漫入院落。",
+        "placement_caveat": "边界核查控制点，非实测低口或已证水路；需在同一次雨后或融雪时从安全公共位置同时记录边界两侧水迹及先后。",
+        "source": "06_Spatial-Research/Site-Analysis-20261122/North-Boundary-Crosswalk/points.geojson"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "wall-check-s2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.7002786474582, 49.15180760872227]
+      },
+      "properties": {
+        "layer": "north-boundary-checks",
+        "status": "candidate",
+        "feature_role": "wall-boundary-check",
+        "name": "院墙调查 S2 · 东端转角",
+        "description": "11 月 10 日修订院墙调查的东端转角对照核查点。与 S1 共同构成同场降水或融雪的边界对照，不以单点外推整个东部泥沼或院落边界。",
+        "placement_caveat": "独立对照核查点，非已证水路或淹没范围；11 月 22 日已拍照片未直接覆盖 S1 与 S2。",
+        "source": "06_Spatial-Research/Site-Analysis-20261122/North-Boundary-Crosswalk/points.geojson"
+      }
+    }
+  ]
+}

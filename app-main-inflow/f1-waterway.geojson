@@ -1,0 +1,5618 @@
+{
+  "type": "FeatureCollection",
+  "description": "Bridge-west is a local model-terminal, east/south observed morphology and conditional simulations remain separate. No directed water line inferred.",
+  "evidence": {
+    "judgment": "从桥东旧弯槽往东南，在01多期原图上能追到院北低洼的西北缘。2004-05低洼显出较完整的深色水面样斑，较晚影像同位多为深绿或草斑，支持这里时有积水。低洼往院侧分别看：西侧绿带朝1号点收窄，东侧贴院和田界可见另一条狭长带。它们是可能的排水路径，院角与路下没有接成已知通水线。2号和4号南侧的影像沟形仍分别接向共同弯槽；院北低洼不是东池。",
+    "boundary": "底图切换 Google Earth 01 的2004-05、2009-09、2021-09，院墙和道路可对照03局部及现场照片。各期外观不量化水深、降雨或可用天数；上游跨桥到低洼的完整路径、两侧是否人工设置或能通水仍未验证。原17.28平方公里模型不变。 03道路四点以现场记录分开标示；不据此连接到 F1、主湖或其他水体。",
+    "feature_ids": [
+      "f1-ge-west-branched-meander-outer",
+      "f1-ge-sw-to-central-junction",
+      "f1-west-visible-meander",
+      "f1-east-bridge-location-ref",
+      "f1-ge-imagefirst-east-apron",
+      "f1-se-visible-arc-to-basin",
+      "road03-ge-north-depression-core",
+      "road03-ge-north-basin-west-rim",
+      "road03-ge-north-basin-east-pockets",
+      "road03-ge-north-basin-east-gap",
+      "road03-ge-pin1-north-village-low-belt",
+      "road03-ge-pin1-north-yard-edge",
+      "road03-ge-pin1-north-court-gap",
+      "hjn-03-road-pin-01",
+      "hjn-03-road-pin-02",
+      "road03-ge-pin2-south-gully",
+      "hjn-03-road-pin-03",
+      "hjn-03-road-pin-04",
+      "road03-ge-pin4-diffuse",
+      "road03-ge-pin4-lower-arc",
+      "road03-ge-lower-confluence",
+      "road03-ge-common-reach",
+      "f1-ge-imagefirst-marsh-to-pond-gap",
+      "f1-east-pool-shore-ref"
+    ],
+    "source_refs": [
+      {
+        "label": "用户原图｜不同时相 Google Earth 局部和全幅",
+        "path": "google-earth-history.json"
+      },
+      {
+        "label": "影像逐段判读｜两套30米地表高程复核",
+        "path": "terrain-check.json"
+      },
+      {
+        "label": "原始四个补标及照片核对",
+        "path": "four-road-traces.geojson"
+      },
+      {
+        "label": "院北低洼与院落两侧｜01、03原图与照片复核",
+        "path": "yard-north-imagery.geojson"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "filename": "bridge-catchments.geojson",
+      "sha256": "c63bd3cc2831dd4b21036e46120e11913a7aaaa046ddf4a9c09ca85e616e50e7"
+    },
+    {
+      "filename": "f1-west-visible-meander.geojson",
+      "sha256": "e4b0e9b12fdc3eace619ad5a0a2d6423b500b8db3f945eeb1ba62ebea1f00cca"
+    },
+    {
+      "filename": "bridge-alternative-stop.geojson",
+      "sha256": "5bab124bb10a29e7aee1844475b6e42f25af75084104b532e0392f3107ca09f2"
+    },
+    {
+      "filename": "bridge-road-reach-sensitivity.geojson",
+      "sha256": "376ae19cc6f1f269f09f0ad9a97e31e2b0e4b787e4d7c6451b45593dc6f479de"
+    },
+    {
+      "filename": "f1-east-corridor-review.geojson",
+      "sha256": "98c5ae01008e15ab165da59e4d5bb571830ffa693c948a16d6924c3934ffbc03"
+    },
+    {
+      "filename": "four-road-traces.geojson",
+      "sha256": "4094159c1f7da14b0ca9abcf3bd97436373eef5a077a9d85f2b6cf3129cec899"
+    },
+    {
+      "filename": "seasonal-network.geojson",
+      "sha256": "541299c39f43f4e87747861d2cc414736bacef9765dd72537d04755bec2eedbf"
+    }
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "id": "f1-west-catchment-common-strict-wide",
+      "properties": {
+        "name": "桥西原地表 · 两套模型共同范围",
+        "status": "modeled",
+        "feature_role": "upstream_core",
+        "description": "两套 30 米地表在同一桥西搜索窗口下共有 3 个格（0.0027 km²）。原面单源约 0.0342 / 0.0099 km²。若填洼，两源范围可到约 28.03 / 0.0855 km²，差异很大，故不把填洼范围画成确定汇水面。与主湖 17.28 km² 基线共享网格面积 0.00 km²。",
+        "placement_caveat": "仅为指定桥西岸搜索带的30m DSM地形模型；无桥下高程，未刻槽、未打通国道，不代表实测汇水或穿桥后入主湖。",
+        "source": "Copernicus 和 AW3D30，同终点与条件。",
+        "intersection_km2": 0.0027,
+        "cop_only_km2": 0.0315,
+        "aw_only_km2": 0.0072,
+        "common_frozen_historical_main_overlap_km2": 0.0,
+        "common_f1_outside_frozen_historical_main_km2": 0.0027,
+        "layer": "f1-waterway",
+        "source_feature_id": "f1-west-catchment-common-strict-wide",
+        "source_status": "model",
+        "source_role": "bridge_gate_terrain_overlap",
+        "area_km2": 0.0027
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.64735738782437,
+              49.14697697062294
+            ],
+            [
+              119.6473430160281,
+              49.146707397395296
+            ],
+            [
+              119.64775394401815,
+              49.14669796868272
+            ],
+            [
+              119.64773957021185,
+              49.146428395528396
+            ],
+            [
+              119.648150495763,
+              49.14641896544383
+            ],
+            [
+              119.64817924803893,
+              49.14695811155856
+            ],
+            [
+              119.64735738782437,
+              49.14697697062294
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-west-catchment-cop-strict-wide",
+      "properties": {
+        "name": "桥西原地表 · Copernicus 单源范围",
+        "status": "modeled",
+        "feature_role": "terrain_variant",
+        "description": "原面最陡下降；桥西模型窗口上游（排除窗口本身）；不是排至主湖的汇水区。",
+        "placement_caveat": "仅为指定桥西岸搜索带的30m DSM地形模型；无桥下高程，未刻槽、未打通国道，不代表实测汇水或穿桥后入主湖。",
+        "source": "Copernicus DSM统一到冻结30m UTM模型网格，F1桥位及OSM仅用于近岸窗口。",
+        "model_cells_excluding_gate": 38,
+        "area_km2": 0.0342,
+        "matched_frozen_historical_main_cells": 0,
+        "overlap_historical_main_km2": 0.0,
+        "not_in_frozen_historical_main_cells": 38,
+        "not_in_frozen_historical_main_km2": 0.0342,
+        "frozen_main_not_in_f1_model_cells": 19200,
+        "frozen_main_not_in_f1_model_km2": 17.28,
+        "min_distance_to_finite_DSM_outer_edge_m": 7565.950039486119,
+        "gate_grid_count": 9,
+        "gate_cells_on_open_road_or_outer_boundary": 3,
+        "dataset": "cop",
+        "flow_case": "strict",
+        "gate": "wide",
+        "conditioned_max_raise_m": 0.0,
+        "conditioned_med_raise_m": 0.0,
+        "layer": "f1-waterway",
+        "source_feature_id": "f1-west-catchment-cop-strict-wide",
+        "source_status": "model",
+        "source_role": "bridge_gate_terrain_catchment"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                119.6458285757234,
+                49.14917125932113
+              ],
+              [
+                119.64581421111076,
+                49.14890168586351
+              ],
+              [
+                119.64622515775508,
+                49.148892262283105
+              ],
+              [
+                119.646210791132,
+                49.14862268889873
+              ],
+              [
+                119.64662173533726,
+                49.14861326394615
+              ],
+              [
+                119.64660736670383,
+                49.14834369063505
+              ],
+              [
+                119.64701830847007,
+                49.14833426431035
+              ],
+              [
+                119.64700393782637,
+                49.14806469107253
+              ],
+              [
+                119.64741487715351,
+                49.14805526337574
+              ],
+              [
+                119.6474005044996,
+                49.147785690211194
+              ],
+              [
+                119.64781144138774,
+                49.14777626114233
+              ],
+              [
+                119.64779706672367,
+                49.147506688051095
+              ],
+              [
+                119.64902986942751,
+                49.14747839234506
+              ],
+              [
+                119.6490011073956,
+                49.14693924664985
+              ],
+              [
+                119.64817924803893,
+                49.14695811155856
+              ],
+              [
+                119.648150495763,
+                49.14641896544383
+              ],
+              [
+                119.64773957021185,
+                49.146428395528396
+              ],
+              [
+                119.64775394401815,
+                49.14669796868272
+              ],
+              [
+                119.6473430160281,
+                49.146707397395296
+              ],
+              [
+                119.64735738782437,
+                49.14697697062294
+              ],
+              [
+                119.64694645739544,
+                49.14698639796349
+              ],
+              [
+                119.64696082718162,
+                49.147255971264414
+              ],
+              [
+                119.6465498943138,
+                49.14726539723292
+              ],
+              [
+                119.64656426208978,
+                49.14753497060711
+              ],
+              [
+                119.64615332678308,
+                49.147544395203546
+              ],
+              [
+                119.64616769254883,
+                49.14781396865101
+              ],
+              [
+                119.6457567548032,
+                49.147823391875335
+              ],
+              [
+                119.64577111855864,
+                49.14809296539604
+              ],
+              [
+                119.64536017837412,
+                49.14810238724824
+              ],
+              [
+                119.64537454011919,
+                49.14837196084217
+              ],
+              [
+                119.64496359749575,
+                49.14838138132222
+              ],
+              [
+                119.64499231717924,
+                49.14892052864078
+              ],
+              [
+                119.6441704223908,
+                49.148939365573256
+              ],
+              [
+                119.64418477810437,
+                49.14920893938683
+              ],
+              [
+                119.6458285757234,
+                49.14917125932113
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                119.6437738281641,
+                49.149218355750236
+              ],
+              [
+                119.64378818186702,
+                49.149487929637
+              ],
+              [
+                119.6441991340321,
+                49.14947851318465
+              ],
+              [
+                119.64418477810437,
+                49.14920893938683
+              ],
+              [
+                119.6437738281641,
+                49.149218355750236
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-west-catchment-aw-strict-wide",
+      "properties": {
+        "name": "桥西原地表 · AW3D30 单源范围",
+        "status": "modeled",
+        "feature_role": "terrain_variant",
+        "description": "原面最陡下降；桥西模型窗口上游（排除窗口本身）；不是排至主湖的汇水区。",
+        "placement_caveat": "仅为指定桥西岸搜索带的30m DSM地形模型；无桥下高程，未刻槽、未打通国道，不代表实测汇水或穿桥后入主湖。",
+        "source": "AW3D30 DSM统一到冻结30m UTM模型网格，F1桥位及OSM仅用于近岸窗口。",
+        "model_cells_excluding_gate": 11,
+        "area_km2": 0.009899999999999999,
+        "matched_frozen_historical_main_cells": 0,
+        "overlap_historical_main_km2": 0.0,
+        "not_in_frozen_historical_main_cells": 11,
+        "not_in_frozen_historical_main_km2": 0.009899999999999999,
+        "frozen_main_not_in_f1_model_cells": 19200,
+        "frozen_main_not_in_f1_model_km2": 17.28,
+        "min_distance_to_finite_DSM_outer_edge_m": 7770.231656778324,
+        "gate_grid_count": 9,
+        "gate_cells_on_open_road_or_outer_boundary": 3,
+        "dataset": "aw",
+        "flow_case": "strict",
+        "gate": "wide",
+        "conditioned_max_raise_m": 0.0,
+        "conditioned_med_raise_m": 0.0,
+        "layer": "f1-waterway",
+        "source_feature_id": "f1-west-catchment-aw-strict-wide",
+        "source_status": "model",
+        "source_role": "bridge_gate_terrain_catchment"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                119.64817924803893,
+                49.14695811155856
+              ],
+              [
+                119.64813611994673,
+                49.1461493923628
+              ],
+              [
+                119.64895796595681,
+                49.146130527988724
+              ],
+              [
+                119.6489435859063,
+                49.14586095507013
+              ],
+              [
+                119.64771082324255,
+                49.1458892491724
+              ],
+              [
+                119.64772519661999,
+                49.14615882235829
+              ],
+              [
+                119.64731427307882,
+                49.146168250892714
+              ],
+              [
+                119.6473430160281,
+                49.146707397395296
+              ],
+              [
+                119.64693208782369,
+                49.14671682464681
+              ],
+              [
+                119.64694645739544,
+                49.14698639796349
+              ],
+              [
+                119.64817924803893,
+                49.14695811155856
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                119.64653552675217,
+                49.146995823842964
+              ],
+              [
+                119.6465498943138,
+                49.14726539723292
+              ],
+              [
+                119.64696082718162,
+                49.147255971264414
+              ],
+              [
+                119.64694645739544,
+                49.14698639796349
+              ],
+              [
+                119.64653552675217,
+                49.146995823842964
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-west-visible-meander",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.640256,
+            49.14542
+          ],
+          [
+            119.6408,
+            49.14534
+          ],
+          [
+            119.641184,
+            49.14546
+          ],
+          [
+            119.641856,
+            49.14554
+          ],
+          [
+            119.642368,
+            49.14542
+          ],
+          [
+            119.64304,
+            49.14516
+          ],
+          [
+            119.643712,
+            49.14498
+          ],
+          [
+            119.64416,
+            49.14482
+          ],
+          [
+            119.64464,
+            49.14506
+          ],
+          [
+            119.645024,
+            49.1451
+          ],
+          [
+            119.645408,
+            49.14522
+          ],
+          [
+            119.645792,
+            49.1454
+          ],
+          [
+            119.645984,
+            49.14574
+          ],
+          [
+            119.646176,
+            49.14604
+          ],
+          [
+            119.646528,
+            49.14626
+          ],
+          [
+            119.646848,
+            49.14634
+          ],
+          [
+            119.647168,
+            49.14622
+          ],
+          [
+            119.647584,
+            49.14604
+          ],
+          [
+            119.647968,
+            49.14612
+          ],
+          [
+            119.648256,
+            49.1463
+          ],
+          [
+            119.648512,
+            49.14648
+          ],
+          [
+            119.648864,
+            49.14658
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "name": "桥西可辨弯槽 · 到桥仍留空段",
+        "status": "observed",
+        "feature_role": "observed_outline",
+        "description": "同一浅凹中可辨地表弯槽约 760 米；描绘到距离桥位约 46 米为止，不补接桥孔，也不据此判断水流方向。",
+        "source": "本机配准 Google Earth 200405、202107-2、202109、202209-2（文件标记）",
+        "placement_caveat": "不把槽线延伸至桥孔或更西侧分界。仅为地表可见地貌，非实测沟底、水量、流向或确认过水。",
+        "related_ids": [
+          "west-slope-f1-bridge",
+          "f1-east-bridge-location-ref"
+        ],
+        "imagery_ids": [
+          "ge-root-200405",
+          "ge-root-202107-2",
+          "ge-root-202109",
+          "ge-root-202209-2"
+        ],
+        "length_m": 760.2,
+        "hydraulic_link_confirmed": false,
+        "source_feature_id": "f1-west-visible-meander",
+        "source_status": "context",
+        "source_role": "surface-trace"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-south-alternative-grid-stop",
+      "properties": {
+        "name": "桥位以南约 122 米 · 模型路边停点（待核）",
+        "status": "gap",
+        "feature_role": "gap",
+        "description": "复用Cop条件模型的上游格，在AW无加洞的开放路边填洼模型中优先到达此格，并在计算边缘停止。",
+        "placement_caveat": "仅为填洼条件下对同一大致国道路段的来源敏感性；桥位与以南约120米的模型边缘是两个分开窗口，不代表第二涵洞、不表示过路后去向。",
+        "source": "30米DSM模型格、冻结OSM道路；没有实测第二设施。",
+        "distance_to_bridge_reference_m": 121.86518193349369,
+        "distance_to_osm_west_carriageway_m": 14.024949087758829,
+        "diagnostic_source_cell_count": 30459,
+        "alternatively_tested_terrain_footprint_cell_count": 31146,
+        "layer": "f1-waterway",
+        "source_feature_id": "f1-south-alternative-grid-stop",
+        "source_status": "model",
+        "source_role": "alternative_road_edge_model_stop"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.64912747482073,
+          49.14545187876737
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-east-bridge-location-ref",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6495,
+          49.14652
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "name": "三八水库中桥 · 可识别桥位",
+        "status": "observed",
+        "feature_role": "contextual",
+        "description": "现场桥牌和跨路结构定位；桥牌记录 2011-12-01 通车。",
+        "source": "IMG_2026、既有F1桥位",
+        "placement_caveat": "可见地表形态，中心定位只反映宽带及各期变化；非沟底测量，不标示实测流向或有水。",
+        "related_ids": [
+          "west-slope-f1-bridge",
+          "f1-east-shoulder-model-ref"
+        ],
+        "hydraulic_link_confirmed": false,
+        "photo_files": [
+          "IMG_2026.JPG"
+        ],
+        "source_feature_id": "f1-east-bridge-location-ref",
+        "source_status": "observed",
+        "source_role": "structure"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-east-old-turn-review",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6591,
+          49.1479
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "name": "桥东旧转折 · 两段影像线之间未续画",
+        "status": "gap",
+        "feature_role": "gap",
+        "description": "桥东低带与旧转折以东南的弯槽分别可辨，两段中间没有画成连续槽。这个定位点不是已知过水口或发生分流的点。",
+        "source": "本机 Google Earth 201309、202109、202504 全幅及 01 局部对照",
+        "placement_caveat": "可见地表形态，中心定位只反映宽带及各期变化；非沟底测量，不标示实测流向或有水。",
+        "related_ids": [
+          "f1-east-common-belt",
+          "f1-east-south-relict-belt",
+          "f1-east-ne-fade-search"
+        ],
+        "hydraulic_link_confirmed": false,
+        "source_feature_id": "f1-east-old-turn-review",
+        "source_status": "candidate",
+        "source_role": "review"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-east-marsh-field-review",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.67173077,
+              49.15314758
+            ],
+            [
+              119.67384615,
+              49.15419084
+            ],
+            [
+              119.67653846,
+              49.15464885
+            ],
+            [
+              119.67911538,
+              49.1549542
+            ],
+            [
+              119.68253846,
+              49.15569211
+            ],
+            [
+              119.68592308,
+              49.15622646
+            ],
+            [
+              119.68919231,
+              49.1563028
+            ],
+            [
+              119.69203846,
+              49.15615013
+            ],
+            [
+              119.69338462,
+              49.15566667
+            ],
+            [
+              119.693,
+              49.15378372
+            ],
+            [
+              119.69257692,
+              49.15251145
+            ],
+            [
+              119.69088462,
+              49.15156997
+            ],
+            [
+              119.68830769,
+              49.15131552
+            ],
+            [
+              119.68526923,
+              49.15103562
+            ],
+            [
+              119.68253846,
+              49.15103562
+            ],
+            [
+              119.67919231,
+              49.15108651
+            ],
+            [
+              119.67753846,
+              49.1506285
+            ],
+            [
+              119.67534615,
+              49.15093384
+            ],
+            [
+              119.67330769,
+              49.1514173
+            ],
+            [
+              119.67207692,
+              49.15223155
+            ],
+            [
+              119.67173077,
+              49.15314758
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "name": "东部泥沼 · 地貌核查区（不是东池）",
+        "status": "candidate",
+        "feature_role": "contextual",
+        "description": "多期影像显示斑纹和浅低地散布。该区与更东面的东池分列研究；中间没有经核验的连续水道。",
+        "source": "本机配准 Google Earth：200405,202107-2,202109,202209-2（文件标记）；2009-04-04 QuickBird-2 归档早期形态",
+        "placement_caveat": "按共同纹理勾绘搜索区，不是实测湿地、水面或积水范围；不按明暗判断水。",
+        "related_ids": [
+          "atlas-east-marsh-review",
+          "f1-east-ne-fade-search",
+          "f1-east-pool-shore-ref"
+        ],
+        "hydraulic_link_confirmed": false,
+        "source_feature_id": "f1-east-marsh-field-review",
+        "source_status": "candidate",
+        "source_role": "search-area"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-east-pool-shore-ref",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.6951366960744,
+              49.15658268084272
+            ],
+            [
+              119.69512693875755,
+              49.15640297266028
+            ],
+            [
+              119.69457894885085,
+              49.15641577058684
+            ],
+            [
+              119.69452041885589,
+              49.15533752086042
+            ],
+            [
+              119.69424642969098,
+              49.15534391860767
+            ],
+            [
+              119.69423667602038,
+              49.15516421025492
+            ],
+            [
+              119.69451066419633,
+              49.15515781254797
+            ],
+            [
+              119.69440336934457,
+              49.153181020645036
+            ],
+            [
+              119.69467734654553,
+              49.15317462273183
+            ],
+            [
+              119.69464808338407,
+              49.15263549764003
+            ],
+            [
+              119.69519603156189,
+              49.15262270010708
+            ],
+            [
+              119.69518627539114,
+              49.15244299180962
+            ],
+            [
+              119.69600819396366,
+              49.15242379076041
+            ],
+            [
+              119.69599843492354,
+              49.1522440825768
+            ],
+            [
+              119.69627240659811,
+              49.15223768096853
+            ],
+            [
+              119.69626264666627,
+              49.152057972818184
+            ],
+            [
+              119.69681058774665,
+              49.15204516773404
+            ],
+            [
+              119.69680082593433,
+              49.15186545965728
+            ],
+            [
+              119.6970747953401,
+              49.15185905618141
+            ],
+            [
+              119.69706503263609,
+              49.1516793481379
+            ],
+            [
+              119.69816090533303,
+              49.151653727901696
+            ],
+            [
+              119.69817067199207,
+              49.15183343578386
+            ],
+            [
+              119.69871860973527,
+              49.151820621688636
+            ],
+            [
+              119.69874791622797,
+              49.1523597450506
+            ],
+            [
+              119.69902188792017,
+              49.15235333690781
+            ],
+            [
+              119.69911959243338,
+              49.15415041391827
+            ],
+            [
+              119.6988456108528,
+              49.154156822464635
+            ],
+            [
+              119.69885538084974,
+              49.15433653016718
+            ],
+            [
+              119.6983074154192,
+              49.15434934539225
+            ],
+            [
+              119.69831718353551,
+              49.15452905316844
+            ],
+            [
+              119.69804319968561,
+              49.154535459847125
+            ],
+            [
+              119.69806273423181,
+              49.15489487545901
+            ],
+            [
+              119.69778874830693,
+              49.15490128156892
+            ],
+            [
+              119.69781804788805,
+              49.155440405054804
+            ],
+            [
+              119.69754405889915,
+              49.15544681063625
+            ],
+            [
+              119.69751476228487,
+              49.15490768702935
+            ],
+            [
+              119.69724077616571,
+              49.1549140918403
+            ],
+            [
+              119.69728959939704,
+              49.15581263135152
+            ],
+            [
+              119.69701560823593,
+              49.155819035714664
+            ],
+            [
+              119.6970253721846,
+              49.15599874363605
+            ],
+            [
+              119.69675137993734,
+              49.15600514739001
+            ],
+            [
+              119.69676114299412,
+              49.15618485534466
+            ],
+            [
+              119.69648714966078,
+              49.156191258489464
+            ],
+            [
+              119.69649691182566,
+              49.156370966477375
+            ],
+            [
+              119.69594892288966,
+              49.156383770899076
+            ],
+            [
+              119.69595868317359,
+              49.156563478960585
+            ],
+            [
+              119.6951366960744,
+              49.15658268084272
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "name": "东池 · 2025-09-22 分类水面",
+        "status": "observed",
+        "feature_role": "water_reference",
+        "description": "冻结的20米分类水面，只定位该日期的东池，不据此确认东部泥沼或桥东来水。",
+        "source": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/water-network/evidence.json",
+        "placement_caveat": "仅作既有对照站点，不构成入流连接。",
+        "related_ids": [
+          "wayback-e_pool",
+          "f1-east-marsh-field-review"
+        ],
+        "hydraulic_link_confirmed": false,
+        "source_feature_id": "f1-east-pool-shore-ref",
+        "source_status": "observed",
+        "source_role": "receiver-ref",
+        "dates": [
+          "2025-09-22"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hjn-03-road-pin-01",
+      "properties": {
+        "id": "hjn-03-road-pin-01",
+        "group": "hjn-03-road-four-observations",
+        "display_order": 1,
+        "feature_role": "field_kmz_observation",
+        "status": "observed",
+        "name": "水通道第 1 点 · 双侧圆涵连通",
+        "description": "现场记录：道路两侧有圆形涵洞并相互连通。",
+        "source": "现场记录；原始水通道.kmz（原顺序、原坐标）",
+        "placement_caveat": "点位来自原 KMZ，不是管口实测坐标；照片只说明所拍画面。未测通量或入湖关系。",
+        "cross_road_connectivity": "connected_reported_in_field",
+        "direction": "not_verified",
+        "flow_rate": "not_measured",
+        "layer": "f1-waterway",
+        "source_feature_id": "hjn-03-road-pin-01",
+        "source_status": "user_marked",
+        "source_role": "road_observation",
+        "field_observation": "both_round_culverts_connected"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6654463447027,
+          49.14203019679017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hjn-03-road-pin-02",
+      "properties": {
+        "id": "hjn-03-road-pin-02",
+        "group": "hjn-03-road-four-observations",
+        "display_order": 2,
+        "feature_role": "field_kmz_observation",
+        "status": "observed",
+        "name": "水通道第 2 点 · 南侧有涵 · 北侧疑似填埋",
+        "description": "现场记录：道路南侧有涵洞。北侧疑似填埋，尚未确认是否填埋及当前是否贯通。",
+        "source": "现场记录；原始水通道.kmz（原顺序、原坐标）",
+        "placement_caveat": "点位来自原 KMZ，不是管口实测坐标；照片只说明所拍画面。未测通量或入湖关系。",
+        "cross_road_connectivity": "uncertain_north_side",
+        "direction": "not_verified",
+        "flow_rate": "not_measured",
+        "layer": "f1-waterway",
+        "source_feature_id": "hjn-03-road-pin-02",
+        "source_status": "user_marked",
+        "source_role": "road_observation",
+        "field_observation": "south_culvert_north_possibly_buried"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6666261414633,
+          49.14201719526098
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hjn-03-road-pin-03",
+      "properties": {
+        "id": "hjn-03-road-pin-03",
+        "group": "hjn-03-road-four-observations",
+        "display_order": 3,
+        "feature_role": "field_kmz_observation",
+        "status": "observed",
+        "name": "水通道第 3 点 · 双侧涵洞连通",
+        "description": "现场记录：道路两侧涵洞相互连通。",
+        "source": "现场记录；原始水通道.kmz（原顺序、原坐标）",
+        "placement_caveat": "点位来自原 KMZ，不是管口实测坐标；照片只说明所拍画面。未测通量或入湖关系。",
+        "cross_road_connectivity": "connected_reported_in_field",
+        "direction": "not_verified",
+        "flow_rate": "not_measured",
+        "layer": "f1-waterway",
+        "source_feature_id": "hjn-03-road-pin-03",
+        "source_status": "user_marked",
+        "source_role": "road_observation",
+        "field_observation": "both_culverts_connected"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6676516412598,
+          49.14226065651743
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hjn-03-road-03-north-short-trace",
+      "properties": {
+        "id": "hjn-03-road-03-north-short-trace",
+        "group": "hjn-03-road-four-observations",
+        "display_order": 3,
+        "feature_role": "observed_outline",
+        "status": "observed",
+        "name": "3号点路北 · 短段可见沟形",
+        "description": "IMG_2014 可见北肩雪覆明沟；两期原图近路有约30米的暗线近对，局部与地块边界重叠。IMG_2015 可见南侧沟槽，两侧未画接通。",
+        "source": "Original Google Earth local 03/202109.jpg, 03/202504.jpg; dates are filename labels; IMG_2014/2015",
+        "placement_caveat": "原图人工判读及近似配准，仅供定位复核，不是沟底实测或流向。",
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified",
+        "flow_rate": "not_measured",
+        "approx_length_m": 29.8,
+        "start_distance_to_main_202407_m": 1052.6,
+        "end_distance_to_main_202407_m": 1080.0,
+        "layer": "f1-waterway",
+        "source_feature_id": "hjn-03-road-03-north-short-trace",
+        "source_status": "field_and_image",
+        "source_role": "surface_morphology"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.66768521,
+            49.14224086
+          ],
+          [
+            119.66765324,
+            49.14232152
+          ],
+          [
+            119.6676167,
+            49.14241711
+          ],
+          [
+            119.66758473,
+            49.14250075
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hjn-03-road-pin-04",
+      "properties": {
+        "id": "hjn-03-road-pin-04",
+        "group": "hjn-03-road-four-observations",
+        "display_order": 4,
+        "feature_role": "field_kmz_observation",
+        "status": "observed",
+        "name": "水通道第 4 点 · 路南沟渠汇入低点后下流",
+        "description": "现场记录：路南沟渠汇入这一低点，然后顺低处继续向下游。这是低洼汇水点，不作为穿路涵洞；下游具体受纳点未定。",
+        "source": "现场记录；原始水通道.kmz（原顺序、原坐标）",
+        "placement_caveat": "点位来自原 KMZ，不是管口实测坐标；照片只说明所拍画面。未测通量或入湖关系。",
+        "cross_road_connectivity": "not_a_culvert_station",
+        "direction": "reported_local_low_point_sequence_only",
+        "flow_rate": "not_measured",
+        "layer": "f1-waterway",
+        "source_feature_id": "hjn-03-road-pin-04",
+        "source_status": "user_marked",
+        "source_role": "road_observation",
+        "field_observation": "south_ditches_to_low_spot_then_downstream"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.6687125095413,
+          49.14224324057505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-two-windows-common-edgefilled-paired",
+      "properties": {
+        "name": "两个离散窗口 · 双地形填洼交叠",
+        "status": "modeled",
+        "feature_role": "terrain_variant",
+        "description": "桥西与约 120 米以南路边是两个分开的模型窗口。两套地形各自填洼后，共同范围约 27.4806 km²；两窗口都不填洼的共同范围仅 0.0081 km²。这个比较不判定实际接到哪处，也不代表会过路、入主湖或有第二涵洞。",
+        "placement_caveat": "图内约 8.25 km²，完整 27.48 km²。完整面有一大部分在图谱 DEM 外。与历史主湖模型共享网格为 0，绝不叠加到 17.28 km²。",
+        "source": "匹配冻结30米模型格上的双源形状交叠。",
+        "overlap_area_km2": 27.4806,
+        "co_only_km2": 0.5498999999999999,
+        "aw_only_km2": 0.7947,
+        "overlap_frozen_main_cells": 0,
+        "layer": "f1-waterway-sensitivity",
+        "source_feature_id": "f1-two-windows-common-edgefilled-paired",
+        "source_status": "model",
+        "source_role": "bridge_reach_alternate_window_overlap",
+        "display_clipped": true,
+        "display_area_km2": 8.250888058850325
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.6114498977261,
+              49.15265343886829
+            ],
+            [
+              119.61146407777161,
+              49.15292301958215
+            ],
+            [
+              119.61269705083863,
+              49.152895109532714
+            ],
+            [
+              119.61268286411675,
+              49.152625529082535
+            ],
+            [
+              119.61473780386733,
+              49.15257898354309
+            ],
+            [
+              119.6147661997774,
+              49.1531181435483
+            ],
+            [
+              119.61517719154305,
+              49.153108829879976
+            ],
+            [
+              119.61519139204135,
+              49.15337840977104
+            ],
+            [
+              119.61724635881818,
+              49.15333181906665
+            ],
+            [
+              119.61726057065596,
+              49.153601398501856
+            ],
+            [
+              119.6180825603336,
+              49.15358275181333
+            ],
+            [
+              119.61806834404483,
+              49.153313172554284
+            ],
+            [
+              119.61847933634,
+              49.153303847105825
+            ],
+            [
+              119.61846511803786,
+              49.153034267919175
+            ],
+            [
+              119.61969808697401,
+              49.15300628306915
+            ],
+            [
+              119.619626965265,
+              49.15165838822215
+            ],
+            [
+              119.62044892124113,
+              49.15163972522961
+            ],
+            [
+              119.62043469308551,
+              49.15137014638938
+            ],
+            [
+              119.62166761878179,
+              49.15134214120452
+            ],
+            [
+              119.62168185361311,
+              49.15161171978018
+            ],
+            [
+              119.62455868837938,
+              49.151546322582185
+            ],
+            [
+              119.62454443797154,
+              49.15127674462434
+            ],
+            [
+              119.62618832997461,
+              49.151239342999446
+            ],
+            [
+              119.62617407087873,
+              49.15096976537923
+            ],
+            [
+              119.62822891996987,
+              49.150922980909115
+            ],
+            [
+              119.62821464996115,
+              49.150653403715154
+            ],
+            [
+              119.62944755018596,
+              49.15062531576217
+            ],
+            [
+              119.62943327371497,
+              49.150355738817815
+            ],
+            [
+              119.6302552016831,
+              49.15033700638612
+            ],
+            [
+              119.63024092097507,
+              49.150067429603006
+            ],
+            [
+              119.63147380465419,
+              49.150039320261115
+            ],
+            [
+              119.63145951748429,
+              49.149769743727816
+            ],
+            [
+              119.63269239257009,
+              49.14974162149993
+            ],
+            [
+              119.63267809893857,
+              49.149472045216555
+            ],
+            [
+              119.6363766926525,
+              49.14938760042179
+            ],
+            [
+              119.63639100630817,
+              49.1496571759074
+            ],
+            [
+              119.63721291812396,
+              49.149638394146244
+            ],
+            [
+              119.63719860001854,
+              49.149368818838056
+            ],
+            [
+              119.6384314594654,
+              49.14934063550313
+            ],
+            [
+              119.63844578424545,
+              49.14961021054507
+            ],
+            [
+              119.63885673919187,
+              49.14960081308884
+            ],
+            [
+              119.63884241218697,
+              49.14933123813567
+            ],
+            [
+              119.64007526906906,
+              49.149303037265895
+            ],
+            [
+              119.64008960274853,
+              49.149572611952635
+            ],
+            [
+              119.64050055683977,
+              49.149563208651415
+            ],
+            [
+              119.64051489295797,
+              49.14983278323358
+            ],
+            [
+              119.64092584906017,
+              49.14982337838226
+            ],
+            [
+              119.64094018761718,
+              49.15009295285982
+            ],
+            [
+              119.64176210362963,
+              49.15007413859568
+            ],
+            [
+              119.64174776062283,
+              49.14980456429586
+            ],
+            [
+              119.64298062636182,
+              49.149776332206876
+            ],
+            [
+              119.64296627689444,
+              49.149506758158005
+            ],
+            [
+              119.6441991340321,
+              49.14947851318465
+            ],
+            [
+              119.64418477810437,
+              49.14920893938683
+            ],
+            [
+              119.6458285757234,
+              49.14917125932113
+            ],
+            [
+              119.64581421111076,
+              49.14890168586351
+            ],
+            [
+              119.64622515775508,
+              49.148892262283105
+            ],
+            [
+              119.646210791132,
+              49.14862268889873
+            ],
+            [
+              119.64662173533726,
+              49.14861326394615
+            ],
+            [
+              119.64660736670383,
+              49.14834369063505
+            ],
+            [
+              119.64701830847007,
+              49.14833426431035
+            ],
+            [
+              119.64700393782637,
+              49.14806469107253
+            ],
+            [
+              119.64741487715351,
+              49.14805526337574
+            ],
+            [
+              119.6474005044996,
+              49.147785690211194
+            ],
+            [
+              119.64904425076529,
+              49.14774796516899
+            ],
+            [
+              119.6490011073956,
+              49.14693924664985
+            ],
+            [
+              119.64817924803893,
+              49.14695811155856
+            ],
+            [
+              119.64813611994673,
+              49.1461493923628
+            ],
+            [
+              119.64895796595681,
+              49.146130527988724
+            ],
+            [
+              119.64892920607028,
+              49.14559138213574
+            ],
+            [
+              119.64851828762117,
+              49.14560081487509
+            ],
+            [
+              119.64850391022398,
+              49.14533124183583
+            ],
+            [
+              119.64891482644879,
+              49.145321809185596
+            ],
+            [
+              119.64890044704181,
+              49.145052236219655
+            ],
+            [
+              119.64848953304126,
+              49.1450616687808
+            ],
+            [
+              119.64847515607303,
+              49.14479209570998
+            ],
+            [
+              119.64765333187704,
+              49.1448109562711
+            ],
+            [
+              119.64763895957168,
+              49.144541383006334
+            ],
+            [
+              119.64722804937627,
+              49.144550811006376
+            ],
+            [
+              119.64721367950949,
+              49.14428123763677
+            ],
+            [
+              119.64680277132389,
+              49.144290664086796
+            ],
+            [
+              119.64677403668172,
+              49.14375151712219
+            ],
+            [
+              119.64636313273004,
+              49.14376094193319
+            ],
+            [
+              119.64634876795455,
+              49.143491368338196
+            ],
+            [
+              119.64593786601266,
+              49.14350079159925
+            ],
+            [
+              119.64592350367552,
+              49.14323121789947
+            ],
+            [
+              119.64551260374343,
+              49.1432406396106
+            ],
+            [
+              119.64548388415989,
+              49.142701491985726
+            ],
+            [
+              119.64507298846164,
+              49.142710912057986
+            ],
+            [
+              119.64505863121514,
+              49.142441338132905
+            ],
+            [
+              119.64546952468942,
+              49.142431918149626
+            ],
+            [
+              119.64545516543318,
+              49.142162344297766
+            ],
+            [
+              119.64627694729126,
+              49.14214350012664
+            ],
+            [
+              119.64620513198467,
+              49.14079563152082
+            ],
+            [
+              119.64661601147321,
+              49.14078620768912
+            ],
+            [
+              119.64658728240293,
+              49.14024706031442
+            ],
+            [
+              119.6461764073618,
+              49.14025648396808
+            ],
+            [
+              119.64616204537174,
+              49.13998691016807
+            ],
+            [
+              119.64657291818921,
+              49.13997748660342
+            ],
+            [
+              119.64655855418974,
+              49.13970791287665
+            ],
+            [
+              119.6461476835959,
+              49.139717336352284
+            ],
+            [
+              119.6460758779301,
+              49.13836946703675
+            ],
+            [
+              119.64566501823967,
+              49.13837888860665
+            ],
+            [
+              119.64565065997256,
+              49.138109314607235
+            ],
+            [
+              119.6452398022914,
+              49.13811873462748
+            ],
+            [
+              119.64522544646188,
+              49.1378491605233
+            ],
+            [
+              119.64481459078996,
+              49.137858578993956
+            ],
+            [
+              119.64477153125627,
+              49.13704985631993
+            ],
+            [
+              119.64394983261022,
+              49.137068688345636
+            ],
+            [
+              119.64392113621791,
+              49.13652953946167
+            ],
+            [
+              119.64309944560884,
+              49.13654836528934
+            ],
+            [
+              119.64308510218018,
+              49.13627879064587
+            ],
+            [
+              119.64267425877792,
+              49.13628820127995
+            ],
+            [
+              119.64268859998337,
+              49.13655777601231
+            ],
+            [
+              119.64104521534263,
+              49.13659540429854
+            ],
+            [
+              119.64103088303014,
+              49.136325829210726
+            ],
+            [
+              119.64062003855865,
+              49.13633523254202
+            ],
+            [
+              119.64060570868311,
+              49.13606565734961
+            ],
+            [
+              119.64019486622111,
+              49.13607505913152
+            ],
+            [
+              119.64018053878254,
+              49.13580548383457
+            ],
+            [
+              119.6393588576638,
+              49.135824282839145
+            ],
+            [
+              119.6393302123203,
+              49.13528513184279
+            ],
+            [
+              119.63891937588674,
+              49.13529452897673
+            ],
+            [
+              119.63890505575857,
+              49.13502495336615
+            ],
+            [
+              119.63849422133451,
+              49.1350343489508
+            ],
+            [
+              119.63846558616501,
+              49.13449519750489
+            ],
+            [
+              119.6380547559735,
+              49.13450459145157
+            ],
+            [
+              119.63802612610421,
+              49.13396543976517
+            ],
+            [
+              119.63843695184973,
+              49.13395604599596
+            ],
+            [
+              119.6384226350124,
+              49.13368647021785
+            ],
+            [
+              119.63801181148983,
+              49.133695863898325
+            ],
+            [
+              119.6379259282871,
+              49.13207840836657
+            ],
+            [
+              119.63751511788799,
+              49.1320878000543
+            ],
+            [
+              119.63748649630706,
+              49.131548647906925
+            ],
+            [
+              119.63789730226078,
+              49.131539256396636
+            ],
+            [
+              119.63786867708835,
+              49.13100010436371
+            ],
+            [
+              119.6374578755799,
+              49.131009495696574
+            ],
+            [
+              119.63744356553647,
+              49.13073991956778
+            ],
+            [
+              119.63703276603717,
+              49.13074930935164
+            ],
+            [
+              119.63701845842971,
+              49.1304797331184
+            ],
+            [
+              119.63660766093957,
+              49.1304891213533
+            ],
+            [
+              119.63652183311068,
+              49.128871663090976
+            ],
+            [
+              119.63611104874185,
+              49.1288810493336
+            ],
+            [
+              119.63605384334515,
+              49.1278027431558
+            ],
+            [
+              119.63523229174591,
+              49.127821510551335
+            ],
+            [
+              119.63524658833066,
+              49.12809108729668
+            ],
+            [
+              119.63483580998896,
+              49.12810046889285
+            ],
+            [
+              119.63476434030818,
+              49.12675258456558
+            ],
+            [
+              119.63394280520704,
+              49.126771342491466
+            ],
+            [
+              119.63391422771521,
+              49.12623218829599
+            ],
+            [
+              119.63350346428912,
+              49.126241564891636
+            ],
+            [
+              119.63347489209372,
+              49.12570241045605
+            ],
+            [
+              119.63265337349041,
+              49.12572115891295
+            ],
+            [
+              119.63268193679778,
+              49.126260313702744
+            ],
+            [
+              119.63186040845443,
+              49.12627905667354
+            ],
+            [
+              119.63184613113833,
+              49.12600947910946
+            ],
+            [
+              119.63143536886929,
+              49.12601884831624
+            ],
+            [
+              119.63144964396336,
+              49.126288425968816
+            ],
+            [
+              119.63103887925938,
+              49.126297793804014
+            ],
+            [
+              119.63102460638737,
+              49.12602821606295
+            ],
+            [
+              119.63061384369259,
+              49.126037582349596
+            ],
+            [
+              119.63059957325544,
+              49.12576800450433
+            ],
+            [
+              119.63142109398812,
+              49.125749270647944
+            ],
+            [
+              119.63139254486448,
+              49.12521011526413
+            ],
+            [
+              119.63180330046758,
+              49.12520074632285
+            ],
+            [
+              119.63173192027458,
+              49.12385285803042
+            ],
+            [
+              119.6313211757807,
+              49.12386222652922
+            ],
+            [
+              119.63124981201845,
+              49.122514337400915
+            ],
+            [
+              119.63083907842014,
+              49.12252370399737
+            ],
+            [
+              119.6307534622582,
+              49.12090623599331
+            ],
+            [
+              119.63116418252747,
+              49.12089686992767
+            ],
+            [
+              119.63110710045653,
+              49.11981855796416
+            ],
+            [
+              119.63151781162769,
+              49.11980919079264
+            ],
+            [
+              119.6315035394207,
+              49.11953961285089
+            ],
+            [
+              119.63068212130815,
+              49.11955834555723
+            ],
+            [
+              119.63066785375645,
+              49.11928876742283
+            ],
+            [
+              119.62984643923528,
+              49.11930749411332
+            ],
+            [
+              119.62983217633871,
+              49.11903791578628
+            ],
+            [
+              119.62777864742031,
+              49.119084706525264
+            ],
+            [
+              119.62776439584232,
+              49.11881512774053
+            ],
+            [
+              119.62612157776674,
+              49.118852533703354
+            ],
+            [
+              119.62610733528592,
+              49.11858295454959
+            ],
+            [
+              119.62487522616259,
+              49.11861099342982
+            ],
+            [
+              119.62483251998444,
+              49.117802255079624
+            ],
+            [
+              119.62442182318208,
+              49.11781159818886
+            ],
+            [
+              119.62439335790009,
+              49.11727243903363
+            ],
+            [
+              119.62398266532755,
+              49.11728178050672
+            ],
+            [
+              119.62395420533643,
+              49.11674262111215
+            ],
+            [
+              119.62436489346702,
+              49.11673327981553
+            ],
+            [
+              119.62435066156883,
+              49.116463700182884
+            ],
+            [
+              119.62393997565916,
+              49.11647304139128
+            ],
+            [
+              119.62392574619408,
+              49.11620346165469
+            ],
+            [
+              119.62269369385483,
+              49.11623147625763
+            ],
+            [
+              119.62276480998767,
+              49.11757937610647
+            ],
+            [
+              119.62235411434548,
+              49.11758871182914
+            ],
+            [
+              119.62236833598728,
+              49.11785829183995
+            ],
+            [
+              119.62195763791196,
+              49.11786762619114
+            ],
+            [
+              119.62194341849127,
+              49.11759804609217
+            ],
+            [
+              119.62112202614671,
+              49.1176167102392
+            ],
+            [
+              119.62109359682553,
+              49.11707754964153
+            ],
+            [
+              119.62027221251725,
+              49.1170962075974
+            ],
+            [
+              119.6202580026166,
+              49.11682662709877
+            ],
+            [
+              119.61902593122804,
+              49.116854602820965
+            ],
+            [
+              119.61898332278584,
+              49.11604586043808
+            ],
+            [
+              119.6185726385622,
+              49.11605518249537
+            ],
+            [
+              119.61848744072054,
+              49.114437696777244
+            ],
+            [
+              119.61807676960996,
+              49.11444701684671
+            ],
+            [
+              119.61806257293142,
+              49.11417743575068
+            ],
+            [
+              119.61559855514768,
+              49.11423332498971
+            ],
+            [
+              119.61558437200483,
+              49.11396374335009
+            ],
+            [
+              119.6147630354927,
+              49.113982361244446
+            ],
+            [
+              119.61477721419418,
+              49.11425194305994
+            ],
+            [
+              119.61395587239495,
+              49.11427055529208
+            ],
+            [
+              119.61397004686643,
+              49.114540137267674
+            ],
+            [
+              119.61273802592032,
+              49.114568044933044
+            ],
+            [
+              119.61272385811108,
+              49.11429846269386
+            ],
+            [
+              119.61231318626054,
+              49.11430776224206
+            ],
+            [
+              119.61229902088324,
+              49.114038179899346
+            ],
+            [
+              119.6118883510422,
+              49.114047477900186
+            ],
+            [
+              119.6118741880968,
+              49.11377789545396
+            ],
+            [
+              119.61064218396876,
+              49.11380578043599
+            ],
+            [
+              119.6106280278965,
+              49.11353619771067
+            ],
+            [
+              119.61021736165226,
+              49.11354548969789
+            ],
+            [
+              119.61020320801171,
+              49.113275906869134
+            ],
+            [
+              119.61,
+              49.11328050331101
+            ],
+            [
+              119.61,
+              49.152686238483625
+            ],
+            [
+              119.6114498977261,
+              49.15265343886829
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-ge-sw-to-central-junction",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.64049217,
+            49.14411429
+          ],
+          [
+            119.64082261,
+            49.14421429
+          ],
+          [
+            119.64107043,
+            49.14438571
+          ],
+          [
+            119.64128522,
+            49.14455714
+          ],
+          [
+            119.64153304,
+            49.1445
+          ],
+          [
+            119.64174783,
+            49.14431429
+          ],
+          [
+            119.64197913,
+            49.14411429
+          ],
+          [
+            119.64222696,
+            49.14417143
+          ],
+          [
+            119.64254087,
+            49.14428571
+          ],
+          [
+            119.64290435,
+            49.14437143
+          ],
+          [
+            119.64328435,
+            49.14447143
+          ],
+          [
+            119.64366435,
+            49.14457143
+          ],
+          [
+            119.64389565,
+            49.14465714
+          ],
+          [
+            119.64420957,
+            49.14482857
+          ]
+        ]
+      },
+      "properties": {
+        "name": "桥西｜西南弯槽与中央槽形的可见会合段",
+        "status": "observed",
+        "feature_role": "observed_outline",
+        "description": "两个槽形在中央低位邻近/会合的地表形态跨多景重复；仅标清楚的一段，不将两条槽画成同时过水、定量汇流或确认流向。",
+        "placement_caveat": "手工复读多个本机Google Earth JPG；坐标为配准近似，不代表实测沟底、边界、连续通水、流向、面积或汇水界。所有线无箭头、刻意保留空隙。 30米地表交叉核对：起点至末端的高程差（末端减起点），Copernicus -3.4米，AW3D30 -2.0米；不是沟底标高。",
+        "source": "Google Earth 原始宽幅 JPG：200405, 201309, 202104, 202109, 202209-2, 202504（文件年月标签）",
+        "imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201309",
+          "ge-root-202104",
+          "ge-root-202109",
+          "ge-root-202209-2",
+          "ge-root-202504"
+        ],
+        "source_pixel_review_bounds": {
+          "200405": [
+            3056,
+            2321,
+            3355,
+            2565
+          ],
+          "201309": [
+            3054,
+            2318,
+            3353,
+            2562
+          ],
+          "202104": [
+            3055,
+            2319,
+            3354,
+            2563
+          ],
+          "202109": [
+            3055,
+            2318,
+            3354,
+            2562
+          ],
+          "202209-2": [
+            3056,
+            2319,
+            3355,
+            2563
+          ],
+          "202504": [
+            3056,
+            2319,
+            3355,
+            2563
+          ]
+        },
+        "panel": "outlet",
+        "panel_xy": [
+          [
+            514,
+            552
+          ],
+          [
+            534,
+            545
+          ],
+          [
+            549,
+            533
+          ],
+          [
+            562,
+            521
+          ],
+          [
+            577,
+            525
+          ],
+          [
+            590,
+            538
+          ],
+          [
+            604,
+            552
+          ],
+          [
+            619,
+            548
+          ],
+          [
+            638,
+            540
+          ],
+          [
+            660,
+            534
+          ],
+          [
+            683,
+            527
+          ],
+          [
+            706,
+            520
+          ],
+          [
+            720,
+            514
+          ],
+          [
+            739,
+            502
+          ]
+        ],
+        "length_m": 333.0,
+        "hydraulic_link_confirmed": false,
+        "display_color": "#30edf7",
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-ge-west-branched-meander-outer",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.63472286,
+            49.13948034
+          ],
+          [
+            119.63537857,
+            49.14006325
+          ],
+          [
+            119.63561,
+            49.14054017
+          ],
+          [
+            119.63607286,
+            49.14107009
+          ],
+          [
+            119.63653571,
+            49.14165299
+          ],
+          [
+            119.63726857,
+            49.14234188
+          ],
+          [
+            119.63823286,
+            49.14265983
+          ],
+          [
+            119.63927429,
+            49.14318974
+          ],
+          [
+            119.63985286,
+            49.14366667
+          ],
+          [
+            119.64031571,
+            49.1440641
+          ]
+        ]
+      },
+      "properties": {
+        "name": "桥西外段｜浅色丘缘与曲折低槽",
+        "status": "observed",
+        "feature_role": "observed_outline",
+        "description": "斜向弯槽在早期原图呈深线，后期可见局部暗线、浅色边缘和多细沟；止于双槽交错前，未接此前公布的760米段。",
+        "placement_caveat": "手工复读多个本机Google Earth JPG；坐标为配准近似，不代表实测沟底、边界、连续通水、流向、面积或汇水界。所有线无箭头、刻意保留空隙。 30米地表交叉核对：起点至末端的高程差（末端减起点），Copernicus -8.8米，AW3D30 -11.6米；不是沟底标高。",
+        "source": "Google Earth 原始宽幅 JPG：200405, 201309, 202104, 202109, 202209-2（文件年月标签）",
+        "imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201309",
+          "ge-root-202104",
+          "ge-root-202109",
+          "ge-root-202209-2"
+        ],
+        "source_pixel_review_bounds": {
+          "200405": [
+            2935,
+            2345,
+            3273,
+            2713
+          ],
+          "201309": [
+            2933,
+            2343,
+            3271,
+            2710
+          ],
+          "202104": [
+            2934,
+            2343,
+            3272,
+            2711
+          ],
+          "202109": [
+            2933,
+            2343,
+            3272,
+            2710
+          ],
+          "202209-2": [
+            2935,
+            2344,
+            3273,
+            2712
+          ]
+        },
+        "panel": "near",
+        "panel_xy": [
+          [
+            978,
+            548
+          ],
+          [
+            995,
+            526
+          ],
+          [
+            1001,
+            508
+          ],
+          [
+            1013,
+            488
+          ],
+          [
+            1025,
+            466
+          ],
+          [
+            1044,
+            440
+          ],
+          [
+            1069,
+            428
+          ],
+          [
+            1096,
+            408
+          ],
+          [
+            1111,
+            390
+          ],
+          [
+            1123,
+            375
+          ]
+        ],
+        "length_m": 669.0,
+        "hydraulic_link_confirmed": false,
+        "display_color": "#00f2b4",
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-ge-west-middle-hummock-toe",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.62407714,
+            49.13648632
+          ],
+          [
+            119.62427,
+            49.13706923
+          ],
+          [
+            119.62461714,
+            49.13744017
+          ],
+          [
+            119.62573571,
+            49.13762564
+          ],
+          [
+            119.62708571,
+            49.13765214
+          ],
+          [
+            119.62862857,
+            49.13781111
+          ],
+          [
+            119.62986286,
+            49.13810256
+          ],
+          [
+            119.63125143,
+            49.13839402
+          ],
+          [
+            119.63233143,
+            49.13873846
+          ],
+          [
+            119.63337286,
+            49.13905641
+          ]
+        ]
+      },
+      "properties": {
+        "name": "西南中段｜浅色丘脚暗弯带",
+        "status": "observed",
+        "feature_role": "observed_outline",
+        "description": "丘脚边的一条重复暗带，西端到局部狭窄低位前停止，东端到凸地切面前停止，未跨接相邻影像线。",
+        "placement_caveat": "手工复读多个本机Google Earth JPG；坐标为配准近似，不代表实测沟底、边界、连续通水、流向、面积或汇水界。所有线无箭头、刻意保留空隙。 30米地表交叉核对：起点至末端的高程差（末端减起点），Copernicus -7.3米，AW3D30 -9.1米；不是沟底标高。",
+        "source": "Google Earth 原始宽幅 JPG：200405, 201309, 202104, 202109, 202209-2, 202504（文件年月标签）",
+        "imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201309",
+          "ge-root-202104",
+          "ge-root-202109",
+          "ge-root-202209-2",
+          "ge-root-202504"
+        ],
+        "source_pixel_review_bounds": {
+          "200405": [
+            2711,
+            2506,
+            3127,
+            2809
+          ],
+          "201309": [
+            2709,
+            2503,
+            3125,
+            2806
+          ],
+          "202104": [
+            2711,
+            2503,
+            3127,
+            2807
+          ],
+          "202109": [
+            2710,
+            2503,
+            3126,
+            2806
+          ],
+          "202209-2": [
+            2711,
+            2504,
+            3127,
+            2807
+          ],
+          "202504": [
+            2711,
+            2504,
+            3127,
+            2807
+          ]
+        },
+        "panel": "near",
+        "panel_xy": [
+          [
+            702,
+            661
+          ],
+          [
+            707,
+            639
+          ],
+          [
+            716,
+            625
+          ],
+          [
+            745,
+            618
+          ],
+          [
+            780,
+            617
+          ],
+          [
+            820,
+            611
+          ],
+          [
+            852,
+            600
+          ],
+          [
+            888,
+            589
+          ],
+          [
+            916,
+            576
+          ],
+          [
+            943,
+            564
+          ]
+        ],
+        "length_m": 785.0,
+        "hydraulic_link_confirmed": false,
+        "display_color": "#00f2b4",
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-ge-west-lower-hummock-toe",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.61019143,
+            49.13084274
+          ],
+          [
+            119.61169571,
+            49.13089573
+          ],
+          [
+            119.61304571,
+            49.13089573
+          ],
+          [
+            119.61489714,
+            49.13084274
+          ],
+          [
+            119.61640143,
+            49.13092222
+          ],
+          [
+            119.61767429,
+            49.13102821
+          ],
+          [
+            119.61883143,
+            49.13126667
+          ],
+          [
+            119.61991143,
+            49.13147863
+          ],
+          [
+            119.62083714,
+            49.13190256
+          ]
+        ]
+      },
+      "properties": {
+        "name": "更西南｜下游向未定的丘缘暗带",
+        "status": "observed",
+        "feature_role": "observed_outline",
+        "description": "两处暗洼之间沿浅色丘脚出现窄带；形态重复明显，但不将两个季节不同的暗洼接成出水通路。",
+        "placement_caveat": "手工复读多个本机Google Earth JPG；坐标为配准近似，不代表实测沟底、边界、连续通水、流向、面积或汇水界。所有线无箭头、刻意保留空隙。 30米地表交叉核对：起点至末端的高程差（末端减起点），Copernicus -7.7米，AW3D30 -7.4米；不是沟底标高。",
+        "source": "Google Earth 原始宽幅 JPG：200405, 201309, 202104, 202109, 202209-2, 202504（文件年月标签）",
+        "imagery_ids": [
+          "ge-root-200405",
+          "ge-root-201309",
+          "ge-root-202104",
+          "ge-root-202109",
+          "ge-root-202209-2",
+          "ge-root-202504"
+        ],
+        "source_pixel_review_bounds": {
+          "200405": [
+            2420,
+            2735,
+            2864,
+            2990
+          ],
+          "201309": [
+            2418,
+            2732,
+            2862,
+            2987
+          ],
+          "202104": [
+            2419,
+            2733,
+            2864,
+            2988
+          ],
+          "202109": [
+            2419,
+            2732,
+            2863,
+            2987
+          ],
+          "202209-2": [
+            2420,
+            2733,
+            2864,
+            2988
+          ],
+          "202504": [
+            2420,
+            2733,
+            2864,
+            2988
+          ]
+        },
+        "panel": "near",
+        "panel_xy": [
+          [
+            342,
+            874
+          ],
+          [
+            381,
+            872
+          ],
+          [
+            416,
+            872
+          ],
+          [
+            464,
+            874
+          ],
+          [
+            503,
+            871
+          ],
+          [
+            536,
+            867
+          ],
+          [
+            566,
+            858
+          ],
+          [
+            594,
+            850
+          ],
+          [
+            618,
+            834
+          ]
+        ],
+        "length_m": 800.7,
+        "hydraulic_link_confirmed": false,
+        "display_color": "#00f2b4",
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-ge-south-roadside-elongation",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.64868696,
+            49.14442857
+          ],
+          [
+            119.64870348,
+            49.14482857
+          ],
+          [
+            119.64875304,
+            49.14528571
+          ],
+          [
+            119.64872,
+            49.14571429
+          ],
+          [
+            119.64868696,
+            49.1462
+          ]
+        ]
+      },
+      "properties": {
+        "name": "F1南侧｜西路肩纵向暗带（对照）",
+        "status": "observed",
+        "feature_role": "diffuse_observation",
+        "description": "主要描自202504春景；202104同侧见浅深季相纹理，位置沿国道纵向、跨过南模型窗纬度。这里没有从影像识别第二条横贯路槽、匹配东侧口或涵洞。暗带不是固定岸线或证实的积水。",
+        "placement_caveat": "手工复读多个本机Google Earth JPG；坐标为配准近似，不代表实测沟底、边界、连续通水、流向、面积或汇水界。所有线无箭头、刻意保留空隙。",
+        "source": "Google Earth 原始宽幅 JPG：202104, 202504（文件年月标签）",
+        "imagery_ids": [
+          "ge-root-202104",
+          "ge-root-202504"
+        ],
+        "source_pixel_review_bounds": {
+          "202104": [
+            3227,
+            2275,
+            3449,
+            2552
+          ],
+          "202504": [
+            3228,
+            2275,
+            3450,
+            2553
+          ]
+        },
+        "panel": "outlet",
+        "panel_xy": [
+          [
+            1010,
+            530
+          ],
+          [
+            1011,
+            502
+          ],
+          [
+            1014,
+            470
+          ],
+          [
+            1012,
+            440
+          ],
+          [
+            1010,
+            406
+          ]
+        ],
+        "length_m": 197.3,
+        "hydraulic_link_confirmed": false,
+        "display_color": "#fea468",
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-ge-imagefirst-east-apron",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.65046154,
+            49.14691349
+          ],
+          [
+            119.65119231,
+            49.14704071
+          ],
+          [
+            119.65211538,
+            49.14691349
+          ],
+          [
+            119.65319231,
+            49.14706616
+          ],
+          [
+            119.65430769,
+            49.14744784
+          ],
+          [
+            119.65553846,
+            49.14747328
+          ],
+          [
+            119.65646154,
+            49.14770229
+          ],
+          [
+            119.65746154,
+            49.14752417
+          ],
+          [
+            119.65834615,
+            49.14762595
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f1-ge-imagefirst-east-apron",
+        "name": "F1东侧｜较清楚的旧低带轮廓",
+        "evidence_role": "surface-trace",
+        "feature_role": "observed_outline",
+        "status": "observed",
+        "description": "200405（现路形成前对照）、201309、202109、202504多期可辨的曲折暗浅带；最西端留在路东，不能从俯视图接到桥孔。",
+        "placement_caveat": "原图对照手绘，沿地貌而非水流；村道、地块及后期扰动局部改写纹理。 30米地表交叉核对：起点至末端的高程差（末端减起点），Copernicus -5.0米，AW3D30 -5.3米；不是沟底标高。",
+        "source": "用户本机 Google Earth 原图; 文件标签 200405, 201309, 202109, 202504",
+        "image_filename_labels": [
+          "200405",
+          "201309",
+          "202109",
+          "202504"
+        ],
+        "verified_flow": false,
+        "feature_group": "F1-影像优先",
+        "default_visible": true,
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "hydraulic_link_confirmed": false,
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-ge-imagefirst-marsh-west-gap",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66607692,
+              49.15042494
+            ],
+            [
+              119.66657692,
+              49.15190076
+            ],
+            [
+              119.66773077,
+              49.15268957
+            ],
+            [
+              119.66923077,
+              49.15238422
+            ],
+            [
+              119.67003846,
+              49.15131552
+            ],
+            [
+              119.66903846,
+              49.15024682
+            ],
+            [
+              119.66773077,
+              49.14991603
+            ],
+            [
+              119.66607692,
+              49.15042494
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f1-ge-imagefirst-marsh-west-gap",
+        "name": "东北纹理消散处｜暗线不可续",
+        "evidence_role": "search-area",
+        "feature_role": "gap",
+        "status": "gap",
+        "description": "斜向平行纹与场地细纹混合，202109和202209-2段间无可复核的固定线；202504局部形态更清但无贯通沟证据。",
+        "placement_caveat": "仅标示中断核查窗；不延长到东池。",
+        "source": "用户本机 Google Earth 原图; 文件标签 200405, 202107-2, 202109, 202209-2, 202504",
+        "image_filename_labels": [
+          "200405",
+          "202107-2",
+          "202109",
+          "202209-2",
+          "202504"
+        ],
+        "verified_flow": false,
+        "feature_group": "F1-影像优先",
+        "default_visible": true,
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "hydraulic_link_confirmed": false,
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-ge-imagefirst-marsh-to-pond-gap",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.68769231,
+              49.15490331
+            ],
+            [
+              119.68942308,
+              49.15604835
+            ],
+            [
+              119.69107692,
+              49.15625191
+            ],
+            [
+              119.69246154,
+              49.15589567
+            ],
+            [
+              119.69261538,
+              49.15386005
+            ],
+            [
+              119.69226923,
+              49.15279135
+            ],
+            [
+              119.69123077,
+              49.15202799
+            ],
+            [
+              119.6895,
+              49.15187532
+            ],
+            [
+              119.68769231,
+              49.15268957
+            ],
+            [
+              119.68769231,
+              49.15490331
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f1-ge-imagefirst-marsh-to-pond-gap",
+        "name": "东部泥沼—东池西侧｜过渡区，不是入水口",
+        "evidence_role": "search-area",
+        "feature_role": "gap",
+        "status": "gap",
+        "description": "多期宽浅、分枝纹理靠近东池的暗色边缘，但未辨认单一连续地表沟穿至塘岸；202504池内为浅色，单景不足以判水/冰或流入。",
+        "placement_caveat": "核查视窗而非真实湿地范围；东池2025-09-22 SCL6分类面仍为独立参照。",
+        "source": "用户本机 Google Earth 原图; 文件标签 200405, 201309, 202107-2, 202109, 202209-2, 202504",
+        "image_filename_labels": [
+          "200405",
+          "201309",
+          "202107-2",
+          "202109",
+          "202209-2",
+          "202504"
+        ],
+        "verified_flow": false,
+        "feature_group": "F1-影像优先",
+        "default_visible": true,
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "hydraulic_link_confirmed": false,
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-se-visible-arc-to-basin",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.66036919,
+            49.14753094
+          ],
+          [
+            119.66056216,
+            49.14750882
+          ],
+          [
+            119.66080108,
+            49.14742588
+          ],
+          [
+            119.66102162,
+            49.14732082
+          ],
+          [
+            119.6612973,
+            49.14723788
+          ],
+          [
+            119.66149946,
+            49.14712729
+          ],
+          [
+            119.66173838,
+            49.14696694
+          ],
+          [
+            119.66200486,
+            49.14687847
+          ],
+          [
+            119.66224378,
+            49.14680659
+          ],
+          [
+            119.66251946,
+            49.14679553
+          ],
+          [
+            119.66288703,
+            49.14685082
+          ],
+          [
+            119.6631627,
+            49.14687847
+          ],
+          [
+            119.66342,
+            49.14682318
+          ],
+          [
+            119.66370486,
+            49.14683424
+          ],
+          [
+            119.66400811,
+            49.14683424
+          ],
+          [
+            119.66427459,
+            49.14680106
+          ],
+          [
+            119.66453189,
+            49.14681212
+          ],
+          [
+            119.66478919,
+            49.14685635
+          ],
+          [
+            119.66497297,
+            49.14684529
+          ],
+          [
+            119.66517514,
+            49.14683424
+          ],
+          [
+            119.66544162,
+            49.14677341
+          ],
+          [
+            119.66564378,
+            49.14667941
+          ],
+          [
+            119.66570811,
+            49.14654118
+          ],
+          [
+            119.66579081,
+            49.14638635
+          ],
+          [
+            119.66590108,
+            49.14625365
+          ],
+          [
+            119.66600216,
+            49.14616518
+          ],
+          [
+            119.66618595,
+            49.14612094
+          ],
+          [
+            119.66634216,
+            49.14614306
+          ],
+          [
+            119.66648919,
+            49.146038
+          ]
+        ]
+      },
+      "properties": {
+        "name": "桥东旧转折东南｜多期弯槽至院北低洼西北缘",
+        "evidence_class": "visible_surface_form_only",
+        "reference_file": "01/201309.jpg",
+        "comparison_files": [
+          "01/202109.jpg",
+          "01/202107-2.jpg",
+          "01/202009.jpg",
+          "01/200405.jpg",
+          "202209-2.jpg"
+        ],
+        "file_labels_not_actual_local_capture_dates": true,
+        "relative_certainty": "multi_period_repeatable_general_band",
+        "does_not_establish": "不接桥后旧转折、宽低地后段以及现道路；树冠遮挡处为可辨带中线而非实测沟底；无流动、通水设施或水量",
+        "hydraulic_direction": null,
+        "ordered_for_digitising_not_flow": true,
+        "full_source_pixel_approx_zero_based_xy": [
+          [
+            4574.6,
+            2558.2
+          ],
+          [
+            4625.4,
+            2567.1
+          ],
+          [
+            4688.3,
+            2600.4
+          ],
+          [
+            4746.4,
+            2642.6
+          ],
+          [
+            4819.0,
+            2676.0
+          ],
+          [
+            4872.2,
+            2720.4
+          ],
+          [
+            4935.1,
+            2784.9
+          ],
+          [
+            5005.3,
+            2820.5
+          ],
+          [
+            5068.2,
+            2849.4
+          ],
+          [
+            5140.8,
+            2853.8
+          ],
+          [
+            5237.6,
+            2831.6
+          ],
+          [
+            5310.2,
+            2820.5
+          ],
+          [
+            5377.9,
+            2842.7
+          ],
+          [
+            5452.9,
+            2838.2
+          ],
+          [
+            5532.8,
+            2838.2
+          ],
+          [
+            5603.0,
+            2851.6
+          ],
+          [
+            5670.7,
+            2847.1
+          ],
+          [
+            5738.5,
+            2829.3
+          ],
+          [
+            5786.9,
+            2833.8
+          ],
+          [
+            5840.1,
+            2838.2
+          ],
+          [
+            5910.3,
+            2862.7
+          ],
+          [
+            5963.5,
+            2900.5
+          ],
+          [
+            5980.5,
+            2956.0
+          ],
+          [
+            6002.2,
+            3018.3
+          ],
+          [
+            6031.3,
+            3071.6
+          ],
+          [
+            6057.9,
+            3107.2
+          ],
+          [
+            6106.3,
+            3125.0
+          ],
+          [
+            6147.4,
+            3116.1
+          ],
+          [
+            6186.2,
+            3158.3
+          ]
+        ],
+        "layer": "f1-waterway",
+        "feature_role": "observed_outline",
+        "status": "observed",
+        "cross_road_connectivity": "not_verified",
+        "hydraulic_link_confirmed": false,
+        "direction": "not_verified",
+        "source": "Google Earth 01/201309、01/200909、01/202107-2、01/202109；01/200405 早期形态参照",
+        "description": "01/201309、01/200909、01/202107-2 与 01/202109 可复认弯槽向村北低洼西北缘延伸；在边缘失去单一槽形即停，不续入低洼，不给这段定水流方向。",
+        "placement_caveat": "不接桥后旧转折、宽低地后段以及现道路；树冠遮挡处为可辨带中线而非实测沟底；无流动、通水设施或水量 30米地表交叉核对：起点至末端的高程差（末端减起点），Copernicus -3.5米，AW3D30 -2.9米；不是沟底标高。"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-se-archive-200405-north-of-old-diagonal-track",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.66688,
+            49.14348982
+          ],
+          [
+            119.666888,
+            49.1433936
+          ],
+          [
+            119.666922,
+            49.14329738
+          ],
+          [
+            119.66703,
+            49.14323591
+          ],
+          [
+            119.667068,
+            49.14317711
+          ],
+          [
+            119.667078,
+            49.14308891
+          ],
+          [
+            119.66707,
+            49.14301942
+          ],
+          [
+            119.667072,
+            49.14295527
+          ],
+          [
+            119.66704,
+            49.14290449
+          ],
+          [
+            119.666984,
+            49.14287509
+          ],
+          [
+            119.666848,
+            49.1428644
+          ],
+          [
+            119.666708,
+            49.14285104
+          ],
+          [
+            119.666648,
+            49.14282431
+          ],
+          [
+            119.666588,
+            49.14283233
+          ],
+          [
+            119.666532,
+            49.14284302
+          ],
+          [
+            119.6665,
+            49.14281896
+          ],
+          [
+            119.666528,
+            49.14276551
+          ],
+          [
+            119.666558,
+            49.14272275
+          ],
+          [
+            119.666594,
+            49.14268533
+          ]
+        ]
+      },
+      "properties": {
+        "name": "200405 标记影像 · 旧斜土路北侧弯曲暗纹",
+        "evidence_class": "visible_surface_form_only",
+        "reference_file": "03/200405.jpg",
+        "comparison_files": [
+          "200405.jpg"
+        ],
+        "file_labels_not_actual_local_capture_dates": true,
+        "relative_certainty": "single_label_same_period_overview_context",
+        "does_not_establish": "同标签广图只补地形上下文，不作独立日期；从上图边界可辨处起，到旧斜路亮带前停，不接前方暗盆，也不接今四点",
+        "hydraulic_direction": null,
+        "ordered_for_digitising_not_flow": true,
+        "full_source_pixel_approx_zero_based_xy": [
+          [
+            3645.5,
+            46.4
+          ],
+          [
+            3647.3,
+            78.6
+          ],
+          [
+            3654.7,
+            110.8
+          ],
+          [
+            3678.4,
+            131.4
+          ],
+          [
+            3686.7,
+            151.0
+          ],
+          [
+            3688.9,
+            180.6
+          ],
+          [
+            3687.1,
+            203.8
+          ],
+          [
+            3687.6,
+            225.3
+          ],
+          [
+            3680.5,
+            242.3
+          ],
+          [
+            3668.3,
+            252.1
+          ],
+          [
+            3638.5,
+            255.7
+          ],
+          [
+            3607.9,
+            260.2
+          ],
+          [
+            3594.7,
+            269.1
+          ],
+          [
+            3581.6,
+            266.4
+          ],
+          [
+            3569.4,
+            262.8
+          ],
+          [
+            3562.4,
+            270.9
+          ],
+          [
+            3568.5,
+            288.8
+          ],
+          [
+            3575.0,
+            303.1
+          ],
+          [
+            3582.9,
+            315.6
+          ]
+        ],
+        "layer": "f1-waterway",
+        "feature_role": "diffuse_observation",
+        "status": "observed",
+        "cross_road_connectivity": "not_verified",
+        "hydraulic_link_confirmed": false,
+        "direction": "not_verified",
+        "source": "Google Earth 03/200405.jpg；对照 200405.jpg",
+        "description": "可见地形的影像判读。",
+        "placement_caveat": "同标签广图只补地形上下文，不作独立日期；从上图边界可辨处起，到旧斜路亮带前停，不接前方暗盆，也不接今四点"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-se-archive-200405-south-of-old-diagonal-track",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.66666,
+            49.14261049
+          ],
+          [
+            119.666664,
+            49.142541
+          ],
+          [
+            119.666654,
+            49.14246349
+          ],
+          [
+            119.666664,
+            49.14238064
+          ],
+          [
+            119.666676,
+            49.14231115
+          ],
+          [
+            119.666712,
+            49.14226571
+          ],
+          [
+            119.666768,
+            49.142247
+          ],
+          [
+            119.666832,
+            49.14224967
+          ],
+          [
+            119.66689,
+            49.14223898
+          ]
+        ]
+      },
+      "properties": {
+        "name": "200405 标记影像 · 旧斜土路南侧独立暗纹",
+        "evidence_class": "visible_surface_form_only",
+        "reference_file": "03/200405.jpg",
+        "comparison_files": [
+          "200405.jpg"
+        ],
+        "file_labels_not_actual_local_capture_dates": true,
+        "relative_certainty": "single_label_same_period_overview_context",
+        "does_not_establish": "从旧斜路另一侧起，不跨画土路；仍在现道路北侧，不能代替当前洞口定位",
+        "hydraulic_direction": null,
+        "ordered_for_digitising_not_flow": true,
+        "full_source_pixel_approx_zero_based_xy": [
+          [
+            3597.4,
+            340.6
+          ],
+          [
+            3598.2,
+            363.9
+          ],
+          [
+            3596.1,
+            389.8
+          ],
+          [
+            3598.2,
+            417.6
+          ],
+          [
+            3600.9,
+            440.8
+          ],
+          [
+            3608.8,
+            456.0
+          ],
+          [
+            3621.0,
+            462.3
+          ],
+          [
+            3635.0,
+            461.4
+          ],
+          [
+            3647.7,
+            465.0
+          ]
+        ],
+        "layer": "f1-waterway",
+        "feature_role": "diffuse_observation",
+        "status": "observed",
+        "cross_road_connectivity": "not_verified",
+        "hydraulic_link_confirmed": false,
+        "direction": "not_verified",
+        "source": "Google Earth 03/200405.jpg；对照 200405.jpg",
+        "description": "可见地形的影像判读。",
+        "placement_caveat": "从旧斜路另一侧起，不跨画土路；仍在现道路北侧，不能代替当前洞口定位"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-se-archive-200405-dark-basin-reference",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.66781,
+          49.1449
+        ]
+      },
+      "properties": {
+        "name": "200405 标记影像宽暗低地 · 导航参照",
+        "evidence_class": "dark_basin_appearance_only",
+        "reference_file": "200405.jpg",
+        "comparison_files": [
+          "01/200405.jpg"
+        ],
+        "not_a_boundary_or_verified_waterbody": true,
+        "hydraulic_direction": null,
+        "layer": "f1-waterway",
+        "feature_role": "contextual",
+        "status": "context",
+        "cross_road_connectivity": "not_verified",
+        "hydraulic_link_confirmed": false,
+        "direction": "not_verified",
+        "source": "Google Earth 200405.jpg；对照 01/200405.jpg",
+        "description": "可见地形的影像判读。",
+        "placement_caveat": "近似配准，不作为实测沟底或涵洞位置。"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f1-se-middle-unresolved-after-wide-low-ground",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.66648919,
+          49.146038
+        ]
+      },
+      "properties": {
+        "name": "多期可辨弯槽进入宽低地后散开",
+        "evidence_class": "linework_break_reference_only",
+        "hydraulic_direction": null,
+        "layer": "f1-waterway",
+        "feature_role": "gap",
+        "status": "gap",
+        "cross_road_connectivity": "not_verified",
+        "hydraulic_link_confirmed": false,
+        "direction": "not_verified",
+        "source": "本机 Google Earth 原图对照",
+        "description": "可见地形的影像判读。",
+        "placement_caveat": "近似配准，不作为实测沟底或涵洞位置。"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin2-south-gully",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.66663,
+            49.14195375
+          ],
+          [
+            119.66665,
+            49.14184735
+          ],
+          [
+            119.66669,
+            49.1417343
+          ],
+          [
+            119.66674,
+            49.14162125
+          ],
+          [
+            119.66682,
+            49.14155475
+          ],
+          [
+            119.66686,
+            49.14146165
+          ],
+          [
+            119.66692,
+            49.1413486
+          ],
+          [
+            119.66701,
+            49.14124885
+          ],
+          [
+            119.6671,
+            49.1412023
+          ],
+          [
+            119.66714,
+            49.1410959
+          ],
+          [
+            119.6673,
+            49.14099615
+          ],
+          [
+            119.66745,
+            49.1409629
+          ],
+          [
+            119.66754,
+            49.1408831
+          ],
+          [
+            119.66778,
+            49.14083655
+          ],
+          [
+            119.66801,
+            49.14082325
+          ],
+          [
+            119.66819,
+            49.1407634
+          ],
+          [
+            119.6684,
+            49.1406171
+          ],
+          [
+            119.6686,
+            49.1406038
+          ],
+          [
+            119.66875,
+            49.14053065
+          ],
+          [
+            119.66892,
+            49.1404841
+          ],
+          [
+            119.66908,
+            49.140391
+          ],
+          [
+            119.6692,
+            49.14029125
+          ],
+          [
+            119.6694,
+            49.1402447
+          ],
+          [
+            119.6696,
+            49.14013165
+          ],
+          [
+            119.66976,
+            49.13999865
+          ],
+          [
+            119.66989,
+            49.1398723
+          ],
+          [
+            119.66983,
+            49.1397659
+          ],
+          [
+            119.66969,
+            49.1396462
+          ],
+          [
+            119.66975,
+            49.13953315
+          ],
+          [
+            119.66993,
+            49.1394467
+          ],
+          [
+            119.67011,
+            49.1393802
+          ],
+          [
+            119.67026,
+            49.13929375
+          ],
+          [
+            119.67039,
+            49.1392206
+          ],
+          [
+            119.67054,
+            49.13924055
+          ],
+          [
+            119.67072,
+            49.13928045
+          ],
+          [
+            119.67097,
+            49.1392339
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "observed",
+        "feature_role": "observed_outline",
+        "name": "第 2 点南侧：可追踪的弯沟",
+        "description": "硬化路南缘下起的窄纹与曲折沟形在多期同位，向东南可追踪到共同弯槽。200405 的旧斜土路偏北、低地地表不同，但中下游同位置已能认出弯形。",
+        "placement_caveat": "线从路南缘开始，路下及路北没有接长。历史图与近期影像地表、高差和采集日期不同，几何只表达肉眼所见。 30米地表交叉核对：起点至末端的高程差（末端减起点），Copernicus -3.8米，AW3D30 -3.5米；不是沟底标高。",
+        "source_files": [
+          "google earth/03/200405.jpg",
+          "google earth/03/201404.jpg",
+          "google earth/03/201909.jpg",
+          "google earth/03/202104.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202204.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "historical_source_files": [
+          "google earth/03/200405.jpg"
+        ],
+        "recent_source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/201909.jpg",
+          "google earth/03/202104.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202204.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "hjn-03-owner-cross-2",
+          "road03-ge-lower-confluence",
+          "road03-ge-common-reach"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "length_m_visual_digitization": 502.9,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin4-diffuse",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66861,
+              49.1421333
+            ],
+            [
+              119.66877,
+              49.14216655
+            ],
+            [
+              119.66901,
+              49.1420136
+            ],
+            [
+              119.66914,
+              49.1418008
+            ],
+            [
+              119.66935,
+              49.141588
+            ],
+            [
+              119.66978,
+              49.14140845
+            ],
+            [
+              119.67025,
+              49.1411757
+            ],
+            [
+              119.67065,
+              49.14114245
+            ],
+            [
+              119.67099,
+              49.1409496
+            ],
+            [
+              119.67118,
+              49.1407368
+            ],
+            [
+              119.67108,
+              49.14047745
+            ],
+            [
+              119.67099,
+              49.14027795
+            ],
+            [
+              119.67101,
+              49.14003855
+            ],
+            [
+              119.67088,
+              49.1398058
+            ],
+            [
+              119.67068,
+              49.13985235
+            ],
+            [
+              119.67054,
+              49.13997205
+            ],
+            [
+              119.67042,
+              49.1401915
+            ],
+            [
+              119.67015,
+              49.14038435
+            ],
+            [
+              119.66999,
+              49.1406171
+            ],
+            [
+              119.66952,
+              49.14079
+            ],
+            [
+              119.66917,
+              49.14099615
+            ],
+            [
+              119.66882,
+              49.14115575
+            ],
+            [
+              119.66853,
+              49.14143505
+            ],
+            [
+              119.66844,
+              49.14172765
+            ],
+            [
+              119.66848,
+              49.14199365
+            ],
+            [
+              119.66861,
+              49.1421333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "observed",
+        "feature_role": "diffuse_observation",
+        "name": "第 4 点南侧：宽低带（不画中心线）",
+        "description": "201404、202104、202109、202204、202504 图中反复看到窄颈向宽低地展开；202107、202209 仍可见地表边界，但宽带内的中心纹不连续或随季节变化。",
+        "placement_caveat": "轮廓为核查区，看见的是形态或颜色，不把暗色、白色或绿草判作水；不接入最低处单一线。第 4 点至末段之间保留空档。",
+        "source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/201909.jpg",
+          "google earth/03/202104.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202204.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "historical_source_files": [],
+        "recent_source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/201909.jpg",
+          "google earth/03/202104.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202204.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "hjn-03-owner-cross-4",
+          "road03-ge-pin4-lower-arc"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin4-lower-arc",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.67021,
+            49.1397526
+          ],
+          [
+            119.67035,
+            49.1396861
+          ],
+          [
+            119.67053,
+            49.13965285
+          ],
+          [
+            119.6707,
+            49.1396063
+          ],
+          [
+            119.67085,
+            49.13957305
+          ],
+          [
+            119.67098,
+            49.1395531
+          ],
+          [
+            119.67109,
+            49.13949325
+          ],
+          [
+            119.67108,
+            49.13944005
+          ],
+          [
+            119.67099,
+            49.13936025
+          ],
+          [
+            119.67095,
+            49.13929375
+          ],
+          [
+            119.67097,
+            49.1392339
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "observed",
+        "feature_role": "observed_outline",
+        "name": "第 4 点宽低带南端：可见弧槽",
+        "description": "202107/202109/202504 显示宽低地南端出现独立可辨细弧，并在图面几何上接触第 2 点所循弯沟下段。",
+        "placement_caveat": "弧槽独立描绘，不能从这里倒推与第 4 点路缘已全线相通；相接不证明同时过水或流向。",
+        "source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "historical_source_files": [],
+        "recent_source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "road03-ge-pin4-diffuse",
+          "road03-ge-lower-confluence"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "length_m_visual_digitization": 103.2,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-lower-confluence",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.67097,
+          49.1392339
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "context",
+        "feature_role": "contextual",
+        "name": "两片低地的地表形态接触处",
+        "description": "第 2 点南侧窄沟与第 4 点低带南端细弧在此图面接触，之后是更明显的共同南向地表弯槽。",
+        "placement_caveat": "是形态交会，非已测的实际汇流点。",
+        "source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "historical_source_files": [],
+        "recent_source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "road03-ge-pin2-south-gully",
+          "road03-ge-pin4-lower-arc",
+          "road03-ge-common-reach"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-common-reach",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.67097,
+            49.1392339
+          ],
+          [
+            119.67101,
+            49.13916075
+          ],
+          [
+            119.6709,
+            49.1390876
+          ],
+          [
+            119.67085,
+            49.13897455
+          ],
+          [
+            119.67088,
+            49.13886815
+          ],
+          [
+            119.67077,
+            49.1387684
+          ],
+          [
+            119.67069,
+            49.13868195
+          ],
+          [
+            119.67076,
+            49.1385955
+          ],
+          [
+            119.67096,
+            49.13858885
+          ],
+          [
+            119.67109,
+            49.13853565
+          ],
+          [
+            119.6711,
+            49.1385024
+          ],
+          [
+            119.67128127,
+            49.13838811
+          ],
+          [
+            119.67138882,
+            49.13829978
+          ],
+          [
+            119.67143845,
+            49.13821144
+          ],
+          [
+            119.67134745,
+            49.13812311
+          ],
+          [
+            119.67121509,
+            49.138076
+          ],
+          [
+            119.67122336,
+            49.13801711
+          ],
+          [
+            119.67143018,
+            49.13799356
+          ],
+          [
+            119.67155427,
+            49.13791111
+          ],
+          [
+            119.67164527,
+            49.13781689
+          ],
+          [
+            119.671728,
+            49.13773444
+          ],
+          [
+            119.67186036,
+            49.13764022
+          ],
+          [
+            119.67198445,
+            49.137652
+          ],
+          [
+            119.67214164,
+            49.13761078
+          ],
+          [
+            119.67231536,
+            49.13755189
+          ],
+          [
+            119.67247255,
+            49.13752833
+          ],
+          [
+            119.672638,
+            49.13755189
+          ],
+          [
+            119.67271245,
+            49.13751067
+          ],
+          [
+            119.67266282,
+            49.13746356
+          ],
+          [
+            119.67253045,
+            49.13741056
+          ],
+          [
+            119.67248082,
+            49.13733989
+          ],
+          [
+            119.67255527,
+            49.137281
+          ],
+          [
+            119.67270418,
+            49.13726922
+          ],
+          [
+            119.67285309,
+            49.13721033
+          ],
+          [
+            119.67289445,
+            49.13714556
+          ],
+          [
+            119.67288618,
+            49.13704544
+          ],
+          [
+            119.672911,
+            49.13691589
+          ],
+          [
+            119.67304336,
+            49.13679811
+          ],
+          [
+            119.67320055,
+            49.13676867
+          ],
+          [
+            119.67331636,
+            49.13672156
+          ],
+          [
+            119.67334118,
+            49.13666267
+          ],
+          [
+            119.67320882,
+            49.13660967
+          ],
+          [
+            119.67315091,
+            49.13652133
+          ],
+          [
+            119.67315918,
+            49.13643889
+          ],
+          [
+            119.67329155,
+            49.13638
+          ],
+          [
+            119.67343218,
+            49.13635056
+          ],
+          [
+            119.67335773,
+            49.13628578
+          ],
+          [
+            119.67329155,
+            49.13618567
+          ],
+          [
+            119.67339909,
+            49.13612089
+          ],
+          [
+            119.67353973,
+            49.13609733
+          ],
+          [
+            119.67360591,
+            49.13600311
+          ],
+          [
+            119.67364727,
+            49.13589122
+          ],
+          [
+            119.67361418,
+            49.13576167
+          ],
+          [
+            119.67369691,
+            49.13566156
+          ],
+          [
+            119.67387064,
+            49.13566156
+          ],
+          [
+            119.67402782,
+            49.13550844
+          ],
+          [
+            119.67420155,
+            49.13548489
+          ],
+          [
+            119.67440009,
+            49.13549078
+          ],
+          [
+            119.67451591,
+            49.135479
+          ],
+          [
+            119.67458209,
+            49.13539656
+          ],
+          [
+            119.67461518,
+            49.13530822
+          ],
+          [
+            119.67476409,
+            49.13529056
+          ],
+          [
+            119.67487164,
+            49.13535533
+          ],
+          [
+            119.67488818,
+            49.13546133
+          ],
+          [
+            119.67496264,
+            49.13555556
+          ],
+          [
+            119.67510327,
+            49.13559089
+          ],
+          [
+            119.67522736,
+            49.13553789
+          ],
+          [
+            119.67534318,
+            49.13543189
+          ],
+          [
+            119.67545073,
+            49.13532
+          ],
+          [
+            119.67565755,
+            49.13523167
+          ],
+          [
+            119.67584782,
+            49.13516689
+          ],
+          [
+            119.67602155,
+            49.13508444
+          ],
+          [
+            119.67614564,
+            49.13498433
+          ],
+          [
+            119.67622836,
+            49.13487833
+          ],
+          [
+            119.67631936,
+            49.13477822
+          ],
+          [
+            119.67641036,
+            49.13468989
+          ],
+          [
+            119.67650136,
+            49.134631
+          ],
+          [
+            119.67666682,
+            49.13456622
+          ],
+          [
+            119.67681573,
+            49.134578
+          ],
+          [
+            119.67695636,
+            49.13463689
+          ],
+          [
+            119.67713009,
+            49.134684
+          ],
+          [
+            119.677279,
+            49.13467222
+          ],
+          [
+            119.67742791,
+            49.13461922
+          ],
+          [
+            119.67758509,
+            49.13454856
+          ],
+          [
+            119.67770918,
+            49.13444844
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "observed",
+        "feature_role": "observed_outline",
+        "name": "共同弯槽：向主湖西北岸",
+        "description": "显眼的弯槽自形态接触处延伸向主湖西北岸，三组早晚影像的中段反复同位。图线止于岸缘退湿/变亮前，可直接查现场连通与口门。",
+        "placement_caveat": "不把 200405、202107、202504 的不同岸缘合成统一固定入湖口；未量流向、水量或连续性。 30米地表交叉核对：起点至末端的高程差（末端减起点），Copernicus -3.9米，AW3D30 -3.8米；不是沟底标高。",
+        "source_files": [
+          "google earth/03/200405.jpg",
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "historical_source_files": [
+          "google earth/03/200405.jpg"
+        ],
+        "recent_source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "road03-ge-lower-confluence",
+          "road03-ge-shore-review",
+          "road03-ge-2004-shore-tail"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "length_m_visual_digitization": 998.4,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-2004-shore-tail",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.67771745,
+            49.13446022
+          ],
+          [
+            119.67784982,
+            49.134366
+          ],
+          [
+            119.67798218,
+            49.13428356
+          ],
+          [
+            119.67813109,
+            49.13418344
+          ],
+          [
+            119.67826345,
+            49.134101
+          ],
+          [
+            119.678371,
+            49.13405978
+          ],
+          [
+            119.678462,
+            49.13404211
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "observed",
+        "feature_role": "diffuse_observation",
+        "name": "200405 影像：可见岸缘细纹末端",
+        "description": "早期一景在当时西北岸残留细纹向湖边延续，可对照近期不同位置的湿边和冰水界面。",
+        "placement_caveat": "单景历史外观，末端与该图可见岸缘接近，不代表当前固定入湖口或真实采集月份。",
+        "source_files": [
+          "google earth/03/200405.jpg"
+        ],
+        "historical_source_files": [
+          "google earth/03/200405.jpg"
+        ],
+        "recent_source_files": [],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "road03-ge-common-reach",
+          "road03-ge-shore-review"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "length_m_visual_digitization": 72.5,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-shore-review",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.67713009,
+              49.13483122
+            ],
+            [
+              119.67826345,
+              49.135002
+            ],
+            [
+              119.67875982,
+              49.13472522
+            ],
+            [
+              119.67897491,
+              49.13424233
+            ],
+            [
+              119.67883427,
+              49.13362989
+            ],
+            [
+              119.67796564,
+              49.13362989
+            ],
+            [
+              119.67735345,
+              49.13387722
+            ],
+            [
+              119.676915,
+              49.13434833
+            ],
+            [
+              119.67713009,
+              49.13483122
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "gap",
+        "feature_role": "gap",
+        "name": "主湖西北岸：不同时相口门复核区",
+        "description": "示踪末端接近不同时相的可见岸缘。202107 水边较高处色差模糊，202504 存在冰水及泥地混合，200405 有更向东南的细影。",
+        "placement_caveat": "非遥感水面分类，不与圆涵、四个路点或各期水面强接。",
+        "source_files": [
+          "google earth/03/200405.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "historical_source_files": [
+          "google earth/03/200405.jpg"
+        ],
+        "recent_source_files": [
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "road03-ge-common-reach",
+          "road03-ge-2004-shore-tail"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin1-local",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66517,
+              49.14191385
+            ],
+            [
+              119.66542,
+              49.1419604
+            ],
+            [
+              119.6656,
+              49.14190055
+            ],
+            [
+              119.66575,
+              49.14171435
+            ],
+            [
+              119.66568,
+              49.1414816
+            ],
+            [
+              119.66541,
+              49.14142175
+            ],
+            [
+              119.66515,
+              49.14159465
+            ],
+            [
+              119.66517,
+              49.14191385
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "context",
+        "feature_role": "contextual",
+        "name": "第 1 点：路南局部浅凹",
+        "description": "多个文件标记时期都未能追出一条可重复辨认的长沟；局部阴影、地面条纹与浅凹错杂。",
+        "placement_caveat": "只定位核查区，不把它接到第 2 点或下游弯槽。",
+        "source_files": [
+          "google earth/03/200405.jpg",
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "historical_source_files": [
+          "google earth/03/200405.jpg"
+        ],
+        "recent_source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "hjn-03-owner-cross-1"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin3-local",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66746,
+              49.14211335
+            ],
+            [
+              119.66772,
+              49.1421599
+            ],
+            [
+              119.668,
+              49.14200695
+            ],
+            [
+              119.66819,
+              49.1418141
+            ],
+            [
+              119.66822,
+              49.1416146
+            ],
+            [
+              119.66793,
+              49.14150155
+            ],
+            [
+              119.66763,
+              49.1415747
+            ],
+            [
+              119.66746,
+              49.14176755
+            ],
+            [
+              119.66746,
+              49.14211335
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "context",
+        "feature_role": "contextual",
+        "name": "第 3 点：路南沟口照片邻域",
+        "description": "路南近缘 AOI 中没有与第 2 点窄沟或第 4 点低带同等级的可追下游线。即便近处照片有双侧沟，也不把这点的支线凭空接长。",
+        "placement_caveat": "影像只定位候选，路下孔和去向仍按实地核。",
+        "source_files": [
+          "google earth/03/200405.jpg",
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "historical_source_files": [
+          "google earth/03/200405.jpg"
+        ],
+        "recent_source_files": [
+          "google earth/03/201404.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "source": "本机 Google Earth 03 原始有黄框 JPG 多期对照；月份为文件标签",
+        "related_ids": [
+          "hjn-03-owner-cross-3"
+        ],
+        "hydraulic_link_confirmed": false,
+        "imagery_only": true,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin1-north-village-low-belt",
+      "properties": {
+        "feature_role": "diffuse_observation",
+        "status": "observed",
+        "name": "第 1 点北侧｜村北低地西缘绿带",
+        "description": "在 201707、201806 和 201906 原图中，村北低地的西侧均为一条由宽变窄的绿带，近院西北角逐渐散开。这里只圈出三期都能大致对上的带状范围，不画沟底或流向。",
+        "source": "Google Earth 全幅原图 201707.jpg、201806.jpg、201906.jpg（文件年月）",
+        "placement_caveat": "不是湿地或水面边界。该西缘绿带与已描的桥东东南弯槽处于同一片宽低地的不同位置，不连接为一根水线。",
+        "hydraulic_link_confirmed": false,
+        "layer": "f1-waterway",
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified",
+        "imagery_ids": [
+          "ge-root-201707",
+          "ge-root-201806",
+          "ge-root-201906"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66293,
+              49.14552
+            ],
+            [
+              119.66334,
+              49.14529
+            ],
+            [
+              119.6637,
+              49.14505
+            ],
+            [
+              119.66414,
+              49.14475
+            ],
+            [
+              119.66458,
+              49.14446
+            ],
+            [
+              119.66488,
+              49.14412
+            ],
+            [
+              119.66513,
+              49.14385
+            ],
+            [
+              119.66519,
+              49.1437
+            ],
+            [
+              119.66497,
+              49.14372
+            ],
+            [
+              119.66475,
+              49.14398
+            ],
+            [
+              119.66439,
+              49.14427
+            ],
+            [
+              119.66389,
+              49.14457
+            ],
+            [
+              119.6634,
+              49.14481
+            ],
+            [
+              119.66312,
+              49.14503
+            ],
+            [
+              119.66293,
+              49.14552
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin1-north-green-belt",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.66407333,
+            49.14383347
+          ],
+          [
+            119.66431333,
+            49.14374204
+          ],
+          [
+            119.66451333,
+            49.14366367
+          ],
+          [
+            119.66469333,
+            49.14359184
+          ],
+          [
+            119.66482,
+            49.14350041
+          ],
+          [
+            119.66493333,
+            49.14340245
+          ],
+          [
+            119.66499333,
+            49.14331102
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "feature_role": "diffuse_observation",
+        "status": "observed",
+        "name": "第 1 点以北：原地表绿带收窄",
+        "description": "201707 和 201806 原图同位可辨，201906 图上较浅但轮廓仍可复核；由西北开阔绿带向院落西缘收窄。",
+        "source": "google earth/201707.jpg；google earth/201806.jpg；google earth/201906.jpg",
+        "source_files": [
+          "google earth/201707.jpg",
+          "google earth/201806.jpg",
+          "google earth/201906.jpg"
+        ],
+        "related_ids": [
+          "road03-ge-pin1-north-yard-edge"
+        ],
+        "placement_caveat": "按宽绿带边部形态定位，非精准渠底；三张是文件标签，局部实际采集日和是否复用底图未核。",
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified",
+        "imagery_ids": [
+          "ge-root-201707",
+          "ge-root-201806",
+          "ge-root-201906"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin1-north-yard-edge",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.66515371,
+            49.143288
+          ],
+          [
+            119.66516343,
+            49.14321731
+          ],
+          [
+            119.66517557,
+            49.14313931
+          ],
+          [
+            119.66519014,
+            49.143054
+          ],
+          [
+            119.66520714,
+            49.14297844
+          ],
+          [
+            119.66523143,
+            49.14290531
+          ],
+          [
+            119.66525086,
+            49.14283462
+          ],
+          [
+            119.66527271,
+            49.14275419
+          ],
+          [
+            119.66529943,
+            49.14267375
+          ],
+          [
+            119.66532614,
+            49.14258112
+          ],
+          [
+            119.665348,
+            49.14249581
+          ],
+          [
+            119.665365,
+            49.14242269
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "feature_role": "diffuse_observation",
+        "status": "observed",
+        "name": "第 1 点路北：院墙外窄带",
+        "description": "03/201707 可见院落西侧窄色带；03/202109、03/202504 对应位置仍表现为田块与院墙之间的狭长带。",
+        "source": "google earth/201707.jpg；google earth/201806.jpg；google earth/201906.jpg；google earth/03/201707.jpg；google earth/03/201909.jpg；google earth/03/202107.jpg；google earth/03/202109.jpg；google earth/03/202209.jpg；google earth/03/202504.jpg",
+        "source_files": [
+          "google earth/201707.jpg",
+          "google earth/201806.jpg",
+          "google earth/201906.jpg",
+          "google earth/03/201707.jpg",
+          "google earth/03/201909.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "related_ids": [
+          "road03-ge-pin1-north-green-belt",
+          "road03-ge-pin1-north-court-gap"
+        ],
+        "placement_caveat": "可能含植被、边沟、田界或墙影；图线止于院角前，不穿院墙，不把深浅当作积水或通行能力。",
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified",
+        "imagery_ids": [
+          "ge-root-201707",
+          "ge-root-201806",
+          "ge-root-201906"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin1-north-court-gap",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66528243,
+              49.1424105
+            ],
+            [
+              119.66539657,
+              49.1424495
+            ],
+            [
+              119.66546943,
+              49.14238125
+            ],
+            [
+              119.66551314,
+              49.14228862
+            ],
+            [
+              119.66552043,
+              49.14218625
+            ],
+            [
+              119.66546943,
+              49.14211069
+            ],
+            [
+              119.665365,
+              49.14211556
+            ],
+            [
+              119.66530429,
+              49.14220819
+            ],
+            [
+              119.66527029,
+              49.14231056
+            ],
+            [
+              119.66528243,
+              49.1424105
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "feature_role": "gap",
+        "status": "gap",
+        "name": "第 1 点北侧院角：可见性断口",
+        "description": "院角、接入便道及邻地边缘叠在一起。影像无法在这里追出一条不间断的明线，保留路前断口。",
+        "source": "google earth/03/201707.jpg；google earth/03/201909.jpg；google earth/03/202107.jpg；google earth/03/202109.jpg；google earth/03/202209.jpg；google earth/03/202504.jpg",
+        "source_files": [
+          "google earth/03/201707.jpg",
+          "google earth/03/201909.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "related_ids": [
+          "road03-ge-pin1-north-yard-edge",
+          "road03-ge-pin1-north-road-verge"
+        ],
+        "placement_caveat": "是待查区，不表示已有堵点、填埋或违法行为。查院角两侧沟底高差、墙脚和涵/缺口。",
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-pin1-north-road-verge",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.665416,
+            49.142079
+          ],
+          [
+            119.66544029,
+            49.14207169
+          ],
+          [
+            119.66545971,
+            49.14204244
+          ],
+          [
+            119.66547671,
+            49.14201562
+          ],
+          [
+            119.66550343,
+            49.14200587
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "feature_role": "diffuse_observation",
+        "status": "observed",
+        "name": "第 1 点：路北缘局部低痕",
+        "description": "03/201707 可见近缘纹理转弱，03/202109、03/202504 在同一槽位附近留有局部较暗不规则形态。",
+        "source": "google earth/03/201707.jpg；google earth/03/201909.jpg；google earth/03/202107.jpg；google earth/03/202109.jpg；google earth/03/202209.jpg；google earth/03/202504.jpg",
+        "source_files": [
+          "google earth/03/201707.jpg",
+          "google earth/03/201909.jpg",
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "related_ids": [
+          "hjn-03-road-pin-01",
+          "road03-ge-pin1-north-court-gap",
+          "road03-ge-pin1-local"
+        ],
+        "placement_caveat": "线在路北侧止，不画穿公路；深色不自动代表水或开口。与路南浅凹只能分开核对。",
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-north-depression-core",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66692,
+              49.14624186
+            ],
+            [
+              119.6673,
+              49.14636558
+            ],
+            [
+              119.66762667,
+              49.14633953
+            ],
+            [
+              119.66781333,
+              49.14622233
+            ],
+            [
+              119.66801333,
+              49.14602698
+            ],
+            [
+              119.66812667,
+              49.14572093
+            ],
+            [
+              119.66814667,
+              49.14539535
+            ],
+            [
+              119.66819333,
+              49.14511535
+            ],
+            [
+              119.66832,
+              49.14497209
+            ],
+            [
+              119.66832,
+              49.14467907
+            ],
+            [
+              119.66818667,
+              49.14447721
+            ],
+            [
+              119.66790667,
+              49.14435349
+            ],
+            [
+              119.66749333,
+              49.14428186
+            ],
+            [
+              119.66725333,
+              49.14411907
+            ],
+            [
+              119.66696667,
+              49.14400186
+            ],
+            [
+              119.66661333,
+              49.14397581
+            ],
+            [
+              119.66632667,
+              49.14406047
+            ],
+            [
+              119.66608,
+              49.14422977
+            ],
+            [
+              119.66591333,
+              49.14450326
+            ],
+            [
+              119.66593333,
+              49.14477674
+            ],
+            [
+              119.66598667,
+              49.14506977
+            ],
+            [
+              119.66613333,
+              49.1453107
+            ],
+            [
+              119.66627333,
+              49.14553209
+            ],
+            [
+              119.6664,
+              49.14573395
+            ],
+            [
+              119.66657333,
+              49.14592279
+            ],
+            [
+              119.66671333,
+              49.1460986
+            ],
+            [
+              119.66692,
+              49.14624186
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "observed",
+        "feature_role": "diffuse_observation",
+        "name": "现场路点以北：历史低地核心",
+        "description": "01/200405 文件图中为连续深暗斑，01/200909 和 01/201309 同处转为大块褐绿地表；01/202107-2 看成植被斑，01/202109 为褐色粗纹。多期围绕同一低地形态复读。",
+        "placement_caveat": "手绘的是多年共同关注区，不是原像元水面、水深或洪水淹没边界；深近黑只能说水样。低地南缘靠近后期院落，不据此认定截流或责任。",
+        "source": "google earth/01/200405.jpg；google earth/01/200909.jpg；google earth/01/201309.jpg；google earth/200405.jpg；google earth/01/201507.jpg；google earth/01/201608.jpg；google earth/01/202007.jpg；google earth/01/202107-2.jpg；google earth/01/202107.jpg；google earth/01/202109.jpg；google earth/202504.jpg",
+        "source_files": [
+          "google earth/01/200405.jpg",
+          "google earth/01/200909.jpg",
+          "google earth/01/201309.jpg",
+          "google earth/200405.jpg",
+          "google earth/01/201507.jpg",
+          "google earth/01/201608.jpg",
+          "google earth/01/202007.jpg",
+          "google earth/01/202107-2.jpg",
+          "google earth/01/202107.jpg",
+          "google earth/01/202109.jpg",
+          "google earth/202504.jpg"
+        ],
+        "related_ids": [
+          "road03-ge-north-basin-west-rim",
+          "road03-ge-north-basin-east-pockets",
+          "road03-ge-pin1-north-green-belt"
+        ],
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "source_location": "北侧低地，区别于桥东旧转折小院及东部泥沼",
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-north-basin-west-rim",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66512667,
+              49.14471163
+            ],
+            [
+              119.66565333,
+              49.14480279
+            ],
+            [
+              119.66595333,
+              49.14472465
+            ],
+            [
+              119.66606,
+              49.14442512
+            ],
+            [
+              119.66598667,
+              49.14406047
+            ],
+            [
+              119.66582667,
+              49.1438
+            ],
+            [
+              119.66562667,
+              49.14380651
+            ],
+            [
+              119.66542,
+              49.14391721
+            ],
+            [
+              119.66508,
+              49.14412558
+            ],
+            [
+              119.66492667,
+              49.14436
+            ],
+            [
+              119.66512667,
+              49.14471163
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "observed",
+        "feature_role": "diffuse_observation",
+        "name": "村北低地西南缘：漫散带复查",
+        "description": "褐绿或浅色的宽低带向院落西侧方向展布；地表切过多条未能独立辨认的短纹。",
+        "placement_caveat": "只标宽区域，不代替既有 1 号点北侧实见窄带，也不从低地一笔接到该窄带。",
+        "source": "google earth/01/200405.jpg；google earth/01/200909.jpg；google earth/01/201309.jpg；google earth/200405.jpg；google earth/01/201507.jpg；google earth/01/201608.jpg；google earth/01/202007.jpg；google earth/01/202107-2.jpg；google earth/01/202107.jpg；google earth/01/202109.jpg；google earth/202504.jpg",
+        "source_files": [
+          "google earth/01/200405.jpg",
+          "google earth/01/200909.jpg",
+          "google earth/01/201309.jpg",
+          "google earth/200405.jpg",
+          "google earth/01/201507.jpg",
+          "google earth/01/201608.jpg",
+          "google earth/01/202007.jpg",
+          "google earth/01/202107-2.jpg",
+          "google earth/01/202107.jpg",
+          "google earth/01/202109.jpg",
+          "google earth/202504.jpg"
+        ],
+        "related_ids": [
+          "road03-ge-north-depression-core",
+          "road03-ge-pin1-north-green-belt"
+        ],
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-north-basin-east-pockets",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            119.66816667,
+            49.14621581
+          ],
+          [
+            119.6682,
+            49.14605953
+          ],
+          [
+            119.66820667,
+            49.14589674
+          ],
+          [
+            119.66825333,
+            49.14572093
+          ],
+          [
+            119.66829333,
+            49.14559721
+          ],
+          [
+            119.66832,
+            49.14545395
+          ],
+          [
+            119.66835333,
+            49.14534326
+          ],
+          [
+            119.66839333,
+            49.1452
+          ],
+          [
+            119.66843333,
+            49.14505674
+          ],
+          [
+            119.66845333,
+            49.14495256
+          ],
+          [
+            119.66850667,
+            49.14483535
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "observed",
+        "feature_role": "diffuse_observation",
+        "name": "村北低地东缘：沿边暗痕",
+        "description": "202107-2、202109 在东侧近直线便道/田界旁可反复见暗斑、窄纹，有些点与植被或阴影重合。",
+        "placement_caveat": "这是沿边看见的线性排列，不是连通沟槽；线在斑纹边界停止，不能把旁边笔直便道或边界解释成排水渠。",
+        "source": "google earth/01/200909.jpg；google earth/01/202107-2.jpg；google earth/01/202109.jpg",
+        "source_files": [
+          "google earth/01/200909.jpg",
+          "google earth/01/202107-2.jpg",
+          "google earth/01/202109.jpg"
+        ],
+        "related_ids": [
+          "road03-ge-north-depression-core",
+          "road03-ge-north-basin-east-gap"
+        ],
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-north-basin-east-gap",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.66830667,
+              49.14458449
+            ],
+            [
+              119.66854667,
+              49.14463673
+            ],
+            [
+              119.6688,
+              49.14442122
+            ],
+            [
+              119.66884667,
+              49.14399673
+            ],
+            [
+              119.66877333,
+              49.14354612
+            ],
+            [
+              119.66844,
+              49.14346122
+            ],
+            [
+              119.66820667,
+              49.14369633
+            ],
+            [
+              119.66818,
+              49.14410776
+            ],
+            [
+              119.66830667,
+              49.14458449
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "gap",
+        "feature_role": "gap",
+        "name": "村北低地东缘：院墙与横便道核查区",
+        "description": "从局部 01 东缘到南侧区域可见横便道、院落和田界改变，短暗纹不连续；与南侧区域 03 图内所见必须分别对位。",
+        "placement_caveat": "两幅细图黄框之间有取景间隔，广图仅可确认位置与地物；不能确认堵点、通渠、排水方向或下游接哪个标点。",
+        "source": "google earth/201707.jpg；google earth/201806.jpg；google earth/201906.jpg；google earth/202107.jpg；google earth/202109.jpg；google earth/202504.jpg；google earth/01/202107-2.jpg；google earth/01/202109.jpg；google earth/03/202504.jpg",
+        "source_files": [
+          "google earth/201707.jpg",
+          "google earth/201806.jpg",
+          "google earth/201906.jpg",
+          "google earth/202107.jpg",
+          "google earth/202109.jpg",
+          "google earth/202504.jpg",
+          "google earth/01/202107-2.jpg",
+          "google earth/01/202109.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "related_ids": [
+          "road03-ge-north-basin-east-pockets",
+          "road03-ge-north-basin-road-east-verge"
+        ],
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road03-ge-north-basin-road-east-verge",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.668,
+              49.1427052
+            ],
+            [
+              119.66898,
+              49.1427185
+            ],
+            [
+              119.66979,
+              49.14265865
+            ],
+            [
+              119.67002,
+              49.1424392
+            ],
+            [
+              119.66971,
+              49.1423461
+            ],
+            [
+              119.66887,
+              49.14224635
+            ],
+            [
+              119.66819,
+              49.1422796
+            ],
+            [
+              119.66794,
+              49.1424791
+            ],
+            [
+              119.668,
+              49.1427052
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "f1-waterway",
+        "status": "context",
+        "feature_role": "contextual",
+        "name": "现路北缘东段：独立暗斑和出入口",
+        "description": "03/202504 在出入口两侧可辨独立暗色斑，夏季 03/202107 表现明显不同。",
+        "placement_caveat": "不是来自村北低地的已证出水口，不能接穿道路。与 4 号南侧宽低带仅分别核对。",
+        "source": "google earth/03/202107.jpg；google earth/03/202109.jpg；google earth/03/202209.jpg；google earth/03/202504.jpg",
+        "source_files": [
+          "google earth/03/202107.jpg",
+          "google earth/03/202109.jpg",
+          "google earth/03/202209.jpg",
+          "google earth/03/202504.jpg"
+        ],
+        "related_ids": [
+          "road03-ge-north-basin-east-gap",
+          "hjn-03-owner-cross-4",
+          "road03-ge-pin4-diffuse"
+        ],
+        "imagery_only": true,
+        "hydraulic_link_confirmed": false,
+        "show_in_order": false,
+        "cross_road_connectivity": "not_verified",
+        "direction": "not_verified"
+      }
+    }
+  ],
+  "review": "Google Earth imagery-led visual tracing; topography secondary only. Original nearby pins and metadata preserved; no new conclusion of verified flow or submerged connectivity."
+}

@@ -1,0 +1,73 @@
+#guided-reference-dock .v82-zoom{display:flex;flex:0 0 auto;gap:1px;align-items:center;border:1px solid #7893af55;border-radius:5px;background:#102132}
+#guided-reference-dock .v82-zoom button{min-width:21px;min-height:23px;padding:0 3px;background:transparent;border:0;color:#dceaf1;font:600 11px system-ui;cursor:pointer;touch-action:manipulation}
+#guided-reference-dock .v82-zoom button[disabled]{opacity:.4;cursor:default}
+#guided-reference-dock #guided-map-pane svg{touch-action:none;user-select:none}
+#guided-reference-dock #guided-nav-map>svg{display:block}
+#guided-photo-preview header{flex-wrap:wrap;gap:4px}
+#guided-photo-preview header strong{min-width:0;flex:1 1 80px;white-space:normal;overflow-wrap:anywhere}
+.v82-photo-viewport{width:100%;max-height:min(43dvh,480px);overflow:auto;overscroll-behavior:contain;background:#0c1017}
+#observatory #guided-prior-landmarks .guide-continuity-pin{box-sizing:border-box;min-width:17px;width:max-content;max-width:min(164px,44vw);white-space:normal;overflow-wrap:anywhere;line-height:1.28;text-align:center;padding:2px 6px}
+@media(max-width:760px){
+ #guided-reference-dock .guided-reference-title{flex-wrap:wrap;gap:2px}
+ #guided-reference-dock .guided-reference-title div{gap:1px}
+ #guided-reference-dock .guided-reference-title button{padding-inline:5px}
+ #guided-reference-dock .v82-zoom button{min-width:19px;padding:0 2px}
+}
+
+
+.v83-photo-frame{position:relative;min-width:0;min-height:0;overflow:hidden;border-radius:4px;align-self:start;cursor:zoom-in}
+.v83-photo-frame:has(img[hidden]){display:none}
+.v83-photo-frame.is-lens{cursor:zoom-out}
+.v83-photo-frame.is-touch-lens{touch-action:none}
+.v83-photo-frame:focus-visible{outline:2px solid #c3def1;outline-offset:-2px}
+.v83-photo-frame canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none}
+.v83-photo-frame.is-lens canvas{display:block}
+
+.v83-photo-frame.is-fixed-lens{cursor:grab}.v83-photo-frame.is-grabbing{cursor:grabbing}
+
+/* v84: geographic layers zoom; readable symbols and labels do not. */
+[data-v84-cartography] > text,
+[data-v84-cartography] > [data-num],
+[data-v84-cartography] .guide-local-anchor,
+[data-v84-cartography] [data-inset-old-leader],
+[data-v84-cartography] [data-inset-old-dot],
+[data-v84-cartography] #guided-nav-marker,
+[data-v84-cartography] #guided-nav-photo,
+[data-v84-cartography] #guided-nav-target,
+[data-v84-cartography] [data-place-id]{display:none}
+[data-v84-cartography] #guided-nav-base polygon,
+[data-v84-cartography] #guided-nav-base polyline,
+[data-v84-cartography] > polyline,
+[data-v84-cartography] > polygon,
+[data-v84-cartography] > path{vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+[data-v84-cartography] .v84-label{fill:#edf6fe;font-family:system-ui,sans-serif;font-weight:600}
+[data-v84-cartography] .v84-stem{stroke:#a4bbcc;stroke-width:.8;stroke-opacity:.87}
+
+#guided-four-inset [data-inset-symbol="num"] text{font-size:11px}
+#guided-four-inset [data-inset-symbol="num"][data-inset-current="true"] text{fill:#132733}
+
+
+/* The right-side workspaces are siblings. A source popover never changes the SVG viewport. */
+#observatory.guided-tour-active #guided-reference-dock:not([hidden]){
+ height:clamp(218px,calc(var(--guide-right-w,425px) * .72),410px);min-height:0;isolation:isolate;
+}
+#observatory.guided-tour-active #guided-reference-dock #guided-map-pane{
+ flex:1 1 0;height:auto;min-height:0;overflow:hidden;
+}
+#guided-reference-dock #guided-reference-credit:not([hidden]){
+ flex:0 0 27px;height:27px;position:static;overflow:visible;z-index:2;
+}
+#guided-reference-dock #guided-reference-credit>summary{height:27px;padding:5px 10px;box-sizing:border-box;}
+#guided-reference-dock #guided-credit-slot{position:absolute;bottom:27px;right:5px;left:5px;max-height:34%;overflow:auto;background:#142333f8;border:1px solid #728ca594;border-radius:5px;overscroll-behavior:contain}
+#guided-reference-dock #guided-reference-credit:not([open]) #guided-credit-slot{display:none}
+#observatory.guided-tour-active #guided-photo-preview:not([hidden]){
+ position:absolute;box-sizing:border-box;z-index:83;left:auto;right:var(--guide-right,12px);top:var(--guide-photo-y,275px);bottom:auto;
+ width:var(--guide-right-w,425px); max-height:min(64dvh,calc(100dvh - var(--guide-photo-y,275px) - var(--v75-nav-space,77px) - 8px));
+ min-height:112px;overflow:auto;overscroll-behavior:contain;
+}
+#guided-photo-preview[hidden]{display:none!important}
+#observatory.guided-tour-active #guided-photo-preview.v74-custom-panel .v82-photo-viewport{max-height:none}
+@media(max-width:760px){
+ #observatory.guided-tour-active #guided-reference-dock:not([hidden]){height:clamp(161px,34dvh,245px)}
+ #observatory.guided-tour-active #guided-photo-preview:not([hidden]){max-height:min(51dvh,calc(100dvh - var(--guide-photo-y,275px) - var(--v75-nav-space,77px) - 8px))}
+}

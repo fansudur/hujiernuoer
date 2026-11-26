@@ -1,0 +1,51 @@
+{
+  "schema": "hujiernuoer/atlas-acceptance/v2",
+  "scope_zh": "这些固定样例用于独立重构的回归验收。面积保留 JRC 冻结记录，不应用网页渲染计算替代。地图用 EPSG:4326 [经度, 纬度]，水面月份与 Sentinel-2 底图拍摄日独立。",
+  "baseline_commit": "470fa0fcac5866229cbc9419325dc8a27788cda6",
+  "bounds_wgs84": [119.61, 49.101, 119.77, 49.175],
+  "window_wgs84": {
+    "MAIN": [119.6685,49.121,119.714,49.14275],
+    "WF1": [119.6565,49.15375,119.6645,49.16175]
+  },
+  "mask_geometry_bounds_wgs84": {
+    "MAIN": [119.6746014063921,49.12508754200321,119.7081476918662,49.13873135942266],
+    "WF1": [119.6565,49.15375,119.6645,49.16175]
+  },
+  "water_cases": [
+    {"lake":"MAIN","date":"2010-07","status":"positive","area_ha":63.3024972662,"valid_pct":100,"disputed":true,"geometry":"nonempty","visual_zh":"正值仍有争议，点击、对比和导出均须保留争议，不只改变颜色。"},
+    {"lake":"WF1","date":"2010-07","status":"positive","area_ha":9.0245447751,"valid_pct":100,"disputed":false,"geometry":"nonempty","visual_zh":"不把主湖的分类争议扩展给 WF1。"},
+    {"lake":"MAIN","date":"2008-07","status":"zero","area_ha":0,"valid_pct":99.9088787459,"disputed":true,"geometry":"empty","visual_zh":"归档零值、判读有争议；不能说湖彻底干涸。"},
+    {"lake":"WF1","date":"2008-07","status":"zero","area_ha":0,"valid_pct":99.9023439935,"disputed":false,"geometry":"empty","visual_zh":"合格零值，仍有小范围独立缺测（约 0.05 ha）。"},
+    {"lake":"MAIN","date":"2001-05","status":"invalid","area_ha":null,"valid_pct":84.4164609803,"disputed":false,"geometry":"unavailable","visual_zh":"缺测或覆盖未达门槛，面积不可替换为 0，不沿用前一个月水面。"},
+    {"lake":"WF1","date":"2001-05","status":"invalid","area_ha":null,"valid_pct":93.6523615350,"disputed":false,"geometry":"unavailable","visual_zh":"缺测或覆盖未达门槛，面积不可替换为 0。"},
+    {"lake":"MAIN","date":"2002-05","status":"positive","area_ha":91.6062848056,"valid_pct":95.9296268693,"disputed":false,"geometry":"nonempty","visual_zh":"主湖使用固定不规则窗。"},
+    {"lake":"WF1","date":"2002-05","status":"positive","area_ha":24.4370784820,"valid_pct":98.0468594079,"disputed":false,"geometry":"nonempty","visual_zh":"WF1 使用独立固定窗，约 1.01 ha 缺测另显示。"},
+    {"lake":"MAIN","date":"2024-07","status":"positive","area_ha":132.1363181545,"valid_pct":100,"disputed":false,"geometry":"nonempty","visual_zh":"水面掩膜日期不是默认 2026-08-08 底图的拍摄日期。"},
+    {"lake":"WF1","date":"2024-07","status":"positive","area_ha":23.3217840885,"valid_pct":100,"disputed":false,"geometry":"nonempty","visual_zh":"两个统计窗切换时，坐标与面积口径不混用。"},
+    {"lake":"MAIN","date":"2017-07","status":"positive","area_ha":0.1014491913,"valid_pct":97.4789132155,"disputed":false,"geometry":"nonempty"},
+    {"lake":"MAIN","date":"2017-08","status":"positive","area_ha":22.7747514999,"valid_pct":100,"disputed":false,"geometry":"nonempty"},
+    {"lake":"WF1","date":"2017-07","status":"positive","area_ha":16.9843024610,"valid_pct":98.3398766383,"disputed":false,"geometry":"nonempty"},
+    {"lake":"WF1","date":"2017-08","status":"positive","area_ha":19.8234647840,"valid_pct":100,"disputed":false,"geometry":"nonempty"}
+  ],
+  "time_axes": [
+    {"kind":"same_month_across_years","month":"07","required_dates":["2008-07","2010-07","2017-07","2024-07"],"expected_count":41,"interpretation_zh":"固定公历月份查看不同年份，不替换统计窗，不把该月序列当作观测逐月连续的时间轴。"},
+    {"kind":"different_months_same_year","year":"2017","required_dates":["2017-07","2017-08","2017-09"],"expected_count":12,"interpretation_zh":"两窗 2017 年 7→8 月均增加，WF1 增约 2.84 ha，大于 7 月缺测约 0.86 ha；不能据此推断水路、方向或水量分配。"}
+  ],
+  "spatial_cases": {
+    "g332": {"context_ids":["g332-osm-694416110","g332-osm-694416115"],"check_id":"g332-wf1-review","center_id":"g332-wf1-center","center_wgs84":[119.6502,49.15815],"search_bounds_wgs84":[119.6485,49.152,119.6508,49.162],"interpretation_zh":"道路参考线双幅与核查窗为不同要素。点击同一要素恢复原有 ID。道路参考、模型或检查框不是已验证的涵洞。"},
+    "profile": {"id":"yimin-nearest-profile","count":433,"length_m":4336.012,"sample_start":[0,119.6999335541,49.1340178413,617.4093,618.2608],"sample_end":[4336.012,119.7589908816,49.1382887362,611.0166,615.0877],"rise_m":[8.27,9.43],"interpretation_zh":"剖面光标定位同一采样点，二维三维保留其经纬度；峰相对两套 DSM 各自的湖端，不是水位或流向。"},
+    "distinct_visual_roles": [
+      {"layer":"nearby-pools","field":"status","expected_counts":{"observed":3,"candidate":3}},
+      {"layer":"landsat-2013-quality","field":"feature_role","expected_counts":{"usable":4,"excluded":6}},
+      {"layer":"s7-repeat-green","field":"two_dsm_two_scale_low","expected_counts":{"true":5,"false":2}}
+    ],
+    "imagery_dates":["2025-05-28","2026-04-01","2026-04-08","2026-08-08"]
+  },
+  "interface_checks": [
+    {"id":"status-and-export","expect_zh":"正常月、争议正值、争议零、正常零、无效月均有文字；当月导出保留 ID 与月份记录，全量只导出几何时需配套月份索引。"},
+    {"id":"overlay-vocabulary","expect_zh":"遥感分类、候选、模型、参考、缺测有视觉区分与文字；同层 QA 有效与排除、S7 正反、池塘观测与候选不能同色同笔。"},
+    {"id":"map-location","expect_zh":"锁定同一要素，切换二维三维、影像或透视后定位一致；指北针跟随投影北向；剖面用贴地锚点或明确连至地表。"},
+    {"id":"compatibility","expect_zh":"在 Windows Chrome 或 Edge、真实手机或手机仿真视口验证。单独注明 WebGL 与 Canvas 是否都试过；不能把仿真当真机。"},
+    {"id":"research-boundary","expect_zh":"不得把无原始几何的三情景、五月热点或 C 线窗口补描成空间数据；表格/证据卡须与图层一起提供。"}
+  ]
+}

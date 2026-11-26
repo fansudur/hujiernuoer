@@ -1,0 +1,473 @@
+[
+  {
+    "id": "lake-fixed-windows",
+    "title": "双湖时序｜固定窗、零值、缺测",
+    "classification": "观测口径",
+    "judgment": "1984-04 至 2024-12 各有 489 条月记录；主湖 72 月合格，西长湖 WF1 119 月合格。示例：2002-05 主湖 91.61 ha、WF1 24.44 ha；2024-07 主湖 132.14 ha、WF1 23.32 ha。",
+    "boundary": "同月跨年比较同一季节位置，同年跨月比较年内变化。各湖分母不随切换变化；两湖面积不套用同一统计窗。合格零值、缺测和争议为不同状态；影像拍摄日独立于月产品。WF1 与原 N2 不合并。",
+    "source_refs": [
+      {
+        "label": "双湖固定窗：逐月覆盖、状态、面积及几何索引",
+        "path": "water-index.json"
+      },
+      {
+        "label": "冻结主湖 monthly.json",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/monthly.json"
+      },
+      {
+        "label": "冻结版研究数据目录",
+        "path": "baseline/catalog.json"
+      }
+    ],
+    "feature_ids": [],
+    "months": [
+      "2002-05",
+      "2024-07"
+    ]
+  },
+  {
+    "id": "lake-2017-july-august",
+    "title": "2017-07 → 08｜同一时段上涨",
+    "classification": "时间共现",
+    "judgment": "主湖约 0.10→22.77 ha，WF1 约 16.98→19.82 ha。两处同期增加，不是仅由这两月的缺测上限就能解释的。后续 9 月变化格局不同。",
+    "boundary": "这只是特定月份的关联，并不证明互相补水、同源、上下游方向或有固定比例。六月至九月不是连续同步上涨；独立固定窗及覆盖率都要显示。",
+    "source_refs": [
+      {
+        "label": "双湖固定窗：逐月覆盖、状态、面积及几何索引",
+        "path": "water-index.json"
+      },
+      {
+        "label": "老版岸线增减案例索引",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/linked/shoreline_changes.json"
+      }
+    ],
+    "feature_ids": [],
+    "months": [
+      "2017-06",
+      "2017-07",
+      "2017-08",
+      "2017-09"
+    ]
+  },
+  {
+    "id": "lake-2008-2010-dispute",
+    "title": "2008／2010｜分类争议独立于覆盖率",
+    "classification": "质量限制",
+    "judgment": "2008-07、2008-09 WF1 为合格零值；主湖两月也是归档零值，但带历史分类争议。2010-07 主湖是有争议的归档正值 63.30 ha；主湖另有 5 个正值合格月带同类标记。",
+    "boundary": "零值仅表示对应归档分类未检出水，不等于实地完全干涸。未找到可独立同月核查的 2008 年光学对照；不把有有效像元或归档有值误认为独立复核。争议标记适用于正值和零值；不能用覆盖率消除争议。",
+    "source_refs": [
+      {
+        "label": "双湖固定窗：逐月覆盖、状态、面积及几何索引",
+        "path": "water-index.json"
+      },
+      {
+        "label": "冻结的质量回归记录",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/qualification_regression.json"
+      }
+    ],
+    "feature_ids": [],
+    "months": [
+      "2008-07",
+      "2008-09",
+      "2010-07",
+      "2001-05"
+    ]
+  },
+  {
+    "id": "g332-crossing",
+    "title": "G332｜过路点和两幅结构未证实",
+    "classification": "待核位置",
+    "judgment": "西长湖正西约 1.1 km 双幅是优先检查范围，不是 S7、F1/F2 或南侧 C 线。按坐标查道路两侧可配对低槽；有记录时再核同一构造编号、起讫桩号、两幅进口/出口、两侧高程。20 m 光学合格样景未辨认贯穿两幅的连续明水带。公开后段监理 1002 和施工 1002 的工程量清单没有可定位到该窗口的新增/修补涵洞条目。",
+    "boundary": "光学缺少连续水带不能排除更窄、隐蔽或短时通水；本次清单不是既有涵洞台账。未建立目标坐标与官方桩号/车道的对应，不把 K1347+649 当目标桩号。30 m 地形仅供搜寻，不复原构筑物或排水方向。",
+    "source_refs": [
+      {
+        "label": "矢量及日期属性",
+        "path": "analysis.geojson"
+      },
+      {
+        "label": "监理第二标段公示",
+        "url": "https://ggzyjy.nmg.gov.cn/jyxx/index_39.html?id=pubc-c95d9682-34b4-4eee-995e-ac1fa72d4a7f"
+      },
+      {
+        "label": "施工第二标段公示",
+        "url": "https://ggzyjy.nmg.gov.cn/jyxx/index_39.html?id=pubc-16a40509-d3af-494f-8501-9ae17f59cbf0"
+      },
+      {
+        "label": "第二标段工程量清单原件",
+        "path": "evidence-sources/g332-construction2-quantities.xlsx"
+      }
+    ],
+    "feature_ids": [
+      "g332-wf1-review",
+      "g332-wf1-center",
+      "g332-osm-694416110",
+      "g332-osm-694416115"
+    ]
+  },
+  {
+    "id": "northwest-terrain-hypotheses",
+    "title": "西北坡分支｜地形情景，不是实际水路",
+    "classification": "模型情景",
+    "judgment": "筛查从西北高处到西长湖的路径对填洼与允许通过 G332 的假设敏感；道路以东局部仍有不填洼可到西长湖候选。南支并非只指向主湖；北/东局地线索要按独立假设检查，远处 U1 仅作背景。",
+    "boundary": "原始三情景格链未恢复，卡片无路线几何。旧 Wcross1/2、B、C 模型层可独立检查，不能代替本轮三情景；不得给出真实水量、分流比例或涵洞确认。",
+    "source_refs": [
+      {
+        "label": "矢量来源、校验与缺项",
+        "path": "analysis-manifest.json"
+      },
+      {
+        "label": "三情景研究口径（记录摘要，非格链数据）",
+        "path": "evidence-sources/nw-three-scenarios-summary.json"
+      }
+    ],
+    "feature_ids": []
+  },
+  {
+    "id": "main-catchment-model",
+    "title": "主湖汇水｜17.28 km² 属模型面积",
+    "classification": "模型情景",
+    "judgment": "30 m DSM 和历史样本终点掩膜得到主湖外围模型集水范围 17.28 km²，19,200 个外部格；终点掩膜 1,443 格另列，不计入外部面积。入口簇只表示模型的地形划分。",
+    "boundary": "不是实测汇水量、入口流量份额或涵洞能力，不得以面积乘同一降雨后当各支流真实贡献。保留模型参数、终点掩膜与原有格定义。",
+    "source_refs": [
+      {
+        "label": "汇水模型口径与原始资产清单",
+        "path": "evidence-sources/main-catchments-manifest.json"
+      },
+      {
+        "label": "矢量及日期属性",
+        "path": "analysis.geojson"
+      },
+      {
+        "label": "Copernicus DEM GLO-30",
+        "url": "https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/DEM.html"
+      }
+    ],
+    "feature_ids": [
+      "historical_sample_union_catchment",
+      "entry_cluster_1",
+      "entry_cluster_2",
+      "entry_cluster_3",
+      "entry_cluster_4",
+      "entry_cluster_5",
+      "entry_cluster_6",
+      "entry_cluster_7",
+      "entry_cluster_9999",
+      "historical_sample_union_terminal"
+    ]
+  },
+  {
+    "id": "snow-s7-s3",
+    "title": "S7 与 S3｜残雪先筛，再比地形",
+    "classification": "观测与模型交叉",
+    "judgment": "S7 斑块两套地形、两尺度中位相对偏低约 0.57–0.90 m；S3 白带相对偏高约 0.32–0.84 m，是反例；S6 对尺度敏感。严格 7 个雪/冰分类像元中，5 个 S7 正例同时满足两套地形两尺度低地，另 2 个不满足。",
+    "boundary": "白色条带和 SCL11 不是稳定水路；S7 在 G332 西侧，是优先核查位置，不是过路点。不得把两套 DSM 相对量作绝对水位。",
+    "source_refs": [
+      {
+        "label": "矢量及日期属性",
+        "path": "analysis.geojson"
+      },
+      {
+        "label": "矢量来源、校验与缺项",
+        "path": "analysis-manifest.json"
+      },
+      {
+        "label": "原始 Sentinel-2 路径及地形配准清单",
+        "path": "terrain/manifest.json"
+      },
+      {
+        "label": "Copernicus DEM GLO-30",
+        "url": "https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/DEM.html"
+      },
+      {
+        "label": "JAXA AW3D30",
+        "url": "https://www.eorc.jaxa.jp/ALOS/en/dataset/aw3d30/"
+      }
+    ],
+    "feature_ids": [
+      "s7-site",
+      "s3-site",
+      "s6-site",
+      "s7-snow",
+      "s3-snow"
+    ]
+  },
+  {
+    "id": "s7-summer-greenness",
+    "title": "S7｜同一组像元四期较绿",
+    "classification": "观测关联",
+    "judgment": "同一 5 个 S7 样本在 2023-08-10、2024-08-14、2025-08-06、2026-08-08，均高于各自日期的附近 108 个陆地对照 NDVI 中位数；5 点差值的各日期中位数约 +0.075、+0.111、+0.128、+0.104。",
+    "boundary": "对照按距离和有效像元选取，未匹配植被种类；像元并非独立随机重复。与地势、雪共现不证明地表径流、因果关系或跨年反复积雪。仅用复核过的 7 个严格像元，不用早期 34 格试筛。",
+    "source_refs": [
+      {
+        "label": "矢量及日期属性",
+        "path": "analysis.geojson"
+      },
+      {
+        "label": "矢量来源、校验与缺项",
+        "path": "analysis-manifest.json"
+      },
+      {
+        "label": "原始 Sentinel-2 路径及地形配准清单",
+        "path": "terrain/manifest.json"
+      }
+    ],
+    "feature_ids": [
+      "strict-scl11-i4594-j2574",
+      "strict-scl11-i4636-j2581",
+      "strict-scl11-i4632-j2589",
+      "strict-scl11-i4633-j2590",
+      "strict-scl11-i4634-j2590",
+      "strict-scl11-i4635-j2590",
+      "strict-scl11-i4638-j2591",
+      "s7-green-control-cells"
+    ]
+  },
+  {
+    "id": "spring-snow-reset",
+    "title": "春融｜2026 年 4 月 5 日不是持续单调退雪",
+    "classification": "区域背景",
+    "judgment": "海拉尔站 2026-03-21 雪深 140 mm，03-24/25 为 60 mm，04-01 至 04-04 为零；04-05 又报 110 mm，04-07 回零。3 月 29 日、4 月 1 日、4 月 8 日三期影像显示斜坡白色减弱和西侧局部残留。",
+    "boundary": "这是区域站雪深，不是雪水当量、研究点观测或补给量。4 月 6 日影像受云/饱和影响，不能复核局地是否有新雪；不把 4 月区域回升从序列中抹去。",
+    "source_refs": [
+      {
+        "label": "NOAA GHCN-Daily：海拉尔 CHM00050527",
+        "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CHM00050527.dly"
+      },
+      {
+        "label": "雪深覆盖与季节筛查",
+        "path": "evidence-sources/snow-station-screen.txt"
+      },
+      {
+        "label": "原始 Sentinel-2 路径及地形配准清单",
+        "path": "terrain/manifest.json"
+      }
+    ],
+    "feature_ids": [
+      "s7-snow",
+      "s3-snow",
+      "s6-snow"
+    ]
+  },
+  {
+    "id": "storm-2023-08",
+    "title": "2023-08 暴雨｜区域扰动，不是两湖事件检验",
+    "classification": "区域背景",
+    "judgment": "海拉尔气象站 2023-08-02 至 04 累计降水 102.8 mm。同期再分析/卫星降水产品与站点差异较大；主湖 2023-08 月产品不合格。",
+    "boundary": "站点远于湖边，不用该站降水当坡面定量输入；不能利用缺测月份判主湖干湿变化，不利用事件后亮/湿斑确认过路通水。",
+    "source_refs": [
+      {
+        "label": "NOAA GHCN-Daily：海拉尔 CHM00050527",
+        "url": "https://www.ncei.noaa.gov/pub/data/ghcn/daily/all/CHM00050527.dly"
+      },
+      {
+        "label": "双湖固定窗：逐月覆盖、状态、面积及几何索引",
+        "path": "water-index.json"
+      },
+      {
+        "label": "冻结版地区降水比较目录",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/spatial/regional_rainfall_comparison.json"
+      }
+    ],
+    "feature_ids": [],
+    "months": [
+      "2023-08"
+    ]
+  },
+  {
+    "id": "release-2013-05",
+    "title": "2013 泄洪｜光学没有检验到湖泊响应",
+    "classification": "外部事件与质量限制",
+    "judgment": "2013-05-06 区域水库泄洪，05-10 晚区域洪峰到海拉尔；当月关键影像 05-12、20、27、28 在主湖/WF1 没有足够的可用观测来检验事件。06-05 为后来首个可比较候选，已晚约 26 天；同轨影像共同有效覆盖仍不足。",
+    "boundary": "2013-04/05 月产品不通过主湖覆盖门槛，6 月有水并不能归因于泄洪。可用区、被排除区是 QA，不是干湿分类；区域洪历并非库流量到湖端的传递时刻。",
+    "source_refs": [
+      {
+        "label": "洪峰报道（含有关部门通报）",
+        "url": "https://www.cnfin.com/news-xh08/a/20130515/1172687.shtml"
+      },
+      {
+        "label": "Landsat 原生格 QA 与同轨比较",
+        "path": "evidence-sources/landsat-2013-quality-and-pairs.json"
+      },
+      {
+        "label": "双湖固定窗：逐月覆盖、状态、面积及几何索引",
+        "path": "water-index.json"
+      }
+    ],
+    "feature_ids": [
+      "landsat-2013-05-04-main-qualified",
+      "landsat-2013-05-04-main-excluded",
+      "landsat-2013-05-04-wf1-qualified",
+      "landsat-2013-05-04-wf1-excluded",
+      "landsat-2013-05-12-main-excluded",
+      "landsat-2013-05-12-wf1-excluded",
+      "landsat-2013-06-05-main-qualified",
+      "landsat-2013-06-05-main-excluded",
+      "landsat-2013-06-05-wf1-qualified",
+      "landsat-2013-06-05-wf1-excluded"
+    ],
+    "months": [
+      "2013-04",
+      "2013-05",
+      "2013-06"
+    ]
+  },
+  {
+    "id": "yimin-terrain-barrier",
+    "title": "伊敏河｜近线约 4.34 km，中间存在地形高段",
+    "classification": "地形筛查",
+    "judgment": "从 2013-06 主湖最大连续水面至伊敏河，最近直线格网剖面约 4.336 km。两套 DSM 的高段分别比各自湖端地表高 8.27 m、9.43 m。替代探针仅用于检查地形低处。",
+    "boundary": "这不是水位、实测水头、越流门槛或水路。不能仅用邻近断定伊敏河直接地表来水；也不能据此排除地下水、其他支路或特殊工况。地图虚线不画流向。",
+    "source_refs": [
+      {
+        "label": "433 点剖面与双源摘要",
+        "path": "evidence-sources/yimin-profile-summary.json"
+      },
+      {
+        "label": "矢量及日期属性",
+        "path": "analysis.geojson"
+      },
+      {
+        "label": "Copernicus DEM GLO-30",
+        "url": "https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/DEM.html"
+      },
+      {
+        "label": "JAXA AW3D30",
+        "url": "https://www.eorc.jaxa.jp/ALOS/en/dataset/aw3d30/"
+      }
+    ],
+    "feature_ids": [
+      "yimin-nearest-profile",
+      "yimin-osm-83272398",
+      "yimin-local-glo30",
+      "yimin-local-aw3d30",
+      "yimin-expanded-glo30",
+      "yimin-expanded-aw3d30"
+    ]
+  },
+  {
+    "id": "town-drainage",
+    "title": "镇区排水｜规划排口不等于建成排口",
+    "classification": "规划背景",
+    "judgment": "公开规划图可辨的排水末端多在东侧河道走廊，南部 DN1000 管示意向东；未找到能把 1732 街、索伦大街、莫和尔图路的实际排口接到主湖的证据。",
+    "boundary": "公开图是规划口径，不是竣工图、雨时流向或设施核验。不添加实测排水线，不把该规划或伊敏河标为已证实主湖来水。",
+    "source_refs": [
+      {
+        "label": "巴彦托海镇规划图第 9 页",
+        "url": "https://www.ewenke.gov.cn/file_hlbe/11/202510/20251031160302211e0x6qu.pdf#page=9"
+      }
+    ],
+    "feature_ids": []
+  },
+  {
+    "id": "regional-gauge",
+    "title": "巴彦托海镇雨量站｜离主湖约 4.7 km",
+    "classification": "区域背景",
+    "judgment": "旗水资源规划表 1.3-2 给出镇雨量站 119.7500°E、49.1500°N，规划收集 1960–2022 年资料，距主湖约 4.7 km。公开件未取得逐日原始序列。",
+    "boundary": "不把规划汇总年均数作为事件日实测。规划另提的气象站、CMA 50525、伊敏河水文“海拉尔站”与 NOAA 海拉尔气象站 50527 不得相互当作同站。",
+    "source_refs": [
+      {
+        "label": "旗水资源综合规划表 1.3-2",
+        "url": "https://ewenke.gov.cn/file_hlbe/11/202508/20250808093002942m17j8x.pdf"
+      },
+      {
+        "label": "矢量及日期属性",
+        "path": "analysis.geojson"
+      }
+    ],
+    "feature_ids": [
+      "bayantuohai-rain-gauge"
+    ]
+  },
+  {
+    "id": "east-may-hotspot",
+    "title": "北侧场院东端｜五月重复水样 0.56／0.84 ha",
+    "classification": "已归档汇总，无面几何",
+    "judgment": "E_S_20_100 统计条带 2025-05、2026-05 达到月内重复水样标准的汇总面积分别为 0.56 和 0.84 ha；有效格分别 159/159 和 154/159。T6/T7/T8、P1/P2 可按原剖面点和零点定位。",
+    "boundary": "条带原始边界、两期重复水面像元、C 线分析框/配对框未恢复。参考段和真实剖面不是缺失统计条带；汇总面积不能倒画成水斑，也不确证院墙恢复或补水机制。",
+    "source_refs": [
+      {
+        "label": "原始五月汇总与质量分母",
+        "path": "evidence-sources/hotspot-may-summary.json"
+      },
+      {
+        "label": "矢量及日期属性",
+        "path": "analysis.geojson"
+      },
+      {
+        "label": "矢量来源、校验与缺项",
+        "path": "analysis-manifest.json"
+      }
+    ],
+    "feature_ids": [
+      "archive-yard_reference_2100_2270m",
+      "archive-t6",
+      "archive-t7",
+      "archive-t8",
+      "archive-p1",
+      "archive-p2"
+    ]
+  },
+  {
+    "id": "lake-surroundings",
+    "title": "水域身份｜西长湖、东池、北小湖、北侧背景",
+    "classification": "对象和绘图口径",
+    "judgment": "西长湖 WF1 有自己的原生月度窗；东池与北小湖在图谱中按特定场景的观测分类/候选分类分别显示。更北的水域与较远背景对象只用于梳理空间关系。已有 N2 与呼和参照资料按各自对象保留。",
+    "boundary": "周边池仅若干日期的证据不是全序列。观测分类和候选分类不可混色或相加，不把近邻当连通关系；背景对象不直接指为主湖来水。",
+    "source_refs": [
+      {
+        "label": "双湖固定窗：逐月覆盖、状态、面积及几何索引",
+        "path": "water-index.json"
+      },
+      {
+        "label": "矢量及日期属性",
+        "path": "analysis.geojson"
+      },
+      {
+        "label": "既有周边水域几何索引",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/spatial/neighbor_geometry_index.json"
+      },
+      {
+        "label": "呼和固定窗序列",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/spatial/huhe-series.json"
+      }
+    ],
+    "feature_ids": [
+      "archive-north_pool_2025-09-22_scl6",
+      "archive-north_pool_2026-09-10_scl6",
+      "archive-north_pool_2026-09-10_candidate",
+      "archive-east_pool_2025-09-22_scl6",
+      "archive-east_pool_2025-09-22_candidate",
+      "archive-east_pool_2026-05-08_candidate"
+    ]
+  },
+  {
+    "id": "historical-chronology",
+    "title": "1942 历史图｜背景与可比月序列分开",
+    "classification": "历史背景",
+    "judgment": "把早期图档、1984-04 至 2024-12 固定窗月产品、2025–2026 年独立 Sentinel 场景以及近年专项复核按不同证据层显示。年际岸线变化保留冻版成对数据索引。",
+    "boundary": "1942 图档不作高精度岸线、土地边界或像元面积；月产品、现代背景场景和不同年份的研究窗口不应合并。不要把降雨、草地、风日照或有无水用同一时间与质量口径叙述。",
+    "source_refs": [
+      {
+        "label": "历史语境事件",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/narrative/historical-context-events.json"
+      },
+      {
+        "label": "1942 图档来源和限制",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/history-map/provenance.json"
+      },
+      {
+        "label": "冻结岸线增减对比",
+        "url": "https://github.com/fansudur/hujiernuoer/blob/470fa0fcac5866229cbc9419325dc8a27788cda6/data/linked/shoreline_changes.json"
+      },
+      {
+        "label": "冻结版研究数据目录",
+        "path": "baseline/catalog.json"
+      },
+      {
+        "label": "双湖固定窗：逐月覆盖、状态、面积及几何索引",
+        "path": "water-index.json"
+      }
+    ],
+    "feature_ids": []
+  }
+]

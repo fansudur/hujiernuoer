@@ -1,0 +1,96 @@
+#guided-photo-preview #guided-photo-close{white-space:nowrap}
+.v74-custom-panel:not([hidden]){position:fixed!important;left:var(--v74-x)!important;top:var(--v74-y)!important;right:auto!important;bottom:auto!important;transform:none!important;width:var(--v74-w)!important;height:var(--v74-h)!important;max-width:none!important;max-height:none!important;min-width:0!important;min-height:0!important;box-sizing:border-box}
+#guided-photo-preview.v74-custom-panel:not([hidden]){display:flex;flex-direction:column;overflow:auto;padding-bottom:8px}
+#guided-photo-preview.v74-custom-panel #guided-photo-enlarged{min-height:64px;max-height:none;object-fit:contain;flex:1 1 auto}
+#guided-nav-map.v74-custom-panel>svg{height:calc(100% - 19px);width:100%;object-fit:contain}
+#guided-tour-panel.v74-custom-panel{overflow:auto}
+#guided-tour-nav-strip.v74-custom-panel .guided-tour-controls{max-height:100%;overflow:auto}
+#chart-deck.v74-custom-panel{overflow:auto}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-expanded="true"]{display:block;z-index:78}
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-expanded="true"]:not(.v74-custom-panel){bottom:max(70px,var(--v75-nav-space,70px))}
+#v74-close-tour-profile{position:absolute;right:5px;top:0;z-index:13}
+#v74-layout-reset{white-space:nowrap}
+.v74-sr-only{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+@media(max-width:760px){
+ #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-expanded="true"]:not(.v74-custom-panel){bottom:100px}
+}
+/* Keep the unfloated guide and its native chart in separate lanes by default. */
+@media(min-width:761px){
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel){left:12px;right:auto;transform:none;width:min(36vw,500px)}
+ #observatory.v74-tour-profile-open #chart-deck[data-expanded="true"]:not(.v74-custom-panel){right:12px;left:auto;transform:none;width:min(60vw,980px)}
+}
+@media(max-width:760px){
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel){top:min(23dvh,157px);bottom:auto;max-height:26dvh}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-observer-script{max-height:5dvh}
+ #observatory.v74-tour-profile-open #chart-deck[data-expanded="true"]:not(.v74-custom-panel){max-height:38dvh;overflow:auto}
+}
+@media(max-width:760px){
+ #observatory.v74-tour-profile-open{--v74-playing-space:var(--v75-nav-space,80px);--v74-profile-lane:min(156px,25dvh)}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel){top:auto;bottom:calc(var(--v74-playing-space) + var(--v74-profile-lane) + 8px);max-height:126px;overflow-y:auto}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-observer-script{max-height:none}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-board-note{display:none}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile]:not(.v74-custom-panel){bottom:var(--v74-playing-space);height:var(--v74-profile-lane);max-height:var(--v74-profile-lane)}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile]{padding-top:26px;overflow:hidden}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile] :is(#deck-grip,#deck-bar,#deck-subbar,.profile-meta-bar,.profile-foot-note){display:none}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile] .deck-body{padding:0 4px 0;max-height:none;overflow:visible}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile] svg.profile-svg{display:block;height:calc(var(--v74-profile-lane) - 29px);width:100%}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile].v74-custom-panel svg.profile-svg{height:calc(var(--v74-h) - 29px)}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile] #v74-close-tour-profile{top:1px}
+}
+@media(max-width:760px){
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile]::before{
+  content:attr(data-v74-profile-label) " · 30 m 地表";position:absolute;left:57px;right:65px;top:6px;
+  color:var(--ink-2,#d7e6ec);font-size:9px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none
+ }
+}
+@media(max-width:760px){
+ #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-expanded="true"][data-tour-profile]:not(.v74-custom-panel){bottom:var(--v74-playing-space)}
+}
+@media(max-width:760px){
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel){max-height:110px}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-sides-caption{display:none}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-map-inset:not([hidden]){width:70px}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) :is(.deck-btn,.deck-select){min-height:24px}
+}
+
+/* Shared controls for every floating selection drawer; launchers stay in place. */
+.glass-popover.v74-custom-panel{overflow:auto}
+@media(max-width:760px){
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel){max-height:127px}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-director-board{padding:3px;min-height:35px}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-map-inset{display:none}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-board-kind{display:none}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-board-media button{width:auto;max-width:92px;min-height:24px;font-size:10px}
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel) #guided-board-media .guide-board-frame{display:none}
+}
+/* Native-style operations: titles move; frame hit zones resize without adding chrome. */
+#v74-layout-reset{display:none}
+.v75-window-title{cursor:grab;touch-action:none;user-select:none}
+.v75-window-title :is(button,a,input,select,textarea,label,summary,[role="button"]){cursor:pointer;touch-action:manipulation}
+.v75-window-title:focus-visible{outline:2px solid #e8bc5c;outline-offset:-2px}
+.v74-interacting .v75-window-title{cursor:grabbing}
+.v75-title{font-size:11px;font-weight:650;padding:3px 10px;line-height:18px}
+#chart-deck>.v75-title{position:absolute;left:5px;top:1px;z-index:13;padding:1px 3px;max-width:calc(100% - 75px)}
+#chart-deck:not([data-expanded="true"])>:is(.v75-title,.v75-window-edge),
+#guided-location-card.embedded>.v75-window-edge{display:none}
+.v75-window-edge{position:absolute;z-index:14;display:block;pointer-events:auto;touch-action:none;user-select:none;--hit:5px;--corner:11px}
+.v75-window-edge[data-edge="n"]{top:0;left:var(--corner);right:var(--corner);height:var(--hit);cursor:ns-resize}
+.v75-window-edge[data-edge="s"]{bottom:0;left:var(--corner);right:var(--corner);height:var(--hit);cursor:ns-resize}
+.v75-window-edge[data-edge="w"]{left:0;top:var(--corner);bottom:var(--corner);width:var(--hit);cursor:ew-resize}
+.v75-window-edge[data-edge="e"]{right:0;top:var(--corner);bottom:var(--corner);width:var(--hit);cursor:ew-resize}
+.v75-window-edge:is([data-edge="ne"],[data-edge="nw"],[data-edge="se"],[data-edge="sw"]){width:var(--corner);height:var(--corner)}
+.v75-window-edge:is([data-edge="ne"],[data-edge="nw"]){top:0}
+.v75-window-edge:is([data-edge="se"],[data-edge="sw"]){bottom:0}
+.v75-window-edge:is([data-edge="ne"],[data-edge="se"]){right:0}
+.v75-window-edge:is([data-edge="nw"],[data-edge="sw"]){left:0}
+.v75-window-edge:is([data-edge="nw"],[data-edge="se"]){cursor:nwse-resize}
+.v75-window-edge:is([data-edge="ne"],[data-edge="sw"]){cursor:nesw-resize}
+@media(any-pointer:coarse){.v75-window-edge{--hit:8px;--corner:14px}}
+
+/* Keep desktop guide and graph above playback, and put the full chart in view. */
+@media(min-width:761px){
+ #observatory.v74-tour-profile-open #guided-tour-panel:not(.v74-custom-panel){bottom:var(--v75-nav-space,80px)}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile]>.v75-title{z-index:14}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile] :is(#deck-subbar,.profile-secondary){display:none}
+ #observatory.v74-tour-profile-open #chart-deck[data-tour-profile] svg.profile-svg{max-height:calc((var(--deck-height,249px)) - 110px)}
+}
