@@ -6782,11 +6782,12 @@ const GUIDE_OLD_NEAR=['200405','202109'].map(d=>({src:'./native-detail/history-r
 const GUIDE_2013_IMAGE={src:'./google-earth-history/ge-root-201309.jpg',title:'2013-09 · 全区旧影像',caption:'文件标记。只看道路和场地轮廓；细沟以较清晰影像判断。'};
 const GUIDE_03_IMAGES=[['kmz-pin2-pin3-20090905.png','2009-09-05'],['road03-20150516.png','2015-05-16'],['road03-20150707.png','2015-07-07'],['road03-20170404.png','2017-04-04'],['road03-20210730.png','2021-07-30'],['road03-20210930.png','2021-09-30']].map(([f,d])=>({src:'./native-detail/history-review/cards/'+f,title:'03 道路原始卫星图 · '+d,caption:'日期看原截图页脚；保留原标注，不据单景认地下连接。'}));
 const FIELD_BANDS_STOP='runoff-field-bands-05';
-const FIELD_BANDS_MEDIA=[{
- src:'./guide-reference/field-bands-2021-04.jpg',
- title:'2021-04 · 田间深色弯带',
- caption:'Google Earth · Image © 2026 Maxar Technologies。2021 年 4 月为原文件标记，具体拍摄日未核实。这张影像只用于辨认沟形；颜色深不等于有水，也不能据此确认融雪径流。讲解提到的两张 7 月对照图未收录在公开版。'
-}];
+const FIELD_BANDS_CREDIT='2015-07：Google Earth / Image © 2026 CNES / Airbus。2021-07：Google Earth / Image © 2026 Maxar Technologies / Image Landsat / Copernicus。';
+const FIELD_BANDS_MEDIA=[
+ {src:'./guide-reference/field-bands-2021-04.jpg',title:'2021-04 · 田间深色弯带',caption:'Google Earth · Image © 2026 Maxar Technologies。2021 年 4 月为原文件标记，具体拍摄日未核实。这张影像只用于辨认沟形；颜色深不等于有水，也不能据此确认融雪径流。'},
+ ...['2015-07','2021-07'].map((date,i)=>({src:'./guide-reference/field-bands-'+date+'.jpg',title:date+' · 同一处弯折',pairIndex:2-i,caption:'两期完整画幅用于找同一处弯折。日期按原文件标记；色差不能证明沟里有水。'+FIELD_BANDS_CREDIT}))
+];
+const FIELD_BANDS_SOURCES=new Set(FIELD_BANDS_MEDIA.map(item=>item.src));
 const DIRECTOR_HISTORY_PHOTOS=new Set(['history-200405','history-202109','history-conditional']);
 function updateOpeningCue(step){
  const cue=guideOpeningCue(step);if(!cue)return;
@@ -6840,8 +6841,9 @@ function directorEvidenceBoard(step,point=0){
    GUIDE_OLD_PAIR.forEach((v,i)=>rows.push({src:v.src,label:v.title,action:()=>setGuidePhoto(true,{focus:true,items:[...GUIDE_OLD_PAIR,...GUIDE_OLD_NEAR,...GUIDE_03_NEAR_PAIR],start:i})}));
  }
  if(step.id===FIELD_BANDS_STOP){
-   const item=FIELD_BANDS_MEDIA[0];
-   rows.push({src:item.src,label:'2021-04 · 看暗带与沟形',action:()=>setGuidePhoto(true,{focus:true,items:FIELD_BANDS_MEDIA})});
+   for(const [i,label] of [[0,'2021-04 · 看暗带与沟形'],[1,'两张 7 月影像 · 并排对照']]){
+     rows.push({src:FIELD_BANDS_MEDIA[i].src,label,action:()=>setGuidePhoto(true,{focus:true,items:FIELD_BANDS_MEDIA,start:i})});
+   }
  }
  if(step.id==='history-201309')rows.push({src:GUIDE_2013_IMAGE.src,label:'2013 原始旧影像',action:()=>setGuidePhoto(true,{focus:true,items:[GUIDE_2013_IMAGE,...GUIDE_OLD_PAIR]})});
  if(step.id==='runoff-bridge'||step.id==='road-round'||mark){
@@ -6857,7 +6859,7 @@ function directorEvidenceBoard(step,point=0){
    rows.push({src:im.src,label:'G332 与南部环岛影像',action:()=>setGuidePhoto(true,{focus:true,items:[im]})});
  }
  if(['road-nw-gully','runoff-main-entrance-context'].includes(step.id)&&!rows.some(r=>r.src.includes('/road03-'))){const im=GUIDE_03_IMAGES[5];rows.push({src:im.src,label:'03 卫星图 · 6 期',action:()=>setGuidePhoto(true,{focus:true,items:GUIDE_03_IMAGES,start:5})});}
- for(let i=rows.length-1;i>=0;i--)if(!rows[i].src?.startsWith('./field-photo-thumbs/')&&rows[i].src!==FIELD_BANDS_MEDIA[0].src)rows.splice(i,1);
+ for(let i=rows.length-1;i>=0;i--)if(!rows[i].src?.startsWith('./field-photo-thumbs/')&&!FIELD_BANDS_SOURCES.has(rows[i].src))rows.splice(i,1);
  for(const row of rows){const b=document.createElement('button'),im=document.createElement('img'),c=document.createElement('small');
   b.type='button';b.onclick=row.action;b.setAttribute('aria-label','展开：'+row.label);
   im.src=row.src;im.alt='';im.decoding='async';c.textContent=row.label;const frame=document.createElement('span');frame.className='guide-board-frame';frame.append(im);b.append(frame,c);mb.append(b);}
