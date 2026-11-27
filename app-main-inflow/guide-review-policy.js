@@ -10,8 +10,8 @@ export const easeGuide=t=>{const x=Math.max(0,Math.min(1,t));return x*x*(3-2*x);
 export function openingPinNumbers(cue){
  return cue?.anchorIds?.includes('hjn-03-road-pin-02')?[2,4]:[];
 }
-export function guideCameraRecord({pose,viewport,exag,fov,offset,imagery,waterMonth,stop,cue}){
+export function walkCameraRecord({pose,viewport,exag,fov,offset,imagery,waterMonth}){
  return {schema:'hjn-camera/v1',camera:{lon:pose.lon,lat:pose.lat,eyeM:pose.eyeM,heading:pose.heading,pitch:pose.pitch,
  exag,fov,viewport,...(offset?{viewOffset:offset}:{}),...(Number.isFinite(pose.guideOriginM)?{guideOriginM:pose.guideOriginM}:{})},
- imagery,waterMonth,source:stop?'本机第一章导览机位':'本机自由漫游视角',...(stop?{stop,cue}:{} )};
+ imagery,waterMonth,source:'本机自由漫游视角'};
 }

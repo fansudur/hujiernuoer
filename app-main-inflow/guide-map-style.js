@@ -2,7 +2,6 @@
 import {ANALYSIS_PALETTE} from './atlas-visual-policy.js';
 export const GUIDE_METERS_PER_DEG_LON=72800;
 export const GUIDE_METERS_PER_DEG_LAT=111320;
-export const GUIDE_DEFAULT_MEDIA='ge-root-202109';
 export const EAST_SECTION='east-guide-marsh-cross-section';
 export const EAST_COP='diag-branch-Cop_frozen30_filled_F1_NE_fade_east_pool_2025-09-22_G3320_minor0';
 export const EAST_AW='diag-branch-AW3D30_sameUTM_filled_F1_NE_fade_east_pool_2025-09-22_G3320_minor0';

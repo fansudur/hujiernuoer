@@ -417,18 +417,18 @@ function mountTheatreChrome(bridge) {
     document.getElementById('v93-stop-num').textContent = `${String(globalIdx).padStart(2, '0')} / ${totalStops}`;
     document.getElementById('v93-act-label').textContent = `${stage.num} ${stage.short}`;
 
-    // Dual-date bar: strictly distinguish JRC monthly water vs basemap file label
+    // Water month and imagery date have different meanings. Label exports
+    // explicitly; do not label dated public satellite imagery as a file name.
     const waterTag = document.getElementById('v93-water-tag');
     const waterVal = document.getElementById('v93-water-val');
-    if (isOverview) {
-      waterTag.classList.add('is-muted');
-      waterVal.textContent = `${waterMonth || '2024-07'}（全景暂隐叠层）`;
-    } else {
-      waterTag.classList.remove('is-muted');
-      waterVal.textContent = waterMonth || '2024-07';
+    waterTag.classList.toggle('is-muted', isOverview);
+    waterVal.textContent = (waterMonth || '未标注') + (isOverview ? '（全景暂隐叠层）' : '');
+    const imageryVal=document.getElementById('v93-imagery-val'), fileTag='（文件标记）';
+    imageryVal.textContent=(imageryLabel || '未标注').replace(fileTag,'');
+    if(imageryLabel?.includes(fileTag)){
+      const tag=document.createElement('span');
+      tag.className='v93-file-tag';tag.textContent=fileTag;imageryVal.append(tag);
     }
-    const cleanImg = (imageryLabel || '2021-09（文件标记）').replace('（文件标记）', '');
-    document.getElementById('v93-imagery-val').innerHTML = `${cleanImg}<span class="v93-file-tag">（文件标记）</span>`;
 
     // Evidence badge
     const ev = classifyStopEvidence(step);

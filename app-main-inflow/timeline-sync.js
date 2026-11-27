@@ -1,15 +1,3 @@
-export function timelinePlaybackDates(index, anchor, axis, scope, imageOnlyMonths=[]) {
-  if (!/^\d{4}-\d{2}$/.test(anchor || '')) return [];
-  const sameYear = axis === 'same-year';
-  const inScope=date=>sameYear ? date.slice(0,4)===anchor.slice(0,4) : date.slice(5,7)===anchor.slice(5,7);
-  const lakes = scope === 'BOTH' ? ['MAIN', 'WF1'] : [scope];
-  const waterDates=(index?.dates || []).filter(date=>inScope(date)&&lakes.some(lake=>{
-    const row = index?.lakes?.[lake]?.months?.[date];
-    return row?.status === 'positive' || row?.status === 'zero';
-  }));
-  return [...new Set([...waterDates,...imageOnlyMonths.filter(date=>/^\d{4}-(0[1-9]|1[0-2])$/.test(date)&&inScope(date))])].sort();
-}
-
 export function nextTimelineDate(eligible, current) {
   return eligible.find(date => date > current) || eligible[0];
 }

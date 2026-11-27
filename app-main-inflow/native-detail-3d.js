@@ -9,20 +9,6 @@ export function detailUvBounds(terrain, tile){
   return [(x0-w)/(e-w),(y0-s)/(n-s),(x1-w)/(e-w),(y1-s)/(n-s)];
 }
 
-export function validateNativeDetails(doc, base){
-  const out=new Map();
-  if(doc?.schema!=='hjn-native-local-ge/v1'||!Array.isArray(doc.tiles))return out;
-  for(const t of doc.tiles){
-    if(!/^ge-native-[\w-]+$/.test(t.id)||!/^ge-[\w-]+$/.test(t.parentSceneId)||
-       !/^tiles\/[\w-]+\.(?:png|jpg|webp)$/.test(t.file)||!cleanBox(t.bounds_wgs84)||
-       !Array.isArray(t.dimensions)||t.dimensions.length!==2||
-       !t.dimensions.every(x=>Number.isInteger(x)&&x>=16&&x<=8192)||
-       !/^[a-f0-9]{64}$/i.test(t.sha256))continue;
-    out.set(t.id,{...t,url:new URL(t.file,base).href});
-  }
-  return out;
-}
-
 export function applyNativeDetail(T, material, uv, texture){
   const extents=new T.Vector4(...uv);
   const feather=new T.Vector2(8/texture.image.width,8/texture.image.height);

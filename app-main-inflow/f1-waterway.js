@@ -10,7 +10,7 @@ export const WCROSS_FAR_LAYER='wcross-far-west';
 export const WCROSS_FAR_NAME='地方道路 Wcross1／2 · G332 西坡试算（可选）';
 export const OWNER_BLUE_LAYER='owner-blue-201909';
 export const OWNER_BLUE_NAME='2019-09 用户蓝线 · 原图判读草图';
-export const OWNER_BLUE_LEGEND='九条蓝色虚线是用户手绘假设，不是实测沟渠、已知流向或连通；保持原笔之间的断口。';
+
 const roles={
  owner_blue_sketch:['用户蓝线 · 待核假设','◇','#51acff','#51acff2c',[9,5]],
  terrain_only_approach:['原地形试算至路西 · 未观测流路','▧','#c6a5f5','#c6a5f525',[10,4]],

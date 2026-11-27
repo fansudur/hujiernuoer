@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="v83-reference.css?v=86">
   <link rel="stylesheet" href="v89-space.css?v=105.15">
   <link rel="stylesheet" href="v93-chapter1.css?v=102">
-  <link rel="stylesheet" href="guide-review.css?v=105.10">
+  <link rel="stylesheet" href="guide-review.css?v=105.17.5">
   <link rel="stylesheet" href="v74-director.css?v=105">
   <link rel="stylesheet" href="mobile-atlas.css?v=105.5">
   <link rel="stylesheet" href="./landscape-reference.css">
@@ -241,35 +241,15 @@
         <small id="guided-east-caveat"></small>
       </section>
       <p id="guided-tour-chapter-status" class="guided-chapter-status"></p>
-      <details id="guided-corridor-sketch" class="guided-route-details" hidden>
-        <summary>看记录者的红线草图 · 调查方向</summary>
-        <p>红色宏观 1-1 指向 03 路和主湖西北，1-2 另向偏东；其他红箭头是另外的湖岸方向。它们与路边 KMZ 1–4 编号、金色道路镜头轨迹没有编号关系，不作为测绘水路。</p>
-        <img id="guided-corridor-sketch-img" loading="lazy" decoding="async" alt="记录者手绘汇水方向原图；红色、黄色均为手绘判读。" style="width:100%;height:auto">
-      </details>
       <details id="guided-history-review" class="guided-route-details" hidden>
         <summary>同位影像对照｜早期与近期</summary>
-        <p id="guided-history-note"></p>
-        <div id="guided-history-pictures"></div>
+        <p>公开版未收录此处对照旧影像。当前底图仅用于定位，不代表旁白所述年代。</p>
       </details>
       <details id="guided-field-marks" class="guided-route-details" hidden>
         <summary>现场位置 · 水通道 KMZ 四点</summary>
         <p>按原 KMZ 顺序定位。1、3 为双侧涵洞连通；2 为南侧有涵、北侧疑似填埋；4 为路南汇入低点后下流。来源：现场记录。</p>
         <div id="guided-field-buttons" class="guided-observer-buttons"></div>
-        <details id="guided-kmz-history" class="guided-route-details">
-          <summary>第 2、3 点 · 同位历史影像</summary>
-          <p>Google Earth 页脚显示 2009-09-05。第 2 点北面，红屋顶院落东缘可见窄暗带。蓝线和红色标记是记录者手绘；旧低带可能经过第 2 点、后来可能由第 3 点过路，是待核线索。跨期对照可见院边及路肩形态变化，不能确认路下过水、整条改线或改线时间。各日期来自所选截图页脚，红蓝标记属人工标注。</p>
-          <label for="guided-road03-history-date">对照日期</label>
-          <select id="guided-road03-history-date">
-            <option value="kmz-pin2-pin3-20090905.png" data-note="院落东缘至道路附近有窄暗带；蓝红标记是记录者手绘，不能确认穿路。">2009-09-05</option>
-            <option value="road03-20150516.png" data-note="院边旧弯形暗带仍可辨，向道路方向另见短痕。">2015-05-16</option>
-            <option value="road03-20150707.png" data-note="院边出现较宽的浅色平整地，旧弯带和第 2 点北面的旧痕大部不再清楚；不能由影像认定管口被填。">2015-07-07</option>
-            <option value="road03-20170404.png" data-note="第 2 点北侧新出入口西边见较窄暗痕；路南另有短痕，隔路的两段不能连成一条已知水路。">2017-04-04</option>
-            <option value="road03-20210730.png" data-note="第 3 点北侧，沿院落东边的暗痕到达道路附近；南侧路缘有较明显短痕。">2021-07-30</option>
-            <option value="road03-20210930.png" data-note="第 3 点北侧暗痕靠路终点看得较清，路南短痕较弱。两期的两侧地表沟痕与现场记录相对照，不表示卫星拍到了涵管、水流方向或同期过水。">2021-09-30</option>
-          </select>
-          <p id="guided-road03-history-note" aria-live="polite"></p>
-          <img id="guided-kmz-history-image" loading="lazy" decoding="async" style="display:block;width:100%;height:auto" alt="03 路同位 Google Earth 原截图；日期保留在原图右下角。">
-        </details>
+        <p>此处历史影像未收录于公开版。可对照上方现场记录与地图位置。</p>
       </details>
       <details id="guided-observer-choices" class="guided-route-details" hidden>
         <summary>对照观察机位</summary>
@@ -292,7 +272,6 @@
         <button type="button" id="guided-tour-prev" class="deck-btn">上一站</button>
         <button type="button" id="guided-tour-play" class="deck-btn">播放本段</button>
         <button type="button" id="guided-tour-next" class="deck-btn">下一站</button>
-        <button type="button" id="guided-camera-capture" class="deck-btn" aria-haspopup="dialog">采集机位</button>
         <button type="button" id="guided-camera-follow" class="deck-btn" aria-pressed="true" title="左拖转向，WASD 平移，Q／E 升降，Shift 加速；滚轮缩放，触屏可双指缩放和平移。">跟随镜头</button>
         <button type="button" id="v74-layout-reset" class="deck-btn">恢复布局</button>
         <button type="button" id="guided-mobile-layers" class="deck-btn guide-mobile-tools" aria-controls="studio-drawer" aria-expanded="false" data-drawer-tab="layers">图层／资料</button>
@@ -658,17 +637,9 @@
   </dialog>
 
   <script src="../hujiernuoer-handoff-v2/vendor/three-r160.1.min.js"></script>
-  <script type="module" src="app.js?v=105.17.4"></script>
+  <script type="module" src="app.js?v=105.17.5"></script>
   <script type="module" src="v74-panels.js"></script>
-  <script type="module" src="v93-chapter1.js?v=105.17.3"></script>
-<dialog id="guided-camera-dialog" aria-labelledby="guided-camera-heading">
- <form method="dialog">
-  <div><strong id="guided-camera-heading">当前导览机位</strong><button class="deck-btn" type="submit">关闭</button></div>
-  <p id="guided-camera-status" role="status"></p>
-  <textarea id="guided-camera-json" aria-label="机位数据" readonly rows="5"></textarea>
- </form>
-</dialog>
-
+  <script type="module" src="v93-chapter1.js?v=105.17.5"></script>
 <dialog id="landscape-dialog" aria-labelledby="landscape-title">
  <header class="landscape-head">
   <div><h2 id="landscape-title"></h2><p id="landscape-credit"></p></div>

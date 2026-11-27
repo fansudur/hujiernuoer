@@ -73,7 +73,3 @@ export function followsPortraitItinerary(book,from,to){
  return a>=0&&b>=0&&Math.abs(a-b)===1&&continuousPortraitRuns.some(([start,end])=>
    Math.min(a,b)>=ids.indexOf(start)&&Math.max(a,b)<=ids.indexOf(end));
 }
-export const portraitGuideImages=Object.freeze({
- 'east-pool-source':'ge-root-202107-2','east-connection-check':'ge-root-202209-2',
-});
-

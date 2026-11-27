@@ -109,20 +109,6 @@ export const LAYER_GROUPS = [
   { id: 'historical-context', title: '历史地图参考（不随月份变化）', layers: Object.keys(HISTORICAL_LAYERS) },
 ];
 
-export const DEFAULT_VISIBLE_LAYERS = new Set([
-  'road-review',
-  'roads',
-  'secondary-roads',
-  'snow-sites',
-  'snow-2026',
-  's7-repeat-green',
-  'yimin-profile',
-  'yimin-reference',
-  'nearby-pools',
-  'east-profiles',
-  'regional-reference',
-]);
-
 /**
  * Classify a single monthly water record into one of 5 explicit, mutually
  * exclusive semantic states (never conflating disputed positive, disputed zero,

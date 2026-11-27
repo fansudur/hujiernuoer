@@ -1,6 +1,6 @@
 export const SEASONAL_LAYER='seasonal-network';
 export const SEASONAL_NAME='季节性水文与地貌线索';
-export const SEASONAL_LEGEND='青实线：影像可见地貌；琥珀虚线：待核连接；×：缺口；紫面：冬景判读；蓝面：2024-07 分类水面重合；白点线：道路剖面。不是实测水路或流向。';
+
 const ROLES={
   water_observation:{label:'2024-07 分类水面重合 · 固定日期',symbol:'≈',stroke:'#5db3ff',fill:'#388afa88',dash:null},
   road_profile:{label:'道路地表剖面 · 非管底',symbol:'≍',stroke:'#e8e6bd',fill:'#e8e6bd30',dash:[2,4]},

@@ -129,11 +129,6 @@ export function cellToPolygon(nativeGrid, row, col) {
   };
 }
 
-export function cellCenterLonLat(nativeGrid, row, col) {
-  const [originLon, dx, _rotX, originLat, _rotY, dy] = nativeGrid.geotransform;
-  return [originLon + (col + 0.5) * dx, originLat + (row + 0.5) * dy];
-}
-
 const cellKey = (r, c) => `${r},${c}`;
 
 function buildTargetCells(fixture, windowId) {

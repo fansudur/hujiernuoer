@@ -1,7 +1,7 @@
-import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,GUIDE_DEFAULT_MEDIA,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
-import { portraitGuidePair, portraitGuideImages, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.17.4';
+import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
+import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.17.4';
 import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.17.3';
-import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers,guideCameraRecord } from './guide-review-policy.js';
+import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers,walkCameraRecord } from './guide-review-policy.js?v=105.17.5';
 import {pointInGeoGeometry as insideSlopeWater} from './geo-pick.js';
 import {wireReferenceZoom} from './v83-reference.js?v=105.9';
 import {displayClip} from './v81-display-clip.js';
@@ -5313,31 +5313,19 @@ function setWalkRecordBox(open){
  $('#walk-record-box').hidden=!open;
  $('#walk-record-shot').setAttribute('aria-expanded',String(open));
 }
-function currentCameraRecord(pose,step=null){
+function currentWalkCameraRecord(pose){
  const hw=fixedHistory.active||state.timelineBasemapStatus?.scene;
  const view=map3d.camera?.view;
  const offset=view?.enabled?[view.offsetX,view.offsetY]:null;
- return guideCameraRecord({pose,exag:map3d.exag,fov:map3d.camera?.fov??null,viewport:[map3d.width,map3d.height],offset,
+ return walkCameraRecord({pose,exag:map3d.exag,fov:map3d.camera?.fov??null,viewport:[map3d.width,map3d.height],offset,
    imagery:{id:hw?.id||state.basemap,date:hw?(hw.sourceDate||null):(state.timelineBasemapStatus?.date||provider.getImagerySpec(state.basemap)?.time_utc?.slice(0,10)||null),fileLabel:hw?.sourceLabel||null},
-   waterMonth:state.month,stop:step?{id:step.id,title:step.title,route:guidedTour.route.id}:null,
-   cue:step?{label:guideOpeningCue(step)?.focus||null,seconds:Number(guideSpokenSeconds().toFixed(2))}:null});
-}
-function captureGuidedRecord(){
- const step=guideStep(),t=guidedTour;
- if(!step||!t.active||!t.cameraPose)return;
- const field=$('#guided-camera-json'),dialog=$('#guided-camera-dialog'),status=$('#guided-camera-status');
- const raw=JSON.stringify(currentCameraRecord(t.cameraPose,step));
- field.value=raw;
- if(!dialog.open)dialog.showModal();
- field.focus({preventScroll:true});field.select();
- status.textContent='已选中。若未自动复制，可以手动复制。';
- navigator.clipboard?.writeText(raw).then(()=>{if(dialog.open&&field.value===raw)status.textContent='已复制，可直接粘贴给我。';}).catch(()=>{});
+   waterMonth:state.month});
 }
 function captureWalkRecord(){
  if(!walkMode.active)return;
  const snapshot=map3d?.terrainWalkSnapshot(), p=snapshot?.pose;
  if(!p||![p.lon,p.lat,p.eyeM,p.heading,p.pitch].every(Number.isFinite))return;
- const raw=JSON.stringify(currentCameraRecord(p));
+ const raw=JSON.stringify(currentWalkCameraRecord(p));
  const field=$('#walk-camera-json'),status=$('#walk-record-status');
  setWalkRecordBox(true);
  field.value=raw;field.focus({preventScroll:true});field.select();
@@ -5453,38 +5441,18 @@ function wireTerrainWalk(){
  window.addEventListener('keyup',e=>{if(walkKeys.delete(e.code)&&WALK_KEYS[e.code]==='fast')updateWalkSpeed();},{capture:true});
 }
 
-const guidedTour={playEpoch:0,readyStep:false,endSince:null,active:false,book:[],route:null,index:0,elapsed:0,playing:false,pose:null,frame:0,stamp:0,token:0,voice:null,sourceReady:null};
+const guidedTour={playEpoch:0,readyStep:false,endSince:null,active:false,book:[],route:null,index:0,elapsed:0,playing:false,pose:null,frame:0,stamp:0,token:0,voice:null};
 const guideStep=()=>guidedTour.route?.steps[guidedTour.index];
+const guideWantsPlayback=t=>Boolean(t.playing||t.handoff?.resume||t.poseHandoff?.resume);
+function pauseGuidePlayback(note,{stopMotion=false}={}){
+ const t=guidedTour;
+ if(stopMotion)cancelGuideHandoff();
+ else for(const transition of [t.handoff,t.poseHandoff]){if(transition)transition.resume=false;}
+ holdGuidedTour();readTourHUD(note);
+}
 const guideReduced=()=>prefersReducedMotion();
 const isGuideOverview=s=>Boolean(s?.eyeM>=4000);
-const GUIDE_DETAIL_STATIONS=Object.freeze({
- 'road-nw-approach':['ge-native-office-road-202109','ge-native-f1-continuous-202109'],
- 'road-nw-gully':['ge-native-road03-expanded-202109','ge-native-f1-continuous-202109'],
- 'road-round-approach':'ge-native-cb-road-202209',
- 'road-round':'ge-native-round-202109',
- 'runoff-west':'ge-native-f1-bridge-202109',
- 'runoff-bridge':'ge-native-f1-bridge-202109',
- 'runoff-cross-gap':'ge-native-f1-bridge-202109',
- 'runoff-bend-gap':'ge-native-f1-bend-202109',
- 'runoff-apron-gap':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
- 'kmz-north-to-crossings':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
- 'kmz-outer-options':'ge-native-f1-continuous-202109',
- 'runoff-east':'ge-native-f1-continuous-202109',
- 'runoff-se':'ge-native-f1-continuous-202109',
- 'runoff-shore-separate':'ge-native-road03-expanded-202109',
- 'history-200405':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
- 'history-201309':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
- 'history-202109':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
- 'road-c-approach':'ge-native-cb-road-202209',
- 'road-c-south-central':'ge-native-cb-road-202209',
- 'road-b-southeast':'ge-native-cb-road-202209',
- 'lake-west':'ge-native-e18-west-202109',
- 'lake-south-central':'ge-native-south-model-202109',
- 'lake-southeast':'ge-native-south-model-202109',
- 'runoff-main-entrance-context':'ge-native-south-model-202109'
-});
-let guidedDetails=null;
-async function setGuidedNativeDetail(){map3d?.setNativeDetail(null);}
+const PUBLIC_GUIDE_BASEMAP='sentinel2-2026-08-08';
 const guidedScale=()=>8;
 const contourGuideCache=new Map();
 function applyGuideContourChoice(){
@@ -5500,7 +5468,6 @@ function guideContourFeatures(){
  if(!contourGuideCache.has(i))contourGuideCache.set(i,contourSelection(base,i));
  return contourGuideCache.get(i);
 }
-const LARGE_GUIDE_PHOTOS = new Set(['2007','2009','2012','2013','2014','2015','2017','2019','2020','2026','2027','2028','2029']);
 function guidePhotoItems(step){
  const rows=(step?.photoGallery || (step?.photoId?[{id:step.photoId,caption:''}]:[])).filter(row=>Boolean(fieldPhotoThumb(row.id)));
  if(step?.id==='runoff-bridge'&&!rows.some(x=>x.id==='field-photo-2028')&&fieldPhotoThumb('field-photo-2028')){
@@ -5519,7 +5486,7 @@ function syncGuidePhotoLocation(id){
  marker.querySelector('path').setAttribute('visibility',bearing===null?'hidden':'visible');marker.removeAttribute('hidden');
  label.hidden=false;label.textContent='小地图相机标记＝原照 GPS，非涵洞口'+(bearing===null?'；拍向未核':'；拍向约 '+Math.round(bearing)+'°')+(p.accuracy_m>20?'；定位误差约 '+Math.round(p.accuracy_m)+' 米':'');
  if($('#guided-photo-preview').hidden)return;
- const box=guideSafeBox(), blocked=innerWidth<=760?[box.photo]:[box.photo,box.deck,box.n,box.panel];
+ const box=guideSafeBox(), blocked=isMobileViewport()?[box.photo]:[box.photo,box.deck,box.n,box.panel];
  const {at,anchor}=fitGuideLabel(guideScreenPoint(g.coordinates),box,56,10,blocked,[]);
  if(at){positionGuideLabel(pin,pin.parentElement,at,anchor);pin.textContent='相机 IMG_'+id.slice(-4);pin.hidden=false;}
  if(anchor)drawGuideAnchor(ground,0,anchor,at,'#dcf0f9','camera-'+id);
@@ -5577,7 +5544,7 @@ function setGuidePhoto(open,{focus=false,source=null,items=null,start=0}={}){
    const back=guidedTour.photoReturn;guidedTour.photoReturn=null;
    if(focus){if(back?.isConnected&&!back.closest('[hidden]'))back.focus({preventScroll:true});else if(!toggle.hidden)toggle.focus({preventScroll:true});}
  }
- if(innerWidth<=760&&guidedTour.active)requestAnimationFrame(()=>{
+ if(isMobileViewport()&&guidedTour.active)requestAnimationFrame(()=>{
    const s=guideStep();if(!s||!guidedTour.active)return;
    if(guidedTour.observer){applyPortraitPhotoLift();if(!pane.hidden)syncGuidePhotoLocation(guidedTour.photoBook?.[guidedTour.photoIndex]?.id);}
    else showTourPose(s,s.duration?guidedTour.elapsed/s.duration:0);
@@ -5630,7 +5597,7 @@ function guideProgressNote(s){
 function moveGuidedChapter(direction,{resume=null}={}){
  const t=guidedTour;
  if(!t.active)return;
- const shouldPlay=resume??Boolean(t.playing||t.handoff?.resume);
+ const shouldPlay=resume??guideWantsPlayback(t);
  cancelGuideHandoff();
  closeGuideObserver({restorePosition:false,focus:false});
  const target=guideFollowing(direction);
@@ -5643,11 +5610,11 @@ function moveGuidedChapter(direction,{resume=null}={}){
  const panorama=previous.id==='runoff-main-entrance-context'&&target.step.id==='road-b-southeast';
  const trackJoins=GUIDE_ROAD_ENDPOINTS[target.step.id]?.[0]===previous.id||
    GUIDE_ROAD_ENDPOINTS[previous.id]?.[1]===target.step.id;
- const phoneEdited=innerWidth<=760&&(portraitGuidePair(previous.id,0)||portraitGuidePair(target.step.id,0));
- const desktopEdited=innerWidth>760&&(desktopRecordedGuidePose(previous.id)||desktopRecordedGuidePose(target.step.id));
- const phoneItinerary=innerWidth<=760&&followsPortraitItinerary(t.book,previous.id,target.step.id);
+ const phoneEdited=isMobileViewport()&&(portraitGuidePair(previous.id,0)||portraitGuidePair(target.step.id,0));
+ const desktopEdited=!isMobileViewport()&&(desktopRecordedGuidePose(previous.id)||desktopRecordedGuidePose(target.step.id));
+ const phoneItinerary=isMobileViewport()&&followsPortraitItinerary(t.book,previous.id,target.step.id);
  const edited=Boolean(phoneEdited||desktopEdited||phoneItinerary);
- const seamlessRoad=innerWidth<=760&&direction===1&&trackJoins;
+ const seamlessRoad=isMobileViewport()&&direction===1&&trackJoins;
  const phoneTarget=phoneEdited&&!trackJoins&&!t.manualCamera&&oldPose?phoneRecordedPose(target.step.id,0):null;
  let phoneCut=false, phoneHold=false, phoneDuration=1550;
  if(phoneTarget){
@@ -6117,7 +6084,7 @@ configureTourPanels({
    guidedTour.v74ProfileInteracted=false;
    state.bottomTab='profile';state.activeProfileId=id;state.profileCursorIdx=data.zeroSampleIdx??0;
    $('#chart-deck').dataset.v74ProfileLabel=data.name;
-   renderChartDeck();setDeckExpanded(true,Math.round(innerHeight*(innerWidth<=760?.19:.23)));
+   renderChartDeck();setDeckExpanded(true,Math.round(innerHeight*(isMobileViewport()?.19:.23)));
    syncMapsState();return true;
  },
  closeProfile(){guidedTour.v74ProfileInteracted=false;$$('[data-guide-kmz-profile]').forEach(b=>b.setAttribute('aria-pressed','false'));delete $('#chart-deck').dataset.v74ProfileLabel;setDeckExpanded(false);syncMapsState();}
@@ -6139,7 +6106,7 @@ const guideMeasurements=step=>{
  const apron=['429–452',left('hjn-seasonal-f1-se'),guidePoint('hjn-03-road-pin-02'),'东南弯槽末端','03 第 2 点'];
  if(apron[1]&&apron[2])apron[0]=String(Math.round(guideDistance(apron[1],apron[2])));
  const m={
-   'runoff-west':[westMeasure],'runoff-bridge':innerWidth<=760?[westMeasure]:[westMeasure,eastMeasure],'runoff-cross-gap':[westMeasure,eastMeasure],
+   'runoff-west':[westMeasure],'runoff-bridge':isMobileViewport()?[westMeasure]:[westMeasure,eastMeasure],'runoff-cross-gap':[westMeasure,eastMeasure],
    'runoff-bend-gap':[bend],'runoff-apron-gap':[apron],
    'kmz-north-to-crossings':[['159',left('hjn-v75-kmz-upstream-common'),left('hjn-v75-kmz-upstream-03'),'共同线东端','03 来路北端']],
    'kmz-outer-options':[['50',[119.66144254,49.14866815],right('hjn-v75-kmz-seepage-backyards'),'潜在水路近点','后院支路西端']]
@@ -6183,7 +6150,7 @@ function guideFitPoints(step){
 const guideNorthFrame=new Set(['chapter-opening','runoff-main-entrance-context','road-b-southeast','road-c-south-central','lake-office-caution','chapter-closing']);
 const guideSouthFrames=new Set(['road-b-southeast','road-c-south-central']);
 function guideNorthCamera(step,base){
- const south=guideSouthFrames.has(step.id), portrait=innerWidth<=760;
+ const south=guideSouthFrames.has(step.id), portrait=isMobileViewport();
  let lon=south?119.669:(portrait?(step.id==='chapter-opening'?119.681:119.672):119.682), centerLat=south?(portrait?49.127:49.1265):(portrait?49.140:49.1358);
  const pitch=south?-72:-70, heading=0;
  const eyeM=portrait?(south?11600:13000):(south?7300:7600);
@@ -6207,9 +6174,9 @@ function guideFocusCamera(step,base,points=null){
  const rad=heading*Math.PI/180;
  const span=Math.hypot((east-west)*GUIDE_METERS_PER_DEG_LON,(north-south)*GUIDE_METERS_PER_DEG_LAT);
  const isWide=isGuideOpening(step)||Boolean(GUIDE_CATCHMENTS[step.id])||step.director?.frameLines?.some(id=>id.startsWith('main-profile-'))||step.director?.framePoints?.includes('guide-main-lake');
- const pitch=(NW_FULL.has(step.id)&&nwForGuide(step).length?-40:GUIDE_CATCHMENTS[step.id]?-49:GUIDE_FOCUS_AREAS[step.id]?-37:step.id==='road-round'?-34:step.id==='road-nw-gully'?-37:isWide&&innerWidth<=760?-26:-24)+(step.director?.tiltLift||0), elevation=guideGround(cx,cy), box=guideSafeBox();
+ const pitch=(NW_FULL.has(step.id)&&nwForGuide(step).length?-40:GUIDE_CATCHMENTS[step.id]?-49:GUIDE_FOCUS_AREAS[step.id]?-37:step.id==='road-round'?-34:step.id==='road-nw-gully'?-37:isWide&&isMobileViewport()?-26:-24)+(step.director?.tiltLift||0), elevation=guideGround(cx,cy), box=guideSafeBox();
  const full=NW_FULL.has(step.id)&&nwForGuide(step).length;
- const usableW=Math.min(map3d.width||innerWidth,innerWidth<=760?innerWidth*.90:innerWidth*(full?.68:.80));
+ const usableW=Math.min(map3d.width||innerWidth,isMobileViewport()?innerWidth*.90:innerWidth*(full?.68:.80));
  const usableH=Math.max(165,box.bottom-box.top-50);
  const requestedSize=GUIDE_CATCHMENTS[step.id] ? .68:GUIDE_FOCUS_AREAS[step.id] ? .77:step.id==='road-nw-gully'?.86:.93;
  const wanted=Math.max(step.id==='road-nw-gully'?450:125,span*requestedSize*map3d.height/Math.min(usableW,usableH));
@@ -6265,7 +6232,7 @@ function showGuideMeasures(step){
    const label=(n,x,y)=>{
      const half=Math.max(26,n.textContent.length*7);
      const allowed=(x,y)=>x>half+5&&x<innerWidth-half-5&&y>safe.top+20&&y<safe.bottom&&
-       ![...(safe.photo.height&&innerWidth<=760?[safe.photo]:[safe.panel,safe.n,safe.deck,safe.photo]),...occupied].some(b=>b.width&&x+half>b.left&&x-half<b.right&&y+6>b.top&&y-15<b.bottom);
+       ![...(safe.photo.height&&isMobileViewport()?[safe.photo]:[safe.panel,safe.n,safe.deck,safe.photo]),...occupied].some(b=>b.width&&x+half>b.left&&x-half<b.right&&y+6>b.top&&y-15<b.bottom);
      const pos=[[0,0],[0,-23],[0,24],[-37,0],[37,0],[-50,-19],[50,20],[0,-47],[0,48]].map(([dx,dy])=>[x+dx,y+dy]).find(([x,y])=>allowed(x,y));
      n.style.display=pos?'':'none';
      if(pos){const [x,y]=pos;n.setAttribute('x',x);n.setAttribute('y',y);occupied.push({left:x-half,right:x+half,top:y-15,bottom:y+6,width:half*2});}
@@ -6383,7 +6350,7 @@ function updateArchivedGuideMarkers(step){
  }
  const fit=guideSafeBox(),occupied=[];
  const reserved=[$('#guided-photo-map-pin'),...$$('#guide-v74-measurements text')].filter(n=>n&&!n.closest('[hidden]')&&n.style.display!=='none').map(n=>n.getBoundingClientRect());
- const blocked=fit.photo.height&&innerWidth<=760?[fit.photo]:[fit.n,fit.panel,fit.card,fit.deck,fit.photo];
+ const blocked=fit.photo.height&&isMobileViewport()?[fit.photo]:[fit.n,fit.panel,fit.card,fit.deck,fit.photo];
  const ground=$('#guide-landmark-anchors');let dots=0;
  for(const n of host.children){
    const xy=guideScreenPoint(n.dataset.coords.split(',').map(Number));
@@ -6448,7 +6415,7 @@ function guideSafeBox(){
  const topbar=$('#v93-tour-topbar')?.getBoundingClientRect();
  const mobTabs=$('#v93-mob-tabs')?.getBoundingClientRect();
  const nav=$('#guided-tour-nav-strip').getBoundingClientRect();
- const portrait=innerWidth<=760;
+ const portrait=isMobileViewport();
  const top=Math.max(52,(topbar?.height?topbar.bottom+8:62));
  if(portrait){
   const low=(photo.height?[photo,nav]:[mobTabs,panel,deck,n,nav]).filter(q=>q&&q.height>0&&q.top>innerHeight*.30).map(q=>q.top);
@@ -6495,7 +6462,7 @@ function safeGuideXY(at,box,rad=16,checkCard=true){
  if(!at)return null;
  const pt={x:at.x+box.m.left,y:at.y+box.m.top}, {x,y}=pt;
  const hit=q=>q&&q.width&&x+rad>q.left&&x-rad<q.right&&y+rad>q.top&&y-rad<q.bottom;
- const hitPanel=innerWidth>760&&hit(box.panel);
+ const hitPanel=!isMobileViewport()&&hit(box.panel);
  return x>=rad+5&&x<=innerWidth-rad-5&&y>=box.top+rad&&y<=box.bottom&& !hit(box.n)&&!hit(box.photo)&&!hit(box.deck)&&!hitPanel&&(!checkCard||!hit(box.card)) ? pt:null;
 }
 function setGuideScriptShown(shown){
@@ -6586,7 +6553,7 @@ function refreshGuideLocation(step,fraction=0){
    c.hidden=false;
    for(const el of inset.querySelectorAll('[data-num]'))el.setAttribute('visibility',ids.includes(Number(el.dataset.num))?'visible':'hidden');
    const rect=guideSafeBox(), occupied=[], ground=$('#guide-four-anchors');let rendered=0;
-   const blocked=innerWidth<=760&&rect.photo.height?[rect.photo]:[rect.panel,rect.n,rect.card,rect.deck,rect.photo];
+   const blocked=isMobileViewport()&&rect.photo.height?[rect.photo]:[rect.panel,rect.n,rect.card,rect.deck,rect.photo];
    const dots=[...overlay.querySelectorAll('.guide-mark')].sort((a,b)=>Number(b.dataset.num===String(i))-Number(a.dataset.num===String(i)));
    dots.forEach(el=>{
     const k=Number(el.dataset.num)-1;
@@ -6617,7 +6584,7 @@ function refreshGuideLocation(step,fraction=0){
  }
 }
 function nudgePortraitStation(camera,step){
- if(innerWidth>760||step.kind!=='station'||!step.target||step.id==='road-nw-gully'||isGuideOverview(step)|| guidedTour.observer)return camera;
+ if(!isMobileViewport()||step.kind!=='station'||!step.target||step.id==='road-nw-gully'||isGuideOverview(step)|| guidedTour.observer)return camera;
  if(safeGuideXY(map3d._projectToScreen(...step.target,.002),guideSafeBox(),18,false))return camera;
  const [lon,lat]=step.target, east=(lon-camera.lon)*GUIDE_METERS_PER_DEG_LON,north=(lat-camera.lat)*GUIDE_METERS_PER_DEG_LAT;
  const d=Math.hypot(east,north), dz=camera.eyeM+(guideGround(camera.lon,camera.lat)-guideGround(lon,lat))*map3d.exag;
@@ -6630,14 +6597,14 @@ function nudgePortraitStation(camera,step){
 function guidePortraitLens(step,desiredFov,fitPoints,verticalBias=0,horizontalBias=0){
  const cam=map3d.camera, t=guidedTour;
  if(!cam)return;
- const wide=innerWidth<=760&&isGuideOverview(step)&&!t.observer;
+ const wide=isMobileViewport()&&isGuideOverview(step)&&!t.observer;
  const wanted=desiredFov||(wide?57:(t.originalGuideFov||42));
  if(!t.observer&&cam.fov!==wanted){cam.fov=wanted;cam.updateProjectionMatrix();}
  if(t.observer||!(map3d.width>0&&map3d.height>0)){
    if(cam.view?.enabled)cam.clearViewOffset();return;
  }
  const box=guideSafeBox();
- if(innerWidth>760){
+ if(!isMobileViewport()){
    if(!guideNorthFrame.has(step.id)&&!fitPoints.length&&box.panel.width){
      const ox=-Math.round(Math.min(map3d.width*.14,box.panel.right*.28));
      const oy=Math.round(map3d.height*.50-(box.top+box.bottom)*.48);
@@ -6677,18 +6644,6 @@ function renderRouteDetail(step){
     const item=document.createElement('li');item.textContent=text;return item;
  }));
 }
-function validateGuideObservers(doc){
- const b=provider.dem?.bounds_wgs84;
- if(doc?.schema!=='hjn-observer-candidates/v1'||!Array.isArray(doc.records)||!b)return [];
- const seen=new Set();
- return doc.records.filter(row=>{
-   const p=row.record?.camera, id=row.id;
-   if(!p||!Number.isInteger(id)||seen.has(id)||![p.lon,p.lat,p.heading,p.pitch,p.eyeM,p.exag,p.fov].every(Number.isFinite)
-      ||p.lon<b[0]||p.lon>b[2]||p.lat<b[1]||p.lat>b[3]||p.eyeM<1||p.eyeM>5500||p.exag!==8
-      ||p.pitch<-89||p.pitch>30||p.fov<20||p.fov>100||!/^[\w-]+$/.test(row.displayImagery?.id||''))return false;
-   seen.add(id);return true;
- });
-}
 function readObserverChoices(step){
  const d=$('#guided-observer-choices');
  if(d.dataset.step===step.id)return;
@@ -6706,7 +6661,7 @@ function readObserverChoices(step){
 function showGuideFieldMarks(step){
  const d=$('#guided-field-marks');
  if(d.dataset.step===step.id)return;
- d.dataset.step=step.id;d.open=false;$('#guided-kmz-history').open=false;
+ d.dataset.step=step.id;d.open=false;
  const marks=step.detail?.fieldMarks||[];
  d.hidden=!marks.length;
  $('#guided-field-buttons').replaceChildren(...marks.map(mark=>{
@@ -6796,62 +6751,23 @@ function closeGuideObserver({restorePosition=true,focus=true}={}){
  restoreGuidedImagery(saved);
  if(map3d.camera&&Number.isFinite(saved.fov)){map3d.camera.fov=saved.fov;map3d.camera.updateProjectionMatrix();}
  if(restorePosition&&guideStep()){
-   const step=guideStep(),token=t.token;
+   const step=guideStep();
    showTourPose(step,step.duration?t.elapsed/step.duration:0);
    readTourHUD();
-   if(!saved.fixed&&saved.fixedWanted&&step.sceneId){
-     t.sourceReady=Promise.resolve(fixedHistory.openScene?.(step.sceneId));
-   }else t.sourceReady=null;
-   void setGuidedNativeDetail(step.id,fixedHistory.active?.id||step.sceneId,token);
  }
  if(focus&&saved.from?.isConnected)saved.from.focus({preventScroll:true});
 }
-let guideHistoryCards=null;
 function readGuideHistory(step){
- const panel=$('#guided-history-review'),host=$('#guided-history-pictures');
+ const panel=$('#guided-history-review');
  if(panel.dataset.step===step.id)return;
  panel.dataset.step=step.id;panel.hidden=!step.historyCard;panel.open=false;
- host.replaceChildren();
- if(!step.historyCard)return;
- const note=$('#guided-history-note');
- const unavailable='本公开版未收录此处对照旧影像。当前底图仅用于定位，不代表旁白所述年代。';
- note.textContent=unavailable;
- const path=new URL('./native-detail/history-review/old-turn-cards.json',location.href);
- guideHistoryCards??=fetch(path).then(r=>r.ok?r.json():null).catch(()=>null);
- void guideHistoryCards.then(async doc=>{
-  if(panel.dataset.step!==step.id||doc?.schema!=='hjn-native-local-comparison/v1'||!Array.isArray(doc.cards))return;
-  const cards=doc.cards.filter(c=>/^cards\/old-turn-(200405|202109)\.png$/.test(c.file)&&typeof c.title==='string');
-  const figures=await Promise.all(cards.map(async c=>{
-   const fig=document.createElement('figure'),img=document.createElement('img'),cap=document.createElement('figcaption');
-   img.alt=c.title;img.src=new URL(c.file,path);
-   try{await img.decode();}catch{return null;}
-   cap.textContent=c.title;fig.append(img,cap);return fig;
-  }));
-  if(panel.dataset.step!==step.id)return;
-  const ready=figures.filter(Boolean);
-  if(!ready.length)return;
-  note.textContent='对照图日期以各图标注为准；当前底图仅用于定位。不用作水面统计。';
-  host.replaceChildren(...ready);
- });
 }
-function showCorridorSketch(step){
- const p=$('#guided-corridor-sketch');
- const visible=['chapter-opening','runoff-main-entrance-context'].includes(step.id);
- if(p.hidden===visible){p.hidden=!visible;if(!visible)p.open=false;}
-}
-const GUIDE_OLD_PAIR=['200405','202109'].map(d=>({src:'./native-detail/history-review/cards/wide-corridor-'+d+'.jpg',title:d.slice(0,4)+'-'+d.slice(4)+' · 同范围宽景',caption:'桥东旧转折、北侧低带与 03 路同图定位；日期按原文件标记。可放大查看。'}));
-const GUIDE_03_NEAR_PAIR=['200405','202109'].map(d=>({src:'./native-detail/history-review/cards/road03-native-frame-'+d+'.jpg',title:d.slice(0,4)+'-'+d.slice(4)+' · 03 路及南侧近景',caption:'原图控制框内近景，图像区域占满视窗。仅辨识地貌。'}));
-const GUIDE_OLD_NEAR=['200405','202109'].map(d=>({src:'./native-detail/history-review/cards/old-turn-'+d+'.png',title:d.slice(0,4)+'-'+d.slice(4)+' · 旧转折近景',caption:'同一近景裁窗。只辨识形态。'}));
-const GUIDE_2013_IMAGE={src:'./google-earth-history/ge-root-201309.jpg',title:'2013-09 · 全区旧影像',caption:'文件标记。只看道路和场地轮廓；细沟以较清晰影像判断。'};
-const GUIDE_03_IMAGES=[['kmz-pin2-pin3-20090905.png','2009-09-05'],['road03-20150516.png','2015-05-16'],['road03-20150707.png','2015-07-07'],['road03-20170404.png','2017-04-04'],['road03-20210730.png','2021-07-30'],['road03-20210930.png','2021-09-30']].map(([f,d])=>({src:'./native-detail/history-review/cards/'+f,title:'03 道路原始卫星图 · '+d,caption:'日期看原截图页脚；保留原标注，不据单景认地下连接。'}));
 const FIELD_BANDS_STOP='runoff-field-bands-05';
 const FIELD_BANDS_CREDIT='2015-07：Google Earth / Image © 2026 CNES / Airbus。2021-07：Google Earth / Image © 2026 Maxar Technologies / Image Landsat / Copernicus。';
 const FIELD_BANDS_MEDIA=[
  {src:'./guide-reference/field-bands-2021-04.jpg',title:'2021-04 · 田间深色弯带',caption:'Google Earth · Image © 2026 Maxar Technologies。2021 年 4 月为原文件标记，具体拍摄日未核实。这张影像只用于辨认沟形；颜色深不等于有水，也不能据此确认融雪径流。'},
  ...['2015-07','2021-07'].map((date,i)=>({src:'./guide-reference/field-bands-'+date+'.jpg',title:date+' · 同一处弯折',pairIndex:2-i,caption:'两期完整画幅用于找同一处弯折。日期按原文件标记；色差不能证明沟里有水。'+FIELD_BANDS_CREDIT}))
 ];
-const FIELD_BANDS_SOURCES=new Set(FIELD_BANDS_MEDIA.map(item=>item.src));
-const DIRECTOR_HISTORY_PHOTOS=new Set(['history-200405','history-202109']);
 function updateOpeningCue(step){
  const cue=guideOpeningCue(step);if(!cue)return;
  const host=$('#guided-director-board'), ids=cue.anchorIds||[], key=String(cue.startMs??cue.at??0);
@@ -6869,25 +6785,6 @@ function preferredGuideMedia(step,mark){
  const items=guidePhotoItems(mark||step);
  return items.length?{items}:null;
 }
-function archivedGuideMedia(step,mark){
- if(step.id===FIELD_BANDS_STOP)return {items:FIELD_BANDS_MEDIA,start:0};
- if(DIRECTOR_HISTORY_PHOTOS.has(step.id))return {items:[...GUIDE_OLD_PAIR,...GUIDE_OLD_NEAR,...GUIDE_03_NEAR_PAIR],start:step.id==='history-202109'?1:0};
- if(step.id==='history-201309')return {items:[GUIDE_2013_IMAGE,...GUIDE_OLD_PAIR]};
- if(step.id==='runoff-main-entrance-context')return {items:GUIDE_03_IMAGES,start:5};
- const source=mark||step, field=guidePhotoItems(source);
- if(field.length){
-  if(step.id==='runoff-bridge'){
-    const i=field.findIndex(i=>i.id==='field-photo-2029');
-    return {items:field,start:Math.max(0,i)};
-  }
-  return {items:field};
- }
- if(step.id==='road-nw-gully'&&mark){
-   const point=step.detail.fieldMarks.indexOf(mark)+1;
-   return {items:GUIDE_03_IMAGES,start:point===2?2:5};
- }
- return null;
-}
 function directorEvidenceBoard(step,point=0){
  $('#guide-landscape-open').hidden=!['chapter-opening','runoff-main-entrance-context','lake-office-caution','chapter-closing'].includes(step.id);
  const d=step.director,root=$('#guided-director-board'),mb=$('#guided-board-media');
@@ -6901,38 +6798,24 @@ function directorEvidenceBoard(step,point=0){
  $('#guided-board-note').textContent=mark?'讲解：由东向西，4 → 1；保留原编号。相机标记不是涵洞口。':d.note;
  mb.replaceChildren();
  const rows=[];
- if(DIRECTOR_HISTORY_PHOTOS.has(step.id)){
-   GUIDE_OLD_PAIR.forEach((v,i)=>rows.push({src:v.src,label:v.title,action:()=>setGuidePhoto(true,{focus:true,items:[...GUIDE_OLD_PAIR,...GUIDE_OLD_NEAR,...GUIDE_03_NEAR_PAIR],start:i})}));
- }
  if(step.id===FIELD_BANDS_STOP){
    for(const [i,label] of [[0,'2021-04 · 看暗带与沟形'],[1,'两张 7 月影像 · 并排对照']]){
      rows.push({src:FIELD_BANDS_MEDIA[i].src,label,action:()=>setGuidePhoto(true,{focus:true,items:FIELD_BANDS_MEDIA,start:i})});
    }
  }
- if(step.id==='history-201309')rows.push({src:GUIDE_2013_IMAGE.src,label:'2013 原始旧影像',action:()=>setGuidePhoto(true,{focus:true,items:[GUIDE_2013_IMAGE,...GUIDE_OLD_PAIR]})});
  if(step.id==='runoff-bridge'||step.id==='road-round'||mark){
    const source=mark||step, photo=guidePhotoItems(source)[0];
    if(photo)rows.push({src:fieldPhotoThumb(photo.id),label:step.id==='runoff-bridge'?'桥牌 · 定位':step.id==='road-round'?'管口与透光 · 原图局部':'原现场照片',action:()=>setGuidePhoto(true,{source,focus:true})});
  }
- for(const [i,asset,date] of [[2,'road03-20150707.png','2015-07-07'],[3,'road03-20210930.png','2021-09-30']]){
-   if(point!==i||step.id!=='road-nw-gully')continue;
-   rows.push({src:'./native-detail/history-review/cards/'+asset,label:date+' 影像',action:()=>setGuidePhoto(true,{focus:true,items:GUIDE_03_IMAGES,start:GUIDE_03_IMAGES.findIndex(r=>r.src.endsWith(asset))})});
- }
- if(step.id==='chapter-opening'){
-   const im={src:'./google-earth-history/ge-root-202109.jpg',title:'G332 与南部环岛 · 原始全区对照',caption:'Google Earth 2021-09（文件标记）；完整影像的路网参照见主图红线，不是水流。'};
-   rows.push({src:im.src,label:'G332 与南部环岛影像',action:()=>setGuidePhoto(true,{focus:true,items:[im]})});
- }
- if(['road-nw-gully','runoff-main-entrance-context'].includes(step.id)&&!rows.some(r=>r.src.includes('/road03-'))){const im=GUIDE_03_IMAGES[5];rows.push({src:im.src,label:'03 卫星图 · 6 期',action:()=>setGuidePhoto(true,{focus:true,items:GUIDE_03_IMAGES,start:5})});}
- for(let i=rows.length-1;i>=0;i--)if(!rows[i].src?.startsWith('./field-photo-thumbs/')&&!FIELD_BANDS_SOURCES.has(rows[i].src))rows.splice(i,1);
  for(const row of rows){const b=document.createElement('button'),im=document.createElement('img'),c=document.createElement('small');
   b.type='button';b.onclick=row.action;b.setAttribute('aria-label','展开：'+row.label);
   im.src=row.src;im.alt='';im.decoding='async';c.textContent=row.label;const frame=document.createElement('span');frame.className='guide-board-frame';frame.append(im);b.append(frame,c);mb.append(b);}
  mb.hidden=!rows.length;
  // Phone keeps the map + narration visible; its existing 原图 tab opens the same gallery.
- const media=innerWidth>760&&!guidedTour.observer?preferredGuideMedia(step,mark):null;
+ const media=!isMobileViewport()&&!guidedTour.observer?preferredGuideMedia(step,mark):null;
  if(media)setGuidePhoto(true,media);
  else if(!$('#guided-photo-preview').hidden)setGuidePhoto(false);
- root.dataset.layout=rows.length&&!['runoff-shore-separate','chapter-opening'].includes(step.id)?'picture':'map';root.dataset.step=step.id;root.toggleAttribute('data-paired',DIRECTOR_HISTORY_PHOTOS.has(step.id));
+ root.dataset.layout=rows.length&&!['runoff-shore-separate','chapter-opening'].includes(step.id)?'picture':'map';root.dataset.step=step.id;
  $('#observatory').dataset.guideEvidence=step.kind;
 }
 function waitGuideFrame(ms){
@@ -6943,7 +6826,7 @@ function readTourHUD(note=''){
  if(!s)return;
  readObserverChoices(s);showGuideFieldMarks(s);readGuideHistory(s);renderEastGuideControls(s);
  directorEvidenceBoard(s,Number($('#guided-location-card').dataset.point)||0);
- renderRouteDetail(s);showCorridorSketch(s);
+ renderRouteDetail(s);
  const sides=$('#guided-sides-caption');
  sides.hidden=!s.detail?.features?.length;
  sides.textContent=sides.hidden?'':'西侧地表较高　｜　'+(s.id==='runoff-bridge'?'桥位':'道路')+'　｜　东侧地表较低';
@@ -6963,17 +6846,15 @@ function readTourHUD(note=''){
  const screenHost=$('#guide-catchment-screen');
  if(SCREEN_REACHES.has(s.id)||[...CATCHMENT_SCREEN.keys()].some(k=>t.extraLayers?.has(k)))renderCatchmentScreen(screenHost,t.extraLayers,true);
  else if(screenHost)screenHost.hidden=true;
- $('#guided-tour-source').textContent=mark?(mark.source+' · '+mark.classification):(tourStatusLabels[s.status]||'已登记证据')+' · '+s.source+(currentGuideCatchment(s)?'｜黄色半透明面＝模型汇水分区。':'')+((isGuideSouth(s)||guideRoadRoute(t.route)&&s.id!=='road-nw-gully')?'｜黄线＝OSM 道路；不是水线。青色和紫色区分影像沟形与模型候选。':'')+(GUIDE_DETAIL_STATIONS[s.id]?(s.sceneId==='ge-root-202209'?'｜2022-09 文件标记 · 从全区原图截取，未放大补细节。':'｜区域背景与原图近景均为 2021-09 文件标记，不保证同景。'):'');
+ $('#guided-tour-source').textContent=mark?(mark.source+' · '+mark.classification):(tourStatusLabels[s.status]||'已登记证据')+' · '+s.source+(currentGuideCatchment(s)?'｜黄色半透明面＝模型汇水分区。':'')+((isGuideSouth(s)||guideRoadRoute(t.route)&&s.id!=='road-nw-gully')?'｜黄线＝OSM 道路；不是水线。青色和紫色区分影像沟形与模型候选。':'');
  const section=t.book.indexOf(t.route);
  const total=t.book.reduce((n,b)=>n+b.steps.length,0);
  const current=t.book.slice(0,section).reduce((n,b)=>n+b.steps.length,0)+t.index+1;
  $('#guided-tour-progress').textContent='全章 '+current+'/'+total;
  $('#guided-tour-chapter-status').textContent='第 '+(section+1)+'/'+t.book.length+' 段 · '+t.route.title;
  const play=$('#guided-tour-play');
- play.textContent=t.playing||t.handoff?.resume?'暂停':t.elapsed>0?'继续播放':'开始连播';
+ play.textContent=guideWantsPlayback(t)?'暂停':t.elapsed>0?'继续播放':'开始连播';
  const next=$('#guided-tour-next');
- const subsequent=t.route.steps[t.index+1];
- const nextRoute=t.book[section+1];
  next.textContent=guideFollowing(1)?'下一站':'返回地图';
  next.title=guideFollowing(1)?.step.title||'全章结束，返回普通地图';
  $('#guided-tour-prev').disabled=section===0&&t.index===0;
@@ -7055,7 +6936,7 @@ const guideSplineHeights=new WeakMap();
 const guideGround=(lon,lat)=>sampleDemElevation(provider.dem,lon,lat);
 function applyPortraitPhotoLift(){
  const t=guidedTour, cam=map3d.camera,w=map3d.width,h=map3d.height;
- if(innerWidth>760||!cam||!w||!h)return;
+ if(!isMobileViewport()||!cam||!w||!h)return;
  const pane=$('#guided-photo-preview'),b=pane.getBoundingClientRect();
  const lift=pane.hidden?0:Math.round(Math.min(h*.15,Math.max(0,(h*.67-b.top)*.53)));
  const delta=lift-(t.portraitPhotoLift||0);
@@ -7096,7 +6977,7 @@ function stationGuideCamera(step,p,scenic){
  if(step.id==='road-nw-gully'){
    const a=step.detail.fieldMarks[0].coord,b=step.detail.fieldMarks[3].coord;
    const lon=(a[0]+b[0])/2,lat=(a[1]+b[1])/2;
-   const cameraLat=lat-(innerWidth<=760?.0104:.0082);
+   const cameraLat=lat-(isMobileViewport()?.0104:.0082);
    const drop=318+(guideGround(lon,cameraLat)-guideGround(lon,lat))*map3d.exag;
    if(map3d.hasWalkGround(lon,cameraLat))return {...p,lon,lat:cameraLat,heading:0,pitch:-Math.atan2(Math.max(140,drop),GUIDE_METERS_PER_DEG_LAT*(lat-cameraLat))*180/Math.PI,eyeM:318};
  }
@@ -7109,8 +6990,8 @@ function stationGuideCamera(step,p,scenic){
  const rad=heading*Math.PI/180,look=steer.lookCenter;
  const pitch=p.pitch, back=steer.standOffM??(p.eyeM/Math.tan(-pitch*Math.PI/180));
  const aimLon=look?.[0]??p.lon;
- const aimLat=look?.[1]??(p.lat-(isGuideOverview(step)?(innerWidth<=760?.014:.007)
-   :step.detail?.features?.length?(innerWidth<=760?.0014:.00082):0));
+ const aimLat=look?.[1]??(p.lat-(isGuideOverview(step)?(isMobileViewport()?.014:.007)
+   :step.detail?.features?.length?(isMobileViewport()?.0014:.00082):0));
  const lon=aimLon-Math.sin(rad)*back/GUIDE_METERS_PER_DEG_LON;
  const lat=Math.max(provider.dem.bounds_wgs84[1]+.001, aimLat-Math.cos(rad)*back/GUIDE_METERS_PER_DEG_LAT);
  if(!map3d.hasWalkGround(lon,lat))return {...p,heading,pitch:scenic?-24:-76};
@@ -7119,6 +7000,11 @@ function stationGuideCamera(step,p,scenic){
  const drop=p.eyeM+(guideGround(lon,lat)-guideGround(aimLon,aimLat))*map3d.exag;
  return {...p,lon,lat,heading,pitch:-Math.atan2(Math.max(.65*p.eyeM,drop),depth)*180/Math.PI};
 }
+const ROAD_ENTRY_END=.24;
+const ROAD_EXIT_START=.75;
+const roadTravelProgress=(fraction,hasJoins)=>hasJoins
+ ?Math.max(0,Math.min(1,(fraction-ROAD_ENTRY_END)/(ROAD_EXIT_START-ROAD_ENTRY_END)))
+ :fraction;
 const GUIDE_ROAD_ENDPOINTS=Object.freeze({
  'road-c-approach':['road-b-southeast','road-c-south-central'],
  'road-round-approach':['road-c-south-central','road-round']
@@ -7162,15 +7048,15 @@ function portraitShift(step,fraction,axis){
  const pair=GUIDE_ROAD_ENDPOINTS[step.id];
  const value=id=>portraitShot(id)[axis]??0;
  if(!pair)return value(step.id);
- if(fraction<=.24)return value(pair[0])*(1-easeGuide(fraction/.24));
- if(fraction>=.75)return value(pair[1])*easeGuide((fraction-.75)/.25);
+ if(fraction<=ROAD_ENTRY_END)return value(pair[0])*(1-easeGuide(fraction/ROAD_ENTRY_END));
+ if(fraction>=ROAD_EXIT_START)return value(pair[1])*easeGuide((fraction-ROAD_EXIT_START)/(1-ROAD_EXIT_START));
  return 0;
 }
 function moveGuideCamera(step,fraction,p,road){
  const track=step.cameraTrack;
  if(!track)return p;
  const joins=GUIDE_ROAD_ENDPOINTS[step.id];
- const lane=joins?Math.max(0,Math.min(1,(fraction-.24)/.51)):fraction;
+ const lane=roadTravelProgress(fraction,joins);
  const eased=road?softenedTravelProgress(lane):Math.max(0,Math.min(1,lane));
  const m=track.length*eased, xyz=track.position(m);
  if(!map3d.hasWalkGround(xyz.lon,xyz.lat))return p;
@@ -7184,14 +7070,14 @@ function moveGuideCamera(step,fraction,p,road){
  if(joins){
    const [entryId,exitId]=joins;
    const at=id=>{
-     const mobile=innerWidth<=760?phoneRecordedPose(id,0):null;
+     const mobile=isMobileViewport()?phoneRecordedPose(id,0):null;
      if(mobile)return {...p,...mobile};
      const q=recordedGuidePose(id,0);
-     return {...p,...q,directorFov:innerWidth<=760?portraitFov(id,q.directorFov):q.directorFov};
+     return {...p,...q,directorFov:isMobileViewport()?portraitFov(id,q.directorFov):q.directorFov};
    };
-   camera.directorFov=innerWidth<=760?51:42;
+   camera.directorFov=isMobileViewport()?51:42;
    const moveBetween=(from,to,w)=>{
-     if(innerWidth<=760){
+     if(isMobileViewport()){
        const box=guideSafeBox(), h=map3d.height;
        const offset=Math.max(-.12,Math.min(.26,.50-Math.max(108,(box.top+box.bottom)*.5)/h));
        const fill=p=>({...p,portraitOffset:p.portraitOffset??[0,offset]});
@@ -7205,8 +7091,8 @@ function moveGuideCamera(step,fraction,p,road){
      }
      return q;
    };
-   if(fraction<=.24)return moveBetween(at(entryId),camera,easeGuide(fraction/.24));
-   if(fraction>=.75)return moveBetween(camera,at(exitId),easeGuide((fraction-.75)/.25));
+   if(fraction<=ROAD_ENTRY_END)return moveBetween(at(entryId),camera,easeGuide(fraction/ROAD_ENTRY_END));
+   if(fraction>=ROAD_EXIT_START)return moveBetween(camera,at(exitId),easeGuide((fraction-ROAD_EXIT_START)/(1-ROAD_EXIT_START)));
  }
  return camera;
 }
@@ -7217,7 +7103,7 @@ function showTourPose(step,fraction){
  const scenic=road||step.id==='runoff-bridge'||Boolean(step.camera?.landscape);
  if(isGuideOverview(step))p.eyeM = Math.round(p.eyeM*Math.max(1,1.02*innerHeight/innerWidth));
  const seconds=guideSpokenSeconds();
- const phone=innerWidth<=760;
+ const phone=isMobileViewport();
  const authored=phone?phoneRecordedPose(step.id,seconds):desktopRecordedGuidePose(step.id);
  const recorded=authored||(step.id==='chapter-opening'?OPENING_NW_POSE:recordedGuidePose(step.id,seconds));
  const linkedRoad=Object.hasOwn(GUIDE_ROAD_ENDPOINTS,step.id);
@@ -7265,7 +7151,7 @@ function showTourPose(step,fraction){
  guidedTour.portraitPhotoLift=0;
  const customView=phone||glide?.destination?camera.portraitOffset:camera.desktopOffset;
  const verticalBias=phone?portraitShift(step,fraction,'shift'):0;
- const horizontalBias=innerWidth<=760?portraitShift(step,fraction,'pan'):0;
+ const horizontalBias=isMobileViewport()?portraitShift(step,fraction,'pan'):0;
  if(customView){
    const w=map3d.width,h=map3d.height,cam=map3d.camera;
    const x=Math.round(w*customView[0]),y=Math.round(h*customView[1]), changed=cam.fov!==camera.directorFov;
@@ -7273,11 +7159,11 @@ function showTourPose(step,fraction){
    if(changed||cam.view?.offsetX!==x||cam.view?.offsetY!==y||cam.view?.width!==w||cam.view?.height!==h)
      cam.setViewOffset(w,h,x,y,w,h);
  }else guidePortraitLens(step,camera.directorFov,framePoints,verticalBias,horizontalBias);
- if(!customView&&(recorded||lead||linkedRoad)&&innerWidth>760&&map3d.camera.view?.enabled)map3d.camera.clearViewOffset();
+ if(!customView&&(recorded||lead||linkedRoad)&&!isMobileViewport()&&map3d.camera.view?.enabled)map3d.camera.clearViewOffset();
  if(!customView&&guideNorthFrame.has(step.id)&&!['road-b-southeast','road-c-south-central'].includes(step.id)){
    const cam=map3d.camera,w=map3d.width,h=map3d.height;
    const box=guideSafeBox();
-   if(innerWidth<=760){
+   if(isMobileViewport()){
      const middle=(box.top+box.bottom)*.5-box.m.top;
      const shift=Math.round(h*(.50+verticalBias)-middle);
      if(cam.view?.offsetX!==0||cam.view?.offsetY!==shift||cam.view?.width!==w||cam.view?.height!==h)cam.setViewOffset(w,h,0,shift,w,h);
@@ -7292,7 +7178,7 @@ function showTourPose(step,fraction){
  if(camera.directorFov&&map3d.camera.fov!==camera.directorFov){map3d.camera.fov=camera.directorFov;map3d.camera.updateProjectionMatrix();}
  if(!customView&&guideFitted.length&&!guidedTour.observer){
    const cam=map3d.camera,w=map3d.width,h=map3d.height,box=guideSafeBox();
-   const portrait=innerWidth<=760;
+   const portrait=isMobileViewport();
    const isMeasure=guideMeasurements(step).length>0;
    const safeTop=isMeasure?Math.max(box.top,portrait?68:96):box.top+10;
    const profileBlocking=!portrait&&box.deck?.height>40&&$('#observatory').classList.contains('v74-tour-profile-open');
@@ -7340,7 +7226,7 @@ function showTourPose(step,fraction){
  refreshGuideLocation(step,fraction);updateArchivedGuideMarkers(step);updateOpeningCue(step);
  if(guideRoadRoute(guidedTour.route)){
    const real=sampleDemElevation(provider.dem,p.lon,p.lat);
-   const done=step.kind==='travel'?softenedTravelProgress(GUIDE_ROAD_ENDPOINTS[step.id]?Math.max(0,Math.min(1,(fraction-.24)/.51)):fraction)*step.length:0;
+   const done=step.kind==='travel'?softenedTravelProgress(roadTravelProgress(fraction,GUIDE_ROAD_ENDPOINTS[step.id]))*step.length:0;
    const offset=step.distanceOriginM||0;
    const at=' · 本段道路里程 '+((offset+done*(step.distanceDirection||1))/1000).toFixed(2)+' km';
    const label=Number.isFinite(real)?'脚下地表高程约 '+Math.round(real)+' m'+at+'（30 m DEM，非路面测量）':'';
@@ -7353,13 +7239,13 @@ function prepareTourStep(i){
  if(!t.active||!t.route.steps[i])return;
  if(!$('#guided-photo-preview').hidden)setGuidePhoto(false);
  holdGuidedTour();t.voice?.removeAttribute('src');t.voice?.load();t.voice=null;t.audioFailed=false;
- t.index=i;t.elapsed=0;t.readyStep=false;t.endSince=null;t.visualMissing=false;
+ t.index=i;t.elapsed=0;t.readyStep=false;t.endSince=null;
  $('#guided-tour-panel .guided-tour-scroll').scrollTop=0;
  const s=guideStep(), token=++t.token;
  $('#guided-kmz-profiles').hidden=!['road-nw-gully','kmz-north-to-crossings'].includes(s.id);
  delete t.v74Point;
  $('#observatory').classList.toggle('guide-catchment-stop',Boolean(GUIDE_CATCHMENTS[s.id]));
- v74SelectProfile(GUIDE_CATCHMENTS[s.id]&&innerWidth<=760?null:v74StopProfiles[s.id]);
+ v74SelectProfile(GUIDE_CATCHMENTS[s.id]&&isMobileViewport()?null:v74StopProfiles[s.id]);
  ++fixedHistory.request; fixedHistory.controller?.abort();
  $('#guided-tour-ground').textContent='';
  map3d.setExaggeration(guidedScale(t.route));
@@ -7370,26 +7256,13 @@ function prepareTourStep(i){
  readTourHUD();syncMapsState();setGuideVisiblePath(s);renderGuideInset(s);prepareGuideNavMap(s);delete $('#guided-director-board').dataset.openingCue;updateOpeningCue(s);if(s.kind==='gap')updateArchivedGuideMarkers(s);
  requestAnimationFrame(()=>{if(t.active&&t.token===token&&!t.playing&&!t.observer&&!t.poseHandoff)showTourPose(s,0);});
  if(s.kind==='gap'){for(const n of ['guided-map-pin','guided-location-card','guided-four-map'])document.getElementById(n).hidden=true;$('#guided-nav-target').setAttribute('hidden','');}
- const imagery=null;
- const verified='sentinel2-2026-08-08';
- state.basemap=verified;
+ // The public edition has only approved online imagery, not the local Google Earth archive.
+ state.basemap=PUBLIC_GUIDE_BASEMAP;
  state.timelineBasemapStatus=null;
- readTourHUD('本地核验：已核验底图仅作位置参照；待审原影像不显示。');
+ if(fixedHistory.wanted)fixedHistory.disable();
+ map3d?.setNativeDetail(null);
+ readTourHUD();
  syncMapsState();
- t.nativeReady=setGuidedNativeDetail(s.id,imagery,token);
- if(imagery&&fixedHistory.active?.id!==imagery){
-   readTourHUD('载入本机对照影像…');
-   const pending=fixedHistory.openScene?.(imagery);
-   t.sourceReady=Promise.resolve(pending).then(ok=>{
-      if(!t.active||token!==t.token)return false;
-      if(!ok)readTourHUD('对照影像未载入；保留现有底图。');
-      else readTourHUD();
-      return Boolean(ok);
-   });
- }else{
-   if(['history','opening','closing','runoff','lake-inflow'].includes(t.route.id)&&!imagery&&s.kind!=='gap'&&fixedHistory.wanted)fixedHistory.disable();
-   t.sourceReady=null;
- }
 }
 function frameGuidedTour(now){
  const t=guidedTour,s=guideStep();
@@ -7420,23 +7293,14 @@ async function playGuidedTour(){
  if(!t.active||t.playing||t.handoff||t.observer||!s)return;
  const token=t.token, run=++t.playEpoch;
  t.playing=true;readTourHUD(t.readyStep?'':'先定位本段画面…');
- if(t.sourceReady){const ok=await t.sourceReady;if(token!==t.token||run!==t.playEpoch||!t.active||!t.playing)return;t.sourceReady=null;if(!ok){t.visualMissing=s.id==='history-201309';readTourHUD('影像未载入，本段用文字说明。');}}
  if(!t.readyStep){
-   if(GUIDE_DETAIL_STATIONS[s.id]){
-     await Promise.race([Promise.resolve(t.nativeReady).then(async()=>{
-      const start=performance.now();
-      while(token===t.token&&run===t.playEpoch&&map3d?._nativeDetails?.some(x=>!x.texture&&!x.failed)&&performance.now()-start<1400)
-        await new Promise(r=>setTimeout(r,65));
-     }),new Promise(r=>setTimeout(r,1600))]);
-   }
-   if(token!==t.token||run!==t.playEpoch||!t.active||!t.playing)return;
    const proof=[...$('#guided-board-media').querySelectorAll('img')];
    if(proof.length)await Promise.race([Promise.allSettled(proof.map(x=>x.decode())),new Promise(r=>setTimeout(r,1800))]);
    await waitGuideFrame(s.kind==='travel'?470:620);
    if(token!==t.token||run!==t.playEpoch||!t.active||!t.playing)return;
-   t.readyStep=true;readTourHUD(t.visualMissing?'2013-09 未载入；本段旁白关闭，继续后可看下一期实际原图。':'');
+   t.readyStep=true;readTourHUD();
  }
- if(!t.visualMissing&&$('#guided-tour-voice').checked&&t.audioManifest?.[s.id]){
+ if($('#guided-tour-voice').checked&&t.audioManifest?.[s.id]){
    if(!t.voice){
      t.voice=new Audio(`./guided-tour-audio/${s.id}.wav?v=${t.audioManifest[s.id].sha256.slice(0,12)}`);
      for(const evt of ['timeupdate','seeking','seeked','pause','play'])t.voice.addEventListener(evt,()=>{if(t.active&&t.token===token&&(s.detail?.spokenPoints||s.director?.cues)){if(!t.playing&&s.director?.cues)showTourPose(s,0);else{refreshGuideLocation(s);updateArchivedGuideMarkers(s);updateOpeningCue(s);}}});
@@ -7626,7 +7490,6 @@ function wireGuideCameraInput(){
   if(q.outsideTerrain&&!p.outsideTerrain)readTourHUD('取景已越过地形数据边缘；范围外无地形，镜头高度参照边缘。');
   if(p.outsideTerrain&&!q.outsideTerrain)readTourHUD('已回到地形数据范围；可继续自由查看。');
  };
- $('#guided-camera-capture').onclick=captureGuidedRecord;
  $('#guide-play-toggles').addEventListener('click',e=>{
    const b=e.target.closest('[data-guide-camera-adjust]');
    if(!b||!allowed())return;
@@ -7640,7 +7503,7 @@ function wireGuideCameraInput(){
  };
  window.addEventListener('keydown',e=>{
    const motion=guideKeyMotion[e.code];
-   if(!motion||!allowed()||e.altKey||e.ctrlKey||e.metaKey||$('#guided-camera-dialog').open||
+   if(!motion||!allowed()||e.altKey||e.ctrlKey||e.metaKey||
       e.target?.closest?.('input, textarea, select, [contenteditable], .v83-photo-frame.is-lens'))return;
    const [x,y,kind]=motion,boost=e.shiftKey?3:1;
    e.preventDefault();move(x*boost,y*boost,kind);
@@ -7718,17 +7581,6 @@ function wireGuidedTour(){
  $('#guided-tour-close').onclick=()=>closeGuidedTour();
  $('#guided-observer-return').onclick=()=>closeGuideObserver();
  $('#guided-observer-fold').onclick=e=>setGuideObserverCompact(e.currentTarget.getAttribute('aria-expanded')==='true');
- const readRoad03History=()=>{
-  const picker=$('#guided-road03-history-date'),item=picker.selectedOptions[0],img=$('#guided-kmz-history-image');
-  if(!item)return;
-  const url='./native-detail/history-review/cards/'+item.value;
-  if(img.getAttribute('src')!==url)img.src=url;
-  img.alt='03 道路同位 Google Earth 原截图 '+item.textContent+'；日期与来源见原截图。';
-  $('#guided-road03-history-note').textContent=item.dataset.note;
- };
- $('#guided-corridor-sketch').addEventListener('toggle',e=>{if(e.currentTarget.open){const i=$('#guided-corridor-sketch-img');if(!i.hasAttribute('src'))i.src='./native-detail/history-review/cards/owner-runoff-working-sketch.png';}});
- $('#guided-kmz-history').addEventListener('toggle',e=>{if(e.currentTarget.open)readRoad03History();});
- $('#guided-road03-history-date').addEventListener('change',readRoad03History);
  $('#guided-field-buttons').onclick=e=>{const b=e.target.closest('button[data-guide-field-mark]');if(b)openGuideFieldMark(b.dataset.guideFieldMark);};
  $('#guided-observer-buttons').onclick=e=>{const b=e.target.closest('button[data-observer-view]');if(b)void openGuideObserver(Number(b.dataset.observerView));};
  $('#guided-tour-photo-link').onclick=()=>setGuidePhoto($('#guided-photo-preview').hidden,{focus:true});
@@ -7753,10 +7605,10 @@ function wireGuidedTour(){
  $('#guided-tour-next').onclick=()=>moveGuidedChapter(1);
  window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=guideStep();if(guidedTour.active&&!guidedTour.observer&&!guidedTour.playing&&!guidedTour.poseHandoff&&s)showTourPose(s,s.duration?guidedTour.elapsed/s.duration:0);}));
  $('#guided-toggle-script').onclick=()=>{t.manualScriptChoice=true;const d=$('#guided-observer-script');setGuideScriptShown(d.hidden);const s=guideStep();if(s&&!guidedTour.playing&&!guidedTour.observer)requestAnimationFrame(()=>showTourPose(s,s.duration?guidedTour.elapsed/s.duration:0));};
- $('#guided-tour-play').onclick=()=>{if(t.playing||t.handoff){cancelGuideHandoff();holdGuidedTour();readTourHUD('已暂停；不会自动继续。');}else void playGuidedTour();};
+ $('#guided-tour-play').onclick=()=>{if(guideWantsPlayback(t))pauseGuidePlayback('已暂停；不会自动继续。');else if(t.handoff){t.handoff.resume=true;readTourHUD();}else {void playGuidedTour();readTourHUD();}};
  $('#guided-tour-voice').onchange=e=>{if(!e.target.checked)t.voice?.pause();else if(t.playing){holdGuidedTour();void playGuidedTour();}};
- document.addEventListener('visibilitychange',()=>{if(document.hidden&&t.active&&(t.playing||t.handoff)){cancelGuideHandoff();holdGuidedTour();readTourHUD('切离页面，已暂停。');}});
- window.addEventListener('keydown',e=>{if(e.code==='Escape'&&t.active){const options=$('#guide-play-toggles');if(options.matches(':popover-open')){options.hidePopover();$('#guided-play-options').focus({preventScroll:true});e.preventDefault();e.stopImmediatePropagation();return;}if($('#guided-camera-dialog').open||$('#landscape-dialog')?.open||e.target?.closest?.('.v83-photo-frame.is-lens'))return;e.preventDefault();e.stopImmediatePropagation();const idxDrawer=document.getElementById('v93-index-drawer');if(idxDrawer&&!idxDrawer.hidden){idxDrawer.hidden=true;document.getElementById('v93-index-toggle')?.setAttribute('aria-expanded','false');return;}if(!$('#guided-photo-preview').hidden){setGuidePhoto(false,{focus:true});return;}if(state.studioOpen){closeStudioDrawer();return;}if(t.observer){closeGuideObserver();return;}if(t.manualCamera){followGuideCamera();return;}if(t.playing||t.handoff){cancelGuideHandoff();holdGuidedTour();readTourHUD('已暂停。');}else closeGuidedTour();}},{capture:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&t.active&&(guideWantsPlayback(t)||t.handoff||t.poseHandoff))pauseGuidePlayback('切离页面，已暂停。',{stopMotion:true});});
+ window.addEventListener('keydown',e=>{if(e.code==='Escape'&&t.active){const options=$('#guide-play-toggles');if(options.matches(':popover-open')){options.hidePopover();$('#guided-play-options').focus({preventScroll:true});e.preventDefault();e.stopImmediatePropagation();return;}if($('#landscape-dialog')?.open||e.target?.closest?.('.v83-photo-frame.is-lens'))return;e.preventDefault();e.stopImmediatePropagation();const idxDrawer=document.getElementById('v93-index-drawer');if(idxDrawer&&!idxDrawer.hidden){idxDrawer.hidden=true;document.getElementById('v93-index-toggle')?.setAttribute('aria-expanded','false');return;}if(!$('#guided-photo-preview').hidden){setGuidePhoto(false,{focus:true});return;}if(state.studioOpen){closeStudioDrawer();return;}if(t.observer){closeGuideObserver();return;}if(t.manualCamera){followGuideCamera();return;}if(guideWantsPlayback(t)||t.handoff||t.poseHandoff)pauseGuidePlayback('已暂停。',{stopMotion:true});else closeGuidedTour();}},{capture:true});
  installV93Bridge();
 }
 const v93SyncCallbacks=new Set();
@@ -7773,10 +7625,8 @@ function installV93Bridge(){
    const section=t.book.indexOf(t.route);
    const totalStops=t.book.reduce((n,b)=>n+b.steps.length,0);
    const globalIdx=t.book.slice(0,section).reduce((n,b)=>n+b.steps.length,0)+t.index+1;
-   const activeHist=fixedHistory.active;
-   const rawScene=activeHist?.sourceDate||activeHist?.fileLabel||s.sceneId||'ge-root-202109';
-   const fmtScene=String(rawScene).replace(/^ge-(?:root|03)-(\d{4})(\d{2})(.*)$/,(_,y,m,rest)=>`${y}-${m}${rest?rest.replace('-',' · '):''}`);
-   const imageryLabel=fmtScene.includes('文件标记')?fmtScene:`${fmtScene}（文件标记）`;
+   const basemapDate=provider.getImagerySpec(state.basemap)?.time_utc?.slice(0,10);
+   const imageryLabel=basemapDate?'Sentinel-2 · '+basemapDate:'公开位置底图';
    const voiceOn=Boolean(t.voice&&!t.audioFailed&&$('#guided-tour-voice')?.checked&&Number.isFinite(t.voice.duration)&&t.voice.duration>0);
    const progressRatio=voiceOn?Math.min(1,t.voice.currentTime/t.voice.duration):(s.duration?Math.min(1,t.elapsed/s.duration):0);
    const hasProfile=Boolean(t.v74Profile||v74StopProfiles[s.id]||['road-nw-gully','kmz-north-to-crossings'].includes(s.id)||(s.detail?.chart&&getProfileData(s.detail.chart)));
@@ -7786,16 +7636,17 @@ function installV93Bridge(){
   openAtRoute:(routeId,stepIdx=0,{autoPlay=false}={})=>{
    const t=guidedTour;
    const route=t.book.find(r=>r.id===routeId)||t.book[0];
-   const step=route?.steps[stepIdx]||route?.steps[0];
+   const index=route?.steps[stepIdx]?stepIdx:0;
+   const step=route?.steps[index];
    if(!step)return;
    if(!t.active)openGuidedTour($('#btn-guide-chapter-one'),step.id);
-   else {cancelGuideHandoff();setGuidedRoute(route,stepIdx);}
+   else {cancelGuideHandoff();setGuidedRoute(route,index);}
    if(autoPlay)requestAnimationFrame(()=>void playGuidedTour());
   },
   jumpTo:(routeId,stepIdx=0)=>{
    const t=guidedTour, route=t.book.find(r=>r.id===routeId);
    if(!route)return;
-   const shouldPlay=Boolean(t.playing||t.handoff?.resume);
+   const shouldPlay=guideWantsPlayback(t);
    if(!t.active)openGuidedTour($('#btn-guide-chapter-one'),route.steps[stepIdx]?.id);
    else{
     cancelGuideHandoff();
@@ -7832,7 +7683,6 @@ async function boot() {
   const hero=$('#atlas-hero-card'),head=$('#hud-top-left');
   new ResizeObserver(()=>head.style.setProperty('--atlas-home-card-width',hero.getBoundingClientRect().width+'px')).observe(hero);
 
-  const observerFetch=Promise.resolve(null);
   const tourFetch=fetch('./guided-tours.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
   const nwNetworkFetch=fetch('./nw-bridge-network-v96.geojson').then(r=>r.ok?r.json():null).catch(()=>null);
   const catchmentScreenFetch=fetch('./catchment-screen-v94.geojson?v=95',{signal:AbortSignal.timeout?.(4000)}).then(r=>r.ok?r.json():null).catch(()=>null);
@@ -7842,11 +7692,9 @@ async function boot() {
   const routeParams=new URLSearchParams(location.search);
   const firstOpen=routeParams.size===0;
   const nwDeepLink=routeParams.get('nw')==='all';
-  const startHistory=null;
   const requestedView=routeParams.get('view');
   state.timelineCalendarFull=routeParams.get('calendar')==='full';
   const requestedContour=Number(routeParams.get('ctr'));
-  const roads=routeParams.get('secondary-roads');
   state.visibleLayers.add('secondary-roads');
   if(routeParams.get('panel')===ROUTE_DEEP_LINK){
     state.waterwayNav=true;
@@ -8177,7 +8025,6 @@ async function boot() {
   bindEvents();
   wireTerrainWalk();
   const tourDoc=await tourFetch, guideAudio=await guideAudioFetch;
-  guidedTour.observerRecords=validateGuideObservers(await observerFetch);
   if(tourDoc)try{
     guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
    for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
@@ -8264,11 +8111,6 @@ async function boot() {
 
   if (state.profileCursorIdx >= 0) {
     setProfileSample(state.activeProfileId, state.profileCursorIdx);
-  }
-
-  if(startHistory&&/^ge-[a-z0-9-]+$/i.test(startHistory)){
-    const ok=await fixedHistory.openScene?.(startHistory);
-    fixedHistory.autoHomeScene=Boolean(ok&&startHistory==='ge-root-202107');
   }
 
   if (wantInitial3d && !isWayback2dOnly(provider.analysisById.get(state.selectedFeatureId))) {

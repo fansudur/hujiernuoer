@@ -4,7 +4,6 @@ export const WALK_OFFICE_ID='office-service';
 export const FREE_FLY_ENTRY_M=25;
 export const WALK_EYE_M=1.7;
 export const WALK_GUIDE_SPEED_MPS=4;
-export const WALK_STEP_M=10;
 const R=Math.PI/180;
 const validPoint=p=>Array.isArray(p)&&p.length>=2&&p.slice(0,2).every(Number.isFinite);
 const dist=(a,b)=>Math.hypot((a[0]-b[0])*72_800,(a[1]-b[1])*111_320);
