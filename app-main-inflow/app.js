@@ -8463,10 +8463,12 @@ async function boot() {
     selectFeature(state.selectedFeatureId,{fly:true,showData:state.pickedDataId===state.selectedFeatureId&&state.bottomTab!=='time'});
   } else if (!hasExplicitViewOverride && state.scenePreset === 'home' && provider.waterIndex?.lakes?.MAIN?.bounds_wgs84) {
     // Clean first-open framing adapted to the unobstructed portrait/landscape map window
-    if(firstOpen&&isMobileViewport()){
-      // Fit the whole study area to the narrow opening, not a cropped desktop camera.
+    if(isMobileViewport()&&(firstOpen||routeParams.size===1&&routeParams.has('lang'))){
+      // Keep the full study-area width, with breathing room beneath the header.
       map2d.resize();
-      map2d.fitBounds(AOI_BOUNDS,1,0,{fillWidth:true});
+      const height=$('#map-2d-canvas').getBoundingClientRect().height;
+      const down=Math.min(36,height*.042);
+      map2d.fitBounds(AOI_BOUNDS,1,0,{fillWidth:true,top:2*down});
     }else fitMainLakeFirstOpen(0);
   } else if (requestedView === 'west' && provider.waterIndex?.lakes?.WF1?.bounds_wgs84) {
     map2d.fitBounds(provider.waterIndex.lakes.WF1.bounds_wgs84, 1.75, 0);
