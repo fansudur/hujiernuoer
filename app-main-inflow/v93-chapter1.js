@@ -1,5 +1,5 @@
 // Hujiernuoer Atlas v93 — Chapter 1 Spatial Documentary Controller
-// Drives the First-Open Prologue, 7-Stage / 30-Stop Interactive Timeline & Index,
+// Drives the First-Open Prologue, 7-Stage / 29-Stop Interactive Timeline & Index,
 // Dual-Date Telemetry, and Mobile Tabbed Story/Profile/Radar Theatre.
 
 // Capture initial URL state at module load time before app.js boot() calls history.replaceState(syncUrl)
@@ -57,7 +57,7 @@ function mountPrologue(bridge) {
     </div>
     <button type="button" id="v93-prologue-details" aria-expanded="false" aria-controls="v93-prologue-body">查看章节与证据</button>
     <div id="v93-prologue-body">
-    <p class="v93-pro-lead">无需先学图层操作——跟随 <strong>30 站离线语音与三维地形</strong>，从西北坡大沟壑出发，逐段核对实拍桥涵、二十年卫星旧影与 30 米地表模型，看清哪些水路有据可查、哪些仍是留白待核的断口。</p>
+    <p class="v93-pro-lead">无需先学图层操作——跟随 <strong>29 站离线语音与三维地形</strong>，从西北坡大沟壑出发，逐段核对实拍桥涵、二十年卫星旧影与 30 米地表模型，看清哪些水路有据可查、哪些仍是留白待核的断口。</p>
     <div class="v93-ev-grid" aria-label="四类图面证据一眼分辨">
       <div class="v93-ev-card" data-ev="field">
         <span class="v93-ev-sym">◉</span>
@@ -80,7 +80,7 @@ function mountPrologue(bridge) {
     <div class="v93-pro-stages" id="v93-pro-stages"></div>
     </div>
     <div class="v93-pro-actions">
-      <button type="button" class="v93-btn-primary" id="v93-prologue-start">▶ 开始第一章语音导览（30 站）</button>
+      <button type="button" class="v93-btn-primary" id="v93-prologue-start">▶ 开始第一章语音导览（29 站）</button>
       <button type="button" class="v93-btn-secondary" id="v93-prologue-explore">自由浏览图谱</button>
     </div>
   `;
@@ -142,8 +142,8 @@ function mountTheatreChrome(bridge) {
   topbar.setAttribute('aria-label', '第一章导览进度与独立日期栏');
   topbar.innerHTML = `
     <div class="v93-topbar-left">
-      <button type="button" class="v93-index-btn" id="v93-index-toggle" aria-expanded="false" aria-controls="v93-index-drawer" title="展开全部 7 幕 30 站调查目录">
-        <span class="v93-stop-pill" id="v93-stop-num">01 / 30</span>
+      <button type="button" class="v93-index-btn" id="v93-index-toggle" aria-expanded="false" aria-controls="v93-index-drawer" title="展开全部 7 幕 29 站调查目录">
+        <span class="v93-stop-pill" id="v93-stop-num">01 / 29</span>
         <span class="v93-act-name" id="v93-act-label">① 开场总览</span>
         <span aria-hidden="true">▾</span>
       </button>
@@ -165,15 +165,15 @@ function mountTheatreChrome(bridge) {
     topbar.querySelector('.v93-topbar-right').appendChild(origCloseBtn);
   }
 
-  // 2. 30-Stop Visual Index Drawer
+  // 2. 29-Stop Visual Index Drawer
   const drawer = document.createElement('aside');
   drawer.id = 'v93-index-drawer';
   drawer.hidden = true;
-  drawer.setAttribute('aria-label', '第一章 7 幕 30 站完整目录');
+  drawer.setAttribute('aria-label', '第一章 7 幕 29 站完整目录');
   drawer.innerHTML = `
     <div class="v93-idx-head">
       <div>
-        <strong>第一章 · 水怎么来到呼吉尔诺尔（全 30 站目录）</strong>
+        <strong>第一章 · 水怎么来到呼吉尔诺尔（全 29 站目录）</strong>
         <div><small>按调查顺序排列；点击任意站点立即切换机位与对应证据，未证实连接均留空。</small></div>
       </div>
       <button type="button" class="v93-pro-close" id="v93-idx-close" aria-label="关闭目录">✕</button>
@@ -293,7 +293,7 @@ function mountTheatreChrome(bridge) {
     }
   });
 
-  // Build 7-Stage Scrubber & 30-Stop Index once book is ready
+  // Build 7-Stage Scrubber & 29-Stop Index once book is ready
   let builtBookLen = 0;
   const ensureIndexBuilt = () => {
     const book = bridge.getBook();
@@ -336,7 +336,7 @@ function mountTheatreChrome(bridge) {
         tick.className = 'v93-stop-tick' + (item.step.kind === 'gap' ? ' is-gap' : '');
         tick.dataset.stepId = item.step.id;
         tick.dataset.globalIdx = String(item.globalIdx);
-        tick.title = `第 ${item.globalIdx}/30 站 · ${item.step.title}`;
+        tick.title = `第 ${item.globalIdx}/${flat.length} 站 · ${item.step.title}`;
         tick.setAttribute('aria-label', tick.title);
         tick.onclick = e => {
           e.stopPropagation();

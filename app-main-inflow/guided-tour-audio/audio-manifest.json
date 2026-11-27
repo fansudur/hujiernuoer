@@ -1,7 +1,7 @@
 {
   "voice": "Microsoft Huihui (local WinRT, zh-CN)",
   "sampleRate": 16000,
-  "sourceSha256": "1c619d381cf81d286c2fbe23dec1f48cdd3334ae07fd252c1a82473706bd999f",
+  "sourceSha256": "d5c592403fa5cf4f13d4ede86dc98b6e6f6dddb166782c825735910192253361",
   "steps": {
     "chapter-opening": {
       "file": "chapter-opening.wav",
@@ -113,19 +113,10 @@
     },
     "history-202109": {
       "file": "history-202109.wav",
-      "durationMs": 17585,
-      "frames": 281360,
-      "sha256": "c374d829e3f8a9d0697a2790c1fd6773157e2c047c6571b2443ef1c4ca3ac06e",
-      "body": "回到同位对照的右图。二〇二一年九月还能认出旧转折和低带，但仍不能从画面追到一段连续的水迹。下一站先说这个断口怎么复核，再到零三道路逐点核对。",
-      "tour": "history",
-      "kind": "station"
-    },
-    "history-conditional": {
-      "file": "history-conditional.wav",
-      "durationMs": 22110,
-      "frames": 353760,
-      "sha256": "d75eb01f170c739fc8d9602f3111039d00be708fabf47ff38da7522c73419d40",
-      "body": "早期和近期近景帮助我们认出旧转折；二〇一三年的全区图只提供背景。约一百四十八米的断口仍然留空。下一场有径流时，可在同一时段分别记录两端湿痕和方向；两端都有湿痕不等于中间过水。",
+      "durationMs": 16360,
+      "frames": 261760,
+      "sha256": "0a3764ac9f48cc001b5e6f5b8b7cf96d45248c6f762004e61773239dfeea347f",
+      "body": "回到同位对照的右图。二〇二一年九月还能认出旧转折和低带，但仍不能从画面追到一段连续的水迹。接下来到零三道路，逐点看涵洞和沟槽。",
       "tour": "history",
       "kind": "station"
     },

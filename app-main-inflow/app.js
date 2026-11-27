@@ -1,6 +1,6 @@
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,GUIDE_DEFAULT_MEDIA,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
-import { portraitGuidePair, portraitGuideImages } from './guide-portrait-cameras.js?v=105.17.2';
-import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.15';
+import { portraitGuidePair, portraitGuideImages } from './guide-portrait-cameras.js?v=105.17.3';
+import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.17.3';
 import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers,guideCameraRecord } from './guide-review-policy.js';
 import {pointInGeoGeometry as insideSlopeWater} from './geo-pick.js';
 import {wireReferenceZoom} from './v83-reference.js?v=105.9';
@@ -5429,7 +5429,6 @@ const GUIDE_DETAIL_STATIONS=Object.freeze({
  'history-200405':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
  'history-201309':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
  'history-202109':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
- 'history-conditional':['ge-native-f1-continuous-202109','ge-native-road03-expanded-202109'],
  'road-c-approach':'ge-native-cb-road-202209',
  'road-c-south-central':'ge-native-cb-road-202209',
  'road-b-southeast':'ge-native-cb-road-202209',
@@ -6091,7 +6090,7 @@ const guideMeasurements=step=>{
  if(apron[1]&&apron[2])apron[0]=String(Math.round(guideDistance(apron[1],apron[2])));
  const m={
    'runoff-west':[westMeasure],'runoff-bridge':innerWidth<=760?[westMeasure]:[westMeasure,eastMeasure],'runoff-cross-gap':[westMeasure,eastMeasure],
-   'runoff-bend-gap':[bend],'runoff-apron-gap':[apron],'history-conditional':[bend],
+   'runoff-bend-gap':[bend],'runoff-apron-gap':[apron],
    'kmz-north-to-crossings':[['159',left('hjn-v75-kmz-upstream-common'),left('hjn-v75-kmz-upstream-03'),'共同线东端','03 来路北端']],
    'kmz-outer-options':[['50',[119.66144254,49.14866815],right('hjn-v75-kmz-seepage-backyards'),'潜在水路近点','后院支路西端']]
  }[step?.id]??[];
@@ -6802,7 +6801,7 @@ const FIELD_BANDS_MEDIA=[
  ...['2015-07','2021-07'].map((date,i)=>({src:'./guide-reference/field-bands-'+date+'.jpg',title:date+' · 同一处弯折',pairIndex:2-i,caption:'两期完整画幅用于找同一处弯折。日期按原文件标记；色差不能证明沟里有水。'+FIELD_BANDS_CREDIT}))
 ];
 const FIELD_BANDS_SOURCES=new Set(FIELD_BANDS_MEDIA.map(item=>item.src));
-const DIRECTOR_HISTORY_PHOTOS=new Set(['history-200405','history-202109','history-conditional']);
+const DIRECTOR_HISTORY_PHOTOS=new Set(['history-200405','history-202109']);
 function updateOpeningCue(step){
  const cue=guideOpeningCue(step);if(!cue)return;
  const host=$('#guided-director-board'), ids=cue.anchorIds||[], key=String(cue.startMs??cue.at??0);
@@ -7772,11 +7771,11 @@ async function boot() {
   new ResizeObserver(()=>head.style.setProperty('--atlas-home-card-width',hero.getBoundingClientRect().width+'px')).observe(hero);
 
   const observerFetch=Promise.resolve(null);
-  const tourFetch=fetch('./guided-tours.json?v=105.11').then(r=>r.ok?r.json():null).catch(()=>null);
+  const tourFetch=fetch('./guided-tours.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
   const nwNetworkFetch=fetch('./nw-bridge-network-v96.geojson').then(r=>r.ok?r.json():null).catch(()=>null);
   const catchmentScreenFetch=fetch('./catchment-screen-v94.geojson?v=95',{signal:AbortSignal.timeout?.(4000)}).then(r=>r.ok?r.json():null).catch(()=>null);
   const owner75Fetch=fetch('./owner-water-network-v75.geojson?v=75').then(r=>r.ok?r.json():null).catch(()=>null);
- const guideAudioFetch=fetch('./guided-tour-audio/audio-manifest.json?v=105.11').then(r=>r.ok?r.json():null).catch(()=>null);
+ const guideAudioFetch=fetch('./guided-tour-audio/audio-manifest.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
   const urlPatch = decodeAtlasUrl(location.search);
   const routeParams=new URLSearchParams(location.search);
   const firstOpen=routeParams.size===0;

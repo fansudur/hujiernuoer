@@ -45,7 +45,7 @@ const historyDesktop=desktopPose([119.66379545829271,49.13608554697303,980,351.3
 const eastPoolDesktop=desktopPose([119.68002929764249,49.13191980621406,2121.2397227782785,359.34,-37,42,36,233]);
 const desktopShots=Object.freeze({
  'runoff-bend-gap':desktopPose([119.65935766999999,49.133065701662666,712.2836499458717,0,-24,42,45,-62]),
- 'history-200405':historyDesktop,'history-201309':historyDesktop,'history-202109':historyDesktop,'history-conditional':historyDesktop,
+ 'history-200405':historyDesktop,'history-201309':historyDesktop,'history-202109':historyDesktop,
  'east-marsh-source':desktopPose([119.67741418469713,49.135290515944746,1701.2689173162516,359.12,-37,42,36,233]),
  'east-pool-source':eastPoolDesktop,'east-connection-check':eastPoolDesktop,
  'runoff-main-entrance-context':desktopPose([119.66310178740194,49.10513595411023,4845.043470576619,4.84,-46.6,33.25936225980924]),

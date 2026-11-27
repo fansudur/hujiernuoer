@@ -43,7 +43,7 @@ const shared=Object.freeze({
  'lake-west':final,'lake-office-caution':final,'chapter-closing':final,
 });
 export function portraitGuidePair(id,seconds){
- const sameView=({ 'history-201309':'history-200405','history-202109':'history-200405','history-conditional':'runoff-bend-gap' })[id]??id;
+ const sameView=({ 'history-201309':'history-200405','history-202109':'history-200405' })[id]??id;
  if(id!=='chapter-opening'){
    const shot=shared[sameView]??revised[sameView]??shots[sameView];
    return shot?[shot,shot,0]:null;
