@@ -5375,6 +5375,22 @@ function currentWalkCameraRecord(pose){
    imagery:{id:hw?.id||state.basemap,date:hw?(hw.sourceDate||null):(state.timelineBasemapStatus?.date||provider.getImagerySpec(state.basemap)?.time_utc?.slice(0,10)||null),fileLabel:hw?.sourceLabel||null},
    waterMonth:state.month});
 }
+function captureGuidedRecord(){
+ const step=guideStep(), pose=guidedTour.cameraPose;
+ if(!guidedTour.active||!step||!pose||![pose.lon,pose.lat,pose.eyeM,pose.heading,pose.pitch].every(Number.isFinite))return;
+ const field=$('#guided-camera-json'),dialog=$('#guided-camera-dialog'),status=$('#guided-camera-status');
+ const raw=JSON.stringify({...currentWalkCameraRecord(pose),source:'本机第一章导览机位',
+   stop:{id:step.id,title:step.title,route:guidedTour.route.id},
+   cue:{label:guideOpeningCue(step)?.focus||null,seconds:Number(guideSpokenSeconds().toFixed(2))}});
+ field.value=raw;
+ if(!dialog.open)dialog.showModal();
+ field.focus({preventScroll:true});field.select();
+ status.textContent='已选中；若没有自动复制，可按 Ctrl+C 手动复制。';
+ navigator.clipboard?.writeText(raw).then(()=>{
+   if(dialog.open&&field.value===raw)status.textContent='已复制，可直接粘贴发送。';
+ }).catch(()=>{});
+}
+
 function captureWalkRecord(){
  if(!walkMode.active)return;
  const snapshot=map3d?.terrainWalkSnapshot(), p=snapshot?.pose;
@@ -7561,11 +7577,12 @@ function wireGuideCameraInput(){
  };
  window.addEventListener('keydown',e=>{
    const motion=guideKeyMotion[e.code];
-   if(!motion||!allowed()||e.altKey||e.ctrlKey||e.metaKey||
+   if(!motion||!allowed()||e.altKey||e.ctrlKey||e.metaKey||$('#guided-camera-dialog').open||
       e.target?.closest?.('input, textarea, select, [contenteditable], .v83-photo-frame.is-lens'))return;
    const [x,y,kind]=motion,boost=e.shiftKey?3:1;
    e.preventDefault();move(x*boost,y*boost,kind);
  },{capture:true});
+ $('#guided-camera-capture').onclick=captureGuidedRecord;
  $('#guided-camera-follow').onclick=()=>{if(t.manualCamera)followGuideCamera();else if(allowed())captureCamera();};
  host.addEventListener('contextmenu',e=>{if(allowed())e.preventDefault();});
  host.addEventListener('wheel',e=>{
@@ -7666,7 +7683,7 @@ function wireGuidedTour(){
  $('#guided-tour-play').onclick=()=>{if(guideWantsPlayback(t))pauseGuidePlayback('已暂停；不会自动继续。');else if(t.handoff){t.handoff.resume=true;readTourHUD();}else {void playGuidedTour();readTourHUD();}};
  $('#guided-tour-voice').onchange=e=>{if(!e.target.checked)t.voice?.pause();else if(t.playing){holdGuidedTour();void playGuidedTour();}};
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&t.active&&(guideWantsPlayback(t)||t.handoff||t.poseHandoff))pauseGuidePlayback('切离页面，已暂停。',{stopMotion:true});});
- window.addEventListener('keydown',e=>{if(e.code==='Escape'&&t.active){const options=$('#guide-play-toggles');if(options.matches(':popover-open')){options.hidePopover();$('#guided-play-options').focus({preventScroll:true});e.preventDefault();e.stopImmediatePropagation();return;}if($('#landscape-dialog')?.open||e.target?.closest?.('.v83-photo-frame.is-lens'))return;e.preventDefault();e.stopImmediatePropagation();const idxDrawer=document.getElementById('v93-index-drawer');if(idxDrawer&&!idxDrawer.hidden){idxDrawer.hidden=true;document.getElementById('v93-index-toggle')?.setAttribute('aria-expanded','false');return;}if(!$('#guided-photo-preview').hidden){setGuidePhoto(false,{focus:true});return;}if(state.studioOpen){closeStudioDrawer();return;}if(t.observer){closeGuideObserver();return;}if(t.manualCamera){followGuideCamera();return;}if(guideWantsPlayback(t)||t.handoff||t.poseHandoff)pauseGuidePlayback('已暂停。',{stopMotion:true});else closeGuidedTour();}},{capture:true});
+ window.addEventListener('keydown',e=>{if(e.code==='Escape'&&t.active){const options=$('#guide-play-toggles');if(options.matches(':popover-open')){options.hidePopover();$('#guided-play-options').focus({preventScroll:true});e.preventDefault();e.stopImmediatePropagation();return;}if($('#guided-camera-dialog').open||$('#landscape-dialog')?.open||e.target?.closest?.('.v83-photo-frame.is-lens'))return;e.preventDefault();e.stopImmediatePropagation();const idxDrawer=document.getElementById('v93-index-drawer');if(idxDrawer&&!idxDrawer.hidden){idxDrawer.hidden=true;document.getElementById('v93-index-toggle')?.setAttribute('aria-expanded','false');return;}if(!$('#guided-photo-preview').hidden){setGuidePhoto(false,{focus:true});return;}if(state.studioOpen){closeStudioDrawer();return;}if(t.observer){closeGuideObserver();return;}if(t.manualCamera){followGuideCamera();return;}if(guideWantsPlayback(t)||t.handoff||t.poseHandoff)pauseGuidePlayback('已暂停。',{stopMotion:true});else closeGuidedTour();}},{capture:true});
  installV93Bridge();
 }
 const v93SyncCallbacks=new Set();
