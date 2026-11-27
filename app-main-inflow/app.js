@@ -6950,8 +6950,14 @@ const FIELD_BANDS_MEDIA=[
 function writeGuideBoardFocus(focus,title){
  const el=$('#guided-board-focus');
  const normalize=text=>String(text??'').trim().replace(/\s+/g,' ');
- el.hidden=!normalize(focus)||normalize(focus)===normalize(title);
+ const hasFocus=Boolean(normalize(focus));
+ const duplicate=hasFocus&&normalize(focus)===normalize(title);
+ el.hidden=!hasFocus;
  el.textContent=focus||'';
+ // The upper focus becomes the accessible station heading when they repeat.
+ $('#guided-tour-title').hidden=duplicate;
+ if(duplicate){el.setAttribute('role','heading');el.setAttribute('aria-level','2');}
+ else{el.removeAttribute('role');el.removeAttribute('aria-level');}
 }
 function updateOpeningCue(step){
  const cue=guideOpeningCue(step);if(!cue)return;
@@ -6973,7 +6979,7 @@ function preferredGuideMedia(step,mark){
 }
 function directorEvidenceBoard(step,point=0){
  const d=step.director,root=$('#guided-director-board'),mb=$('#guided-board-media');
- if(!d){root.hidden=true;return;}
+ if(!d){root.hidden=true;writeGuideBoardFocus('',step.title);return;}
  root.hidden=false;
  const mark=step.detail?.fieldMarks?.[point-1], title=guidedTour.observer?.fieldMark?.title||step.title, key=step.id+':'+point+':'+title;
  if(root.dataset.cue===key)return;
