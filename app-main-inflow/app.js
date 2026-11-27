@@ -7810,12 +7810,21 @@ async function boot() {
   const coreData=provider.boot();
   // Attach rejection immediately while other startup requests are being scheduled.
   void coreData.catch(()=>{});
-  const optionalGuide=(url)=>fetch(url,{priority:'low',signal:AbortSignal.timeout?.(22000)});
-  const tourFetch=optionalGuide('./guided-tours.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
+  const optionalGuide=async (url)=>{
+    for(let attempt=0;attempt<2;attempt++){
+      try{
+        const r=await fetch(url,{signal:AbortSignal.timeout?.(attempt?28000:12000)});
+        if(r.ok)return await r.json();
+        if(r.status<500&&r.status!==408&&r.status!==429)return null;
+      }catch{/* Temporary connection failure; retry independently of the map. */}
+    }
+    return null;
+  };
+  const tourFetch=optionalGuide('./guided-tours.json?v=105.17.3');
   const nwNetworkFetch=fetch('./nw-bridge-network-v96.geojson').then(r=>r.ok?r.json():null).catch(()=>null);
   const catchmentScreenFetch=fetch('./catchment-screen-v94.geojson?v=95',{signal:AbortSignal.timeout?.(4000)}).then(r=>r.ok?r.json():null).catch(()=>null);
-  const owner75Fetch=optionalGuide('./owner-water-network-v75.geojson?v=75').then(r=>r.ok?r.json():null).catch(()=>null);
- const guideAudioFetch=optionalGuide('./guided-tour-audio/audio-manifest.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
+  const owner75Fetch=optionalGuide('./owner-water-network-v75.geojson?v=75');
+ const guideAudioFetch=optionalGuide('./guided-tour-audio/audio-manifest.json?v=105.17.3');
   const urlPatch = decodeAtlasUrl(location.search);
   const routeParams=new URLSearchParams(location.search);
   const firstOpen=routeParams.size===0;
@@ -8157,7 +8166,7 @@ async function boot() {
   const guideButtons=$$('#btn-guide-chapter-one,#btn-open-guided-tour,[data-guide-launch]');
   for(const button of guideButtons){button.disabled=true;button.setAttribute('aria-busy','true');}
   const finishGuide=async()=>{
-    const tourDoc=await tourFetch, guideAudio=await guideAudioFetch;
+    const tourDoc=await tourFetch;
     if(tourDoc)try{
       guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
      for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
@@ -8178,7 +8187,13 @@ async function boot() {
       const context=guidedTour.contextPaths.map(r=>({type:'Feature',id:'guide-road-'+r.id,properties:{layer:GUIDE_G332_LAYER,name:r.label||'国道 G332 参考线',source:'冻结 OSM 路网，非水流'},geometry:{type:'LineString',coordinates:r.coords}}));
       provider.analysis.features.push(...context);
       for(const f of context)provider.analysisById.set(f.id,f);
-      if(guideAudio?.steps)guidedTour.audioManifest=Object.fromEntries(guidedTour.book.flatMap(r=>r.steps).filter(s=>guideAudio.steps[s.id]?.body===s.body).map(s=>[s.id,guideAudio.steps[s.id]]));
+      const applyAudio=guideAudio=>{
+        if(!guideAudio?.steps)return;
+        guidedTour.audioManifest=Object.fromEntries(guidedTour.book.flatMap(r=>r.steps).filter(s=>guideAudio.steps[s.id]?.body===s.body).map(s=>[s.id,guideAudio.steps[s.id]]));
+        if(guidedTour.active)$('#guided-tour-voice').disabled=false;
+      };
+      if(firstOpen)void guideAudioFetch.then(applyAudio);
+      else applyAudio(await guideAudioFetch);
     }catch(err){console.warn('本机三维导览未载入',err.message)}
     wireGuidedTour();
     for(const button of guideButtons)button.removeAttribute('aria-busy');
