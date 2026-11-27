@@ -2,7 +2,7 @@ import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=6';
 import {constrainedConnection,createEsriDetailController,overviewZoom} from './esri-view-detail.mjs?v=3';
 import {ATLAS_BOUNDS,BRIDGE_BOUNDS,COMPACT_OVERVIEW_ZOOM,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=3';
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
-import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.18.19';
+import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.18.20';
 import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.18.13';
 import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers,walkCameraRecord } from './guide-review-policy.js?v=105.17.5';
 import {pointInGeoGeometry as insideSlopeWater} from './geo-pick.js';
@@ -5744,8 +5744,8 @@ function moveGuidedChapter(direction,{resume=null,destination=null}={}){
  const desktopGlide=!isMobileViewport();
  const phoneItinerary=isMobileViewport()&&followsPortraitItinerary(t.book,previous.id,target.step.id);
  const edited=Boolean(phoneEdited||desktopGlide||phoneItinerary);
- const seamlessRoad=isMobileViewport()&&direction===1&&trackJoins;
- const phoneTarget=phoneEdited&&!trackJoins&&!t.manualCamera&&oldPose?phoneRecordedPose(target.step.id,0):null;
+ const seamlessRoad=isMobileViewport()&&direction===1&&GUIDE_ROAD_ENDPOINTS[target.step.id]?.[0]===previous.id;
+ const phoneTarget=phoneEdited&&!seamlessRoad&&!t.manualCamera&&oldPose?phoneRecordedPose(target.step.id,0):null;
  let phoneCut=false, phoneHold=false, phoneDuration=1550;
  if(phoneTarget){
    const turn=Math.abs(((phoneTarget.heading-oldPose.heading+540)%360)-180);
@@ -5754,13 +5754,18 @@ function moveGuidedChapter(direction,{resume=null,destination=null}={}){
    const height=Math.abs(phoneTarget.eyeM-oldPose.eyeM);
    const scale=Math.max(phoneTarget.eyeM,oldPose.eyeM)/Math.max(1,Math.min(phoneTarget.eyeM,oldPose.eyeM));
    const lens=Math.abs(phoneTarget.directorFov-map3d.camera.fov);
-   const shift=Math.max(...phoneTarget.portraitOffset.map((v,i)=>Math.abs(v-(oldPose.portraitOffset?.[i]??0))));
+   // Compare the displayed whole-pixel framing; identical shots must not animate.
+   const frameSize=[map3d.width,map3d.height];
+   const shift=Math.max(...phoneTarget.portraitOffset.map((v,i)=>{
+     const size=frameSize[i];
+     return Math.abs(Math.round(v*size)-Math.round((oldPose.portraitOffset?.[i]??0)*size))/size;
+   }));
    // Distant observations are clearer as cuts than as a fast flyover on a phone.
    phoneCut=!phoneItinerary&&(turn>=50||tilt>=30||travel>=1800||(height>=180&&scale>=3.5)||lens>=15||shift>=.27);
    if(phoneItinerary)phoneDuration=Math.min(4500,Math.max(1550,1250+turn*18,1300+tilt*33,1150+travel*.27,1200+Math.log(Math.max(1,scale))*510,lens*110));
    phoneHold=travel<.01&&turn<.01&&tilt<.01&&height<.01&&lens<.01&&shift<.001;
  }
- const overviewBlend=(edited?(desktopGlide||!trackJoins||(phoneItinerary&&direction<0)):direction===1&&(panorama||bridgeTurn))&&!reduced&&!t.manualCamera&&oldPose&&!phoneCut&&!phoneHold;
+ const overviewBlend=(edited?(desktopGlide||!trackJoins||(phoneItinerary&&!seamlessRoad)):direction===1&&(panorama||bridgeTurn))&&!reduced&&!t.manualCamera&&oldPose&&!phoneCut&&!phoneHold;
  if(phoneItinerary&&!phoneTarget&&!seamlessRoad)phoneDuration=3400;
  const oldView=map3d.camera.view,from=edited&&overviewBlend?{...oldPose,directorFov:map3d.camera.fov,
    portraitOffset:oldView?.enabled?[oldView.offsetX/map3d.width,(oldView.offsetY-(t.portraitPhotoLift||0))/map3d.height]:[0,0]}:overviewBlend;

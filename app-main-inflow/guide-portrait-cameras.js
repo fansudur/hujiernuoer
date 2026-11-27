@@ -36,9 +36,8 @@ const shots=Object.freeze(Object.fromEntries(Object.entries({
 const shared=Object.freeze({
  'runoff-bridge':bridgeClose,'runoff-cross-gap':bridgeGap,'runoff-east':bridgeEast,
  'road-nw-gully':phone402([119.68707801670571,49.117473225705645,5324.050732298052,351.6399999999991,-66.8,42,-158,95]),
- 'runoff-apron-gap':crossings,'kmz-north-to-crossings':crossings,
+ 'runoff-field-bands-05':crossings,'runoff-apron-gap':crossings,'kmz-north-to-crossings':crossings,
  'runoff-bend-gap':phone682([119.65227214298875,49.158580990083955,417.4774488707431,161.70000000000232,-21.066666666666702,60,1,86]),
- 'runoff-field-bands-05':phone402([119.64892266883726,49.16646992455742,1125.0072040017628,168.00666666666643,-32.20000000000006,60,1,90]),
  'runoff-se':phone682([119.64892266883726,49.16646992455742,1125.0072040017628,158.25333333333356,-28.00000000000005,60,1,86]),
  'road-b-southeast':south,'road-c-south-central':south,
  'lake-west':final,'lake-office-caution':final,'chapter-closing':final,
@@ -61,15 +60,9 @@ export function portraitGuidePair(id,seconds){
  const t=Math.min(1,Math.max(0,(seconds-end+2.2)/2.2));
  return [from,to,t*t*(3-2*t)];
 }
-// These consecutive observations share a visual itinerary. This selects camera
-// continuity only: the dashed evidence, gaps and hydrology remain independent.
-const continuousPortraitRuns=[
- ['chapter-opening','runoff-apron-gap'],
- ['kmz-north-to-crossings','chapter-closing'],
-];
+// Consecutive mobile stops share camera continuity only; evidence gaps stay independent.
 export function followsPortraitItinerary(book,from,to){
  const ids=book.flatMap(r=>r.steps.map(s=>s.id));
  const a=ids.indexOf(from), b=ids.indexOf(to);
- return a>=0&&b>=0&&Math.abs(a-b)===1&&continuousPortraitRuns.some(([start,end])=>
-   Math.min(a,b)>=ids.indexOf(start)&&Math.max(a,b)<=ids.indexOf(end));
+ return a>=0&&b>=0&&Math.abs(a-b)===1;
 }
