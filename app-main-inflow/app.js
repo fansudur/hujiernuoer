@@ -7840,11 +7840,11 @@ async function boot() {
     }
     return null;
   };
-  const tourFetch=optionalGuide('./guided-tours.json?v=105.17.3');
+  const tourFetch=optionalGuide('./guided-tours.json?v=105.18.14');
   const nwNetworkFetch=fetch('./nw-bridge-network-v96.geojson').then(r=>r.ok?r.json():null).catch(()=>null);
   const catchmentScreenFetch=fetch('./catchment-screen-v94.geojson?v=95',{signal:AbortSignal.timeout?.(4000)}).then(r=>r.ok?r.json():null).catch(()=>null);
   const owner75Fetch=optionalGuide('./owner-water-network-v75.geojson?v=75');
- const guideAudioFetch=optionalGuide('./guided-tour-audio/audio-manifest.json?v=105.17.3');
+ const guideAudioFetch=optionalGuide('./guided-tour-audio/audio-manifest.json?v=105.18.14');
   const urlPatch = decodeAtlasUrl(location.search);
   const routeParams=new URLSearchParams(location.search);
   const firstOpen=routeParams.size===0;
@@ -7867,7 +7867,8 @@ async function boot() {
   const f1WaterwayPromise=fetch(new URL('./f1-waterway.geojson?v=67',location.href),{
     signal:AbortSignal.timeout?.(3500)
   }).then(r=>r.ok?r.json():null).catch(()=>null);
-  const wcrossUpstreamPromise=fetch(new URL('./wcross-upstream.geojson?v=33',location.href),{signal:AbortSignal.timeout?.(3500)})
+  const wcrossUpstreamUrl='./wcross-upstream.geojson?v=33';
+  const wcrossUpstreamPromise=fetch(new URL(wcrossUpstreamUrl,location.href),{signal:AbortSignal.timeout?.(3500)})
     .then(r=>r.ok?r.json():null).catch(()=>null);
   const slopeCluePromise=fetch(new URL('./slope-road-clues.geojson?v=48',location.href),{signal:AbortSignal.timeout?.(3500)}).then(r=>r.ok?r.json():null).catch(()=>null);
   const ownerBluePromise=fetch(new URL('./owner-blue-201909.geojson?v=33',location.href),{signal:AbortSignal.timeout?.(3500)})
@@ -8024,13 +8025,15 @@ async function boot() {
     }
   }
   registerF1(await f1WaterwayPromise);
-  const wcrossData=await wcrossUpstreamPromise;
-  if(wcrossData)try {
-    const features=validateWcrossUpstream(wcrossData,provider.analysisById);
-    provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
-    for(const f of features)provider.analysisById.set(f.id,f);
-    state.wcrossUpstream=features;
-  }catch(err){console.warn('地方道路路西专题未载入',err.message);}
+  function registerWcrossUpstream(payload){
+    if(payload)try {
+      const features=validateWcrossUpstream(payload,provider.analysisById);
+      provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
+      for(const f of features)provider.analysisById.set(f.id,f);
+      state.wcrossUpstream=features;
+    }catch(err){console.warn('地方道路路西专题未载入',err.message);}
+  }
+  registerWcrossUpstream(await wcrossUpstreamPromise);
   const ownerBlueData=await ownerBluePromise;
   if(ownerBlueData)try {
     const features=validateOwnerBlue(ownerBlueData,provider.analysisById);
@@ -8195,14 +8198,16 @@ async function boot() {
     const tourDoc=await tourFetch;
     if(tourDoc)try{
       // The main map can start before these companions, but the guide needs their exact evidence IDs.
-      const [seasonal,f1,profiles]=await Promise.all([
+      const [seasonal,f1,profiles,wcross]=await Promise.all([
         state.seasonalNetwork?.length?null:optionalGuide('./seasonal-network.geojson?v=48'),
         state.f1Waterway?.length?null:optionalGuide('./f1-waterway.geojson?v=67'),
         state.mainProfilesReady?null:optionalGuide('./main-lake-profiles.geojson'),
+        state.wcrossUpstream?.length?null:optionalGuide(wcrossUpstreamUrl),
       ]);
       if(seasonal)registerSeasonal(seasonal);
       if(f1)registerF1(f1);
       if(profiles)registerMainProfiles(profiles);
+      if(wcross)registerWcrossUpstream(wcross);
       guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
      for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
       if(f.geometry?.type==='LineString'&&f.id?.startsWith('hjn-v74-'))guideV74Lines.set(f.id,f);
