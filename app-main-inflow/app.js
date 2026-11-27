@@ -1386,8 +1386,8 @@ function updateHeaderPills() {
 }
 
 const ESRI_PUBLIC_ID='esri-public-online';
-let publicEsri=null,publicEsriStarted=false,bridgeEsri=null,bridgeEsriPending=null,bridgeEsriAttempted=false;
-const ESRI_BRIDGE_STOP='runoff-bridge';
+let publicEsri=null,publicEsriStarted=false,bridgeEsri=null,bridgeEsriPending=null,bridgeEsriAttempts=0,bridgeEsriFailed=false;
+const ESRI_BRIDGE_STOP='runoff-bridge', ESRI_BRIDGE_MAX_ATTEMPTS=2;
 function syncEsriBridgeDetail(){
  const eligible=publicEsri&&guidedTour.active&&!guidedTour.observer&&
    guideStep()?.id===ESRI_BRIDGE_STOP&&state.basemap===ESRI_PUBLIC_ID&&!fixedHistory.wanted&&!fixedHistory.active&&map3d&&!map3d.failed;
@@ -1397,16 +1397,16 @@ function syncEsriBridgeDetail(){
    return;
  }
  if(bridgeEsri){map3d.setNativeDetail(bridgeEsri);return;}
- if(bridgeEsriPending||bridgeEsriAttempted)return;
+ if(bridgeEsriPending||bridgeEsriFailed||bridgeEsriAttempts>=ESRI_BRIDGE_MAX_ATTEMPTS)return;
  const active=new AbortController();
  bridgeEsriPending=active;
- bridgeEsriAttempted=true;
+ bridgeEsriAttempts++;
  const signal=AbortSignal.any([active.signal,AbortSignal.timeout(16000)]);
  void loadEsriBasemap(BRIDGE_BOUNDS,signal,BRIDGE_ZOOM).then(scene=>{
    if(bridgeEsriPending!==active){URL.revokeObjectURL(scene.url);return;}
    bridgeEsri={...scene,id:'esri-public-bridge-detail',parentSceneId:ESRI_PUBLIC_ID};
    map3d.setNativeDetail(bridgeEsri);
- }).catch(()=>{/* Base Esri remains visible when close-up imagery fails. */}).finally(()=>{
+ }).catch(()=>{if(bridgeEsriPending===active)bridgeEsriFailed=true;}).finally(()=>{
    if(bridgeEsriPending===active)bridgeEsriPending=null;
  });
 }
