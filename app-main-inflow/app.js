@@ -1,5 +1,5 @@
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,GUIDE_DEFAULT_MEDIA,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
-import { portraitGuidePair, portraitGuideImages } from './guide-portrait-cameras.js?v=105.16';
+import { portraitGuidePair, portraitGuideImages } from './guide-portrait-cameras.js?v=105.17.1';
 import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.15';
 import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers,guideCameraRecord } from './guide-review-policy.js';
 import {pointInGeoGeometry as insideSlopeWater} from './geo-pick.js';
@@ -5601,7 +5601,21 @@ function moveGuidedChapter(direction,{resume=null}={}){
  const phoneEdited=innerWidth<=760&&(portraitGuidePair(previous.id,0)||portraitGuidePair(target.step.id,0));
  const desktopEdited=innerWidth>760&&(desktopRecordedGuidePose(previous.id)||desktopRecordedGuidePose(target.step.id));
  const edited=Boolean(phoneEdited||desktopEdited);
- const overviewBlend=(edited?!trackJoins:direction===1&&(panorama||bridgeTurn))&&!reduced&&!t.manualCamera&&oldPose;
+ const phoneTarget=phoneEdited&&!trackJoins&&!t.manualCamera&&oldPose?phoneRecordedPose(target.step.id,0):null;
+ let phoneCut=false, phoneHold=false;
+ if(phoneTarget){
+   const turn=Math.abs(((phoneTarget.heading-oldPose.heading+540)%360)-180);
+   const tilt=Math.abs(phoneTarget.pitch-oldPose.pitch);
+   const travel=guideDistance([oldPose.lon,oldPose.lat],[phoneTarget.lon,phoneTarget.lat]);
+   const height=Math.abs(phoneTarget.eyeM-oldPose.eyeM);
+   const scale=Math.max(phoneTarget.eyeM,oldPose.eyeM)/Math.max(1,Math.min(phoneTarget.eyeM,oldPose.eyeM));
+   const lens=Math.abs(phoneTarget.directorFov-map3d.camera.fov);
+   const shift=Math.max(...phoneTarget.portraitOffset.map((v,i)=>Math.abs(v-(oldPose.portraitOffset?.[i]??0))));
+   // Distant observations are clearer as cuts than as a fast flyover on a phone.
+   phoneCut=turn>=50||tilt>=30||travel>=1800||(height>=180&&scale>=3.5)||lens>=15||shift>=.27;
+   phoneHold=travel<.01&&turn<.01&&tilt<.01&&height<.01&&lens<.01&&shift<.001;
+ }
+ const overviewBlend=(edited?!trackJoins:direction===1&&(panorama||bridgeTurn))&&!reduced&&!t.manualCamera&&oldPose&&!phoneCut&&!phoneHold;
  const oldView=map3d.camera.view,from=edited&&overviewBlend?{...oldPose,directorFov:map3d.camera.fov,
    portraitOffset:oldView?.enabled?[oldView.offsetX/map3d.width,(oldView.offsetY-(t.portraitPhotoLift||0))/map3d.height]:[0,0]}:overviewBlend;
  holdGuidedTour();
@@ -5610,7 +5624,7 @@ function moveGuidedChapter(direction,{resume=null}={}){
   if(target.route===t.route)prepareTourStep(target.index);
   else setGuidedRoute(target.route,target.index);
  };
- if(!independent&&!overviewBlend){
+ if((!independent&&!overviewBlend&&!phoneCut)||phoneHold){
    commit();
    if(shouldPlay)void playGuidedTour();
    return;
@@ -5641,7 +5655,7 @@ function moveGuidedChapter(direction,{resume=null}={}){
    return;
  }
  const banner=$('#guided-transition-label'), shade=$('#guided-transition-shade');
- const label=previous.id==='road-nw-approach'&&target.step.id==='road-nw-gully'?'切到 03 道路四点全景':'另行定位：'+target.step.title+' · 不连画未证路线';
+ const label=phoneCut&&!independent?'切换观察位：'+target.step.title:previous.id==='road-nw-approach'&&target.step.id==='road-nw-gully'?'切到 03 道路四点全景':'另行定位：'+target.step.title+' · 不连画未证路线';
  banner.textContent=label;
  const h={resume:shouldPlay,commit:0,finish:0};
  t.handoff=h;
