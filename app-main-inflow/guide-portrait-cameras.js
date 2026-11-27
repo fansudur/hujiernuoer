@@ -26,7 +26,6 @@ const revised=Object.freeze(Object.fromEntries(Object.entries({
 }).map(([id,fields])=>[id,phone402(fields)])));
 const shots=Object.freeze(Object.fromEntries(Object.entries({
  'road-nw-approach':[119.67477742759334,49.14300402147253,40.85811513659337,261.4881252409516,-4.7,42,0,121],
- 'road-nw-gully':[119.6961529647348,49.12859693504906,695.1649263606365,306.32,-17.8,53.29027804335074,0,121],
  'kmz-outer-options':[119.68262365680606,49.11793449227682,6394.21583500279,3.74,-65.2,42,-154,113],
  'east-marsh-source':[119.68308173188403,49.12689656368233,4791.963408755842,1.98,-63.4,60,0,122],
  'east-pool-source':[119.68876732502298,49.131258802261165,6044.761750688649,358.46,-72.2,60,-1,120],
@@ -36,6 +35,7 @@ const shots=Object.freeze(Object.fromEntries(Object.entries({
 }).map(([id,fields])=>[id,make(fields)])));
 const shared=Object.freeze({
  'runoff-bridge':bridgeClose,'runoff-cross-gap':bridgeGap,'runoff-east':bridgeEast,
+ 'road-nw-gully':phone402([119.68707801670571,49.117473225705645,5324.050732298052,351.6399999999991,-66.8,42,-158,95]),
  'runoff-apron-gap':crossings,'kmz-north-to-crossings':crossings,
  'runoff-bend-gap':phone682([119.65227214298875,49.158580990083955,417.4774488707431,161.70000000000232,-21.066666666666702,60,1,86]),
  'runoff-field-bands-05':phone402([119.64892266883726,49.16646992455742,1125.0072040017628,168.00666666666643,-32.20000000000006,60,1,90]),
