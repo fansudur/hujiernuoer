@@ -1,5 +1,5 @@
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,GUIDE_DEFAULT_MEDIA,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
-import { portraitGuidePair, portraitGuideImages } from './guide-portrait-cameras.js?v=105.9';
+import { portraitGuidePair, portraitGuideImages } from './guide-portrait-cameras.js?v=105.16';
 import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.15';
 import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers,guideCameraRecord } from './guide-review-policy.js';
 import {pointInGeoGeometry as insideSlopeWater} from './geo-pick.js';

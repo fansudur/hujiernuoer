@@ -1,9 +1,10 @@
-// Phone portrait, owner captures at 393 × 852. Array fields:
+// Phone portrait captures use their original viewport for proportional offsets. Array fields:
 // longitude, latitude, eye height (scene m), heading, pitch, vertical FOV, viewport offset X/Y, outside-DEM datum.
-const make=([lon,lat,eyeM,heading,pitch,directorFov,x,y,guideOriginM])=>Object.freeze({
- lon,lat,eyeM,heading,pitch,directorFov,guideOriginM,portraitOffset:[x/393,y/852],site:'guided',
+const make=([lon,lat,eyeM,heading,pitch,directorFov,x,y,guideOriginM],[width,height]=[393,852])=>Object.freeze({
+ lon,lat,eyeM,heading,pitch,directorFov,guideOriginM,portraitOffset:[x/width,y/height],site:'guided',
 });
-const nw=make([119.68851608079352,49.05446621412164,18830.881424758558,1.54,-69.2,60,0,121,627.8500517646572]);
+const phone402=fields=>make(fields,[402,714]);
+const nw=phone402([119.70765633719252,49.05198001043784,17599.37520680059,1.759999999999991,-69,60,0,101,627.8500517646572]);
 const opening=[
  [0,nw],
  [33.290,make([119.67596072264291,49.08230753544127,11969.765092110576,1.54,-69.2,60,0,121,638.8587932434145])],
@@ -11,10 +12,16 @@ const opening=[
  [57.900,make([119.67654564906853,49.082046036698586,12920.061023010832,1.10,-70.2,60,0,121,642.0470799357589])],
  [69.715,make([119.66598311860844,49.106319598609396,7525.670061462098,1.10,-70.2,60,0,121])],
 ];
-const final=make([119.68311562517891,49.104212128138,15892.868911760357,0,-81.8,60,0,121]);
+const final=phone402([119.69313237959746,49.09631811401552,17573.294610193916,0,-81.8,60,0,101,629.4669231641178]);
+const revised=Object.freeze(Object.fromEntries(Object.entries({
+ 'runoff-upper-slope':[119.53290238574918,49.126654723448645,6850.282546243865,89.5,-40.39999999999993,60,0,127,692.2868445311179],
+ 'runoff-west':[119.57341666280367,49.189833312308714,7391.195763095537,117.7569972666779,-48.78700022025294,42,178,76,680.6422049618777],
+ 'runoff-field-bands-05':[119.6627265242907,49.11352020386618,2314.8427538988713,358.3431226173002,-36.50844190100926,51.41160006979897,-2,117],
+ 'history-200405':[119.70799920598203,49.124235545311485,1143.5758448894926,305.1138062605296,-22.355413210550065,42,0,101],
+ 'road-b-southeast':[119.69227825367915,49.074589951496925,15843.777912169575,.88,-72.6,60,-1,101,641.4769939891013],
+ 'road-c-south-central':[119.7266112443845,49.093427475676506,16968.096219295516,0.4399999999999409,-73.39999999999995,60,-73,176,640.5429527554061],
+}).map(([id,fields])=>[id,phone402(fields)])));
 const shots=Object.freeze(Object.fromEntries(Object.entries({
- 'runoff-upper-slope':[119.56413511322467,49.13689376357284,5550.253841579255,89.5,-44,60,0,151,692.2868445311179],
- 'runoff-west':[119.62037993960529,49.15478481862419,529.2873198444377,108.32,-18.4,42,174,91],
  'runoff-bridge':[119.64772732561758,49.14707809994975,30.937591075151403,109.86,-16.4,60,119,152],
  'runoff-cross-gap':[119.64955369411095,49.149223338872645,46.13156765068095,168.38,-7.8,60,119,152],
  'runoff-east':[119.64372589469582,49.14647581641867,114.39387805633481,86.98505281704445,-17.996077536650162,54,0,121],
@@ -22,7 +29,6 @@ const shots=Object.freeze(Object.fromEntries(Object.entries({
  'runoff-se':[119.65781914515682,49.12887409231208,925.0703365543268,17.82,-29,60,1,108],
  'runoff-apron-gap':[119.64553890467347,49.14046455916113,1515.693371968524,77.5,-52.4,60,-18,108],
  'kmz-north-to-crossings':[119.68464021616346,49.13639773553867,675.5325692401553,280.14,-17.4,54,332,228],
- 'history-200405':[119.68896809677567,49.134243463481425,880,305.1138062605296,-22.355413210550065,42,0,121],
  'road-nw-approach':[119.67477742759334,49.14300402147253,40.85811513659337,261.4881252409516,-4.7,42,0,121],
  'road-nw-gully':[119.6961529647348,49.12859693504906,695.1649263606365,306.32,-17.8,53.29027804335074,0,121],
  'kmz-outer-options':[119.68262365680606,49.11793449227682,6394.21583500279,3.74,-65.2,42,-154,113],
@@ -30,15 +36,22 @@ const shots=Object.freeze(Object.fromEntries(Object.entries({
  'east-pool-source':[119.68876732502298,49.131258802261165,6044.761750688649,358.46,-72.2,60,-1,120],
  'east-connection-check':[119.68294104627321,49.12526400380222,7577.075155765093,.88,-72.6,60,-1,120],
  'runoff-main-entrance-context':[119.67573788037379,49.10985434427851,9626.671267710288,1.98,-72.6,60,-1,120],
- 'road-b-southeast':[119.68309457095484,49.078998203656454,15287.796514567954,.88,-72.6,60,-1,120,641.4769939891013],
- 'road-c-south-central':[119.67923061602538,49.10038336800447,10920.751940145667,.44,-72.2,60,-71,210,640.5429527554061],
  'road-round':[119.64491954434796,49.13235994276293,168.25890175309607,81.0725,-22.6,60,0,121],
  'lake-west':[119.78811723350458,49.13919721010584,8370.27033395979,271.32,-44.2,44.45331808293974,2,120,615.2199480588378],
 }).map(([id,fields])=>[id,make(fields)])));
 export function portraitGuidePair(id,seconds){
  if(['chapter-closing','lake-office-caution'].includes(id))return [final,final,0];
  const sameView=({ 'history-201309':'history-200405','history-202109':'history-200405','history-conditional':'runoff-bend-gap' })[id]??id;
- if(id!=='chapter-opening')return shots[sameView]?[shots[sameView],shots[sameView],0]:null;
+ if(id!=='chapter-opening'){
+   const shot=revised[sameView]??shots[sameView];
+   return shot?[shot,shot,0]:null;
+ }
+ // Keep the opening pose through the full bridge-downstream cue.
+ const firstChange=opening[1][0], glide=2.2;
+ if(seconds<firstChange+glide){
+   const t=Math.max(0,(seconds-firstChange)/glide);
+   return [nw,opening[1][1],t*t*(3-2*t)];
+ }
  const next=opening.findIndex(([end])=>end>seconds);
  if(next<=0){const shot=next===0?nw:opening.at(-1)[1];return [shot,shot,0];}
  const [end,to]=opening[next], [,from]=opening[next-1];
