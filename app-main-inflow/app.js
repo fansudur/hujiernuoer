@@ -8032,7 +8032,7 @@ async function boot() {
   const owner75Fetch=fetch('./owner-water-network-v75.geojson?v=75').then(r=>r.ok?r.json():null).catch(()=>null);
  const voiceManifest=path=>fetch(path).then(r=>r.ok?r.json():null).catch(()=>null);
  const guideAudioFetch=Promise.all([
-   voiceManifest('./guided-tour-audio/audio-manifest.json?v=105.18.21-audio48'),
+   voiceManifest('./guided-tour-audio/audio-manifest.json?v=105.19-zh48'),
    voiceManifest('./guided-tour-audio-en/audio-manifest.json?v=105.19-en1')
  ]);
   const urlPatch = decodeAtlasUrl(location.search);
