@@ -7922,14 +7922,16 @@ async function boot() {
     }
     state.officeEvidenceReady = true;
   }
-  const mainProfilePayload = await mainProfileEvidence;
-  if (mainProfilePayload) {
-    const features = validateMainProfiles(mainProfilePayload, provider.analysisById);
-    provider.analysis = { ...provider.analysis, features: [...provider.analysis.features, ...features] };
-    for (const f of features) provider.analysisById.set(f.id, f);
-    state.mainProfilesReady = features.length;
-    if (!urlPatch.activeProfileId) state.activeProfileId = features[0].id;
+  function registerMainProfiles(mainProfilePayload){
+    if (mainProfilePayload) {
+      const features = validateMainProfiles(mainProfilePayload, provider.analysisById);
+      provider.analysis = { ...provider.analysis, features: [...provider.analysis.features, ...features] };
+      for (const f of features) provider.analysisById.set(f.id, f);
+      state.mainProfilesReady = features.length;
+      if (!urlPatch.activeProfileId) state.activeProfileId = features[0].id;
+    }
   }
+  registerMainProfiles(await mainProfileEvidence);
 
   try {
     const field = validateFieldPhotos(await fieldPhotosPromise, provider.analysisById);
@@ -7979,25 +7981,29 @@ async function boot() {
       // Optional 2026-11-23 bridge/culvert diagnostic lines never block frozen atlas.
     }
   }
-  const seasonalPayload=await seasonalPromise;
-  if (seasonalPayload) {
-    try {
-      const features=validateSeasonalNetwork(seasonalPayload,provider.analysisById);
-      provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
-      for(const f of features) provider.analysisById.set(f.id,f);
-      state.seasonalNetwork=features;
-    } catch(err) { console.warn('季节性线索图层未载入',err.message); }
+  function registerSeasonal(seasonalPayload){
+    if (seasonalPayload) {
+      try {
+        const features=validateSeasonalNetwork(seasonalPayload,provider.analysisById);
+        provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
+        for(const f of features) provider.analysisById.set(f.id,f);
+        state.seasonalNetwork=features;
+      } catch(err) { console.warn('季节性线索图层未载入',err.message); }
+    }
   }
-  const f1WaterwayPayload=await f1WaterwayPromise;
-  if(f1WaterwayPayload){
-    try {
-      const {features,evidence}=validateF1Waterway(f1WaterwayPayload,provider.analysisById);
-      provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
-      for(const f of features)provider.analysisById.set(f.id,f);
-      provider.evidence=[evidence,...provider.evidence];
-      state.f1Waterway=features;
-    }catch(err){console.warn('桥上下游图层未载入',err.message);}
+  registerSeasonal(await seasonalPromise);
+  function registerF1(f1WaterwayPayload){
+    if(f1WaterwayPayload){
+      try {
+        const {features,evidence}=validateF1Waterway(f1WaterwayPayload,provider.analysisById);
+        provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
+        for(const f of features)provider.analysisById.set(f.id,f);
+        provider.evidence=[evidence,...provider.evidence];
+        state.f1Waterway=features;
+      }catch(err){console.warn('桥上下游图层未载入',err.message);}
+    }
   }
+  registerF1(await f1WaterwayPromise);
   const wcrossData=await wcrossUpstreamPromise;
   if(wcrossData)try {
     const features=validateWcrossUpstream(wcrossData,provider.analysisById);
@@ -8168,6 +8174,15 @@ async function boot() {
   const finishGuide=async()=>{
     const tourDoc=await tourFetch;
     if(tourDoc)try{
+      // The main map can start before these companions, but the guide needs their exact evidence IDs.
+      const [seasonal,f1,profiles]=await Promise.all([
+        state.seasonalNetwork?.length?null:optionalGuide('./seasonal-network.geojson?v=48'),
+        state.f1Waterway?.length?null:optionalGuide('./f1-waterway.geojson?v=67'),
+        state.mainProfilesReady?null:optionalGuide('./main-lake-profiles.geojson'),
+      ]);
+      if(seasonal)registerSeasonal(seasonal);
+      if(f1)registerF1(f1);
+      if(profiles)registerMainProfiles(profiles);
       guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
      for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
       if(f.geometry?.type==='LineString'&&f.id?.startsWith('hjn-v74-'))guideV74Lines.set(f.id,f);
