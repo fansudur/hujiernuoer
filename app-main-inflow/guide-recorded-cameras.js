@@ -59,7 +59,7 @@ const desktopShots=Object.freeze({
  'runoff-apron-gap':crossingsDesktop,'kmz-north-to-crossings':crossingsDesktop,
  'history-200405':historyDesktop,'history-201309':historyDesktop,'history-202109':historyDesktop,
  'road-nw-gully':shot(119.68744470117812,49.12790968497338,878.8642348398226,315.78000000000634,-26.399999999999977,41.29027804335074),
- 'lake-office-caution':shot(119.68535373908874,49.11537349293983,5741.559716329042,359.56,-72.2,53.03769766300134),
+ 'lake-west':shot(119.68535373908874,49.11537349293983,5741.559716329042,359.56,-72.2,53.03769766300134),
  'east-marsh-source':desktopPose([119.67741418469713,49.135290515944746,1701.2689173162516,359.12,-37,42,36,233]),
  'east-pool-source':eastPoolDesktop,'east-connection-check':eastPoolDesktop,
  'runoff-main-entrance-context':desktopPose([119.66310178740194,49.10513595411023,4845.043470576619,4.84,-46.6,33.25936225980924]),
