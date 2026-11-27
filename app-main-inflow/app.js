@@ -22,7 +22,7 @@ import {displayClip} from './v81-display-clip.js';
    - Lazy-loaded modern 5m/10m contours & 1933–1980 historical map overlays
    ========================================================================== */
 
-import {configureTourPanels} from './v74-panels.js';
+import {configureTourPanels} from './v74-panels.js?rev=a756b0597232';
 import { HandoffDataProvider } from './data-provider.js';
 import { sampleDemElevation,
   AOI_BOUNDS,
@@ -5149,6 +5149,7 @@ function bindEvents() {
   // Bottom Deck Mode & Expand button
   $$('[data-deck-mode]').forEach(b => {
     b.onclick = () => {
+      if(guidedTour.active)return;
       if(b.dataset.deckMode==='profile'&&state.activeProfileId&&openLinkedProfile(state.activeProfileId,{sample:state.profileCursorIdx<0?null:state.profileCursorIdx}))return;
       if(b.dataset.deckMode!=='time')stopPlay();
       state.bottomTab = b.dataset.deckMode;
@@ -6946,12 +6947,18 @@ const FIELD_BANDS_MEDIA=[
  {src:'./guide-reference/field-bands-2021-04.jpg',title:'2021-04 · 田间深色弯带',caption:'Google Earth · Image © 2026 Maxar Technologies。2021 年 4 月为原文件标记，具体拍摄日未核实。这张影像只用于辨认沟形；颜色深不等于有水，也不能据此确认融雪径流。'},
  ...['2015-07','2021-07'].map((date,i)=>({src:'./guide-reference/field-bands-'+date+'.jpg',title:date+' · 同一处弯折',pairIndex:2-i,caption:'两期完整画幅用于找同一处弯折。日期按原文件标记；色差不能证明沟里有水。'+FIELD_BANDS_CREDIT}))
 ];
+function writeGuideBoardFocus(focus,title){
+ const el=$('#guided-board-focus');
+ const normalize=text=>String(text??'').trim().replace(/\s+/g,' ');
+ el.hidden=!normalize(focus)||normalize(focus)===normalize(title);
+ el.textContent=focus||'';
+}
 function updateOpeningCue(step){
  const cue=guideOpeningCue(step);if(!cue)return;
  const host=$('#guided-director-board'), ids=cue.anchorIds||[], key=String(cue.startMs??cue.at??0);
  if(host.dataset.openingCue===key)return;
  host.dataset.openingCue=key;renderGuideInset(step);setGuideVisiblePath(step);prepareGuideNavMap(step);
- $('#guided-board-focus').textContent=cue.focus||step.director.focus;
+ writeGuideBoardFocus(cue.focus||step.director.focus,guidedTour.observer?.fieldMark?.title||step.title);
  $('#guided-board-note').textContent=cue.note||step.director.note;
  $('#guided-opening-line').textContent=cue.text||'';$('#guided-opening-line').hidden=false;
  $$('#guided-map-inset [data-anchor-id]').forEach(n=>{
@@ -6968,11 +6975,11 @@ function directorEvidenceBoard(step,point=0){
  const d=step.director,root=$('#guided-director-board'),mb=$('#guided-board-media');
  if(!d){root.hidden=true;return;}
  root.hidden=false;
- const mark=step.detail?.fieldMarks?.[point-1], key=step.id+':'+point;
+ const mark=step.detail?.fieldMarks?.[point-1], title=guidedTour.observer?.fieldMark?.title||step.title, key=step.id+':'+point+':'+title;
  if(root.dataset.cue===key)return;
  root.dataset.cue=key;delete root.dataset.openingCue;
  $('#guided-board-kind').textContent=d.kind;
- $('#guided-board-focus').textContent=mark?mark.title:d.focus;
+ writeGuideBoardFocus(mark?mark.title:d.focus,title);
  $('#guided-board-note').textContent=mark?'讲解：由东向西，4 → 1；保留原编号。相机标记不是涵洞口。':d.note;
  mb.replaceChildren();
  const rows=[];

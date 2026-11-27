@@ -2000,6 +2000,10 @@ html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock 
   fill: rgba(251, 249, 244, 0.84) !important;
   stroke: rgba(24, 22, 18, 0.12) !important;
 }
+/* Keep map category colors on the symbols, not on light label cards. */
+html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock [data-v84-cartography] [data-inset-label] > .v84-label {
+  fill: var(--rm-ink-1) !important;
+}
 html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock [data-v84-cartography] .v84-stem {
   stroke: rgba(24, 22, 18, 0.34);
 }
@@ -2481,10 +2485,6 @@ html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip 
 }
 html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock .guided-reference-title button {
   color: #5A5750 !important;
-}
-html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock .guided-reference-title button[aria-pressed="true"] {
-  background: #181715 !important;
-  color: #FAF8F3 !important;
 }
 html[data-theme="light"] #observatory.guided-tour-active #guided-photo-preview .v83-photo-frame {
   box-shadow: 0 8px 22px -10px rgba(24, 22, 18, 0.22), inset 0 0 0 1px rgba(24, 22, 18, 0.10);
@@ -3972,9 +3972,16 @@ html #observatory.guided-tour-active #guided-reference-dock .guided-reference-ti
   position: relative;
   z-index: 1;
 }
+/* Readable with or without the glider under the label during a switch. */
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title > .rm-has-glider > .rm-glider {
+  background: var(--rm-ice-soft);
+}
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title :is(#guide-map-overview, #guide-map-local)[aria-pressed="true"] {
+  background: var(--rm-ice-soft) !important;
+  color: var(--rm-ice-ink) !important;
+}
 html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title > .rm-has-glider :is(#guide-map-overview, #guide-map-local)[aria-pressed="true"] {
   background: transparent !important;
-  color: var(--rm-inv-ink) !important;
 }
 
 /* Guided Tour Cinematic Entrances */
@@ -5297,7 +5304,7 @@ html #observatory.guided-tour-active #guided-photo-preview.v74-custom-panel #rm-
   }
 }
 
-/* Keep geographical labels and the camera reset legible on aerial imagery. */
+/* Keep geographical labels legible on aerial imagery. */
 html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-pin {
   background: rgba(250, 248, 242, 0.96) !important;
   color: #29251E !important;
@@ -5310,14 +5317,4 @@ html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-
 }
 html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-pin[style*="--guide-label-tone"] {
   border-color: color-mix(in srgb, var(--guide-label-tone) 55%, #34302A) !important;
-}
-html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip #guided-camera-follow.deck-btn[aria-pressed="false"] {
-  background: #F4E4C8 !important;
-  border-color: #AA8051 !important;
-  color: #57371D !important;
-  box-shadow: none !important;
-}
-html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip #guided-camera-follow.deck-btn[aria-pressed="false"]:hover {
-  background: #EED8B3 !important;
-  color: #57371D !important;
 }

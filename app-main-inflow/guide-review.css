@@ -74,7 +74,7 @@ html[data-theme="light"] #guided-reference-dock #guided-map-inset:not([hidden]){
 html[data-theme="light"] #guided-reference-dock [data-inset-label]>rect{fill:var(--guide-reference-label)}
 html[data-theme="light"] #guided-reference-dock :is(.v84-label,[data-fixed-north]){fill:var(--guide-reference-ink)}
 html[data-theme="light"] #guided-reference-dock .v84-stem{stroke:var(--guide-reference-stem)}
-html[data-theme="light"] #guided-reference-dock #guided-four-inset text{fill:var(--guide-reference-ink)}
+html[data-theme="light"] #guided-reference-dock #guided-four-inset [data-num]:not(.active)>text{fill:#defcff}
 html[data-theme="light"] #guided-reference-dock #guided-location-card strong,
 html[data-theme="light"] #guided-reference-dock #guided-reference-credit>summary,
 html[data-theme="light"] #guided-reference-dock .v82-zoom button,
@@ -143,12 +143,15 @@ html[data-theme="light"] #guided-reference-dock [data-current-evidence]{
 
 #guide-v74-measurements .guide-measure-stem{stroke:#fff7e3;stroke-width:1.1;stroke-opacity:.83}
 
-html[data-theme="light"] #observatory.guided-tour-active #guided-camera-follow[aria-pressed="false"] {
+html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip #guided-camera-follow.deck-btn[aria-pressed="false"] {
  background:#89320d!important;border-color:#6f2608!important;color:#fff8ef!important;
  box-shadow:0 0 0 2px #89320d35;
 }
-html[data-theme="light"] #observatory.guided-tour-active #guided-camera-follow[aria-pressed="false"]:hover{
+html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip #guided-camera-follow.deck-btn[aria-pressed="false"]:hover{
  background:#702708!important;
 }
 
 /* Desktop-only authoring control; keep the compact phone guide unchanged. */
+
+/* The shared chart deck is profile-only during the guided tour. */
+#observatory.guided-tour-active #chart-deck .mode-switch{display:none!important}
