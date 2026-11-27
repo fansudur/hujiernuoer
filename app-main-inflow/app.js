@@ -1,5 +1,5 @@
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,GUIDE_DEFAULT_MEDIA,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
-import { portraitGuidePair, portraitGuideImages } from './guide-portrait-cameras.js?v=105.17.3';
+import { portraitGuidePair, portraitGuideImages, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.17.4';
 import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.17.3';
 import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers,guideCameraRecord } from './guide-review-policy.js';
 import {pointInGeoGeometry as insideSlopeWater} from './geo-pick.js';
@@ -673,6 +673,51 @@ function getActiveSoutheastSnapshot() {
 const OWNER75_LAYER='owner-water-network-v75';
 const GUIDE_MAP_NO_FEATURES=Object.freeze([]);
 const visualClipCache=new WeakMap();
+const terrainFootprintCache=new WeakMap();
+// The source model extends west of the draped image and usable DEM. Clip its
+// presentation only; keep the source polygon and all areas/analysis unchanged.
+function guideTerrainFeatures(features,dem){
+ if(!guidedTour.active||!dem?.bounds_wgs84||!features?.length)return features;
+ let cache=terrainFootprintCache.get(dem);
+ if(!cache){cache=new WeakMap();terrainFootprintCache.set(dem,cache);}
+ if(cache.has(features))return cache.get(features);
+ const [w,s,e,n]=dem.bounds_wgs84;
+ const edges=[[0,w,1],[0,e,-1],[1,s,1],[1,n,-1]];
+ const clipRing=ring=>{
+   let points=ring.slice(0,-1);
+   for(const [axis,edge,sign] of edges){
+     const next=[];
+     let a=points.at(-1);
+     for(const b of points){
+       const inside=p=>(p[axis]-edge)*sign>=0;
+       if(inside(a)!==inside(b)){
+         const t=(edge-a[axis])/(b[axis]-a[axis]), p=a.map((v,i)=>i===axis?edge:v+(b[i]-v)*t);
+         next.push(p);
+       }
+       if(inside(b))next.push(b);
+       a=b;
+     }
+     points=next;
+   }
+   return points.length>=3?[...points,points[0]]:null;
+ };
+ let changed=false;
+ const result=features.flatMap(f=>{
+   if(f.properties?.layer!==NW_NETWORK||f.properties.group!=='up'||!f.geometry.type.includes('Polygon'))return [f];
+   const multi=f.geometry.type==='MultiPolygon', polys=multi?f.geometry.coordinates:[f.geometry.coordinates];
+   if(polys.every(poly=>poly.every(ring=>ring.every(([x,y])=>x>=w&&x<=e&&y>=s&&y<=n))))return [f];
+   changed=true;
+   const visible=polys.flatMap(([outer,...holes])=>{
+     const r=clipRing(outer);
+     return r?[[r,...holes.map(clipRing).filter(Boolean)]]:[];
+   });
+   const {bbox,...feature}=f;
+   return visible.length?[{...feature,geometry:{...f.geometry,coordinates:multi?visible:visible[0]}}]:[];
+ });
+ const out=changed?result:features;
+ cache.set(features,out);
+ return out;
+}
 function visualClipGeometry(id,fallback){
  return Object.hasOwn(displayClip,id)?displayClip[id]:fallback;
 }
@@ -963,9 +1008,10 @@ function syncMapsState() {
     Object.assign(mapStateSent, patch);
   }
   const { analysisFeatures: _2d, ...patch3d } = patch;
-  if (last3dFeatures !== features3d) {
-    patch3d.analysisFeatures = visualClipFeatures(features3d);
-    last3dFeatures = features3d;
+  const terrainFeatures=guideTerrainFeatures(visualClipFeatures(features3d),provider.dem);
+  if (last3dFeatures !== terrainFeatures) {
+    patch3d.analysisFeatures = terrainFeatures;
+    last3dFeatures = terrainFeatures;
   }
   if (Object.keys(patch3d).length) map3d?.setState(patch3d);
   document.querySelector('#observatory')?.setAttribute('data-view-preset',state.scenePreset);
@@ -5599,9 +5645,11 @@ function moveGuidedChapter(direction,{resume=null}={}){
    GUIDE_ROAD_ENDPOINTS[previous.id]?.[1]===target.step.id;
  const phoneEdited=innerWidth<=760&&(portraitGuidePair(previous.id,0)||portraitGuidePair(target.step.id,0));
  const desktopEdited=innerWidth>760&&(desktopRecordedGuidePose(previous.id)||desktopRecordedGuidePose(target.step.id));
- const edited=Boolean(phoneEdited||desktopEdited);
+ const phoneItinerary=innerWidth<=760&&followsPortraitItinerary(t.book,previous.id,target.step.id);
+ const edited=Boolean(phoneEdited||desktopEdited||phoneItinerary);
+ const seamlessRoad=innerWidth<=760&&direction===1&&trackJoins;
  const phoneTarget=phoneEdited&&!trackJoins&&!t.manualCamera&&oldPose?phoneRecordedPose(target.step.id,0):null;
- let phoneCut=false, phoneHold=false;
+ let phoneCut=false, phoneHold=false, phoneDuration=1550;
  if(phoneTarget){
    const turn=Math.abs(((phoneTarget.heading-oldPose.heading+540)%360)-180);
    const tilt=Math.abs(phoneTarget.pitch-oldPose.pitch);
@@ -5611,19 +5659,21 @@ function moveGuidedChapter(direction,{resume=null}={}){
    const lens=Math.abs(phoneTarget.directorFov-map3d.camera.fov);
    const shift=Math.max(...phoneTarget.portraitOffset.map((v,i)=>Math.abs(v-(oldPose.portraitOffset?.[i]??0))));
    // Distant observations are clearer as cuts than as a fast flyover on a phone.
-   phoneCut=turn>=50||tilt>=30||travel>=1800||(height>=180&&scale>=3.5)||lens>=15||shift>=.27;
+   phoneCut=!phoneItinerary&&(turn>=50||tilt>=30||travel>=1800||(height>=180&&scale>=3.5)||lens>=15||shift>=.27);
+   if(phoneItinerary)phoneDuration=Math.min(4500,Math.max(1550,1250+turn*18,1300+tilt*33,1150+travel*.27,1200+Math.log(Math.max(1,scale))*510,lens*110));
    phoneHold=travel<.01&&turn<.01&&tilt<.01&&height<.01&&lens<.01&&shift<.001;
  }
- const overviewBlend=(edited?!trackJoins:direction===1&&(panorama||bridgeTurn))&&!reduced&&!t.manualCamera&&oldPose&&!phoneCut&&!phoneHold;
+ const overviewBlend=(edited?(!trackJoins||(phoneItinerary&&direction<0)):direction===1&&(panorama||bridgeTurn))&&!reduced&&!t.manualCamera&&oldPose&&!phoneCut&&!phoneHold;
+ if(phoneItinerary&&!phoneTarget&&!seamlessRoad)phoneDuration=3400;
  const oldView=map3d.camera.view,from=edited&&overviewBlend?{...oldPose,directorFov:map3d.camera.fov,
    portraitOffset:oldView?.enabled?[oldView.offsetX/map3d.width,(oldView.offsetY-(t.portraitPhotoLift||0))/map3d.height]:[0,0]}:overviewBlend;
  holdGuidedTour();
- if(overviewBlend)t.poseHandoff={from,to:target.step.id,elapsed:0,resume:shouldPlay,captured:edited,duration:edited?1550:850};
+ if(overviewBlend)t.poseHandoff={from,to:target.step.id,elapsed:0,resume:shouldPlay,captured:edited,portraitItinerary:phoneItinerary,duration:edited?phoneDuration:850};
  const commit=()=>{
   if(target.route===t.route)prepareTourStep(target.index);
   else setGuidedRoute(target.route,target.index);
  };
- if((!independent&&!overviewBlend&&!phoneCut)||phoneHold){
+ if((!independent&&!overviewBlend&&!phoneCut)||phoneHold||seamlessRoad){
    commit();
    if(shouldPlay)void playGuidedTour();
    return;
@@ -7026,6 +7076,16 @@ function blendPortraitPose(a,b,t){
  q.portraitOffset=[0,1].map(i=>(a.portraitOffset?.[i]??0)*(1-t)+(b.portraitOffset?.[i]??0)*t);
  return q;
 }
+// Interpolate altitude in the scene's datum, staying just above the real
+// terrain. Ease in/out smoothly and take the shorter heading arc at north.
+function blendPortraitHandoff(a,b,t){
+ const p=blendPortraitPose(a,b,t);
+ if(t<=0||t>=1)return p;
+ const ground=map3d.hasWalkGround(p.lon,p.lat)?guideGround(p.lon,p.lat):null;
+ if(Number.isFinite(ground)&&Number.isFinite(p.guideOriginM))
+   p.eyeM=Math.max(p.eyeM,(ground-p.guideOriginM)*map3d.exag+8);
+ return p;
+}
 function phoneRecordedPose(id,seconds){
  const pair=portraitGuidePair(id,seconds);
  return pair?blendPortraitPose(...pair):null;
@@ -7190,7 +7250,9 @@ function showTourPose(step,fraction){
     glide.last=now;
     const u=Math.min(1,glide.elapsed/(glide.duration||850)), f=easeGuide(u);
     if(u===1)guidedTour.poseHandoff=null;
-    if(glide.destination)camera=blendPortraitPose(glide.from,glide.destination,f);
+    if(glide.destination)camera=glide.portraitItinerary
+      ?blendPortraitHandoff(glide.from,glide.destination,u*u*u*(10+u*(-15+6*u)))
+      :blendPortraitPose(glide.from,glide.destination,f);
     else if(u<1){
       const from=glide.from;
       camera=blendGuidePose(from,camera,f);

@@ -16,7 +16,8 @@ const opening=[
 const final=phone682([119.69628966619837,49.09990755158544,15470.826078620266,0.22000000000002728,-81.73333333333333,60,0,96,629.4669231641178]);
 const bridgeClose=phone402([119.64983796036259,49.14942970957515,69.15414456053796,175.56666666666592,-10.933333333333314,60,122,128]);
 const crossings=make([119.69301782552321,49.14193714532206,1499.6433943879567,283.2799999999909,-36.39999999999984,60,-18,108]);
-const bridge=phone682([119.65032464502121,49.16383688137899,602.99266476127,161.33999999999924,-19.33333333333333,60,122,122]);
+const bridgeGap=make([119.64983796036259,49.14942970957515,69.15414456053796,173.8066666666657,-9.533333333333317,60,119,153]);
+const bridgeEast=make([119.64674207218796,49.16696744104409,655.3410700227222,159.5066666666637,-17.933333333333294,60,119,153]);
 const south=phone682([119.69699282880582,49.07327614051553,15852.97113038894,0.88,-72.6,60,-1,96,641.4769939891013]);
 const revised=Object.freeze(Object.fromEntries(Object.entries({
  'runoff-upper-slope':[119.53290238574918,49.126654723448645,6850.282546243865,89.5,-40.39999999999993,60,0,127,692.2868445311179],
@@ -35,11 +36,11 @@ const shots=Object.freeze(Object.fromEntries(Object.entries({
  'road-round':[119.64491954434796,49.13235994276293,168.25890175309607,81.0725,-22.6,60,0,121],
 }).map(([id,fields])=>[id,make(fields)])));
 const shared=Object.freeze({
- 'runoff-bridge':bridgeClose,'runoff-cross-gap':bridge,'runoff-east':bridge,
+ 'runoff-bridge':bridgeClose,'runoff-cross-gap':bridgeGap,'runoff-east':bridgeEast,
  'runoff-apron-gap':crossings,'kmz-north-to-crossings':crossings,
  'runoff-bend-gap':phone682([119.65227214298875,49.158580990083955,417.4774488707431,161.70000000000232,-21.066666666666702,60,1,86]),
  'runoff-se':phone682([119.64892266883726,49.16646992455742,1125.0072040017628,158.25333333333356,-28.00000000000005,60,1,86]),
- 'road-b-southeast':south,'road-c-approach':south,'road-c-south-central':south,
+ 'road-b-southeast':south,'road-c-south-central':south,
  'lake-west':final,'lake-office-caution':final,'chapter-closing':final,
 });
 export function portraitGuidePair(id,seconds){
@@ -59,6 +60,18 @@ export function portraitGuidePair(id,seconds){
  const [end,to]=opening[next], [,from]=opening[next-1];
  const t=Math.min(1,Math.max(0,(seconds-end+2.2)/2.2));
  return [from,to,t*t*(3-2*t)];
+}
+// These consecutive observations share a visual itinerary. This selects camera
+// continuity only: the dashed evidence, gaps and hydrology remain independent.
+const continuousPortraitRuns=[
+ ['chapter-opening','runoff-se'],
+ ['kmz-north-to-crossings','chapter-closing'],
+];
+export function followsPortraitItinerary(book,from,to){
+ const ids=book.flatMap(r=>r.steps.map(s=>s.id));
+ const a=ids.indexOf(from), b=ids.indexOf(to);
+ return a>=0&&b>=0&&Math.abs(a-b)===1&&continuousPortraitRuns.some(([start,end])=>
+   Math.min(a,b)>=ids.indexOf(start)&&Math.max(a,b)<=ids.indexOf(end));
 }
 export const portraitGuideImages=Object.freeze({
  'east-pool-source':'ge-root-202107-2','east-connection-check':'ge-root-202209-2',
