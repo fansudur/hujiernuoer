@@ -1,3 +1,4 @@
+import { ESRI_BASEMAP_ID, ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=1';
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
 import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.17.4';
 import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.17.3';
@@ -448,6 +449,7 @@ function syncUrl() {
     if(state.waterwayBranch)p.set('branch',state.waterwayBranch);
     if(state.waterwayItem)p.set('node',state.waterwayItem);
   }
+  if(p.get('bm')===ESRI_BASEMAP_ID)p.delete('bm');
   if(fixedHistory.active?.id)p.set('hs',fixedHistory.active.id);
   if(state.timelineCalendarFull)p.set('calendar','full');
   if(state.scenePreset!=='home')p.set('view',state.scenePreset);
@@ -1331,7 +1333,8 @@ function updateHeaderPills() {
   const marker=$('#imagery-only-month');
   const east=showsEastPoolTimeline()?eastPoolTimelineFrame(date,provider.analysisById,EAST_POOL_TIMELINE):null;
   if(marker){marker.hidden=!(east||note);marker.textContent=east?.label||note;marker.title=[note,east?'东池所在 N1 固定窗，含窗内分离水斑；不计入双湖面积。':''].filter(Boolean).join('｜');}
-  const bmShort = BASEMAP_LABELS[state.basemap]
+  const esriActive=!fixedHistory.active&&state.basemap===ESRI_BASEMAP_ID;
+  const bmShort = (esriActive?'Esri 高清参考':null) || BASEMAP_LABELS[state.basemap]
     || provider.getImagerySpec(state.basemap)?.time_utc?.slice(0, 10)
     || state.basemap;
   const sync = state.timelineBasemapStatus;
@@ -1355,9 +1358,9 @@ function updateHeaderPills() {
   const credit=$('#fixed-history-credit');
   if (credit) {
     const active=fixedHistory.active || (sync?.kind==='google-earth' ? sync.scene:null);
-    credit.hidden=!active;
-    $('#guided-reference-credit').hidden=!active;
-    credit.textContent=active ? (isBroadHistoryScene(active)?'大范围画幅 · 显示图谱范围内部分 · ':'局部画幅 · ')+active.attribution+' · '+active.zone+' · '+(active.sourceDate||active.sourceLabel||'拍摄日期未核')+'；不是月度水面。':'';
+    credit.hidden=!(active||esriActive);
+    $('#guided-reference-credit').hidden=!(active||esriActive);
+    credit.textContent=active ? (isBroadHistoryScene(active)?'大范围画幅 · 显示图谱范围内部分 · ':'局部画幅 · ')+active.attribution+' · '+active.zone+' · '+(active.sourceDate||active.sourceLabel||'拍摄日期未核')+'；不是月度水面。':esriActive?ESRI_ATTRIBUTION+' · 在线参考，拍摄日随覆盖源变化，不是月度水面。':'';
   }
   const sourceDetail=$('#ge-attribution-detail');
   if(sourceDetail){
@@ -1380,6 +1383,67 @@ function updateHeaderPills() {
   }
 }
 
+let esriPending=null, esriScene=null, esriPrevious=null, esriRequestVersion=0;
+function retireEsriScene(scene){
+ if(!scene)return;
+ map2d?.evictFixedImage(scene.url);
+ map3d?.evictFixedImage(scene.url);
+ URL.revokeObjectURL(scene.url);
+}
+function wireEsriOnline(){
+ const status=$('#esri-online-status'), input=$('#esri-online-key'), load=$('#esri-online-load'), clear=$('#esri-online-clear');
+ load.onclick=async()=>{
+   if(esriPending||guidedTour.active)return;
+   const key=input.value.trim();
+   if(!key){status.textContent='请输入有 Basemaps 权限的 API Key，不要输入账号密码。';return;}
+   const original=state.basemap, originalHistory=fixedHistory.active?.id;
+   const controller=new AbortController(), version=++esriRequestVersion;
+   esriPending=controller;load.disabled=true;
+   status.textContent='正在从 Esri 读取图谱范围内的瓦片…';
+   let scene=null;
+   try{
+     scene=await loadEsriBasemap(provider.dem?.bounds_wgs84,key,AbortSignal.any([controller.signal,AbortSignal.timeout(45000)]));
+     if(version!==esriRequestVersion||guidedTour.active||state.basemap!==original||fixedHistory.active?.id!==originalHistory){
+       retireEsriScene(scene);
+       status.textContent='你的地图模式或底图已变化，未替换当前画面。';return;
+     }
+     stopPlay();
+     const old=esriScene;
+     if(state.basemap!==ESRI_BASEMAP_ID)esriPrevious={basemap:state.basemap,history:fixedHistory.wanted?fixedHistory.active?.id:null,sync:state.timelineSceneSync};
+     fixedHistory.disable?.();
+     esriScene=scene;
+     registeredImagery={...registeredImagery,[scene.id]:scene};
+     map2d?.setState({imageryById:registeredImagery});map3d?.setState({imageryById:registeredImagery});
+     state.timelineSceneSync=false;
+     setBasemap(scene.id);
+     retireEsriScene(old);clear.hidden=false;input.value='';
+     status.textContent='Esri 已载入。恢复原底图后可继续跟随时间。';
+   }catch(err){
+     if(scene&&scene!==esriScene)retireEsriScene(scene);
+     status.textContent=err.name==='TimeoutError'?'Esri 请求超时，原底图未变。':err.name==='TypeError'?'浏览器无法连接 Esri；检查网络与服务跨域权限。':err.message;
+   }finally{
+     if(esriPending===controller)esriPending=null;
+     load.disabled=false;
+   }
+ };
+ clear.onclick=()=>{
+   ++esriRequestVersion;esriPending?.abort();
+   const previous=esriPrevious;
+   if(state.basemap===ESRI_BASEMAP_ID){
+     state.timelineSceneSync=previous?.sync??true;
+     setBasemap(previous?.basemap??'sentinel2-2026-08-08');
+     if(previous?.history)void fixedHistory.openScene(previous.history);
+   }
+   const old=esriScene;
+   esriScene=null;esriPrevious=null;
+   if(old){
+     const {[ESRI_BASEMAP_ID]:removed,...rest}=registeredImagery;registeredImagery=rest;
+     map2d?.setState({imageryById:rest});map3d?.setState({imageryById:rest});
+     retireEsriScene(old);
+   }
+   input.value='';status.textContent='已退出 Esri 在线参考。';clear.hidden=true;
+ };
+}
 function setBasemap(bm) {
   stopPlay();
   timelineImageRequest?.abort();
@@ -7340,7 +7404,10 @@ function closeGuidedTour({lost=false,stay3d=false}={}){
  for(const n of ['guided-map-pin'])document.getElementById(n).hidden=true;
  setGuidedDateControls(false);
  const saved=t.saved;
- restoreGuidedImagery(saved);syncMapsState();
+ if(saved.esriReturn&&saved.esriReturn===esriScene){
+   state.basemap=ESRI_BASEMAP_ID;state.timelineBasemapStatus=null;
+ }
+ restoreGuidedImagery(saved);updateHeaderPills();syncMapsState();
  try{map3d.leaveTerrainWalk();}catch{}
  $('#guided-tour-panel').hidden=true;
  $('#guided-tour-nav-strip').hidden=true;
@@ -7368,7 +7435,7 @@ function openGuidedTour(trigger,stepId){
  if(t.active||!t.book.length)return;
  if(walkMode.active)closeTerrainWalk();
  if(!map3d||map3d.failed){$('#guided-tour-unavailable').hidden=false;return;}
- t.saved={view3d:state.view3d,focus2d:{...map2d.getCameraFocus(),pixelsPerMeter:map2d.getCameraScale()},fixed:fixedHistory.active,fixedWanted:fixedHistory.wanted,
+ t.saved={esriReturn:state.basemap===ESRI_BASEMAP_ID?esriScene:null,view3d:state.view3d,focus2d:{...map2d.getCameraFocus(),pixelsPerMeter:map2d.getCameraScale()},fixed:fixedHistory.active,fixedWanted:fixedHistory.wanted,
   fixedZone:fixedHistory.preferredZone,fixedNote:$('#fixed-history-note')?.textContent||'',trigger};
  if(state.studioOpen)closeStudioDrawer();
  const tools=$('#export-menu');if(tools){tools.hidden=true;$('#btn-export-menu')?.setAttribute('aria-expanded','false');}
@@ -7978,6 +8045,7 @@ async function boot() {
 
   registeredImagery=imageryById;
   wireFixedHistory();
+  wireEsriOnline();
 
   const onCursor = ({ lon, lat, elev }) => {
     const zTxt = elev !== null ? `GLO-30 ${elev.toFixed(1)}m` : '超出 DEM 范围';

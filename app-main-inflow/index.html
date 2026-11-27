@@ -480,6 +480,15 @@
           <img alt="Google Earth 原图下缘版权署名" style="max-width:100%;height:auto" loading="lazy">
         </details>
       </div>
+      <details class="tech-details" id="esri-online-controls">
+        <summary>Esri 高清参考 · 在线卫星图</summary>
+        <p class="bm-hint-note">通过 Esri 在线加载，始终是参考底图，不作为历史月份证据。使用你的 Basemaps API Key，仅保留在这个页面内。</p>
+        <label for="esri-online-key">ArcGIS 底图 API Key</label>
+        <input id="esri-online-key" type="password" autocomplete="off" spellcheck="false" maxlength="4096">
+        <button type="button" id="esri-online-load" class="deck-btn">载入在线底图</button>
+        <button type="button" id="esri-online-clear" class="deck-btn" hidden>恢复原底图</button>
+        <small id="esri-online-status" class="bm-hint-note" role="status"></small>
+      </details>
       <div class="pop-subhead" id="basemap-chronology-title">卫星影像时间线</div>
       <small class="bm-hint-note">Landsat、Sentinel-2、Google Earth 历史影像按年份同列；从早到晚。</small>
       <div id="basemap-chronology" class="bm-chronology" role="region" aria-labelledby="basemap-chronology-title" tabindex="0"></div>
@@ -637,7 +646,7 @@
   </dialog>
 
   <script src="../hujiernuoer-handoff-v2/vendor/three-r160.1.min.js"></script>
-  <script type="module" src="app.js?v=105.17.5"></script>
+  <script type="module" src="app.js?v=105.18.0"></script>
   <script type="module" src="v74-panels.js"></script>
   <script type="module" src="v93-chapter1.js?v=105.17.5"></script>
 <dialog id="landscape-dialog" aria-labelledby="landscape-title">
