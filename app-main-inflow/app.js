@@ -1,4 +1,5 @@
-import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=4';
+import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=5';
+import {createEsriDetailController} from './esri-view-detail.mjs?v=1';
 import {ATLAS_BOUNDS,BRIDGE_BOUNDS,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=1';
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
 import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.17.4';
@@ -60,8 +61,8 @@ import {
 } from './charts.js';
 import { validateFixedHistory, loadHistoryImage, exactGoogleEarthMonth, broadHistoryMonths, isBroadHistoryScene, historySceneMonth, historyMenuEntries } from './fixed-history.js';
 import { normalizeGuidedTours, sampleGuidedTour, softenedTravelProgress, buildCinematicHeightProfile } from './guided-tours.js';
-import { AtlasMap2D } from './map-2d.js?v=105.7';
-import { AtlasMap3D } from './map-3d.js?v=105.15';
+import { AtlasMap2D } from './map-2d.js?v=105.18.6';
+import { AtlasMap3D } from './map-3d.js?v=105.18.6';
 import { WALK_ROAD_ID, WALK_ROAD_PHOTO, WALK_OFFICE_ID, WALK_EYE_M, FREE_FLY_ENTRY_M, WALK_GUIDE_SPEED_MPS, prepareWalkRoad, sampleWalkRoad, beijingSun, adjustFreeLook, stepFreePose, WALK_SPEED_LEVELS, WALK_SPEED_DEFAULT, FLY_SPEED_DEFAULT, walkSpeedMaxLevel, walkHorizontalMps, walkVerticalMps } from './terrain-walk.js';
 import { ANALYSIS_PALETTE, VIEW_SCOPES, PAINT_BACKGROUND_ROADS } from './atlas-visual-policy.js';
 
@@ -1020,7 +1021,7 @@ function syncMapsState() {
   document.querySelector('#observatory')?.setAttribute('data-view-preset',state.scenePreset);
   syncMapStage();
   updateWalkLayerNote();
-  syncEsriBridgeDetail();
+  syncPublicEsriDetail();
 }
 
 function resizeActiveMap() {
@@ -1386,8 +1387,40 @@ function updateHeaderPills() {
 }
 
 const ESRI_PUBLIC_ID='esri-public-online';
+let publicEsriAdaptive=false;
 let publicEsri=null,publicEsriStarted=false,bridgeEsri=null,bridgeEsriPending=null,bridgeEsriAttempts=0,bridgeEsriFailed=false;
 const ESRI_BRIDGE_STOP='runoff-bridge', ESRI_BRIDGE_MAX_ATTEMPTS=2;
+const adaptiveEsriDetail=createEsriDetailController({
+ context:()=>{
+   if(!publicEsriAdaptive||!publicEsri||state.basemap!==ESRI_PUBLIC_ID||fixedHistory.wanted||fixedHistory.active||
+      walkMode.active||guidedTour.observer||monthPlayback.running||document.hidden)return null;
+   const use3d=is3DActive(), map=use3d?map3d:map2d;
+   if(!map?.active||!map.width||!map.height||(use3d&&!map.terrainMesh))return null;
+   const scope=(use3d?'3d:':'2d:')+(guidedTour.active?guideStep()?.id||'guide':'explore');
+   // Raycast only when settled. The projection includes off-axis phone and guide framing.
+   const stamp=use3d
+     ? [map.width,map.height,...map.camera.matrixWorld.elements,...map.camera.projectionMatrix.elements].map(x=>Math.round(x*1e7)).join(',')
+     : [map.width,map.height,map.cam.lon,map.cam.lat,map.cam.ppm].join(',');
+   return {scope,stamp,width:map.width,height:map.height,
+     pixelRatio:use3d?map.renderer.getPixelRatio():Math.min(devicePixelRatio||1,2),
+     ground:use3d?(x,y)=>map.groundAtScreenPx(x,y):(x,y)=>[map.xToLon(x),map.yToLat(y)],
+     bridge:guideStep()?.id===ESRI_BRIDGE_STOP&&guidedTour.active?true:'focus'};
+ },
+ load:(plan,signal)=>loadEsriBasemap(plan.bounds,signal,plan.zoom,plan.tile),
+ show:detail=>{
+   const spec=detail?{...detail,parentSceneId:ESRI_PUBLIC_ID}:null;
+   const in3d=is3DActive();
+   map2d?.setNativeDetail(in3d?null:spec);
+   map3d?.setNativeDetail(in3d?spec:null);
+ }
+});
+function syncPublicEsriDetail(){
+ if(publicEsriAdaptive)adaptiveEsriDetail.sync();
+ else syncEsriBridgeDetail();
+}
+function syncAdaptiveEsriDetail(){if(publicEsriAdaptive)adaptiveEsriDetail.sync();}
+document.addEventListener('visibilitychange',syncAdaptiveEsriDetail);
+
 function syncEsriBridgeDetail(){
  const eligible=publicEsri&&guidedTour.active&&!guidedTour.observer&&
    guideStep()?.id===ESRI_BRIDGE_STOP&&state.basemap===ESRI_PUBLIC_ID&&!fixedHistory.wanted&&!fixedHistory.active&&map3d&&!map3d.failed;
@@ -1412,6 +1445,7 @@ function syncEsriBridgeDetail(){
 }
 window.addEventListener('pagehide',e=>{
  if(e.persisted)return;
+ adaptiveEsriDetail.dispose();
  bridgeEsriPending?.abort();
  if(bridgeEsri)URL.revokeObjectURL(bridgeEsri.url);
  if(publicEsri)URL.revokeObjectURL(publicEsri.url);
@@ -1422,7 +1456,10 @@ async function startPublicEsri(){
  try{
   const probe=await fetch('/atlas-esri/progressive-ready',{signal:AbortSignal.timeout(3000),credentials:'omit',redirect:'error'});
   if(!probe.ok||await probe.text()!=='atlas-esri-v2')return;
+  const adaptiveAvailable=fetch('/atlas-esri/adaptive-ready',{signal:AbortSignal.timeout(3000),credentials:'omit',redirect:'error'})
+    .then(async r=>r.ok&&await r.text()==='atlas-esri-v3').catch(()=>false);
   const draft=await loadEsriBasemap(ATLAS_BOUNDS,AbortSignal.timeout(20000),OVERVIEW_ZOOM);
+  publicEsriAdaptive=await adaptiveAvailable;
   publicEsri={...draft,id:ESRI_PUBLIC_ID};
   registeredImagery={...registeredImagery,[ESRI_PUBLIC_ID]:publicEsri};
   map2d?.setState({imageryById:registeredImagery});map3d?.setState({imageryById:registeredImagery});
@@ -1586,6 +1623,7 @@ function stopPlay() {
   playIntent++;
   startingPlay=false;
   monthPlayback.stop();
+  syncAdaptiveEsriDetail();
 }
 
 async function togglePlay() {
@@ -7331,7 +7369,7 @@ function prepareTourStep(i){
  updateHeaderPills();
  state.timelineBasemapStatus=null;
  if(fixedHistory.wanted)fixedHistory.disable();
- map3d?.setNativeDetail(null);
+ if(!publicEsriAdaptive)map3d?.setNativeDetail(null);
  readTourHUD();
  syncMapsState();
 }
@@ -8068,12 +8106,14 @@ async function boot() {
   map2d = new AtlasMap2D($('#map-2d-canvas'), {
     onCursorMove: onCursor,
     onCameraChange: onCam,
+    onViewChange: syncAdaptiveEsriDetail,
     onSelectFeature: onSelect,
   });
 
   map3d = new AtlasMap3D($('#map-3d-stage'), $('#map-3d-labels'), {
     onCursorMove: onCursor,
     onCameraChange: onCam,
+    onViewChange: syncAdaptiveEsriDetail,
     onSelectFeature: onSelect,
     onNorthChange: deg => setCompassAngle(deg),
     onContextLost: info => handleWebGLContextLost(info),
@@ -8260,6 +8300,8 @@ async function boot() {
     catchmentScreen:{ mainPartitionVisible:Boolean(mapStateSent.visibleLayers?.has('main-catchments')||mapStateSent.spokenFeatureIds?.size&&guidedTour.active&&currentGuideCatchment()), layers:[...(guidedTour.active?(guidedTour.extraLayers||[]):state.visibleLayers)].filter(k=>CATCHMENT_SCREEN.has(k)),featureCount:provider.analysis?.features.filter(f=>CATCHMENT_SCREEN.has(f.properties?.layer)&&f.properties.layer!==NW_NETWORK).length||0,networkCount:nwNetworkFeatures.length,networkDrawn:(mapStateSent.visibleLayers?.has(NW_NETWORK)?(guidedTour.active?nwForGuide(guideStep()):nwNetworkFeatures):[]).map(f=>f.id) },
     guideDisplay:{catchment:guidedTour.active?currentGuideCatchment():null,profile:guidedTour.active&&$('#chart-deck').dataset.tourProfile?{id:$('#chart-deck').dataset.tourProfile,samples:getProfileData($('#chart-deck').dataset.tourProfile)?.samples?.length||0,gaps:getProfileData($('#chart-deck').dataset.tourProfile)?.gaps?.length||0}:null,contourInterval:guidedTour.contourInterval||10,layerIds:[...(guidedTour.extraLayers||[])]},
     timelineBasemap: {enabled:state.timelineSceneSync, priority:state.timelineImageryPriority, broadMonths:knownBroadMonths(), status:state.timelineBasemapStatus},
+    esriViewportDetail:map2d?._nativeDetail?.image.naturalWidth?map2d._nativeDetail.spec.key:
+      map3d?._nativeDetails?.find(item=>item.texture&&item.spec.key)?.spec.key??null,
     esriBridgeDetail:Boolean(map3d?._nativeDetails?.some(item=>item.spec.id==='esri-public-bridge-detail'&&item.texture)),
     waterErrors: state.monthLoadErrors.length,
     camera2d: map2d?.getCameraFocus(),

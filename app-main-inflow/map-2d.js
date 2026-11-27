@@ -314,6 +314,17 @@ export class AtlasMap2D {
     return this.cam.lat - (y - this.height * 0.5) / (METERS_PER_DEG_LAT * this.cam.ppm);
   }
 
+  setNativeDetail(spec) {
+    if(this._nativeDetail?.spec.id===spec?.id)return;
+    this._nativeDetail=spec?{spec,image:new Image()}:null;
+    const item=this._nativeDetail;
+    if(item){
+      item.image.onload=()=>{if(this._nativeDetail===item)this._invalidate();};
+      item.image.src=spec.url;
+    }
+    this._invalidate();
+  }
+
   getCameraFocus() {
     const spanM = Math.min(this.width, this.height) / Math.max(1e-5, this.cam.ppm);
     return { lon: this.cam.lon, lat: this.cam.lat, spanKm: spanM / 1000 };
@@ -436,6 +447,7 @@ export class AtlasMap2D {
     const px = Math.round(best * this.cam.ppm);
     const label = best >= 1000 ? `${best / 1000} km` : `${best} m`;
     this.cb.onCameraChange({ px, label, focus: this.getCameraFocus() });
+    this.cb.onViewChange?.();
   }
 
   _queueCursor(px, py) {
@@ -1357,6 +1369,14 @@ export class AtlasMap2D {
       } else if (this._terrainRaster) {
         ctx.drawImage(this._terrainRaster, x0, y0, rw, rh);
       }
+    }
+
+    const detail=this._nativeDetail;
+    if(ready&&detail?.spec.parentSceneId===this.state.basemap&&detail.image.naturalWidth){
+      const [dw,ds,de,dn]=detail.spec.bounds_wgs84;
+      const x=this.lonToX(dw),y=this.latToY(dn);
+      ctx.imageSmoothingEnabled=true;
+      ctx.drawImage(detail.image,x,y,this.lonToX(de)-x,this.latToY(ds)-y);
     }
 
     // Subtle AOI frame boundary & graticule

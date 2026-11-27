@@ -603,6 +603,7 @@ export class AtlasMap3D {
     const specs=(Array.isArray(input)?input:input?[input]:[]).slice(0,2);
     const old=this._nativeDetails||[];
     if(old.length===specs.length&&old.every((x,i)=>x.spec.id===specs[i].id))return;
+    if(!this.renderer||this.failed)return;
     const T=window.THREE, limit= Math.min(this.renderer.capabilities.maxTextureSize,innerWidth<=760?2560:8192);
     this._nativeDetails=specs.map(spec=>old.find(i=>i.spec.id===spec.id)||{spec,texture:null,loading:false});
     for(const i of old)if(!this._nativeDetails.includes(i))i.texture?.dispose();
@@ -1243,23 +1244,21 @@ export class AtlasMap3D {
     }
   }
 
+  groundAtScreenPx(px, py) {
+    if(!this.terrainMesh||!this.width||!this.height)return null;
+    const T=window.THREE;
+    const ndc=new T.Vector2(2*px/this.width-1,1-2*py/this.height);
+    const ray=new T.Raycaster();
+    ray.setFromCamera(ndc,this.camera);
+    const hit=ray.intersectObject(this.terrainMesh,false)[0];
+    return hit?localKmToLonLat(hit.point.x,hit.point.z,this.state.dem?.bounds_wgs84||AOI_BOUNDS):null;
+  }
+
   _pick3DAt(px, py) {
-    const THREE = window.THREE;
     const visible = this.state.analysisFeatures.filter(f => !this.state.hiddenFeatureIds?.has(f.id)&&(this.state.visibleLayers.has(f.properties?.layer)||this.state.scopeFeatureIds?.has(f.id)));
     const selId = this.state.selectedFeatureId;
 
-    // Raycast against terrain mesh for exact ground (lon, lat) used by polygon ring+hole hit-testing
-    let groundLonLat = null;
-    if (this.terrainMesh) {
-      const ndc = new THREE.Vector2((px / this.width) * 2 - 1, -(py / this.height) * 2 + 1);
-      const ray = new THREE.Raycaster();
-      ray.setFromCamera(ndc, this.camera);
-      const hits = ray.intersectObject(this.terrainMesh, false);
-      if (hits.length) {
-        const pt = hits[0].point;
-        groundLonLat = localKmToLonLat(pt.x, pt.z, this.state.dem?.bounds_wgs84 || AOI_BOUNDS);
-      }
-    }
+    const groundLonLat = this.groundAtScreenPx(px, py);
 
     // Shared exact geometry picker (same ring+hole & segment-distance logic as 2D Canvas)
     const hit=pickFeatureUnified({
@@ -1503,6 +1502,7 @@ export class AtlasMap3D {
         return;
       }
       this._updateLabels();
+      this.cb.onViewChange?.();
     }
     this._flushHover();
     if (this._flyAnim || dampingMoving) this._invalidate();

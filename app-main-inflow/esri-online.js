@@ -1,15 +1,15 @@
 // On-demand ArcGIS Imagery Standard. No imagery, token, or generated image is persisted.
-import {mercatorX,mercatorY} from './esri-atlas-windows.mjs?v=1';
+import {mercatorX,mercatorY,tileWindow} from './esri-atlas-windows.mjs?v=2';
 export const ESRI_ATTRIBUTION='Esri, Vantor, Earthstar Geographics, and the GIS User Community';
 const MAX_TILES=220, CONCURRENCY=8;
-export async function loadEsriBasemap(bounds,signal,zoom){
+export async function loadEsriBasemap(bounds,signal,zoom,plannedWindow){
  const [west,south,east,north]=bounds||[];
  if(![west,south,east,north].every(Number.isFinite)||west>=east||south>=north||Math.abs(north)>85||Math.abs(south)>85)throw new Error('图谱范围尚未载入。');
  const renderSize=256;
  const scale=2**zoom*renderSize;
  const x0=mercatorX(west,scale),x1=mercatorX(east,scale);
  const y0=mercatorY(north,scale),y1=mercatorY(south,scale);
- const left=Math.floor(x0/renderSize),right=Math.ceil(x1/renderSize)-1,top=Math.floor(y0/renderSize),bottom=Math.ceil(y1/renderSize)-1;
+ const {left,right,top,bottom}=plannedWindow??tileWindow(bounds,zoom);
  const jobs=[];
  for(let y=top;y<=bottom;y++)for(let x=left;x<=right;x++)jobs.push([x,y]);
  if(!jobs.length||jobs.length>MAX_TILES)throw new Error('当前图谱超出在线底图的预览范围。');
@@ -25,7 +25,7 @@ export async function loadEsriBasemap(bounds,signal,zoom){
     const [x,y]=jobs[cursor++];
     const url='/atlas-esri/tile/'+zoom+'/'+y+'/'+x;
     const r=await fetch(url,{credentials:'omit',redirect:'error',signal:requestSignal});
-    if(!r.ok)throw Error('Esri 参考图暂不可用。');
+    if(!r.ok)throw Object.assign(Error('Esri 参考图暂不可用。'),{status:r.status});
     const bitmap=await createImageBitmap(await r.blob());
     try{layer.drawImage(bitmap,(x-left)*renderSize,(y-top)*renderSize,renderSize,renderSize);}
     finally{bitmap.close();}
