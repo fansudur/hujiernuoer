@@ -1,5 +1,5 @@
 // Pick tiles for the settled camera, using the actual CSS-pixel ground footprint.
-import {ATLAS_BOUNDS,BRIDGE_BOUNDS,BRIDGE_ZOOM,DETAIL_ZOOMS,mercatorX,mercatorY,tileWindow} from './esri-atlas-windows.mjs?v=2';
+import {ATLAS_BOUNDS,BRIDGE_BOUNDS,BRIDGE_ZOOM,COMPACT_OVERVIEW_ZOOM,OVERVIEW_ZOOM,DETAIL_ZOOMS,mercatorX,mercatorY,tileWindow} from './esri-atlas-windows.mjs?v=3';
 
 export const DETAIL_TILE_LIMIT=32;
 const MAX_REQUESTS=240, MAX_SCENES=5, SETTLE_MS=550;
@@ -8,7 +8,14 @@ const valid=b=>b[0]<b[2]&&b[1]<b[3];
 const tileLat=(y,z)=>Math.atan(Math.sinh(Math.PI*(1-2*y/2**z)))*180/Math.PI;
 const tileLon=(x,z)=>360*x/2**z-180;
 
-export function planEsriDetail({width,height,ground,pixelRatio=1,bridge=false}){
+// Match the overview to physical render pixels, not to the device label.
+export const constrainedConnection=connection=>Boolean(connection?.saveData||['slow-2g','2g'].includes(connection?.effectiveType));
+export function overviewZoom({width,pixelRatio=1,connection}){
+ if(constrainedConnection(connection))return COMPACT_OVERVIEW_ZOOM;
+ return Number.isFinite(width)&&width>0&&width*pixelRatio<=1000?COMPACT_OVERVIEW_ZOOM:OVERVIEW_ZOOM;
+}
+
+export function planEsriDetail({width,height,ground,pixelRatio=1,baseZoom=OVERVIEW_ZOOM,saveData=false,bridge=false}){
  if(width<1||height<1)return null;
  const points=[], steps=[];
  const grid=Array.from({length:5},(_,i)=>Array.from({length:5},(_,j)=>{
@@ -27,14 +34,16 @@ export function planEsriDetail({width,height,ground,pixelRatio=1,bridge=false}){
  }
  if(!steps.length)return null; // a view with mostly sky has no reliable scale
  steps.sort((a,b)=>a-b);
- const density=Math.max(1,Math.min(2,pixelRatio));
+ const density=Math.max(.5,Math.min(saveData?1:2,pixelRatio));
  const projectedZoom=Math.round(Math.log2(density/(256*steps[Math.floor(steps.length*.30)])));
  const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
  const w=Math.min(...xs),e=Math.max(...xs),s=Math.min(...ys),n=Math.max(...ys);
  const footprint=[w-(e-w)*.04,s-(n-s)*.04,e+(e-w)*.04,n+(n-s)*.04];
  const midpoint=[(w+e)/2,(s+n)/2];
  const inBridge=midpoint[0]>=BRIDGE_BOUNDS[0]&&midpoint[0]<=BRIDGE_BOUNDS[2]&&midpoint[1]>=BRIDGE_BOUNDS[1]&&midpoint[1]<=BRIDGE_BOUNDS[3];
- const allowed=bridge===true||(bridge==='focus'&&inBridge)?[BRIDGE_ZOOM,...DETAIL_ZOOMS]:DETAIL_ZOOMS;
+ const finer=[...DETAIL_ZOOMS,OVERVIEW_ZOOM].filter(z=>z>baseZoom);
+ const allowed=bridge===true||(bridge==='focus'&&inBridge)?[BRIDGE_ZOOM,...finer]:finer;
+ const tileLimit=saveData?16:DETAIL_TILE_LIMIT;
  for(const zoom of allowed){
   if(zoom>projectedZoom)continue;
   const area=zoom===BRIDGE_ZOOM?BRIDGE_BOUNDS:ATLAS_BOUNDS;
@@ -42,7 +51,7 @@ export function planEsriDetail({width,height,ground,pixelRatio=1,bridge=false}){
   if(!valid(candidate))continue;
   const tile=tileWindow(candidate,zoom);
   const count=(tile.right-tile.left+1)*(tile.bottom-tile.top+1);
-  if(count<1||count>DETAIL_TILE_LIMIT||Math.max(tile.right-tile.left,tile.bottom-tile.top)>=12)continue;
+  if(count<1||count>tileLimit||Math.max(tile.right-tile.left,tile.bottom-tile.top)>=12)continue;
   const bounds=clip([tileLon(tile.left,zoom),tileLat(tile.bottom+1,zoom),tileLon(tile.right+1,zoom),tileLat(tile.top,zoom)],area);
   return {zoom,count,bounds,key:[zoom,tile.left,tile.top,tile.right,tile.bottom].join('/'),tile};
  }

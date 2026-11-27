@@ -1,6 +1,6 @@
-import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=5';
-import {createEsriDetailController} from './esri-view-detail.mjs?v=1';
-import {ATLAS_BOUNDS,BRIDGE_BOUNDS,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=1';
+import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=6';
+import {constrainedConnection,createEsriDetailController,overviewZoom} from './esri-view-detail.mjs?v=2';
+import {ATLAS_BOUNDS,BRIDGE_BOUNDS,COMPACT_OVERVIEW_ZOOM,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=3';
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
 import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.17.4';
 import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.17.3';
@@ -1390,19 +1390,24 @@ const ESRI_PUBLIC_ID='esri-public-online';
 let publicEsriAdaptive=false;
 let publicEsri=null,publicEsriStarted=false,bridgeEsri=null,bridgeEsriPending=null,bridgeEsriAttempts=0,bridgeEsriFailed=false;
 const ESRI_BRIDGE_STOP='runoff-bridge', ESRI_BRIDGE_MAX_ATTEMPTS=2;
+function esriRenderMetrics(){
+ const use3d=is3DActive(), map=use3d?map3d:map2d;
+ return {use3d,map,pixelRatio:use3d?map.renderer.getPixelRatio():(map?.dpr||1)};
+}
 const adaptiveEsriDetail=createEsriDetailController({
  context:()=>{
    if(!publicEsriAdaptive||!publicEsri||state.basemap!==ESRI_PUBLIC_ID||fixedHistory.wanted||fixedHistory.active||
       walkMode.active||guidedTour.observer||monthPlayback.running||document.hidden)return null;
-   const use3d=is3DActive(), map=use3d?map3d:map2d;
+   const {use3d,map,pixelRatio}=esriRenderMetrics();
    if(!map?.active||!map.width||!map.height||(use3d&&!map.terrainMesh))return null;
    const scope=(use3d?'3d:':'2d:')+(guidedTour.active?guideStep()?.id||'guide':'explore');
    // Raycast only when settled. The projection includes off-axis phone and guide framing.
    const stamp=use3d
      ? [map.width,map.height,...map.camera.matrixWorld.elements,...map.camera.projectionMatrix.elements].map(x=>Math.round(x*1e7)).join(',')
      : [map.width,map.height,map.cam.lon,map.cam.lat,map.cam.ppm].join(',');
-   return {scope,stamp,width:map.width,height:map.height,
-     pixelRatio:use3d?map.renderer.getPixelRatio():Math.min(devicePixelRatio||1,2),
+   const saveData=constrainedConnection(navigator.connection);
+   return {scope,stamp:[stamp,pixelRatio,saveData].join(':'),width:map.width,height:map.height,
+     pixelRatio,baseZoom:publicEsri.zoom,saveData,
      ground:use3d?(x,y)=>map.groundAtScreenPx(x,y):(x,y)=>[map.xToLon(x),map.yToLat(y)],
      bridge:guideStep()?.id===ESRI_BRIDGE_STOP&&guidedTour.active?true:'focus'};
  },
@@ -1420,6 +1425,7 @@ function syncPublicEsriDetail(){
 }
 function syncAdaptiveEsriDetail(){if(publicEsriAdaptive)adaptiveEsriDetail.sync();}
 document.addEventListener('visibilitychange',syncAdaptiveEsriDetail);
+navigator.connection?.addEventListener?.('change',syncAdaptiveEsriDetail);
 
 function syncEsriBridgeDetail(){
  const eligible=publicEsri&&guidedTour.active&&!guidedTour.observer&&
@@ -1456,11 +1462,15 @@ async function startPublicEsri(){
  try{
   const probe=await fetch('/atlas-esri/progressive-ready',{signal:AbortSignal.timeout(3000),credentials:'omit',redirect:'error'});
   if(!probe.ok||await probe.text()!=='atlas-esri-v2')return;
-  const adaptiveAvailable=fetch('/atlas-esri/adaptive-ready',{signal:AbortSignal.timeout(3000),credentials:'omit',redirect:'error'})
+  // Keep old Workers compatible and use one readiness round trip on current versions.
+  const compactSupported=probe.headers.get('X-Atlas-Compact-Overview')===String(COMPACT_OVERVIEW_ZOOM);
+  const adaptiveAvailable=compactSupported?Promise.resolve(true):fetch('/atlas-esri/adaptive-ready',{signal:AbortSignal.timeout(3000),credentials:'omit',redirect:'error'})
     .then(async r=>r.ok&&await r.text()==='atlas-esri-v3').catch(()=>false);
-  const draft=await loadEsriBasemap(ATLAS_BOUNDS,AbortSignal.timeout(20000),OVERVIEW_ZOOM);
+  const {map,pixelRatio}=esriRenderMetrics();
+  const zoom=compactSupported?overviewZoom({width:map?.width,pixelRatio,connection:navigator.connection}):OVERVIEW_ZOOM;
+  const draft=await loadEsriBasemap(ATLAS_BOUNDS,AbortSignal.timeout(20000),zoom);
   publicEsriAdaptive=await adaptiveAvailable;
-  publicEsri={...draft,id:ESRI_PUBLIC_ID};
+  publicEsri={...draft,id:ESRI_PUBLIC_ID,zoom};
   registeredImagery={...registeredImagery,[ESRI_PUBLIC_ID]:publicEsri};
   map2d?.setState({imageryById:registeredImagery});map3d?.setState({imageryById:registeredImagery});
   if(guidedTour.active&&!guidedTour.observer&&state.basemap===PUBLIC_GUIDE_BASEMAP){
@@ -8300,6 +8310,7 @@ async function boot() {
     catchmentScreen:{ mainPartitionVisible:Boolean(mapStateSent.visibleLayers?.has('main-catchments')||mapStateSent.spokenFeatureIds?.size&&guidedTour.active&&currentGuideCatchment()), layers:[...(guidedTour.active?(guidedTour.extraLayers||[]):state.visibleLayers)].filter(k=>CATCHMENT_SCREEN.has(k)),featureCount:provider.analysis?.features.filter(f=>CATCHMENT_SCREEN.has(f.properties?.layer)&&f.properties.layer!==NW_NETWORK).length||0,networkCount:nwNetworkFeatures.length,networkDrawn:(mapStateSent.visibleLayers?.has(NW_NETWORK)?(guidedTour.active?nwForGuide(guideStep()):nwNetworkFeatures):[]).map(f=>f.id) },
     guideDisplay:{catchment:guidedTour.active?currentGuideCatchment():null,profile:guidedTour.active&&$('#chart-deck').dataset.tourProfile?{id:$('#chart-deck').dataset.tourProfile,samples:getProfileData($('#chart-deck').dataset.tourProfile)?.samples?.length||0,gaps:getProfileData($('#chart-deck').dataset.tourProfile)?.gaps?.length||0}:null,contourInterval:guidedTour.contourInterval||10,layerIds:[...(guidedTour.extraLayers||[])]},
     timelineBasemap: {enabled:state.timelineSceneSync, priority:state.timelineImageryPriority, broadMonths:knownBroadMonths(), status:state.timelineBasemapStatus},
+    esriOverviewZoom:publicEsri?.zoom??null,
     esriViewportDetail:map2d?._nativeDetail?.image.naturalWidth?map2d._nativeDetail.spec.key:
       map3d?._nativeDetails?.find(item=>item.texture&&item.spec.key)?.spec.key??null,
     esriBridgeDetail:Boolean(map3d?._nativeDetails?.some(item=>item.spec.id==='esri-public-bridge-detail'&&item.texture)),

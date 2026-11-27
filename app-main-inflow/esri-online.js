@@ -1,5 +1,5 @@
 // On-demand ArcGIS Imagery Standard. No imagery, token, or generated image is persisted.
-import {mercatorX,mercatorY,tileWindow} from './esri-atlas-windows.mjs?v=2';
+import {mercatorX,mercatorY,tileWindow} from './esri-atlas-windows.mjs?v=3';
 export const ESRI_ATTRIBUTION='Esri, Vantor, Earthstar Geographics, and the GIS User Community';
 const MAX_TILES=220, CONCURRENCY=8;
 export async function loadEsriBasemap(bounds,signal,zoom,plannedWindow){
