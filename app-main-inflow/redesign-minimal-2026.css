@@ -1,0 +1,5298 @@
+/* ==========================================================================
+   app-main-inflow/redesign-minimal-2026.css
+   Plan A — 2026 Modern Minimalist Spatial Exhibition Redesign
+   Master highest-priority override layer loaded last in index.html <head>.
+   - Warm Basalt Dark palette (#090A0C void, rgba(16,17,20,0.72) optical glass)
+   - Ivory White (#F4F1EA), Warm Gray (#9A9892), Misty Ice Cyan (#74B8DC),
+     and restrained Champagne Sand Gold (#D4AF6A)
+   - Invisible optical borders + top specular hairline + diffused spatial shadow
+   - Architectural / gallery editorial typography & generous breathing room
+   - Capsule segmented controls with sliding indicator & spring-damped motion
+   - Strict tablet (761px-1179px) left/right panel mutual exclusion
+   - Guaranteed >=44px mobile touch targets without occluding key tour stops
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Master Design Tokens (Dark: Warm Basalt | Light: Museum Alabaster Paper)
+   -------------------------------------------------------------------------- */
+:root,
+html[data-theme="dark"] {
+  /* Warm Basalt Surfaces — Airy Translucent Optical Glass */
+  --rm-void: #090A0C;
+  --rm-glass: rgba(14, 15, 18, 0.56);
+  --rm-glass-deep: rgba(12, 13, 16, 0.66);
+  --rm-glass-solid: #111216;
+  --rm-glass-ghost: rgba(244, 241, 234, 0.05);
+  --rm-glass-hover: rgba(244, 241, 234, 0.095);
+  --rm-glass-active: rgba(244, 241, 234, 0.14);
+
+  /* Optical Edge & Specular Depth */
+  --rm-border: rgba(255, 255, 255, 0.075);
+  --rm-border-med: rgba(255, 255, 255, 0.125);
+  --rm-border-strong: rgba(255, 255, 255, 0.18);
+  --rm-specular: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --rm-specular-soft: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --rm-shadow-float: 0 18px 46px -14px rgba(0, 0, 0, 0.50), 0 4px 16px -4px rgba(0, 0, 0, 0.26);
+  --rm-shadow-pop: 0 26px 64px -16px rgba(0, 0, 0, 0.62), 0 6px 20px -6px rgba(0, 0, 0, 0.32);
+  --rm-blur: blur(28px) saturate(148%);
+  --rm-blur-deep: blur(32px) saturate(152%);
+
+  /* Warm Mineral Ink */
+  --rm-ink-1: #F4F1EA;
+  --rm-ink-2: #C9C6BE;
+  --rm-ink-3: #9A9892;
+  --rm-ink-4: #706E68;
+  --rm-inv-ink: #090A0C;
+
+  /* Dual Restrained Accents ONLY */
+  --rm-ice: #74B8DC;
+  --rm-ice-ink: #A7D5EC;
+  --rm-ice-soft: rgba(116, 184, 220, 0.14);
+  --rm-ice-border: rgba(116, 184, 220, 0.34);
+
+  --rm-gold: #D4AF6A;
+  --rm-gold-ink: #E7CC96;
+  --rm-gold-soft: rgba(212, 175, 106, 0.13);
+  --rm-gold-border: rgba(212, 175, 106, 0.34);
+
+  /* Motion */
+  --rm-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --rm-dur-fast: 150ms;
+  --rm-dur-med: 260ms;
+  --rm-dur-slow: 380ms;
+
+  /* Override Legacy Global Tokens (styles.css & v93-chapter1.css) */
+  --bg-void: var(--rm-void);
+  --surface-1: var(--rm-glass);
+  --surface-2: var(--rm-glass-deep);
+  --surface-3: var(--rm-glass-solid);
+  --surface-subtle: var(--rm-glass-ghost);
+  --surface-hover: var(--rm-glass-hover);
+  --surface-active: var(--rm-glass-active);
+  --glass-1: var(--rm-glass);
+  --glass-2: var(--rm-glass-deep);
+  --glass-3: var(--rm-glass-solid);
+  --panel-inset: var(--rm-glass-ghost);
+  --glass-hover: var(--rm-glass-hover);
+  --glass-active: var(--rm-glass-active);
+
+  --hairline: var(--rm-border);
+  --hairline-med: rgba(255, 255, 255, 0.085);
+  --hairline-strong: rgba(255, 255, 255, 0.16);
+  --border-subtle: var(--rm-border);
+  --border-med: var(--rm-border-med);
+  --border-strong: var(--rm-border-strong);
+  --highlight-top: var(--rm-specular);
+
+  --ink-1: var(--rm-ink-1);
+  --ink-2: var(--rm-ink-2);
+  --ink-3: var(--rm-ink-3);
+  --inv-ink: var(--rm-inv-ink);
+
+  --accent: var(--rm-ice);
+  --accent-ink: var(--rm-ice-ink);
+  --accent-soft: var(--rm-ice-soft);
+  --accent-border: var(--rm-ice-border);
+
+  --hist: var(--rm-gold);
+  --hist-soft: var(--rm-gold-soft);
+  --hist-border: var(--rm-gold-border);
+
+  --select-bg: rgba(18, 19, 23, 0.92);
+  --deck-body-bg: rgba(11, 12, 15, 0.38);
+
+  --chart-grid: rgba(244, 241, 234, 0.08);
+  --chart-axis: rgba(244, 241, 234, 0.18);
+  --chart-ink: #9A9892;
+  --chart-muted: #706E68;
+  --chart-zero-bg: #0E0F12;
+  --prof-glo: #74B8DC;
+  --prof-aw: #D4AF6A;
+
+  --shadow-float: var(--rm-shadow-float);
+  --shadow-pop: var(--rm-shadow-pop);
+  --blur: var(--rm-blur);
+  --ease-out: var(--rm-spring);
+  --dur-1: var(--rm-dur-fast);
+  --dur-2: var(--rm-dur-med);
+  --dur-3: var(--rm-dur-slow);
+  --radius-lg: 16px;
+  --radius-md: 11px;
+  --radius-sm: 8px;
+
+  /* Override v93 tokens into Warm Basalt */
+  --v93-bg-deep: var(--rm-glass);
+  --v93-bg-elevated: var(--rm-glass-deep);
+  --v93-bg-soft: rgba(244, 241, 234, 0.045);
+  --v93-border: var(--rm-border);
+  --v93-border-strong: rgba(255, 255, 255, 0.085);
+  --v93-ink: var(--rm-ink-1);
+  --v93-ink-body: var(--rm-ink-2);
+  --v93-ink-muted: var(--rm-ink-3);
+  --v93-accent-gold: var(--rm-gold);
+  --v93-accent-gold-bg: var(--rm-gold-soft);
+  --v93-ev-field: #DFB164;
+  --v93-ev-observed: #4DC4A6;
+  --v93-ev-model: #A89CE6;
+  --v93-ev-gap: #E8E4DA;
+  --v93-ev-history: #DFB164;
+  --v93-shadow: var(--rm-shadow-pop), var(--rm-specular);
+  --v93-display: var(--v93-sans);
+  --v93-serif: var(--v93-sans);
+  --v93-sans: "Inter", "SF Pro Display", "PingFang SC", "Noto Sans SC", "HarmonyOS Sans SC", "Microsoft YaHei UI", system-ui, sans-serif;
+  --font-sans: var(--v93-sans);
+  --font-mono: "JetBrains Mono", "SFMono-Regular", "Cascadia Mono", ui-monospace, Consolas, monospace;
+}
+
+html[data-theme="light"] {
+  --rm-void: #ECE8DF;
+  --rm-glass: rgba(251, 249, 244, 0.66);
+  --rm-glass-deep: rgba(253, 251, 247, 0.78);
+  --rm-glass-solid: #F7F4EC;
+  --rm-glass-ghost: rgba(24, 22, 18, 0.04);
+  --rm-glass-hover: rgba(24, 22, 18, 0.075);
+  --rm-glass-active: rgba(24, 22, 18, 0.12);
+
+  --rm-border: rgba(24, 22, 18, 0.08);
+  --rm-border-med: rgba(24, 22, 18, 0.13);
+  --rm-border-strong: rgba(24, 22, 18, 0.20);
+  --rm-specular: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  --rm-specular-soft: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  --rm-shadow-float: 0 14px 36px -12px rgba(24, 22, 18, 0.14), 0 3px 10px -4px rgba(24, 22, 18, 0.08);
+  --rm-shadow-pop: 0 22px 52px -14px rgba(24, 22, 18, 0.18), 0 6px 18px -6px rgba(24, 22, 18, 0.09);
+
+  --rm-ink-1: #181715;
+  --rm-ink-2: #4A4843;
+  --rm-ink-3: #6F6C65;
+  --rm-ink-4: #8E8B83;
+  --rm-inv-ink: #FAF8F3;
+
+  --rm-ice: #2A78A3;
+  --rm-ice-ink: #1C5D82;
+  --rm-ice-soft: rgba(42, 120, 163, 0.10);
+  --rm-ice-border: rgba(42, 120, 163, 0.30);
+
+  --rm-gold: #A77D30;
+  --rm-gold-ink: #805D1B;
+  --rm-gold-soft: rgba(167, 125, 48, 0.11);
+  --rm-gold-border: rgba(167, 125, 48, 0.30);
+
+  --bg-void: var(--rm-void);
+  --surface-1: var(--rm-glass);
+  --surface-2: var(--rm-glass-deep);
+  --surface-3: var(--rm-glass-solid);
+  --surface-subtle: var(--rm-glass-ghost);
+  --surface-hover: var(--rm-glass-hover);
+  --surface-active: var(--rm-glass-active);
+  --hairline: var(--rm-border);
+  --hairline-med: var(--rm-border-med);
+  --hairline-strong: var(--rm-border-strong);
+  --highlight-top: var(--rm-specular);
+  --ink-1: var(--rm-ink-1);
+  --ink-2: var(--rm-ink-2);
+  --ink-3: var(--rm-ink-3);
+  --inv-ink: var(--rm-inv-ink);
+  --accent: var(--rm-ice);
+  --accent-ink: var(--rm-ice-ink);
+  --accent-soft: var(--rm-ice-soft);
+  --accent-border: var(--rm-ice-border);
+  --prof-glo: #2A78A3;
+  --prof-aw: #A77D30;
+  --select-bg: rgba(250, 248, 243, 0.94);
+  --deck-body-bg: rgba(245, 241, 233, 0.56);
+  --v93-bg-deep: var(--rm-glass);
+  --v93-bg-elevated: var(--rm-glass-deep);
+  --v93-bg-soft: rgba(24, 22, 18, 0.042);
+  --v93-border: var(--rm-border);
+  --v93-border-strong: var(--rm-border-med);
+  --v93-ink: var(--rm-ink-1);
+  --v93-ink-body: var(--rm-ink-2);
+  --v93-ink-muted: var(--rm-ink-3);
+  --v93-accent-gold: var(--rm-gold);
+  --v93-accent-gold-bg: var(--rm-gold-soft);
+  --v93-shadow: var(--rm-shadow-pop), var(--rm-specular);
+}
+
+/* --------------------------------------------------------------------------
+   2. Stage Atmosphere: Warm Basalt Backdrop + Subtle Peripheral Edge Scrim
+   -------------------------------------------------------------------------- */
+html,
+body,
+.observatory,
+.map-stage {
+  background: var(--rm-void) !important;
+  color: var(--rm-ink-1);
+  font-family: var(--rm-sans, var(--font-sans));
+  text-rendering: optimizeLegibility;
+}
+
+#map-3d-stage {
+  background: var(--rm-void) radial-gradient(ellipse at 50% 56%, #14161B 0%, #0B0C0F 56%, #090A0C 100%) !important;
+}
+#map-3d-stage::before {
+  opacity: 0.16 !important;
+  filter: sepia(18%) saturate(55%);
+}
+html[data-theme="light"] #map-3d-stage {
+  background: #EAE5DC radial-gradient(ellipse at 50% 44%, #F4F0E7 0%, #E7E2D7 68%, #DDD7CA 100%) !important;
+}
+
+/* Subtle Peripheral Edge Scrim — lifts floating HUD off the map on Z-axis */
+#map-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  background:
+    linear-gradient(180deg, rgba(9, 10, 12, 0.44) 0%, rgba(9, 10, 12, 0.10) 14%, transparent 28%, transparent 74%, rgba(9, 10, 12, 0.14) 88%, rgba(9, 10, 12, 0.46) 100%),
+    radial-gradient(ellipse 118% 108% at 50% 50%, transparent 58%, rgba(9, 10, 12, 0.34) 100%);
+  transition: opacity var(--rm-dur-slow) var(--rm-spring);
+}
+html[data-theme="light"] #map-stage::after {
+  background:
+    linear-gradient(180deg, rgba(236, 232, 223, 0.34) 0%, transparent 22%, transparent 78%, rgba(236, 232, 223, 0.36) 100%),
+    radial-gradient(ellipse 120% 110% at 50% 50%, transparent 62%, rgba(28, 25, 20, 0.12) 100%);
+}
+#observatory.walk-active #map-stage::after {
+  opacity: 0.35;
+}
+
+/* --------------------------------------------------------------------------
+   3. Unified Optical Glass Surfaces & Spring-Damped Micro-Interactions
+   -------------------------------------------------------------------------- */
+.atlas-hero-card,
+.atlas-cmd-bar,
+.rail-compass,
+.rail-stack,
+.rail-legend-btn,
+.hud-telemetry,
+.floating-drawer,
+.chart-deck,
+.glass-popover,
+.waterway-return-pill,
+.walk-lab,
+.meta-notice-pill,
+#v93-prologue,
+#v93-tour-topbar,
+#v93-index-drawer,
+#guide-play-toggles {
+  background: var(--rm-glass) !important;
+  backdrop-filter: var(--rm-blur) !important;
+  -webkit-backdrop-filter: var(--rm-blur) !important;
+  border: 1px solid var(--rm-border) !important;
+  box-shadow: var(--rm-shadow-float), var(--rm-specular) !important;
+}
+
+.floating-drawer,
+.glass-popover,
+#v93-index-drawer,
+#guide-play-toggles,
+.walk-lab,
+dialog.atlas-modal {
+  background: var(--rm-glass-deep) !important;
+  backdrop-filter: var(--rm-blur-deep) !important;
+  -webkit-backdrop-filter: var(--rm-blur-deep) !important;
+  box-shadow: var(--rm-shadow-pop), var(--rm-specular) !important;
+}
+
+/* Guided Tour panels unified to identical optical glass */
+html #observatory.guided-tour-active #guided-tour-panel,
+html #observatory.guided-tour-active #guided-reference-dock:not([hidden]),
+html #observatory.guided-tour-active #guided-photo-preview:not([hidden]),
+html #observatory.guided-tour-active #guided-tour-nav-strip,
+html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck {
+  background: var(--rm-glass) !important;
+  backdrop-filter: var(--rm-blur) !important;
+  -webkit-backdrop-filter: var(--rm-blur) !important;
+  border: 1px solid var(--rm-border) !important;
+  box-shadow: var(--rm-shadow-pop), var(--rm-specular) !important;
+  color: var(--rm-ink-1) !important;
+}
+
+/* Tactile Press Damping across all interactive buttons */
+button,
+.deck-btn,
+.dock-btn,
+.seg-btn,
+.exag-btn,
+.scope-btn,
+.mode-btn,
+.d-tab,
+.rail-btn,
+.rail-compass,
+.rail-legend-btn,
+.v93-btn-primary,
+.v93-btn-secondary,
+.v93-stage-jump,
+.v93-index-btn,
+.v93-exit-btn,
+.mini-pill,
+.mob-nav-btn,
+.v93-mob-tab,
+.v93-mob-expand {
+  transition:
+    transform var(--rm-dur-fast) var(--rm-spring),
+    background-color var(--rm-dur-fast) var(--rm-spring),
+    border-color var(--rm-dur-fast) var(--rm-spring),
+    color var(--rm-dur-fast) var(--rm-spring),
+    box-shadow var(--rm-dur-fast) var(--rm-spring),
+    opacity var(--rm-dur-fast) ease;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.97);
+}
+/* Do not disturb positioned transforms on pins or translated containers */
+.rail-compass:active {
+  transform: scale(0.95);
+}
+
+/* Spring-Damped Panel & Surface Entrances */
+.floating-drawer.anim-surface,
+.glass-popover.anim-surface,
+.waterway-return-pill.anim-surface,
+.sheet-backdrop.anim-surface {
+  transition-timing-function: var(--rm-spring) !important;
+  transition-duration: var(--rm-dur-slow) !important;
+}
+.deck-body-collapse {
+  transition: grid-template-rows var(--rm-dur-slow) var(--rm-spring), opacity var(--rm-dur-med) var(--rm-spring) !important;
+}
+.chart-deck {
+  transition: width var(--rm-dur-slow) var(--rm-spring), transform var(--rm-dur-med) var(--rm-spring) !important;
+}
+
+@keyframes rmFadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+#v93-prologue:not([hidden]),
+#v93-index-drawer:not([hidden]) {
+  animation: rmFadeSlideUp var(--rm-dur-slow) var(--rm-spring) both;
+}
+
+/* Minimalist Ghost Buttons & Inputs */
+.deck-btn {
+  background: var(--rm-glass-ghost);
+  border: 1px solid var(--rm-border);
+  border-radius: 999px;
+  color: var(--rm-ink-2);
+  padding: 0 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.deck-btn:hover {
+  background: var(--rm-glass-hover);
+  border-color: var(--rm-border-med);
+  color: var(--rm-ink-1);
+}
+.deck-btn.active,
+.deck-btn[aria-pressed="true"] {
+  background: var(--rm-ice-soft);
+  border-color: var(--rm-ice-border);
+  color: var(--rm-ink-1);
+}
+
+/* Unified Native Form Controls — All <select>, <input type="date">, Checkboxes & <details> */
+#observatory {
+  color-scheme: dark;
+}
+html[data-theme="light"] #observatory {
+  color-scheme: light;
+}
+#observatory select,
+.deck-select,
+input.deck-select[type="date"],
+input.deck-select[type="time"] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 30px;
+  padding: 0 28px 0 10px;
+  background-color: rgba(244, 241, 234, 0.065);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%23C4C0B7' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 9px center;
+  background-size: 12px 12px;
+  border: 1px solid var(--rm-border-med);
+  border-radius: 10px;
+  color: var(--rm-ink-1);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: background-color var(--rm-dur-fast) ease, border-color var(--rm-dur-fast) ease, box-shadow var(--rm-dur-fast) ease, color var(--rm-dur-fast) ease;
+}
+input.deck-select[type="date"],
+input.deck-select[type="time"] {
+  background-image: none;
+  padding: 0 10px;
+}
+#observatory select:hover,
+.deck-select:hover {
+  border-color: var(--rm-border-strong);
+  background-color: var(--rm-glass-hover);
+}
+#observatory select:focus-visible,
+.deck-select:focus-visible {
+  border-color: var(--rm-ice-border);
+  box-shadow: 0 0 0 2px rgba(116, 184, 220, 0.22);
+}
+html[data-theme="light"] #observatory select,
+html[data-theme="light"] .deck-select,
+html[data-theme="light"] input.deck-select[type="date"],
+html[data-theme="light"] input.deck-select[type="time"] {
+  background-color: rgba(24, 22, 18, 0.055);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%235A5750' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  border-color: rgba(24, 22, 18, 0.16);
+  color: #181715;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+html[data-theme="light"] input.deck-select[type="date"],
+html[data-theme="light"] input.deck-select[type="time"] {
+  background-image: none;
+}
+html[data-theme="light"] #observatory select:hover,
+html[data-theme="light"] .deck-select:hover {
+  background-color: rgba(24, 22, 18, 0.095);
+  border-color: rgba(24, 22, 18, 0.26);
+}
+/* Compact select padding inside tight bottom timeline/profile bar */
+#chart-deck .deck-quick-controls select.deck-select {
+  padding: 0 22px 0 8px;
+  background-position: right 6px center;
+  background-size: 11px 11px;
+}
+/* Catchment Screen & Road03 History Selects + Host Row Alignment */
+label:has(> select[data-catchment-screen]) {
+  align-items: center !important;
+  gap: 8px !important;
+}
+select[data-catchment-screen],
+#guided-road03-history-date {
+  flex: 1 1 170px;
+  min-width: 0;
+  max-width: 100%;
+}
+#guided-catchment-host > button,
+[data-catchment-host] > button {
+  margin-top: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--rm-border-med);
+  background: var(--rm-glass-ghost);
+  color: var(--rm-ink-2);
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+#guided-catchment-host > button:hover,
+[data-catchment-host] > button:hover {
+  background: var(--rm-glass-hover);
+  color: var(--rm-ink-1);
+}
+
+/* Unified Custom Checkboxes (excludes .n-switch pill switches) */
+#observatory input[type="checkbox"]:not(.n-switch input) {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  min-width: 15px;
+  margin: 0;
+  flex-shrink: 0;
+  border-radius: 4.5px;
+  border: 1.25px solid var(--rm-border-strong);
+  background-color: rgba(244, 241, 234, 0.06);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px 10px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background-color var(--rm-dur-fast) ease, border-color var(--rm-dur-fast) ease, transform var(--rm-dur-fast) var(--rm-spring), box-shadow var(--rm-dur-fast) ease;
+}
+#observatory input[type="checkbox"]:not(.n-switch input):hover {
+  border-color: var(--rm-ice);
+  background-color: var(--rm-ice-soft);
+}
+#observatory input[type="checkbox"]:not(.n-switch input):checked {
+  background-color: var(--rm-ice);
+  border-color: var(--rm-ice);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 11 11' fill='none'%3E%3Cpath d='M2.2 5.7L4.4 7.9L8.9 3.2' stroke='%23090A0C' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  box-shadow: 0 2px 8px -2px rgba(116, 184, 220, 0.45);
+}
+#observatory input[type="checkbox"]:not(.n-switch input):active {
+  transform: scale(0.9);
+}
+html[data-theme="light"] #observatory input[type="checkbox"]:not(.n-switch input) {
+  background-color: rgba(24, 22, 18, 0.045);
+  border-color: rgba(24, 22, 18, 0.28);
+}
+html[data-theme="light"] #observatory input[type="checkbox"]:not(.n-switch input):checked {
+  background-color: #2A78A3;
+  border-color: #2A78A3;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 11 11' fill='none'%3E%3Cpath d='M2.2 5.7L4.4 7.9L8.9 3.2' stroke='%23FAF8F3' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  box-shadow: 0 2px 8px -2px rgba(42, 120, 163, 0.38);
+}
+
+/* Unified Disclosure Chevrons on Guided & Reference <details> (replaces raw OS black triangle) */
+#observatory :is(.guided-route-details, .nw-guide-key, #guided-reference-credit, #guided-east-legend) > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--rm-dur-fast) ease, background-color var(--rm-dur-fast) ease;
+}
+#observatory :is(.guided-route-details, .nw-guide-key, #guided-reference-credit, #guided-east-legend) > summary::-webkit-details-marker {
+  display: none;
+}
+#observatory :is(.guided-route-details, .nw-guide-key, #guided-reference-credit, #guided-east-legend) > summary::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-0.5px) rotate(-45deg);
+  opacity: 0.65;
+  transition: transform var(--rm-dur-med) var(--rm-spring), opacity var(--rm-dur-fast) ease;
+}
+#observatory :is(.guided-route-details, .nw-guide-key, #guided-reference-credit, #guided-east-legend)[open] > summary::before {
+  transform: translateY(-1.5px) rotate(45deg);
+  opacity: 0.95;
+}
+#observatory :is(.guided-route-details, .nw-guide-key, #guided-reference-credit, #guided-east-legend) > summary:hover {
+  color: var(--rm-ink-1) !important;
+}
+
+/* Focus Ring — Misty Ice Cyan */
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 1.5px solid var(--rm-ice) !important;
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Top-Left Editorial Hero Island — Architectural Typography & Rhythm
+   -------------------------------------------------------------------------- */
+.hud-top-left {
+  top: 14px;
+  left: 14px;
+  gap: 8px;
+}
+
+/* Unified Left Column Alignment on Desktop — zero horizontal jump when 2nd lake (西长湖) appears */
+@media (min-width: 1180px) {
+  .hud-top-left {
+    width: 448px;
+    max-width: calc(100vw - 540px);
+  }
+  .atlas-hero-card {
+    width: 100%;
+    max-width: 100%;
+  }
+  .studio-drawer {
+    left: 14px !important;
+    width: 448px;
+    max-width: calc(100vw - 540px);
+  }
+  .observatory.studio-open .hud-telemetry,
+  .observatory.studio-open .waterway-return-pill {
+    left: 472px;
+  }
+}
+
+.atlas-hero-card {
+  border-radius: 16px !important;
+}
+
+.hero-top-row {
+  padding: 11px 15px 9px;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+}
+
+.lake-chips {
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  min-width: 0;
+}
+.lake-chips .lake-chip + .lake-chip {
+  padding-top: 5px;
+  margin-top: 2px;
+  border-top: 1px solid var(--rm-border);
+  border-left: none;
+  padding-left: 0;
+  width: 100%;
+}
+
+.brand-title {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  color: var(--rm-ink-1);
+}
+
+.hero-scope-pill {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 2px 9px;
+  color: var(--rm-ice-ink);
+  background: var(--rm-ice-soft);
+  border: 1px solid rgba(116, 184, 220, 0.22);
+}
+
+.lake-chip-val {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--rm-ink-1);
+}
+
+.lake-chip-meta {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--rm-ink-3);
+}
+
+.status-badge.observed {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--rm-ink-3);
+}
+
+/* Independent Dual-Date Strip */
+.dual-dates {
+  border-top: 1px solid var(--rm-border);
+}
+.date-chip {
+  height: 34px;
+  padding: 0 15px;
+  gap: 8px;
+}
+.date-chip:hover {
+  background: var(--rm-glass-hover);
+}
+.chip-k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  color: var(--rm-ink-3);
+}
+.date-chip strong {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--rm-ink-1);
+}
+.date-chip.water strong {
+  color: var(--rm-ice-ink);
+}
+
+/* Scope Strip — Quiet Capsule Track */
+.scope-strip {
+  position: relative;
+  padding: 5px 10px;
+  gap: 3px;
+  border-top: 1px solid var(--rm-border);
+}
+.scope-group-lbl {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  color: var(--rm-ink-4);
+  padding: 0 5px 0 3px;
+}
+.scope-sep {
+  background: var(--rm-border-med);
+  height: 12px;
+}
+.scope-btn {
+  position: relative;
+  z-index: 1;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--rm-ink-3);
+}
+.scope-btn:hover {
+  color: var(--rm-ink-1);
+  background: var(--rm-glass-hover);
+}
+.scope-btn.active {
+  background: var(--rm-ice-soft);
+  color: var(--rm-ink-1);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(116, 184, 220, 0.24);
+}
+.scope-strip.rm-has-glider .scope-btn.active {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Restrained Champagne Sand Gold Launch Pill */
+#btn-guide-chapter-one.guide-start-chip {
+  background: linear-gradient(180deg, #DEC082 0%, #CCA55C 100%) !important;
+  color: #090A0C !important;
+  border: 1px solid rgba(244, 224, 178, 0.42) !important;
+  box-shadow: 0 12px 28px -10px rgba(212, 175, 106, 0.36), inset 0 1px 0 rgba(255, 250, 236, 0.45) !important;
+  border-radius: 999px !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.04em !important;
+  padding: 9px 18px !important;
+}
+#btn-guide-chapter-one.guide-start-chip:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 16px 34px -10px rgba(212, 175, 106, 0.46), inset 0 1px 0 rgba(255, 250, 236, 0.55) !important;
+}
+
+.meta-notice-pill {
+  border-radius: 10px !important;
+  padding: 6px 11px !important;
+  font-size: 11px !important;
+  line-height: 1.55 !important;
+  color: var(--rm-ink-3) !important;
+}
+.meta-notice-pill.history-credit {
+  color: var(--rm-gold-ink) !important;
+  border-color: rgba(212, 175, 106, 0.22) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Top-Right Command Bar — Sculpted Capsule Segmented Controls
+   -------------------------------------------------------------------------- */
+.hud-top-right {
+  top: 14px;
+  right: 14px;
+}
+
+.atlas-cmd-bar {
+  padding: 4px 5px !important;
+  border-radius: 999px !important;
+  gap: 4px !important;
+}
+
+.cmd-nav-group {
+  position: relative;
+  gap: 2px;
+}
+
+.cmd-sep {
+  background: var(--rm-border-med);
+  height: 16px;
+  margin: 0 4px;
+}
+
+.dock-btn {
+  position: relative;
+  z-index: 1;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--rm-ink-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+}
+.dock-btn:hover {
+  background: var(--rm-glass-hover);
+  color: var(--rm-ink-1);
+}
+.dock-btn.active {
+  background: var(--rm-ice-soft);
+  color: var(--rm-ink-1);
+  box-shadow: inset 0 0 0 1px rgba(116, 184, 220, 0.25);
+}
+.dock-btn.tools-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  color: var(--rm-ink-2);
+}
+.dock-count {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--rm-ink-3);
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.06);
+}
+.dock-btn.active .dock-count {
+  color: var(--rm-ice-ink);
+  background: rgba(116, 184, 220, 0.18);
+}
+
+/* Segmented Capsule Track: 2D / 3D / 漫游 + Exaggeration Capsule */
+.dim-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.045);
+  border: 1px solid var(--rm-border);
+}
+html[data-theme="light"] .dim-switch {
+  background: rgba(24, 22, 18, 0.045);
+}
+
+.seg-btn {
+  position: relative;
+  z-index: 1;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--rm-ink-3);
+  background: transparent;
+}
+.seg-btn.walk-btn {
+  font-family: var(--font-sans);
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+.seg-btn:hover:not(.active) {
+  color: var(--rm-ink-1);
+  background: var(--rm-glass-hover);
+}
+/* Crisp Inverse Active Pill */
+.seg-btn.active {
+  background: var(--rm-ink-1);
+  color: var(--rm-inv-ink);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.32);
+}
+.dim-switch.rm-has-glider .seg-btn.active {
+  background: transparent;
+  box-shadow: none;
+}
+.walk-active .seg-btn.walk-btn {
+  background: linear-gradient(180deg, #E5C88B 0%, #CDA55A 100%);
+  color: var(--rm-inv-ink);
+  font-weight: 650;
+}
+.walk-active .seg-btn.walk-btn::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #090A0C;
+  box-shadow: 0 0 0 2px rgba(9, 10, 12, 0.16);
+  margin-right: 5px;
+  vertical-align: 0.5px;
+  flex: 0 0 auto;
+}
+.walk-active .dim-switch .seg-btn:not(.walk-btn) {
+  color: rgba(244, 241, 234, 0.78) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] .walk-active .dim-switch .seg-btn:not(.walk-btn) {
+  color: #4A4843 !important;
+}
+.walk-active .dim-switch .seg-btn:not(.walk-btn):hover {
+  color: var(--rm-ink-1) !important;
+}
+.walk-active .dim-switch.rm-has-glider .seg-btn.walk-btn {
+  background: transparent !important;
+  color: #090A0C !important;
+}
+.walk-active .dim-switch .rm-glider {
+  background: linear-gradient(180deg, #E5C88B 0%, #CDA55A 100%) !important;
+  box-shadow: 0 4px 16px -2px rgba(212, 175, 106, 0.56), inset 0 1px 0 rgba(255, 250, 236, 0.58) !important;
+}
+
+/* 3D Vertical Exaggeration Capsule (1x / 4x / 8x) */
+.exag-pills {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 4px;
+  padding: 2px;
+  border-left: none;
+  border-radius: 999px;
+  background: rgba(9, 10, 12, 0.42);
+  border: 1px solid var(--rm-border);
+}
+.exag-pills[hidden],
+.walk-active #exag-group,
+.guided-tour-active #exag-group {
+  display: none !important;
+}
+html[data-theme="light"] .exag-pills {
+  background: rgba(24, 22, 18, 0.055);
+}
+.exag-btn {
+  position: relative;
+  z-index: 1;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--rm-ink-3);
+}
+.exag-btn:hover:not(.active) {
+  color: var(--rm-ink-1);
+  background: var(--rm-glass-hover);
+}
+.exag-btn.active {
+  background: var(--rm-ice);
+  color: var(--rm-inv-ink);
+  box-shadow: 0 2px 8px rgba(116, 184, 220, 0.30);
+}
+.exag-pills.rm-has-glider .exag-btn.active {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Sliding Capsule Glider (driven by redesign-motion.js) */
+.rm-glider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  border-radius: 999px;
+  pointer-events: none;
+  transition:
+    transform var(--rm-dur-med) var(--rm-spring),
+    width var(--rm-dur-med) var(--rm-spring),
+    height var(--rm-dur-med) var(--rm-spring),
+    opacity var(--rm-dur-fast) ease;
+  will-change: transform, width;
+}
+.rm-glider[data-tone="inverse"] {
+  background: var(--rm-ink-1);
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.36);
+}
+.rm-glider[data-tone="ice"] {
+  background: var(--rm-ice);
+  box-shadow: 0 3px 12px -2px rgba(116, 184, 220, 0.34);
+}
+.rm-glider[data-tone="soft"] {
+  background: var(--rm-ice-soft);
+  box-shadow: inset 0 0 0 1px rgba(116, 184, 220, 0.25);
+}
+.rm-glider[data-tone="subtle"] {
+  background: var(--rm-glass-active);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   6. Right-Edge Minimal Map Controls & Bottom-Left Cartographic Telemetry
+   -------------------------------------------------------------------------- */
+.hud-rail {
+  top: 66px;
+  right: 14px;
+  gap: 8px;
+}
+.rail-compass {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px !important;
+}
+.rail-compass:hover {
+  background: var(--rm-glass-deep) !important;
+  border-color: var(--rm-border-med) !important;
+}
+.rail-stack {
+  border-radius: 999px !important;
+  padding: 2px 0;
+}
+.rail-btn {
+  width: 40px;
+  height: 36px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--rm-ink-2);
+  border-bottom-color: var(--rm-border);
+}
+.rail-btn:hover {
+  background: var(--rm-glass-hover);
+  color: var(--rm-ink-1);
+}
+.rail-legend-btn {
+  min-width: 40px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px !important;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--rm-ink-2);
+}
+.rail-legend-btn:hover {
+  color: var(--rm-ink-1);
+  border-color: var(--rm-border-med) !important;
+}
+.rail-legend-btn[aria-expanded="true"] {
+  background: var(--rm-ice-soft) !important;
+  border-color: var(--rm-ice-border) !important;
+  color: var(--rm-ice-ink) !important;
+}
+
+.hud-telemetry {
+  left: 14px;
+  bottom: calc(var(--deck-h, 66px) + 18px);
+  padding: 5px 12px;
+  border-radius: 999px !important;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--rm-ink-3);
+}
+.engine-tag {
+  color: var(--rm-ink-1);
+  font-weight: 500;
+}
+.scale-bar {
+  border-color: var(--rm-ink-2);
+  border-width: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Editorial Prologue Card (#v93-prologue) — Gallery Breathability
+   -------------------------------------------------------------------------- */
+#v93-prologue {
+  border-radius: 18px !important;
+  padding: 22px 24px 20px !important;
+}
+.v93-pro-kicker {
+  font-family: var(--font-mono) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  color: var(--rm-gold) !important;
+  margin-bottom: 7px !important;
+}
+.v93-pro-title {
+  font-family: var(--v93-display) !important;
+  font-size: 23px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.28 !important;
+  color: var(--rm-ink-1) !important;
+}
+.v93-pro-close {
+  border: 1px solid transparent !important;
+  border-radius: 999px !important;
+  width: 30px !important;
+  height: 30px !important;
+  color: var(--rm-ink-3) !important;
+}
+.v93-pro-close:hover {
+  background: var(--rm-glass-hover) !important;
+  color: var(--rm-ink-1) !important;
+}
+.v93-pro-lead {
+  margin: 12px 0 16px !important;
+  font-size: 13px !important;
+  line-height: 1.72 !important;
+  color: var(--rm-ink-2) !important;
+}
+.v93-pro-lead strong {
+  color: var(--rm-ink-1);
+  font-weight: 600;
+}
+
+/* Remove inner card boxes — replace with quiet whitespace & subtle divider */
+.v93-ev-grid {
+  gap: 12px 16px !important;
+  padding: 12px 0 14px !important;
+  margin-bottom: 14px !important;
+  border-top: 1px solid var(--rm-border);
+  border-bottom: 1px solid var(--rm-border);
+}
+#v93-prologue .v93-ev-card {
+  padding: 2px 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.v93-ev-card strong {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  color: var(--rm-ink-1) !important;
+}
+.v93-ev-card small {
+  margin-top: 3px !important;
+  font-size: 11px !important;
+  line-height: 1.55 !important;
+  color: var(--rm-ink-3) !important;
+}
+
+.v93-pro-stages-lbl {
+  font-family: var(--font-mono) !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.08em !important;
+  color: var(--rm-ink-3) !important;
+  margin-bottom: 8px !important;
+}
+.v93-pro-stages {
+  gap: 6px !important;
+  margin-bottom: 18px !important;
+}
+#v93-prologue .v93-stage-jump {
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--rm-border) !important;
+  background: var(--rm-glass-ghost) !important;
+  color: var(--rm-ink-2) !important;
+  font-size: 11.5px !important;
+}
+#v93-prologue .v93-stage-jump:hover {
+  background: var(--rm-gold-soft) !important;
+  border-color: var(--rm-gold-border) !important;
+  color: var(--rm-ink-1) !important;
+}
+
+.v93-pro-actions {
+  gap: 10px !important;
+}
+.v93-btn-primary {
+  padding: 11px 18px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(244, 224, 178, 0.40) !important;
+  background: linear-gradient(180deg, #DEC082 0%, #CCA55C 100%) !important;
+  color: #090A0C !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.03em !important;
+  box-shadow: 0 12px 26px -10px rgba(212, 175, 106, 0.38), inset 0 1px 0 rgba(255, 250, 236, 0.45) !important;
+}
+.v93-btn-primary:hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+.v93-btn-secondary {
+  padding: 11px 16px !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--rm-border-med) !important;
+  background: var(--rm-glass-ghost) !important;
+  color: var(--rm-ink-2) !important;
+  font-weight: 500 !important;
+}
+.v93-btn-secondary:hover {
+  background: var(--rm-glass-hover) !important;
+  color: var(--rm-ink-1) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. Drawers (Studio & Inspector) — Flat Whitespace Editorial Layout
+   -------------------------------------------------------------------------- */
+.floating-drawer {
+  border-radius: 18px !important;
+}
+.drawer-head {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rm-border);
+}
+.drawer-tabs {
+  position: relative;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.04);
+  border: 1px solid var(--rm-border);
+  gap: 2px;
+}
+html[data-theme="light"] .drawer-tabs {
+  background: rgba(24, 22, 18, 0.04);
+}
+.d-tab {
+  position: relative;
+  z-index: 1;
+  height: 28px;
+  border-radius: 999px;
+  color: var(--rm-ink-3);
+  font-size: 12px;
+  font-weight: 500;
+}
+.d-tab.active {
+  background: var(--rm-ink-1);
+  color: var(--rm-inv-ink);
+  font-weight: 600;
+}
+.drawer-tabs.rm-has-glider .d-tab.active {
+  background: transparent;
+}
+.icon-close,
+.pop-close {
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--rm-ink-3);
+}
+.icon-close:hover,
+.pop-close:hover {
+  background: var(--rm-glass-hover);
+  border-color: var(--rm-border);
+  color: var(--rm-ink-1);
+}
+
+.studio-subnav {
+  padding: 0 16px;
+  gap: 8px;
+  border-bottom: 1px solid var(--rm-border);
+}
+.subnav-btn {
+  height: 40px;
+  font-size: 12.5px;
+  color: var(--rm-ink-3);
+}
+.subnav-btn.active::after {
+  height: 1.5px;
+  background: var(--rm-ice);
+}
+
+.drawer-body {
+  padding: 18px 18px 24px;
+}
+
+/* Elevated Editorial Typography inside Drawers */
+.ed-kicker,
+.card-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  color: var(--rm-ink-3);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ed-h2,
+.insp-title {
+  font-family: var(--v93-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.36;
+  letter-spacing: 0.01em;
+  color: var(--rm-ink-1);
+  margin-bottom: 8px;
+}
+.ed-lead,
+.ed-body,
+.ev-judgment,
+.insp-desc {
+  font-size: 13px;
+  line-height: 1.72;
+  color: var(--rm-ink-2);
+}
+.card-note {
+  font-size: 12px;
+  line-height: 1.68;
+  color: var(--rm-ink-3);
+}
+
+/* Strip Heavy Sub-Card Boxes in Layers / Evidence Drawers -> Pure Whitespace + Hairline */
+.drawer-card {
+  padding: 0 0 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--rm-border);
+}
+.drawer-card.featured,
+.drawer-card.history-card {
+  padding: 14px 0 16px 14px;
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 1px solid var(--rm-border);
+  border-left: 1.5px solid var(--rm-ice);
+}
+.drawer-card.history-card {
+  border-left-color: var(--rm-gold);
+}
+.ed-callout {
+  background: var(--rm-glass-ghost);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.ed-item,
+.ev-card {
+  padding: 15px 10px;
+  border-radius: 10px;
+}
+.mini-pill {
+  border-radius: 999px;
+  padding: 5px 12px;
+  border: 1px solid var(--rm-border);
+  background: var(--rm-glass-ghost);
+  font-size: 11.5px;
+}
+.mini-pill.accent-pill,
+.mini-pill.guide-link-pill {
+  background: var(--rm-ice-soft);
+  border-color: var(--rm-ice-border);
+  color: var(--rm-ice-ink);
+}
+.mini-pill.accent-pill:hover,
+.mini-pill.guide-link-pill:hover {
+  background: var(--rm-ice);
+  color: var(--rm-inv-ink);
+}
+
+.f-chip {
+  padding: 5px 12px;
+  border: 1px solid var(--rm-border);
+  background: var(--rm-glass-ghost);
+  color: var(--rm-ink-2);
+}
+.f-chip.active {
+  background: var(--rm-ink-1);
+  color: var(--rm-inv-ink);
+  border-color: transparent;
+}
+
+.cta-btn {
+  border-radius: 999px;
+  background: var(--rm-ice);
+  color: var(--rm-inv-ink);
+  font-weight: 650;
+}
+
+/* --------------------------------------------------------------------------
+   9. Bottom Chart Deck & Aesthetic SVG Charts (Time Series & Terrain Profile)
+   -------------------------------------------------------------------------- */
+.chart-deck {
+  border-radius: 18px !important;
+  bottom: 14px;
+}
+.deck-grip {
+  height: 18px;
+  border-bottom: 1px solid var(--rm-border);
+}
+.grip-bar {
+  width: 28px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.22);
+}
+.grip-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  color: var(--rm-ink-4);
+}
+.deck-bar {
+  padding: 8px 12px;
+  gap: 8px;
+  min-height: 46px;
+}
+/* Prevent collapsed desktop profile button overlap seen in baseline */
+#observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="false"] {
+  width: min(860px, calc(100vw - 28px));
+}
+#observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"] .deck-quick-controls {
+  gap: 5px;
+}
+#observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"] .deck-slider {
+  min-width: 48px;
+  flex: 1 1 56px;
+}
+#observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="false"] .deck-mini-stat {
+  max-width: 148px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="true"] .deck-mini-stat {
+  max-width: 220px;
+}
+#observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="false"] .deck-select.profile-sel {
+  max-width: 158px;
+}
+#observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="true"] .deck-select.profile-sel {
+  max-width: 186px;
+}
+@media (max-width: 1120px) {
+  #observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="false"] .deck-mini-stat {
+    display: none;
+  }
+}
+
+.mode-switch {
+  position: relative;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.045);
+  border: 1px solid var(--rm-border);
+}
+html[data-theme="light"] .mode-switch {
+  background: rgba(24, 22, 18, 0.045);
+}
+.mode-btn {
+  position: relative;
+  z-index: 1;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--rm-ink-3);
+}
+.mode-btn.active {
+  background: var(--rm-ink-1);
+  color: var(--rm-inv-ink);
+  font-weight: 600;
+}
+.mode-switch.rm-has-glider .mode-btn.active {
+  background: transparent;
+}
+
+.deck-expand-btn {
+  height: 30px;
+  padding: 0 13px;
+  border-radius: 999px;
+  border: 1px solid var(--rm-ice-border);
+  background: var(--rm-ice-soft);
+  color: var(--rm-ice-ink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.deck-expand-btn:hover {
+  background: var(--rm-ice);
+  color: var(--rm-inv-ink);
+}
+
+.deck-mini-stat {
+  border-radius: 999px;
+  padding: 3px 10px;
+  background: var(--rm-glass-ghost);
+  border: 1px solid var(--rm-border);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--rm-ink-2);
+}
+
+.deck-body {
+  background: var(--deck-body-bg);
+}
+
+/* Sub-segmented switches inside deck */
+.sub-seg {
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.04);
+  border: 1px solid var(--rm-border);
+}
+.sub-seg-btn {
+  border-radius: 999px;
+  padding: 0 10px;
+  color: var(--rm-ink-3);
+}
+.sub-seg-btn.active {
+  background: var(--rm-glass-active);
+  color: var(--rm-ink-1);
+}
+
+/* Profile & Time-Series Chart Aesthetics */
+.profile-meta-bar {
+  margin-bottom: 10px;
+  gap: 8px 12px;
+}
+.profile-cursor-readout {
+  gap: 6px;
+}
+.mono-pill {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--rm-glass-ghost);
+  border: 1px solid var(--rm-border);
+  color: var(--rm-ink-2);
+}
+.mono-pill.glo {
+  background: var(--rm-ice-soft);
+  border-color: var(--rm-ice-border);
+  color: var(--rm-ice-ink);
+}
+.mono-pill.aw {
+  background: var(--rm-gold-soft);
+  border-color: var(--rm-gold-border);
+  color: var(--rm-gold-ink);
+}
+.profile-rise-note {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--rm-ink-3);
+  line-height: 1.5;
+}
+.profile-foot-note,
+.chart-legend-strip {
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--rm-ink-3);
+  border-top: 1px solid var(--rm-border);
+  padding-top: 8px;
+  margin-top: 6px;
+}
+.atlas-svg.profile-svg {
+  border: none !important;
+  background: transparent !important;
+  overflow: visible;
+}
+.prof-pill-bg {
+  fill: rgba(16, 17, 20, 0.86);
+  stroke: rgba(116, 184, 220, 0.36);
+  stroke-width: 0.75;
+}
+html[data-theme="light"] .prof-pill-bg {
+  fill: rgba(251, 249, 244, 0.94);
+  stroke: rgba(42, 120, 163, 0.34);
+}
+.prof-pill-text {
+  fill: var(--rm-ink-1);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.prof-crosshair {
+  stroke: rgba(244, 241, 234, 0.72);
+  stroke-width: 0.5;
+}
+html[data-theme="light"] .prof-crosshair {
+  stroke: rgba(24, 22, 18, 0.52);
+}
+.prof-crosshair-h {
+  stroke: rgba(116, 184, 220, 0.42);
+  stroke-width: 0.5;
+  stroke-dasharray: 2 3;
+}
+
+/* Range Slider Refinement — Tactile Optical Track & Luminous Thumb */
+.deck-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(244, 241, 234, 0.14);
+  border-radius: 999px;
+  height: 3px;
+  outline: none;
+  cursor: pointer;
+}
+html[data-theme="light"] .deck-slider {
+  background: rgba(24, 22, 18, 0.14);
+}
+.deck-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rm-ice);
+  border: 1.5px solid var(--rm-ink-1);
+  box-shadow: 0 0 0 3px rgba(116, 184, 220, 0.22), 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform var(--rm-dur-fast) var(--rm-spring), box-shadow var(--rm-dur-fast) ease;
+}
+.deck-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 5px rgba(116, 184, 220, 0.28), 0 2px 8px rgba(0, 0, 0, 0.40);
+}
+.deck-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rm-ice);
+  border: 1.5px solid var(--rm-ink-1);
+  box-shadow: 0 0 0 3px rgba(116, 184, 220, 0.22);
+}
+
+/* Native <select> Dropdown Option Palette + Hairline Custom Scrollbars */
+select option,
+select optgroup {
+  background: var(--rm-glass-solid);
+  color: var(--rm-ink-1);
+}
+.drawer-body,
+#guided-observer-script,
+#v93-index-drawer,
+#v93-prologue,
+.glass-popover,
+#guided-east-legend {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 241, 234, 0.18) transparent;
+}
+html[data-theme="light"] .drawer-body,
+html[data-theme="light"] #guided-observer-script,
+html[data-theme="light"] #v93-index-drawer,
+html[data-theme="light"] #v93-prologue,
+html[data-theme="light"] .glass-popover,
+html[data-theme="light"] #guided-east-legend {
+  scrollbar-color: rgba(24, 22, 18, 0.20) transparent;
+}
+.drawer-body::-webkit-scrollbar,
+#guided-observer-script::-webkit-scrollbar,
+#v93-index-drawer::-webkit-scrollbar,
+#v93-prologue::-webkit-scrollbar,
+.glass-popover::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.drawer-body::-webkit-scrollbar-track,
+#guided-observer-script::-webkit-scrollbar-track,
+#v93-index-drawer::-webkit-scrollbar-track,
+#v93-prologue::-webkit-scrollbar-track,
+.glass-popover::-webkit-scrollbar-track {
+  background: transparent;
+}
+.drawer-body::-webkit-scrollbar-thumb,
+#guided-observer-script::-webkit-scrollbar-thumb,
+#v93-index-drawer::-webkit-scrollbar-thumb,
+#v93-prologue::-webkit-scrollbar-thumb,
+.glass-popover::-webkit-scrollbar-thumb {
+  background: rgba(244, 241, 234, 0.18);
+  border-radius: 999px;
+}
+.drawer-body::-webkit-scrollbar-thumb:hover,
+#guided-observer-script::-webkit-scrollbar-thumb:hover,
+#v93-index-drawer::-webkit-scrollbar-thumb:hover,
+#v93-prologue::-webkit-scrollbar-thumb:hover,
+.glass-popover::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 241, 234, 0.34);
+}
+html[data-theme="light"] .drawer-body::-webkit-scrollbar-thumb,
+html[data-theme="light"] #guided-observer-script::-webkit-scrollbar-thumb,
+html[data-theme="light"] #v93-index-drawer::-webkit-scrollbar-thumb,
+html[data-theme="light"] #v93-prologue::-webkit-scrollbar-thumb,
+html[data-theme="light"] .glass-popover::-webkit-scrollbar-thumb {
+  background: rgba(24, 22, 18, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   10. 3D Floating Map Annotation Capsules (.map3d-pill) — Frameless Translucent
+   -------------------------------------------------------------------------- */
+.map3d-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 8px;
+  border-radius: 999px !important;
+  background: rgba(14, 15, 18, 0.72) !important;
+  backdrop-filter: blur(16px) saturate(135%);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.50), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  color: var(--rm-ink-1) !important;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.025em;
+}
+html[data-theme="light"] .map3d-pill {
+  background: rgba(252, 250, 245, 0.84) !important;
+  border: 1px solid rgba(24, 22, 18, 0.10) !important;
+  box-shadow: 0 8px 22px -6px rgba(24, 22, 18, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+}
+.map3d-pill .map3d-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  box-shadow: 0 0 8px currentColor;
+}
+.map3d-pill[data-profile-cursor-label] {
+  background: rgba(14, 15, 18, 0.84) !important;
+  border-color: rgba(116, 184, 220, 0.36) !important;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+/* On-map Continuity Pins in Guided Tour — Cleaner Translucent Capsules */
+html #observatory #guided-prior-landmarks .guide-continuity-pin {
+  background: rgba(12, 14, 17, 0.78) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--rm-ink-1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.56), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  font-weight: 550 !important;
+  letter-spacing: 0.02em;
+}
+html #observatory #guided-prior-landmarks .guide-continuity-pin.current {
+  background: rgba(20, 18, 13, 0.86) !important;
+  color: #FBF4E4 !important;
+  border-color: rgba(212, 175, 106, 0.72) !important;
+  box-shadow: 0 0 0 2px rgba(212, 175, 106, 0.22), 0 8px 22px rgba(0, 0, 0, 0.62) !important;
+}
+html #observatory #guided-prior-landmarks .guide-continuity-pin[style*="--guide-label-tone"] {
+  background: rgba(12, 14, 17, 0.82) !important;
+  border-color: color-mix(in srgb, var(--guide-label-tone) 68%, transparent) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.58) !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. Guided Tour Documentary Theatre — 2026 Modern Minimalist Polish
+   -------------------------------------------------------------------------- */
+#v93-tour-topbar {
+  border-radius: 999px !important;
+  height: 48px !important;
+  padding: 0 8px 0 8px !important;
+}
+
+.v93-index-btn {
+  border-radius: 999px !important;
+  padding: 5px 12px 5px 6px !important;
+  background: var(--rm-glass-ghost) !important;
+  border: 1px solid var(--rm-border) !important;
+  font-weight: 500 !important;
+}
+.v93-index-btn:hover,
+.v93-index-btn[aria-expanded="true"] {
+  background: var(--rm-gold-soft) !important;
+  border-color: var(--rm-gold-border) !important;
+}
+.v93-stop-pill {
+  font-family: var(--font-mono) !important;
+  font-variant-numeric: tabular-nums !important;
+  letter-spacing: 0.06em !important;
+  background: var(--rm-gold) !important;
+  color: #090A0C !important;
+  padding: 2px 8px !important;
+  font-weight: 700 !important;
+}
+
+.v93-stage-group {
+  border-radius: 999px !important;
+  padding: 4px 8px !important;
+}
+.v93-stage-group.is-active {
+  background: var(--rm-gold-soft) !important;
+}
+.v93-stage-lbl {
+  font-size: 10px !important;
+  letter-spacing: 0.04em !important;
+  color: var(--rm-ink-3) !important;
+}
+.v93-stage-group.is-active .v93-stage-lbl {
+  color: var(--rm-gold-ink) !important;
+}
+.v93-stop-tick {
+  height: 4px !important;
+  background: rgba(244, 241, 234, 0.20) !important;
+}
+.v93-stop-tick.is-past {
+  background: rgba(116, 184, 220, 0.68) !important;
+}
+.v93-stop-tick.is-current {
+  background: var(--rm-gold) !important;
+  border-color: rgba(255, 246, 224, 0.65) !important;
+}
+
+.v93-dual-dates {
+  border-radius: 999px !important;
+  padding: 5px 12px !important;
+  background: var(--rm-glass-ghost) !important;
+  border: 1px solid var(--rm-border) !important;
+  font-family: var(--font-mono) !important;
+  font-variant-numeric: tabular-nums !important;
+  letter-spacing: 0.04em !important;
+}
+.v93-date-tag small {
+  letter-spacing: 0.08em;
+  color: var(--rm-ink-3);
+}
+.v93-date-tag.water strong {
+  color: var(--rm-ice-ink) !important;
+}
+.v93-date-tag.imagery strong {
+  color: var(--rm-gold-ink) !important;
+}
+
+#v93-tour-topbar #guided-tour-close.v93-exit-btn,
+.v93-exit-btn {
+  border-radius: 999px !important;
+  padding: 6px 13px !important;
+  border: 1px solid var(--rm-border-med) !important;
+  background: var(--rm-glass-ghost) !important;
+  color: var(--rm-ink-2) !important;
+  font-weight: 500 !important;
+}
+#v93-tour-topbar #guided-tour-close.v93-exit-btn:hover,
+.v93-exit-btn:hover {
+  background: rgba(232, 95, 111, 0.14) !important;
+  border-color: rgba(232, 95, 111, 0.36) !important;
+  color: var(--rm-ink-1) !important;
+}
+
+/* Story Panel Editorial Typography & Stripped Inner Chrome */
+html #observatory.guided-tour-active #guided-tour-panel {
+  border-radius: 18px !important;
+  padding: 16px 18px 16px !important;
+  gap: 10px !important;
+}
+html #observatory.guided-tour-active #guided-tour-panel > .walk-row:first-of-type {
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid var(--rm-border) !important;
+}
+html #observatory.guided-tour-active #guided-tour-panel > .walk-row:first-of-type > strong {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  color: var(--rm-gold) !important;
+}
+html #observatory.guided-tour-active #guided-tour-select {
+  max-width: min(210px, 58%) !important;
+  text-overflow: ellipsis;
+}
+html #observatory.guided-tour-active #guided-tour-elevation,
+html #observatory.guided-tour-active #guided-tour-progress {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  color: var(--rm-ink-3);
+}
+
+.v93-ev-badge {
+  border-radius: 999px !important;
+  padding: 3px 10px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  background: var(--rm-glass-ghost) !important;
+}
+
+/* Replace heavy boxed director board with editorial hairline strip */
+html #observatory.guided-tour-active #guided-director-board {
+  padding: 10px 0 10px 12px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-left: 2px solid var(--rm-gold) !important;
+  border-top: 1px solid var(--rm-border) !important;
+  border-bottom: 1px solid var(--rm-border) !important;
+}
+html #observatory.guided-tour-active #guided-board-kind {
+  font-family: var(--font-mono) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.10em !important;
+  color: var(--rm-gold) !important;
+}
+html #observatory.guided-tour-active #guided-board-focus {
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.42 !important;
+  color: var(--rm-ink-1) !important;
+}
+html #observatory.guided-tour-active #guided-board-note {
+  font-size: 11.5px !important;
+  line-height: 1.58 !important;
+  color: var(--rm-ink-3) !important;
+}
+
+html #observatory.guided-tour-active #guided-tour-title {
+  margin: 4px 0 8px !important;
+  font-family: var(--v93-display) !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.32 !important;
+  letter-spacing: 0.01em !important;
+  color: var(--rm-ink-1) !important;
+}
+html #observatory.guided-tour-active #guided-tour-caption {
+  margin: 0 0 12px !important;
+  font-size: 13.5px !important;
+  line-height: 1.74 !important;
+  color: var(--rm-ink-2) !important;
+}
+html #observatory.guided-tour-active #guided-tour-source {
+  padding: 8px 0 8px 11px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border-left: 1.5px solid var(--rm-border-med) !important;
+  font-size: 11.5px !important;
+  line-height: 1.6 !important;
+  color: var(--rm-ink-3) !important;
+}
+html #observatory.guided-tour-active .guided-route-details {
+  border: 0 !important;
+  border-top: 1px solid var(--rm-border) !important;
+  border-radius: 0 !important;
+  padding: 8px 0 !important;
+  background: transparent !important;
+}
+html #observatory.guided-tour-active .guided-route-details summary {
+  color: var(--rm-ink-2) !important;
+  font-weight: 500 !important;
+}
+html #observatory.guided-tour-active #guided-board-media img {
+  border: 1px solid var(--rm-border-med) !important;
+  border-radius: 8px !important;
+  background: rgba(9, 10, 12, 0.65) !important;
+}
+
+/* Spatial Reference Dock — Frameless, Zero Nested Matte Backgrounds */
+html #observatory.guided-tour-active #guided-reference-dock {
+  border-radius: 18px !important;
+  padding: 10px 12px 8px !important;
+}
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title {
+  padding: 2px 2px 8px !important;
+  border-bottom: 1px solid var(--rm-border) !important;
+}
+html #observatory.guided-tour-active #guided-map-pane,
+html #observatory.guided-tour-active #guided-nav-map,
+html #observatory.guided-tour-active #guided-nav-map > svg,
+html #observatory.guided-tour-active #guided-map-inset,
+html #observatory.guided-tour-active #guided-four-inset,
+html #observatory.guided-tour-active #guided-location-card {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html #observatory.guided-tour-active #guided-map-pane {
+  padding: 4px 0 2px !important;
+}
+html #observatory.guided-tour-active #guided-reference-dock [data-v84-cartography] .v84-label {
+  fill: var(--rm-ink-1);
+  font-family: var(--font-sans);
+  font-weight: 550;
+}
+html #observatory.guided-tour-active #guided-reference-dock [data-v84-cartography] .v84-stem {
+  stroke: rgba(244, 241, 234, 0.36);
+  stroke-width: 0.65;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock [data-v84-cartography] [data-inset-label] > rect {
+  fill: rgba(251, 249, 244, 0.84) !important;
+  stroke: rgba(24, 22, 18, 0.12) !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock [data-v84-cartography] .v84-stem {
+  stroke: rgba(24, 22, 18, 0.34);
+}
+html #observatory.guided-tour-active #guided-reference-dock #guided-nav-base polyline,
+html #observatory.guided-tour-active #guided-reference-dock #guided-nav-base polygon {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.88;
+}
+html #observatory.guided-tour-active #guided-reference-dock #guided-reference-credit {
+  border-top: 1px solid var(--rm-border);
+  margin-top: 4px;
+}
+html #observatory.guided-tour-active #guided-reference-dock #guided-reference-credit > summary {
+  color: var(--rm-ink-3) !important;
+  font-size: 11px;
+  padding: 5px 2px 2px !important;
+}
+html #observatory.guided-tour-active #guided-reference-dock #guided-credit-slot {
+  background: var(--rm-glass-deep) !important;
+  backdrop-filter: var(--rm-blur-deep) !important;
+  -webkit-backdrop-filter: var(--rm-blur-deep) !important;
+  border: 1px solid var(--rm-border-med) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--rm-shadow-pop), var(--rm-specular) !important;
+  color: var(--rm-ink-2) !important;
+}
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title > strong {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  color: var(--rm-ink-2);
+}
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title button {
+  border-radius: 999px !important;
+  border: 1px solid transparent !important;
+  background: transparent;
+  color: var(--rm-ink-3);
+}
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title button[aria-pressed="true"] {
+  background: var(--rm-ink-1) !important;
+  color: var(--rm-inv-ink) !important;
+}
+html #observatory.guided-tour-active #guided-reference-dock .v82-zoom {
+  border-radius: 999px !important;
+  border: 1px solid var(--rm-border) !important;
+  background: var(--rm-glass-ghost) !important;
+  padding: 1px 3px;
+}
+
+/* Field Photo Lightbox — Natural Aspect-Ratio Editorial Framing & Bidirectional Right-Rail Coupling */
+@media (min-width: 761px) {
+  /* Smart right-rail balance when Photo Preview is open: trim excess empty padding in Space Reference
+     so the photo & its hover magnifier lens get a generous inspection window */
+  html #observatory.guided-tour-active:has(#guided-photo-preview:not([hidden])):not(:has(#guided-reference-dock.v74-custom-panel)) #guided-reference-dock:not(.v93-radar-minimized) {
+    height: clamp(190px, 23dvh, 224px) !important;
+  }
+  /* Dynamic bidirectional height ceiling on Space Reference so dragging either panel NEVER causes overlap */
+  html #observatory.guided-tour-active #guided-reference-dock:not([hidden]):not(.v93-radar-minimized) {
+    max-height: var(--rm-ref-max-h, none) !important;
+  }
+  /* Photo Preview tracks Space Reference bottom edge, resize width, collapse, & credit expansion at 60fps */
+  html #observatory.guided-tour-active #guided-photo-preview:not(.v74-custom-panel):not([hidden]) {
+    top: var(--rm-photo-top, calc(66px + clamp(190px, 23dvh, 224px) + 10px)) !important;
+    max-height: var(--rm-photo-max-h, calc(100dvh - 66px - clamp(190px, 23dvh, 224px) - 10px - 96px)) !important;
+    right: var(--rm-photo-right, 14px) !important;
+  }
+  @media (min-width: 1180px) {
+    /* Unified Right-Rail Architectural Width: Space Reference & ALL Photo Cards (including paired compare) align flush to 0px */
+    html #observatory.guided-tour-active #guided-reference-dock:not(.v74-custom-panel):not([hidden]) {
+      width: clamp(360px, 32vw, 480px) !important;
+    }
+    html #observatory.guided-tour-active #guided-photo-preview:not(.v74-custom-panel):not([hidden]) {
+      width: var(--rm-photo-width, clamp(360px, 32vw, 480px)) !important;
+    }
+    /* Optional one-click expanded side-by-side comparison mode (triggered by header "展宽 ⤢" button) */
+    html #observatory.guided-tour-active #guided-photo-preview.v75-paired-media.rm-paired-wide:not(.v74-custom-panel):not([hidden]) {
+      width: min(56vw, 760px) !important;
+    }
+  }
+  /* Header toggle button for paired comparison wide mode */
+  #guided-photo-preview > header {
+    gap: 8px;
+  }
+  #guided-photo-preview > header > strong {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  #rm-photo-wide-toggle {
+    display: none;
+    height: 26px !important;
+    padding: 0 10px !important;
+    font-size: 11px !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  @media (min-width: 1180px) {
+    html #observatory.guided-tour-active #guided-photo-preview.v75-paired-media:not(.v74-custom-panel) #rm-photo-wide-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+  html #observatory.guided-tour-active #guided-photo-preview #rm-photo-wide-toggle[aria-pressed="true"] {
+    background: var(--rm-ice-soft) !important;
+    border-color: var(--rm-ice-border) !important;
+    color: var(--rm-ice-ink) !important;
+  }
+  html[data-theme="light"] #observatory.guided-tour-active #guided-photo-preview #rm-photo-wide-toggle[aria-pressed="true"] {
+    background: rgba(42, 120, 163, 0.13) !important;
+    border-color: rgba(42, 120, 163, 0.34) !important;
+    color: #174E6E !important;
+  }
+  /* Subtle interactive resize handle indicator on hover between stacked panels */
+  html #observatory.guided-tour-active :is(#guided-reference-dock, #guided-tour-panel) > .v75-window-edge[data-edge="s"]::after,
+  html #observatory.guided-tour-active :is(#guided-photo-preview, #chart-deck) > .v75-window-edge[data-edge="n"]::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 36px;
+    height: 3px;
+    border-radius: 999px;
+    transform: translate(-50%, -50%);
+    background: var(--rm-ice);
+    opacity: 0;
+    transition: opacity var(--rm-dur-fast) ease, width var(--rm-dur-fast) var(--rm-spring);
+  }
+  html #observatory.guided-tour-active :is(#guided-reference-dock, #guided-tour-panel) > .v75-window-edge[data-edge="s"]:hover::after,
+  html #observatory.guided-tour-active :is(#guided-photo-preview, #chart-deck) > .v75-window-edge[data-edge="n"]:hover::after {
+    opacity: 0.78;
+    width: 52px;
+  }
+}
+
+html #observatory.guided-tour-active #guided-photo-preview:not([hidden]) {
+  border-radius: 18px !important;
+  padding: 10px 14px 12px !important;
+  gap: 7px;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 241, 234, 0.20) transparent;
+}
+html #observatory.guided-tour-active #guided-photo-preview > header {
+  padding-bottom: 6px;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--rm-border);
+  flex: 0 0 auto;
+}
+html #observatory.guided-tour-active #guided-photo-preview .v82-photo-viewport,
+html #observatory.guided-tour-active #guided-photo-preview .v75-evidence-media,
+html #observatory.guided-tour-active #guided-photo-preview .v83-photo-frame {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview .v82-photo-viewport {
+  flex: 0 0 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview .v75-evidence-media {
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  align-items: center;
+  justify-items: center;
+  overflow: visible !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview .v83-photo-frame {
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 10px !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.42), inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+}
+/* Respect exact natural portrait (iPhone) or landscape (satellite) aspect ratio — NEVER crop or distort */
+html #observatory.guided-tour-active #guided-photo-preview:not(.v75-paired-media) .v75-evidence-media img:not([hidden]) {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: min(37dvh, 380px, max(116px, calc(var(--rm-photo-max-h, 620px) - 210px))) !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border-radius: 10px !important;
+  border: none !important;
+  display: block;
+}
+html #observatory.guided-tour-active #guided-photo-preview.v74-custom-panel:not(.v75-paired-media) .v75-evidence-media img:not([hidden]) {
+  max-height: min(64dvh, 640px, max(96px, calc(var(--v74-h, 580px) - 210px))) !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview.v75-paired-media .v75-evidence-media img:not([hidden]) {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: min(44dvh, 410px) !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border-radius: 10px !important;
+  border: none !important;
+  display: block;
+}
+@media (max-width: 760px) {
+  html #observatory.guided-tour-active #guided-photo-preview:not(.v75-paired-media) .v75-evidence-media img:not([hidden]),
+  html #observatory.guided-tour-active #guided-photo-preview.v75-paired-media .v75-evidence-media img:not([hidden]) {
+    max-height: min(36dvh, 300px) !important;
+  }
+}
+html #observatory.guided-tour-active #guided-photo-preview .guided-photo-caption {
+  font-size: 12px !important;
+  line-height: 1.62 !important;
+  color: var(--rm-ink-2) !important;
+  margin: 2px 0 0 !important;
+  flex: 0 0 auto;
+}
+html #observatory.guided-tour-active #guided-photo-preview > small {
+  color: var(--rm-ink-4) !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.02em;
+  flex: 0 0 auto;
+}
+html #observatory.guided-tour-active #guided-photo-preview .guided-photo-thumbs {
+  gap: 7px !important;
+  padding: 2px 0;
+  align-items: center;
+}
+html #observatory.guided-tour-active #guided-photo-preview .guided-photo-thumbs button {
+  border-radius: 7px !important;
+  border: none !important;
+  background: transparent !important;
+  opacity: 0.66;
+  padding: 0 !important;
+  box-shadow: 0 0 0 1px var(--rm-border);
+  transition: opacity var(--rm-dur-fast) ease, transform var(--rm-dur-fast) var(--rm-spring), box-shadow var(--rm-dur-fast) ease;
+}
+html #observatory.guided-tour-active #guided-photo-preview .guided-photo-thumbs button:hover {
+  opacity: 0.94;
+  transform: translateY(-1px);
+}
+html #observatory.guided-tour-active #guided-photo-preview .guided-photo-thumbs button[aria-pressed="true"] {
+  opacity: 1;
+  box-shadow: 0 0 0 1.5px var(--rm-gold), 0 4px 12px -4px rgba(212, 175, 106, 0.45) !important;
+}
+/* Natural Aspect-Ratio Thumbnails (Portrait stands tall, Landscape spans wide — zero cropping!) */
+html #observatory.guided-tour-active #guided-photo-preview .guided-photo-thumbs img {
+  width: auto !important;
+  height: 42px !important;
+  max-width: 78px !important;
+  max-height: 42px !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border-radius: 7px !important;
+  display: block;
+}
+/* Story Card Inline Images & Previews — Natural Aspect Ratio (preserves intentional road-round culvert detail crop) */
+html #observatory.guided-tour-active #guided-board-media img {
+  border: none !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.10) !important;
+}
+html #observatory.guided-tour-active #guided-director-board:not([data-step="road-round"]) #guided-board-media img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 76px !important;
+  object-fit: contain !important;
+}
+html #observatory.guided-tour-active #guided-tour-photo-link {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+html #observatory.guided-tour-active #guided-tour-photo-link img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 120px !important;
+  margin: 0 auto;
+  object-fit: contain !important;
+  border-radius: 9px !important;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.48), inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+}
+html #observatory.guided-tour-active #guided-history-pictures img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 240px !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border-radius: 9px !important;
+}
+
+/* Inspector & Evidence/Waterway Drawers — Respect Original Proportions Everywhere */
+#inspector-drawer .drawer-body > img,
+#inspector-drawer img[src*="field-photo-thumbs"] {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 320px !important;
+  margin-inline: auto !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.44), inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+}
+.cr-photo-tile {
+  align-items: center;
+}
+.cr-photo-tile img {
+  width: auto !important;
+  height: 64px !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border-radius: 6px !important;
+}
+.cr-comp-img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  margin-inline: auto;
+  object-fit: contain !important;
+  background: transparent !important;
+  border-radius: 10px !important;
+}
+
+/* Bottom-Center Cinema Transport Capsule (2-Row Concentric Dock: Audio Scrubber + Transport) */
+html #observatory.guided-tour-active #guided-tour-nav-strip {
+  border-radius: 20px !important;
+  padding: 8px 14px 8px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+html #observatory.guided-tour-active #guided-tour-nav-strip > .v75-title {
+  display: none !important;
+  pointer-events: none !important;
+}
+html #observatory.guided-tour-active #guided-tour-nav-strip .deck-btn {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--rm-ink-2) !important;
+  border-radius: 999px !important;
+  padding: 0 13px !important;
+  height: 34px !important;
+  font-weight: 500 !important;
+}
+html #observatory.guided-tour-active #guided-tour-nav-strip .deck-btn:hover {
+  background: var(--rm-glass-hover) !important;
+  color: var(--rm-ink-1) !important;
+}
+html #observatory.guided-tour-active #guided-tour-nav-strip #guided-tour-play.deck-btn {
+  background: linear-gradient(180deg, #DEC082 0%, #CCA55C 100%) !important;
+  color: #090A0C !important;
+  border: 1px solid rgba(244, 224, 178, 0.45) !important;
+  font-weight: 650 !important;
+  padding-inline: 18px !important;
+  box-shadow: 0 8px 20px -6px rgba(212, 175, 106, 0.44), inset 0 1px 0 rgba(255, 250, 236, 0.50) !important;
+}
+html #observatory.guided-tour-active #guided-tour-nav-strip #guided-tour-play.deck-btn:hover {
+  filter: brightness(1.05);
+}
+html #observatory.guided-tour-active #guided-tour-nav-strip #guided-camera-follow.deck-btn[aria-pressed="true"] {
+  background: var(--rm-ice-soft) !important;
+  border-color: var(--rm-ice-border) !important;
+  color: var(--rm-ice-ink) !important;
+}
+
+/* 29-Stop Visual Index Drawer & Seamless Tour Profile Dock + Light Theme Completeness */
+#v93-index-drawer {
+  border-radius: 18px !important;
+  padding: 18px 20px !important;
+}
+.v93-idx-item {
+  border-radius: 11px !important;
+  border: 1px solid var(--rm-border) !important;
+  background: var(--rm-glass-ghost) !important;
+  padding: 9px 11px !important;
+  transition: transform var(--rm-dur-fast) var(--rm-spring), border-color var(--rm-dur-fast) ease, background-color var(--rm-dur-fast) ease, box-shadow var(--rm-dur-fast) ease !important;
+}
+.v93-idx-item:hover {
+  transform: translateY(-1px);
+  border-color: var(--rm-border-med) !important;
+  background: var(--rm-glass-hover) !important;
+}
+.v93-idx-item.is-current {
+  border-color: var(--rm-gold-border) !important;
+  background: var(--rm-gold-soft) !important;
+  box-shadow: 0 6px 18px -8px rgba(212, 175, 106, 0.28);
+}
+
+/* Smooth transitions on topbar act progress ticks */
+.v93-stop-tick {
+  transition: background-color var(--rm-dur-med) var(--rm-spring), transform var(--rm-dur-med) var(--rm-spring) !important;
+}
+
+/* Seamless Unified Glass on Docked Tour Profile Card (no two-tone header split) */
+html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] {
+  border-radius: 18px !important;
+  padding-top: 32px !important;
+}
+html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] .deck-body {
+  background: transparent !important;
+  border-top: 1px solid var(--rm-border);
+  padding: 4px 8px 4px !important;
+}
+html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] > .v75-title {
+  left: 12px !important;
+  top: 6px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.10em !important;
+  color: var(--rm-ink-2) !important;
+}
+html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] #v74-close-tour-profile {
+  right: 8px !important;
+  top: 4px !important;
+  height: 24px !important;
+  padding: 0 10px !important;
+  font-size: 11px !important;
+}
+
+/* Guided Sides Caption — Refined Pill Strip */
+html #observatory.guided-tour-active #guided-sides-caption:not([hidden]) {
+  border-radius: 999px !important;
+  border: 1px solid var(--rm-border) !important;
+  background: var(--rm-glass-ghost) !important;
+  color: var(--rm-ink-2) !important;
+  font-family: var(--font-mono);
+  font-size: 11px !important;
+  letter-spacing: 0.05em;
+  padding: 4px 12px !important;
+}
+
+/* Explicit Light-Theme Guided Tour Button & Control Contrast Guard */
+html[data-theme="light"] {
+  --chart-grid: rgba(24, 22, 18, 0.10);
+  --chart-axis: rgba(24, 22, 18, 0.22);
+  --chart-ink: #5A5750;
+  --chart-muted: #7C7870;
+  --chart-zero-bg: #F4F1E9;
+}
+html[data-theme="light"] #observatory.guided-tour-active :is(#guided-tour-panel, #guided-photo-preview, #chart-deck) .deck-btn {
+  background: rgba(24, 22, 18, 0.045) !important;
+  border-color: rgba(24, 22, 18, 0.14) !important;
+  color: #2B2925 !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active :is(#guided-tour-panel, #guided-photo-preview, #chart-deck) .deck-btn:hover {
+  background: rgba(24, 22, 18, 0.09) !important;
+  color: #12110F !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip .deck-btn {
+  color: #2B2925 !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip .deck-btn:hover {
+  background: rgba(24, 22, 18, 0.08) !important;
+  color: #12110F !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip #guided-camera-follow.deck-btn[aria-pressed="true"] {
+  background: rgba(42, 120, 163, 0.13) !important;
+  border-color: rgba(42, 120, 163, 0.34) !important;
+  color: #174E6E !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock .guided-reference-title button {
+  color: #5A5750 !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock .guided-reference-title button[aria-pressed="true"] {
+  background: #181715 !important;
+  color: #FAF8F3 !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-photo-preview .v83-photo-frame {
+  box-shadow: 0 8px 22px -10px rgba(24, 22, 18, 0.22), inset 0 0 0 1px rgba(24, 22, 18, 0.10);
+}
+
+/* Popovers & Modals */
+.glass-popover {
+  border-radius: 18px !important;
+  padding: 16px 18px !important;
+}
+#export-menu {
+  width: min(312px, calc(100vw - 24px)) !important;
+  right: 12px !important;
+  left: auto !important;
+}
+.tools-theme-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.tools-theme-lbl {
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--rm-ink-2);
+}
+.tools-theme-seg {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+  background: rgba(244, 241, 234, 0.05);
+  border: 1px solid var(--rm-border);
+}
+html[data-theme="light"] .tools-theme-seg {
+  background: rgba(24, 22, 18, 0.05);
+}
+.tools-seg-btn {
+  position: relative;
+  z-index: 1;
+  height: 30px;
+  border-radius: 999px;
+  padding: 0 8px;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rm-ink-3);
+}
+.tools-seg-btn.active {
+  background: var(--rm-ink-1);
+  color: var(--rm-inv-ink);
+  font-weight: 600;
+}
+.tools-theme-seg.rm-has-glider .tools-seg-btn.active {
+  background: transparent;
+}
+.audit-table th {
+  white-space: nowrap;
+}
+.scope-pop-btn,
+.bm-opt,
+.exp-item {
+  border-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   12. Tablet Layout (761px–1179px): Strict Left/Right Mutual Exclusion
+       - Zero Studio vs Inspector overlap in Free Browse
+       - Zero Story vs Reference/Photo squeezing or overlap in Guided Tour
+       - Zero #exag-group vs #hud-rail compass collision
+   -------------------------------------------------------------------------- */
+@media (min-width: 761px) and (max-width: 1179px) {
+  /* Keep top-left hero island and top-right command bar cleanly separated on 761-1060px */
+  @media (max-width: 1060px) {
+    .hud-top-left {
+      top: 12px;
+      left: 12px;
+      max-width: calc(100vw - 418px);
+    }
+    .hud-top-right {
+      top: 12px;
+      right: 12px;
+    }
+    .hero-top-row {
+      padding: 8px 12px 7px;
+      gap: 10px;
+    }
+    .brand-title {
+      font-size: 14.5px;
+    }
+    .lake-chip-val {
+      font-size: 17.5px;
+    }
+    .date-chip {
+      height: 30px;
+      padding: 0 10px;
+    }
+    .scope-strip {
+      padding: 4px 8px;
+      gap: 2px;
+    }
+    .scope-btn {
+      padding: 0 7px;
+      font-size: 11.5px;
+    }
+    .atlas-cmd-bar {
+      padding: 3px 4px !important;
+      gap: 2px !important;
+    }
+    .dock-btn {
+      height: 28px;
+      padding: 0 8px;
+      font-size: 11.5px;
+    }
+    .dock-btn.tools-btn {
+      width: 28px;
+      height: 28px;
+    }
+    .seg-btn {
+      height: 26px;
+      padding: 0 9px;
+      font-size: 11px;
+    }
+    .cmd-sep {
+      margin: 0 2px;
+    }
+  }
+
+  /* Float 1x/4x/8x capsule below command bar across full tablet width (761-1179px) */
+  .exag-pills {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    right: 0 !important;
+    left: auto !important;
+    margin: 0 !important;
+    background: var(--rm-glass-deep) !important;
+    backdrop-filter: var(--rm-blur) !important;
+    -webkit-backdrop-filter: var(--rm-blur) !important;
+    border: 1px solid var(--rm-border) !important;
+    box-shadow: var(--rm-shadow-float), var(--rm-specular) !important;
+    border-radius: 999px !important;
+    padding: 3px !important;
+  }
+  #observatory:has(#exag-group:not([hidden])) .hud-rail {
+    top: 106px !important;
+  }
+
+  /* Browse Mode: Strict left/right mutual exclusion safeguard */
+  #observatory.studio-open .inspector-drawer:not([data-rm-priority="true"]) {
+    display: none !important;
+    pointer-events: none !important;
+  }
+  #observatory.inspector-open .studio-drawer:not([data-rm-priority="true"]) {
+    display: none !important;
+    pointer-events: none !important;
+  }
+  #observatory.studio-open #v93-prologue,
+  #observatory.inspector-open #v93-prologue {
+    display: none !important;
+  }
+  .studio-drawer {
+    width: min(376px, calc(100vw - 74px));
+  }
+  .inspector-drawer {
+    width: min(364px, calc(100vw - 74px));
+  }
+
+  /* Guided Tour Mode on Tablet (761px-1179px): Mutually Exclusive Left/Right Dock */
+  .rm-tablet-lane-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px;
+    border-radius: 999px;
+    background: var(--rm-glass-ghost);
+    border: 1px solid var(--rm-border);
+    flex: 0 0 auto;
+  }
+  .rm-tablet-lane-btn {
+    height: 30px;
+    padding: 0 11px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--rm-ink-3);
+    font-size: 11.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .rm-tablet-lane-btn:hover {
+    color: var(--rm-ink-1);
+  }
+  .rm-tablet-lane-btn[aria-pressed="true"] {
+    background: var(--rm-ink-1);
+    color: var(--rm-inv-ink);
+    font-weight: 600;
+  }
+
+  /* Default tablet tour lane is "story" (left); right dock hidden unless "reference" active */
+  html #observatory.guided-tour-active[data-rm-tablet-lane="story"] #guided-reference-dock,
+  html #observatory.guided-tour-active[data-rm-tablet-lane="story"] #guided-photo-preview {
+    display: none !important;
+  }
+  html #observatory.guided-tour-active[data-rm-tablet-lane="reference"] #guided-tour-panel,
+  html #observatory.guided-tour-active[data-rm-tablet-lane="reference"].v74-tour-profile-open #chart-deck {
+    display: none !important;
+  }
+
+  /* Give the active single lane generous editorial width so selects/text never clip */
+  html #observatory.guided-tour-active #guided-tour-panel:not(.v74-custom-panel) {
+    width: min(388px, calc(100vw - 76px)) !important;
+    left: 14px !important;
+    right: auto !important;
+  }
+  html #observatory.guided-tour-active #guided-tour-select {
+    max-width: 225px !important;
+  }
+  html #observatory.guided-tour-active :is(#guided-reference-dock, #guided-photo-preview):not(.v74-custom-panel):not([hidden]) {
+    width: min(410px, calc(100vw - 76px)) !important;
+    right: 14px !important;
+    left: auto !important;
+  }
+  html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-expanded="true"][data-tour-profile]:not(.v74-custom-panel) {
+    width: min(388px, calc(100vw - 76px)) !important;
+  }
+}
+
+@media (min-width: 1180px), (max-width: 760px) {
+  .rm-tablet-lane-switch {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Mobile (<= 760px): Guaranteed >=44px Interactive Touch Targets +
+       Zero Occlusion of Key Landmarks (8->9->10, 16->17, Culvert Stop 26)
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  /* Top Hero Header */
+  .hud-top-left {
+    top: max(6px, env(safe-area-inset-top));
+    left: 8px;
+    right: 8px;
+  }
+  .atlas-hero-card {
+    border-radius: 16px !important;
+  }
+  .hero-top-row {
+    padding: 4px 10px 4px 12px !important;
+    min-height: 52px;
+  }
+  .hero-place-block {
+    margin-inline-end: 186px !important;
+  }
+  .hero-place-trigger {
+    min-height: 44px !important;
+    min-width: 44px;
+    padding: 0 4px !important;
+  }
+  .brand-title {
+    font-size: 14px !important;
+    letter-spacing: 0.02em;
+  }
+  .lake-chip-val {
+    font-size: 16.5px !important;
+  }
+
+  /* Top-Right 2D / 3D / Walk / Tools — True 44px Touch Targets */
+  .hud-top-right {
+    top: calc(max(6px, env(safe-area-inset-top)) + 4px) !important;
+    right: 10px !important;
+  }
+  .atlas-cmd-bar {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    gap: 2px !important;
+  }
+  .dim-switch {
+    padding: 0 2px;
+    gap: 1px;
+    background: rgba(244, 241, 234, 0.045);
+    border: 1px solid var(--rm-border);
+  }
+  .seg-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    height: 44px !important;
+    padding: 0 7px !important;
+    font-size: 11.5px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .seg-btn.walk-btn {
+    min-width: 44px !important;
+    padding: 0 7px !important;
+  }
+  /* Sleek visual pill inside 44px mobile touch hit-box */
+  .dim-switch.rm-has-glider .seg-btn.active {
+    background: transparent !important;
+  }
+  .mode-switch.rm-has-glider .mode-btn.active,
+  html #observatory:not(.guided-tour-active) #chart-deck .mode-switch.rm-has-glider .mode-btn[aria-selected="true"] {
+    background: transparent !important;
+    color: var(--rm-inv-ink) !important;
+    box-shadow: none !important;
+  }
+  .dock-btn.tools-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 16px !important;
+  }
+  .cmd-sep {
+    display: none;
+  }
+
+  /* Exag Capsule on Mobile 3D — MUST stay position: fixed out of .dim-switch flow */
+  .exag-pills {
+    position: fixed !important;
+    top: calc(var(--hud-tl-bottom, 108px) + 6px) !important;
+    right: 8px !important;
+    left: auto !important;
+    margin: 0 !important;
+    z-index: 35 !important;
+    background: var(--rm-glass-deep) !important;
+    backdrop-filter: var(--rm-blur) !important;
+    -webkit-backdrop-filter: var(--rm-blur) !important;
+    border: 1px solid var(--rm-border) !important;
+    box-shadow: var(--rm-shadow-float), var(--rm-specular) !important;
+    padding: 2px !important;
+  }
+  .exag-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    height: 44px !important;
+  }
+
+  /* Dual-Date Row — True 44px Height */
+  .date-chip {
+    min-height: 44px !important;
+    height: 44px !important;
+    padding: 0 8px !important;
+  }
+
+  /* Right Map Rail — True 44px Touch Targets */
+  .hud-rail {
+    top: calc(var(--hud-tl-bottom, 108px) + 6px) !important;
+    right: 8px !important;
+    gap: 6px !important;
+  }
+  #observatory:has(#exag-group:not([hidden])) .hud-rail {
+    top: calc(var(--hud-tl-bottom, 108px) + 64px) !important;
+  }
+  .rail-compass {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .rail-btn {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .rail-legend-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    height: 44px !important;
+    padding: 0 8px !important;
+  }
+
+  /* Prologue Card on Mobile */
+  html #observatory #v93-prologue:not([hidden]) {
+    padding: 12px 14px 12px !important;
+    border-radius: 16px !important;
+    background: var(--rm-glass-deep) !important;
+    border: 1px solid var(--rm-border) !important;
+    box-shadow: var(--rm-shadow-pop), var(--rm-specular) !important;
+  }
+  #v93-prologue .v93-pro-close {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+  #v93-prologue-details {
+    min-height: 44px !important;
+    color: var(--rm-ink-3) !important;
+    font-size: 12px !important;
+  }
+  #v93-prologue .v93-stage-jump {
+    min-height: 44px !important;
+    padding: 0 12px !important;
+  }
+  #v93-prologue .v93-btn-primary,
+  #v93-prologue .v93-btn-secondary {
+    min-height: 44px !important;
+    border-radius: 999px !important;
+  }
+
+  /* Bottom Chart Deck & 4-Category Thumb Bar — True 44px Touch Targets */
+  .chart-deck {
+    border-radius: 18px 18px 0 0 !important;
+    bottom: 0 !important;
+  }
+  .deck-bar {
+    padding: 4px 8px !important;
+    gap: 4px !important;
+  }
+  .mode-btn,
+  .deck-expand-btn,
+  .deck-quick-controls .deck-btn,
+  .deck-quick-controls .deck-select,
+  .sub-seg-btn,
+  #mobile-timeline-lakes {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  .mode-btn {
+    padding: 0 10px !important;
+    border-radius: 999px !important;
+  }
+  html #observatory:not(.guided-tour-active) #chart-deck .mode-btn[aria-selected="true"] {
+    background: var(--rm-ink-1) !important;
+    color: var(--rm-inv-ink) !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+  }
+  .mobile-nav-strip {
+    padding: 4px 6px !important;
+    gap: 4px !important;
+    border-top: 1px solid var(--rm-border) !important;
+  }
+  .mob-nav-btn {
+    min-height: 44px !important;
+    height: 44px !important;
+    border-radius: 999px !important;
+    color: var(--rm-ink-2) !important;
+    font-weight: 500 !important;
+  }
+  .mob-nav-btn.active {
+    background: var(--rm-ice-soft) !important;
+    color: var(--rm-ice-ink) !important;
+  }
+
+  /* Drawer Controls on Mobile */
+  .d-tab,
+  .icon-close,
+  .pop-close,
+  .subnav-btn,
+  .mini-pill,
+  .f-chip,
+  .scope-pop-btn,
+  .bm-opt,
+  .exp-item {
+    min-height: 44px !important;
+  }
+  .icon-close,
+  .pop-close {
+    min-width: 44px !important;
+    width: 44px !important;
+  }
+
+  /* ------------------------------------------------------------------------
+     Mobile Guided Tour (<= 760px):
+     Total bottom height kept <= 278px (<= original 282px!) so 8->9->10,
+     16->17, and Culvert (26) stay 100% unclipped & unoccluded, WHILE every
+     single interactive button achieves a real >=44px touch target!
+     ------------------------------------------------------------------------ */
+  #v93-tour-topbar {
+    top: max(4px, env(safe-area-inset-top)) !important;
+    left: 8px !important;
+    right: 8px !important;
+    height: 48px !important;
+    padding: 2px 6px !important;
+    border-radius: 999px !important;
+  }
+  html #observatory #v93-tour-topbar :is(.v93-index-btn, #guided-tour-close) {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    height: 44px !important;
+    padding: 0 6px !important;
+    gap: 5px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  html #observatory #v93-tour-topbar .v93-stop-pill {
+    border-radius: 999px !important;
+    padding: 2px 7px !important;
+    font-size: 10.5px !important;
+    letter-spacing: 0.03em !important;
+  }
+  html #observatory #v93-tour-topbar .v93-act-name {
+    font-size: 11.5px !important;
+  }
+  html #observatory #v93-tour-topbar .v93-dual-dates {
+    min-height: 36px !important;
+    padding: 0 4px !important;
+    font-size: 10.5px !important;
+  }
+  html #observatory #v93-tour-topbar #guided-tour-close.v93-exit-btn {
+    font-size: 11.5px !important;
+    padding: 0 8px !important;
+  }
+
+  /* Mobile Guided Tour Bottom Transport Strip: Audio Scrubber + 44px Controls */
+  html #observatory.guided-tour-active #guided-tour-nav-strip:not(.v74-custom-panel) {
+    bottom: max(4px, env(safe-area-inset-bottom)) !important;
+    height: auto !important;
+    min-height: 68px !important;
+    padding: 5px 8px 3px !important;
+    border-radius: 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 2px !important;
+  }
+  html #observatory.guided-tour-active #guided-tour-nav-strip .guided-tour-controls > .deck-btn {
+    height: 44px !important;
+    min-height: 44px !important;
+    min-width: 44px !important;
+    font-size: 11px !important;
+    border-radius: 999px !important;
+    padding: 0 4px !important;
+  }
+  html #observatory.guided-tour-active #guided-tour-nav-strip .guided-tour-controls > #guided-tour-play.deck-btn {
+    padding: 0 8px !important;
+    flex: 1.15 1 0 !important;
+  }
+
+  /* Compact Shared Bottom Slot (156px tall -> bottom 76px .. 232px; preserves exact 512px map headroom!) */
+  html #observatory.guided-tour-active :is(#guided-tour-panel, #chart-deck, #guided-reference-dock) {
+    bottom: calc(76px + max(4px, env(safe-area-inset-bottom))) !important;
+    height: 156px !important;
+    max-height: 156px !important;
+    border-radius: 0 0 16px 16px !important;
+  }
+  html #observatory.guided-tour-active.v93-mob-expanded :is(#guided-tour-panel, #chart-deck, #guided-reference-dock) {
+    height: calc(min(56dvh, 468px) - 76px) !important;
+    max-height: calc(min(56dvh, 468px) - 76px) !important;
+  }
+  html #observatory.guided-tour-active[data-v93-mob-tab="profile"] #chart-deck[data-tour-profile] svg.profile-svg {
+    height: 120px !important;
+  }
+
+  /* Mobile Mode Tab Strip perched right at 232px, height 44px -> top 276px (< 282px original!) */
+  html #observatory.guided-tour-active #v93-mob-tabs {
+    bottom: calc(232px + max(4px, env(safe-area-inset-bottom))) !important;
+    height: 44px !important;
+    padding: 0 4px !important;
+    border-radius: 16px 16px 0 0 !important;
+    background: var(--rm-glass-deep) !important;
+    backdrop-filter: var(--rm-blur) !important;
+    -webkit-backdrop-filter: var(--rm-blur) !important;
+    border: 1px solid var(--rm-border) !important;
+    border-bottom: 1px solid var(--rm-border) !important;
+    box-shadow: 0 -10px 28px -10px rgba(0, 0, 0, 0.42), var(--rm-specular) !important;
+  }
+  html #observatory.guided-tour-active.v93-mob-expanded #v93-mob-tabs {
+    bottom: calc(min(56dvh, 468px) + max(4px, env(safe-area-inset-bottom))) !important;
+  }
+  html #observatory.guided-tour-active #v93-mob-tabs :is(.v93-mob-tab, .v93-mob-expand) {
+    min-height: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    font-size: 12px !important;
+    color: var(--rm-ink-3) !important;
+  }
+  html #observatory.guided-tour-active #v93-mob-tabs .v93-mob-tab[aria-selected="true"] {
+    color: var(--rm-ink-1) !important;
+    box-shadow: inset 0 -2px 0 var(--rm-gold) !important;
+  }
+  html #observatory.guided-tour-active #guided-tour-panel {
+    padding: 6px 14px 8px !important;
+    gap: 3px !important;
+  }
+  html #observatory.guided-tour-active #guided-director-board {
+    padding: 3px 0 3px 10px !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+  html #observatory.guided-tour-active #guided-tour-title {
+    font-size: 15.5px !important;
+    margin: 0 0 3px !important;
+  }
+  html #observatory.guided-tour-active #guided-tour-caption {
+    font-size: 12.6px !important;
+    line-height: 1.58 !important;
+  }
+  html #observatory.guided-tour-active.v93-mob-expanded #guided-tour-caption {
+    line-height: 1.72 !important;
+  }
+  html #observatory.guided-tour-active #guided-tour-panel :is(.deck-btn, button) {
+    min-height: 44px !important;
+  }
+
+  /* Keep photo preview above bottom transport bar cleanly */
+  html #observatory.guided-tour-active #guided-photo-preview:not([hidden]) {
+    bottom: calc(78px + max(4px, env(safe-area-inset-bottom))) !important;
+    border-radius: 18px !important;
+  }
+  html #observatory.guided-tour-active #guided-photo-preview button {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  html #observatory.guided-tour-active #guided-reference-dock button {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  html #observatory.guided-tour-active #hud-rail {
+    top: 58px !important;
+    transform: none !important;
+  }
+}
+
+/* Narrow Mobile <= 360px safeguard */
+@media (max-width: 360px) {
+  .hero-place-block {
+    margin-inline-end: 178px !important;
+  }
+  .seg-btn {
+    min-width: 44px !important;
+    padding: 0 4px !important;
+    font-size: 11px !important;
+  }
+  .brand-title {
+    font-size: 12.5px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Restrained Exhibition Micro-Motions (6 Motion Enhancements)
+   -------------------------------------------------------------------------- */
+/* Subtle readability guard for airy translucent surfaces over bright terrain */
+.atlas-hero-card,
+.atlas-cmd-bar,
+#v93-tour-topbar,
+#guided-tour-panel,
+#guided-reference-dock,
+#guided-photo-preview,
+.chart-deck {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+html[data-theme="light"] .atlas-hero-card,
+html[data-theme="light"] .atlas-cmd-bar,
+html[data-theme="light"] #v93-tour-topbar,
+html[data-theme="light"] #guided-tour-panel,
+html[data-theme="light"] #guided-reference-dock,
+html[data-theme="light"] #guided-photo-preview,
+html[data-theme="light"] .chart-deck {
+  text-shadow: none;
+}
+
+/* 1. Guided Tour Story Cross-Fade Rise */
+@keyframes rmStoryIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.rm-story-enter {
+  animation: rmStoryIn 210ms var(--rm-spring) both;
+}
+
+/* 2. Photo Lightbox Reveal & Image Swap Fade-Scale */
+@keyframes rmPhotoReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.985) translate3d(0, 4px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+.rm-photo-enter {
+  animation: rmPhotoReveal 260ms var(--rm-spring) both;
+}
+
+/* 3. Space Reference Target Gentle Radar Pulse & View Cross-Fade */
+@keyframes rmRadarPulse {
+  0% {
+    opacity: 0.72;
+    transform: scale(0.75);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+}
+.rm-radar-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: rmRadarPulse 3.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes rmRefFade {
+  from { opacity: 0.25; }
+  to { opacity: 1; }
+}
+.rm-ref-fade {
+  animation: rmRefFade 220ms var(--rm-spring) both;
+}
+
+/* 4. Tablet Lane Switch & Mobile Guided Tabs Glider + Sheet Height Spring */
+.rm-tablet-lane-switch {
+  position: relative;
+}
+.rm-tablet-lane-btn {
+  position: relative;
+  z-index: 1;
+}
+.rm-tablet-lane-switch.rm-has-glider .rm-tablet-lane-btn[aria-pressed="true"] {
+  background: transparent;
+}
+.rm-glider[data-tone="underline"] {
+  background: var(--rm-gold);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(212, 175, 106, 0.45);
+}
+@media (max-width: 760px) {
+  html #observatory.guided-tour-active #v93-mob-tabs.rm-has-glider .v93-mob-tab[aria-selected="true"] {
+    box-shadow: none !important;
+  }
+  html #observatory.guided-tour-active :is(#guided-tour-panel, #chart-deck, #guided-reference-dock) {
+    transition: height var(--rm-dur-slow) var(--rm-spring), max-height var(--rm-dur-slow) var(--rm-spring), bottom var(--rm-dur-slow) var(--rm-spring) !important;
+  }
+  html #observatory.guided-tour-active #v93-mob-tabs {
+    transition: bottom var(--rm-dur-slow) var(--rm-spring) !important;
+  }
+}
+
+/* 5. Telemetry Metric Update Micro-Pulse */
+@keyframes rmNumTick {
+  0% {
+    opacity: 0.55;
+    transform: translate3d(0, 2px, 0);
+    color: var(--rm-ice-ink);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.rm-num-tick {
+  display: inline-block;
+  animation: rmNumTick 220ms var(--rm-spring) both;
+}
+
+/* 6. SVG Floating Profile Readout Pill Damped Follow */
+svg[data-profile-svg] [data-prof-cursor-pill] {
+  transition: transform 95ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   15. Accessibility: Respect prefers-reduced-motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .rm-glider,
+  .rm-walk-hint,
+  svg[data-profile-svg] [data-prof-cursor-pill] {
+    transition: none !important;
+  }
+  #v93-prologue,
+  #v93-index-drawer,
+  #walk-lab,
+  #walk-lab > .walk-row:first-of-type > strong::before,
+  #walk-advanced[open] > :not(summary),
+  #v93-tour-topbar,
+  #guided-tour-nav-strip,
+  #guide-play-toggles:popover-open,
+  dialog.atlas-modal[open],
+  .rm-walk-hint,
+  .rm-story-enter,
+  .rm-photo-enter,
+  .rm-radar-pulse,
+  .rm-ref-fade,
+  .rm-num-tick {
+    animation: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. Free-Roam Terrain Walk UI Polish (Desktop + Mobile + Light Theme)
+       - Zero squished left-edge strips (#btn-guide-chapter-one & .hud-meta-pills)
+       - High-contrast top-right Walk active bar over bright sky on mobile/desktop
+       - Desktop first-entry concise keyboard/mouse HUD hint pill
+       - Mobile ergonomic D-pad (left) + vertical Elevation stack (right) >=46px
+   -------------------------------------------------------------------------- */
+#observatory.walk-active:not(.studio-open) :is(#v93-prologue, #atlas-hero-card) {
+  display: none !important;
+}
+#observatory.walk-active #btn-guide-chapter-one,
+#observatory.walk-active #hud-top-left .hud-meta-pills {
+  display: none !important;
+}
+#observatory.walk-active #hud-top-left {
+  max-width: min(360px, calc(100vw - 240px));
+}
+
+/* Desktop & Tablet Walk Top-Right Command Bar — Crisp Visibility Over Bright Sky */
+#observatory.walk-active .atlas-cmd-bar {
+  background: rgba(14, 15, 18, 0.76) !important;
+  border-color: var(--rm-border-med) !important;
+  box-shadow: var(--rm-shadow-pop), var(--rm-specular) !important;
+}
+html[data-theme="light"] #observatory.walk-active .atlas-cmd-bar {
+  background: rgba(251, 249, 244, 0.88) !important;
+  border-color: rgba(24, 22, 18, 0.14) !important;
+}
+
+/* Walk Console (#walk-lab) — Sculpted Minimalist Flight Deck with Unified Motion */
+@keyframes rmWalkDeckIn {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, 14px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+}
+@keyframes rmGoldBreath {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 106, 0.55), 0 0 10px rgba(212, 175, 106, 0.65);
+  }
+  50% {
+    box-shadow: 0 0 0 4.5px rgba(212, 175, 106, 0), 0 0 14px rgba(212, 175, 106, 0.90);
+  }
+}
+@keyframes rmPopIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+@keyframes rmTourTopIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+#walk-lab {
+  width: min(500px, calc(100% - 20px));
+  max-height: 54svh;
+  overflow: auto;
+  border-radius: 20px !important;
+  padding: 12px 16px 11px !important;
+  background: rgba(12, 13, 16, 0.72) !important;
+  backdrop-filter: var(--rm-blur-deep) !important;
+  -webkit-backdrop-filter: var(--rm-blur-deep) !important;
+  border: 1px solid var(--rm-border-med) !important;
+  box-shadow: var(--rm-shadow-pop), var(--rm-specular) !important;
+  color: var(--rm-ink-1);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 241, 234, 0.18) transparent;
+}
+#walk-lab:not([hidden]) {
+  animation: rmWalkDeckIn 320ms var(--rm-spring) both;
+}
+html[data-theme="light"] #walk-lab {
+  background: rgba(252, 250, 245, 0.86) !important;
+  border-color: rgba(24, 22, 18, 0.13) !important;
+}
+
+#walk-lab .walk-row {
+  gap: 7px;
+  margin-bottom: 8px;
+}
+#walk-lab .walk-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Header Row: Live Title + Monospace Telemetry + Optional Hint Toggle + Exit Pill */
+#walk-lab > .walk-row:first-of-type {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--rm-border);
+}
+#walk-lab > .walk-row:first-of-type > strong {
+  order: 1;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  color: var(--rm-ink-1);
+  white-space: nowrap;
+}
+#walk-lab > .walk-row:first-of-type > strong::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rm-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 106, 0.72);
+  animation: rmGoldBreath 3.6s ease-in-out infinite;
+  flex: 0 0 auto;
+}
+#walk-lab #walk-chain {
+  order: 2;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--rm-ink-2);
+  background: var(--rm-glass-ghost);
+  border: 1px solid var(--rm-border);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#walk-lab .rm-walk-help-btn {
+  order: 3;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--rm-border);
+  background: var(--rm-glass-ghost);
+  color: var(--rm-ink-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 650;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+#walk-lab .rm-walk-help-btn:hover,
+#walk-lab .rm-walk-help-btn[aria-expanded="true"] {
+  background: var(--rm-gold-soft);
+  border-color: var(--rm-gold-border);
+  color: var(--rm-gold-ink);
+}
+#walk-lab #walk-close {
+  order: 4;
+  flex: 0 0 auto;
+  margin-left: 0;
+  height: 28px;
+  padding: 0 12px;
+  font-size: 11.5px;
+  font-weight: 550;
+  border-color: var(--rm-border-med);
+}
+#walk-lab #walk-close:hover {
+  background: rgba(224, 107, 120, 0.16);
+  border-color: rgba(224, 107, 120, 0.42);
+  color: var(--rm-ink-1);
+}
+
+/* Speed Stepper & Pace Control Row */
+#walk-lab #walk-speed-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+#walk-lab #walk-speed-controls [data-walk-speed-step] {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+#walk-lab #walk-speed-value {
+  flex: 1 1 auto;
+  min-width: 110px;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  color: var(--rm-ink-1);
+  background: var(--rm-glass-ghost);
+  border: 1px solid var(--rm-border);
+  border-radius: 999px;
+  padding: 5px 10px;
+  text-align: center;
+}
+#walk-lab #walk-pace {
+  height: 30px;
+  padding: 0 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: var(--rm-ice-soft);
+  border-color: var(--rm-ice-border);
+  color: var(--rm-ice-ink);
+}
+#walk-lab #walk-pace:hover {
+  background: var(--rm-ice);
+  color: var(--rm-inv-ink);
+}
+#walk-lab :is(#walk-speed-controls, #walk-pace)[hidden] {
+  display: none !important;
+}
+
+/* Advanced Settings Disclosure */
+#walk-advanced {
+  border-top: 1px solid var(--rm-border);
+  margin-top: 4px;
+  padding-top: 2px;
+}
+#walk-advanced > summary {
+  cursor: pointer;
+  width: max-content;
+  padding: 5px 2px 3px;
+  font-size: 11.5px;
+  font-weight: 550;
+  letter-spacing: 0.04em;
+  color: var(--rm-ink-3);
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  transition: color var(--rm-dur-fast) ease;
+}
+#walk-advanced > summary::-webkit-details-marker {
+  display: none;
+}
+#walk-advanced > summary::before {
+  content: "▸";
+  font-size: 10px;
+  color: var(--rm-gold);
+  transition: transform var(--rm-dur-fast) var(--rm-spring);
+}
+#walk-advanced[open] > summary::before {
+  transform: rotate(90deg);
+}
+#walk-advanced > summary:hover {
+  color: var(--rm-ink-1);
+}
+#walk-advanced[open] > summary {
+  margin-bottom: 8px;
+  color: var(--rm-ink-1);
+}
+#walk-advanced[open] > :not(summary) {
+  animation: rmStoryIn 230ms var(--rm-spring) both;
+}
+#walk-advanced label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--rm-ink-2);
+}
+#walk-advanced .deck-select {
+  height: 30px;
+  font-size: 12px;
+}
+#walk-advanced .card-note {
+  font-size: 11.5px;
+  line-height: 1.62;
+  color: var(--rm-ink-3);
+}
+/* Segmented Sliding Gliders inside Walk Advanced Settings (1x/4x/8x & 08:00/12:00/18:00) */
+#walk-advanced [role="group"][aria-label="地形垂向比例"] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11.5px;
+  color: var(--rm-ink-2);
+}
+#walk-advanced .walk-row:has([data-walk-sun]) {
+  position: relative;
+}
+#walk-advanced [data-walk-exag],
+#walk-advanced [data-walk-sun] {
+  position: relative;
+  z-index: 1;
+  height: 28px;
+  padding: 0 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+#walk-advanced .rm-has-glider [data-walk-exag][aria-pressed="true"] {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: var(--rm-inv-ink) !important;
+  font-weight: 650;
+}
+#walk-advanced .rm-has-glider [data-walk-sun][aria-pressed="true"] {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: var(--rm-ice-ink) !important;
+  font-weight: 600;
+}
+
+/* Desktop First-Entry Concise Walk Operation Hint Pill */
+.rm-walk-hint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: max-content;
+  bottom: calc(max(12px, env(safe-area-inset-bottom)) + var(--rm-walk-lab-h, 128px) + 12px);
+  z-index: 27;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100vw - 28px);
+  padding: 7px 10px 7px 14px;
+  border-radius: 999px;
+  background: rgba(12, 13, 16, 0.76);
+  backdrop-filter: var(--rm-blur-deep);
+  -webkit-backdrop-filter: var(--rm-blur-deep);
+  border: 1px solid var(--rm-gold-border);
+  box-shadow: var(--rm-shadow-pop), var(--rm-specular);
+  color: var(--rm-ink-2);
+  font-size: 12px;
+  line-height: 1.3;
+  white-space: nowrap;
+  animation: rmFadeSlideUp 260ms var(--rm-spring) both;
+  transition:
+    bottom var(--rm-dur-med) var(--rm-spring),
+    opacity 180ms ease,
+    transform 180ms var(--rm-spring);
+}
+.rm-walk-hint.rm-walk-hint-leaving {
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+  pointer-events: none;
+}
+.rm-walk-hint[hidden],
+#observatory:not(.walk-active) .rm-walk-hint,
+#observatory.studio-open .rm-walk-hint {
+  display: none !important;
+}
+html[data-theme="light"] .rm-walk-hint {
+  background: rgba(252, 250, 245, 0.90);
+  border-color: rgba(167, 125, 48, 0.34);
+  color: #3D3B36;
+}
+.rm-walk-hint-items {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.rm-walk-hint-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.rm-walk-hint kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--rm-ink-1);
+  background: rgba(244, 241, 234, 0.10);
+  border: 1px solid var(--rm-border-med);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.32);
+}
+html[data-theme="light"] .rm-walk-hint kbd {
+  background: rgba(24, 22, 18, 0.06);
+  border-color: rgba(24, 22, 18, 0.16);
+  box-shadow: inset 0 -1px 0 rgba(24, 22, 18, 0.12);
+}
+.rm-walk-hint-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--rm-gold);
+  opacity: 0.6;
+}
+.rm-walk-hint-close {
+  height: 24px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid var(--rm-border);
+  background: var(--rm-glass-ghost);
+  color: var(--rm-ink-2);
+  font-size: 11px;
+  cursor: pointer;
+}
+.rm-walk-hint-close:hover {
+  background: var(--rm-gold-soft);
+  border-color: var(--rm-gold-border);
+  color: var(--rm-ink-1);
+}
+
+/* Mobile & Coarse-Pointer Ergonomic Walk Layout */
+@media (pointer: coarse), (max-width: 760px) {
+  .rm-walk-hint,
+  #walk-lab .rm-walk-help-btn {
+    display: none !important;
+  }
+
+  /* Restore high-contrast frosted glass capsule behind 2D / 3D / 漫游 / ⋯ in Walk Mode */
+  #observatory.walk-active .hud-top-right {
+    top: max(8px, env(safe-area-inset-top)) !important;
+    right: 8px !important;
+  }
+  #observatory.walk-active .atlas-cmd-bar {
+    background: rgba(14, 15, 18, 0.80) !important;
+    backdrop-filter: var(--rm-blur-deep) !important;
+    -webkit-backdrop-filter: var(--rm-blur-deep) !important;
+    border: 1px solid var(--rm-border-med) !important;
+    box-shadow: var(--rm-shadow-pop), var(--rm-specular) !important;
+    border-radius: 999px !important;
+    padding: 2px 4px !important;
+    gap: 2px !important;
+  }
+  html[data-theme="light"] #observatory.walk-active .atlas-cmd-bar {
+    background: rgba(251, 249, 244, 0.90) !important;
+    border-color: rgba(24, 22, 18, 0.16) !important;
+  }
+  #observatory.walk-active .dim-switch {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  #observatory.walk-active .dock-btn.tools-btn {
+    color: rgba(244, 241, 234, 0.88) !important;
+  }
+  html[data-theme="light"] #observatory.walk-active .dock-btn.tools-btn {
+    color: #383632 !important;
+  }
+  #observatory.walk-active .seg-btn.walk-btn {
+    padding: 0 10px !important;
+    min-width: 58px !important;
+  }
+  #observatory.walk-active .seg-btn.walk-btn::before {
+    width: 5px;
+    height: 5px;
+    margin-right: 4px;
+  }
+
+  /* Mobile Walk Bottom Deck */
+  #walk-lab {
+    width: calc(100vw - 16px) !important;
+    bottom: max(8px, env(safe-area-inset-bottom)) !important;
+    padding: 10px 12px 10px !important;
+    max-height: 56svh;
+  }
+  #walk-lab > .walk-row:first-of-type {
+    flex-wrap: wrap;
+    row-gap: 6px;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+  }
+  #walk-lab #walk-chain {
+    order: 4;
+    flex: 1 0 100%;
+    text-align: left;
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+  #walk-lab #walk-close {
+    order: 3;
+    margin-left: auto;
+    min-height: 44px !important;
+    height: 44px !important;
+    padding: 0 16px !important;
+    font-size: 12.5px !important;
+  }
+
+  /* Subtle Mobile Touch Look Whisper Cue above Grouped D-Pad */
+  #walk-lab .walk-touch {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(48px, 56px)) minmax(14px, 1fr) minmax(74px, 92px);
+    grid-template-rows: 46px 46px;
+    grid-template-areas:
+      ".    fwd  .     . up"
+      "left back right . down";
+    gap: 7px 6px !important;
+    align-items: stretch;
+    justify-items: stretch;
+    margin: 22px 0 10px !important;
+    padding: 8px 8px 8px;
+    border-radius: 15px;
+    background: rgba(244, 241, 234, 0.03);
+    border: 1px solid var(--rm-border);
+  }
+  html[data-theme="light"] #walk-lab .walk-touch {
+    background: rgba(24, 22, 18, 0.03);
+  }
+  #walk-lab .walk-touch::before {
+    content: "单指拖画面转头 · 左侧移动 / 右侧升降";
+    position: absolute;
+    left: 2px;
+    top: -19px;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--rm-ink-3);
+    pointer-events: none;
+  }
+  /* Subtle vertical hairline separator between Direction Pad & Elevation Stack */
+  #walk-lab .walk-touch::after {
+    content: "";
+    grid-column: 4;
+    grid-row: 1 / 3;
+    justify-self: center;
+    align-self: center;
+    width: 1px;
+    height: 68%;
+    background: var(--rm-border-med);
+    pointer-events: none;
+  }
+
+  #walk-lab .walk-touch .deck-btn {
+    width: 100% !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    min-width: 46px !important;
+    padding: 0 !important;
+    border-radius: 13px !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(244, 241, 234, 0.075);
+    border: 1px solid var(--rm-border-med);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+    color: var(--rm-ink-1);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  html[data-theme="light"] #walk-lab .walk-touch .deck-btn {
+    background: rgba(24, 22, 18, 0.055);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  }
+  #walk-lab .walk-touch [data-walk-hold="forward"] { grid-area: fwd; }
+  #walk-lab .walk-touch [data-walk-hold="left"]    { grid-area: left; }
+  #walk-lab .walk-touch [data-walk-hold="back"]    { grid-area: back; }
+  #walk-lab .walk-touch [data-walk-hold="right"]   { grid-area: right; }
+  #walk-lab .walk-touch [data-walk-hold="up"]      { grid-area: up; }
+  #walk-lab .walk-touch [data-walk-hold="down"]    { grid-area: down; }
+
+  /* Distinct Elevation Stack Accent (升 / 降) */
+  #walk-lab .walk-touch [data-walk-hold="up"],
+  #walk-lab .walk-touch [data-walk-hold="down"] {
+    font-size: 13px !important;
+    letter-spacing: 0.05em;
+    gap: 4px;
+    background: var(--rm-ice-soft);
+    border-color: var(--rm-ice-border);
+    color: var(--rm-ice-ink);
+  }
+  #walk-lab .walk-touch [data-walk-hold="up"]::before {
+    content: "▲";
+    font-size: 9px;
+    opacity: 0.85;
+  }
+  #walk-lab .walk-touch [data-walk-hold="down"]::before {
+    content: "▼";
+    font-size: 9px;
+    opacity: 0.85;
+  }
+  #walk-lab .walk-touch .deck-btn[data-held="true"] {
+    background: var(--rm-ice) !important;
+    border-color: var(--rm-ice) !important;
+    color: var(--rm-inv-ink) !important;
+    outline: none !important;
+    transform: scale(0.95);
+    box-shadow: 0 0 16px rgba(116, 184, 220, 0.45);
+  }
+  #walk-lab .walk-touch .deck-btn:disabled {
+    opacity: 0.30;
+    pointer-events: none;
+  }
+
+  /* Speed Controls >= 44px on Mobile (single clean row even on 360px) */
+  #walk-lab #walk-speed-controls {
+    flex-wrap: nowrap;
+    gap: 5px;
+    margin: 4px 0 4px !important;
+  }
+  #walk-lab #walk-speed-controls .deck-btn {
+    min-height: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    flex: 0 0 auto;
+  }
+  #walk-lab #walk-pace {
+    padding: 0 10px !important;
+    white-space: nowrap;
+  }
+  #walk-lab #walk-speed-value {
+    min-width: 0 !important;
+    flex: 1 1 0;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    padding: 4px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #walk-advanced > summary {
+    min-height: 40px;
+    padding: 8px 2px 4px;
+    font-size: 12.5px;
+  }
+}
+
+/* Narrow Phone <= 360px: slightly tighter D-pad columns so both clusters fit comfortably */
+@media (max-width: 360px) {
+  #walk-lab .walk-touch {
+    grid-template-columns: repeat(3, 46px) minmax(8px, 1fr) 72px !important;
+    gap: 6px 5px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   17. Site-Wide Motion & Detail Unification
+       - Chart Deck sub-segments (.sub-seg) sliding gliders
+       - Space Reference 全区 / 本站 sliding glider
+       - Guided Tour cinema entrances (#v93-tour-topbar, #guided-tour-nav-strip)
+       - Guided Tour Options popover (#guide-play-toggles) & Archive Modal polish
+   -------------------------------------------------------------------------- */
+.sub-seg {
+  position: relative;
+}
+.sub-seg-btn {
+  position: relative;
+  z-index: 1;
+}
+.sub-seg.rm-has-glider .sub-seg-btn.active {
+  background: transparent !important;
+}
+
+/* Space Reference 全区 / 本站 Glider Container */
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title > [role="group"] {
+  position: relative;
+}
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title :is(#guide-map-overview, #guide-map-local) {
+  position: relative;
+  z-index: 1;
+}
+html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title > .rm-has-glider :is(#guide-map-overview, #guide-map-local)[aria-pressed="true"] {
+  background: transparent !important;
+  color: var(--rm-inv-ink) !important;
+}
+
+/* Guided Tour Cinematic Entrances */
+#observatory.guided-tour-active #v93-tour-topbar {
+  animation: rmTourTopIn 280ms var(--rm-spring) both;
+}
+@media (min-width: 761px) {
+  #observatory.guided-tour-active #guided-tour-nav-strip:not(.v74-custom-panel) {
+    animation: rmWalkDeckIn 320ms var(--rm-spring) both;
+  }
+}
+@media (max-width: 760px) {
+  #observatory.guided-tour-active #guided-tour-nav-strip:not(.v74-custom-panel) {
+    animation: rmFadeSlideUp 280ms var(--rm-spring) both;
+  }
+}
+
+/* Guided Tour Options Popover (#guide-play-toggles) & Camera Adjust Pills */
+#guide-play-toggles:popover-open {
+  animation: rmPopIn 180ms var(--rm-spring) both;
+  border-radius: 16px !important;
+  padding: 10px 12px !important;
+  background: rgba(13, 14, 18, 0.86) !important;
+  backdrop-filter: var(--rm-blur-deep) !important;
+  -webkit-backdrop-filter: var(--rm-blur-deep) !important;
+  border: 1px solid var(--rm-border-med) !important;
+  box-shadow: var(--rm-shadow-pop), var(--rm-specular) !important;
+  color: var(--rm-ink-1) !important;
+}
+html[data-theme="light"] #guide-play-toggles:popover-open {
+  background: rgba(252, 250, 245, 0.94) !important;
+  border-color: rgba(24, 22, 18, 0.16) !important;
+  color: var(--rm-ink-1) !important;
+}
+#guide-play-toggles .guide-camera-adjustments {
+  gap: 6px;
+  padding: 8px 2px 2px;
+  border-top: 1px solid var(--rm-border);
+}
+#guide-play-toggles .guide-camera-adjustments button {
+  border-radius: 999px;
+  border: 1px solid var(--rm-border);
+  background: var(--rm-glass-ghost);
+  color: var(--rm-ink-2);
+  font-size: 11.5px;
+  font-weight: 500;
+}
+#guide-play-toggles .guide-camera-adjustments button:hover {
+  background: var(--rm-glass-hover);
+  border-color: var(--rm-border-med);
+  color: var(--rm-ink-1);
+}
+
+/* Deep Archive Modal (<dialog class="atlas-modal">) — Single Clean Scrollbar Only */
+dialog.atlas-modal[open] {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  max-height: 86vh !important;
+  animation: rmPopIn 240ms var(--rm-spring) both;
+  border-radius: 20px !important;
+  border: 1px solid var(--rm-border-med) !important;
+}
+dialog.atlas-modal .modal-head {
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--rm-border);
+}
+dialog.atlas-modal .modal-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 241, 234, 0.22) transparent;
+}
+html[data-theme="light"] dialog.atlas-modal .modal-body {
+  scrollbar-color: rgba(24, 22, 18, 0.22) transparent;
+}
+dialog.atlas-modal .modal-body::-webkit-scrollbar,
+#guided-photo-preview::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+dialog.atlas-modal .modal-body::-webkit-scrollbar-track,
+#guided-photo-preview::-webkit-scrollbar-track {
+  background: transparent;
+}
+dialog.atlas-modal .modal-body::-webkit-scrollbar-thumb,
+#guided-photo-preview::-webkit-scrollbar-thumb {
+  background: rgba(244, 241, 234, 0.22);
+  border-radius: 999px;
+}
+html[data-theme="light"] dialog.atlas-modal .modal-body::-webkit-scrollbar-thumb,
+html[data-theme="light"] #guided-photo-preview::-webkit-scrollbar-thumb {
+  background: rgba(24, 22, 18, 0.20);
+}
+dialog.atlas-modal::backdrop {
+  background: rgba(9, 10, 12, 0.56);
+  backdrop-filter: blur(8px);
+}
+.floating-drawer {
+  overflow: hidden !important;
+}
+
+/* Subtle Hover Glow on Compass & Right Rail */
+.rail-compass:hover {
+  box-shadow: var(--rm-shadow-pop), var(--rm-specular), 0 0 0 1px var(--rm-ice-border) !important;
+}
+
+/* --------------------------------------------------------------------------
+   18. Brand Logo Theme Swap, Cinematic Exhibition Opening Veil & Author Colophon
+       - Sculpted pearl tetrahedron on Dark Warm Basalt; crisp ink mark on Light Paper
+       - Centered translucent Opening Veil (replaces dense side card on clean first visit)
+       - Persistent ultra-quiet bottom-right Browse badge + full Tools Menu copyright block
+   -------------------------------------------------------------------------- */
+.rm-brand-logo {
+  display: inline-block;
+  object-fit: contain;
+  vertical-align: middle;
+  user-select: none;
+  pointer-events: none;
+}
+.rm-logo-for-light {
+  display: none !important;
+}
+html[data-theme="light"] .rm-logo-for-dark {
+  display: none !important;
+}
+html[data-theme="light"] .rm-logo-for-light {
+  display: inline-block !important;
+}
+
+/* Full-Viewport Atmospheric Veil Scrim — live terrain stays luminous underneath */
+.rm-intro-veil-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 88;
+  background: radial-gradient(ellipse 68% 62% at 50% 48%, rgba(9, 10, 12, 0.34) 0%, rgba(9, 10, 12, 0.62) 100%);
+  backdrop-filter: blur(3px) saturate(112%);
+  -webkit-backdrop-filter: blur(3px) saturate(112%);
+  animation: rmVeilScrimIn 340ms var(--rm-spring) both;
+  cursor: pointer;
+}
+html[data-theme="light"] .rm-intro-veil-scrim {
+  background: radial-gradient(ellipse 68% 62% at 50% 48%, rgba(247, 244, 236, 0.28) 0%, rgba(232, 227, 216, 0.62) 100%);
+}
+.rm-intro-veil-scrim.rm-veil-leaving {
+  opacity: 0;
+  transition: opacity 210ms ease;
+}
+@keyframes rmVeilScrimIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes rmVeilCardIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 14px)) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Gently step back surrounding HUD while the Opening Veil is presented */
+#observatory.rm-intro-open :is(#hud-top-left, #hud-top-right, #hud-rail, #hud-telemetry, #chart-deck, #rm-author-badge) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translate3d(0, 6px, 0);
+  transition: opacity 240ms ease, transform 320ms var(--rm-spring) !important;
+}
+#observatory:not(.rm-intro-open) :is(#hud-top-left, #hud-top-right, #hud-rail, #hud-telemetry) {
+  transition: opacity 340ms ease, transform 380ms var(--rm-spring);
+}
+
+/* Centered Architectural Opening Veil Card (upgrades #v93-prologue cleanly across all sizes) */
+html #observatory #v93-prologue:not([hidden]) {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+  width: min(568px, calc(100vw - 28px)) !important;
+  max-height: min(86dvh, 720px) !important;
+  z-index: 90 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding: 26px 30px 22px !important;
+  border-radius: 22px !important;
+  background: rgba(13, 14, 18, 0.74) !important;
+  backdrop-filter: blur(36px) saturate(155%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(155%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  box-shadow: 0 36px 90px -20px rgba(0, 0, 0, 0.72), 0 8px 24px -8px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  animation: rmVeilCardIn 380ms var(--rm-spring) both !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+}
+html[data-theme="light"] #observatory #v93-prologue:not([hidden]) {
+  background: rgba(252, 250, 245, 0.84) !important;
+  border-color: rgba(24, 22, 18, 0.14) !important;
+  box-shadow: 0 32px 84px -20px rgba(24, 22, 18, 0.24), 0 6px 20px -6px rgba(24, 22, 18, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+}
+html #observatory #v93-prologue.rm-veil-leaving {
+  opacity: 0 !important;
+  transform: translate(-50%, calc(-50% - 8px)) scale(0.985) !important;
+  transition: opacity 210ms ease, transform 220ms ease !important;
+}
+
+/* Spatial Coordinates Eyebrow */
+.rm-veil-eyebrow {
+  order: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--rm-ink-3);
+}
+.rm-veil-emblem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.rm-veil-coords {
+  font-variant-numeric: tabular-nums;
+  color: var(--rm-ink-2);
+}
+.rm-veil-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--rm-gold);
+  opacity: 0.78;
+}
+.rm-veil-region {
+  font-family: var(--font-sans);
+  letter-spacing: 0.04em;
+  color: var(--rm-ink-3);
+}
+
+#v93-prologue .v93-pro-head {
+  order: 2;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+#v93-prologue .v93-pro-kicker {
+  font-size: 10.5px !important;
+  letter-spacing: 0.12em !important;
+  margin-bottom: 6px !important;
+}
+#v93-prologue .v93-pro-title {
+  font-size: clamp(22px, 3vw, 29px) !important;
+  font-weight: 650 !important;
+  line-height: 1.24 !important;
+  letter-spacing: 0.01em !important;
+}
+#v93-prologue .v93-pro-close {
+  margin-top: -2px;
+  background: var(--rm-glass-ghost) !important;
+  border: 1px solid var(--rm-border) !important;
+}
+
+/* Concise 1-Sentence Exhibition Hook */
+.rm-veil-hook {
+  order: 3;
+  margin: 10px 0 20px;
+  font-size: 14px;
+  line-height: 1.68;
+  color: var(--rm-ink-2);
+  font-weight: 420;
+}
+
+/* Front-and-Center Action Pills */
+#v93-prologue .v93-pro-actions {
+  order: 4;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px !important;
+  margin: 0 0 14px !important;
+}
+#v93-prologue .v93-btn-primary {
+  flex: 1 1 220px;
+  min-height: 44px !important;
+  padding: 11px 20px !important;
+  font-size: 13.5px !important;
+}
+#v93-prologue .v93-btn-secondary {
+  flex: 0 1 auto;
+  min-height: 44px !important;
+  padding: 11px 18px !important;
+  font-size: 13px !important;
+}
+
+/* Expandable Deep-Read Toggle (Visible & Collapsed by Default on BOTH Desktop & Mobile) */
+html #observatory #v93-prologue #v93-prologue-details {
+  order: 5;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  align-self: flex-start;
+  min-height: 32px !important;
+  padding: 4px 2px !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--rm-ink-3) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+  transition: color var(--rm-dur-fast) ease;
+}
+html #observatory #v93-prologue #v93-prologue-details::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-1.5px) rotate(45deg);
+  opacity: 0.72;
+  transition: transform var(--rm-dur-med) var(--rm-spring);
+}
+html #observatory #v93-prologue #v93-prologue-details[aria-expanded="true"]::after {
+  transform: translateY(1.5px) rotate(-135deg);
+}
+html #observatory #v93-prologue #v93-prologue-details:hover {
+  color: var(--rm-ink-1) !important;
+}
+
+html #observatory #v93-prologue #v93-prologue-body {
+  order: 6;
+  display: none !important;
+  padding-top: 8px;
+}
+html #observatory #v93-prologue #v93-prologue-details[aria-expanded="true"] + #v93-prologue-body {
+  display: block !important;
+  animation: rmStoryIn 240ms var(--rm-spring) both;
+}
+#v93-prologue .v93-pro-stages {
+  margin-bottom: 6px !important;
+}
+
+/* Author Colophon Strip inside Opening Veil */
+.rm-veil-colophon {
+  order: 7;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rm-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rm-veil-colophon-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.rm-veil-author {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--rm-ink-2);
+}
+.rm-veil-author strong {
+  color: var(--rm-ink-1);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.rm-veil-author-role {
+  font-size: 11px;
+  color: var(--rm-ink-3);
+}
+.rm-veil-rights {
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--rm-ink-4);
+  letter-spacing: 0.01em;
+}
+
+/* Shared fansudur.com Pill Link */
+.rm-colophon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid var(--rm-border-med);
+  background: var(--rm-glass-ghost);
+  color: var(--rm-ink-2);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--rm-dur-fast) ease, border-color var(--rm-dur-fast) ease, color var(--rm-dur-fast) ease, transform var(--rm-dur-fast) var(--rm-spring);
+}
+.rm-colophon-link:hover {
+  background: var(--rm-glass-hover);
+  border-color: var(--rm-gold-border);
+  color: var(--rm-ink-1);
+  transform: translateY(-0.5px);
+}
+
+/* Persistent Subtle Bottom-Right Author Micro-Badge (Desktop Browse Mode Only)
+   Shares exact baseline with bottom-left #hud-telemetry and rises cleanly with #chart-deck */
+.rm-author-badge {
+  position: fixed;
+  right: 14px;
+  bottom: calc(var(--deck-h, 66px) + 18px);
+  z-index: 35;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 28px;
+  padding: 0 11px 0 8px;
+  border-radius: 999px;
+  background: var(--rm-glass);
+  backdrop-filter: var(--rm-blur);
+  -webkit-backdrop-filter: var(--rm-blur);
+  border: 1px solid var(--rm-border);
+  box-shadow: var(--rm-shadow-float), var(--rm-specular-soft);
+  color: var(--rm-ink-2);
+  font-size: 11px;
+  text-decoration: none;
+  opacity: 0.78;
+  transition: opacity var(--rm-dur-fast) ease, border-color var(--rm-dur-fast) ease, color var(--rm-dur-fast) ease, transform var(--rm-dur-fast) var(--rm-spring);
+}
+.rm-author-badge:hover {
+  opacity: 1;
+  color: var(--rm-ink-1);
+  border-color: var(--rm-border-med);
+  transform: translateY(-1px);
+}
+.rm-author-badge-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+}
+.rm-author-badge-name {
+  font-weight: 550;
+  letter-spacing: 0.02em;
+}
+.rm-author-badge-sep {
+  width: 1px;
+  height: 10px;
+  background: var(--rm-border-med);
+}
+.rm-author-badge-url {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--rm-ink-3);
+}
+.rm-author-badge:hover .rm-author-badge-url {
+  color: var(--rm-gold-ink);
+}
+/* Auto-hide persistent badge in Tour, Walk, Inspector, Tools Menu, or Tablet/Mobile viewports */
+#observatory.guided-tour-active .rm-author-badge,
+#observatory.walk-active .rm-author-badge,
+#observatory.inspector-open .rm-author-badge,
+#observatory.rm-intro-open .rm-author-badge,
+#observatory:has(#export-menu:not([hidden])) .rm-author-badge {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+@media (max-width: 1179px) {
+  .rm-author-badge {
+    display: none !important;
+  }
+}
+
+/* Tools Popover (#export-menu) Full Author & Copyright Colophon Block */
+#export-menu {
+  max-height: calc(100dvh - 84px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.rm-colophon-card {
+  margin: 4px 0 4px;
+  padding: 11px 12px 10px;
+  border-radius: 12px;
+  background: var(--rm-glass-ghost);
+  border: 1px solid var(--rm-border);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.rm-colophon-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.rm-colophon-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.rm-colophon-id {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1 1 auto;
+  gap: 3px;
+}
+.rm-colophon-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.rm-colophon-id strong {
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--rm-ink-1);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.rm-colophon-en {
+  font-weight: 500;
+  color: var(--rm-ink-3);
+  margin-left: 2px;
+  font-size: 11px;
+}
+.rm-colophon-id small {
+  font-size: 10.5px;
+  color: var(--rm-ink-3);
+  line-height: 1.3;
+}
+.rm-colophon-rights,
+.rm-colophon-third {
+  margin: 0;
+  font-size: 10.5px;
+  line-height: 1.58;
+  color: var(--rm-ink-3);
+}
+.rm-colophon-third {
+  color: var(--rm-ink-4);
+  font-size: 10px;
+}
+
+  /* Mobile Opening Veil Refinement (<= 760px) */
+  @media (max-width: 760px) {
+    html #observatory #v93-prologue:not([hidden]) {
+      width: calc(100vw - 24px) !important;
+      max-height: 86dvh !important;
+      padding: 20px 18px 16px !important;
+      border-radius: 20px !important;
+    }
+    .rm-veil-eyebrow {
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+    .rm-veil-hook {
+      font-size: 13px;
+      margin: 8px 0 16px;
+    }
+    #v93-prologue .v93-pro-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    #v93-prologue .v93-btn-primary,
+    #v93-prologue .v93-btn-secondary {
+      flex: 0 0 auto;
+      width: 100%;
+      min-height: 46px !important;
+      justify-content: center;
+    }
+    html #observatory #v93-prologue #v93-prologue-details {
+      min-height: 40px !important;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+/* --------------------------------------------------------------------------
+   19. Bilingual English (html[lang="en"]) & Cross-Viewport Layout Polish
+       - Proportional Western font stack first (eliminates full-width CJK '’' gaps)
+       - Scope strip & Studio sub-tab natural wrapping without clipping
+       - Non-overlapping 3-zone Guided Tour topbar across Desktop & Tablet
+       - Profile bar inline stat ellipsis & Mobile full-width profile selector
+       - Mobile Legend, Basemap, Dual-Date & Tour transport overflow guards
+   -------------------------------------------------------------------------- */
+
+/* Western Proportional Sans First in English (fixes 'lake’   s' & 'we’   ll' on Windows) */
+html[lang="en"],
+html[data-lang="en"] {
+  --v93-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Noto Sans SC", sans-serif;
+  --v93-display: var(--v93-sans);
+  --v93-serif: var(--v93-sans);
+  --font-sans: var(--v93-sans);
+}
+
+/* Suppress accidental focus box on programmatically focused non-interactive headers / dialogs */
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible,
+[role="dialog"]:focus,
+[role="dialog"]:focus-visible,
+.pop-head:focus,
+.pop-head:focus-visible {
+  outline: none !important;
+}
+
+/* Match aria-pressed="true" on segmented buttons (e.g. #atlas-language-settings) */
+.tools-seg-btn[aria-pressed="true"] {
+  background: var(--rm-ink-1);
+  color: var(--rm-inv-ink);
+  font-weight: 600;
+}
+.tools-theme-seg.rm-has-glider .tools-seg-btn[aria-pressed="true"] {
+  background: transparent;
+}
+
+/* Hide bottom-right author badge whenever any top-right popover (Legend / Basemap / Tools) is open */
+#observatory:has(.glass-popover:not([hidden])) .rm-author-badge {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Scrollable Popover Height Guard for Taller English Copy */
+#legend-popover,
+#basemap-popover,
+#scope-popover {
+  max-height: calc(100dvh - 86px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Hide stealth v74 resize title ("Profile chart") in Free-Browse Chart Deck */
+#observatory:not(.guided-tour-active) #chart-deck:not(.v74-custom-panel) > .v75-title {
+  display: none !important;
+}
+
+/* Prevent Profile Bar Inline Stat from colliding into "Fit full profile" & "Collapse" */
+#observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"] .deck-mini-stat {
+  min-width: 0;
+  flex: 0 1 196px;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+html[lang="en"] #observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="false"] {
+  width: min(948px, calc(100vw - 28px));
+}
+html[lang="en"] #observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="false"] .deck-mini-stat {
+  max-width: 156px;
+}
+html[lang="en"] #observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="true"] .deck-mini-stat {
+  max-width: 210px;
+}
+@media (max-width: 1240px) {
+  html[lang="en"] #observatory:not(.guided-tour-active) .chart-deck[data-mode="profile"][data-expanded="false"] .deck-mini-stat {
+    display: none !important;
+  }
+}
+
+/* Desktop & Tablet Scope Bar + Studio Sub-Tabs Wrap Cleanly in English (Zero Clipping) */
+@media (min-width: 761px) {
+  html[lang="en"] .scope-strip {
+    flex-wrap: wrap !important;
+    row-gap: 4px;
+    overflow: visible !important;
+  }
+  html[lang="en"] #walk-lab {
+    width: min(520px, calc(100vw - 32px)) !important;
+  }
+}
+html[lang="en"] .studio-subnav {
+  flex-wrap: wrap;
+  height: auto;
+  padding: 4px 14px;
+  gap: 2px 10px;
+}
+html[lang="en"] .studio-subnav .subnav-btn {
+  height: 32px;
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+
+/* Tour Field Site Buttons & Docked Tour Profile Header Clearance for Longer English Titles */
+html[lang="en"] #observatory.guided-tour-active #guided-field-buttons .deck-btn {
+  height: auto !important;
+  min-height: 32px;
+  padding: 6px 12px !important;
+  white-space: normal !important;
+  text-align: left;
+  line-height: 1.38;
+}
+html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] > .v75-title {
+  max-width: calc(100% - 112px) !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Desktop Guided Tour Topbar (>= 1180px): True 3-Zone Flex Flow so 7-Act Scrubber Never Collides */
+@media (min-width: 1180px) {
+  html #observatory.guided-tour-active #v93-tour-topbar:not([hidden]) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-topbar-left,
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-topbar-right {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar #guided-tour-close {
+    flex-shrink: 0 !important;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar #v93-stage-scrubber {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    justify-content: safe center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-inline: 4px;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar #v93-stage-scrubber::-webkit-scrollbar {
+    display: none;
+  }
+  html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar .v93-act-name {
+    max-width: 108px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar .v93-date-tag strong {
+    max-width: 146px;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @media (max-width: 1640px) {
+    html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar {
+      padding-inline: 8px !important;
+      gap: 6px !important;
+    }
+    html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar #v93-stage-scrubber {
+      gap: 3px !important;
+    }
+    html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar .v93-stage-group {
+      padding: 2px 5px !important;
+    }
+    html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar .v93-stage-lbl {
+      font-size: 10px !important;
+    }
+    html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar .v93-act-name {
+      max-width: 82px;
+    }
+    html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar .v93-date-tag strong {
+      max-width: 86px;
+    }
+    html[lang="en"] #observatory.guided-tour-active #v93-tour-topbar #guided-tour-close {
+      padding-inline: 10px !important;
+    }
+  }
+}
+
+/* Tablet (761px–1179px) English Header Separation & Tour Topbar Exit Button Guard */
+@media (min-width: 761px) and (max-width: 1179px) {
+  html[lang="en"] .hud-top-left {
+    max-width: calc(100vw - 456px) !important;
+  }
+  html[lang="en"] .dock-btn {
+    padding: 0 7px;
+    font-size: 11px;
+  }
+  html[lang="en"] .seg-btn {
+    padding: 0 8px;
+    font-size: 11px;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar:not([hidden]) {
+    gap: 8px !important;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-topbar-left {
+    display: none !important;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-topbar-right {
+    width: 100%;
+    justify-content: space-between;
+    min-width: 0;
+    gap: 8px;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .rm-tablet-lane-switch,
+  html #observatory.guided-tour-active #v93-tour-topbar #guided-tour-close {
+    flex-shrink: 0 !important;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-dual-dates {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    justify-content: center;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-date-tag {
+    min-width: 0;
+    overflow: hidden;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-date-tag strong {
+    max-width: 118px;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Mobile (<= 760px): English Dropdowns, Profile Selector, Subbar, Legend & Tour Transport */
+@media (max-width: 760px) {
+  /* 1. Top Hero Place Pill & Dual Dates Fit 360–390px Cleanly on a Single Row */
+  html[lang="en"] #btn-scope-pop.hero-place-trigger {
+    min-width: 0 !important;
+    max-width: calc(100vw - 220px) !important;
+    gap: 4px !important;
+    overflow: hidden;
+  }
+  html[lang="en"] .brand-title {
+    font-size: 14px !important;
+  }
+  html[lang="en"] .hero-scope-pill {
+    font-size: 9px !important;
+    padding: 1px 5px !important;
+    letter-spacing: 0.02em !important;
+  }
+  html[lang="en"] .dim-switch .seg-btn {
+    padding: 0 9px !important;
+    font-size: 11.5px !important;
+  }
+  .dual-dates {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+  }
+  .date-chip {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding: 0 8px !important;
+    gap: 4px !important;
+    overflow: hidden;
+  }
+  .date-chip strong {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* 2. Mobile Free-Browse Profile Dropdown: Full-Width Readable Row + Scrollable Category Filter Pills
+        (Strictly scoped to :not(.guided-tour-active) so Mobile Tour Profile stays clean!) */
+  #observatory:not(.guided-tour-active) #chart-deck[data-mode="profile"] .deck-select.profile-sel {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    order: 4 !important;
+    font-size: 12px !important;
+  }
+  #observatory:not(.guided-tour-active) #deck-subbar:not([hidden]) {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  #observatory:not(.guided-tour-active) #deck-subbar .sub-seg {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  #observatory:not(.guided-tour-active) #deck-subbar .sub-seg::-webkit-scrollbar {
+    display: none;
+  }
+  #observatory:not(.guided-tour-active) #deck-subbar .sub-seg-btn {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* 3. Mobile Legend & Basemap Popover Breathing Room */
+  #legend-popover,
+  #basemap-popover {
+    max-height: calc(100dvh - 148px) !important;
+    overflow-y: auto !important;
+    padding: 12px 14px 14px !important;
+  }
+  #legend-popover .tax-pill {
+    padding: 7px 9px !important;
+  }
+  #legend-popover .tax-pill small {
+    font-size: 10.5px !important;
+    line-height: 1.38 !important;
+  }
+
+  /* 4. Mobile Guided Tour Profile Slot, Compact Reference Header & Bottom Transport Controls */
+  html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] {
+    padding-top: 38px !important;
+  }
+  html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile]::before {
+    left: 12px !important;
+    right: 94px !important;
+    top: 15px !important;
+    font-size: 11px !important;
+  }
+  html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] #v74-close-tour-profile {
+    top: 11px !important;
+    right: 8px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    padding: 0 9px !important;
+    font-size: 10.5px !important;
+  }
+  /* Single-row Reference Map header on Mobile Tour (hide desktop-only Collapse button) */
+  html #observatory.guided-tour-active #guided-reference-dock .guided-reference-title {
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    padding-bottom: 4px !important;
+  }
+  html #observatory.guided-tour-active #guided-reference-dock #v93-radar-min {
+    display: none !important;
+  }
+  html[lang="en"] #observatory.guided-tour-active #guided-reference-dock .guided-reference-title > strong {
+    font-size: 9.5px !important;
+    letter-spacing: 0.04em !important;
+    white-space: nowrap;
+  }
+  html #observatory.guided-tour-active #guided-tour-nav-strip .guided-tour-controls > .deck-btn {
+    flex: 0 1 auto !important;
+    padding: 0 8px !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+  }
+  html #observatory.guided-tour-active #guided-tour-nav-strip .guided-tour-controls > #guided-tour-play.deck-btn {
+    flex: 1 1 auto !important;
+    max-width: 104px !important;
+    padding: 0 12px !important;
+  }
+}
+
+/* ==========================================================================
+   20. Post-Inspection Visual & Structural Refinements (4 User Screenshot Fixes)
+       1) Inspector Drawer: hide raw v75 "Map details", content-hugging height,
+          balanced 42%/58% .kv-table columns (no narrow crushed value column)
+       2) Tour Docked Profile: eliminate superimposed "Profile chart" over
+          "Main Lake · Modeled Southeast inlet · 30 m terrain"
+       3) Tour Photo Preview: flush integrated top header (no floating sharp
+          rectangle) + universal "Expand ⤢ / Restore ⤡" across Desktop/Tablet/Mobile
+       4) Mobile Timeline Deck: single-row top controls ("Data months" + "Trend ▴"
+          never wrap onto an orphaned extra row)
+   ========================================================================== */
+
+/* --- Fix 1: Inspector Drawer Header, Natural Height & Balanced Key-Value Table --- */
+@media (min-width: 761px) {
+  #inspector-drawer > .v75-title {
+    position: absolute !important;
+    inset: 0 120px auto 0 !important;
+    height: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    z-index: 4 !important;
+  }
+  #observatory:not(.guided-tour-active) .inspector-drawer:not(.v74-custom-panel):not([hidden]) {
+    top: 66px !important;
+    bottom: auto !important;
+    height: auto !important;
+    max-height: calc(100dvh - 66px - var(--deck-h, 66px) - 24px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .inspector-drawer .drawer-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+@media (min-width: 1180px) {
+  #observatory:not(.guided-tour-active) .inspector-drawer:not(.v74-custom-panel):not([hidden]) {
+    width: 404px !important;
+    right: 14px !important;
+  }
+}
+@media (max-width: 760px) {
+  #inspector-drawer > .v75-title,
+  #inspector-drawer > .v75-window-edge {
+    display: none !important;
+  }
+}
+
+.drawer-body .kv-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.drawer-body .kv-table tr > th:first-child:nth-last-child(2) {
+  width: 42% !important;
+  white-space: normal !important;
+  vertical-align: top;
+  padding: 7px 12px 7px 0 !important;
+  line-height: 1.42;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+.drawer-body .kv-table tr > th:first-child:nth-last-child(2) + td {
+  width: 58% !important;
+  vertical-align: top;
+  padding: 7px 0 !important;
+  line-height: 1.48;
+  word-break: normal !important;
+  overflow-wrap: break-word;
+}
+
+/* --- Fix 2: Guided Tour Docked Profile Title (Zero Superimposed "Profile chart") --- */
+@media (min-width: 761px) {
+  html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] {
+    padding-top: 32px !important;
+  }
+  html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] > .v75-title {
+    position: absolute !important;
+    left: 0 !important;
+    right: 112px !important;
+    top: 0 !important;
+    max-width: none !important;
+    height: 32px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    z-index: 14 !important;
+  }
+  html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile][data-v74-profile-label]::before {
+    content: attr(data-v74-profile-label) " · 30m 地形" !important;
+    position: absolute !important;
+    left: 14px !important;
+    right: 112px !important;
+    top: 8px !important;
+    font-family: var(--font-sans) !important;
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0.01em !important;
+    color: var(--rm-ink-1) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    pointer-events: none !important;
+    z-index: 3 !important;
+  }
+  html[lang="en"] #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile][data-v74-profile-label]::before {
+    content: attr(data-v74-profile-label) " · 30 m terrain" !important;
+  }
+}
+@media (max-width: 760px) {
+  html #observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile] > .v75-title {
+    display: none !important;
+  }
+}
+
+/* --- Fix 3: Guided Photo Preview Flush Header + Universal Expand ⤢ Lightbox --- */
+html #observatory.guided-tour-active #guided-photo-preview:not([hidden]) {
+  padding: 0 0 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  gap: 7px !important;
+  overflow: hidden !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview > header {
+  position: relative !important;
+  top: auto !important;
+  z-index: 2 !important;
+  margin: 0 !important;
+  padding: 10px 14px 9px !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid var(--rm-border) !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex: 0 0 auto !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview > header > strong {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview > header button {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview > header button:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview > .v82-photo-viewport {
+  flex: 0 1 auto !important;
+  min-height: 60px !important;
+  padding: 4px 14px 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview .v75-evidence-media,
+html #observatory.guided-tour-active #guided-photo-preview .v83-photo-frame {
+  max-height: 100% !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview > .guided-photo-caption {
+  max-height: 4.9em;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+html #observatory.guided-tour-active #guided-photo-preview > :is(.guided-photo-caption, #guided-photo-position, .guided-photo-controls, .guided-photo-thumbs, small) {
+  padding-inline: 14px !important;
+  box-sizing: border-box !important;
+}
+html #observatory.guided-tour-active #guided-photo-preview:not(.v74-custom-panel) #rm-photo-wide-toggle {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-left: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+html #observatory.guided-tour-active #guided-photo-preview.v74-custom-panel #rm-photo-wide-toggle {
+  display: none !important;
+}
+
+/* Expanded Lightbox Mode (.rm-paired-wide) on Desktop & Tablet */
+@media (min-width: 761px) {
+  html #observatory.guided-tour-active #guided-photo-preview.rm-paired-wide:not(.v74-custom-panel):not([hidden]) {
+    width: var(--rm-photo-width, min(60vw, 780px)) !important;
+    top: var(--rm-photo-top, 66px) !important;
+    max-height: var(--rm-photo-max-h, calc(100dvh - 156px)) !important;
+    z-index: 74 !important;
+  }
+  html #observatory.guided-tour-active #guided-photo-preview.rm-paired-wide:not(.v74-custom-panel) .v75-evidence-media img:not([hidden]) {
+    max-height: min(60dvh, 540px) !important;
+  }
+}
+
+/* Mobile Photo Preview: Clean Compact Sheet vs Tall Expanded Sheet (.rm-paired-wide) */
+@media (max-width: 760px) {
+  html #observatory.guided-tour-active #guided-photo-preview > header {
+    padding: 8px 12px 7px !important;
+    gap: 6px !important;
+  }
+  html #observatory.guided-tour-active #guided-photo-preview > header button {
+    min-height: 34px !important;
+    height: 34px !important;
+    min-width: 0 !important;
+    padding: 0 10px !important;
+    font-size: 11.5px !important;
+    border-radius: 999px !important;
+  }
+  html #observatory.guided-tour-active #guided-photo-preview:not(.rm-paired-wide):not([hidden]) {
+    top: auto !important;
+    height: auto !important;
+    max-height: min(47dvh, 402px) !important;
+  }
+  html #observatory.guided-tour-active #guided-photo-preview:not(.rm-paired-wide) .v75-evidence-media img:not([hidden]) {
+    max-height: min(21dvh, 178px) !important;
+  }
+  html #observatory.guided-tour-active #guided-photo-preview:not(.rm-paired-wide) > :is(.guided-photo-thumbs, small:last-of-type) {
+    display: none !important;
+  }
+  html #observatory.guided-tour-active #guided-photo-preview.rm-paired-wide:not([hidden]) {
+    top: calc(max(4px, env(safe-area-inset-top)) + 54px) !important;
+    bottom: calc(78px + max(4px, env(safe-area-inset-bottom))) !important;
+    height: auto !important;
+    max-height: none !important;
+    z-index: 74 !important;
+  }
+  html #observatory.guided-tour-active #guided-photo-preview.rm-paired-wide .v75-evidence-media img:not([hidden]) {
+    max-height: min(46dvh, 410px) !important;
+  }
+}
+
+/* --- Fix 4: Mobile Timeline Bottom Deck — Keep "Data months" & "Trend ▴" on Row 1 --- */
+@media (max-width: 760px) {
+  #observatory:not(.guided-tour-active) #chart-deck[data-mode="time"] #deck-bar {
+    column-gap: 3px !important;
+    row-gap: 4px !important;
+    padding: 5px 8px !important;
+  }
+  html[lang="en"] #observatory:not(.guided-tour-active) #chart-deck[data-mode="time"] .mode-btn {
+    padding: 0 7px !important;
+    font-size: 11px !important;
+    min-width: 0 !important;
+  }
+  #observatory:not(.guided-tour-active) #chart-deck[data-mode="time"] .deck-quick-controls .deck-select {
+    min-width: 0 !important;
+    width: auto !important;
+    padding: 0 13px 0 4px !important;
+    background-position: right 3px center !important;
+    font-size: 11px !important;
+  }
+  html[lang="en"] #observatory:not(.guided-tour-active) #chart-deck[data-mode="time"] #sel-timeline-calendar {
+    flex: 0 1 88px !important;
+    width: 88px !important;
+    max-width: 92px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #observatory:not(.guided-tour-active) #chart-deck[data-mode="time"] #btn-deck-expand {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    padding: 0 6px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* Keep the full chapter index reachable on compact desktops and tablets.
+   The existing stop / act button opens the same directory as the desktop rail. */
+@media (max-width: 1179px) {
+  html #observatory.guided-tour-active #v93-tour-topbar #v93-stage-scrubber {
+    display: none !important;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1179px) {
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-topbar-left {
+    display: flex !important;
+    flex: 0 0 auto;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-topbar-right {
+    width: auto;
+    flex: 1 1 auto;
+  }
+  html #observatory.guided-tour-active #v93-tour-topbar .v93-act-name {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   21. Strict Left-Column Architectural Width Lock (Both ZH & EN, 2D / 3D / Roam)
+       Ensures #hud-top-left, #atlas-hero-card, #btn-guide-chapter-one, and
+       #studio-drawer share the exact same left edge & pixel width (0.0px delta)
+       across Desktop (>=1180px) and Tablet/Scaled Laptops (761px–1179px),
+       including when Roam (.walk-active) + Studio (.studio-open) are both active.
+   ========================================================================== */
+@media (min-width: 1180px) {
+  html #observatory:not(.guided-tour-active) #hud-top-left,
+  html #observatory.walk-active.studio-open #hud-top-left {
+    left: 14px !important;
+    width: 448px !important;
+    max-width: calc(100vw - 540px) !important;
+    box-sizing: border-box !important;
+  }
+  html #observatory:not(.guided-tour-active) :is(#atlas-hero-card, #btn-guide-chapter-one) {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  html #observatory:not(.guided-tour-active) #studio-drawer:not(.v74-custom-panel) {
+    left: 14px !important;
+    width: 448px !important;
+    max-width: calc(100vw - 540px) !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1179px) {
+  html #observatory:not(.guided-tour-active) #hud-top-left,
+  html #observatory.walk-active.studio-open #hud-top-left {
+    left: 12px !important;
+    width: min(376px, calc(100vw - 456px)) !important;
+    max-width: calc(100vw - 456px) !important;
+    box-sizing: border-box !important;
+  }
+  html #observatory:not(.guided-tour-active) :is(#atlas-hero-card, #btn-guide-chapter-one) {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  html #observatory:not(.guided-tour-active) #studio-drawer:not(.v74-custom-panel) {
+    left: 12px !important;
+    width: min(376px, calc(100vw - 456px)) !important;
+    max-width: calc(100vw - 456px) !important;
+    box-sizing: border-box !important;
+  }
+}

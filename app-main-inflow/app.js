@@ -1,12 +1,13 @@
+import { applyLanguageQuery, atlasLanguage, translateAtlas, translateAtlasEnglish } from './atlas-i18n.js?v=40';
 import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=6';
 import {constrainedConnection,createEsriDetailController,overviewZoom} from './esri-view-detail.mjs?v=walk3';
 import {ATLAS_BOUNDS,BRIDGE_BOUNDS,COMPACT_OVERVIEW_ZOOM,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=3';
-import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
-import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.18.20';
+import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,GUIDE_DEFAULT_MEDIA,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
+import { portraitGuidePair, portraitGuideImages, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.18.20';
 import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.18.13';
 import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers } from './guide-review-policy.js?v=105.18.21';
 import {pointInGeoGeometry as insideSlopeWater} from './geo-pick.js';
-import {wireReferenceZoom} from './v83-reference.js?v=105.9';
+import {wireReferenceZoom} from './v83-reference.js?v=105.19.40';
 import {displayClip} from './v81-display-clip.js';
 /* ==========================================================================
    app-ui/app.js
@@ -22,7 +23,7 @@ import {displayClip} from './v81-display-clip.js';
    ========================================================================== */
 
 import {configureTourPanels} from './v74-panels.js';
-import { HandoffDataProvider } from './data-provider.js?v=105.18.8';
+import { HandoffDataProvider } from './data-provider.js';
 import { sampleDemElevation,
   AOI_BOUNDS,
   geometryBounds,
@@ -49,7 +50,7 @@ import {
 import { CONTOUR_DEFAULT_INTERVAL, CONTOUR_CHOICES, normalizeContours, contourSelection } from './contour-controls.js';
 import { isTrack, profileFromExactLine, nativeTrackProfiles } from './picked-line-profile.js';
 import { WATERWAY_PANEL, ROUTE_DEEP_LINK, ROUTE_GUIDE_MAP, validateWaterwayOverview, renderWaterwayOverview } from './waterway-overview.js';
-import { WATERWAY_MAP_GROUPS, hiddenWaterwayAliases, setWaterwayMapLayers, eastPoolTimelineFrame } from './waterway-map-policy.js?v=105.13';
+import { WATERWAY_MAP_GROUPS, hiddenWaterwayAliases, setWaterwayMapLayers, eastPoolTimelineFrame } from './waterway-map-policy.js?v=105.19.41';
 import { EAST_POOL_TIMELINE, EAST_POOL_OBSERVATION_MONTHS } from './east-pool-timeline.js?v=105.13';
 import { F1_WATERWAY_LAYER, F1_COMPARE_LAYER, F1_WATERWAY_NAME, F1_EVIDENCE_ID, F1_LEGEND, validateF1Waterway, WCROSS_UPSTREAM_LAYER, WCROSS_UPSTREAM_NAME, WCROSS_UPSTREAM_LEGEND, WCROSS_FAR_LAYER, WCROSS_FAR_NAME, validateWcrossUpstream, OWNER_BLUE_LAYER, OWNER_BLUE_NAME, validateOwnerBlue } from './f1-waterway.js';
 import { SEASONAL_LAYER, SEASONAL_NAME, validateSeasonalNetwork } from './seasonal-network.js';
@@ -61,8 +62,8 @@ import {
 } from './charts.js';
 import { validateFixedHistory, loadHistoryImage, exactGoogleEarthMonth, broadHistoryMonths, isBroadHistoryScene, historySceneMonth, historyMenuEntries } from './fixed-history.js';
 import { normalizeGuidedTours, sampleGuidedTour, softenedTravelProgress, buildCinematicHeightProfile } from './guided-tours.js';
-import { AtlasMap2D } from './map-2d.js?v=105.18.6';
-import { AtlasMap3D } from './map-3d.js?v=105.18.6';
+import { AtlasMap2D } from './map-2d.js?v=105.19-i18n39';
+import { AtlasMap3D } from './map-3d.js?v=105.19-i18n41';
 import { WALK_ROAD_ID, WALK_ROAD_PHOTO, WALK_OFFICE_ID, WALK_EYE_M, FREE_FLY_ENTRY_M, WALK_GUIDE_SPEED_MPS, prepareWalkRoad, sampleWalkRoad, beijingSun, adjustFreeLook, stepFreePose, WALK_SPEED_LEVELS, WALK_SPEED_DEFAULT, FLY_SPEED_DEFAULT, walkSpeedMaxLevel, walkHorizontalMps, walkVerticalMps } from './terrain-walk.js';
 import { ANALYSIS_PALETTE, VIEW_SCOPES, PAINT_BACKGROUND_ROADS } from './atlas-visual-policy.js';
 
@@ -457,6 +458,7 @@ function syncUrl() {
   if(state.scenePreset!=='home')p.set('view',state.scenePreset);
   if(walkMode.active ? walkMode.saved.contoursEnabled : contoursEnabled)p.set('ctr',String(contourInterval));
 
+  applyLanguageQuery(p);
   const qs=p.toString();
   try {
     history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
@@ -635,8 +637,12 @@ function optionalAnalysisFeatures(mask=state.visibleLayers) {
   return waybackMemo.list;
 }
 
+const atlasThemeQuery=window.matchMedia?.('(prefers-color-scheme: dark)');
+let atlasThemeChoice='system';
+const atlasThemeKey='hujiernuoer-atlas-theme';
 function applyTheme(theme, { persist = true } = {}) {
-  const next = theme === 'light' ? 'light' : 'dark';
+  atlasThemeChoice=['light','dark'].includes(theme)?theme:'system';
+  const next=atlasThemeChoice==='system'?(atlasThemeQuery?.matches===false?'light':'dark'):atlasThemeChoice;
   state.theme = next;
   document.documentElement.dataset.theme = next;
   const btn = $('#btn-theme-toggle');
@@ -649,12 +655,12 @@ function applyTheme(theme, { persist = true } = {}) {
   if (ico) ico.textContent = next === 'light' ? '☾' : '◐';
   if (lbl) lbl.textContent = next === 'light' ? '暗仪' : '展厅';
   $$('[data-set-theme]').forEach(el => {
-    const on = el.dataset.setTheme === next;
+    const on = el.dataset.setTheme === atlasThemeChoice;
     el.classList.toggle('active', on);
     el.setAttribute('aria-pressed', String(on));
   });
   if (persist) {
-    try { localStorage.setItem('hujiernuoer-atlas-theme', next); } catch {}
+    try { localStorage.setItem(atlasThemeKey, atlasThemeChoice); } catch {}
   }
   syncMapsState();
 }
@@ -770,9 +776,25 @@ let nwNetworkFeatures=[];
 const nwSubsets=new Map(), nwFiltered=new WeakMap();
 const NW_FIELD_PIN=/^hjn-03-road-pin-0([1-4])$/;
 const NW_EAST_MARSH='east-guide-marsh-pin',NW_EAST_POOL='east-guide-pool-pin';
-function guideSpokenSeconds(){
+function guidePlaybackSeconds(){
  const t=guidedTour;
- return t.voice&&!t.audioFailed&&$('#guided-tour-voice').checked?t.voice.currentTime:t.elapsed;
+ return t.seekTarget??(t.voice&&guideUsesVoice()?t.voice.currentTime:t.elapsed);
+}
+// Convert English clip time to the authored cue clock. Piecewise matches keep
+// site highlights and portrait glides tied to phrases, not a whole-clip ratio.
+function guideInterpolateMarks(marks,value,reverse=false){
+ const x=reverse?1:0,y=1-x;
+ if(!marks?.length)return value;
+ if(value<=marks[0][x])return marks[0][y];
+ for(let i=1;i<marks.length;i++){
+   const b=marks[i],a=marks[i-1];
+   if(value<=b[x])return a[y]+(b[y]-a[y])*(value-a[x])/(b[x]-a[x]);
+ }
+ return marks.at(-1)[y];
+}
+function guideSpokenSeconds(){
+ const seconds=guidePlaybackSeconds();
+ return guideInterpolateMarks(guideVoiceEntry()?.cueClockMs,seconds*1000)/1000;
 }
 function guideVisitStage(step,id){
  const book=guidedTour.book.flatMap(r=>r.steps);
@@ -942,6 +964,7 @@ function showsEastPoolTimeline(){
  return !guidedTour.active&&state.eastPoolTimeline&&(state.scenePreset==='home'||state.scenePreset==='east'||state.visibleLayers.has('nearby-pools'));
 }
 function syncMapsState() {
+  queueMicrotask(syncPublicEsriDetail);
   state.visibleLayers.add('secondary-roads');
   const manualGuide=guidedTour.active&&guidedTour.extraLayers?.size;
   let [features2d, features3d] = guidedTour.active&&!manualGuide?[GUIDE_MAP_NO_FEATURES,GUIDE_MAP_NO_FEATURES]:optionalAnalysisFeatures(guidedTour.active?guidedTour.extraLayers:state.visibleLayers);
@@ -1021,7 +1044,6 @@ function syncMapsState() {
   document.querySelector('#observatory')?.setAttribute('data-view-preset',state.scenePreset);
   syncMapStage();
   updateWalkLayerNote();
-  syncPublicEsriDetail();
 }
 
 function resizeActiveMap() {
@@ -1181,7 +1203,7 @@ async function fixedHistoryInventory(){
   if(fixedHistory.scenes)return fixedHistory.scenes;
   fixedHistory.loading ??= fetch(new URL('./google-earth-history.json',location.href),{signal:AbortSignal.timeout?.(4500)})
     .then(r=>{if(!r.ok)throw new Error('本机历史影像清单未载入');return r.json();})
-    .then(doc=>Array.isArray(doc.scenes)&&!doc.scenes.length?[]:validateFixedHistory(doc,provider.terrainManifest?.bounds_wgs84,registeredImagery));
+    .then(doc=>validateFixedHistory(doc,provider.terrainManifest?.bounds_wgs84,registeredImagery));
   try {return fixedHistory.scenes=await fixedHistory.loading;}
   finally {fixedHistory.loading=null;}
 }
@@ -1387,6 +1409,7 @@ function updateHeaderPills() {
 }
 
 const ESRI_PUBLIC_ID='esri-public-online';
+const PUBLIC_GUIDE_BASEMAP='sentinel2-2026-08-08';
 let publicEsriAdaptive=false;
 let publicEsri=null,publicEsriStarted=false,bridgeEsri=null,bridgeEsriPending=null,bridgeEsriAttempts=0,bridgeEsriFailed=false;
 const ESRI_BRIDGE_STOP='runoff-bridge', ESRI_BRIDGE_MAX_ATTEMPTS=2;
@@ -1408,12 +1431,19 @@ const adaptiveEsriDetail=createEsriDetailController({
      : [map.width,map.height,map.cam.lon,map.cam.lat,map.cam.ppm].join(',');
    const saveData=constrainedConnection(navigator.connection);
    const roaming=walkMode.active&&walkMode.mode!=='guide'&&use3d?walkMode.pose:null;
+   // At low flight, prioritize visible ground near the viewer, not the horizon.
    const near=roaming&&!roaming.outsideTerrain&&roaming.eyeM<=175?roaming:null;
-   const nearGround=near?[near.lon,near.lat,near.eyeM]:null;
-   const nearStamp=near?[Math.round(near.lon*800),Math.round(near.lat*1230),Math.round(near.eyeM/35)]:stamp;
-   return {scope,stamp:[nearStamp,pixelRatio,saveData].join(':'),nearGround,width:map.width,height:map.height,
+   const nearby=(ll)=>{
+     if(!ll||!near)return ll;
+     const dx=(ll[0]-near.lon)*Math.cos(near.lat*Math.PI/180),dy=ll[1]-near.lat;
+     return Math.hypot(dx,dy)*111195<=Math.max(560,near.eyeM*6)?ll:null;
+   };
+   const anchor=near?[near.lon,near.lat,near.eyeM]:null;
+   const nearStamp=anchor?[Math.round(near.lon*800),Math.round(near.lat*1230),Math.round(near.eyeM/35)]:stamp;
+   return {scope,stamp:[nearStamp,pixelRatio,saveData].join(':'),nearGround:anchor,width:map.width,height:map.height,
      pixelRatio,baseZoom:publicEsri.zoom,saveData,
-     ground:use3d?(x,y)=>map.groundAtScreenPx(x,y):(x,y)=>[map.xToLon(x),map.yToLat(y)],
+     sampleTop:(near?.pitch??-90)>-52 ? .36 : 0,
+     ground:use3d?(x,y)=>nearby(map.groundAtScreenPx(x,y)):(x,y)=>[map.xToLon(x),map.yToLat(y)],
      bridge:guideStep()?.id===ESRI_BRIDGE_STOP&&guidedTour.active?true:'focus'};
  },
  load:(plan,signal)=>loadEsriBasemap(plan.bounds,signal,plan.zoom,plan.tile),
@@ -1638,7 +1668,6 @@ function stopPlay() {
   playIntent++;
   startingPlay=false;
   monthPlayback.stop();
-  syncAdaptiveEsriDetail();
 }
 
 async function togglePlay() {
@@ -3298,7 +3327,7 @@ function renderStudioDrawer() {
         </div>
       </div>
 
-      
+
       ${LAYER_GROUPS.filter(g => g.id !== 'historical-context').map(grp => `
         <div class="drawer-card">
           <div class="card-kicker"><span>${esc(grp.title)}</span></div>
@@ -5202,10 +5231,14 @@ function updateWalkSpeed(){
  if(!walkMode.active)return;
  const guide=walkMode.mode==='guide';
  $('#walk-speed-controls').hidden=guide;
+ $('#walk-pace').hidden=guide||walkMode.mode!=='fly';
  if(guide)return;
  const level=walkMode.speedLevels[walkMode.mode];
  const speed=walkHorizontalMps(walkMode.mode,level,currentWalkControls().fast);
- const axis=walkMode.mode==='fly'?'水平与升降':'步行';
+ const axis=walkMode.mode==='fly'?'飞行':'步行';
+ $('#walk-pace').hidden=walkMode.mode!=='fly';
+ const pace=$('#walk-pace');
+ pace.textContent=level===FLY_SPEED_DEFAULT?'慢速':'快速 8×';
  $('#walk-speed-value').textContent=`${WALK_SPEED_LEVELS[level]}× · ${axis} ${speed.toLocaleString('zh-CN',{maximumFractionDigits:1})} 米/秒`;
  for(const button of $$('[data-walk-speed-step]')){
    button.disabled=Number(button.dataset.walkSpeedStep)<0?level===0:level===walkSpeedMaxLevel(walkMode.mode);
@@ -5360,6 +5393,7 @@ function closeTerrainWalk({lost=false,stay3d=false}={}){
  if(contoursEnabled!==saved.contoursEnabled)setContoursEnabled(saved.contoursEnabled,{persist:false});
  $('#walk-lab').hidden=true;
  $('#observatory')?.classList.remove('walk-active','walk-locked');
+ $('#btn-open-walk')?.setAttribute('aria-pressed','false');
  if(!lost&&!stay3d&&!saved.view3d){
    setDimension('2d');
    if(saved.focus2d)map2d.flyTo({...saved.focus2d,duration:0,exactFocus:true});
@@ -5404,9 +5438,10 @@ function openTerrainWalk(){
  hideInspectorSurface();setDimension('3d');
  if(!map3d.enterTerrainWalk(road?.coords||[]))return fail('暂无法进入 WebGL 漫游');
  Object.assign(walkMode,{active:true,saved,road,office,origin:{lon,lat,heading,pitch:-12},openingPose,lastGroundPose:null,boundaryMessage,
-   site:'current',mode:'fly',station:0,sunKey:'noon',playing:false,tick:null,speedLevels:{walk:WALK_SPEED_DEFAULT,fly:FLY_SPEED_DEFAULT}});
+   site:'current',mode:'fly',station:0,sunKey:'noon',playing:false,tick:null,speedLevels:{walk:WALK_SPEED_DEFAULT,fly:0}});
  walkMode.pose=walkSpawn('current');
  panel.querySelectorAll('button,input,select').forEach(el=>el.disabled=false);
+ $('#walk-advanced').open=false;
  $('#walk-site').querySelector('[value="road"]').disabled=!hasRoad;
  $('#walk-site').querySelector('[value="office"]').disabled=!hasOffice;
  $('#walk-mode').querySelector('[value="guide"]').disabled=!hasRoad;
@@ -5414,6 +5449,7 @@ function openTerrainWalk(){
  $$('[data-walk-sun]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.walkSun==='noon')));
  $('#walk-mode').value='fly';$('#walk-site').value='current';panel.hidden=false;
  $('#observatory').classList.add('walk-active');
+ $('#btn-open-walk')?.setAttribute('aria-pressed','true');
  walkCanvas()?.focus({preventScroll:true});
  if(openingPose){map3d.camera.fov=openingPose.fov;map3d.camera.updateProjectionMatrix();}
  walkExaggeration(openingPose?.exag??8);updateContourControls();updateWalkSpeed();walkHUD();renderWalkPose();
@@ -5434,12 +5470,17 @@ function bindWalkTapButton(button,activate){
  };
 }
 function wireTerrainWalk(){
- $('#btn-open-walk').onclick=openTerrainWalk;
+ $('#btn-open-walk').onclick=()=>walkMode.active?closeTerrainWalk():openTerrainWalk();
  $('#walk-close').onclick=()=>closeTerrainWalk();
  $('#walk-start').onclick=runTerrainGuide;
  bindWalkTapButton($('#walk-layer-trigger'),()=>{if(walkMode.active)openStudioDrawer('layers');});
  bindWalkTapButton($('#walk-contour-toggle'),()=>{if(walkMode.active)setContoursEnabled(!contoursEnabled,{persist:false});});
  for(const b of $$('[data-walk-speed-step]'))bindWalkTapButton(b,()=>changeWalkSpeed(Number(b.dataset.walkSpeedStep)));
+ bindWalkTapButton($('#walk-pace'),()=>{
+   if(!walkMode.active||walkMode.mode!=='fly')return;
+   walkMode.speedLevels.fly=walkMode.speedLevels.fly===FLY_SPEED_DEFAULT?0:FLY_SPEED_DEFAULT;
+   updateWalkSpeed();
+ });
  $$('[data-walk-exag]').forEach(b=>b.onclick=()=>{if(walkMode.active)walkExaggeration(Number(b.dataset.walkExag));});
  $('#walk-mode').onchange=e=>{
    stopTerrainGuide();clearTerrainInputs();releaseWalkLock();
@@ -5538,7 +5579,7 @@ function wireTerrainWalk(){
  window.addEventListener('keyup',e=>{if(walkKeys.delete(e.code)&&WALK_KEYS[e.code]==='fast')updateWalkSpeed();},{capture:true});
 }
 
-const guidedTour={playEpoch:0,readyStep:false,endSince:null,active:false,book:[],route:null,index:0,elapsed:0,playing:false,pose:null,frame:0,stamp:0,token:0,voice:null};
+const guidedTour={playEpoch:0,readyStep:false,endSince:null,active:false,book:[],route:null,index:0,elapsed:0,playing:false,pose:null,frame:0,stamp:0,token:0,voice:null,sourceReady:null};
 const guideStep=()=>guidedTour.route?.steps[guidedTour.index];
 const guideWantsPlayback=t=>Boolean(t.playing||t.handoff?.resume||t.poseHandoff?.resume);
 function pauseGuidePlayback(note,{stopMotion=false}={}){
@@ -5549,7 +5590,6 @@ function pauseGuidePlayback(note,{stopMotion=false}={}){
 }
 const guideReduced=()=>prefersReducedMotion();
 const isGuideOverview=s=>Boolean(s?.eyeM>=4000);
-const PUBLIC_GUIDE_BASEMAP='sentinel2-2026-08-08';
 const guidedScale=()=>8;
 const contourGuideCache=new Map();
 function applyGuideContourChoice(){
@@ -6457,12 +6497,13 @@ function updateArchivedGuideMarkers(step){
  if(!guidedTour.active||guidedTour.observer||!step){host.hidden=true;trimGuideAnchors($('#guide-landmark-anchors'),0);return;}
  host.hidden=false;
  const marks=guideFourProgress(step);
- const key=step.id+':'+(guideOpeningCue(step)?.startMs??guideOpeningCue(step)?.at??0)+':'+marks.count+':'+marks.active;
+ const key=atlasLanguage()+':'+step.id+':'+(guideOpeningCue(step)?.startMs??guideOpeningCue(step)?.at??0)+':'+marks.count+':'+marks.active;
  if(host.dataset.cue!==key){
   host.dataset.cue=key;
   host.replaceChildren(...guidePointRefs(step).filter(r=>(step.id!=='road-nw-gully'||r.label==='中桥')&&!(guideMeasurements(step).some(m=>m[3].includes('桥位')||m[4].includes('桥位'))&&r.label==='中桥')).map(r=>{
    const n=document.createElement('span');n.className='guide-continuity-pin'+(r.current?' current':'');n.dataset.evidenceId=r.id;n.dataset.coords=r.point.join(',');
-   n.textContent=r.id==='hjn-seasonal-round-gap'?'圆涵 · 东口待核':r.id==='east-guide-texture-end'?'东北纹理消散窗':r.label;n.title=r.label;
+   const label=r.id==='hjn-seasonal-round-gap'?'圆涵 · 东口待核':r.id==='east-guide-texture-end'?'东北纹理消散窗':r.label;
+   n.textContent=translateAtlas(label);n.title=translateAtlas(r.label);
    const tone=guideLabelTone(r.id);
    if(tone)n.style.setProperty('--guide-label-tone',tone);
    return n;
@@ -6616,6 +6657,8 @@ function renderFourInset(marks){
  const tx=add(g,'text',{'dominant-baseline':'central','text-anchor':'middle'});tx.textContent=i+1;
  });
 }
+// These evidence lines remain intact, but their reviewed camera shots are stationary.
+const GUIDE_FIXED_TRACE_STOPS=new Set(['runoff-east','runoff-se']);
 function drawGuideTravelInset(step,coords,inset){
  const list=step.coordinates;
  if(!Array.isArray(list)||list.length<2||!coords)return;
@@ -6627,7 +6670,7 @@ function drawGuideTravelInset(step,coords,inset){
    const [a,b,u,v]=loc, q=([x,y])=>[u+(x-a)*GUIDE_METERS_PER_DEG_LON*k,v+(b-y)*GUIDE_METERS_PER_DEG_LAT*k];
    const ns='http://www.w3.org/2000/svg', line=document.createElementNS(ns,'polyline'), dot=document.createElementNS(ns,'circle');
    line.setAttribute('points',list.map(c=>q(c).join(',')).join(' '));line.setAttribute('stroke',guideRoadRoute(guidedTour.route)?'#c7d4de':'#93e9f4');line.setAttribute('fill','none');line.setAttribute('stroke-width','3');
-   dot.classList.add('guide-local-anchor');dot.setAttribute('r','4.5');dot.setAttribute('fill','#ecfcff');dot.setAttribute('stroke','#07141f');
+   dot.classList.add('guide-local-anchor');dot.toggleAttribute('data-static-reference',GUIDE_FIXED_TRACE_STOPS.has(step.id));dot.setAttribute('r','4.5');dot.setAttribute('fill','#ecfcff');dot.setAttribute('stroke','#07141f');
    inset.replaceChildren(line,dot);
    inset.setAttribute('aria-label',guideRoadRoute(guidedTour.route)?'当前镜头线路和前方定位，不是水路':'独立可辨段和当前关注位置');
  }
@@ -6688,12 +6731,14 @@ function refreshGuideLocation(step,fraction=0){
  }
  // In a constrained viewport, the stop or the road ahead must either project out of the
  // dock/mini-map or be located by a clearly identified mini-map reference.
- const path=step.cameraTrack, at=step.kind==='travel'&&path?path.position(path.length*Math.min(1,Math.max(0,fraction)+.24)):null;
- const coords=at?[at.lon,at.lat]:step.target;
+ const fixedTrace=GUIDE_FIXED_TRACE_STOPS.has(step.id);
+ const path=step.cameraTrack, at=!fixedTrace&&step.kind==='travel'&&path?path.position(path.length*Math.min(1,Math.max(0,fraction)+.24)):null;
+ const coords=fixedTrace?step.coordinates.at(-1):at?[at.lon,at.lat]:step.target;
+ mapTarget.toggleAttribute('data-static-reference',fixedTrace);
  if(Array.isArray(coords)){
    const [x,y]=navGuideMapCoords(coords);
    mapTarget.setAttribute('transform','translate('+x+' '+y+')');mapTarget.removeAttribute('hidden');
-   if(changed&&!guideReduced())mapTarget.animate([{opacity:.25},{opacity:1},{opacity:.52},{opacity:1}],{duration:660,iterations:1});
+   if(changed&&!fixedTrace&&!guideReduced())mapTarget.animate([{opacity:.25},{opacity:1},{opacity:.52},{opacity:1}],{duration:660,iterations:1});
  }else mapTarget.setAttribute('hidden','');
  $('#guided-map-pin').hidden=true;
  if(step.kind==='travel')drawGuideTravelInset(step,coords,inset);
@@ -6763,6 +6808,18 @@ function renderRouteDetail(step){
  body.replaceChildren(...rows.map(text=>{
     const item=document.createElement('li');item.textContent=text;return item;
  }));
+}
+function validateGuideObservers(doc){
+ const b=provider.dem?.bounds_wgs84;
+ if(doc?.schema!=='hjn-observer-candidates/v1'||!Array.isArray(doc.records)||!b)return [];
+ const seen=new Set();
+ return doc.records.filter(row=>{
+   const p=row.record?.camera, id=row.id;
+   if(!p||!Number.isInteger(id)||seen.has(id)||![p.lon,p.lat,p.heading,p.pitch,p.eyeM,p.exag,p.fov].every(Number.isFinite)
+      ||p.lon<b[0]||p.lon>b[2]||p.lat<b[1]||p.lat>b[3]||p.eyeM<1||p.eyeM>5500||p.exag!==8
+      ||p.pitch<-89||p.pitch>30||p.fov<20||p.fov>100||!/^[\w-]+$/.test(row.displayImagery?.id||''))return false;
+   seen.add(id);return true;
+ });
 }
 function readObserverChoices(step){
  const d=$('#guided-observer-choices');
@@ -6871,9 +6928,10 @@ function closeGuideObserver({restorePosition=true,focus=true}={}){
  restoreGuidedImagery(saved);
  if(map3d.camera&&Number.isFinite(saved.fov)){map3d.camera.fov=saved.fov;map3d.camera.updateProjectionMatrix();}
  if(restorePosition&&guideStep()){
-   const step=guideStep();
+   const step=guideStep(),token=t.token;
    showTourPose(step,step.duration?t.elapsed/step.duration:0);
    readTourHUD();
+   t.sourceReady=null;syncPublicEsriDetail();
  }
  if(focus&&saved.from?.isConnected)saved.from.focus({preventScroll:true});
 }
@@ -6902,11 +6960,11 @@ function updateOpeningCue(step){
  });
 }
 function preferredGuideMedia(step,mark){
+ if(step.id===FIELD_BANDS_STOP)return {items:FIELD_BANDS_MEDIA};
  const items=guidePhotoItems(mark||step);
  return items.length?{items}:null;
 }
 function directorEvidenceBoard(step,point=0){
- $('#guide-landscape-open').hidden=!['chapter-opening','runoff-main-entrance-context','lake-office-caution','chapter-closing'].includes(step.id);
  const d=step.director,root=$('#guided-director-board'),mb=$('#guided-board-media');
  if(!d){root.hidden=true;return;}
  root.hidden=false;
@@ -7217,6 +7275,9 @@ function moveGuideCamera(step,fraction,p,road){
  return camera;
 }
 function showTourPose(step,fraction){
+ const motion=guideVoiceEntry(step)?.travel;
+ if(motion?.length)fraction=guideInterpolateMarks(motion,guidePlaybackSeconds()*1000);
+ fraction=Math.min(1,Math.max(0,fraction));
  const p=sampleGuidedTour(step,fraction)||{site:'guided'};
  if(!Number.isFinite(p.lon)&&!guideMeasurements(step).length)return true;
  const road=guideRoadRoute(guidedTour.route);
@@ -7358,8 +7419,8 @@ function prepareTourStep(i){
  const t=guidedTour;
  if(!t.active||!t.route.steps[i])return;
  if(!$('#guided-photo-preview').hidden)setGuidePhoto(false);
- holdGuidedTour();t.voice?.removeAttribute('src');t.voice?.load();t.voice=null;t.audioFailed=false;
- t.index=i;t.elapsed=0;t.readyStep=false;t.endSince=null;
+ holdGuidedTour();t.voice?.removeAttribute('src');t.voice?.load();t.voice=null;t.seekTarget=null;t.audioFailed=false;
+ t.index=i;t.elapsed=0;t.readyStep=false;t.endSince=null;t.visualMissing=false;
  $('#guided-tour-panel .guided-tour-scroll').scrollTop=0;
  const s=guideStep(), token=++t.token;
  $('#guided-kmz-profiles').hidden=!['road-nw-gully','kmz-north-to-crossings'].includes(s.id);
@@ -7376,28 +7437,65 @@ function prepareTourStep(i){
  readTourHUD();syncMapsState();setGuideVisiblePath(s);renderGuideInset(s);prepareGuideNavMap(s);delete $('#guided-director-board').dataset.openingCue;updateOpeningCue(s);if(s.kind==='gap')updateArchivedGuideMarkers(s);
  requestAnimationFrame(()=>{if(t.active&&t.token===token&&!t.playing&&!t.observer&&!t.poseHandoff)showTourPose(s,0);});
  if(s.kind==='gap'){for(const n of ['guided-map-pin','guided-location-card','guided-four-map'])document.getElementById(n).hidden=true;$('#guided-nav-target').setAttribute('hidden','');}
- // The public edition has only approved online imagery, not the local Google Earth archive.
  state.basemap=publicEsri?ESRI_PUBLIC_ID:PUBLIC_GUIDE_BASEMAP;
- updateHeaderPills();
+ t.sourceReady=null;t.nativeReady=null;
  state.timelineBasemapStatus=null;
  if(fixedHistory.wanted)fixedHistory.disable();
- if(!publicEsriAdaptive)map3d?.setNativeDetail(null);
- readTourHUD();
- syncMapsState();
+ updateHeaderPills();syncMapsState();syncPublicEsriDetail();
+}
+const GUIDE_VOICE_START_TIMEOUT_MS=8000;
+const GUIDE_VOICE_BUFFER_TIMEOUT_MS=12000;
+let guideVoiceWarm=null;
+function guideVoiceEntry(step=guideStep(),lang=atlasLanguage()){
+ return guidedTour.audioManifests?.[lang]?.[step?.id];
+}
+function guideVoiceUrl(entry){
+ const folder=atlasLanguage()==='en'?'guided-tour-audio-en':'guided-tour-audio';
+ return `./${folder}/${entry.file}?v=${entry.sha256.slice(0,12)}`;
+}
+function clearGuideVoiceWarm(){
+ if(!guideVoiceWarm)return;
+ const {media}=guideVoiceWarm;guideVoiceWarm=null;
+ media.removeAttribute('src');media.load();
+}
+function warmNextGuideVoice(){
+ const entry=guideVoiceEntry(guideFollowing(1)?.step);
+ if(!guideFollowing(1))return;
+ if(!entry||!$('#guided-tour-voice').checked||constrainedConnection(navigator.connection))return;
+ const url=guideVoiceUrl(entry);
+ if(guideVoiceWarm?.url===url)return;
+ clearGuideVoiceWarm();
+ const media=new Audio();media.preload='auto';media.src=url;
+ guideVoiceWarm={url,media};
 }
 function frameGuidedTour(now){
  const t=guidedTour,s=guideStep();
  t.frame=0;if(!t.active||!t.playing||!s)return;
  if(!t.stamp)t.stamp=now;
- t.elapsed+=Math.min(.14,(now-t.stamp)/1000);t.stamp=now;
+ const dt=Math.min(.14,(now-t.stamp)/1000);t.stamp=now;
+ const voice=guideUsesVoice(s)?t.voice:null;
+ if(voice&&!voice.ended){
+   const clock=voice.currentTime;
+   const advance=Math.max(0,clock-(t.voiceClock??clock));
+   t.voiceClock=clock;
+   t.voiceWaitingMs=advance>0?0:(t.voiceWaitingMs||0)+dt*1000;
+   t.elapsed+=advance;
+   const maxWait=clock>0?GUIDE_VOICE_BUFFER_TIMEOUT_MS:GUIDE_VOICE_START_TIMEOUT_MS;
+   if(t.voiceWaitingMs>=maxWait){
+     t.audioFailed=true;voice.pause();readTourHUD('语音载入超时，继续显示文字。');
+   }
+ }else t.elapsed+=dt;
  const reduced=guideReduced();
  if(!reduced&&!showTourPose(s,s.duration?t.elapsed/s.duration:0)){
    holdGuidedTour();readTourHUD('超出可用地形。本段已暂停。');return;
  }
  if(reduced){refreshGuideLocation(s);updateArchivedGuideMarkers(s);updateOpeningCue(s);showGuideMeasures(s);}
- const clipDone=!t.voice||t.audioFailed||t.voice.ended||!$('#guided-tour-voice').checked;
+ const voiced=Boolean(t.voice&&guideUsesVoice(s));
+ const clipDone=!voiced||t.voice.ended;
+ if(voiced&&t.voice.ended&&atlasLanguage()==='en')t.elapsed=Math.max(t.elapsed,guideSeekDuration(s));
+ const advanceAt=voiced?(atlasLanguage()==='en'?guideSeekDuration(s):Math.max(s.duration,s.kind==='gap'?5:0)):guideSilentDuration(s);
  if(!clipDone)t.endSince=null;
- if(t.elapsed>=Math.max(s.duration,s.kind==='gap'?5:0)&&clipDone){
+ if(t.elapsed>=advanceAt&&clipDone){
     t.endSince??=now;
     if(now-t.endSince<(s.kind==='gap'?1100:820)){t.frame=requestAnimationFrame(frameGuidedTour);return;}
     if(!guideFollowing(1)){
@@ -7414,20 +7512,33 @@ async function playGuidedTour(){
  if(!t.active||t.playing||t.handoff||t.observer||!s)return;
  const token=t.token, run=++t.playEpoch;
  t.playing=true;readTourHUD(t.readyStep?'':'先定位本段画面…');
+ if(t.sourceReady){const ok=await t.sourceReady;if(token!==t.token||run!==t.playEpoch||!t.active||!t.playing)return;t.sourceReady=null;if(!ok){t.visualMissing=s.id==='history-201309';readTourHUD('影像未载入，本段用文字说明。');}}
  if(!t.readyStep){
+   if(token!==t.token||run!==t.playEpoch||!t.active||!t.playing)return;
    const proof=[...$('#guided-board-media').querySelectorAll('img')];
    if(proof.length)await Promise.race([Promise.allSettled(proof.map(x=>x.decode())),new Promise(r=>setTimeout(r,1800))]);
    await waitGuideFrame(s.kind==='travel'?470:620);
    if(token!==t.token||run!==t.playEpoch||!t.active||!t.playing)return;
-   t.readyStep=true;readTourHUD();
+   t.readyStep=true;readTourHUD(t.visualMissing?'2013-09 未载入；本段旁白关闭，继续后可看下一期实际原图。':'');
  }
- if($('#guided-tour-voice').checked&&t.audioManifest?.[s.id]){
+ if(guideUsesVoice(s)){
    if(!t.voice){
-     t.voice=new Audio(`./guided-tour-audio/${s.id}.wav?v=${t.audioManifest[s.id].sha256.slice(0,12)}`);
-     for(const evt of ['timeupdate','seeking','seeked','pause','play'])t.voice.addEventListener(evt,()=>{if(t.active&&t.token===token&&(s.detail?.spokenPoints||s.director?.cues)){if(!t.playing&&s.director?.cues)showTourPose(s,0);else{refreshGuideLocation(s);updateArchivedGuideMarkers(s);updateOpeningCue(s);}}});
+     const url=guideVoiceUrl(guideVoiceEntry(s));
+     if(guideVoiceWarm?.url===url&&!guideVoiceWarm.media.error){
+       t.voice=guideVoiceWarm.media;guideVoiceWarm=null;
+     }else{
+       clearGuideVoiceWarm();t.voice=new Audio(url);
+     }
+     for(const evt of ['timeupdate','seeking','seeked','pause','play'])t.voice.addEventListener(evt,()=>{if(t.active&&t.token===token&&(s.detail?.spokenPoints||s.director?.cues)){if(!t.playing&&s.director?.cues)showTourPose(s,s.duration?t.elapsed/s.duration:0);else{refreshGuideLocation(s);updateArchivedGuideMarkers(s);updateOpeningCue(s);}}});
      t.voice.addEventListener('error',()=>{if(token===t.token){t.audioFailed=true;readTourHUD('语音不可用，继续显示文字。');}},{once:true});
    }
-   t.voice.play().catch(()=>{if(token===t.token){t.audioFailed=true;readTourHUD('语音不可用，继续显示文字。');}});
+   if(t.seekTarget!=null){t.voice.currentTime=t.seekTarget;t.seekTarget=null;}
+   t.voiceClock=t.voice.currentTime;t.voiceWaitingMs=0;t.audioFailed=false;
+   t.voice.play().then(()=>{
+     if(t.active&&t.playing&&token===t.token&&run===t.playEpoch)warmNextGuideVoice();
+   }).catch(()=>{
+     if(token===t.token&&run===t.playEpoch){t.audioFailed=true;readTourHUD('语音不可用，继续显示文字。');}
+   });
  }
  if(!t.frame)t.frame=requestAnimationFrame(frameGuidedTour);
 }
@@ -7452,7 +7563,7 @@ function closeGuidedTour({lost=false,stay3d=false}={}){
  const t=guidedTour;if(!t.active)return;
  cancelGuideHandoff();
  closeGuideObserver({restorePosition:false,focus:false});
- holdGuidedTour();t.voice=null;++t.token;t.active=false;setGuideCameraManual(false);if(map3d.camera&&t.originalGuideFov){map3d.camera.fov=t.originalGuideFov;map3d.camera.updateProjectionMatrix();}updateArchivedGuideMarkers(null);clearGuideLocation();$('#guided-director-board').dataset.cue='';syncGuidePhotoLocation(null);setGuideScriptShown(true);
+ holdGuidedTour();clearGuideVoiceWarm();t.voice=null;++t.token;t.active=false;setGuideCameraManual(false);if(map3d.camera&&t.originalGuideFov){map3d.camera.fov=t.originalGuideFov;map3d.camera.updateProjectionMatrix();}updateArchivedGuideMarkers(null);clearGuideLocation();$('#guided-director-board').dataset.cue='';syncGuidePhotoLocation(null);setGuideScriptShown(true);
  map3d?.setNativeDetail(null);
  showGuideMeasures(null);
  v74SelectProfile(null);
@@ -7461,9 +7572,7 @@ function closeGuidedTour({lost=false,stay3d=false}={}){
  for(const n of ['guided-map-pin'])document.getElementById(n).hidden=true;
  setGuidedDateControls(false);
  const saved=t.saved;
- if(publicEsri&&saved.publicFallback){
-   state.basemap=ESRI_PUBLIC_ID;state.timelineBasemapStatus=null;
- }
+ if(publicEsri&&saved.publicFallback){state.basemap=ESRI_PUBLIC_ID;state.timelineBasemapStatus=null;}
  restoreGuidedImagery(saved);updateHeaderPills();syncMapsState();
  try{map3d.leaveTerrainWalk();}catch{}
  $('#guided-tour-panel').hidden=true;
@@ -7512,8 +7621,7 @@ function openGuidedTour(trigger,stepId){
  setTourReferenceDock(true);
  $('#observatory')?.classList.add('guided-tour-active');
  map3d.resize();
- $('#guided-tour-voice').checked=Boolean(t.audioManifest);
- $('#guided-tour-voice').disabled=!t.audioManifest;
+ syncGuideVoiceLanguage();
  const route=stepId?t.book.find(r=>r.steps.some(s=>s.id===stepId)):null;
  setGuidedRoute(route||t.book[0],route?route.steps.findIndex(s=>s.id===stepId):0);$('#guided-tour-play').focus({preventScroll:true});
 }
@@ -7730,17 +7838,112 @@ function wireGuidedTour(){
  window.addEventListener('resize',()=>requestAnimationFrame(()=>{const s=guideStep();if(guidedTour.active&&!guidedTour.observer&&!guidedTour.playing&&!guidedTour.poseHandoff&&s)showTourPose(s,s.duration?guidedTour.elapsed/s.duration:0);}));
  $('#guided-toggle-script').onclick=()=>{t.manualScriptChoice=true;const d=$('#guided-observer-script');setGuideScriptShown(d.hidden);const s=guideStep();if(s&&!guidedTour.playing&&!guidedTour.observer)requestAnimationFrame(()=>showTourPose(s,s.duration?guidedTour.elapsed/s.duration:0));};
  $('#guided-tour-play').onclick=()=>{if(guideWantsPlayback(t))pauseGuidePlayback('已暂停；不会自动继续。');else if(t.handoff){t.handoff.resume=true;readTourHUD();}else {void playGuidedTour();readTourHUD();}};
- $('#guided-tour-voice').onchange=e=>{if(!e.target.checked)t.voice?.pause();else if(t.playing){holdGuidedTour();void playGuidedTour();}};
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&t.active&&(guideWantsPlayback(t)||t.handoff||t.poseHandoff))pauseGuidePlayback('切离页面，已暂停。',{stopMotion:true});});
- window.addEventListener('keydown',e=>{if(e.code==='Escape'&&t.active){const options=$('#guide-play-toggles');if(options.matches(':popover-open')){options.hidePopover();$('#guided-play-options').focus({preventScroll:true});e.preventDefault();e.stopImmediatePropagation();return;}if($('#landscape-dialog')?.open||e.target?.closest?.('.v83-photo-frame.is-lens'))return;e.preventDefault();e.stopImmediatePropagation();const idxDrawer=document.getElementById('v93-index-drawer');if(idxDrawer&&!idxDrawer.hidden){idxDrawer.hidden=true;document.getElementById('v93-index-toggle')?.setAttribute('aria-expanded','false');return;}if(!$('#guided-photo-preview').hidden){setGuidePhoto(false,{focus:true});return;}if(state.studioOpen){closeStudioDrawer();return;}if(t.observer){closeGuideObserver();return;}if(t.manualCamera){followGuideCamera();return;}if(guideWantsPlayback(t)||t.handoff||t.poseHandoff)pauseGuidePlayback('已暂停。',{stopMotion:true});else closeGuidedTour();}},{capture:true});
+ window.addEventListener('keydown',e=>{if(e.code==='Escape'&&t.active){const options=$('#guide-play-toggles');if(options.matches(':popover-open')){options.hidePopover();$('#guided-play-options').focus({preventScroll:true});e.preventDefault();e.stopImmediatePropagation();return;}if(e.target?.closest?.('dialog[open], .v83-photo-frame.is-lens'))return;e.preventDefault();e.stopImmediatePropagation();const idxDrawer=document.getElementById('v93-index-drawer');if(idxDrawer&&!idxDrawer.hidden){idxDrawer.hidden=true;const trigger=document.getElementById('v93-index-toggle');trigger?.setAttribute('aria-expanded','false');trigger?.focus({preventScroll:true});return;}if(!$('#guided-photo-preview').hidden){setGuidePhoto(false,{focus:true});return;}if(state.studioOpen){closeStudioDrawer();return;}if(t.observer){closeGuideObserver();return;}if(t.manualCamera){followGuideCamera();return;}if(guideWantsPlayback(t)||t.handoff||t.poseHandoff)pauseGuidePlayback('已暂停。',{stopMotion:true});else closeGuidedTour();}},{capture:true});
  installV93Bridge();
 }
 const v93SyncCallbacks=new Set();
 function v93NotifySync(){for(const fn of v93SyncCallbacks)try{fn();}catch{}}
+const guideSilentWindows=new WeakMap();
+function guideUsesVoice(step=guideStep()){
+ const t=guidedTour;
+ return Boolean(step&&$('#guided-tour-voice').checked&&!t.audioFailed&&!t.visualMissing&&guideVoiceEntry(step));
+}
+function guideSilentDuration(step){
+ if(!step)return 0;
+ const lang=atlasLanguage(), trackSeconds=(guideVoiceEntry(step,lang)?.durationMs||0)/1000;
+ const cached=guideSilentWindows.get(step);
+ if(cached?.lang===lang&&cached.trackSeconds===trackSeconds)return cached.duration;
+ const opening=(step.director?.cues||[]).map(c=>Number(c.startMs??((c.at??0)*1000))/1000);
+ const points=(step.detail?.spokenPoints||[]).map(c=>Number(c.start));
+ const cues=[...opening,...points].filter(Number.isFinite);
+ const body=translateAtlas(step.body)||'';
+ const reading=lang==='en'?(body.match(/[\p{L}\p{N}]+(?:[’'-][\p{L}\p{N}]+)*/gu)||[]).length/3+3:
+   (body.match(/[\u3400-\u9fff]/gu)||[]).length/4.5+3;
+ const duration=Math.ceil(Math.max(step.duration||0,step.kind==='gap'?5:0,trackSeconds,reading,cues.length?Math.max(...cues)+6:0));
+ guideSilentWindows.set(step,{lang,trackSeconds,duration});
+ return duration;
+}
+function guideSeekDuration(step=guideStep()){
+ const t=guidedTour;
+ return guideUsesVoice(step)?(Number.isFinite(t.voice?.duration)&&t.voice.duration>0?t.voice.duration:
+   (guideVoiceEntry(step)?.durationMs||0)/1000||guideSilentDuration(step)):guideSilentDuration(step);
+}
+function seekGuidedStation(seconds){
+ const t=guidedTour,s=guideStep(), duration=guideSeekDuration(s);
+ if(!t.active||!s||!duration||t.handoff||t.poseHandoff||t.observer||!Number.isFinite(seconds))return false;
+ const target=Math.max(0,Math.min(Math.max(0,duration-.01),seconds));
+ t.elapsed=target;t.endSince=null;t.stamp=0;t.voiceWaitingMs=0;
+ const wantsVoice=guideUsesVoice(s);
+ t.seekTarget=wantsVoice&&!t.voice?target:null;
+ if(wantsVoice&&t.voice){t.voice.currentTime=target;t.voiceClock=target;}
+ if(!guideReduced())showTourPose(s,s.duration?target/s.duration:0);
+ else{refreshGuideLocation(s);updateArchivedGuideMarkers(s);updateOpeningCue(s);showGuideMeasures(s);}
+ readTourHUD();
+ return true;
+}
+const guideVoiceWanted={};
+function syncGuideVoiceLanguage(){
+ const control=$('#guided-tour-voice'),lang=atlasLanguage();
+ const available=Boolean(guidedTour.audioManifests?.[lang]&&Object.keys(guidedTour.audioManifests[lang]).length);
+ control.checked=available&&(guideVoiceWanted[lang]??true);
+ control.disabled=!available;
+ $('#guided-language-voice-note').hidden=lang!=='en'||available;
+}
 function installV93Bridge(){
+ $('#guided-tour-voice').addEventListener('change',e=>{
+   guideVoiceWanted[atlasLanguage()]=e.target.checked;
+   const t=guidedTour;
+   if(!t.active)return;
+   const running=t.playing;
+   if(!e.target.checked){
+     t.voice?.pause();clearGuideVoiceWarm();t.seekTarget=null;
+   }else{
+     t.audioFailed=false;
+     const max=guideSeekDuration();
+     t.elapsed=Math.min(t.elapsed,Math.max(0,max-.01));
+     if(t.voice&&!t.voice.error){t.voice.currentTime=t.elapsed;t.voiceClock=t.elapsed;}
+     else{t.voice=null;t.seekTarget=t.elapsed;}
+     if(running){holdGuidedTour();void playGuidedTour();}
+   }
+   t.endSince=null;
+   readTourHUD();
+ });
+ window.addEventListener('atlas:languagechange',e=>{
+   const {previous}=e.detail;
+   map2d?.setState({});map3d?.setState({labelLanguage:atlasLanguage()});
+   const t=guidedTour,s=guideStep();
+   if(t.active){
+     const from=guideVoiceEntry(s,previous),to=guideVoiceEntry(s);
+     const old=t.seekTarget??(t.voice&&!t.audioFailed&&$('#guided-tour-voice').checked?t.voice.currentTime:t.elapsed);
+     if(from?.travel||to?.travel){
+       const fraction=from?.travel?guideInterpolateMarks(from.travel,old*1000):Math.min(1,old/Math.max(1,s.duration));
+       t.elapsed=to?.travel?guideInterpolateMarks(to.travel,fraction,true)/1000:fraction*s.duration;
+     }else{
+       const authored=guideInterpolateMarks(from?.cueClockMs,old*1000);
+       t.elapsed=guideInterpolateMarks(to?.cueClockMs,authored,true)/1000;
+     }
+     pauseGuidePlayback('',{stopMotion:true});
+     const previousVoice=t.voice;t.voice=null;
+     if(previousVoice){previousVoice.pause();previousVoice.removeAttribute('src');previousVoice.load();}
+     clearGuideVoiceWarm();
+     t.audioFailed=false;
+     t.seekTarget=null;
+   }
+   syncGuideVoiceLanguage();
+   if(t.active){
+     const max=guideSeekDuration();
+     t.elapsed=Math.min(t.elapsed,Math.max(0,max-.01));t.endSince=null;
+     if(guideUsesVoice())t.seekTarget=t.elapsed;
+     setGuideCameraManual(t.manualCamera);
+     if(!t.observer&&!guideReduced()&&s)showTourPose(s,s.duration?t.elapsed/s.duration:0);
+     readTourHUD();
+   }
+ });
  window.__HJN_V93_BRIDGE__={
   isReady:()=>Boolean(guidedTour.book?.length),
   getBook:()=>guidedTour.book,
+  seekStation:seekGuidedStation,
   hasStopProfile:stepId=>Boolean(v74StopProfiles[stepId]||['road-nw-gully','kmz-north-to-crossings'].includes(stepId)),
   onSync:fn=>{if(typeof fn==='function')v93SyncCallbacks.add(fn);},
   getSnapshot:()=>{
@@ -7749,13 +7952,16 @@ function installV93Bridge(){
    const section=t.book.indexOf(t.route);
    const totalStops=t.book.reduce((n,b)=>n+b.steps.length,0);
    const globalIdx=t.book.slice(0,section).reduce((n,b)=>n+b.steps.length,0)+t.index+1;
-   const basemapDate=provider.getImagerySpec(state.basemap)?.time_utc?.slice(0,10);
-   const imageryLabel=state.basemap===ESRI_PUBLIC_ID?'Esri · 在线参考':basemapDate?'Sentinel-2 · '+basemapDate:'公开位置底图';
-   const voiceOn=Boolean(t.voice&&!t.audioFailed&&$('#guided-tour-voice')?.checked&&Number.isFinite(t.voice.duration)&&t.voice.duration>0);
-   const progressRatio=voiceOn?Math.min(1,t.voice.currentTime/t.voice.duration):(s.duration?Math.min(1,t.elapsed/s.duration):0);
+   const activeHist=fixedHistory.active;
+   const rawScene=activeHist?.sourceDate||activeHist?.fileLabel||s.sceneId||'ge-root-202109';
+   const fmtScene=String(rawScene).replace(/^ge-(?:root|03)-(\d{4})(\d{2})(.*)$/,(_,y,m,rest)=>`${y}-${m}${rest?rest.replace('-',' · '):''}`);
+   const imageryLabel=state.basemap===ESRI_PUBLIC_ID?"Esri · 在线参考":"Sentinel-2 · 定位参考";
+   const seekDuration=guideSeekDuration(s),seekSeconds=guidePlaybackSeconds();
+   const progressRatio=seekDuration?Math.min(1,seekSeconds/seekDuration):0;
+   const canSeek=Boolean(seekDuration&&!t.handoff&&!t.poseHandoff&&!t.observer);
    const hasProfile=Boolean(t.v74Profile||v74StopProfiles[s.id]||['road-nw-gully','kmz-north-to-crossings'].includes(s.id)||(s.detail?.chart&&getProfileData(s.detail.chart)));
    const hasMedia=Boolean((!$('#guided-board-media').hidden&&$('#guided-board-media').childElementCount>0)||!$('#guided-tour-photo-link').hidden);
-   return {active:true,step:s,route:t.route,globalIdx,totalStops,waterMonth:state.month,imageryLabel,isOverview:isGuideOverview(s),progressRatio,hasProfile,hasMedia};
+   return {active:true,step:s,route:t.route,globalIdx,totalStops,waterMonth:state.month,imageryLabel,isOverview:isGuideOverview(s),progressRatio,seekDuration,seekSeconds,cueSeconds:guideSpokenSeconds(),canSeek,hasProfile,hasMedia};
   },
   openAtRoute:(routeId,stepIdx=0,{autoPlay=false}={})=>{
    const t=guidedTour;
@@ -7809,9 +8015,7 @@ async function boot() {
   const hero=$('#atlas-hero-card'),head=$('#hud-top-left');
   new ResizeObserver(()=>head.style.setProperty('--atlas-home-card-width',hero.getBoundingClientRect().width+'px')).observe(hero);
 
-  const coreData=provider.boot();
-  // Attach rejection immediately while other startup requests are being scheduled.
-  void coreData.catch(()=>{});
+  const observerFetch=Promise.resolve(null);
   const optionalGuide=async (url)=>{
     for(let attempt=0;attempt<2;attempt++){
       try{
@@ -7822,15 +8026,20 @@ async function boot() {
     }
     return null;
   };
-  const tourFetch=optionalGuide('./guided-tours.json?v=105.18.14');
+  const tourFetch=fetch('./guided-tours.json?v=105.18.14').then(r=>r.ok?r.json():null).catch(()=>null);
   const nwNetworkFetch=fetch('./nw-bridge-network-v96.geojson').then(r=>r.ok?r.json():null).catch(()=>null);
   const catchmentScreenFetch=fetch('./catchment-screen-v94.geojson?v=95',{signal:AbortSignal.timeout?.(4000)}).then(r=>r.ok?r.json():null).catch(()=>null);
-  const owner75Fetch=optionalGuide('./owner-water-network-v75.geojson?v=75');
- const guideAudioFetch=optionalGuide('./guided-tour-audio/audio-manifest.json?v=105.18.14');
+  const owner75Fetch=fetch('./owner-water-network-v75.geojson?v=75').then(r=>r.ok?r.json():null).catch(()=>null);
+ const voiceManifest=path=>fetch(path).then(r=>r.ok?r.json():null).catch(()=>null);
+ const guideAudioFetch=Promise.all([
+   voiceManifest('./guided-tour-audio/audio-manifest.json?v=105.18.21-audio48'),
+   voiceManifest('./guided-tour-audio-en/audio-manifest.json?v=105.19-en1')
+ ]);
   const urlPatch = decodeAtlasUrl(location.search);
   const routeParams=new URLSearchParams(location.search);
-  const firstOpen=routeParams.size===0;
+  const firstOpen=[...routeParams.keys()].every(k=>k==='lang');
   const nwDeepLink=routeParams.get('nw')==='all';
+  const startHistory=null;
   const requestedView=routeParams.get('view');
   state.timelineCalendarFull=routeParams.get('calendar')==='full';
   const requestedContour=Number(routeParams.get('ctr'));
@@ -7881,11 +8090,11 @@ async function boot() {
   const northBoundaryPromise = fetch(new URL('./north-boundary-checks.geojson', location.href), {
     signal: AbortSignal.timeout?.(4500),
   }).then(r => r.ok ? r.json() : null).catch(() => null);
-  const southeastFixturePromise=Promise.resolve(null);
+  const southeastFixturePromise = Promise.resolve(null);
   const diagnosticBranchesPromise = fetch(new URL('./diagnostic-branches.geojson', location.href), {
     signal: AbortSignal.timeout?.(5500),
   }).then(r => r.ok ? r.json() : null).catch(() => null);
-  await coreData;
+  await provider.boot();
   const initialHistory=fixedHistoryInventory().catch(()=>null);
   registerStudyFeatures(provider);
   const catchmentData=await catchmentScreenFetch;
@@ -7925,16 +8134,14 @@ async function boot() {
     }
     state.officeEvidenceReady = true;
   }
-  function registerMainProfiles(mainProfilePayload){
-    if (mainProfilePayload) {
-      const features = validateMainProfiles(mainProfilePayload, provider.analysisById);
-      provider.analysis = { ...provider.analysis, features: [...provider.analysis.features, ...features] };
-      for (const f of features) provider.analysisById.set(f.id, f);
-      state.mainProfilesReady = features.length;
-      if (!urlPatch.activeProfileId) state.activeProfileId = features[0].id;
-    }
+  const mainProfilePayload = await mainProfileEvidence;
+  if (mainProfilePayload) {
+    const features = validateMainProfiles(mainProfilePayload, provider.analysisById);
+    provider.analysis = { ...provider.analysis, features: [...provider.analysis.features, ...features] };
+    for (const f of features) provider.analysisById.set(f.id, f);
+    state.mainProfilesReady = features.length;
+    if (!urlPatch.activeProfileId) state.activeProfileId = features[0].id;
   }
-  registerMainProfiles(await mainProfileEvidence);
 
   try {
     const field = validateFieldPhotos(await fieldPhotosPromise, provider.analysisById);
@@ -7984,29 +8191,25 @@ async function boot() {
       // Optional 2026-11-23 bridge/culvert diagnostic lines never block frozen atlas.
     }
   }
-  function registerSeasonal(seasonalPayload){
-    if (seasonalPayload) {
-      try {
-        const features=validateSeasonalNetwork(seasonalPayload,provider.analysisById);
-        provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
-        for(const f of features) provider.analysisById.set(f.id,f);
-        state.seasonalNetwork=features;
-      } catch(err) { console.warn('季节性线索图层未载入',err.message); }
-    }
+  const seasonalPayload=await seasonalPromise;
+  if (seasonalPayload) {
+    try {
+      const features=validateSeasonalNetwork(seasonalPayload,provider.analysisById);
+      provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
+      for(const f of features) provider.analysisById.set(f.id,f);
+      state.seasonalNetwork=features;
+    } catch(err) { console.warn('季节性线索图层未载入',err.message); }
   }
-  registerSeasonal(await seasonalPromise);
-  function registerF1(f1WaterwayPayload){
-    if(f1WaterwayPayload){
-      try {
-        const {features,evidence}=validateF1Waterway(f1WaterwayPayload,provider.analysisById);
-        provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
-        for(const f of features)provider.analysisById.set(f.id,f);
-        provider.evidence=[evidence,...provider.evidence];
-        state.f1Waterway=features;
-      }catch(err){console.warn('桥上下游图层未载入',err.message);}
-    }
+  const f1WaterwayPayload=await f1WaterwayPromise;
+  if(f1WaterwayPayload){
+    try {
+      const {features,evidence}=validateF1Waterway(f1WaterwayPayload,provider.analysisById);
+      provider.analysis={...provider.analysis,features:[...provider.analysis.features,...features]};
+      for(const f of features)provider.analysisById.set(f.id,f);
+      provider.evidence=[evidence,...provider.evidence];
+      state.f1Waterway=features;
+    }catch(err){console.warn('桥上下游图层未载入',err.message);}
   }
-  registerF1(await f1WaterwayPromise);
   function registerWcrossUpstream(payload){
     if(payload)try {
       const features=validateWcrossUpstream(payload,provider.analysisById);
@@ -8073,7 +8276,7 @@ async function boot() {
   lastManualBasemap = state.basemap;
   const imageryById = { [TIMELINE_REFERENCE_SCENE.id]: TIMELINE_REFERENCE_SCENE };
   for (const im of provider.terrainManifest?.imagery || []) {
-    imageryById[im.id] = { ...im, url: provider.url(im.id===PUBLIC_GUIDE_BASEMAP ? 'terrain/satellite-2026-08-08-display.webp' : `terrain/${im.path}`) };
+    imageryById[im.id] = { ...im, url: provider.url(`terrain/${im.path}`) };
   }
   for (const sc of extraBridgeScenes) {
     imageryById[sc.basemapId] = {
@@ -8088,7 +8291,7 @@ async function boot() {
   timelineScenes = [
     TIMELINE_REFERENCE_SCENE,
     ...(provider.terrainManifest?.imagery || []).map(im => ({
-      id:im.id, date:im.time_utc?.slice(0,10), url:provider.url(`terrain/${im.path}`),
+      id:im.id, date:im.time_utc?.slice(0,10), url:imageryById[im.id]?.url,
       broad: im.bounds_wgs84?.length === 4 && provider.terrainManifest?.bounds_wgs84?.length === 4
         && im.bounds_wgs84.every((v, i) => i < 2 ? v <= provider.terrainManifest.bounds_wgs84[i] + 1e-6 : v >= provider.terrainManifest.bounds_wgs84[i] - 1e-6),
     })),
@@ -8099,7 +8302,7 @@ async function boot() {
     })),
   ];
 
-  if(!firstOpen)await initialHistory;
+  await initialHistory;
   if(!timelineCalendar().fullSet.has(state.month))state.month='2024-07';
 
   $('#timeline-imagery-priority').onchange=ev=>{
@@ -8127,6 +8330,7 @@ async function boot() {
   registeredImagery=imageryById;
   wireFixedHistory();
 
+
   const onCursor = ({ lon, lat, elev }) => {
     const zTxt = elev !== null ? `GLO-30 ${elev.toFixed(1)}m` : '超出 DEM 范围';
     const el = $('#cursor-readout');
@@ -8139,16 +8343,16 @@ async function boot() {
   const onSelect = feat => selectFeature(feat,{showData:true});
 
   map2d = new AtlasMap2D($('#map-2d-canvas'), {
+    onViewChange:syncAdaptiveEsriDetail,
     onCursorMove: onCursor,
     onCameraChange: onCam,
-    onViewChange: syncAdaptiveEsriDetail,
     onSelectFeature: onSelect,
   });
 
   map3d = new AtlasMap3D($('#map-3d-stage'), $('#map-3d-labels'), {
+    onViewChange:syncAdaptiveEsriDetail,
     onCursorMove: onCursor,
     onCameraChange: onCam,
-    onViewChange: syncAdaptiveEsriDetail,
     onSelectFeature: onSelect,
     onNorthChange: deg => setCompassAngle(deg),
     onContextLost: info => handleWebGLContextLost(info),
@@ -8174,61 +8378,46 @@ async function boot() {
 
   bindEvents();
   wireTerrainWalk();
-  const guideButtons=$$('#btn-guide-chapter-one,#btn-open-guided-tour,[data-guide-launch]');
-  for(const button of guideButtons){button.disabled=true;button.setAttribute('aria-busy','true');}
-  const finishGuide=async()=>{
-    const tourDoc=await tourFetch;
-    if(tourDoc)try{
-      // The main map can start before these companions, but the guide needs their exact evidence IDs.
-      const [seasonal,f1,profiles,wcross]=await Promise.all([
-        state.seasonalNetwork?.length?null:optionalGuide('./seasonal-network.geojson?v=48'),
-        state.f1Waterway?.length?null:optionalGuide('./f1-waterway.geojson?v=67'),
-        state.mainProfilesReady?null:optionalGuide('./main-lake-profiles.geojson'),
-        state.wcrossUpstream?.length?null:optionalGuide(wcrossUpstreamUrl),
-      ]);
-      if(seasonal)registerSeasonal(seasonal);
-      if(f1)registerF1(f1);
-      if(profiles)registerMainProfiles(profiles);
-      if(wcross)registerWcrossUpstream(wcross);
-      guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
-     for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
-      if(f.geometry?.type==='LineString'&&f.id?.startsWith('hjn-v74-'))guideV74Lines.set(f.id,f);
-      if((f.id?.startsWith('east-guide-')||/^owner-05-(band|label)-[1-4]$/.test(f.id))&&['Point','LineString'].includes(f.geometry?.type))provider.analysisById.set(f.id,f);
-     }
-     const owner75=await owner75Fetch;
-     const owner=Array.isArray(owner75?.features)?owner75.features.filter(f=>f.id?.startsWith('hjn-v75-kmz-')&&f.geometry?.type==='LineString'&&f.geometry.coordinates.length>=2&&f.geometry.coordinates.every(c=>c.length===2&&c.every(Number.isFinite)&&c[0]>119.60&&c[0]<119.78&&c[1]>49.10&&c[1]<49.18)):[];
-     for(const f of owner){
-      f.properties.layer=OWNER75_LAYER;
-      f.properties.guideMode=f.id.includes('potential')||f.id.includes('seepage')?'candidate':'owner';
-      provider.analysis.features.push(f);provider.analysisById.set(f.id,f);guideV74Lines.set(f.id,f);
-     }
-     guidedTour.ownerLines=owner;
-     state.visibleLayers.add(OWNER75_LAYER);
-     v74BuildProfiles();
-      guidedTour.contextPaths=guideContextPaths(tourDoc.contextPaths);
-      const context=guidedTour.contextPaths.map(r=>({type:'Feature',id:'guide-road-'+r.id,properties:{layer:GUIDE_G332_LAYER,name:r.label||'国道 G332 参考线',source:'冻结 OSM 路网，非水流'},geometry:{type:'LineString',coordinates:r.coords}}));
-      provider.analysis.features.push(...context);
-      for(const f of context)provider.analysisById.set(f.id,f);
-      const applyAudio=guideAudio=>{
-        if(!guideAudio?.steps)return;
-        guidedTour.audioManifest=Object.fromEntries(guidedTour.book.flatMap(r=>r.steps).filter(s=>guideAudio.steps[s.id]?.body===s.body).map(s=>[s.id,guideAudio.steps[s.id]]));
-        if(guidedTour.active)$('#guided-tour-voice').disabled=false;
-      };
-      if(firstOpen)void guideAudioFetch.then(applyAudio);
-      else applyAudio(await guideAudioFetch);
-    }catch(err){console.warn('本机三维导览未载入',err.message)}
-    wireGuidedTour();
-    for(const button of guideButtons)button.removeAttribute('aria-busy');
-  };
-  if(firstOpen)void finishGuide().catch(err=>console.warn('Guide setup unavailable',err));
-  else await finishGuide();
-  try {
-    const savedTheme = localStorage.getItem('hujiernuoer-atlas-theme');
-    if (savedTheme === 'light' || savedTheme === 'dark') applyTheme(savedTheme, { persist: false });
-    else applyTheme('dark', { persist: false });
-  } catch {
-    applyTheme('dark', { persist: false });
-  }
+  const tourDoc=await tourFetch, [guideAudio,guideAudioEn]=await guideAudioFetch;
+  guidedTour.observerRecords=validateGuideObservers(await observerFetch);
+  if(tourDoc)try{
+    if(!state.wcrossUpstream?.length)registerWcrossUpstream(await optionalGuide(wcrossUpstreamUrl));
+    guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
+   for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
+    if(f.geometry?.type==='LineString'&&f.id?.startsWith('hjn-v74-'))guideV74Lines.set(f.id,f);
+    if((f.id?.startsWith('east-guide-')||/^owner-05-(band|label)-[1-4]$/.test(f.id))&&['Point','LineString'].includes(f.geometry?.type))provider.analysisById.set(f.id,f);
+   }
+   const owner75=await owner75Fetch;
+   const owner=Array.isArray(owner75?.features)?owner75.features.filter(f=>f.id?.startsWith('hjn-v75-kmz-')&&f.geometry?.type==='LineString'&&f.geometry.coordinates.length>=2&&f.geometry.coordinates.every(c=>c.length===2&&c.every(Number.isFinite)&&c[0]>119.60&&c[0]<119.78&&c[1]>49.10&&c[1]<49.18)):[];
+   for(const f of owner){
+    f.properties.layer=OWNER75_LAYER;
+    f.properties.guideMode=f.id.includes('potential')||f.id.includes('seepage')?'candidate':'owner';
+    provider.analysis.features.push(f);provider.analysisById.set(f.id,f);guideV74Lines.set(f.id,f);
+   }
+   guidedTour.ownerLines=owner;
+   state.visibleLayers.add(OWNER75_LAYER);
+   v74BuildProfiles();
+    guidedTour.contextPaths=guideContextPaths(tourDoc.contextPaths);
+    const context=guidedTour.contextPaths.map(r=>({type:'Feature',id:'guide-road-'+r.id,properties:{layer:GUIDE_G332_LAYER,name:r.label||'国道 G332 参考线',source:'冻结 OSM 路网，非水流'},geometry:{type:'LineString',coordinates:r.coords}}));
+    provider.analysis.features.push(...context);
+    for(const f of context)provider.analysisById.set(f.id,f);
+    const steps=guidedTour.book.flatMap(r=>r.steps);
+    const acceptVoice=(doc,body)=>Object.fromEntries(steps.flatMap(s=>{
+      const entry=doc?.steps?.[s.id];
+      return entry&&entry.body===body(s)&&entry.file===s.id+'.mp3'&&Number.isFinite(entry.durationMs)&&entry.durationMs>0&&/^[a-f0-9]{64}$/.test(entry.sha256)?[[s.id,entry]]:[];
+    }));
+    guidedTour.audioManifests={
+      zh:acceptVoice(guideAudio,s=>s.body),
+      en:acceptVoice(guideAudioEn?.schema==='hjn-guide-english-audio/v1'?guideAudioEn:null,s=>translateAtlasEnglish(s.body)),
+    };
+  }catch(err){console.warn('本机三维导览未载入',err.message)}
+  wireGuidedTour();
+  let savedTheme;
+  try { savedTheme=localStorage.getItem(atlasThemeKey); } catch {}
+  applyTheme(savedTheme,{persist:false});
+  atlasThemeQuery?.addEventListener?.('change',()=>{
+    if(atlasThemeChoice==='system')applyTheme('system',{persist:false});
+  });
   if ($('#deck-body') && 'inert' in $('#deck-body')) {
     $('#deck-body').inert = !state.deckExpanded;
   }
@@ -8236,9 +8425,7 @@ async function boot() {
   updateActiveLayerBadge();
   renderAlerts();
 
-  const initialMonth=selectMonth(state.month,{timeline:routeParams.has('month')&&!routeParams.has('bm')});
-  if(!firstOpen)await initialMonth;
-  else void initialMonth.catch(err=>console.warn('Initial water geometry unavailable',err));
+  await selectMonth(state.month,{timeline:routeParams.has('month')&&!routeParams.has('bm')});
 
   if (isHistoricalId(state.selectedFeatureId)) {
     await ensureHistoricalContext();
@@ -8287,6 +8474,11 @@ async function boot() {
 
   if (state.profileCursorIdx >= 0) {
     setProfileSample(state.activeProfileId, state.profileCursorIdx);
+  }
+
+  if(startHistory&&/^ge-[a-z0-9-]+$/i.test(startHistory)){
+    const ok=await fixedHistory.openScene?.(startHistory);
+    fixedHistory.autoHomeScene=Boolean(ok&&startHistory==='ge-root-202107');
   }
 
   if (wantInitial3d && !isWayback2dOnly(provider.analysisById.get(state.selectedFeatureId))) {
@@ -8362,39 +8554,31 @@ async function boot() {
     guideDisplay:{catchment:guidedTour.active?currentGuideCatchment():null,profile:guidedTour.active&&$('#chart-deck').dataset.tourProfile?{id:$('#chart-deck').dataset.tourProfile,samples:getProfileData($('#chart-deck').dataset.tourProfile)?.samples?.length||0,gaps:getProfileData($('#chart-deck').dataset.tourProfile)?.gaps?.length||0}:null,contourInterval:guidedTour.contourInterval||10,layerIds:[...(guidedTour.extraLayers||[])]},
     timelineBasemap: {enabled:state.timelineSceneSync, priority:state.timelineImageryPriority, broadMonths:knownBroadMonths(), status:state.timelineBasemapStatus},
     esriOverviewZoom:publicEsri?.zoom??null,
-    esriViewportDetail:map2d?._nativeDetail?.image.naturalWidth?map2d._nativeDetail.spec.key:
-      map3d?._nativeDetails?.find(item=>item.texture&&item.spec.key)?.spec.key??null,
-    esriBridgeDetail:Boolean(map3d?._nativeDetails?.some(item=>item.spec.id==='esri-public-bridge-detail'&&item.texture)),
+    esriViewportDetail:map2d?._nativeDetail?.image.naturalWidth?map2d._nativeDetail.spec.key:map3d?._nativeDetails?.find(item=>item.texture&&item.spec.key)?.spec.key??null,
     waterErrors: state.monthLoadErrors.length,
     camera2d: map2d?.getCameraFocus(),
     camera3d: map3d && !map3d.failed ? map3d.getCameraFocus() : null,
     webglReady: Boolean(map3d && !map3d.failed),
   });
+  if(firstOpen)void startPublicEsri();
   window.__ATLAS_DEBUG__ = {
     openSoutheastInspection,
     openCrossingsWorkspace,
     applyTheme,
   };
-  if(firstOpen)void startPublicEsri();
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    const preview=$('#atlas-start-preview');if(preview)preview.hidden=true;
-  }));
 }
 
-const bootLabel=$('#atlas-start-note'), bootReload=$('#atlas-start-reload');
-if(bootReload)bootReload.onclick=()=>location.reload();
-const slowStartNotice=setTimeout(()=>{
- if(bootLabel)bootLabel.textContent='底图预览 · 数据仍在加载，慢网下会自动重试';
-},5000);
 boot().catch(err => {
- console.error('Atlas UI boot failed:', err);
- if(bootLabel)bootLabel.textContent=location.protocol==='file:'
-   ?'数据未加载 · 本机文件请通过 HTTP 服务打开'
-   :'底图预览 · 图谱数据暂未载入，可以重新加载';
- if(bootReload&&location.protocol!=='file:')bootReload.hidden=false;
-}).finally(()=>clearTimeout(slowStartNotice));
-
-
+  console.error('Atlas UI boot failed:', err);
+  const host = $('#alert-stack');
+  if (host) {
+    host.innerHTML = `
+      <div class="hud-banner error">
+        <span>⚠ 图谱加载失败：请刷新网页后重试（${esc(err?.message || err)}）</span>
+      </div>
+    `;
+  }
+});
 
 
 

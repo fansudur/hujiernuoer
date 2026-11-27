@@ -1,0 +1,162 @@
+/* ==========================================================================
+   app-main-inflow/guide-seek.css
+   Sleek Architectural Audio Scrubber Bar for Guided Tour Transport Dock
+   - Sits cleanly above .v75-title (z-index: 20) so dragging ONLY scrubs time
+     and NEVER drags the navigation strip container.
+   - Custom optical 3px track with live Ice-Cyan -> Champagne-Gold progress
+     gradient (--seek-pct driven by redesign-motion.js) + luminous pearl thumb.
+   ========================================================================== */
+
+#observatory.guided-tour-active #guided-tour-nav-strip > .v75-title {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+#guided-tour-nav-strip #v93-step-progress {
+  position: relative;
+  z-index: 20;
+  inset: auto;
+  margin: 0 2px;
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 20px;
+  width: auto;
+  flex: 0 0 auto;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  pointer-events: auto;
+}
+
+#v93-step-seek {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1 1 auto;
+  min-width: 120px;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+  --seek-pct: 0%;
+}
+#v93-step-seek:focus-visible {
+  outline: 1.5px solid var(--rm-gold, #D4AF6A);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+#v93-step-seek:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+/* WebKit Track */
+#v93-step-seek::-webkit-slider-runnable-track {
+  height: 3.5px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--rm-ice, #74B8DC) 0%,
+    var(--rm-gold, #D4AF6A) var(--seek-pct),
+    rgba(244, 241, 234, 0.16) var(--seek-pct),
+    rgba(244, 241, 234, 0.16) 100%
+  );
+  transition: height 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+html[data-theme="light"] #v93-step-seek::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    90deg,
+    var(--rm-ice, #2A78A3) 0%,
+    var(--rm-gold, #A77D30) var(--seek-pct),
+    rgba(24, 22, 18, 0.14) var(--seek-pct),
+    rgba(24, 22, 18, 0.14) 100%
+  );
+}
+#v93-step-seek:not(:disabled):hover::-webkit-slider-runnable-track {
+  height: 4.5px;
+}
+
+/* WebKit Thumb — Delicate Champagne Pearl */
+#v93-step-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  margin-top: -3.75px;
+  border-radius: 50%;
+  background: #F4F1EA;
+  border: 2px solid var(--rm-gold, #D4AF6A);
+  box-shadow: 0 0 0 2.5px rgba(212, 175, 106, 0.22), 0 2px 6px rgba(0, 0, 0, 0.42);
+  transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 150ms ease;
+}
+html[data-theme="light"] #v93-step-seek::-webkit-slider-thumb {
+  background: #FAF8F3;
+  border-color: var(--rm-gold, #A77D30);
+  box-shadow: 0 0 0 2.5px rgba(167, 125, 48, 0.20), 0 2px 5px rgba(24, 22, 18, 0.22);
+}
+#v93-step-seek:not(:disabled):hover::-webkit-slider-thumb,
+#v93-step-seek:not(:disabled):active::-webkit-slider-thumb {
+  transform: scale(1.24);
+  box-shadow: 0 0 0 5px rgba(212, 175, 106, 0.30), 0 2px 8px rgba(0, 0, 0, 0.48);
+}
+
+/* Firefox Track & Thumb */
+#v93-step-seek::-moz-range-track {
+  height: 3.5px;
+  border-radius: 999px;
+  background: rgba(244, 241, 234, 0.16);
+}
+html[data-theme="light"] #v93-step-seek::-moz-range-track {
+  background: rgba(24, 22, 18, 0.14);
+}
+#v93-step-seek::-moz-range-progress {
+  height: 3.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--rm-ice, #74B8DC), var(--rm-gold, #D4AF6A));
+}
+#v93-step-seek::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #F4F1EA;
+  border: 2px solid var(--rm-gold, #D4AF6A);
+  box-shadow: 0 0 0 2.5px rgba(212, 175, 106, 0.22);
+}
+
+#v93-step-time {
+  flex: 0 0 auto;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--rm-ink-3, #9A9892);
+  white-space: nowrap;
+  min-width: 64px;
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  #guided-tour-nav-strip #v93-step-progress {
+    height: 22px;
+    gap: 8px;
+    margin: 0 4px;
+  }
+  #v93-step-seek {
+    min-width: 0;
+    height: 22px;
+  }
+  #v93-step-seek::-webkit-slider-thumb {
+    width: 13px;
+    height: 13px;
+    margin-top: -4.75px;
+  }
+  #v93-step-time {
+    font-size: 10px;
+    min-width: 58px;
+  }
+}

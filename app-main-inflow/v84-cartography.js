@@ -45,7 +45,7 @@ export function wireReferenceCartography(svgs){
   if(north){
    for(const [id,kind,label] of [['guided-nav-marker','heading','镜头'],['guided-nav-photo','photo','照片'],['guided-nav-target','target','本站']]){
     const n=svg.querySelector('#'+id); if(!n||n.hasAttribute('hidden'))continue;
-    const [x,y,angle]=translated(n);if(Number.isFinite(x)&&Number.isFinite(y))rows.push({origin:pt([x,y]),kind,label,angle:angle||0, bearing:n.querySelector('path')?.getAttribute('visibility')!=='hidden'});
+    const [x,y,angle]=translated(n);if(Number.isFinite(x)&&Number.isFinite(y))rows.push({origin:pt([x,y]),kind,label,staticReference:n.hasAttribute('data-static-reference'),angle:angle||0, bearing:n.querySelector('path')?.getAttribute('visibility')!=='hidden'});
    }
    for(const n of svg.querySelectorAll('[data-place-id]')){
     const id=n.dataset.placeId, number=id.match(/^hjn-03-road-pin-0([1-4])$/)?.[1];
@@ -56,7 +56,7 @@ export function wireReferenceCartography(svgs){
     rows.push({origin:pt(translated(n)),kind:'num',label:n.dataset.num,active:n.classList.contains('active')});
    }
    const moving=svg.querySelector('.guide-local-anchor');
-   if(moving)rows.push({origin:pt(dot(moving)),kind:'target',label:''});
+   if(moving)rows.push({origin:pt(dot(moving)),kind:'target',label:'',staticReference:moving.hasAttribute('data-static-reference')});
    for(const n of svg.querySelectorAll(':scope > text:not([data-fixed-north])')){
     const label=n.textContent.trim();if(!label)continue;
     const prev=n.previousElementSibling;
@@ -68,7 +68,7 @@ export function wireReferenceCartography(svgs){
   }
   const rank={caption:0,num:1,place:2,local:2,photo:3,target:4,heading:5};
   rows.sort((a,b)=>rank[a.kind]-rank[b.kind]||Number(!!b.active)-Number(!!a.active));
-  const key=JSON.stringify([w,h,b.x,b.y,b.width,b.height,px,py,x0,y0,rows.map(r=>[r.kind,r.label,r.tone,r.active,r.bearing,Math.round(r.angle||0),r.origin&&Math.round(r.origin.x),r.origin&&Math.round(r.origin.y)])]);
+  const key=JSON.stringify([w,h,b.x,b.y,b.width,b.height,px,py,x0,y0,rows.map(r=>[r.kind,r.label,r.tone,r.active,r.bearing,r.staticReference,Math.round(r.angle||0),r.origin&&Math.round(r.origin.x),r.origin&&Math.round(r.origin.y)])]);
   if(o.key===key&&o.layer?.isConnected)return;
   o.key=key;o.layer?.remove();
   const layer=o.layer=add(svg,'g',{'data-v84-overlay':'','pointer-events':'none',transform:'translate('+x0+' '+y0+') scale('+(1/px)+' '+(1/py)+')'});
@@ -79,7 +79,7 @@ export function wireReferenceCartography(svgs){
   measure.font='600 '+font+'px system-ui,sans-serif';
   if(north&&h>24&&w>32){
    const r={x:w-24,y:4,w:20,h:19};busy.push(r);
-   add(labels,'text',{x:w-14,y:17,'text-anchor':'middle',fill:'#d5e2ed',class:'v84-label'},'北');
+   add(labels,'text',{x:w-14,y:17,'text-anchor':'middle',fill:'#9A9892',class:'v84-label','font-size':10,'letter-spacing':'0.08em'},'北');
   }
   for(const row of rows){
    if(row.kind==='caption'){
@@ -123,22 +123,24 @@ export function wireReferenceCartography(svgs){
    const g=add(marks,'g',{'data-inset-symbol':kind,'data-inset-current':String(!!row.active),transform:'translate('+c.x+' '+c.y+')','aria-label':row.label||kind});
    if(kind==='heading'){
     const arrow=add(g,'g',{transform:'rotate('+row.angle+')'});
-    add(arrow,'path',{d:'M0 -9 L6.5 6 L0 4 L-6.5 6 Z',fill:row.outside?'#172430':'#f5d66c',stroke:row.outside?'#f5d66c':'#15202b','stroke-width':1.2});
-    add(arrow,'circle',{r:1.9,fill:'#fff'});
+    add(arrow,'path',{d:'M0 -8.5 L5.8 5.5 L0 3.4 L-5.8 5.5 Z',fill:row.outside?'#121418':'#D4AF6A',stroke:row.outside?'#D4AF6A':'#090A0C','stroke-width':1.1});
+    add(arrow,'circle',{r:1.7,fill:'#F4F1EA'});
    }else if(kind==='photo'){
     if(row.bearing){
      const bearing=(Math.round(row.angle)%360+360)%360;
      const arrow=add(g,'g',{transform:'rotate('+row.angle+')','data-photo-bearing':bearing});
-     add(arrow,'path',{d:'M0 -28 L7 -17 L2.5 -17 L2.5 -4 L-2.5 -4 L-2.5 -17 L-7 -17 Z',fill:'#f3caff',stroke:'#261833','stroke-width':2.5,'stroke-linejoin':'round','paint-order':'stroke fill'});
+     add(arrow,'path',{d:'M0 -26 L6 -16 L2 -16 L2 -4 L-2 -4 L-2 -16 L-6 -16 Z',fill:'#D8B4EE',stroke:'#17111F','stroke-width':1.8,'stroke-linejoin':'round','paint-order':'stroke fill'});
      g.setAttribute('aria-label','照片拍摄方向 '+bearing+'°');
     }
-    add(g,'rect',{x:-7,y:-4,width:14,height:9,rx:1.5,fill:'#3d2d4d',stroke:'#f3caff','stroke-width':1.5});
-    add(g,'circle',{r:2.1,fill:'#f3caff'});
-   }else if(kind==='target')add(g,'circle',{r:5.8,fill:'none',stroke:'#d6f6ff','stroke-width':1.45});
-   else if(kind==='num'){
-    add(g,'circle',{r:7.4,fill:row.active?'#ffe1a0':'#1b3343',stroke:row.active?'#fff1c1':'#afdae8','stroke-width':1});
-    add(g,'text',{y:3.7,'text-anchor':'middle',fill:row.active?'#132733':'#eefaff','font-size':11,'font-weight':700},row.label);
-   }else add(g,'circle',{r:row.active?4.3:3.3,fill:row.tone||(row.active?'#ffefbf':'#adafc4'),stroke:'#172433','stroke-width':1});
+    add(g,'rect',{x:-6.5,y:-3.8,width:13,height:8.2,rx:2,fill:'#241B2E',stroke:'#D8B4EE','stroke-width':1.2});
+    add(g,'circle',{r:1.9,fill:'#D8B4EE'});
+   }else if(kind==='target'){
+    if(!row.staticReference)add(g,'circle',{r:8.5,fill:'none',stroke:'#74B8DC','stroke-width':0.9,class:'rm-radar-pulse'});
+    add(g,'circle',{r:5.2,fill:'rgba(116,184,220,0.14)',stroke:'#74B8DC','stroke-width':1.25});
+   }else if(kind==='num'){
+    add(g,'circle',{r:7.2,fill:row.active?'#D4AF6A':'#14161B',stroke:row.active?'#F4E6C5':'#74B8DC','stroke-width':1});
+    add(g,'text',{y:3.6,'text-anchor':'middle',fill:row.active?'#090A0C':'#F4F1EA','font-size':10.5,'font-weight':700},row.label);
+   }else add(g,'circle',{r:row.active?3.9:3.0,fill:row.tone||(row.active?'#DFB164':'#9A9892'),stroke:'#090A0C','stroke-width':0.9});
    if(row.label)add(g,'title',{},row.label);
    if(row.label&&kind!=='num')items.push({row,c,r});
   }
@@ -157,7 +159,7 @@ export function wireReferenceCartography(svgs){
  }
  function labelAt(host,p,value,font,length,tone){
   const g=add(host,'g',{'data-inset-label':value});
-  add(g,'rect',{x:p.x,y:p.y,width:p.w,height:p.h,rx:3,fill:'#172430','fill-opacity':.94});
+  add(g,'rect',{x:p.x,y:p.y,width:p.w,height:p.h,rx:p.h*0.5,fill:'#0E0F12','fill-opacity':.70,stroke:'rgba(255,255,255,0.10)','stroke-width':0.6});
   add(g,'text',{x:p.x+p.w/2,y:p.y+p.h/2+font*.34,'text-anchor':'middle','font-size':font,class:'v84-label',...(tone?{style:'fill:'+tone}:{}),...(length?{textLength:length,lengthAdjust:'spacingAndGlyphs'}:{})},value);
  }
  let pending=0;
@@ -167,7 +169,7 @@ export function wireReferenceCartography(svgs){
   ro.observe(v.svg);
   new MutationObserver(records=>{
    if(records.some(r=>!r.target.closest?.('[data-v84-overlay]')&&(r.type!=='childList'||[...r.addedNodes,...r.removedNodes].some(n=>!n.hasAttribute?.('data-v84-overlay')))))schedule();
-  }).observe(v.svg,{subtree:true,childList:true,attributes:true,attributeFilter:['viewBox','transform','hidden','class','cx','cy','visibility']});
+  }).observe(v.svg,{subtree:true,childList:true,attributes:true,attributeFilter:['viewBox','transform','hidden','class','cx','cy','visibility','data-static-reference']});
  }
  schedule();
 }

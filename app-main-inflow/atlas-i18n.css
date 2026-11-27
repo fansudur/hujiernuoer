@@ -1,0 +1,2 @@
+html[lang="en"] #walk-lab .walk-touch::before { content: "Drag to look · Move on the left, climb or descend on the right"; }
+#observatory.guided-tour-active.v74-tour-profile-open #chart-deck[data-tour-profile][data-v74-profile-label]:lang(en)::before { content: attr(data-v74-profile-label) " · 30 m terrain"; }

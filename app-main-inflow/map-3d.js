@@ -1,3 +1,4 @@
+import { translateAtlas } from './atlas-i18n.js?v=40';
 import { detailUvBounds, applyNativeDetailSet } from './native-detail-3d.js';
 import { walkClipForHeight } from './terrain-walk.js';
 /* ==========================================================================
@@ -119,14 +120,14 @@ export class AtlasMap3D {
         throw new Error('WebGL context unavailable');
       }
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this._touchDisplay ? 1.25 : 2));
-      this.renderer.setClearColor(0x0b0f14, 0);
+      this.renderer.setClearColor(0x090a0c, 0);
       this.renderer.outputColorSpace = THREE.SRGBColorSpace;
       this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
       this.renderer.toneMappingExposure = 1.04;
       this.stageEl.appendChild(this.renderer.domElement);
 
       this.scene = new THREE.Scene();
-      this.scene.fog = new THREE.FogExp2(0x0b0f14, 0.010);
+      this.scene.fog = new THREE.FogExp2(0x090a0c, 0.0155);
 
       this.camera = new THREE.PerspectiveCamera(42, 1.5, 0.04, 120);
 
@@ -186,16 +187,16 @@ export class AtlasMap3D {
     const THREE = window.THREE;
     if (!THREE || !this.renderer || !this.scene) return;
     const light = theme === 'light';
-    const bgHex = light ? 0xe6e1d6 : 0x0b0f14;
+    const bgHex = light ? 0xece8df : 0x090a0c;
     // Both themes show the backdrop below the transparent map canvas.
     this.renderer.setClearColor(bgHex, 0);
     if (this.scene.fog) {
       this.scene.fog.color.setHex(bgHex);
-      this.scene.fog.density = light ? 0.0085 : 0.010;
+      this.scene.fog.density = light ? 0.0095 : 0.0155;
     }
     if (this._hemiLight) {
-      this._hemiLight.color.setHex(light ? 0xfffaf0 : 0xdce8f4);
-      this._hemiLight.groundColor.setHex(light ? 0x9b9284 : 0x2b3138);
+      this._hemiLight.color.setHex(light ? 0xfffaf0 : 0xedeae2);
+      this._hemiLight.groundColor.setHex(light ? 0x9b9284 : 0x24262b);
       if(!this._walkView?.solarLighting)this._hemiLight.intensity = light ? 0.96 : 0.90;
     }
     this._invalidate();
@@ -380,6 +381,7 @@ export class AtlasMap3D {
     if (cursorChanged || next.guidedTerrain!==prev.guidedTerrain) this._dirtyCursor = true;
     if (demChanged || next.guidedTerrain!==prev.guidedTerrain || next.contourFeatures !== prev.contourFeatures) this._dirtyContours = true;
     if(demChanged||next.slopeAspect!==prev.slopeAspect)this._dirtySlope=true;
+    if (next.labelLanguage !== prev.labelLanguage) this._invalidate();
     if (this._dirtyMesh || this._dirtyOverlays || this._dirtyTexture || this._dirtyCursor || this._dirtyContours||this._dirtySlope) {
       this._invalidate();
     }
@@ -633,10 +635,11 @@ export class AtlasMap3D {
 
   _terrainMaterial(map) {
     const T=window.THREE;
-    // Evidence comparison preserves sRGB; only the independent roam simulates sunlight.
+    // Evidence comparison preserves sRGB with restrained atmospheric horizon fog;
+    // only the independent roam simulates sunlight.
     const material = !this._walkView && map && map!==this._demTexture
-      ? new T.MeshBasicMaterial({map,toneMapped:false,fog:false,side:T.DoubleSide})
-      : new T.MeshStandardMaterial({map,roughness:.92,metalness:.04,side:T.DoubleSide});
+      ? new T.MeshBasicMaterial({map,toneMapped:false,fog:true,side:T.DoubleSide})
+      : new T.MeshStandardMaterial({map,roughness:.92,metalness:.04,fog:true,side:T.DoubleSide});
     if(map&&map!==this._demTexture){
       const layers=(this._nativeDetails||[]).filter(i=>i.texture&&i.spec.parentSceneId===this.state.basemap)
         .map(i=>({texture:i.texture,uv:detailUvBounds(this.state.dem?.bounds_wgs84,i.spec.bounds_wgs84)})).filter(i=>i.uv);
@@ -680,7 +683,7 @@ export class AtlasMap3D {
     }
   }
 
-  _add3DLine(group, coords, { color = 0x38bdf8, opacity = 0.95, dashed = false, lift = 0.018, halfWidth=1.4 } = {}) {
+  _add3DLine(group, coords, { color = 0x5eb8e6, opacity = 0.94, dashed = false, lift = 0.018, halfWidth=1.15 } = {}) {
     const THREE = window.THREE;
     const dense = densifyLineCoords(coords, 0.0008);
     if (dense.length < 2) return;
@@ -691,10 +694,10 @@ export class AtlasMap3D {
   _addProfileRibbon(group,coords,{color,dashed,lift=.056}){
     const T=window.THREE;
     const points=densifyLineCoords(coords,.00035).map(c=>this.point3(c[0],c[1],lift));
-    return this._addCasedSegments(group,[points],{color,dashed,halfWidth:4,profile:true});
+    return this._addCasedSegments(group,[points],{color,dashed,halfWidth:2.9,profile:true});
   }
 
-  _addCasedSegments(group, paths, {color,dashed=false,dashKm=[.08,.05],opacity=1,halfWidth=1.4,profile=false}){
+  _addCasedSegments(group, paths, {color,dashed=false,dashKm=[.08,.05],opacity=1,halfWidth=1.15,profile=false}){
     const T=window.THREE;
     const vertices=[],others=[],sides=[],edges=[],chain=[];
     function* pathsToPoints() {
@@ -739,8 +742,8 @@ export class AtlasMap3D {
       void main(){
         if(isDashed==1&&mod(along,dash.x+dash.y)>dash.x)discard;
         float e=abs(edge);
-        vec3 c=mix(profile==1?mix(routeColor,vec3(.98,.99,1.),.62):routeColor,casing,smoothstep(.43,.70,e));
-        gl_FragColor=vec4(c,alpha*(1.-smoothstep(.85,1.,e)));
+        vec3 c=mix(profile==1?mix(routeColor,vec3(.96,.95,.92),.55):routeColor,casing,smoothstep(.56,.78,e));
+        gl_FragColor=vec4(c,alpha*(1.-smoothstep(.82,1.,e)));
         #include <colorspace_fragment>
       }`
     });
@@ -829,9 +832,9 @@ export class AtlasMap3D {
     for (let i = 0; i < batches.length; i++) {
       if (!batches[i].length) continue;
       this._addCasedSegments(this.contourGroup,batches[i],{
-        color:this.state.guidedTerrain ? (i?0xc5dae7:0x99b7cc) : (i?MAP_CONTRAST.contourMajor3d:MAP_CONTRAST.contourMinor3d),
-        opacity:this.state.guidedTerrain?.54:i?.90:this.state.contourInterval===2?.53:.68,
-        halfWidth:i?1.65:this.state.contourInterval===2?.8:1.1,
+        color:this.state.guidedTerrain ? (i?0xd6dce0:0xa5b4bf) : (i?MAP_CONTRAST.contourMajor3d:MAP_CONTRAST.contourMinor3d),
+        opacity:this.state.guidedTerrain?.46:i?.78:this.state.contourInterval===2?.42:.56,
+        halfWidth:i?1.25:this.state.contourInterval===2?.62:.82,
       });
     }
   }
@@ -862,6 +865,7 @@ export class AtlasMap3D {
   _rebuildOverlays() {
     const THREE = window.THREE;
     this._disposeGroup(this.overlayGroup);
+    this._adaptivePointHeads=[];
     this._labelAnchors = [];
     const selectedContour=this.state.contourFeatures?.find(f=>f.id===this.state.selectedFeatureId);
     if(selectedContour){
@@ -990,7 +994,7 @@ export class AtlasMap3D {
         if (ly === 'field-photos-20261122' && f.properties.outside_dem) continue;
         const [lon, lat] = f.geometry.coordinates;
         const pGround = this.point3(lon, lat, roaming?.00035:.01);
-        const pTop = this.point3(lon, lat, roaming?((isSel||isSpoken)?.003:.0017):(isSel||isSpoken)?.15:.085);
+        const pTop = this.point3(lon, lat, roaming?((isSel||isSpoken)?.0026:.0015):(isSel||isSpoken)?.115:.064);
         if (ly === 'field-photos-20261122' && isSel && !f.properties.heading_unverified) {
           const t=f.properties.heading_deg*Math.PI/180, dx=Math.sin(t),dy=Math.cos(t), size=isSel?47:28, kx=111320*Math.cos(lat*Math.PI/180), ky=111132;
           const proj=(a,b)=>this.point3(lon+(dx*a-dy*b)/kx,lat+(dy*a+dx*b)/ky,roaming?.0013:.029);
@@ -999,26 +1003,27 @@ export class AtlasMap3D {
           this.overlayGroup.add(new THREE.Line(arrow,color));
         }
         if ((ly === 'seasonal-network' || ly === 'f1-waterway') && spec.symbol === '×') {
-          const r=roaming?(isSel?.0027:.0018):(isSel?.048:.035);
+          const r=roaming?(isSel?.0024:.0016):(isSel?.038:.028);
           const points=[[-r,-r],[r,r],[-r,r],[r,-r]].map(([x,z])=>new THREE.Vector3(pTop.x+x,pTop.y+0.005,pTop.z+z));
           this.overlayGroup.add(new THREE.LineSegments(
             new THREE.BufferGeometry().setFromPoints(points),new THREE.LineBasicMaterial({color:col})
           ));
-          if (this.state.showLabels && isSel) this._labelAnchors.push({lon,lat,label:`× ${f.properties.name}`,color:'#ffffff',lift:0.16});
+          if (this.state.showLabels && isSel) this._labelAnchors.push({lon,lat,label:`× ${f.properties.name}`,color:'#F4F1EA',lift:0.14});
           continue;
         }
         const stemG = new THREE.BufferGeometry().setFromPoints([pGround, pTop]);
-        this.overlayGroup.add(new THREE.Line(stemG, new THREE.LineBasicMaterial({ color: col })));
+        this.overlayGroup.add(new THREE.Line(stemG, new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: 0.72 })));
         const head = new THREE.Mesh(
-          new THREE.SphereGeometry(roaming?((isSel||isSpoken)?.0015:.0009):(isSel||isSpoken)?.05:.032, 12, 10),
-          new THREE.MeshBasicMaterial({ color: isSpoken ? 0xf4d378 : spec.color3d, toneMapped:false, fog:false })
+          new THREE.SphereGeometry(roaming?((isSel||isSpoken)?.0012:.00075):(isSel||isSpoken)?.034:.021, 14, 12),
+          new THREE.MeshBasicMaterial({ color: isSpoken ? 0xdfb164 : spec.color3d, toneMapped:false, fog:false })
         );
         head.position.copy(pTop);
         const casing=new THREE.Mesh(head.geometry.clone(),new THREE.MeshBasicMaterial({
           color:MAP_CONTRAST.casing3d,side:THREE.BackSide,toneMapped:false,fog:false,
         }));
-        casing.position.copy(pTop);casing.scale.setScalar(1.28);
+        casing.position.copy(pTop);casing.scale.setScalar(1.18);
         this.overlayGroup.add(casing,head);
+        if(!roaming)this._adaptivePointHeads.push({head,casing,radius:(isSel||isSpoken)?.034:.021,pixels:(isSel||isSpoken)?5:3});
         if (this.state.showLabels && (f.id === 'office-service' || isSel || isSpoken || ['snow-sites', 'road-review', 'regional-reference', 'west-slope-review', 'bridge-f1-anchors', 'marsh-review'].includes(ly) || (ly==='catchment-screen-nw-network'&&!this.state.guidedTerrain))) {
           const rawName = (f.properties?.name || f.id).split(' · ')[0];
           const shortName = f.id === 'office-service' ? '嘎查办公院 · 出水口未确认（保留断口）'
@@ -1046,8 +1051,8 @@ export class AtlasMap3D {
           if(this.state.profileHighlightId===f.id){this._addProfileRibbon(this.overlayGroup,line,{color:spec.color3d,dashed:Boolean(spec.dash)});continue;}
           this._add3DLine(this.overlayGroup, line, {
             color: col,
-            opacity: ly === 'secondary-roads' && !isSel ? 0.67 : 0.96,
-            halfWidth:ly==='secondary-roads'&&!isSel?.8:1.4,
+            opacity: ly === 'secondary-roads' && !isSel ? 0.56 : 0.94,
+            halfWidth:ly==='secondary-roads'&&!isSel?.65:isSpoken?1.75:1.15,
             dashed: Boolean(spec.dash),
             lift: roaming?((isSel||isSpoken)?.0011:.00055):(isSel||isSpoken)?.034:ly==='roads'?.026:.021,
           });
@@ -1079,13 +1084,26 @@ export class AtlasMap3D {
     this._cursorAnchor = null;
     // Guided mode uses the reusable screen-space pin instead of a shrinking mesh.
     if(this.state.guidedTerrain){this._dirtyCursor=false;return;}
-    // Ordinary 3D profile cursor keeps its surface ring and readout.
+    // Ordinary 3D profile cursor: slender luminous optical beam + ground precision reticle.
     const cur = this.state.profileCursor;
     if (cur && Number.isFinite(cur.lon) && Number.isFinite(cur.lat)) {
       const pGround = this.point3(cur.lon, cur.lat, .012);
-      const pTop = this.point3(cur.lon, cur.lat, .20);
-      const stemGeom = new THREE.BufferGeometry().setFromPoints([pGround, pTop]);
-      this.cursorGroup.add(new THREE.Line(stemGeom, new THREE.LineBasicMaterial({ color: 0xef4444 })));
+      const pTop = this.point3(cur.lon, cur.lat, .24);
+      const stemH = Math.max(0.05, pTop.y - pGround.y);
+      const midY = (pGround.y + pTop.y) * 0.5;
+
+      // Ultra-slender luminous optical core + diffused ice-cyan vertical halo
+      const coreBeam = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.0026, 0.0042, stemH, 10, 1, true),
+        new THREE.MeshBasicMaterial({ color: 0xf4f1ea, transparent: true, opacity: 0.90, depthWrite: false, toneMapped: false, fog: false })
+      );
+      coreBeam.position.set(pGround.x, midY, pGround.z);
+      const haloBeam = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.009, 0.019, stemH, 14, 1, true),
+        new THREE.MeshBasicMaterial({ color: 0x74b8dc, transparent: true, opacity: 0.22, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, toneMapped: false, fog: false })
+      );
+      haloBeam.position.set(pGround.x, midY, pGround.z);
+      this.cursorGroup.add(haloBeam, coreBeam);
 
       const {innerKm,outerKm,casingKm,segments,casing3d,core3d}=PROFILE_CURSOR_RING;
       // Adjacent annuli at matching radii (no overlapping faces or z-fighting).
@@ -1095,25 +1113,40 @@ export class AtlasMap3D {
         [outerKm,outerKm+casingKm,casing3d],
       ]){
         const ring=new THREE.Mesh(new THREE.RingGeometry(inner,outer,segments),
-          new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide}));
+          new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide,toneMapped:false,fog:false}));
         ring.rotation.x=-Math.PI*.5;
         ring.position.copy(pGround);
         this.cursorGroup.add(ring);
       }
 
-      const sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(.044, 14, 12),
-        new THREE.MeshBasicMaterial({ color: 0xdc2626 })
+      // Soft outer misty ice-cyan ground glow ring
+      const auraRing = new THREE.Mesh(
+        new THREE.RingGeometry(outerKm + casingKm, outerKm + casingKm + 0.032, 28),
+        new THREE.MeshBasicMaterial({ color: 0x74b8dc, transparent: true, opacity: 0.26, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, depthWrite: false, toneMapped: false, fog: false })
       );
-      sphere.position.copy(pTop);
-      this.cursorGroup.add(sphere);
+      auraRing.rotation.x = -Math.PI * 0.5;
+      auraRing.position.copy(pGround);
+      this.cursorGroup.add(auraRing);
+
+      // Delicate luminous top beacon node + diffused outer halo
+      const tipCore = new THREE.Mesh(
+        new THREE.SphereGeometry(0.021, 16, 12),
+        new THREE.MeshBasicMaterial({ color: 0xf4f1ea, toneMapped: false, fog: false })
+      );
+      tipCore.position.copy(pTop);
+      const tipGlow = new THREE.Mesh(
+        new THREE.SphereGeometry(0.048, 16, 12),
+        new THREE.MeshBasicMaterial({ color: 0x74b8dc, transparent: true, opacity: 0.26, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false, fog: false })
+      );
+      tipGlow.position.copy(pTop);
+      this.cursorGroup.add(tipGlow, tipCore);
 
       this._cursorAnchor = {
         lon: cur.lon,
         lat: cur.lat,
         label: `剖面点 ${cur.distance_m.toFixed(0)}m · ${describeProfileCursorElevation(cur)}`,
-        color: '#ef4444',
-        lift: .24,
+        color: '#74B8DC',
+        lift: .28,
       };
     }
 
@@ -1143,7 +1176,7 @@ export class AtlasMap3D {
       this.cb.onNorthChange?.(-q.heading);
       return;
     }
-    this.scene.fog.density=.010/Math.max(1,this.orbit.radius/28);
+    this.scene.fog.density=(this.state.theme==='light'?.0095:.0155)/Math.max(1,this.orbit.radius/28);
     const pitchRad = (this.orbit.pitchDeg * Math.PI) / 180;
     const azRad = (this.orbit.azimuthDeg * Math.PI) / 180;
     const targetY = 0.06;
@@ -1174,6 +1207,20 @@ export class AtlasMap3D {
       let best = nice[0];
       for (const v of nice) if (Math.abs(v - rawM) < Math.abs(best - rawM)) best = v;
       this.cb.onCameraChange({ px: Math.round(best * ppm), label: best >= 1000 ? `${best / 1000} km` : `${best} m`, focus: this.getCameraFocus() });
+    }
+  }
+
+  _scalePointHeads() {
+    if(!this._adaptivePointHeads?.length||!this.height)return;
+    const m=this.camera.matrixWorldInverse.elements;
+    const yScale=this.camera.projectionMatrix.elements[5]*this.height*.5;
+    if(!(yScale>0))return;
+    for(const {head,casing,radius,pixels} of this._adaptivePointHeads){
+      const {x,y,z}=head.position;
+      const depth=-(m[2]*x+m[6]*y+m[10]*z+m[14]);
+      const ratio=Math.min(1,Math.max(.001,depth*pixels/yScale)/radius);
+      head.scale.setScalar(ratio);
+      casing.scale.setScalar(1.18*ratio);
     }
   }
 
@@ -1223,7 +1270,7 @@ export class AtlasMap3D {
       const cursor=a===this._cursorAnchor;
       if(cursor)cursorScreen=s;
       html.push(
-        `<div class="map3d-pill"${cursor?' data-profile-cursor-label':''} style="transform:translate(${s.x.toFixed(0)}px,${s.y.toFixed(0)}px) translate(-50%,-100%);border-color:${a.color}">${a.label.replace(/[<>&]/g, '')}</div>`
+        `<div class="map3d-pill"${cursor?' data-profile-cursor-label':''} style="transform:translate(${s.x.toFixed(0)}px,${s.y.toFixed(0)}px) translate(-50%,-100%)"><i class="map3d-dot" style="background:${a.color};color:${a.color}"></i><span>${translateAtlas(a.label).replace(/[<>&]/g, '')}</span></div>`
       );
     }
     const next = html.join('');
@@ -1269,7 +1316,7 @@ export class AtlasMap3D {
       projectPoint: (lon, lat, geomType, f) => {
         const isSel = f?.id === selId;
         const lift = geomType === 'Point'
-          ? (isSel ? 0.14 : 0.085)
+          ? (isSel||this.state.spokenFeatureIds?.has(f?.id) ? 0.115 : 0.064)
           : (isSel ? 0.032 : f?.properties?.layer === 'roads' ? 0.026 : 0.021);
         return this._projectToScreen(lon, lat, lift);
       },
@@ -1495,6 +1542,7 @@ export class AtlasMap3D {
       if (this._dirtyCursor) this._rebuildCursor();
 
       this._updateCameraAndCompass();
+      this._scalePointHeads();
       try {
         this.renderer.render(this.scene, this.camera);
       } catch (err) {

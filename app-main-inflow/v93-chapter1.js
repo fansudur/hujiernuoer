@@ -3,7 +3,7 @@
 // Dual-Date Telemetry, and Mobile Tabbed Story/Profile/Radar Theatre.
 
 // Capture initial URL state at module load time before app.js boot() calls history.replaceState(syncUrl)
-const INITIAL_CLEAN_OPEN = new URLSearchParams(location.search).size === 0;
+import { isPristineAtlasEntry as INITIAL_CLEAN_OPEN } from './atlas-i18n.js?v=40';
 
 const STAGES = [
   { id: 's1', num: '①', short: '开场总览', title: '一、开场总览 · 全域方位', routes: ['opening'] },
@@ -214,8 +214,21 @@ function mountTheatreChrome(bridge) {
   // 5. Add Step Progress Hairline into #guided-tour-nav-strip
   const prog = document.createElement('div');
   prog.id = 'v93-step-progress';
-  prog.innerHTML = `<div id="v93-step-progress-fill"></div>`;
+  prog.innerHTML = '<input id="v93-step-seek" type="range" min="0" max="0" value="0" step="0.1" aria-label="本段播放进度" disabled><output id="v93-step-time" aria-hidden="true">0:00</output>';
   nav.prepend(prog);
+  const seek=prog.querySelector('input'), time=prog.querySelector('output');
+  const formatTime=sec=>{const n=Math.floor(Math.max(0,sec));return Math.floor(n/60)+':'+String(n%60).padStart(2,'0');};
+  const showSeek=(at,end)=>{
+    const text=formatTime(at)+' / '+formatTime(end);
+    time.textContent=text;seek.setAttribute('aria-valuetext',text);
+  };
+  let dragging=false, seekStep=null;
+  seek.addEventListener('pointerdown',()=>{dragging=true;});
+  window.addEventListener('pointerup',()=>{dragging=false;});
+  seek.addEventListener('pointercancel',()=>{dragging=false;});
+  seek.addEventListener('input',()=>showSeek(+seek.value,+seek.max));
+  seek.addEventListener('change',()=>{dragging=false;bridge.seekStation?.(+seek.value);});
+
 
   // 6. Mobile Mode Switcher Strip (#v93-mob-tabs)
   const mobTabs = document.createElement('div');
@@ -280,12 +293,15 @@ function mountTheatreChrome(bridge) {
   });
 
   // Wire Topbar & Index Drawer
-  const setDrawerOpen = open => {
+  const indexButton = topbar.querySelector('#v93-index-toggle');
+  const setDrawerOpen = (open, restoreFocus = false) => {
     drawer.hidden = !open;
-    topbar.querySelector('#v93-index-toggle').setAttribute('aria-expanded', String(open));
+    indexButton.setAttribute('aria-expanded', String(open));
+    if (open) drawer.querySelector('#v93-idx-close')?.focus({preventScroll:true});
+    else if (restoreFocus) indexButton.focus({preventScroll:true});
   };
-  topbar.querySelector('#v93-index-toggle').onclick = () => setDrawerOpen(drawer.hidden);
-  drawer.querySelector('#v93-idx-close').onclick = () => setDrawerOpen(false);
+  indexButton.onclick = () => setDrawerOpen(drawer.hidden);
+  drawer.querySelector('#v93-idx-close').onclick = () => setDrawerOpen(false, true);
   origCloseBtn?.addEventListener('click', () => setDrawerOpen(false), { capture: true });
   document.addEventListener('pointerdown', e => {
     if (!drawer.hidden && !e.target.closest('#v93-index-drawer, #v93-index-toggle')) {
@@ -340,7 +356,7 @@ function mountTheatreChrome(bridge) {
         tick.setAttribute('aria-label', tick.title);
         tick.onclick = e => {
           e.stopPropagation();
-          setDrawerOpen(false);
+          setDrawerOpen(false, true);
           bridge.jumpTo(item.route.id, item.sIdx);
         };
         ticks.appendChild(tick);
@@ -364,9 +380,9 @@ function mountTheatreChrome(bridge) {
         btn.type = 'button';
         btn.className = 'v93-idx-item';
         btn.dataset.stepId = item.step.id;
-        const tags = [`<span class="v93-idx-tag" data-t="${ev.key}">${ev.sym} ${ev.key === 'gap' ? '断口' : ev.key === 'field' ? '实拍' : ev.key === 'model' ? '模型' : ev.key === 'history' ? '旧影' : ev.key === 'candidate' ? (item.step.historyCard ? '旧影 · 连通待核' : '候选 · 连通待核') : '影像'}</span>`];
-        if (hasProf) tags.push(`<span class="v93-idx-tag" data-t="profile">⛰ 剖面</span>`);
-        if (hasPhoto && ev.key !== 'field') tags.push(`<span class="v93-idx-tag" data-t="field">📷 原片</span>`);
+        const tags = [`<span class="v93-idx-tag" data-t="${ev.key}">${ev.sym} <span>${ev.key === 'gap' ? '断口' : ev.key === 'field' ? '实拍' : ev.key === 'model' ? '模型' : ev.key === 'history' ? '旧影' : ev.key === 'candidate' ? (item.step.historyCard ? '旧影 · 连通待核' : '候选 · 连通待核') : '影像'}</span></span>`];
+        if (hasProf) tags.push(`<span class="v93-idx-tag" data-t="profile">⛰ <span>剖面</span></span>`);
+        if (hasPhoto && ev.key !== 'field') tags.push(`<span class="v93-idx-tag" data-t="field">📷 <span>原片</span></span>`);
         btn.innerHTML = `
           <span class="v93-idx-num">${String(item.globalIdx).padStart(2, '0')}</span>
           <span class="v93-idx-copy">
@@ -375,7 +391,7 @@ function mountTheatreChrome(bridge) {
           </span>
         `;
         btn.onclick = () => {
-          setDrawerOpen(false);
+          setDrawerOpen(false, true);
           bridge.jumpTo(item.route.id, item.sIdx);
         };
         grid.appendChild(btn);
@@ -399,7 +415,7 @@ function mountTheatreChrome(bridge) {
     }
     ensureIndexBuilt();
 
-    const { step, route, globalIdx, totalStops, waterMonth, imageryLabel, isOverview, progressRatio, hasProfile, hasMedia } = snap;
+    const { step, route, globalIdx, totalStops, waterMonth, imageryLabel, isOverview, seekDuration, seekSeconds, canSeek, hasProfile, hasMedia } = snap;
     if (step && step.id !== lastStepId) {
       lastStepId = step.id;
       obs.classList.remove('v93-mob-expanded');
@@ -452,9 +468,12 @@ function mountTheatreChrome(bridge) {
     }
 
     // Progress bar
-    const fill = document.getElementById('v93-step-progress-fill');
-    if (fill) {
-      fill.style.width = `${Math.max(0, Math.min(100, (progressRatio || 0) * 100)).toFixed(1)}%`;
+    if(seekStep!==step?.id){seekStep=step?.id;dragging=false;}
+    seek.disabled=!canSeek;
+    if(!dragging){
+      seek.max=String(seekDuration||0);
+      seek.value=String(Math.min(seekDuration||0,seekSeconds||0));
+      showSeek(+seek.value,+seek.max);
     }
 
     // Mobile tab availability dots

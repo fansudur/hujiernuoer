@@ -1,4 +1,4 @@
-import {wireReferenceCartography} from "./v84-cartography.js?v=105.9";
+import {wireReferenceCartography} from "./v84-cartography.js?v=105.19.40";
 const by=id=>document.getElementById(id);
 const limit=(n,a,b)=>Math.max(a,Math.min(b,n));
 export function wireReferenceZoom(){

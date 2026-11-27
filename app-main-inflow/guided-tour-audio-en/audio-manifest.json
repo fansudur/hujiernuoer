@@ -1,0 +1,357 @@
+{
+  "schema": "hjn-guide-english-audio/v1",
+  "language": "en",
+  "voice": "Microsoft Mark (local Windows, en-US)",
+  "sampleRate": 16000,
+  "bitrate": 48000,
+  "steps": {
+    "chapter-opening": {
+      "file": "chapter-opening.mp3",
+      "durationMs": 59910,
+      "sha256": "bacf0a5ba3c09df23cc392b0b2b20ec960037a794903e4df1c8e680f30571f49",
+      "body": "Start at the main lake of Hujiernuoer. With the lake as our reference, we’ll follow the northwest slope and the bridge, one section at a time. First, look at the large ravine northwest of the lake. Follow the visible low channels from the outer slope down toward the Sanba Reservoir Bridge on Highway G332. Beyond the bridge, look for the low corridor and the old bend to the east. We’ll investigate two directions downstream without drawing the gaps as confirmed waterways. Southeast lie four field sites on Road 03. South of sites 02 and 04, follow the channels toward the shared bend and the northwest shore of the main lake. The other direction follows the low corridor northeast and east to the East Marsh and East Pond. Both may receive runoff, but actual flow remains unverified. After the northwest slope, the bridge and its two downstream directions, we take a separate local road north from the south, visiting Southeast B before South-Central C. We finish at the round culvert on the local road, looking separately at the possible approach from the west and the low line to the east.",
+      "cueClockMs": [
+        [
+          0,
+          0
+        ],
+        [
+          7736,
+          10890
+        ],
+        [
+          17215,
+          22635
+        ],
+        [
+          26034,
+          33290
+        ],
+        [
+          34770,
+          44985
+        ],
+        [
+          43651,
+          57900
+        ],
+        [
+          53346,
+          69715
+        ],
+        [
+          59910,
+          76520
+        ]
+      ]
+    },
+    "runoff-upper-slope": {
+      "file": "runoff-upper-slope.mp3",
+      "durationMs": 25066,
+      "sha256": "95605bd03a544864f70a981c8b6862d291e27392a5a73a15260894010fb8b692",
+      "body": "Look first at the outer slope northwest of the main lake. The cyan segments show dark bands at the foot of the hill, a curved channel, and a meeting section nearer the bridge, all identifiable in imagery from several dates. Two 30-metre elevation models show a general descent. Gaps in the imagery prevent us from connecting the entire ravine or its upstream catchment to the bridge. Next we move east to see how the last segment approaches the crossing."
+    },
+    "runoff-west": {
+      "file": "runoff-west.mp3",
+      "durationMs": 15000,
+      "sha256": "a50e8ddb090051847a11ba031f82fd667ae8a35279d912cdb06edb822a811a22",
+      "body": "Follow the ravine toward the slope foot nearer the bridge. The highlighted cyan line marks a curved low corridor visible in more than one image. Its eastern endpoint is about 24 metres from the Sanba Reservoir Bridge in a straight line.",
+      "travel": [
+        [
+          0,
+          0
+        ],
+        [
+          3669,
+          0.34
+        ],
+        [
+          8856,
+          0.76
+        ],
+        [
+          14760,
+          1
+        ]
+      ]
+    },
+    "runoff-bridge": {
+      "file": "runoff-bridge.mp3",
+      "durationMs": 20370,
+      "sha256": "57e429d16778b5d213944e006639c9de43bc9b96fc71a907b9a816cbb87bfac1",
+      "body": "This is the Sanba Reservoir Bridge. On 22 November, the field observer saw an open passage beneath it. The steep slopes and guardrails meant the observer did not go beneath the bridge. The nameplate and photos locate the bridge and document both sides. What remains to check is how runoff would reach the opening and how it might rejoin the low corridor visible east of the bridge.",
+      "cueClockMs": [
+        [
+          0,
+          0
+        ],
+        [
+          10787,
+          17250
+        ],
+        [
+          20370,
+          29055
+        ]
+      ]
+    },
+    "runoff-cross-gap": {
+      "file": "runoff-cross-gap.mp3",
+      "durationMs": 15312,
+      "sha256": "41eff7d43ac5a9ef9c1d5e1618d94e58c423354053894c8c745058846f391baa",
+      "body": "The western low corridor ends about 24 metres from the bridge; the eastern one starts about 83 metres away. Both are straight-line distances. There is open space beneath the bridge, but the two white measuring lines do not depict a connected channel outside it."
+    },
+    "runoff-east": {
+      "file": "runoff-east.mp3",
+      "durationMs": 18000,
+      "sha256": "fd19b81893e8dc887a264106712f0b47d62b5f764461fb109b347039fabcd4f2",
+      "body": "This low corridor east of the bridge is recognizable on several dates. Follow it toward the old bend, stopping where the trace ends. From around that bend, we check southeast toward Road 03 and the northwest shore, then northeast and east toward the East Marsh and East Pond.",
+      "travel": [
+        [
+          0,
+          0
+        ],
+        [
+          4667,
+          0.36
+        ],
+        [
+          9135,
+          0.86
+        ],
+        [
+          17760,
+          1
+        ]
+      ]
+    },
+    "runoff-bend-gap": {
+      "file": "runoff-bend-gap.mp3",
+      "durationMs": 20609,
+      "sha256": "666be784616dad886dd8b7c7b3a547e8bb390c1946944c1e8f473ff5187461d8",
+      "body": "The earlier trace ends about 148 metres from the start of the southeast bend, measured in a straight line. The newly mapped approach to site 01 crosses the old eastern corridor on the map. A separate shared upstream trace crosses the southeast bend. These intersections relate the mapped clues, but the original gap in recognizable terrain is still visible."
+    },
+    "runoff-se": {
+      "file": "runoff-se.mp3",
+      "durationMs": 15000,
+      "sha256": "de8940b926485435caf91d5ccf6e6973428b727e780d6eccebbc1b7754c7518c",
+      "body": "Beyond the unverified bend, a separate curved channel is visible in the pale southeast lowland. It can be traced as far as the northwest edge of the broad lowland north of the village, where the recognizable trace ends.",
+      "travel": [
+        [
+          0,
+          0
+        ],
+        [
+          6309,
+          0.3
+        ],
+        [
+          14760,
+          1
+        ]
+      ]
+    },
+    "runoff-field-bands-05": {
+      "file": "runoff-field-bands-05.mp3",
+      "durationMs": 39238,
+      "sha256": "c9f52e9426030138170b80bc90aac90d5e1a4e22cf4a562abeaa02ed85a0081d",
+      "body": "Start with the April 2021 image. The dark curved band in the fields is more distinct than in summer, but darkness alone does not identify water. Compare July 2015 and July 2021 at the same location for recurring bends. Four dashed lines mark possible seasonal runoff paths. Line 2 crosses the approach to site 01 on the map and ends about 140 metres from the field site. The western end of line 1 is about 65 metres from the bridge and cannot be joined to the opening on this evidence. Lines 3 and 4 are supporting clues only. Testing whether the traces stand out in wetter years requires matching rainfall and water extent for the same month."
+    },
+    "runoff-apron-gap": {
+      "file": "runoff-apron-gap.mp3",
+      "durationMs": 17772,
+      "sha256": "a6018f1810d42470ba72b4ab5b8a68cee0b959387c944e08d6ad88aa13a9064b",
+      "body": "The white measure is the straight-line distance from the end of the southeast bend to site 02 on Road 03, not a route taken by water. The new mapping shifts attention to two crossings: a longer approach to western site 01 and a separate northern branch near eastern site 03. Next we compare both with the shared low corridor."
+    },
+    "kmz-north-to-crossings": {
+      "file": "kmz-north-to-crossings.mp3",
+      "durationMs": 24946,
+      "sha256": "355fe6a7640ad104e6eac78686a64f2719a7e75236501129814c752e788efd70",
+      "body": "Solid cyan marks the low corridors identified in imagery. Short cyan dashes show the newly mapped approaches. The western line for site 01 crosses the eastern bridge corridor on the map, then follows the slope to Road 03; both elevation models indicate a general descent. The shared upstream trace crosses the old bend farther east. The line near site 03 stops about 159 metres short of the shared trace."
+    },
+    "history-200405": {
+      "file": "history-200405.mp3",
+      "durationMs": 17200,
+      "sha256": "cabf9d6ae8a2f11c38b0ef65c9fad911e142207482744f4adc33b295e1e0a790",
+      "body": "Compare the same broader area from the old bend to Road 03: May 2004 on the left, September 2021 on the right. Part of the northern low corridor is recognizable in both. The yards and channel shapes near the road differ. Open the source images to inspect the details."
+    },
+    "history-201309": {
+      "file": "history-201309.mp3",
+      "durationMs": 12630,
+      "sha256": "42eaaa0cfb9eb7dabdd4095f3f01cb825909d69d0c2645bb1ebe3d701e8cedc3",
+      "body": "The September 2013 image is useful for the road network and general landscape pattern. For smaller channels, use the clearer 2021 basemap and open the older image for a comparison at the same location."
+    },
+    "history-202109": {
+      "file": "history-202109.mp3",
+      "durationMs": 13606,
+      "sha256": "1fa8662df401b0c3bf41a43e3670492963130c64aadf22eade5a312804743ba8",
+      "body": "Look again at the right-hand image. The old bend and low corridor are visible in September 2021, but the imagery does not show a continuous water trace between them. Next we visit Road 03 and check the culverts and channels in order."
+    },
+    "road-nw-approach": {
+      "file": "road-nw-approach.mp3",
+      "durationMs": 18000,
+      "sha256": "cc70ec6413e22b9d731d8c3252721fb106932f160515c196fddd9fad4c19f4e6",
+      "body": "We follow the southeast branch beyond the bridge to Road 03. The four numbers match the original field markers. At the next stop we work east to west, looking at culverts, channels and traces toward the main lake.",
+      "travel": [
+        [
+          0,
+          0
+        ],
+        [
+          4556,
+          0.53
+        ],
+        [
+          8403,
+          0.83
+        ],
+        [
+          17760,
+          1
+        ]
+      ]
+    },
+    "road-nw-gully": {
+      "file": "road-nw-gully.mp3",
+      "durationMs": 41531,
+      "sha256": "0941897e2de1754b79c6b19902759e591082aa7e0368f9f15ab322c68ad8dc20",
+      "body": "Follow Road 03 from east to west. Site 04 is not a culvert. Several shallow channels converge on the south side of the road and extend toward the main lake. At site 03, the field record identifies a culvert connecting both sides of the road. Its possible northern approach, in short cyan dashes, ends at the edge of the lowland. At site 02, the south opening is present; the north side may have been filled. A separate channel south of site 02 recurs in historical imagery. At western site 01, a round culvert is documented on both sides. Its newly mapped approach passes near the original marker. South of the road, the site 02 channel and the lower arc at site 04 join the shared bend leading toward the northwest shore.",
+      "cueClockMs": [
+        [
+          0,
+          0
+        ],
+        [
+          9318,
+          14040
+        ],
+        [
+          19498,
+          26455
+        ],
+        [
+          27967,
+          38885
+        ],
+        [
+          35367,
+          51210
+        ],
+        [
+          41531,
+          61630
+        ]
+      ]
+    },
+    "kmz-outer-options": {
+      "file": "kmz-outer-options.mp3",
+      "durationMs": 18135,
+      "sha256": "c7b4da6a2b356010d91d9d97f61872842be0978a47a3c416cd0881b10a8a7c0a",
+      "body": "Look first at the two amber dashes east of the bridge. One points to a possible runoff path; the other extends east toward the yards. They do not intersect in the original mapping, and there is no evidence of through-flow or water entering a yard. They suggest where to check low ground before visiting the East Marsh and East Pond."
+    },
+    "east-marsh-source": {
+      "file": "east-marsh-source.mp3",
+      "durationMs": 23648,
+      "sha256": "b34415ef832972b53d9de028e7fee7e3151831f52568afbdac6b5a6acbc2b5ce",
+      "body": "Beyond the two dashed traces, follow the low corridor northeast from the old bend. A diagonal texture fades near the west edge of the marsh. The amber outline is the lowland to investigate, not a mapped water surface. The west–east ground profile shows relief, not a flow route. Local hollows may supply runoff, and an approach from the west is worth checking. Neither is field-confirmed."
+    },
+    "east-pool-source": {
+      "file": "east-pool-source.mp3",
+      "durationMs": 26552,
+      "sha256": "8fa22cd46dca5cef30f2b8b7563ea5b977df7def8b54091377663acfa5e66817",
+      "body": "Farther east is the East Pond. The blue outline shows water classified on 22 September 2025. The two purple dashed lines are separate depression-filling scenarios starting in a northeast search area. Both reach the reference pond outline by different routes. With depressions left in the elevation model, both routes stop locally. The low corridor to the west is a candidate only; actual inlets and other sources are unverified."
+    },
+    "east-connection-check": {
+      "file": "east-connection-check.mp3",
+      "durationMs": 31952,
+      "sha256": "d743c46d4371190c810df62fedda164b189537e25266731c41f630d619aa83d2",
+      "body": "View the East Marsh and East Pond together. Open shallow ground lies between them, but imagery from several dates does not show a continuous channel to the pond. From the east shoulder of the bridge, one depression-filling model leads to the main lake and another to the East Pond. We cannot draw a confirmed channel between the bridge, marsh and pond. After the same rain event, compare where water first appears on the west side of the marsh, in the lowland between them, and along the west shore of the pond. Next we take the southern road from Southeast B north to South-Central C."
+    },
+    "runoff-main-entrance-context": {
+      "file": "runoff-main-entrance-context.mp3",
+      "durationMs": 26673,
+      "sha256": "7561633b2cd3fa6e6f1e982325845af1a5f492c7bf3fce1e6a86ac7d4966d1c9",
+      "body": "Put the clues back on one map. From the northwest slope and bridge, the shared bend south of Road 03 extends southeast toward the northwest shore of the main lake. To the northeast and east are the marsh and pond, without a confirmed channel between them. West Changhu to the north is another possible receiver of slope runoff, but no diversion from the bridge is established. Next we take the southern local road, starting at Southeast B before heading north to South-Central C."
+    },
+    "road-b-southeast": {
+      "file": "road-b-southeast.mp3",
+      "durationMs": 26209,
+      "sha256": "5c01544a40d33fe806702a0ab25d0fff3b1558a0ece0e175a43c7cdb13c38dfe",
+      "body": "The yellow Southeast catchment covers about 5.33 square kilometres, the largest in this model. Its name refers to the downstream end. The upstream trace begins southwest of the lake, then follows its southern side toward the historical southeast water extent. The elevation models put the low point at different spots on the road; compare them in the profile below. Yellow marks modeled catchment area, not inundation or runoff volume."
+    },
+    "road-c-approach": {
+      "file": "road-c-approach.mp3",
+      "durationMs": 17000,
+      "sha256": "78c3b27e4b5a761c28be8b7a65527c2929746b44739f4c3460a7310a7e63e9d3",
+      "body": "Continue north on the same road. We keep this viewing direction as we approach South-Central C, then stop to examine both sides of the purple line.",
+      "travel": [
+        [
+          0,
+          0
+        ],
+        [
+          2845,
+          0.24
+        ],
+        [
+          16760,
+          1
+        ]
+      ]
+    },
+    "road-c-south-central": {
+      "file": "road-c-south-central.mp3",
+      "durationMs": 20978,
+      "sha256": "ff8d77ec2c95c775a47d1cd38f0f96df72dea77731930669df2e732593ad5ff7",
+      "body": "The South-Central catchment covers about 3.53 square kilometres. It too begins on slopes southwest of the lake. Its purple candidate line continues downhill east of the road toward the historical main lake, not Southeast B’s separate water extent. The profile shows the changes in elevation; the road crossing and lake inlet still need field checks."
+    },
+    "road-round-approach": {
+      "file": "road-round-approach.mp3",
+      "durationMs": 20000,
+      "sha256": "5375241cd5bc14a512ed64da189d75cda4dfc166217b08767c224fbd6791d10c",
+      "body": "Continue north on the same road from C. Purple dashes mark the possible approach along the slope foot west of the round culvert and a separate low line east of it. At the next stop, compare the photos with the continuous-distance ground profile.",
+      "travel": [
+        [
+          0,
+          0
+        ],
+        [
+          3277,
+          0.28
+        ],
+        [
+          10078,
+          0.76
+        ],
+        [
+          19760,
+          1
+        ]
+      ]
+    },
+    "road-round": {
+      "file": "road-round.mp3",
+      "durationMs": 20868,
+      "sha256": "906d02e02144423a9c361c41a36bbc5b768af439389210bfd49451a5ab8fb8fd",
+      "body": "Look east toward the round culvert and both sides of the road. Photos show a pipe opening with daylight visible at the other end. The slope foot and ditch to the west are possible approaches. Independently, the east-side low line stops at a shallow hollow in the unfilled elevation model. The connections to surface ditches and the direction of flow through the pipe need field verification."
+    },
+    "lake-west": {
+      "file": "lake-west.mp3",
+      "durationMs": 19011,
+      "sha256": "a588a48c5ee8715c47009026f54bb47bfa54f7090c0c274dc701488f0bae2646",
+      "body": "The yellow western catchment covers about 5.08 square kilometres in the model. Slopes converge toward the western shore of the main lake. Two purple model branches illustrate the direction; the profile shows one of them. It generally descends, but its endpoint meets a historical water extent, not a verified inlet."
+    },
+    "lake-office-caution": {
+      "file": "lake-office-caution.mp3",
+      "durationMs": 25600,
+      "sha256": "ee940a562b5d087af1754de3e49b5601f575666e4ce0b12f46b5514b48e7318d",
+      "body": "Back on the full map, the point on Highway G332 is the Sanba Reservoir Bridge. The main lake lies southeast of it. Short cyan dashes show the approaches to sites 01 and 03 on Road 03. Three purple lines represent terrain scenarios: South-Central leads toward the historical main lake, Southeast toward a separate historical water extent, and the low line east of the round culvert stops at a shallow depression near the road."
+    },
+    "chapter-closing": {
+      "file": "chapter-closing.mp3",
+      "durationMs": 49967,
+      "sha256": "1c54a0df0c47c84a7b95e007716f8693e5ea65ff911385ff9efbb877b8d96419",
+      "body": "Return to the full landscape. Follow the northwest ravine toward the Sanba Reservoir Bridge on Highway G332, then look at the newly mapped northern approaches and the four Road 03 sites. The shared upstream trace meets the southeast bend on the map; sites 01 and 03 have separate approaches. South of the road, sites 02 and 04 point toward the shared bend and northwest shore. Purple lines remain terrain-based candidates. In the east, amber outlines the area to check at the East Marsh, and blue marks a single date of mapped water at the East Pond. No connection between them is confirmed. The separate southern route takes us through Southeast B, South-Central C and the round culvert. For the next field visit, prioritize the gap north of site 03, the links between culverts and roadside ditches, and the final stretch from the shared bend toward the shore."
+    }
+  }
+}

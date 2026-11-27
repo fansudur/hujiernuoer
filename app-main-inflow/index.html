@@ -1,30 +1,30 @@
 <!doctype html>
 <html lang="zh-CN" data-theme="dark">
 <head>
+  <script>
+    (()=>{let saved;try{saved=localStorage.getItem('hujiernuoer-atlas-theme');}catch{}
+      document.documentElement.dataset.theme=['light','dark'].includes(saved)?saved:
+        (window.matchMedia?.('(prefers-color-scheme: dark)').matches===false?'light':'dark');
+    })();
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <link rel="preload" href="../hujiernuoer-handoff-v2/terrain/satellite-2026-08-08-display.webp" as="image" fetchpriority="high">
-  <style>
-    #atlas-start-preview{position:fixed;inset:0;z-index:1;pointer-events:none;display:grid;place-content:center;justify-items:center}
-    #atlas-start-preview[hidden]{display:none}
-    #atlas-start-preview img{display:block;width:min(100vw,calc(100svh * 1.25),1166px);height:auto}
-    #atlas-start-note{margin-top:.4rem;color:#bdc9d2;font:12px system-ui;background:#10151ce6;padding:.35rem .65rem;border-radius:6px}
-    #atlas-start-reload{pointer-events:auto;margin:.4rem auto;padding:.5rem .75rem;border:1px solid #74808c;border-radius:6px;color:#fff;background:#10151c;cursor:pointer}
-  </style>
-  <title>呼吉尔诺尔 · 水文地貌纪事图谱 v93</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23111317'/%3E%3Cpath d='M3.5 15.5C6.8 11 9.8 9.4 12.6 10.8C15.4 12.1 17.8 10.2 20.5 6.8' fill='none' stroke='%234ba3d8' stroke-width='2.1' stroke-linecap='round'/%3E%3Ccircle cx='12.6' cy='10.8' r='2.1' fill='%23f2efe9'/%3E%3C/svg%3E">
+  <title>呼吉尔诺尔 · 水文地貌纪事图谱</title>
+  <link rel="icon" type="image/png" href="brand/favicon.png">
   <link rel="stylesheet" href="styles.css?cleanup=92.1&v=105.18.21">
   <link rel="stylesheet" href="v74-panels.css?v=77">
   <link rel="stylesheet" href="v76-guide-layout.css?v=90.1">
   <link rel="stylesheet" href="v83-reference.css?v=86">
   <link rel="stylesheet" href="v89-space.css?v=105.15">
-  <link rel="stylesheet" href="v93-chapter1.css?v=102">
+  <link rel="stylesheet" href="v93-chapter1.css?v=102-sans">
   <link rel="stylesheet" href="guide-review.css?v=105.18.21">
   <link rel="stylesheet" href="v74-director.css?v=105">
   <link rel="stylesheet" href="mobile-atlas.css?v=105.5">
-  <link rel="stylesheet" href="./landscape-reference.css">
+  <link rel="stylesheet" href="redesign-minimal-2026.css?v=2026.11.28-ui7">
+  <link rel="stylesheet" href="guide-seek.css?v=2026.11.27-walk-ui1">
+  <link rel="stylesheet" href="atlas-i18n.css?v=4">
 </head>
-<body data-local-preview="true">
+<body>
   <div class="observatory" id="observatory" data-view-preset="home">
     <!-- 1. Full-Bleed Edge-to-Edge Interactive 2D/3D Map Stage (v53 Map Contrast Engine preserved) -->
     <main class="map-stage" id="map-stage" data-view-mode="2d" data-water-date="" data-water-loading="false" data-water-errors="0">
@@ -38,11 +38,6 @@
       <div id="map-3d-stage" hidden aria-label="三维地形空间证据视图"></div>
       <div id="map-3d-labels" hidden></div>
       <i id="guided-profile-ground-cursor" hidden aria-hidden="true"></i>
-      <div id="atlas-start-preview">
-        <img src="../hujiernuoer-handoff-v2/terrain/satellite-2026-08-08-display.webp" width="1166" height="823" alt="呼吉尔诺尔卫星底图预览" fetchpriority="high">
-        <span id="atlas-start-note" role="status">底图预览 · 正在载入图谱数据</span>
-        <button id="atlas-start-reload" type="button" hidden>重新加载图谱</button>
-      </div>
     </main>
 
     <!-- 2. Top-Left Editorial Hero Island (Single Place Entry + Primary Readout + Dual Independent Dates) -->
@@ -73,7 +68,6 @@
             <strong id="hdr-basemap">2026-08-08</strong>
             <span class="caret" aria-hidden="true">▾</span>
           </button>
-          <button class="date-chip landscape-open" type="button" data-landscape="202107" aria-haspopup="dialog" aria-controls="landscape-dialog" title="查看 2021 年 7 月高清静态全景">全景</button>
         </div>
 
         <!-- Layer 3 (Desktop / Mid only): Single Quiet Place & Peripheral Comparison Switcher -->
@@ -125,7 +119,7 @@
         <div class="dim-switch" role="group" aria-label="二维三维与地形漫游">
           <button type="button" class="seg-btn active" id="btn-2d" data-dim="2d" aria-pressed="true">2D</button>
           <button type="button" class="seg-btn" id="btn-3d" data-dim="3d" aria-pressed="false">3D</button>
-          <button type="button" class="seg-btn walk-btn" id="btn-open-walk" aria-controls="walk-lab" title="从地图中心进入第一人称三维地形漫游">漫游</button>
+          <button type="button" class="seg-btn walk-btn" id="btn-open-walk" aria-controls="walk-lab" aria-pressed="false" title="从地图中心进入第一人称三维地形漫游">漫游</button>
           <div class="exag-pills" id="exag-group" hidden role="group" aria-label="三维垂向夸张">
             <button type="button" class="exag-btn" data-exag="1" title="1:1 原始高程比例">1×</button>
             <button type="button" class="exag-btn" data-exag="4" title="4倍垂向夸张">4×</button>
@@ -164,21 +158,14 @@
     <!-- 4b. First-Person Terrain Walk Overlay (v53 8x Walk logic preserved intact) -->
     <section class="walk-lab" id="walk-lab" aria-label="地面漫游与太阳模拟" hidden>
       <div class="walk-row">
-        <strong>第一人称地形漫游</strong>
-        <button type="button" class="deck-btn" id="walk-layer-trigger" aria-controls="studio-drawer">图层</button>
-        <button type="button" class="deck-btn" id="walk-close">退出漫游</button>
-      </div>
-      <div class="walk-row">
-        <label>模式 <select class="deck-select" id="walk-mode">
-          <option value="walk">自由步行</option><option value="fly" selected>自由飞行</option><option value="guide">道路导览（可选）</option>
-        </select></label>
-        <label>起点 <select class="deck-select" id="walk-site"><option value="current">入场位置</option><option value="road">圆涵附近道路</option><option value="office">办公院附近</option></select></label>
+        <strong>地形漫游</strong>
+        <button type="button" class="deck-btn" id="walk-close">退出</button>
         <output id="walk-chain"></output>
       </div>
+      <p class="card-note" id="walk-coverage-note" role="status" hidden></p>
       <div class="walk-row" id="walk-guide-controls" hidden>
         <button type="button" class="deck-btn" id="walk-start">开始导览</button>
       </div>
-      <p class="card-note" id="walk-input-note">左键点击接管鼠标；按住右键或左键拖动转头。WASD 移动，Shift 加速，F 切换步行／飞行，画面上滚轮调速。飞行：E 或空格上升，Q、C 或 Ctrl 下降。Esc 先释放鼠标。</p>
       <div class="walk-touch" aria-label="触屏移动；拖地图转头">
         <button type="button" class="deck-btn" data-walk-hold="left" aria-label="向左移动">←</button>
         <button type="button" class="deck-btn" data-walk-hold="forward" aria-label="向前移动">↑</button>
@@ -188,11 +175,21 @@
         <button type="button" class="deck-btn" data-walk-hold="down" aria-label="下降">降</button>
       </div>
       <div class="walk-row walk-speed-controls" id="walk-speed-controls" role="group" aria-label="漫游移动速度，飞行时同时调节水平与升降">
-        <span>移速</span>
         <button type="button" class="deck-btn" data-walk-speed-step="-1" aria-label="降低移动速度">−</button>
         <output id="walk-speed-value" aria-live="polite"></output>
         <button type="button" class="deck-btn" data-walk-speed-step="1" aria-label="提高移动速度">＋</button>
+        <button type="button" class="deck-btn" id="walk-pace">快速 8×</button>
       </div>
+      <details id="walk-advanced">
+        <summary>更多设置</summary>
+        <div class="walk-row">
+        <label>模式 <select class="deck-select" id="walk-mode">
+          <option value="walk">自由步行</option><option value="fly" selected>自由飞行</option><option value="guide">道路导览（可选）</option>
+        </select></label>
+        <label>起点 <select class="deck-select" id="walk-site"><option value="current">入场位置</option><option value="road">圆涵附近道路</option><option value="office">办公院附近</option></select></label>
+        <button type="button" class="deck-btn" id="walk-layer-trigger" aria-controls="studio-drawer">图层</button>
+        </div>
+      <p class="card-note" id="walk-input-note">左键点击接管鼠标；按住右键或左键拖动转头。WASD 移动，Shift 加速，F 切换步行／飞行，画面上滚轮调速。飞行：E 或空格上升，Q、C 或 Ctrl 下降。Esc 先释放鼠标。</p>
       <div class="walk-row walk-terrain-controls">
         <button type="button" class="deck-btn walk-contours" id="walk-contour-toggle" aria-pressed="false">等高线</button>
         <span role="group" aria-label="地形垂向比例">地形
@@ -208,9 +205,9 @@
         <button type="button" class="deck-btn" data-walk-sun="noon" aria-pressed="true">12:00</button>
         <button type="button" class="deck-btn" data-walk-sun="evening" aria-pressed="false">18:00</button>
       </div>
-      <p class="card-note" id="walk-coverage-note" role="status" hidden></p>
       <output id="walk-sun" class="card-note" aria-live="polite"></output>
-      <p class="card-note">步行视高 1.7 米；切到飞行升至 25 米，飞行移速默认 8×，水平和升降同档；Shift 临时加速。下方地形倍率只夸张地势，不改变相机视高。30 米地表仅作模拟，不判断道路或设施能否通行。</p>
+      <p class="card-note">步行视高 1.7 米；切到飞行升至 25 米，飞行默认慢速，最高 8×，水平和升降同档；Shift 临时加速。下方地形倍率只夸张地势，不改变相机视高。30 米地表仅作模拟，不判断道路或设施能否通行。</p>
+      </details>
     </section>
 
     <section id="guided-tour-panel" class="glass-pill walk-lab guided-tour-panel" aria-label="三维导览，篇章一：水怎么来到呼吉尔诺尔" hidden>
@@ -229,7 +226,6 @@
         <div class="guide-board-copy"><small id="guided-board-kind"></small><strong id="guided-board-focus"></strong><small id="guided-board-note"></small></div>
         <div class="guide-board-side">
           <div id="guided-board-media" hidden></div>
-          <button class="deck-btn landscape-guide-open" type="button" id="guide-landscape-open" data-landscape="202109" aria-haspopup="dialog" aria-controls="landscape-dialog" hidden>看高清全景</button>
 
         </div>
       </div>
@@ -285,6 +281,7 @@
         <button type="button" class="deck-btn" id="guided-play-options" popovertarget="guide-play-toggles">选项</button>
         <div id="guide-play-toggles" popover="auto" role="group" aria-label="导览播放与镜头选项">
         <label><input type="checkbox" id="guided-tour-voice" checked> 离线语音</label>
+        <small id="guided-language-voice-note" hidden>英文语音未载入；仍可阅读英文讲稿。</small>
         <label><input type="checkbox" id="guided-tour-contours" checked> <span id="guided-contour-caption">10 米等高线</span></label>
         <div class="guide-camera-adjustments" role="group" aria-label="手动镜头">
           <small>WASD 移动 · Q 降／E 升</small>
@@ -487,6 +484,7 @@
           <img alt="Google Earth 原图下缘版权署名" style="max-width:100%;height:auto" loading="lazy">
         </details>
       </div>
+
       <div class="pop-subhead" id="basemap-chronology-title">卫星影像时间线</div>
       <small class="bm-hint-note">Landsat、Sentinel-2、Google Earth 历史影像按年份同列；从早到晚。</small>
       <div id="basemap-chronology" class="bm-chronology" role="region" aria-labelledby="basemap-chronology-title" tabindex="0"></div>
@@ -572,11 +570,20 @@
       </div>
       <div class="tools-theme-row">
         <span class="tools-theme-lbl">界面外观</span>
-        <div class="tools-theme-seg" role="group" aria-label="切换深色或浅色界面">
+        <div class="tools-theme-seg" role="group" aria-label="选择界面外观">
+          <button type="button" class="tools-seg-btn" data-set-theme="system" aria-pressed="false">跟随系统</button>
           <button type="button" class="tools-seg-btn active" data-set-theme="dark" aria-pressed="true">深色炭灰</button>
           <button type="button" class="tools-seg-btn" data-set-theme="light" aria-pressed="false">纸白浅色</button>
         </div>
         <button type="button" id="btn-theme-toggle" hidden aria-pressed="false"><span id="theme-toggle-ico">◐</span><span id="theme-toggle-lbl">展厅</span></button>
+      </div>
+      <div class="tools-theme-row" id="atlas-language-settings">
+        <span class="tools-theme-lbl">界面语言</span>
+        <div class="tools-theme-seg" role="group" aria-label="选择界面语言">
+          <button type="button" class="tools-seg-btn" data-set-lang="system" aria-pressed="true">跟随系统</button>
+          <button type="button" class="tools-seg-btn" data-set-lang="zh" aria-pressed="false" lang="zh-CN" data-keep-source>中文</button>
+          <button type="button" class="tools-seg-btn" data-set-lang="en" aria-pressed="false" lang="en" data-keep-source>English</button>
+        </div>
       </div>
       <div class="pop-divider"></div>
       <button type="button" class="exp-item" id="btn-open-guided-tour" aria-controls="guided-tour-panel">
@@ -596,6 +603,28 @@
         <strong>上游资料去向与暂未绘图说明 (389)</strong>
         <small>查看 389 项研究资料归属与 7 项缺几何说明</small>
       </button>
+      <button type="button" class="exp-item subtle" id="rm-btn-open-intro">
+        <strong data-i18n="rm.menu.introTitle">关于本图谱与开场序幕</strong>
+        <small data-i18n="rm.menu.introSub">重看展览序言、四类证据与七幕章节</small>
+      </button>
+      <div class="pop-divider"></div>
+      <section class="rm-colophon-card" aria-label="作者署名与版权声明">
+        <div class="rm-colophon-head">
+          <span class="rm-colophon-mark" aria-hidden="true">
+            <img class="rm-brand-logo rm-logo-for-dark" src="brand/logo-light.png" alt="" width="24" height="24" decoding="async">
+            <img class="rm-brand-logo rm-logo-for-light" src="brand/logo-dark.png" alt="" width="24" height="24" decoding="async">
+          </span>
+          <div class="rm-colophon-id">
+            <div class="rm-colophon-name-row">
+              <strong>苏凡 · Fan Sudur</strong>
+              <a class="rm-colophon-link" href="https://fansudur.com" target="_blank" rel="noopener noreferrer" title="访问苏凡 (Fan Sudur) 个人主页">fansudur.com <span aria-hidden="true">↗</span></a>
+            </div>
+            <small data-i18n="rm.colophon.role">实地调查 · 专题制图 · 交互设计</small>
+          </div>
+        </div>
+        <p class="rm-colophon-rights" data-i18n="rm.colophon.rights">© 2026 苏凡（Fan Sudur）版权所有（All Rights Reserved）。本图谱的实地记录、现场影像、专题制图、叙事文稿、语音导览及界面交互均归作者本人所有，未经书面许可禁止任何形式的复制、转载、改编或任何商业及非商业用途。</p>
+        <p class="rm-colophon-third" data-i18n="rm.colophon.third">遥感影像与基础地形数据（Sentinel-2、Landsat、Copernicus GLO-30、Google Earth、Esri）版权归各自原权利方所有。</p>
+      </section>
       <p class="card-note" style="padding:6px 4px 2px">本地安全提示：现场原片、缩略图、含相机坐标矢量与内部草图仅留本机，不得随对外分享上传。</p>
     </div>
 
@@ -643,24 +672,11 @@
     <div class="modal-body" id="coverage-modal-body"></div>
   </dialog>
 
-  <script src="../hujiernuoer-handoff-v2/vendor/three-r160.1.min.js"></script>
-  <script type="module" src="app.js?v=105.18.23"></script>
+<script src="../hujiernuoer-handoff-v2/vendor/three-r160.1.min.js"></script>
+  <script type="module" src="app.js?v=105.19-public1"></script>
   <script type="module" src="v74-panels.js"></script>
-  <script type="module" src="v93-chapter1.js?v=105.17.5"></script>
-<dialog id="landscape-dialog" aria-labelledby="landscape-title">
- <header class="landscape-head">
-  <div><h2 id="landscape-title"></h2><p id="landscape-credit"></p></div>
-  <form method="dialog"><button class="deck-btn" type="submit" autofocus>关闭</button></form>
- </header>
- <div class="landscape-tools">
-  <button type="button" class="deck-btn" id="landscape-load">加载原尺寸高清图</button>
-  <button type="button" class="deck-btn" id="landscape-zoom" aria-pressed="false" hidden>按原像素查看</button>
-  <span id="landscape-status" role="status"></span>
- </div>
- <div class="landscape-display" tabindex="0" aria-label="可滚动的全景影像"><img id="landscape-image" alt=""></div>
- <p class="landscape-note">日期为导出文件标记；拼接分块的采集日未核实。公开图局部已做隐私遮盖；仅用于定位和对照，不作面积量测。</p>
-</dialog>
-<script type="module" src="./landscape-reference.js"></script>
+  <script type="module" src="v93-chapter1.js?v=105.19-i18n40"></script>
+  <script type="module" src="redesign-motion.js?v=2026.11.28-ui7"></script>
 </body>
 </html>
 

@@ -1,3 +1,4 @@
+import { atlasLanguage, translateAtlas } from './atlas-i18n.js?v=40';
 /* ==========================================================================
    app/map-2d.js
    High-DPI 2D Cartographic Canvas Engine for Hujiernuoer Spatial Evidence Atlas.
@@ -633,11 +634,11 @@ export class AtlasMap2D {
     this._labelQueue.push({
       x,
       y,
-      text,
+      text: translateAtlas(text),
       borderCol,
       priority,
-      bg: bg || (light ? 'rgba(250, 247, 241, 0.94)' : 'rgba(13, 18, 24, 0.92)'),
-      textCol: textCol || (light ? '#1a222b' : '#eeebe4'),
+      bg: bg || (light ? 'rgba(251, 249, 244, 0.88)' : 'rgba(16, 17, 20, 0.78)'),
+      textCol: textCol || (light ? '#181715' : '#F4F1EA'),
     });
   }
 
@@ -646,13 +647,15 @@ export class AtlasMap2D {
     this._labelQueue.sort((a, b) => a.priority - b.priority);
     const placed = [];
     const overlaps = (box) => placed.some(p => !(box.x2 < p.x1 || box.x1 > p.x2 || box.y2 < p.y1 || box.y1 > p.y2));
+    const light = this.state.theme === 'light';
 
     ctx.save();
-    ctx.font = '600 10.5px "Noto Sans SC", "Microsoft YaHei", sans-serif';
+    ctx.font = '500 10.5px "Inter", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif';
     for (const item of this._labelQueue) {
-      const w = ctx.measureText(item.text).width + 12;
-      const h = 19;
-      const offsets = item.priority <= 1 ? [0, -22, 22, -44, 44] : [0, -22, 22];
+      const dotSpace = 11;
+      const w = ctx.measureText(item.text).width + 18 + dotSpace;
+      const h = 21;
+      const offsets = item.priority <= 1 ? [0, -24, 24, -48, 48] : [0, -24, 24];
       let chosen = null;
       for (const dy of offsets) {
         const cy = item.y + dy;
@@ -667,103 +670,119 @@ export class AtlasMap2D {
       placed.push(chosen.box);
       const rx = item.x - w * 0.5;
       const ry = chosen.cy - h * 0.5;
+      ctx.save();
+      ctx.shadowColor = light ? 'rgba(24, 22, 18, 0.14)' : 'rgba(0, 0, 0, 0.45)';
+      ctx.shadowBlur = 12;
+      ctx.shadowOffsetY = 3;
       ctx.beginPath();
-      ctx.roundRect(rx, ry, w, h, 5);
+      ctx.roundRect(rx, ry, w, h, h * 0.5);
       ctx.fillStyle = item.bg;
       ctx.fill();
-      ctx.strokeStyle = item.borderCol;
-      ctx.lineWidth = 1.2;
+      ctx.restore();
+
+      ctx.beginPath();
+      ctx.roundRect(rx, ry, w, h, h * 0.5);
+      ctx.strokeStyle = light ? 'rgba(24, 22, 18, 0.12)' : 'rgba(255, 255, 255, 0.10)';
+      ctx.lineWidth = 0.85;
       ctx.stroke();
+
+      // Subtle semantic dot instead of loud full-box colored frame
+      ctx.beginPath();
+      ctx.arc(rx + 10.5, chosen.cy, 2.8, 0, Math.PI * 2);
+      ctx.fillStyle = item.borderCol;
+      ctx.fill();
+
       ctx.fillStyle = item.textCol;
-      ctx.textAlign = 'center';
+      ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
-      ctx.fillText(item.text, item.x, chosen.cy + 0.5);
+      ctx.fillText(item.text, rx + 18, chosen.cy + 0.5);
     }
     ctx.restore();
   }
 
   _drawPointSymbol(ctx, x, y, symbol, stroke, fill, selected) {
     ctx.save();
-    const r = selected ? 7.5 : 5.5;
+    const r = selected ? 6.2 : 4.5;
     if (selected) {
       ctx.beginPath();
-      ctx.arc(x, y, r + 5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+      ctx.arc(x, y, r + 4.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(244, 241, 234, 0.18)';
       ctx.fill();
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#F4F1EA';
+      ctx.lineWidth = 1.4;
       ctx.stroke();
     }
     if (symbol === '×') {
-      // Crisp dark badge + bold X cross so unconfirmed gaps read clearly over imagery
+      // Crisp dark badge + delicate X cross so unconfirmed gaps read clearly over imagery
       ctx.beginPath();
-      ctx.arc(x, y, r + 1.8, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(11, 16, 24, 0.88)';
+      ctx.arc(x, y, r + 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(12, 13, 16, 0.84)';
       ctx.fill();
-      ctx.setLineDash([2, 2]);
-      ctx.strokeStyle = selected ? '#ffffff' : stroke;
-      ctx.lineWidth = 1.2;
+      ctx.setLineDash([1.8, 2]);
+      ctx.strokeStyle = selected ? '#F4F1EA' : stroke;
+      ctx.lineWidth = 1.0;
       ctx.stroke();
       ctx.setLineDash([]);
-      const cr = r * 0.68;
+      const cr = r * 0.64;
       ctx.beginPath();
       ctx.moveTo(x - cr, y - cr); ctx.lineTo(x + cr, y + cr);
       ctx.moveTo(x - cr, y + cr); ctx.lineTo(x + cr, y - cr);
-      ctx.strokeStyle = selected ? '#ffffff' : stroke;
-      ctx.lineWidth = selected ? 2.6 : 2.1;
+      ctx.strokeStyle = selected ? '#F4F1EA' : stroke;
+      ctx.lineWidth = selected ? 2.1 : 1.65;
+      ctx.lineCap = 'round';
       ctx.stroke();
       ctx.restore();
       return;
     }
     if (symbol === '◉') {
-      // Field-photo camera lens ring: dark housing + crisp high-contrast aperture + core dot
+      // Field-photo camera lens ring: sleek warm basalt housing + crisp aperture
       ctx.beginPath();
-      ctx.arc(x, y, r + 1.2, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(14, 18, 28, 0.92)';
+      ctx.arc(x, y, r + 1.0, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(14, 15, 18, 0.88)';
       ctx.fill();
-      ctx.strokeStyle = selected ? '#ffffff' : stroke;
-      ctx.lineWidth = selected ? 2.4 : 2.0;
+      ctx.strokeStyle = selected ? '#F4F1EA' : stroke;
+      ctx.lineWidth = selected ? 1.9 : 1.55;
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(x, y, Math.max(2.1, r * 0.42), 0, Math.PI * 2);
-      ctx.fillStyle = selected ? '#ffffff' : stroke;
+      ctx.arc(x, y, Math.max(1.8, r * 0.38), 0, Math.PI * 2);
+      ctx.fillStyle = selected ? '#F4F1EA' : stroke;
       ctx.fill();
       ctx.restore();
       return;
     }
     ctx.beginPath();
     if (/^[1-4]$/.test(symbol)) {
-      ctx.beginPath();ctx.arc(x,y,r+2,0,Math.PI*2);ctx.fillStyle=fill||'#15212e';ctx.fill();ctx.strokeStyle=stroke;ctx.lineWidth=1.5;ctx.stroke();
-      ctx.font='bold 11px system-ui';ctx.textBaseline='middle';ctx.textAlign='center';ctx.fillStyle=stroke;ctx.fillText(symbol,x,y+.4);ctx.restore();return;
+      ctx.beginPath();ctx.arc(x,y,r+2.2,0,Math.PI*2);ctx.fillStyle=fill||'#14161B';ctx.fill();ctx.strokeStyle=stroke;ctx.lineWidth=1.25;ctx.stroke();
+      ctx.font='650 10.5px "Inter", system-ui, sans-serif';ctx.textBaseline='middle';ctx.textAlign='center';ctx.fillStyle=stroke;ctx.fillText(symbol,x,y+.4);ctx.restore();return;
     }
     if (symbol === '◆' || symbol === '◇') {
-      ctx.moveTo(x, y - r - 1.5);
-      ctx.lineTo(x + r + 1.5, y);
-      ctx.lineTo(x, y + r + 1.5);
-      ctx.lineTo(x - r - 1.5, y);
+      ctx.moveTo(x, y - r - 1.2);
+      ctx.lineTo(x + r + 1.2, y);
+      ctx.lineTo(x, y + r + 1.2);
+      ctx.lineTo(x - r - 1.2, y);
       ctx.closePath();
     } else if (symbol === '▲') {
-      ctx.moveTo(x, y - r - 1.5);
-      ctx.lineTo(x + r + 1.2, y + r);
-      ctx.lineTo(x - r - 1.2, y + r);
+      ctx.moveTo(x, y - r - 1.2);
+      ctx.lineTo(x + r + 1.0, y + r);
+      ctx.lineTo(x - r - 1.0, y + r);
       ctx.closePath();
     } else if (symbol === '■') {
       ctx.rect(x - r, y - r, r * 2, r * 2);
     } else {
       ctx.arc(x, y, r, 0, Math.PI * 2);
     }
-    ctx.fillStyle = symbol === '◇' ? 'rgba(15, 23, 34, 0.85)' : (fill || stroke);
+    ctx.fillStyle = symbol === '◇' ? 'rgba(14, 15, 18, 0.82)' : (fill || stroke);
     ctx.fill();
-    ctx.strokeStyle = selected ? '#ffffff' : stroke;
-    ctx.save();ctx.strokeStyle=MAP_CONTRAST.casing;ctx.lineWidth=selected?5:4;ctx.stroke();ctx.restore();
-    ctx.lineWidth = selected ? 2.2 : 1.8;
+    ctx.strokeStyle = selected ? '#F4F1EA' : stroke;
+    ctx.save();ctx.strokeStyle=MAP_CONTRAST.casing;ctx.lineWidth=selected?3.6:2.8;ctx.stroke();ctx.restore();
+    ctx.lineWidth = selected ? 1.8 : 1.45;
     ctx.stroke();
     if (symbol === '⊘') {
       ctx.beginPath();
-      ctx.moveTo(x - r * 0.7, y + r * 0.7);
-      ctx.lineTo(x + r * 0.7, y - r * 0.7);
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1.6;
+      ctx.moveTo(x - r * 0.68, y + r * 0.68);
+      ctx.lineTo(x + r * 0.68, y - r * 0.68);
+      ctx.strokeStyle = '#F4F1EA';
+      ctx.lineWidth = 1.3;
       ctx.stroke();
     }
     ctx.restore();
@@ -1071,6 +1090,8 @@ export class AtlasMap2D {
             ? { type: 'LineString', coordinates: f.geometry.coordinates.slice(2) }
             : f.geometry;
           ctx.save();
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
           ctx.beginPath();
           this._traceGeom(ctx, geomToDraw);
           {
@@ -1078,28 +1099,28 @@ export class AtlasMap2D {
             const backgroundRoad=ly==='secondary-roads'&&!isSel&&!isSpoken;
             ctx.strokeStyle = spec.casing || MAP_CONTRAST.casing;
             if(spec.dash)ctx.setLineDash(spec.dash);
-            if(backgroundRoad)ctx.globalAlpha=.38;
-            ctx.lineWidth = (isSel ? spec.lineWidth + 2.5 : spec.lineWidth) + (backgroundRoad?.65:2.4);
+            if(backgroundRoad)ctx.globalAlpha=.26;
+            ctx.lineWidth = (isSel ? spec.lineWidth + 1.8 : spec.lineWidth) + (backgroundRoad?.5:1.5);
             ctx.stroke();ctx.restore();
           }
           if (isSpoken) {
             ctx.save();
-            ctx.strokeStyle = 'rgba(244, 211, 120, 0.55)';
-            ctx.lineWidth = spec.lineWidth + 5.5;
+            ctx.strokeStyle = 'rgba(212, 175, 106, 0.36)';
+            ctx.lineWidth = spec.lineWidth + 4.2;
             ctx.stroke();
             ctx.restore();
           }
           if (isSel) {
             ctx.save();
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+            ctx.strokeStyle = 'rgba(244, 241, 234, 0.72)';
             if(spec.dash)ctx.setLineDash(spec.dash);
-            ctx.lineWidth = spec.lineWidth + 4;
+            ctx.lineWidth = spec.lineWidth + 3.0;
             ctx.stroke();
             ctx.restore();
           }
           if (spec.dash) ctx.setLineDash(spec.dash);
-          ctx.strokeStyle = isSpoken && !isSel ? '#f4d378' : spec.stroke;
-          ctx.lineWidth = isSel ? spec.lineWidth + 1.2 : isSpoken ? spec.lineWidth + 1.4 : isRel ? spec.lineWidth + 0.6 : spec.lineWidth;
+          ctx.strokeStyle = isSpoken && !isSel ? '#E7CC96' : spec.stroke;
+          ctx.lineWidth = isSel ? spec.lineWidth + 0.9 : isSpoken ? spec.lineWidth + 0.85 : isRel ? spec.lineWidth + 0.4 : spec.lineWidth;
           ctx.stroke();
           ctx.restore();
 
@@ -1110,7 +1131,7 @@ export class AtlasMap2D {
             const prev = pts[Math.max(0, Math.floor(pts.length / 2) - 1)];
             const mx = this.lonToX((mid[0] + prev[0]) * 0.5);
             const my = this.latToY((mid[1] + prev[1]) * 0.5);
-            this._drawPointSymbol(ctx, mx, my, '×', isSel ? '#ffffff' : spec.stroke, null, false);
+            this._drawPointSymbol(ctx, mx, my, '×', isSel ? '#F4F1EA' : spec.stroke, null, false);
           }
 
           // Open-circle endpoints (○···○) on hand-drawn sketch lines (never directional arrows)
@@ -1119,11 +1140,11 @@ export class AtlasMap2D {
             for (const endPt of [geomToDraw.coordinates[0], geomToDraw.coordinates[geomToDraw.coordinates.length - 1]]) {
               const ex = this.lonToX(endPt[0]), ey = this.latToY(endPt[1]);
               ctx.beginPath();
-              ctx.arc(ex, ey, 3.2, 0, Math.PI * 2);
-              ctx.fillStyle = 'rgba(12, 17, 24, 0.90)';
+              ctx.arc(ex, ey, 2.7, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(14, 15, 18, 0.88)';
               ctx.fill();
-              ctx.strokeStyle = isSel ? '#ffffff' : spec.stroke;
-              ctx.lineWidth = 1.4;
+              ctx.strokeStyle = isSel ? '#F4F1EA' : spec.stroke;
+              ctx.lineWidth = 1.25;
               ctx.stroke();
             }
             ctx.restore();
@@ -1168,7 +1189,7 @@ export class AtlasMap2D {
             if (b) {
               const tx = this.lonToX((b[0] + b[2]) * 0.5);
               const ty = this.latToY(b[3]) - 11;
-              const lbl = datedLabel || (ly === 'road-review' ? '◇ G332 跨路检查' : `${spec.symbol} ${(f.properties?.name || f.id).slice(0, 18)}`);
+              const lbl = datedLabel || (ly === 'road-review' ? '◇ G332 跨路检查' : `${spec.symbol} ${Array.from(translateAtlas(f.properties?.name || f.id)).slice(0, atlasLanguage() === 'en' ? 42 : 18).join('')}`);
               this._queueLabel(tx, ty, lbl, isSel ? '#ffffff' : isSpoken ? '#f4d378' : spec.stroke, (isSel || isSpoken || datedLabel) ? 0 : 2);
             }
           }
@@ -1180,10 +1201,10 @@ export class AtlasMap2D {
       const spec=getFeatureVisualSpec(f);
       ctx.save();ctx.beginPath();this._traceGeom(ctx,f.geometry);
       if(spec.dash)ctx.setLineDash(spec.dash);
-      ctx.lineJoin='round';ctx.lineCap='butt';
-      ctx.strokeStyle='rgba(9, 18, 29, .98)';ctx.lineWidth=9;ctx.stroke();
-      ctx.strokeStyle='#f8fafc';ctx.lineWidth=5;ctx.stroke();
-      ctx.strokeStyle=spec.stroke;ctx.lineWidth=2.2;ctx.stroke();
+      ctx.lineJoin='round';ctx.lineCap='round';
+      ctx.strokeStyle='rgba(9, 10, 12, .74)';ctx.lineWidth=6.5;ctx.stroke();
+      ctx.strokeStyle='#F4F1EA';ctx.lineWidth=3.6;ctx.stroke();
+      ctx.strokeStyle=spec.stroke;ctx.lineWidth=1.9;ctx.stroke();
       ctx.restore();
     }
   }
@@ -1294,11 +1315,14 @@ export class AtlasMap2D {
     const x = this.lonToX(cur.lon);
     const y = this.latToY(cur.lat);
     ctx.save();
-    // Outer pulsing target ring + crosshairs
+    // Soft misty ice-cyan ambient halo + precision ground reticle
     ctx.beginPath();
-    ctx.arc(x, y, 12, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(220, 38, 38, 0.22)';
+    ctx.arc(x, y, 14, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(116, 184, 220, 0.16)';
     ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(x, y, 10.5, 0, Math.PI * 2);
     ctx.strokeStyle = PROFILE_CURSOR_RING.casing;
     ctx.lineWidth = PROFILE_CURSOR_RING.casingWidth2d;
     ctx.stroke();
@@ -1306,24 +1330,29 @@ export class AtlasMap2D {
     ctx.lineWidth = PROFILE_CURSOR_RING.width2d;
     ctx.stroke();
 
+    // Precision 0.85px optical crosshair
     ctx.beginPath();
     ctx.moveTo(x - 16, y);
+    ctx.lineTo(x - 5.5, y);
+    ctx.moveTo(x + 5.5, y);
     ctx.lineTo(x + 16, y);
     ctx.moveTo(x, y - 16);
+    ctx.lineTo(x, y - 5.5);
+    ctx.moveTo(x, y + 5.5);
     ctx.lineTo(x, y + 16);
-    ctx.strokeStyle = '#dc2626';
-    ctx.lineWidth = 1.6;
+    ctx.strokeStyle = 'rgba(116, 184, 220, 0.90)';
+    ctx.lineWidth = 0.9;
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.arc(x, y, 4.2, 0, Math.PI * 2);
-    ctx.fillStyle = '#dc2626';
+    ctx.arc(x, y, 3.4, 0, Math.PI * 2);
+    ctx.fillStyle = '#F4F1EA';
     ctx.fill();
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 1.4;
+    ctx.strokeStyle = '#74B8DC';
+    ctx.lineWidth = 1.5;
     ctx.stroke();
 
-    this._queueLabel(x, y - 22, `剖面点 ${cur.distance_m.toFixed(0)}m · ${describeProfileCursorElevation(cur)}`, '#ef4444', 0);
+    this._queueLabel(x, y - 24, `剖面点 ${cur.distance_m.toFixed(0)}m · ${describeProfileCursorElevation(cur)}`, '#74B8DC', 0);
     ctx.restore();
   }
 
@@ -1333,9 +1362,9 @@ export class AtlasMap2D {
     ctx.save();
     ctx.scale(this.dpr, this.dpr);
 
-    // Deep slate or warm archival paper map well
+    // Warm basalt dark or museum alabaster paper map well
     const light = this.state.theme === 'light';
-    ctx.fillStyle = light ? '#e7e2d7' : '#0b0f14';
+    ctx.fillStyle = light ? '#ece8df' : '#090a0c';
     ctx.fillRect(0, 0, this.width, this.height);
 
     // 1. Basemap raster aligned strictly to each scene's own bounds_wgs84 (fallback AOI_BOUNDS)
@@ -1381,15 +1410,15 @@ export class AtlasMap2D {
 
     // Subtle AOI frame boundary & graticule
     ctx.save();
-    ctx.strokeStyle = light ? 'rgba(30, 41, 59, 0.30)' : 'rgba(226, 232, 240, 0.24)';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = light ? 'rgba(24, 22, 18, 0.20)' : 'rgba(244, 241, 234, 0.14)';
+    ctx.lineWidth = 0.85;
+    ctx.setLineDash([3, 4]);
     ctx.strokeRect(x0, y0, rw, rh);
     ctx.restore();
 
     ctx.save();
-    ctx.strokeStyle = light ? 'rgba(30, 41, 59, 0.10)' : 'rgba(226, 232, 240, 0.08)';
-    ctx.lineWidth = 0.8;
+    ctx.strokeStyle = light ? 'rgba(24, 22, 18, 0.06)' : 'rgba(244, 241, 234, 0.05)';
+    ctx.lineWidth = 0.65;
     for (let lon = 119.62; lon <= 119.761; lon += 0.02) {
       const gx = this.lonToX(lon);
       ctx.beginPath(); ctx.moveTo(gx, y0); ctx.lineTo(gx, y0 + rh); ctx.stroke();

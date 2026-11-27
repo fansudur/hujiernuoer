@@ -39,6 +39,11 @@ export function eastPoolTimelineFrame(month,byId,archive){
   : (known?'东池观测窗 · 覆盖不足':'东池观测窗 · 超出档案');
  return {observation,feature:observation?.feature||null,hiddenIds,label};
 }
+// Same field landmark, carried in several evidence layers. Never merge nearby photos or other evidence by distance.
+const landmarkAliases=[
+ ['f1-east-bridge-location-ref','nw96-bridge','west-slope-f1-bridge'],
+ ...[1,2,3,4].map(n=>['hjn-03-road-pin-0'+n,'nw96-pin'+n]),
+];
 const emptyHidden=new Set(), memo=new Map();
 export function hiddenWaterwayAliases(layers,byId,selected,{scope=null,spoken=null}={}){
  const excluded=[];
@@ -60,6 +65,14 @@ export function hiddenWaterwayAliases(layers,byId,selected,{scope=null,spoken=nu
    // Explicit archival selection replaces its four display-only cuts.
    if(selected===W2_ARCHIVED)excluded.push(...W2_OPTICAL_PARTS);
    else excluded.push(W2_ARCHIVED);
+ }
+ for(const ids of landmarkAliases){
+   const eligible=ids.map(id=>byId.get(id)).filter(f=>f?.geometry?.type==='Point'&&
+      (layers.has(f.properties?.layer)||scope?.has(f.id)||spoken?.has(f.id)));
+   const winner=eligible.find(f=>f.id===selected)??eligible.find(f=>spoken?.has(f.id))??eligible[0];
+   if(!winner)continue;
+   for(const f of eligible)if(f!==winner&&f.geometry.coordinates[0]===winner.geometry.coordinates[0]&&
+      f.geometry.coordinates[1]===winner.geometry.coordinates[1])excluded.push(f.id);
  }
  const key=excluded.join('|');
  if(!key)return emptyHidden;
