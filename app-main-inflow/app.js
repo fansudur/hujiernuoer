@@ -5323,9 +5323,17 @@ function updateWalkLayerNote(){
  const text=[walkMode.boundaryMessage,absent?'已打开的部分 Wayback 核查范围只在二维显示。':''].filter(Boolean).join(' ');
  const el=$('#walk-coverage-note');if(el.textContent!==text)el.textContent=text;el.hidden=!text;
 }
+const ROAM_OPENING_POSES=Object.freeze({
+ phone:Object.freeze({lon:119.80822853189439,lat:49.13762465878377,eyeM:1581.7371404437165,heading:267.75000000000955,pitch:-21.599999999999824,exag:8,fov:42,guideOriginM:616.4168474588009}),
+ desktop:Object.freeze({lon:119.7718486104538,lat:49.13622590601931,eyeM:1176.2971404437583,heading:269.45000000000573,pitch:-21.449999999999832,exag:8,fov:42,guideOriginM:616.4168474588009}),
+});
 function walkSpawn(site){
  const eyeM=walkMode.mode==='fly'?FREE_FLY_ENTRY_M:WALK_EYE_M;
- if(site==='current')return {...walkMode.origin,eyeM,site:'free'};
+ if(site==='current'){
+   const opening=walkMode.openingPose;
+   if(walkMode.mode==='fly'&&opening)return {...opening,site:'free'};
+   return {...walkMode.origin,eyeM,site:'free'};
+ }
  if(site==='office'){
    const [lon,lat]=walkMode.office;
    return {lon,lat,heading:105,pitch:-3,eyeM,site:'free'};
@@ -5346,6 +5354,9 @@ function closeTerrainWalk({lost=false,stay3d=false}={}){
  const saved=walkMode.saved;
  walkMode.active=false;walkMode.saved=null;
  try{map3d?.leaveTerrainWalk();}catch{}
+ if(map3d?.camera&&Number.isFinite(saved.fov)){
+   map3d.camera.fov=saved.fov;map3d.camera.updateProjectionMatrix();
+ }
  if(contoursEnabled!==saved.contoursEnabled)setContoursEnabled(saved.contoursEnabled,{persist:false});
  $('#walk-lab').hidden=true;
  $('#observatory')?.classList.remove('walk-active','walk-locked');
@@ -5381,13 +5392,18 @@ function openTerrainWalk(){
    boundaryMessage='原地图中心超出地形覆盖，已从最近的地形边缘起飞；退出返回原位置。';
  }
  const heading=startView3d?map3d.getOrbitBearing():0;
- const saved={view3d:startView3d,focus2d,contoursEnabled};
+ const shot=ROAM_OPENING_POSES[isMobileViewport()?'phone':'desktop'];
+ const openingPose=map3d.hasAerialFramingRoom(shot.lon,shot.lat)
+   ?{...shot,outsideTerrain:!map3d.hasWalkGround(shot.lon,shot.lat)}
+   :null;
+ if(openingPose)boundaryMessage='';
+ const saved={view3d:startView3d,focus2d,contoursEnabled,fov:map3d.camera.fov};
  const hasRoad=Boolean(road),hasOffice=Array.isArray(office)&&map3d.hasWalkGround(...office);
  stopPlay();
  if(state.studioOpen)closeStudioDrawer();
  hideInspectorSurface();setDimension('3d');
  if(!map3d.enterTerrainWalk(road?.coords||[]))return fail('暂无法进入 WebGL 漫游');
- Object.assign(walkMode,{active:true,saved,road,office,origin:{lon,lat,heading,pitch:-12},boundaryMessage,
+ Object.assign(walkMode,{active:true,saved,road,office,origin:{lon,lat,heading,pitch:-12},openingPose,lastGroundPose:null,boundaryMessage,
    site:'current',mode:'fly',station:0,sunKey:'noon',playing:false,tick:null,speedLevels:{walk:WALK_SPEED_DEFAULT,fly:FLY_SPEED_DEFAULT}});
  walkMode.pose=walkSpawn('current');
  panel.querySelectorAll('button,input,select').forEach(el=>el.disabled=false);
@@ -5399,7 +5415,8 @@ function openTerrainWalk(){
  $('#walk-mode').value='fly';$('#walk-site').value='current';panel.hidden=false;
  $('#observatory').classList.add('walk-active');
  walkCanvas()?.focus({preventScroll:true});
- walkExaggeration(8);updateContourControls();updateWalkSpeed();walkHUD();renderWalkPose();
+ if(openingPose){map3d.camera.fov=openingPose.fov;map3d.camera.updateProjectionMatrix();}
+ walkExaggeration(openingPose?.exag??8);updateContourControls();updateWalkSpeed();walkHUD();renderWalkPose();
 }
 // Keep buttons operable after a touch swipe even if the browser omits its synthetic click.
 function bindWalkTapButton(button,activate){
