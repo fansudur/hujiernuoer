@@ -64,7 +64,7 @@ export function portraitGuidePair(id,seconds){
 // These consecutive observations share a visual itinerary. This selects camera
 // continuity only: the dashed evidence, gaps and hydrology remain independent.
 const continuousPortraitRuns=[
- ['chapter-opening','runoff-field-bands-05'],
+ ['chapter-opening','runoff-apron-gap'],
  ['kmz-north-to-crossings','chapter-closing'],
 ];
 export function followsPortraitItinerary(book,from,to){
