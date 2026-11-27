@@ -1744,7 +1744,7 @@ html #observatory #guided-prior-landmarks .guide-continuity-pin {
   background: rgba(12, 14, 17, 0.78) !important;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  color: var(--rm-ink-1) !important;
+  color: #F4F1EA !important;
   border: 1px solid rgba(255, 255, 255, 0.14) !important;
   box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.56), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
   font-weight: 550 !important;
@@ -5295,4 +5295,29 @@ html #observatory.guided-tour-active #guided-photo-preview.v74-custom-panel #rm-
     max-width: calc(100vw - 456px) !important;
     box-sizing: border-box !important;
   }
+}
+
+/* Keep geographical labels and the camera reset legible on aerial imagery. */
+html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-pin {
+  background: rgba(250, 248, 242, 0.96) !important;
+  color: #29251E !important;
+  border-color: #797269 !important;
+  box-shadow: 0 3px 10px rgba(30, 25, 19, 0.24) !important;
+}
+html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-pin.current {
+  background: #F8ECD3 !important;
+  border-color: #967241 !important;
+}
+html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-pin[style*="--guide-label-tone"] {
+  border-color: color-mix(in srgb, var(--guide-label-tone) 55%, #34302A) !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip #guided-camera-follow.deck-btn[aria-pressed="false"] {
+  background: #F4E4C8 !important;
+  border-color: #AA8051 !important;
+  color: #57371D !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] #observatory.guided-tour-active #guided-tour-nav-strip #guided-camera-follow.deck-btn[aria-pressed="false"]:hover {
+  background: #EED8B3 !important;
+  color: #57371D !important;
 }
