@@ -39,7 +39,7 @@ const shared=Object.freeze({
  'runoff-bridge':bridgeClose,'runoff-cross-gap':bridgeGap,'runoff-east':bridgeEast,
  'runoff-apron-gap':crossings,'kmz-north-to-crossings':crossings,
  'runoff-bend-gap':phone682([119.65227214298875,49.158580990083955,417.4774488707431,161.70000000000232,-21.066666666666702,60,1,86]),
- 'runoff-se':phone682([119.64892266883726,49.16646992455742,1125.0072040017628,158.25333333333356,-28.00000000000005,60,1,86]),
+ 'runoff-se':phone402([119.64892266883726,49.16646992455742,1125.0072040017628,168.00666666666643,-32.20000000000006,60,1,90]),
  'road-b-southeast':south,'road-c-south-central':south,
  'lake-west':final,'lake-office-caution':final,'chapter-closing':final,
 });
@@ -64,7 +64,7 @@ export function portraitGuidePair(id,seconds){
 // These consecutive observations share a visual itinerary. This selects camera
 // continuity only: the dashed evidence, gaps and hydrology remain independent.
 const continuousPortraitRuns=[
- ['chapter-opening','runoff-se'],
+ ['chapter-opening','runoff-field-bands-05'],
  ['kmz-north-to-crossings','chapter-closing'],
 ];
 export function followsPortraitItinerary(book,from,to){
