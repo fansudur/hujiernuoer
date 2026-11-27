@@ -5,6 +5,7 @@ export const DETAIL_TILE_LIMIT=32;
 const MAX_REQUESTS=240, MAX_SCENES=5, SETTLE_MS=550;
 const clip=(a,b)=>[Math.max(a[0],b[0]),Math.max(a[1],b[1]),Math.min(a[2],b[2]),Math.min(a[3],b[3])];
 const valid=b=>b[0]<b[2]&&b[1]<b[3];
+const area=b=>valid(b)?(b[2]-b[0])*(b[3]-b[1]):0;
 const tileLat=(y,z)=>Math.atan(Math.sinh(Math.PI*(1-2*y/2**z)))*180/Math.PI;
 const tileLon=(x,z)=>360*x/2**z-180;
 
@@ -70,6 +71,7 @@ export function createEsriDetailController({context,load,show,revoke=URL.revokeO
  const arm=()=>{cancelTimer();timer=setTimeout(()=>{timer=null;void settled();},SETTLE_MS);};
  function sync(){
   const ctx=context();
+  if(ctx?.paused){if(timer!==null||current)stamp=null;cancelTimer();return;}
   if(!ctx){
    cancelTimer();current?.abort.abort();
    if(scope!==null)revision++;
@@ -88,10 +90,12 @@ export function createEsriDetailController({context,load,show,revoke=URL.revokeO
  }
  async function settled(){
   const ctx=context();
-  if(!ctx||scope!==ctx.scope||stamp!==ctx.stamp)return;
+  if(!ctx||ctx.paused||scope!==ctx.scope||stamp!==ctx.stamp)return;
   const existing=published&&scenes.get(published.key);
   const plan=planEsriDetail(ctx);
-  if(!plan){publish(null);return;}
+  if(!plan)return; // No new window does not invalidate the already displayed image.
+  // Keep the sharper image when a small camera change crosses a resolution threshold.
+  if(existing?.zoom>plan.zoom&&area(clip(existing.bounds,plan.bounds))>=.55*area(plan.bounds))return;
   const covering=entry=>entry?.zoom===plan.zoom&&entry.tile.left<=plan.tile.left&&entry.tile.right>=plan.tile.right&&entry.tile.top<=plan.tile.top&&entry.tile.bottom>=plan.tile.bottom;
   const cached=(covering(existing)?existing:null)||[...scenes.values()].find(covering);
   if(cached){scenes.delete(cached.scene.key);scenes.set(cached.scene.key,cached);publish(cached.scene);return;}
@@ -116,7 +120,8 @@ export function createEsriDetailController({context,load,show,revoke=URL.revokeO
    if(!request.abort.signal.aborted)failed.add(plan.key);
   }finally{
    if(current===request)current=null;
-   if(mark!==revision&&context()&&!timer)arm();
+   const next=context();
+   if(mark!==revision&&next&&!next.paused&&!timer)arm();
   }
  }
  function dispose(){

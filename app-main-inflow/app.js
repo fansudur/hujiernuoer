@@ -1,5 +1,5 @@
 import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=6';
-import {constrainedConnection,createEsriDetailController,overviewZoom} from './esri-view-detail.mjs?v=2';
+import {constrainedConnection,createEsriDetailController,overviewZoom} from './esri-view-detail.mjs?v=3';
 import {ATLAS_BOUNDS,BRIDGE_BOUNDS,COMPACT_OVERVIEW_ZOOM,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=3';
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
 import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.17.4';
@@ -1397,7 +1397,8 @@ function esriRenderMetrics(){
 const adaptiveEsriDetail=createEsriDetailController({
  context:()=>{
    if(!publicEsriAdaptive||!publicEsri||state.basemap!==ESRI_PUBLIC_ID||fixedHistory.wanted||fixedHistory.active||
-      walkMode.active||guidedTour.observer||monthPlayback.running||document.hidden)return null;
+      walkMode.active||guidedTour.observer||monthPlayback.running)return null;
+   if(document.hidden)return {paused:true};
    const {use3d,map,pixelRatio}=esriRenderMetrics();
    if(!map?.active||!map.width||!map.height||(use3d&&!map.terrainMesh))return null;
    const scope=(use3d?'3d:':'2d:')+(guidedTour.active?guideStep()?.id||'guide':'explore');
@@ -7809,11 +7810,12 @@ async function boot() {
   const coreData=provider.boot();
   // Attach rejection immediately while other startup requests are being scheduled.
   void coreData.catch(()=>{});
-  const tourFetch=fetch('./guided-tours.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
+  const optionalGuide=(url)=>fetch(url,{priority:'low',signal:AbortSignal.timeout?.(22000)});
+  const tourFetch=optionalGuide('./guided-tours.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
   const nwNetworkFetch=fetch('./nw-bridge-network-v96.geojson').then(r=>r.ok?r.json():null).catch(()=>null);
   const catchmentScreenFetch=fetch('./catchment-screen-v94.geojson?v=95',{signal:AbortSignal.timeout?.(4000)}).then(r=>r.ok?r.json():null).catch(()=>null);
-  const owner75Fetch=fetch('./owner-water-network-v75.geojson?v=75').then(r=>r.ok?r.json():null).catch(()=>null);
- const guideAudioFetch=fetch('./guided-tour-audio/audio-manifest.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
+  const owner75Fetch=optionalGuide('./owner-water-network-v75.geojson?v=75').then(r=>r.ok?r.json():null).catch(()=>null);
+ const guideAudioFetch=optionalGuide('./guided-tour-audio/audio-manifest.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
   const urlPatch = decodeAtlasUrl(location.search);
   const routeParams=new URLSearchParams(location.search);
   const firstOpen=routeParams.size===0;
@@ -8077,7 +8079,7 @@ async function boot() {
     })),
   ];
 
-  await initialHistory;
+  if(!firstOpen)await initialHistory;
   if(!timelineCalendar().fullSet.has(state.month))state.month='2024-07';
 
   $('#timeline-imagery-priority').onchange=ev=>{
@@ -8152,30 +8154,37 @@ async function boot() {
 
   bindEvents();
   wireTerrainWalk();
-  const tourDoc=await tourFetch, guideAudio=await guideAudioFetch;
-  if(tourDoc)try{
-    guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
-   for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
-    if(f.geometry?.type==='LineString'&&f.id?.startsWith('hjn-v74-'))guideV74Lines.set(f.id,f);
-    if((f.id?.startsWith('east-guide-')||/^owner-05-(band|label)-[1-4]$/.test(f.id))&&['Point','LineString'].includes(f.geometry?.type))provider.analysisById.set(f.id,f);
-   }
-   const owner75=await owner75Fetch;
-   const owner=Array.isArray(owner75?.features)?owner75.features.filter(f=>f.id?.startsWith('hjn-v75-kmz-')&&f.geometry?.type==='LineString'&&f.geometry.coordinates.length>=2&&f.geometry.coordinates.every(c=>c.length===2&&c.every(Number.isFinite)&&c[0]>119.60&&c[0]<119.78&&c[1]>49.10&&c[1]<49.18)):[];
-   for(const f of owner){
-    f.properties.layer=OWNER75_LAYER;
-    f.properties.guideMode=f.id.includes('potential')||f.id.includes('seepage')?'candidate':'owner';
-    provider.analysis.features.push(f);provider.analysisById.set(f.id,f);guideV74Lines.set(f.id,f);
-   }
-   guidedTour.ownerLines=owner;
-   state.visibleLayers.add(OWNER75_LAYER);
-   v74BuildProfiles();
-    guidedTour.contextPaths=guideContextPaths(tourDoc.contextPaths);
-    const context=guidedTour.contextPaths.map(r=>({type:'Feature',id:'guide-road-'+r.id,properties:{layer:GUIDE_G332_LAYER,name:r.label||'国道 G332 参考线',source:'冻结 OSM 路网，非水流'},geometry:{type:'LineString',coordinates:r.coords}}));
-    provider.analysis.features.push(...context);
-    for(const f of context)provider.analysisById.set(f.id,f);
-    if(guideAudio?.steps)guidedTour.audioManifest=Object.fromEntries(guidedTour.book.flatMap(r=>r.steps).filter(s=>guideAudio.steps[s.id]?.body===s.body).map(s=>[s.id,guideAudio.steps[s.id]]));
-  }catch(err){console.warn('本机三维导览未载入',err.message)}
-  wireGuidedTour();
+  const guideButtons=$$('#btn-guide-chapter-one,#btn-open-guided-tour,[data-guide-launch]');
+  for(const button of guideButtons){button.disabled=true;button.setAttribute('aria-busy','true');}
+  const finishGuide=async()=>{
+    const tourDoc=await tourFetch, guideAudio=await guideAudioFetch;
+    if(tourDoc)try{
+      guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
+     for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
+      if(f.geometry?.type==='LineString'&&f.id?.startsWith('hjn-v74-'))guideV74Lines.set(f.id,f);
+      if((f.id?.startsWith('east-guide-')||/^owner-05-(band|label)-[1-4]$/.test(f.id))&&['Point','LineString'].includes(f.geometry?.type))provider.analysisById.set(f.id,f);
+     }
+     const owner75=await owner75Fetch;
+     const owner=Array.isArray(owner75?.features)?owner75.features.filter(f=>f.id?.startsWith('hjn-v75-kmz-')&&f.geometry?.type==='LineString'&&f.geometry.coordinates.length>=2&&f.geometry.coordinates.every(c=>c.length===2&&c.every(Number.isFinite)&&c[0]>119.60&&c[0]<119.78&&c[1]>49.10&&c[1]<49.18)):[];
+     for(const f of owner){
+      f.properties.layer=OWNER75_LAYER;
+      f.properties.guideMode=f.id.includes('potential')||f.id.includes('seepage')?'candidate':'owner';
+      provider.analysis.features.push(f);provider.analysisById.set(f.id,f);guideV74Lines.set(f.id,f);
+     }
+     guidedTour.ownerLines=owner;
+     state.visibleLayers.add(OWNER75_LAYER);
+     v74BuildProfiles();
+      guidedTour.contextPaths=guideContextPaths(tourDoc.contextPaths);
+      const context=guidedTour.contextPaths.map(r=>({type:'Feature',id:'guide-road-'+r.id,properties:{layer:GUIDE_G332_LAYER,name:r.label||'国道 G332 参考线',source:'冻结 OSM 路网，非水流'},geometry:{type:'LineString',coordinates:r.coords}}));
+      provider.analysis.features.push(...context);
+      for(const f of context)provider.analysisById.set(f.id,f);
+      if(guideAudio?.steps)guidedTour.audioManifest=Object.fromEntries(guidedTour.book.flatMap(r=>r.steps).filter(s=>guideAudio.steps[s.id]?.body===s.body).map(s=>[s.id,guideAudio.steps[s.id]]));
+    }catch(err){console.warn('本机三维导览未载入',err.message)}
+    wireGuidedTour();
+    for(const button of guideButtons)button.removeAttribute('aria-busy');
+  };
+  if(firstOpen)void finishGuide().catch(err=>console.warn('Guide setup unavailable',err));
+  else await finishGuide();
   try {
     const savedTheme = localStorage.getItem('hujiernuoer-atlas-theme');
     if (savedTheme === 'light' || savedTheme === 'dark') applyTheme(savedTheme, { persist: false });
