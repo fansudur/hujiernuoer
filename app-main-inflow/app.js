@@ -22,7 +22,7 @@ import {displayClip} from './v81-display-clip.js';
    ========================================================================== */
 
 import {configureTourPanels} from './v74-panels.js';
-import { HandoffDataProvider } from './data-provider.js';
+import { HandoffDataProvider } from './data-provider.js?v=105.18.8';
 import { sampleDemElevation,
   AOI_BOUNDS,
   geometryBounds,
@@ -7806,6 +7806,9 @@ async function boot() {
   const hero=$('#atlas-hero-card'),head=$('#hud-top-left');
   new ResizeObserver(()=>head.style.setProperty('--atlas-home-card-width',hero.getBoundingClientRect().width+'px')).observe(hero);
 
+  const coreData=provider.boot();
+  // Attach rejection immediately while other startup requests are being scheduled.
+  void coreData.catch(()=>{});
   const tourFetch=fetch('./guided-tours.json?v=105.17.3').then(r=>r.ok?r.json():null).catch(()=>null);
   const nwNetworkFetch=fetch('./nw-bridge-network-v96.geojson').then(r=>r.ok?r.json():null).catch(()=>null);
   const catchmentScreenFetch=fetch('./catchment-screen-v94.geojson?v=95',{signal:AbortSignal.timeout?.(4000)}).then(r=>r.ok?r.json():null).catch(()=>null);
@@ -7868,7 +7871,7 @@ async function boot() {
   const diagnosticBranchesPromise = fetch(new URL('./diagnostic-branches.geojson', location.href), {
     signal: AbortSignal.timeout?.(5500),
   }).then(r => r.ok ? r.json() : null).catch(() => null);
-  await provider.boot();
+  await coreData;
   const initialHistory=fixedHistoryInventory().catch(()=>null);
   registerStudyFeatures(provider);
   const catchmentData=await catchmentScreenFetch;
@@ -8048,7 +8051,7 @@ async function boot() {
   lastManualBasemap = state.basemap;
   const imageryById = { [TIMELINE_REFERENCE_SCENE.id]: TIMELINE_REFERENCE_SCENE };
   for (const im of provider.terrainManifest?.imagery || []) {
-    imageryById[im.id] = { ...im, url: provider.url(`terrain/${im.path}`) };
+    imageryById[im.id] = { ...im, url: provider.url(im.id===PUBLIC_GUIDE_BASEMAP ? 'terrain/satellite-2026-08-08-display.webp' : `terrain/${im.path}`) };
   }
   for (const sc of extraBridgeScenes) {
     imageryById[sc.basemapId] = {
@@ -8063,7 +8066,7 @@ async function boot() {
   timelineScenes = [
     TIMELINE_REFERENCE_SCENE,
     ...(provider.terrainManifest?.imagery || []).map(im => ({
-      id:im.id, date:im.time_utc?.slice(0,10), url:imageryById[im.id]?.url,
+      id:im.id, date:im.time_utc?.slice(0,10), url:provider.url(`terrain/${im.path}`),
       broad: im.bounds_wgs84?.length === 4 && provider.terrainManifest?.bounds_wgs84?.length === 4
         && im.bounds_wgs84.every((v, i) => i < 2 ? v <= provider.terrainManifest.bounds_wgs84[i] + 1e-6 : v >= provider.terrainManifest.bounds_wgs84[i] - 1e-6),
     })),
@@ -8187,7 +8190,9 @@ async function boot() {
   updateActiveLayerBadge();
   renderAlerts();
 
-  await selectMonth(state.month,{timeline:routeParams.has('month')&&!routeParams.has('bm')});
+  const initialMonth=selectMonth(state.month,{timeline:routeParams.has('month')&&!routeParams.has('bm')});
+  if(!firstOpen)await initialMonth;
+  else void initialMonth.catch(err=>console.warn('Initial water geometry unavailable',err));
 
   if (isHistoricalId(state.selectedFeatureId)) {
     await ensureHistoricalContext();
@@ -8325,19 +8330,23 @@ async function boot() {
     applyTheme,
   };
   if(firstOpen)void startPublicEsri();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const preview=$('#atlas-start-preview');if(preview)preview.hidden=true;
+  }));
 }
 
+const bootLabel=$('#atlas-start-note'), bootReload=$('#atlas-start-reload');
+if(bootReload)bootReload.onclick=()=>location.reload();
+const slowStartNotice=setTimeout(()=>{
+ if(bootLabel)bootLabel.textContent='底图预览 · 数据仍在加载，慢网下会自动重试';
+},5000);
 boot().catch(err => {
-  console.error('Atlas UI boot failed:', err);
-  const host = $('#alert-stack');
-  if (host) {
-    host.innerHTML = `
-      <div class="hud-banner error">
-        <span>⚠ 图谱加载失败：请通过本地 HTTP 服务打开本页（${esc(err?.message || err)}）</span>
-      </div>
-    `;
-  }
-});
+ console.error('Atlas UI boot failed:', err);
+ if(bootLabel)bootLabel.textContent=location.protocol==='file:'
+   ?'数据未加载 · 本机文件请通过 HTTP 服务打开'
+   :'底图预览 · 图谱数据暂未载入，可以重新加载';
+ if(bootReload&&location.protocol!=='file:')bootReload.hidden=false;
+}).finally(()=>clearTimeout(slowStartNotice));
 
 
 

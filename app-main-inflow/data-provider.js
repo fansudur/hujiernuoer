@@ -28,7 +28,7 @@ export class HandoffDataProvider {
     return `${this.basePath}${rel}`;
   }
 
-  async _fetchJson(rel, { timeoutMs = this.fetchTimeoutMs, signal = null } = {}) {
+  async _fetchJson(rel, { timeoutMs = this.fetchTimeoutMs, signal = null, priority } = {}) {
     const ctrl = new AbortController();
     let timedOut = false;
     let timer = null;
@@ -50,8 +50,8 @@ export class HandoffDataProvider {
     }
 
     try {
-      const res = await fetch(this.url(rel), { signal: ctrl.signal });
-      if (!res.ok) throw new Error(`HTTP ${res.status} (${rel})`);
+      const res = await fetch(this.url(rel), { signal: ctrl.signal, ...(priority ? {priority} : {}) });
+      if (!res.ok) throw Object.assign(new Error(`HTTP ${res.status} (${rel})`),{httpStatus:res.status});
       return await res.json();
     } catch (err) {
       if (timedOut) {
@@ -72,7 +72,19 @@ export class HandoffDataProvider {
     }
   }
 
+  async _bootRequest(load, priority='auto') {
+    for(let attempt=0;;attempt++){
+      try { return await load({timeoutMs:attempt?24000:16000,priority}); }
+      catch(err) {
+        const transient=err.isTimeout||err instanceof TypeError||err.httpStatus===408||err.httpStatus===429||err.httpStatus>=500;
+        if(attempt||!transient)throw err;
+        await new Promise(resolve=>setTimeout(resolve,350));
+      }
+    }
+  }
+
   async boot() {
+    const read=(path,priority)=>this._bootRequest(opts=>this._fetchJson(path,opts),priority);
     const [
       waterIndex,
       analysis,
@@ -86,14 +98,14 @@ export class HandoffDataProvider {
       nwScenarios,
       yiminSummary,
     ] = await Promise.all([
-      this._fetchJson('water-index.json'),
-      this._fetchJson('analysis.geojson'),
-      this._fetchJson('analysis-manifest.json'),
-      this._fetchJson('evidence.json'),
-      this._fetchJson('coverage.json'),
-      this._fetchJson('acceptance-cases.json'),
-      this._fetchJson('terrain/manifest.json'),
-      this._fetchJson('terrain/dem.json'),
+      read('water-index.json','high'),
+      read('analysis.geojson'),
+      read('analysis-manifest.json'),
+      read('evidence.json'),
+      read('coverage.json'),
+      read('acceptance-cases.json'),
+      read('terrain/manifest.json'),
+      read('terrain/dem.json'),
       Promise.resolve(null),
       Promise.resolve(null),
       Promise.resolve(null),
@@ -117,7 +129,7 @@ export class HandoffDataProvider {
 
     // Preload both fixed statistical window boundary polygons
     const boundaryPaths = Object.values(waterIndex.lakes).map(l => l.boundary).filter(Boolean);
-    await Promise.all(boundaryPaths.map(p => this.loadWaterPart(p)));
+    await Promise.all(boundaryPaths.map(p => this._bootRequest(opts=>this.loadWaterPart(p,opts))));
   }
 
   async loadWaterPart(relPath, opts = {}) {
