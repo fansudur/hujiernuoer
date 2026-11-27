@@ -152,7 +152,6 @@ html[data-theme="light"] #observatory.guided-tour-active #guided-camera-follow[a
 }
 
 /* Desktop-only authoring control; keep the compact phone guide unchanged. */
-@media (max-width:760px){#observatory #guided-camera-capture{display:none}}
 #guided-camera-dialog{width:min(34rem,calc(100vw - 2rem));box-sizing:border-box;border:1px solid var(--v93-border-strong);border-radius:.9rem;background:var(--v93-bg-elevated);color:var(--v93-ink);padding:.9rem}
 #guided-camera-dialog::backdrop{background:#0c172557}
 #guided-camera-dialog form>div{display:flex;align-items:center;justify-content:space-between;gap:1rem}

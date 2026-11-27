@@ -5434,7 +5434,7 @@ function captureGuidedRecord(){
  field.value=raw;
  if(!dialog.open)dialog.showModal();
  field.focus({preventScroll:true});field.select();
- status.textContent='已选中；若没有自动复制，可按 Ctrl+C 手动复制。';
+ status.textContent=isMobileViewport()?'若未自动复制，长按下方数据并选择复制。':'已选中；若没有自动复制，可按 Ctrl+C 手动复制。';
  navigator.clipboard?.writeText(raw).then(()=>{
    if(dialog.open&&field.value===raw)status.textContent='已复制，可直接粘贴发送。';
  }).catch(()=>{});
