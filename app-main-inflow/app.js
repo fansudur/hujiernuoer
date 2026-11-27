@@ -1,5 +1,5 @@
 import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=6';
-import {constrainedConnection,createEsriDetailController,overviewZoom} from './esri-view-detail.mjs?v=3';
+import {constrainedConnection,createEsriDetailController,overviewZoom} from './esri-view-detail.mjs?v=walk3';
 import {ATLAS_BOUNDS,BRIDGE_BOUNDS,COMPACT_OVERVIEW_ZOOM,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=3';
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
 import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.18.20';
@@ -1397,17 +1397,21 @@ function esriRenderMetrics(){
 const adaptiveEsriDetail=createEsriDetailController({
  context:()=>{
    if(!publicEsriAdaptive||!publicEsri||state.basemap!==ESRI_PUBLIC_ID||fixedHistory.wanted||fixedHistory.active||
-      walkMode.active||guidedTour.observer||monthPlayback.running)return null;
+      guidedTour.observer||monthPlayback.running)return null;
    if(document.hidden)return {paused:true};
    const {use3d,map,pixelRatio}=esriRenderMetrics();
    if(!map?.active||!map.width||!map.height||(use3d&&!map.terrainMesh))return null;
-   const scope=(use3d?'3d:':'2d:')+(guidedTour.active?guideStep()?.id||'guide':'explore');
+   const scope=(use3d?'3d:':'2d:')+(walkMode.active?'walk':guidedTour.active?guideStep()?.id||'guide':'explore');
    // Raycast only when settled. The projection includes off-axis phone and guide framing.
    const stamp=use3d
      ? [map.width,map.height,...map.camera.matrixWorld.elements,...map.camera.projectionMatrix.elements].map(x=>Math.round(x*1e7)).join(',')
      : [map.width,map.height,map.cam.lon,map.cam.lat,map.cam.ppm].join(',');
    const saveData=constrainedConnection(navigator.connection);
-   return {scope,stamp:[stamp,pixelRatio,saveData].join(':'),width:map.width,height:map.height,
+   const roaming=walkMode.active&&walkMode.mode!=='guide'&&use3d?walkMode.pose:null;
+   const near=roaming&&!roaming.outsideTerrain&&roaming.eyeM<=175?roaming:null;
+   const nearGround=near?[near.lon,near.lat,near.eyeM]:null;
+   const nearStamp=near?[Math.round(near.lon*800),Math.round(near.lat*1230),Math.round(near.eyeM/35)]:stamp;
+   return {scope,stamp:[nearStamp,pixelRatio,saveData].join(':'),nearGround,width:map.width,height:map.height,
      pixelRatio,baseZoom:publicEsri.zoom,saveData,
      ground:use3d?(x,y)=>map.groundAtScreenPx(x,y):(x,y)=>[map.xToLon(x),map.yToLat(y)],
      bridge:guideStep()?.id===ESRI_BRIDGE_STOP&&guidedTour.active?true:'focus'};

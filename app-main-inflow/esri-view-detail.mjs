@@ -16,18 +16,38 @@ export function overviewZoom({width,pixelRatio=1,connection}){
  return Number.isFinite(width)&&width>0&&width*pixelRatio<=1000?COMPACT_OVERVIEW_ZOOM:OVERVIEW_ZOOM;
 }
 
-export function planEsriDetail({width,height,ground,pixelRatio=1,baseZoom=OVERVIEW_ZOOM,saveData=false,bridge=false}){
+export function planEsriDetail({width,height,ground,pixelRatio=1,baseZoom=OVERVIEW_ZOOM,saveData=false,bridge=false,sampleTop=0,nearGround=null}){
  if(width<1||height<1)return null;
+ // At ground level the visible horizon can contain too little terrain to estimate scale.
+ // Prefer a small geographic neighborhood of the actual walk/fly position.
+ if(nearGround?.length===3&&nearGround.every(Number.isFinite)){
+  const [lon,lat,heightM]=nearGround;
+  if(lon>=ATLAS_BOUNDS[0]&&lon<=ATLAS_BOUNDS[2]&&lat>=ATLAS_BOUNDS[1]&&lat<=ATLAS_BOUNDS[3]){
+   const radius=Math.min(300,Math.max(160,heightM*2));
+   const dx=radius/(111195*Math.cos(lat*Math.PI/180)),dy=radius/111195;
+   const candidate=clip([lon-dx,lat-dy,lon+dx,lat+dy],ATLAS_BOUNDS);
+   for(const zoom of DETAIL_ZOOMS){
+    if(zoom<=baseZoom||saveData&&zoom>16)continue;
+    const tile=tileWindow(candidate,zoom);
+    const count=(tile.right-tile.left+1)*(tile.bottom-tile.top+1);
+    if(count<1||count>(saveData?16:DETAIL_TILE_LIMIT))continue;
+    const bounds=clip([tileLon(tile.left,zoom),tileLat(tile.bottom+1,zoom),tileLon(tile.right+1,zoom),tileLat(tile.top,zoom)],ATLAS_BOUNDS);
+    return {zoom,count,bounds,key:[zoom,tile.left,tile.top,tile.right,tile.bottom].join('/'),tile};
+   }
+  }
+ }
  const points=[], steps=[];
+ const sampleY=Math.max(0,Math.min(.7,sampleTop))*height;
+ const sampleDy=(height-sampleY)/4;
  const grid=Array.from({length:5},(_,i)=>Array.from({length:5},(_,j)=>{
-  const ll=ground(j*width/4,i*height/4);
+  const ll=ground(j*width/4,sampleY+i*sampleDy);
   if(!ll?.every(Number.isFinite))return null;
   points.push(ll);
   return [mercatorX(ll[0],1),mercatorY(ll[1],1)];
  }));
  for(let i=0;i<5;i++)for(let j=0;j<5;j++){
   const a=grid[i][j];if(!a)continue;
-  for(const [b,pixels] of [[grid[i]?.[j+1],width/4],[grid[i+1]?.[j],height/4]]){
+  for(const [b,pixels] of [[grid[i]?.[j+1],width/4],[grid[i+1]?.[j],sampleDy]]){
    if(!b)continue;
    const step=Math.hypot(a[0]-b[0],a[1]-b[1])/pixels;
    if(step>0)steps.push(step);
