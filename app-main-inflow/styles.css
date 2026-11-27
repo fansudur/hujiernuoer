@@ -2941,9 +2941,6 @@ dialog.atlas-modal::backdrop { background: rgba(8, 10, 13, 0.65); }
  .guided-photo-caption{font-size:11px}
 }
 
-.walk-record-box{margin:4px 0 6px;padding:6px 7px;border-radius:6px;border:1px solid var(--accent-border)}
-.walk-record-box label,.walk-record-box output{font-size:11px;color:var(--ink-2)}
-#walk-camera-json{display:block;width:100%;box-sizing:border-box;margin:4px 0;background:var(--surface-subtle);color:var(--ink-1);border:1px solid var(--accent-border);font:11px/1.4 var(--font-mono);resize:none;user-select:text;overflow:auto}
 
 .guided-observer-buttons{display:flex;flex-wrap:wrap;gap:5px;padding:4px 0}
 #guided-observer-choices p{font-size:11px;color:var(--ink-2);margin:4px 0}

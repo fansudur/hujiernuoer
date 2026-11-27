@@ -13,13 +13,13 @@
   </style>
   <title>呼吉尔诺尔 · 水文地貌纪事图谱 v93</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23111317'/%3E%3Cpath d='M3.5 15.5C6.8 11 9.8 9.4 12.6 10.8C15.4 12.1 17.8 10.2 20.5 6.8' fill='none' stroke='%234ba3d8' stroke-width='2.1' stroke-linecap='round'/%3E%3Ccircle cx='12.6' cy='10.8' r='2.1' fill='%23f2efe9'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?cleanup=92.1&v=105.5">
+  <link rel="stylesheet" href="styles.css?cleanup=92.1&v=105.18.21">
   <link rel="stylesheet" href="v74-panels.css?v=77">
   <link rel="stylesheet" href="v76-guide-layout.css?v=90.1">
   <link rel="stylesheet" href="v83-reference.css?v=86">
   <link rel="stylesheet" href="v89-space.css?v=105.15">
   <link rel="stylesheet" href="v93-chapter1.css?v=102">
-  <link rel="stylesheet" href="guide-review.css?v=105.18.15">
+  <link rel="stylesheet" href="guide-review.css?v=105.18.21">
   <link rel="stylesheet" href="v74-director.css?v=105">
   <link rel="stylesheet" href="mobile-atlas.css?v=105.5">
   <link rel="stylesheet" href="./landscape-reference.css">
@@ -166,7 +166,6 @@
       <div class="walk-row">
         <strong>第一人称地形漫游</strong>
         <button type="button" class="deck-btn" id="walk-layer-trigger" aria-controls="studio-drawer">图层</button>
-        <button type="button" class="deck-btn" id="walk-record-shot" aria-controls="walk-record-box" aria-expanded="false">记录镜头</button>
         <button type="button" class="deck-btn" id="walk-close">退出漫游</button>
       </div>
       <div class="walk-row">
@@ -175,11 +174,6 @@
         </select></label>
         <label>起点 <select class="deck-select" id="walk-site"><option value="current">入场位置</option><option value="road">圆涵附近道路</option><option value="office">办公院附近</option></select></label>
         <output id="walk-chain"></output>
-      </div>
-      <div id="walk-record-box" class="walk-record-box" hidden>
-        <label for="walk-camera-json">本机镜头记录</label>
-        <textarea readonly id="walk-camera-json" rows="3" spellcheck="false"></textarea>
-        <div class="walk-row"><output id="walk-record-status" aria-live="polite"></output><button type="button" class="deck-btn" id="walk-record-hide">收起</button></div>
       </div>
       <div class="walk-row" id="walk-guide-controls" hidden>
         <button type="button" class="deck-btn" id="walk-start">开始导览</button>
@@ -285,7 +279,6 @@
         <button type="button" id="guided-tour-prev" class="deck-btn">上一站</button>
         <button type="button" id="guided-tour-play" class="deck-btn">播放本段</button>
         <button type="button" id="guided-tour-next" class="deck-btn">下一站</button>
-        <button type="button" id="guided-camera-capture" class="deck-btn" aria-haspopup="dialog">采集机位</button>
         <button type="button" id="guided-camera-follow" class="deck-btn" aria-pressed="true" title="左拖转向，WASD 平移，Q／E 升降，Shift 加速；滚轮缩放，触屏可双指缩放和平移。">跟随镜头</button>
         <button type="button" id="v74-layout-reset" class="deck-btn">恢复布局</button>
         <button type="button" id="guided-mobile-layers" class="deck-btn guide-mobile-tools" aria-controls="studio-drawer" aria-expanded="false" data-drawer-tab="layers">图层／资料</button>
@@ -651,16 +644,9 @@
   </dialog>
 
   <script src="../hujiernuoer-handoff-v2/vendor/three-r160.1.min.js"></script>
-  <script type="module" src="app.js?v=105.18.20"></script>
+  <script type="module" src="app.js?v=105.18.21"></script>
   <script type="module" src="v74-panels.js"></script>
   <script type="module" src="v93-chapter1.js?v=105.17.5"></script>
-<dialog id="guided-camera-dialog" aria-labelledby="guided-camera-heading">
-  <form method="dialog">
-    <div><strong id="guided-camera-heading">当前导览机位</strong><button class="deck-btn" type="submit">关闭</button></div>
-    <p id="guided-camera-status" role="status"></p>
-    <textarea id="guided-camera-json" aria-label="机位数据" readonly rows="5"></textarea>
-  </form>
-</dialog>
 <dialog id="landscape-dialog" aria-labelledby="landscape-title">
  <header class="landscape-head">
   <div><h2 id="landscape-title"></h2><p id="landscape-credit"></p></div>
