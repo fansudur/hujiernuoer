@@ -3,7 +3,7 @@ import {constrainedConnection,createEsriDetailController,overviewZoom} from './e
 import {ATLAS_BOUNDS,BRIDGE_BOUNDS,COMPACT_OVERVIEW_ZOOM,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=3';
 import { GUIDE_METERS_PER_DEG_LAT,GUIDE_METERS_PER_DEG_LON,EAST_SECTION,EAST_COP,EAST_AW,eastModelStroke,eastModelColor,EAST_STYLE,eastDash,GUIDE_MAIN_MODEL_STROKE,guideModelDash,modelsEast as guideEastModelIds,isEastGuideRef,guideDashStyle,guideInsetStroke,GUIDE_FOCUS_WIDTH,guideFocusLineId } from './guide-map-style.js?v=105.14';
 import { portraitGuidePair, followsPortraitItinerary } from './guide-portrait-cameras.js?v=105.17.4';
-import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.17.3';
+import { blendGuidePose,recordedGuidePose,recordedTravelLead,OPENING_NW_POSE,desktopRecordedGuidePose } from './guide-recorded-cameras.js?v=105.18.12';
 import { BRIDGE_REVIEW_STOPS,WF1_MODELS,CONTEXT_GUIDE_LINES,easeGuide,openingPinNumbers,walkCameraRecord } from './guide-review-policy.js?v=105.17.5';
 import {pointInGeoGeometry as insideSlopeWater} from './geo-pick.js';
 import {wireReferenceZoom} from './v83-reference.js?v=105.9';
@@ -5708,18 +5708,29 @@ function cancelGuideHandoff(){
  return true;
 }
 function guideProgressNote(s){
- if(s.kind==='gap')return '缺口站：保留空段。继续时只切换到独立观察位，不沿缺口飞行。';
+ if(s.kind==='gap')return '缺口站：保留空段。镜头转到下个观察位，不表示水路相连。';
  if(!guideFollowing(1))return '全章结束，可以回到地图或回看上一站。';
  if(!guidedTour.route.steps[guidedTour.index+1])return guideHandoffs[guidedTour.route.id]||'下节从另一个独立位置开始。';
  return '';
 }
-function moveGuidedChapter(direction,{resume=null}={}){
+// Time scales with the visible change, without changing either authored endpoint.
+function desktopHandoffDuration(from,to){
+ const turn=Math.abs(((to.heading-from.heading+540)%360)-180);
+ const tilt=Math.abs(to.pitch-from.pitch);
+ const travel=guideDistance([from.lon,from.lat],[to.lon,to.lat]);
+ const scale=Math.abs(Math.log(Math.max(1,to.eyeM)/Math.max(1,from.eyeM)));
+ const lens=Math.abs(to.directorFov-from.directorFov);
+ const shift=Math.max(...[0,1].map(i=>Math.abs((to.portraitOffset?.[i]??0)-(from.portraitOffset?.[i]??0))));
+ if(turn<.01&&tilt<.01&&travel<.05&&Math.abs(to.eyeM-from.eyeM)<.05&&lens<.01&&shift<.0001)return 0;
+ return Math.min(5200,Math.max(850,700+turn*28,700+tilt*42,700+travel*.35,700+scale*1100,700+lens*110,700+shift*3800));
+}
+function moveGuidedChapter(direction,{resume=null,destination=null}={}){
  const t=guidedTour;
  if(!t.active)return;
  const shouldPlay=resume??guideWantsPlayback(t);
  cancelGuideHandoff();
  closeGuideObserver({restorePosition:false,focus:false});
- const target=guideFollowing(direction);
+ const target=destination??guideFollowing(direction);
  if(!target){if(direction>0)closeGuidedTour();return;}
  const independent=!t.manualCamera&&isGuideIndependent(target), reduced=guideReduced();
  t.poseHandoff=null;
@@ -5730,9 +5741,9 @@ function moveGuidedChapter(direction,{resume=null}={}){
  const trackJoins=GUIDE_ROAD_ENDPOINTS[target.step.id]?.[0]===previous.id||
    GUIDE_ROAD_ENDPOINTS[previous.id]?.[1]===target.step.id;
  const phoneEdited=isMobileViewport()&&(portraitGuidePair(previous.id,0)||portraitGuidePair(target.step.id,0));
- const desktopEdited=!isMobileViewport()&&(desktopRecordedGuidePose(previous.id)||desktopRecordedGuidePose(target.step.id));
+ const desktopGlide=!isMobileViewport();
  const phoneItinerary=isMobileViewport()&&followsPortraitItinerary(t.book,previous.id,target.step.id);
- const edited=Boolean(phoneEdited||desktopEdited||phoneItinerary);
+ const edited=Boolean(phoneEdited||desktopGlide||phoneItinerary);
  const seamlessRoad=isMobileViewport()&&direction===1&&trackJoins;
  const phoneTarget=phoneEdited&&!trackJoins&&!t.manualCamera&&oldPose?phoneRecordedPose(target.step.id,0):null;
  let phoneCut=false, phoneHold=false, phoneDuration=1550;
@@ -5749,12 +5760,12 @@ function moveGuidedChapter(direction,{resume=null}={}){
    if(phoneItinerary)phoneDuration=Math.min(4500,Math.max(1550,1250+turn*18,1300+tilt*33,1150+travel*.27,1200+Math.log(Math.max(1,scale))*510,lens*110));
    phoneHold=travel<.01&&turn<.01&&tilt<.01&&height<.01&&lens<.01&&shift<.001;
  }
- const overviewBlend=(edited?(!trackJoins||(phoneItinerary&&direction<0)):direction===1&&(panorama||bridgeTurn))&&!reduced&&!t.manualCamera&&oldPose&&!phoneCut&&!phoneHold;
+ const overviewBlend=(edited?(desktopGlide||!trackJoins||(phoneItinerary&&direction<0)):direction===1&&(panorama||bridgeTurn))&&!reduced&&!t.manualCamera&&oldPose&&!phoneCut&&!phoneHold;
  if(phoneItinerary&&!phoneTarget&&!seamlessRoad)phoneDuration=3400;
  const oldView=map3d.camera.view,from=edited&&overviewBlend?{...oldPose,directorFov:map3d.camera.fov,
    portraitOffset:oldView?.enabled?[oldView.offsetX/map3d.width,(oldView.offsetY-(t.portraitPhotoLift||0))/map3d.height]:[0,0]}:overviewBlend;
  holdGuidedTour();
- if(overviewBlend)t.poseHandoff={from,to:target.step.id,elapsed:0,resume:shouldPlay,captured:edited,portraitItinerary:phoneItinerary,duration:edited?phoneDuration:850};
+ if(overviewBlend)t.poseHandoff={from,to:target.step.id,elapsed:0,resume:shouldPlay,captured:edited,portraitItinerary:phoneItinerary,desktopGlide,duration:edited?phoneDuration:850};
  const commit=()=>{
   if(target.route===t.route)prepareTourStep(target.index);
   else setGuidedRoute(target.route,target.index);
@@ -5775,6 +5786,13 @@ function moveGuidedChapter(direction,{resume=null}={}){
        const cam=map3d.camera,v=cam.view;
        transition.destination={...t.cameraPose,directorFov:cam.fov,portraitOffset:v?.enabled?
          [v.offsetX/map3d.width,(v.offsetY-(t.portraitPhotoLift||0))/map3d.height]:[0,0]};
+     }
+     if(transition.desktopGlide&&transition.destination){
+       transition.duration=desktopHandoffDuration(transition.from,transition.destination);
+       if(!transition.duration){
+         if(transition.resume)void playGuidedTour();
+         return;
+       }
      }
      t.poseHandoff=transition;
      showTourPose(target.step,0);
@@ -7255,7 +7273,7 @@ function showTourPose(step,fraction){
     glide.last=now;
     const u=Math.min(1,glide.elapsed/(glide.duration||850)), f=easeGuide(u);
     if(u===1)guidedTour.poseHandoff=null;
-    if(glide.destination)camera=glide.portraitItinerary
+    if(glide.destination)camera=(glide.portraitItinerary||glide.desktopGlide)
       ?blendPortraitHandoff(glide.from,glide.destination,u*u*u*(10+u*(-15+6*u)))
       :blendPortraitPose(glide.from,glide.destination,f);
     else if(u<1){
@@ -7701,7 +7719,7 @@ function wireGuidedTour(){
  p.replaceChildren(...t.book.map(r=>new Option(r.title,r.id)));
  const btn=$('#btn-open-guided-tour');btn.disabled=!t.book.length;btn.onclick=()=>openGuidedTour($('#btn-export-menu'));
  for(const launch of $$('#btn-guide-chapter-one,[data-guide-launch]')){launch.disabled=!t.book.length;launch.onclick=()=>openGuidedTour(launch);}
- p.onchange=()=>{const route=t.book.find(r=>r.id===p.value);if(route){cancelGuideHandoff();setGuidedRoute(route);}};
+ p.onchange=()=>{const route=t.book.find(r=>r.id===p.value);if(route){if(!isMobileViewport()&&route!==t.route)moveGuidedChapter(1,{resume:false,destination:{route,index:0,step:route.steps[0]}});else{cancelGuideHandoff();setGuidedRoute(route);}}};
  $('#guided-tour-close').onclick=()=>closeGuidedTour();
  $('#guided-observer-return').onclick=()=>closeGuideObserver();
  $('#guided-observer-fold').onclick=e=>setGuideObserverCompact(e.currentTarget.getAttribute('aria-expanded')==='true');
@@ -7764,14 +7782,16 @@ function installV93Bridge(){
    const step=route?.steps[index];
    if(!step)return;
    if(!t.active)openGuidedTour($('#btn-guide-chapter-one'),step.id);
+   else if(!isMobileViewport()&&guideStep()?.id!==step.id){moveGuidedChapter(1,{resume:autoPlay,destination:{route,index,step}});return;}
    else {cancelGuideHandoff();setGuidedRoute(route,index);}
    if(autoPlay)requestAnimationFrame(()=>void playGuidedTour());
   },
   jumpTo:(routeId,stepIdx=0)=>{
    const t=guidedTour, route=t.book.find(r=>r.id===routeId);
-   if(!route)return;
+   if(!route?.steps[stepIdx])return;
    const shouldPlay=guideWantsPlayback(t);
    if(!t.active)openGuidedTour($('#btn-guide-chapter-one'),route.steps[stepIdx]?.id);
+   else if(!isMobileViewport()&&guideStep()?.id!==route.steps[stepIdx].id)moveGuidedChapter(1,{resume:shouldPlay,destination:{route,index:stepIdx,step:route.steps[stepIdx]}});
    else{
     cancelGuideHandoff();
     closeGuideObserver({restorePosition:false,focus:false});
