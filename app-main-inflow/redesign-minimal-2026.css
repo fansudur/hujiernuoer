@@ -2000,9 +2000,12 @@ html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock 
   fill: rgba(251, 249, 244, 0.84) !important;
   stroke: rgba(24, 22, 18, 0.12) !important;
 }
-/* Keep map category colors on the symbols, not on light label cards. */
-html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock [data-v84-cartography] [data-inset-label] > .v84-label {
-  fill: var(--rm-ink-1) !important;
+/* Keep the category hues; use their existing darker ink on the light inset. */
+html[data-theme="light"] #guided-reference-dock [data-inset-label] > .v84-label:is([style="fill:#5eb8e6" i],[style="fill:#42bafe" i]) {
+  fill: var(--rm-ice-ink) !important;
+}
+html[data-theme="light"] #guided-reference-dock [data-inset-label] > .v84-label[style="fill:#dfb164" i] {
+  fill: var(--rm-gold-ink) !important;
 }
 html[data-theme="light"] #observatory.guided-tour-active #guided-reference-dock [data-v84-cartography] .v84-stem {
   stroke: rgba(24, 22, 18, 0.34);
@@ -5302,19 +5305,4 @@ html #observatory.guided-tour-active #guided-photo-preview.v74-custom-panel #rm-
     max-width: calc(100vw - 456px) !important;
     box-sizing: border-box !important;
   }
-}
-
-/* Keep geographical labels legible on aerial imagery. */
-html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-pin {
-  background: rgba(250, 248, 242, 0.96) !important;
-  color: #29251E !important;
-  border-color: #797269 !important;
-  box-shadow: 0 3px 10px rgba(30, 25, 19, 0.24) !important;
-}
-html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-pin.current {
-  background: #F8ECD3 !important;
-  border-color: #967241 !important;
-}
-html[data-theme="light"] #observatory #guided-prior-landmarks .guide-continuity-pin[style*="--guide-label-tone"] {
-  border-color: color-mix(in srgb, var(--guide-label-tone) 55%, #34302A) !important;
 }
