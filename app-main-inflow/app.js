@@ -1,4 +1,4 @@
-import { applyLanguageQuery, atlasLanguage, translateAtlas, translateAtlasEnglish } from './atlas-i18n.js?v=40';
+import { applyLanguageQuery, atlasLanguage, isPristineAtlasEntry, translateAtlas, translateAtlasEnglish } from './atlas-i18n.js?v=40';
 import { ESRI_ATTRIBUTION, loadEsriBasemap } from './esri-online.js?v=6';
 import {constrainedConnection,createEsriDetailController,overviewZoom} from './esri-view-detail.mjs?v=walk3';
 import {ATLAS_BOUNDS,BRIDGE_BOUNDS,COMPACT_OVERVIEW_ZOOM,OVERVIEW_ZOOM,BRIDGE_ZOOM} from './esri-atlas-windows.mjs?v=3';
@@ -170,6 +170,8 @@ const state = {
 const provider = new HandoffDataProvider('../hujiernuoer-handoff-v2/');
 let map2d = null;
 let map3d = null;
+let ensureMap3d = () => map3d;
+let preserveEntryUrl = false;
 let monthReqSeq = 0;
 let monthAbortCtrl = null;
 let lakeChipViews = new Map();
@@ -445,7 +447,7 @@ function getActiveProfileCursor() {
 }
 
 function syncUrl() {
-  if (guidedTour.active||location.protocol === 'file:') return;
+  if (preserveEntryUrl||guidedTour.active||location.protocol === 'file:') return;
   const p=new URLSearchParams(encodeAtlasUrl(state.timelineBasemapStatus?.kind==='google-earth' ? {...state,basemap:lastManualBasemap}:state));
   if(state.waterwayNav){
     p.set('panel',ROUTE_DEEP_LINK);
@@ -1410,7 +1412,8 @@ function updateHeaderPills() {
 
 const ESRI_PUBLIC_ID='esri-public-online';
 const PUBLIC_GUIDE_BASEMAP='sentinel2-2026-08-08';
-let publicEsriAdaptive=false;
+const PHONE_PREVIEW_PATH='terrain/satellite-2026-08-08-display.webp';
+let publicEsriAdaptive=false, esriMapReady=false, esriMobilePreview=false;
 let publicEsri=null,publicEsriStarted=false,bridgeEsri=null,bridgeEsriPending=null,bridgeEsriAttempts=0,bridgeEsriFailed=false;
 const ESRI_BRIDGE_STOP='runoff-bridge', ESRI_BRIDGE_MAX_ATTEMPTS=2;
 function esriRenderMetrics(){
@@ -1502,19 +1505,29 @@ async function startPublicEsri(){
   const adaptiveAvailable=compactSupported?Promise.resolve(true):fetch('/atlas-esri/adaptive-ready',{signal:AbortSignal.timeout(3000),credentials:'omit',redirect:'error'})
     .then(async r=>r.ok&&await r.text()==='atlas-esri-v3').catch(()=>false);
   const {map,pixelRatio}=esriRenderMetrics();
-  const zoom=compactSupported?overviewZoom({width:map?.width,pixelRatio,connection:navigator.connection}):OVERVIEW_ZOOM;
+  const zoom=compactSupported?overviewZoom({width:map?.width||$('#map-2d-canvas')?.clientWidth||innerWidth,pixelRatio:map?pixelRatio:Math.min(2,devicePixelRatio||1),connection:navigator.connection}):OVERVIEW_ZOOM;
   const draft=await loadEsriBasemap(ATLAS_BOUNDS,AbortSignal.timeout(20000),zoom);
   publicEsriAdaptive=await adaptiveAvailable;
   publicEsri={...draft,id:ESRI_PUBLIC_ID,zoom};
-  registeredImagery={...registeredImagery,[ESRI_PUBLIC_ID]:publicEsri};
-  map2d?.setState({imageryById:registeredImagery});map3d?.setState({imageryById:registeredImagery});
-  if(guidedTour.active&&!guidedTour.observer&&state.basemap===PUBLIC_GUIDE_BASEMAP){
-    state.basemap=ESRI_PUBLIC_ID;updateHeaderPills();syncMapsState();v93NotifySync();
-  }else if(!guidedTour.active&&!walkMode.active&&!fixedHistory.wanted&&!state.timelineBasemapStatus&&
-     state.scenePreset==='home'&&state.basemap===PUBLIC_GUIDE_BASEMAP&&!monthPlayback.running){
-    state.basemap=ESRI_PUBLIC_ID;lastManualBasemap=ESRI_PUBLIC_ID;updateHeaderPills();syncMapsState();
+  if(esriMapReady)applyPublicEsri();
+  else if(esriMobilePreview){
+   const credit=$('#fixed-history-credit');
+   if(credit){credit.textContent=ESRI_ATTRIBUTION;credit.hidden=false;}
+   $('#hdr-basemap').textContent='Esri 高清参考';
+   map2d.setState({basemap:ESRI_PUBLIC_ID,imageryById:{[ESRI_PUBLIC_ID]:publicEsri}});
   }
  }catch{/* Retain the current reference when Esri is unavailable or over quota. */}
+}
+function applyPublicEsri(){
+ if(!publicEsri)return;
+ registeredImagery={...registeredImagery,[ESRI_PUBLIC_ID]:publicEsri};
+ map2d?.setState({imageryById:registeredImagery});map3d?.setState({imageryById:registeredImagery});
+ if(guidedTour.active&&!guidedTour.observer&&state.basemap===PUBLIC_GUIDE_BASEMAP){
+   state.basemap=ESRI_PUBLIC_ID;updateHeaderPills();syncMapsState();v93NotifySync();
+ }else if(!guidedTour.active&&!walkMode.active&&!fixedHistory.wanted&&!state.timelineBasemapStatus&&
+    state.scenePreset==='home'&&state.basemap===PUBLIC_GUIDE_BASEMAP&&!monthPlayback.running){
+   state.basemap=ESRI_PUBLIC_ID;lastManualBasemap=ESRI_PUBLIC_ID;updateHeaderPills();syncMapsState();
+ }
 }
 function setBasemap(bm) {
   stopPlay();
@@ -2098,7 +2111,7 @@ function setDimension(dim) {
   if(dim!=='3d'&&guidedTour.active)closeGuidedTour({stay3d:true});
   if(dim!=='3d'&&walkMode.active)closeTerrainWalk({stay3d:true});
   const want3d = dim === '3d';
-  if (want3d && (!map3d || map3d.failed)) {
+  if (want3d && (!ensureMap3d() || map3d.failed)) {
     state.view3d = false;
     if (!state.webglFallbackNotice) state.webglFallbackNotice = 'startup';
     syncDimensionButtons(false);
@@ -5413,7 +5426,7 @@ function openTerrainWalk(){
    $('#walk-coverage-note').hidden=true;
    panel.querySelectorAll('button,input,select').forEach(el=>{el.disabled=el.id!=='walk-close';});
  };
- if(!map3d||map3d.failed)return fail('这台浏览器暂不支持 WebGL 漫游；二维图谱仍可用');
+ if(!ensureMap3d()||map3d.failed)return fail('这台浏览器暂不支持 WebGL 漫游；二维图谱仍可用');
  const startView3d=state.view3d,focus2d=map2d.getCameraFocus();
  const focus=startView3d?map3d.getCameraFocus():focus2d;
  const bounds=provider.dem?.bounds_wgs84;
@@ -7613,7 +7626,7 @@ function openGuidedTour(trigger,stepId){
  const t=guidedTour;
  if(t.active||!t.book.length)return;
  if(walkMode.active)closeTerrainWalk();
- if(!map3d||map3d.failed){$('#guided-tour-unavailable').hidden=false;return;}
+ if(!ensureMap3d()||map3d.failed){$('#guided-tour-unavailable').hidden=false;return;}
  t.saved={publicFallback:[ESRI_PUBLIC_ID,PUBLIC_GUIDE_BASEMAP].includes(state.basemap)&&!state.timelineBasemapStatus,view3d:state.view3d,focus2d:{...map2d.getCameraFocus(),pixelsPerMeter:map2d.getCameraScale()},fixed:fixedHistory.active,fixedWanted:fixedHistory.wanted,
   fixedZone:fixedHistory.preferredZone,fixedNote:$('#fixed-history-note')?.textContent||'',trigger};
  if(state.studioOpen)closeStudioDrawer();
@@ -8039,18 +8052,52 @@ async function boot() {
     }
     return null;
   };
-  const tourFetch=fetch('./guided-tours.json?v=105.18.14').then(r=>r.ok?r.json():null).catch(()=>null);
+  const fetchTour=()=>fetch('./guided-tours.json?v=105.18.14').then(r=>r.ok?r.json():null).catch(()=>null);
   const nwNetworkFetch=fetch('./nw-bridge-network-v96.geojson').then(r=>r.ok?r.json():null).catch(()=>null);
   const catchmentScreenFetch=fetch('./catchment-screen-v94.geojson?v=95',{signal:AbortSignal.timeout?.(4000)}).then(r=>r.ok?r.json():null).catch(()=>null);
-  const owner75Fetch=fetch('./owner-water-network-v75.geojson?v=75').then(r=>r.ok?r.json():null).catch(()=>null);
+  const fetchOwnerGuide=()=>fetch('./owner-water-network-v75.geojson?v=75').then(r=>r.ok?r.json():null).catch(()=>null);
  const voiceManifest=path=>fetch(path).then(r=>r.ok?r.json():null).catch(()=>null);
- const guideAudioFetch=Promise.all([
+ const fetchGuideAudio=()=>Promise.all([
    voiceManifest('./guided-tour-audio/audio-manifest.json?v=105.19-zh48'),
    voiceManifest('./guided-tour-audio-en/audio-manifest.json?v=105.19-en1')
  ]);
   const urlPatch = decodeAtlasUrl(location.search);
   const routeParams=new URLSearchParams(location.search);
-  const firstOpen=[...routeParams.keys()].every(k=>k==='lang');
+  const firstOpen=isPristineAtlasEntry;
+  const mobilePreview=firstOpen&&isMobileViewport();
+  preserveEntryUrl=firstOpen;
+  const onCursor = ({ lon, lat, elev }) => {
+    const zTxt = elev !== null ? `GLO-30 ${elev.toFixed(1)}m` : '超出 DEM 范围';
+    const el = $('#cursor-readout');
+    if (el) el.textContent = `${lat.toFixed(5)}°N, ${lon.toFixed(5)}°E · ${zTxt}`;
+  };
+  const onCam = ({ px, label }) => {
+    if ($('#scale-bar')) $('#scale-bar').style.width = `${Math.max(36, Math.min(130, px))}px`;
+    if ($('#scale-label')) $('#scale-label').textContent = label;
+  };
+  const onSelect = feat => selectFeature(feat,{showData:true});
+
+  map2d = new AtlasMap2D($('#map-2d-canvas'), {
+    onViewChange:syncAdaptiveEsriDetail,
+    onCursorMove: onCursor,
+    onCameraChange: onCam,
+    onSelectFeature: onSelect,
+  });
+
+  if(mobilePreview){
+    // Use the same geographically aligned, already-public fallback as the interactive map.
+    const fallback={id:PUBLIC_GUIDE_BASEMAP,bounds_wgs84:AOI_BOUNDS,
+      url:provider.url(PHONE_PREVIEW_PATH)};
+    map2d.setState({basemap:fallback.id,theme:document.documentElement.dataset.theme,
+      imageryById:{[fallback.id]:fallback}});
+    map2d.resize();
+    const down=Math.min(36,map2d.height*.042);
+    map2d.fitBounds(AOI_BOUNDS,1,0,{fillWidth:true,top:2*down});
+    esriMobilePreview=true;
+  }
+  if(firstOpen)void startPublicEsri();
+  const queueGuideAssets=()=>Promise.all([fetchTour(),fetchGuideAudio(),fetchOwnerGuide()]);
+  let guideAssets=mobilePreview?null:queueGuideAssets();
   const nwDeepLink=routeParams.get('nw')==='all';
   const startHistory=null;
   const requestedView=routeParams.get('view');
@@ -8289,7 +8336,7 @@ async function boot() {
   lastManualBasemap = state.basemap;
   const imageryById = { [TIMELINE_REFERENCE_SCENE.id]: TIMELINE_REFERENCE_SCENE };
   for (const im of provider.terrainManifest?.imagery || []) {
-    imageryById[im.id] = { ...im, url: provider.url(`terrain/${im.path}`) };
+    imageryById[im.id] = { ...im, url: provider.url(mobilePreview&&im.id===PUBLIC_GUIDE_BASEMAP?PHONE_PREVIEW_PATH:`terrain/${im.path}`) };
   }
   for (const sc of extraBridgeScenes) {
     imageryById[sc.basemapId] = {
@@ -8344,33 +8391,30 @@ async function boot() {
   wireFixedHistory();
 
 
-  const onCursor = ({ lon, lat, elev }) => {
-    const zTxt = elev !== null ? `GLO-30 ${elev.toFixed(1)}m` : '超出 DEM 范围';
-    const el = $('#cursor-readout');
-    if (el) el.textContent = `${lat.toFixed(5)}°N, ${lon.toFixed(5)}°E · ${zTxt}`;
+  const initPayload = {
+    dem: provider.dem,
+    imageryById,
+    analysisFeatures: provider.analysis.features,
   };
-  const onCam = ({ px, label }) => {
-    if ($('#scale-bar')) $('#scale-bar').style.width = `${Math.max(36, Math.min(130, px))}px`;
-    if ($('#scale-label')) $('#scale-label').textContent = label;
+  map2d.setState(publicEsri&&mobilePreview
+    ? {...initPayload,basemap:ESRI_PUBLIC_ID,imageryById:{...imageryById,[ESRI_PUBLIC_ID]:publicEsri}}
+    : initPayload);
+  ensureMap3d=()=>{
+    if(map3d)return map3d;
+    map3d = new AtlasMap3D($('#map-3d-stage'), $('#map-3d-labels'), {
+      onViewChange:syncAdaptiveEsriDetail,
+      onCursorMove: onCursor,
+      onCameraChange: onCam,
+      onSelectFeature: onSelect,
+      onNorthChange: deg => setCompassAngle(deg),
+      onContextLost: info => handleWebGLContextLost(info),
+    });
+    map3d.setExaggeration(state.exag3d);
+    map3d.setState({...initPayload,...mapStateSent,imageryById:registeredImagery,
+      analysisFeatures:last3dFeatures||initPayload.analysisFeatures,labelLanguage:atlasLanguage()});
+    return map3d;
   };
-  const onSelect = feat => selectFeature(feat,{showData:true});
-
-  map2d = new AtlasMap2D($('#map-2d-canvas'), {
-    onViewChange:syncAdaptiveEsriDetail,
-    onCursorMove: onCursor,
-    onCameraChange: onCam,
-    onSelectFeature: onSelect,
-  });
-
-  map3d = new AtlasMap3D($('#map-3d-stage'), $('#map-3d-labels'), {
-    onViewChange:syncAdaptiveEsriDetail,
-    onCursorMove: onCursor,
-    onCameraChange: onCam,
-    onSelectFeature: onSelect,
-    onNorthChange: deg => setCompassAngle(deg),
-    onContextLost: info => handleWebGLContextLost(info),
-  });
-  map3d.setExaggeration(state.exag3d);
+  if(!mobilePreview)ensureMap3d();
   $$('[data-exag]').forEach(b=>b.classList.toggle('active',Number(b.dataset.exag)===state.exag3d));
   const dimResolution = resolveEffectiveView3d(state.view3d, Boolean(map3d && !map3d.failed));
   const wantInitial3d = dimResolution.view3d;
@@ -8381,50 +8425,45 @@ async function boot() {
     $('#btn-3d').title = '当前环境 WebGL 不可用，已自动回退 2D Canvas';
   }
 
-  const initPayload = {
-    dem: provider.dem,
-    imageryById,
-    analysisFeatures: provider.analysis.features,
-  };
-  map2d.setState(initPayload);
-  map3d.setState(initPayload);
-
   bindEvents();
   wireTerrainWalk();
-  const tourDoc=await tourFetch, [guideAudio,guideAudioEn]=await guideAudioFetch;
-  guidedTour.observerRecords=validateGuideObservers(await observerFetch);
-  if(tourDoc)try{
-    if(!state.wcrossUpstream?.length)registerWcrossUpstream(await optionalGuide(wcrossUpstreamUrl));
-    guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
-   for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
-    if(f.geometry?.type==='LineString'&&f.id?.startsWith('hjn-v74-'))guideV74Lines.set(f.id,f);
-    if((f.id?.startsWith('east-guide-')||/^owner-05-(band|label)-[1-4]$/.test(f.id))&&['Point','LineString'].includes(f.geometry?.type))provider.analysisById.set(f.id,f);
-   }
-   const owner75=await owner75Fetch;
-   const owner=Array.isArray(owner75?.features)?owner75.features.filter(f=>f.id?.startsWith('hjn-v75-kmz-')&&f.geometry?.type==='LineString'&&f.geometry.coordinates.length>=2&&f.geometry.coordinates.every(c=>c.length===2&&c.every(Number.isFinite)&&c[0]>119.60&&c[0]<119.78&&c[1]>49.10&&c[1]<49.18)):[];
-   for(const f of owner){
-    f.properties.layer=OWNER75_LAYER;
-    f.properties.guideMode=f.id.includes('potential')||f.id.includes('seepage')?'candidate':'owner';
-    provider.analysis.features.push(f);provider.analysisById.set(f.id,f);guideV74Lines.set(f.id,f);
-   }
-   guidedTour.ownerLines=owner;
-   state.visibleLayers.add(OWNER75_LAYER);
-   v74BuildProfiles();
-    guidedTour.contextPaths=guideContextPaths(tourDoc.contextPaths);
-    const context=guidedTour.contextPaths.map(r=>({type:'Feature',id:'guide-road-'+r.id,properties:{layer:GUIDE_G332_LAYER,name:r.label||'国道 G332 参考线',source:'冻结 OSM 路网，非水流'},geometry:{type:'LineString',coordinates:r.coords}}));
-    provider.analysis.features.push(...context);
-    for(const f of context)provider.analysisById.set(f.id,f);
-    const steps=guidedTour.book.flatMap(r=>r.steps);
-    const acceptVoice=(doc,body)=>Object.fromEntries(steps.flatMap(s=>{
-      const entry=doc?.steps?.[s.id];
-      return entry&&entry.body===body(s)&&entry.file===s.id+'.mp3'&&Number.isFinite(entry.durationMs)&&entry.durationMs>0&&/^[a-f0-9]{64}$/.test(entry.sha256)?[[s.id,entry]]:[];
-    }));
-    guidedTour.audioManifests={
-      zh:acceptVoice(guideAudio,s=>s.body),
-      en:acceptVoice(guideAudioEn?.schema==='hjn-guide-english-audio/v1'?guideAudioEn:null,s=>translateAtlasEnglish(s.body)),
-    };
-  }catch(err){console.warn('本机三维导览未载入',err.message)}
-  wireGuidedTour();
+  async function prepareGuide(){
+    guideAssets??=queueGuideAssets();
+    const [tourDoc,[guideAudio,guideAudioEn],owner]=await guideAssets;
+    guidedTour.observerRecords=validateGuideObservers(await observerFetch);
+    if(tourDoc)try{
+      if(!state.wcrossUpstream?.length)registerWcrossUpstream(await optionalGuide(wcrossUpstreamUrl));
+      guidedTour.book=normalizeGuidedTours(tourDoc,provider.analysisById);
+     for(const f of tourDoc.localEvidence||[])if(f.type==='Feature'){
+      if(f.geometry?.type==='LineString'&&f.id?.startsWith('hjn-v74-'))guideV74Lines.set(f.id,f);
+      if((f.id?.startsWith('east-guide-')||/^owner-05-(band|label)-[1-4]$/.test(f.id))&&['Point','LineString'].includes(f.geometry?.type))provider.analysisById.set(f.id,f);
+     }
+     const ownerRows=Array.isArray(owner?.features)?owner.features.filter(f=>f.id?.startsWith('hjn-v75-kmz-')&&f.geometry?.type==='LineString'&&f.geometry.coordinates.length>=2&&f.geometry.coordinates.every(c=>c.length===2&&c.every(Number.isFinite)&&c[0]>119.60&&c[0]<119.78&&c[1]>49.10&&c[1]<49.18)):[];
+     for(const f of ownerRows){
+      f.properties.layer=OWNER75_LAYER;
+      f.properties.guideMode=f.id.includes('potential')||f.id.includes('seepage')?'candidate':'owner';
+      provider.analysis.features.push(f);provider.analysisById.set(f.id,f);guideV74Lines.set(f.id,f);
+     }
+     guidedTour.ownerLines=ownerRows;
+     state.visibleLayers.add(OWNER75_LAYER);
+     v74BuildProfiles();
+      guidedTour.contextPaths=guideContextPaths(tourDoc.contextPaths);
+      const context=guidedTour.contextPaths.map(r=>({type:'Feature',id:'guide-road-'+r.id,properties:{layer:GUIDE_G332_LAYER,name:r.label||'国道 G332 参考线',source:'冻结 OSM 路网，非水流'},geometry:{type:'LineString',coordinates:r.coords}}));
+      provider.analysis.features.push(...context);
+      for(const f of context)provider.analysisById.set(f.id,f);
+      const steps=guidedTour.book.flatMap(r=>r.steps);
+      const acceptVoice=(doc,body)=>Object.fromEntries(steps.flatMap(s=>{
+        const entry=doc?.steps?.[s.id];
+        return entry&&entry.body===body(s)&&entry.file===s.id+'.mp3'&&Number.isFinite(entry.durationMs)&&entry.durationMs>0&&/^[a-f0-9]{64}$/.test(entry.sha256)?[[s.id,entry]]:[];
+      }));
+      guidedTour.audioManifests={
+        zh:acceptVoice(guideAudio,s=>s.body),
+        en:acceptVoice(guideAudioEn?.schema==='hjn-guide-english-audio/v1'?guideAudioEn:null,s=>translateAtlasEnglish(s.body)),
+      };
+    }catch(err){console.warn('本机三维导览未载入',err.message)}
+    wireGuidedTour();
+  }
+  if(!mobilePreview)await prepareGuide();
   let savedTheme;
   try { savedTheme=localStorage.getItem(atlasThemeKey); } catch {}
   applyTheme(savedTheme,{persist:false});
@@ -8438,7 +8477,11 @@ async function boot() {
   updateActiveLayerBadge();
   renderAlerts();
 
-  await selectMonth(state.month,{timeline:routeParams.has('month')&&!routeParams.has('bm')});
+  const initialWater=selectMonth(state.month,{timeline:routeParams.has('month')&&!routeParams.has('bm')});
+  esriMapReady=true;
+  if(publicEsri)applyPublicEsri();
+  if(!mobilePreview)await initialWater;
+  else void initialWater.catch(err=>console.warn('首屏水面暂未载入',err.message));
 
   if (isHistoricalId(state.selectedFeatureId)) {
     await ensureHistoricalContext();
@@ -8468,14 +8511,7 @@ async function boot() {
   } else if (state.selectedFeatureId && provider.analysisById.has(state.selectedFeatureId)) {
     selectFeature(state.selectedFeatureId,{fly:true,showData:state.pickedDataId===state.selectedFeatureId&&state.bottomTab!=='time'});
   } else if (!hasExplicitViewOverride && state.scenePreset === 'home' && provider.waterIndex?.lakes?.MAIN?.bounds_wgs84) {
-    // Clean first-open framing adapted to the unobstructed portrait/landscape map window
-    if(isMobileViewport()&&(firstOpen||routeParams.size===1&&routeParams.has('lang'))){
-      // Keep the full study-area width, with breathing room beneath the header.
-      map2d.resize();
-      const height=$('#map-2d-canvas').getBoundingClientRect().height;
-      const down=Math.min(36,height*.042);
-      map2d.fitBounds(AOI_BOUNDS,1,0,{fillWidth:true,top:2*down});
-    }else fitMainLakeFirstOpen(0);
+    if(!mobilePreview)fitMainLakeFirstOpen(0);
   } else if (requestedView === 'west' && provider.waterIndex?.lakes?.WF1?.bounds_wgs84) {
     map2d.fitBounds(provider.waterIndex.lakes.WF1.bounds_wgs84, 1.75, 0);
   } else if ((requestedView === 'north' || requestedView === 'east') && VIEW_SCOPES[requestedView]?.featureIds?.length) {
@@ -8508,6 +8544,7 @@ async function boot() {
   // Read-only state snapshot hook for verification
   if(linkedProfile)openLinkedProfile(state.activeProfileId,{sample:state.profileCursorIdx<0?null:state.profileCursorIdx});
   else if(state.waterwayNav)openWaterwayOverview();
+  preserveEntryUrl=false;
   window.__ATLAS_STATE__ = () => ({
     guidedTour:{active:guidedTour.active,route:guidedTour.route?.id??null,step:guideStep()?.id??null,handoff:Boolean(guidedTour.handoff),kind:guideStep()?.kind??null,playing:guidedTour.playing,elapsed:guidedTour.elapsed,pose:guidedTour.pose,cameraPose:guidedTour.cameraPose??null,observer:guidedTour.observer?.id??null,manualCamera:Boolean(guidedTour.manualCamera),audioTime:guidedTour.voice?.currentTime??null,audioPaused:guidedTour.voice?.paused??null,contours:guidedTour.active?guideContourFeatures().length:0,exag:guidedTour.active?map3d.terrainWalkSnapshot()?.exag:null},
     walk:{active:walkMode.active,mode:walkMode.mode||null,locked:hasWalkLock(),held:Object.keys(currentWalkControls()).sort(),playing:Boolean(walkMode.playing),site:walkMode.site||null,station:walkMode.station??null,
@@ -8575,7 +8612,7 @@ async function boot() {
     camera3d: map3d && !map3d.failed ? map3d.getCameraFocus() : null,
     webglReady: Boolean(map3d && !map3d.failed),
   });
-  if(firstOpen)void startPublicEsri();
+  if(mobilePreview){await prepareGuide();syncMapsState();}
   window.__ATLAS_DEBUG__ = {
     openSoutheastInspection,
     openCrossingsWorkspace,
