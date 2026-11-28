@@ -228,17 +228,17 @@ export class AtlasMap2D {
     const spec = this._selectedImageSpec();
     if (!spec?.url) return null;
     if (this._images.has(spec.url)) return this._images.get(spec.url);
-    const im = new Image();
+    const im = spec.image || new Image();
     im.decoding = 'async';
     const settled = () => {
       // An image that finished after a map switch must not wake a different
       // basemap or make it show an old scene.
       if (this._selectedImageSpec()?.url === spec.url) this._invalidate();
     };
-    im.onload = settled;
-    im.onerror = settled;
+    im.addEventListener('load',settled,{once:true});
+    im.addEventListener('error',settled,{once:true});
     this._images.set(spec.url, im);
-    im.src = spec.url;
+    if (!im.src) im.src = spec.url;
     return im;
   }
 
