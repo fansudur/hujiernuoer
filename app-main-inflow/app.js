@@ -23,7 +23,7 @@ import {displayClip} from './v81-display-clip.js';
    ========================================================================== */
 
 import {configureTourPanels} from './v74-panels.js?rev=a756b0597232';
-import { HandoffDataProvider } from './data-provider.js';
+import { HandoffDataProvider } from './data-provider.js?v=105.19-progressive-boundaries';
 import { sampleDemElevation,
   AOI_BOUNDS,
   geometryBounds,
@@ -7947,7 +7947,13 @@ function seekGuidedStation(seconds){
  return true;
 }
 const guideVoiceWanted={};
+function ensureGuideEnglishVoice(){
+ const t=guidedTour;
+ if(atlasLanguage()==='en'&&t.acceptEnglishVoice&&!t.audioManifests?.en)
+   t.audioManifests.en=t.acceptEnglishVoice();
+}
 function syncGuideVoiceLanguage(){
+ ensureGuideEnglishVoice();
  const control=$('#guided-tour-voice'),lang=atlasLanguage();
  const available=Boolean(guidedTour.audioManifests?.[lang]&&Object.keys(guidedTour.audioManifests[lang]).length);
  control.checked=available&&(guideVoiceWanted[lang]??true);
@@ -7975,6 +7981,7 @@ function installV93Bridge(){
  });
  window.addEventListener('atlas:languagechange',e=>{
    const {previous}=e.detail;
+   ensureGuideEnglishVoice();
    map2d?.setState({});map3d?.setState({labelLanguage:atlasLanguage()});
    const t=guidedTour,s=guideStep();
    if(t.active){
@@ -8494,10 +8501,9 @@ async function boot() {
         const entry=doc?.steps?.[s.id];
         return entry&&entry.body===body(s)&&entry.file===s.id+'.mp3'&&Number.isFinite(entry.durationMs)&&entry.durationMs>0&&/^[a-f0-9]{64}$/.test(entry.sha256)?[[s.id,entry]]:[];
       }));
-      guidedTour.audioManifests={
-        zh:acceptVoice(guideAudio,s=>s.body),
-        en:acceptVoice(guideAudioEn?.schema==='hjn-guide-english-audio/v1'?guideAudioEn:null,s=>translateAtlasEnglish(s.body)),
-      };
+      guidedTour.acceptEnglishVoice=()=>acceptVoice(guideAudioEn?.schema==='hjn-guide-english-audio/v1'?guideAudioEn:null,s=>translateAtlasEnglish(s.body));
+      guidedTour.audioManifests={zh:acceptVoice(guideAudio,s=>s.body)};
+      ensureGuideEnglishVoice();
     }catch(err){console.warn('本机三维导览未载入',err.message)}
     wireGuidedTour();
   }
