@@ -1455,6 +1455,10 @@ export class AtlasMap2D {
     this._flushLabels(ctx);
 
     ctx.restore();
+    if (!this._firstBasemapPainted && (ready || this._terrainRaster)) {
+      this._firstBasemapPainted = true;
+      this.cb.onFirstBasemap?.();
+    }
   }
 
   _loop(now = performance.now()) {
