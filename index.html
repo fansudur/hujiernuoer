@@ -1,1 +1,706 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>呼吉尔诺尔</title><meta http-equiv="refresh" content="0;url=./app-main-inflow/index.html"><a href="./app-main-inflow/index.html">打开呼吉尔诺尔第一章</a></html>
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <!-- Root shell: keep in sync with app-main-inflow/index.html. -->
+  <base href="./app-main-inflow/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    (()=>{let saved;try{saved=localStorage.getItem('hujiernuoer-atlas-theme');}catch{}
+      document.documentElement.dataset.theme=['light','dark'].includes(saved)?saved:
+        (window.matchMedia?.('(prefers-color-scheme: dark)').matches===false?'light':'dark');
+      if(window.matchMedia('(max-width: 760px)').matches
+        && [...new URLSearchParams(location.search).keys()].every(key=>key==='lang')){
+        document.documentElement.classList.add('atlas-phone-first-map');
+        const preload=document.createElement('link');
+        preload.id='atlas-preview-resource';preload.rel='preload';preload.as='image';preload.fetchPriority='high';
+        preload.href='../hujiernuoer-handoff-v2/terrain/satellite-2026-08-08-display.webp';
+        document.head.append(preload);
+      }
+    })();
+  </script>
+  <meta charset="utf-8">
+  <title>呼吉尔诺尔 · 水文地貌纪事图谱</title>
+  <link rel="icon" type="image/png" href="brand/favicon.png">
+  <link rel="stylesheet" href="styles.css?cleanup=92.1&v=105.18.21&rev=440afe4ff3e4">
+  <link rel="stylesheet" href="v74-panels.css?v=77&rev=f04503a27478">
+  <link rel="stylesheet" href="v76-guide-layout.css?v=90.1&rev=5ed4f0945457">
+  <link rel="stylesheet" href="v83-reference.css?v=86&rev=56f86cc25455">
+  <link rel="stylesheet" href="v89-space.css?v=105.15&rev=5ac3dea7d602">
+  <link rel="stylesheet" href="v93-chapter1.css?v=102-sans&rev=2760b120eace">
+  <link rel="stylesheet" href="guide-review.css?v=105.18.23&rev=ccf9d4e38a81">
+  <link rel="stylesheet" href="v74-director.css?v=105&rev=b1fc9176bcf4">
+  <link rel="stylesheet" href="mobile-atlas.css?v=105.5&rev=46b831074f28">
+  <link rel="stylesheet" href="redesign-minimal-2026.css?v=2026.11.28-ui14&rev=e3441fc783fb">
+  <link rel="stylesheet" href="guide-seek.css?v=2026.11.27-walk-ui1&rev=4fd699e78b86">
+  <link rel="stylesheet" href="atlas-i18n.css?v=4&rev=2286f9801913">
+  <style>
+    #atlas-first-map{display:none}
+    .atlas-phone-first-map #atlas-first-map{display:block;position:absolute;left:0;top:54.2%;
+      transform:translateY(-50%);width:100%;height:auto;pointer-events:none}
+    #atlas-3d-load{position:fixed;z-index:999;left:50%;bottom:calc(70px + env(safe-area-inset-bottom,0px));
+      transform:translateX(-50%);margin:0;width:max-content;max-width:85vw;padding:.65em 1em;
+      border-radius:12px;background:var(--surface-2,#222);color:var(--ink,#fff);font-size:.85rem}
+  </style>
+</head>
+<body>
+  <div class="observatory" id="observatory" data-view-preset="home">
+    <!-- 1. Full-Bleed Edge-to-Edge Interactive 2D/3D Map Stage (v53 Map Contrast Engine preserved) -->
+    <main class="map-stage" id="map-stage" data-view-mode="2d" data-water-date="" data-water-loading="false" data-water-errors="0">
+      <div id="guided-transition-shade" aria-hidden="true"></div>
+      <div id="guided-photo-map-pin" class="guided-map-pin" hidden aria-hidden="true"></div>
+      <svg id="guide-ground-anchors" aria-hidden="true"><g id="guide-landmark-anchors"></g><g id="guide-four-anchors"></g><g id="guide-photo-anchors"></g></svg>
+      <div id="guided-prior-landmarks" hidden aria-hidden="true"></div>
+      <div id="guided-four-map" class="guided-four-map" hidden aria-hidden="true"></div>
+      <div id="guided-map-pin" class="guided-map-pin" hidden aria-hidden="true"></div>
+      <canvas id="map-2d-canvas" aria-label="二维空间证据地图"></canvas>
+      <img id="atlas-first-map" alt="" aria-hidden="true" width="1166" height="823">
+      <div id="map-3d-stage" hidden aria-label="三维地形空间证据视图"></div>
+      <div id="map-3d-labels" hidden></div>
+      <i id="guided-profile-ground-cursor" hidden aria-hidden="true"></i>
+    </main>
+
+    <!-- 2. Top-Left Editorial Hero Island (Single Place Entry + Primary Readout + Dual Independent Dates) -->
+    <header class="hud-top-left" id="hud-top-left">
+      <section class="atlas-hero-card" id="atlas-hero-card" aria-label="地点、主湖读数与独立日期">
+        <!-- Layer 1: Place Title + Primary Lake Metric (+ Mobile Single-Entry Place Popover Trigger) -->
+        <div class="hero-top-row">
+          <div class="hero-place-block">
+            <button type="button" class="hero-place-trigger" id="btn-scope-pop" aria-label="呼吉尔诺尔：切换地点" aria-describedby="hero-scope-label" aria-haspopup="dialog" aria-controls="scope-popover" aria-expanded="false" title="切换主湖来水主线或周边对照地点">
+              <h1 class="brand-title" id="hero-place-title">呼吉尔诺尔</h1>
+              <span class="hero-scope-pill" id="hero-scope-label">主湖</span>
+              <span class="caret mobile-caret" aria-hidden="true">▾</span>
+            </button>
+          </div>
+          <!-- Live Lake Telemetry injected cleanly here (Main Lake hero + optional WF1 in dual mode) -->
+          <div class="lake-chips" id="lake-chips" aria-label="主湖与西长湖当月水面面积与状态"></div>
+        </div>
+
+        <!-- Layer 2: Independent Dual-Date Strip (100% readable at 1440px, 820px, 390px, and 320px!) -->
+        <div class="dual-dates" aria-label="月度水面与背景影像独立日期">
+          <button type="button" class="date-chip water" id="pill-water-month" title="JRC 月度水面统计年月（独立于卫星影像单景拍摄日；点击展开时序曲线）">
+            <span class="chip-k">水面月</span>
+            <strong id="hdr-month">2024-07</strong>
+          </button>
+          <span class="date-divider" aria-hidden="true"></span>
+          <button type="button" class="date-chip basemap" id="btn-basemap-pop" aria-haspopup="dialog" aria-controls="basemap-popover" aria-expanded="false" title="背景卫星影像拍摄日期（独立于水面统计月；点击切换历史卫星影像与底图）">
+            <span class="chip-k">影像</span>
+            <strong id="hdr-basemap">2026-08-08</strong>
+            <span class="caret" aria-hidden="true">▾</span>
+          </button>
+        </div>
+
+        <!-- Layer 3 (Desktop / Mid only): Single Quiet Place & Peripheral Comparison Switcher -->
+        <nav class="scope-strip" id="focus-scope-bar" aria-label="主线与周边对照切换">
+          <button type="button" class="scope-btn active" data-focus-scope="main" aria-pressed="true" title="主湖优先视图：主湖与三处入口线索">主湖</button>
+          <button type="button" class="scope-btn" data-focus-scope="crossings" aria-pressed="false" title="沿来水向上查三八水库中桥与地方道路圆涵">桥涵</button>
+          <button type="button" class="scope-btn" data-focus-scope="office" aria-pressed="false" title="嘎查办公院与上下游剖面（出水口未确认，图上保留断口）">办公院</button>
+          <span class="scope-sep" aria-hidden="true"></span>
+          <span class="scope-group-lbl">对照</span>
+          <button type="button" class="scope-btn compare" data-focus-scope="west" aria-pressed="false" title="周边对照：西长湖独立窗口">西长湖</button>
+          <button type="button" class="scope-btn compare" data-focus-scope="north" aria-pressed="false" title="周边对照：北小湖（2025-09-22 单期水斑）">北小湖</button>
+          <button type="button" class="scope-btn compare" data-focus-scope="east" aria-pressed="false" title="周边对照：东池（2025-09-22 单期水斑）">东池</button>
+          <button type="button" class="scope-btn compare" data-focus-scope="marsh" aria-pressed="false" title="周边对照：东部泥沼原图圈注查看点">东部泥沼</button>
+        </nav>
+      </section>
+
+      <button type="button" id="btn-guide-chapter-one" class="glass-pill guide-start-chip" aria-controls="guided-tour-panel" disabled>▶ 第一章导览</button>
+
+      <!-- Contextual Floating Alerts & Independent Scene Notices (0px when idle) -->
+      <div class="alert-stack" id="alert-stack"></div>
+      <div class="hud-meta-pills">
+        <span class="meta-notice-pill" id="imagery-only-month" hidden></span>
+        <div class="meta-notice-pill history-credit" id="fixed-history-credit" hidden></div>
+      </div>
+    </header>
+
+    <!-- 3. Top-Right Single Editorial Command Bar (4 Categories + Single 2D/3D + Walk + Tools) -->
+    <div class="hud-top-right" id="hud-top-right">
+      <nav class="atlas-cmd-bar" aria-label="工作台与视图切换">
+        <!-- 4 Primary Categories (Desktop/Mid; on Mobile <=760px moved to thumb-reachable bottom bar) -->
+        <div class="cmd-nav-group" role="group" aria-label="四类工作台入口">
+          <button type="button" class="dock-btn" data-guide-launch aria-controls="guided-tour-panel" disabled>导览</button>
+          <button type="button" class="dock-btn" data-drawer-tab="waterway" id="btn-open-waterway" aria-controls="studio-drawer" aria-expanded="false" title="水路总览：来水路线、东南同位月检与现场桥涵">
+            <span>水路总览</span>
+          </button>
+          <button type="button" class="dock-btn" data-drawer-tab="layers" id="btn-open-layers" aria-controls="studio-drawer" aria-expanded="false" title="图层控制：分区、等高线、历史纸图与分析矢量">
+            <span>图层</span>
+            <span class="dock-count" id="active-layer-badge">10</span>
+          </button>
+          <button type="button" class="dock-btn" data-drawer-tab="evidence" id="btn-open-evidence" aria-controls="studio-drawer" aria-expanded="false" title="证据与资料：证据判断、样例、历史纸图与资料清单">
+            <span>证据与资料</span>
+            <span class="dock-count" id="evidence-count-badge">17</span>
+          </button>
+        </div>
+
+        <span class="cmd-sep hide-mob" aria-hidden="true"></span>
+
+        <!-- Single Page-Wide 2D / 3D Switch + Walk right beside 3D -->
+        <div class="dim-switch" role="group" aria-label="二维三维与地形漫游">
+          <button type="button" class="seg-btn active" id="btn-2d" data-dim="2d" aria-pressed="true">2D</button>
+          <button type="button" class="seg-btn" id="btn-3d" data-dim="3d" aria-pressed="false">3D</button>
+          <button type="button" class="seg-btn walk-btn" id="btn-open-walk" aria-controls="walk-lab" aria-pressed="false" title="从地图中心进入第一人称三维地形漫游">漫游</button>
+          <div class="exag-pills" id="exag-group" hidden role="group" aria-label="三维垂向夸张">
+            <button type="button" class="exag-btn" data-exag="1" title="1:1 原始高程比例">1×</button>
+            <button type="button" class="exag-btn" data-exag="4" title="4倍垂向夸张">4×</button>
+            <button type="button" class="exag-btn active" data-exag="8" title="8倍垂向夸张">8×</button>
+          </div>
+        </div>
+
+        <span class="cmd-sep" aria-hidden="true"></span>
+
+        <!-- Low-Frequency Tools Menu (Theme Dark/Light + Export + 389 Docs) -->
+        <button type="button" class="dock-btn tools-btn" id="btn-export-menu" aria-haspopup="dialog" aria-controls="export-menu" aria-expanded="false" aria-label="外观、导出与资料清单" title="外观主题、导出数据与资料清单">
+          <span aria-hidden="true">⋯</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- 4. Right-Edge Minimal Map Controls ONLY: Compass, Zoom (+/-), and Legend -->
+    <div class="hud-rail" id="hud-rail" aria-label="地图指南针、缩放与图例">
+      <button type="button" class="rail-compass" id="btn-compass" title="地理正北指北针（三维旋转实时跟随；点击复位正北）" aria-label="复位地理正北">
+        <svg class="compass-svg" id="compass-svg" viewBox="0 0 36 36">
+          <circle cx="18" cy="18" r="15.5" fill="none" stroke="currentColor" stroke-opacity="0.18" stroke-width="1"/>
+          <polygon points="18,5 21,18 18,15.4 15,18" fill="#d94f5c"/>
+          <polygon points="18,31 21,18 18,20.6 15,18" fill="currentColor" opacity="0.38"/>
+          <text x="18" y="13.8" text-anchor="middle" fill="#ffffff" font-size="6.2" font-weight="800" font-family="sans-serif">N</text>
+        </svg>
+      </button>
+
+      <div class="rail-stack">
+        <button type="button" class="rail-btn" id="btn-zoom-in" aria-label="放大" title="放大">+</button>
+        <button type="button" class="rail-btn" id="btn-zoom-out" aria-label="缩小" title="缩小">−</button>
+      </div>
+
+      <button type="button" class="rail-legend-btn" id="btn-legend" aria-haspopup="dialog" aria-controls="legend-popover" aria-expanded="false" title="查看图例：实拍、模型、手绘与待核缺口符号">图例</button>
+    </div>
+
+    <!-- 4b. First-Person Terrain Walk Overlay (v53 8x Walk logic preserved intact) -->
+    <section class="walk-lab" id="walk-lab" aria-label="地面漫游与太阳模拟" hidden>
+      <div class="walk-row">
+        <strong>地形漫游</strong>
+        <button type="button" class="deck-btn" id="walk-close">退出</button>
+        <output id="walk-chain"></output>
+      </div>
+      <p class="card-note" id="walk-coverage-note" role="status" hidden></p>
+      <div class="walk-row" id="walk-guide-controls" hidden>
+        <button type="button" class="deck-btn" id="walk-start">开始导览</button>
+      </div>
+      <div class="walk-touch" aria-label="触屏移动；拖地图转头">
+        <button type="button" class="deck-btn" data-walk-hold="left" aria-label="向左移动">←</button>
+        <button type="button" class="deck-btn" data-walk-hold="forward" aria-label="向前移动">↑</button>
+        <button type="button" class="deck-btn" data-walk-hold="back" aria-label="向后移动">↓</button>
+        <button type="button" class="deck-btn" data-walk-hold="right" aria-label="向右移动">→</button>
+        <button type="button" class="deck-btn" data-walk-hold="up" aria-label="上升">升</button>
+        <button type="button" class="deck-btn" data-walk-hold="down" aria-label="下降">降</button>
+      </div>
+      <div class="walk-row walk-speed-controls" id="walk-speed-controls" role="group" aria-label="漫游移动速度，飞行时同时调节水平与升降">
+        <button type="button" class="deck-btn" data-walk-speed-step="-1" aria-label="降低移动速度">−</button>
+        <output id="walk-speed-value" aria-live="polite"></output>
+        <button type="button" class="deck-btn" data-walk-speed-step="1" aria-label="提高移动速度">＋</button>
+        <button type="button" class="deck-btn" id="walk-pace">快速 8×</button>
+      </div>
+      <details id="walk-advanced">
+        <summary>更多设置</summary>
+        <div class="walk-row">
+        <label>模式 <select class="deck-select" id="walk-mode">
+          <option value="walk">自由步行</option><option value="fly" selected>自由飞行</option><option value="guide">道路导览（可选）</option>
+        </select></label>
+        <label>起点 <select class="deck-select" id="walk-site"><option value="current">入场位置</option><option value="road">圆涵附近道路</option><option value="office">办公院附近</option></select></label>
+        <button type="button" class="deck-btn" id="walk-layer-trigger" aria-controls="studio-drawer">图层</button>
+        </div>
+      <p class="card-note" id="walk-input-note">左键点击接管鼠标；按住右键或左键拖动转头。WASD 移动，Shift 加速，F 切换步行／飞行，画面上滚轮调速。飞行：E 或空格上升，Q、C 或 Ctrl 下降。Esc 先释放鼠标。</p>
+      <div class="walk-row walk-terrain-controls">
+        <button type="button" class="deck-btn walk-contours" id="walk-contour-toggle" aria-pressed="false">等高线</button>
+        <span role="group" aria-label="地形垂向比例">地形
+          <button type="button" class="deck-btn" data-walk-exag="1" aria-pressed="true">1×</button>
+          <button type="button" class="deck-btn" data-walk-exag="4" aria-pressed="false">4×</button>
+          <button type="button" class="deck-btn" data-walk-exag="8" aria-pressed="false">8×</button>
+        </span>
+        <small class="card-note" id="walk-contour-status" aria-live="polite"></small>
+      </div>
+      <div class="walk-row">
+        <label>北京时间 <input class="deck-select" id="walk-date" type="date" value="2026-08-08"></label>
+        <button type="button" class="deck-btn" data-walk-sun="morning" aria-pressed="false">08:00</button>
+        <button type="button" class="deck-btn" data-walk-sun="noon" aria-pressed="true">12:00</button>
+        <button type="button" class="deck-btn" data-walk-sun="evening" aria-pressed="false">18:00</button>
+      </div>
+      <output id="walk-sun" class="card-note" aria-live="polite"></output>
+      <p class="card-note">步行视高 1.7 米；切到飞行升至 25 米，飞行默认慢速，最高 8×，水平和升降同档；Shift 临时加速。下方地形倍率只夸张地势，不改变相机视高。30 米地表仅作模拟，不判断道路或设施能否通行。</p>
+      </details>
+    </section>
+
+    <section id="guided-tour-panel" class="glass-pill walk-lab guided-tour-panel" aria-label="三维导览，篇章一：水怎么来到呼吉尔诺尔" hidden>
+      <div class="walk-row"><strong>篇章一 · 水怎么来到呼吉尔诺尔</strong><button type="button" class="deck-btn" id="guided-toggle-script" aria-controls="guided-observer-script" aria-expanded="true">收起讲稿</button><button type="button" class="deck-btn" id="guided-tour-close">退出导览</button></div>
+      <div class="walk-row"><label>段落 <select class="deck-select" id="guided-tour-select" aria-label="选择篇章一的段落"></select></label><span id="guided-tour-progress"></span><small id="guided-tour-elevation"></small><button type="button" id="v74-open-tour-profile" class="deck-btn" aria-controls="chart-deck" aria-expanded="false" hidden>剖面</button></div>
+      <div id="guided-observer-active" class="guided-observer-active" hidden>
+        <span id="guided-observer-label"></span>
+        <div class="guided-observer-controls">
+          <button class="deck-btn" id="guided-observer-fold" type="button" aria-expanded="true" aria-controls="guided-observer-script">收起讲稿</button>
+          <button class="deck-btn" id="guided-observer-return" type="button">返回原机位</button>
+        </div>
+        <small id="guided-observer-rotate" class="guided-observer-rotate" hidden>此机位的湖面偏右；横屏可看见更多。</small>
+      </div>
+      <small id="guided-sides-caption" class="guided-sides-caption" hidden></small>
+      <div id="guided-director-board" aria-label="当前讲解的图面证据">
+        <div class="guide-board-copy"><small id="guided-board-kind"></small><strong id="guided-board-focus"></strong><small id="guided-board-note"></small></div>
+        <div class="guide-board-side">
+          <div id="guided-board-media" hidden></div>
+
+        </div>
+      </div>
+      <div id="guided-observer-script" class="guided-tour-scroll" tabindex="0" aria-label="本段讲解与证据">
+      <div id="guided-kmz-profiles" class="guided-observer-buttons" aria-label="按现场标绘查看来路剖面" hidden>
+        <button type="button" class="deck-btn" data-guide-kmz-profile="1" aria-pressed="false">01 来路剖面</button>
+        <button type="button" class="deck-btn" data-guide-kmz-profile="3" aria-pressed="false">03 来路剖面</button>
+      </div>
+      <div class="guided-tour-detail">
+        <div><h2 id="guided-tour-title"></h2><p id="guided-opening-line" hidden></p><p id="guided-tour-caption"></p><p class="nw-guide-context" id="nw-guide-context" hidden></p><small id="guided-tour-source"></small><div id="guide-catchment-screen" hidden></div></div>
+        <button type="button" id="guided-tour-photo-link" aria-controls="guided-photo-preview" aria-expanded="false" hidden><img id="guided-tour-photo" alt=""><small id="guided-photo-trigger-text">放大现场照片</small></button>
+      </div>
+      <section id="guided-east-controls" class="guided-observer-buttons" aria-label="东侧影像与地形" hidden>
+        <strong>同位影像（文件标记）</strong><div id="guided-east-scenes"></div>
+        <strong id="guided-east-profile-label">地形剖面</strong><div id="guided-east-profiles"></div>
+        <small id="guided-east-caveat"></small>
+      </section>
+      <p id="guided-tour-chapter-status" class="guided-chapter-status"></p>
+      <details id="guided-history-review" class="guided-route-details" hidden>
+        <summary>同位影像对照｜早期与近期</summary>
+        <p>公开版未收录此处对照旧影像。当前底图仅用于定位，不代表旁白所述年代。</p>
+      </details>
+      <details id="guided-field-marks" class="guided-route-details" hidden>
+        <summary>现场位置 · 水通道 KMZ 四点</summary>
+        <p>按原 KMZ 顺序定位。1、3 为双侧涵洞连通；2 为南侧有涵、北侧疑似填埋；4 为路南汇入低点后下流。来源：现场记录。</p>
+        <div id="guided-field-buttons" class="guided-observer-buttons"></div>
+        <p>此处历史影像未收录于公开版。可对照上方现场记录与地图位置。</p>
+      </details>
+      <details id="guided-observer-choices" class="guided-route-details" hidden>
+        <summary>对照观察机位</summary>
+        <p>候选机位用于看地势，不是道路、径流线或新增导览路线。</p>
+        <div id="guided-observer-buttons" class="guided-observer-buttons"></div>
+      </details>
+      <details id="guided-tour-route-details" class="guided-route-details" hidden>
+        <summary id="guided-tour-route-summary"></summary>
+        <ul id="guided-tour-route-body"></ul>
+        <a id="guided-tour-route-chart" target="_blank" rel="noopener" hidden></a>
+      </details>
+      <small id="guided-tour-ground" class="guided-tour-ground"></small>
+      <p class="card-note" id="guided-tour-phase" role="status"></p>
+      </div>
+    </section>
+    <nav class="glass-pill guided-navigation-strip" id="guided-tour-nav-strip" aria-label="第一章导览站点控制" hidden>
+      <span id="v74-panel-status" class="v74-sr-only" role="status"></span>
+      <output id="guided-transition-label" role="status"></output>
+      <div class="walk-row guided-tour-controls">
+        <button type="button" id="guided-tour-prev" class="deck-btn">上一站</button>
+        <button type="button" id="guided-tour-play" class="deck-btn">播放本段</button>
+        <button type="button" id="guided-tour-next" class="deck-btn">下一站</button>
+        <button type="button" id="guided-camera-follow" class="deck-btn" aria-pressed="true" title="左拖转向，WASD 平移，Q／E 升降，Shift 加速；滚轮缩放，触屏可双指缩放和平移。">跟随镜头</button>
+        <button type="button" id="v74-layout-reset" class="deck-btn">恢复布局</button>
+        <button type="button" id="guided-mobile-layers" class="deck-btn guide-mobile-tools" aria-controls="studio-drawer" aria-expanded="false" data-drawer-tab="layers">图层／资料</button>
+        <button type="button" class="deck-btn" id="guided-play-options" popovertarget="guide-play-toggles">选项</button>
+        <div id="guide-play-toggles" popover="auto" role="group" aria-label="导览播放与镜头选项">
+        <label><input type="checkbox" id="guided-tour-voice" checked> 离线语音</label>
+        <small id="guided-language-voice-note" hidden>英文语音未载入；仍可阅读英文讲稿。</small>
+        <label><input type="checkbox" id="guided-tour-contours" checked> <span id="guided-contour-caption">10 米等高线</span></label>
+        <div class="guide-camera-adjustments" role="group" aria-label="手动镜头">
+          <small>WASD 移动 · Q 降／E 升</small>
+          <button type="button" data-guide-camera-adjust="height:10">升高</button><button type="button" data-guide-camera-adjust="height:-10">降低</button>
+          <button type="button" data-guide-camera-adjust="zoom:-.13">推近</button><button type="button" data-guide-camera-adjust="zoom:.13">拉远</button>
+          <button type="button" data-guide-camera-adjust="reset:0">复位机位</button>
+        </div>
+        </div>
+      </div>
+    </nav>
+    <aside id="guided-reference-dock" class="glass-pill" aria-label="导览右侧参照栏" hidden>
+    <header class="guided-reference-title"><strong>空间参照</strong><div role="group" aria-label="小地图范围">
+      <button type="button" class="deck-btn" id="guide-map-overview" aria-pressed="true">全区</button>
+      <button type="button" class="deck-btn" id="guide-map-local" aria-pressed="false" disabled>本站</button><div class="v82-zoom" role="group" aria-label="参照图缩放"><button type="button" data-map-zoom="-1" aria-label="缩小参照图">−</button><button type="button" data-map-zoom="0" aria-label="复位参照图">1×</button><button type="button" data-map-zoom="1" aria-label="放大参照图">+</button></div>
+    </div></header>
+    <div id="guided-map-pane" data-view="overview" tabindex="0" aria-label="矢量图：滚轮或加减键缩放，放大后拖动，双击复位">
+    <div class="guided-nav-map" id="guided-nav-map" hidden aria-label="导览小地图，显示镜头实际位置和朝向">
+      <strong class="v74-sr-only">镜头位置与方向</strong>
+      <svg viewBox="0 0 154 100" aria-hidden="true">
+        <g id="guided-nav-base"></g>
+        <text data-fixed-north x="143" y="13" text-anchor="middle" fill="#cad7e5" font-size="10">北</text>
+        <g id="guided-nav-target" hidden><circle r="5" fill="none" stroke="#dbf6ff" stroke-width="1.7"/></g>
+        <g id="guided-nav-photo" hidden><path d="M0 -11 L3 -5 L-3 -5 Z" fill="#f4c7ff"/><rect x="-4.5" y="-3.5" width="9" height="7" rx="1.5" fill="#462752" stroke="#f4c7ff"/><circle r="1.5" fill="#f4c7ff"/></g>
+        <g id="guided-nav-marker"><path d="M0 -13 L7 5 L0 3 L-7 5 Z" fill="#f4d260" stroke="#1b2230" stroke-width="1.6"/><circle r="2.4" fill="#fff"/></g>
+      </svg>
+    </div>
+    <div id="guided-location-card" class="guide-location-card" hidden aria-label="本段空间定位">
+      <strong id="guided-location-title"></strong>
+      <svg id="guided-four-inset" viewBox="0 0 184 55" role="img" aria-label="03 道路：原编号西至东 1 至 4，导览从 4 到 1" hidden></svg>
+      <small id="guided-location-note"></small>
+    </div>
+      <svg id="guided-map-inset" viewBox="0 0 140 95" role="img" aria-label="主湖与本段候选入口的平面位置示意" hidden></svg>
+    </div>
+    <details id="guided-east-legend" hidden><summary>东侧图例与图层</summary><div id="guided-east-layers"></div></details>
+    <details id="guided-reference-credit"><summary>底图来源与日期</summary><div id="guided-credit-slot"></div></details>
+    </aside>
+    <aside class="glass-pill guided-photo-preview" id="guided-photo-preview" aria-label="导览证据原图预览" hidden>
+      <header><strong id="guided-photo-label">归档现场照片</strong><button type="button" class="deck-btn" id="guided-photo-close">关闭原图</button></header>
+      <div class="v82-photo-viewport"><div class="v75-evidence-media"><img id="guided-photo-enlarged" alt="现场照片放大图"><img id="v75-compare-second" alt="" hidden><span id="v75-compare-left" class="v75-date-label" hidden></span><span id="v75-compare-right" class="v75-date-label" hidden></span></div></div>
+      <p class="guided-photo-caption" id="guided-photo-caption" aria-live="polite"></p>
+        <small id="guided-photo-position" hidden></small>
+      <div class="guided-photo-controls" id="guided-photo-controls" hidden>
+        <button type="button" class="deck-btn" id="guided-photo-prev" aria-label="上一张照片">上一张</button>
+        <span id="guided-photo-counter"></span>
+        <button type="button" class="deck-btn" id="guided-photo-next" aria-label="下一张照片">下一张</button>
+      </div>
+      <div class="guided-photo-thumbs" id="guided-photo-thumbs" aria-label="照片索引" hidden></div>
+      <small>悬停看局部；滚轮缩放后可拖动，双击复位。触屏点一下再拖。</small>
+    </aside>
+    <p id="guided-tour-unavailable" class="glass-pill guided-tour-warning" role="status" hidden>当前浏览器无法使用三维导览；仍可在「水路总览」查看原证据。</p>
+
+    <!-- 5. Bottom-Left Minimal Cartographic Scale & Coordinates -->
+    <div class="hud-telemetry" id="hud-telemetry" aria-label="比例尺与坐标读数">
+      <span class="scale-bar-wrap">
+        <span class="scale-bar" id="scale-bar"></span>
+        <span id="scale-label">1 km</span>
+      </span>
+      <span class="tel-sep tel-sep-coord">·</span>
+      <span id="cursor-readout">49.1380°N, 119.6880°E · GLO-30 —</span>
+      <span class="tel-sep">·</span>
+      <span id="render-engine-badge" class="engine-tag">2D Canvas</span>
+    </div>
+
+    <!-- 6. Mobile Sheet Backdrop -->
+    <div class="sheet-backdrop anim-surface" id="sheet-backdrop" hidden></div>
+
+    <!-- 7. On-Demand Editorial Studio Drawer (4 Primary Tabs + Focus-Safe Sub-Nav) -->
+    <aside class="floating-drawer studio-drawer anim-surface" id="studio-drawer" data-open="false" hidden aria-label="讲解、水路总览、图层和证据与资料工作台">
+      <div class="sheet-handle-row mobile-only" id="studio-sheet-handle" role="button" tabindex="0" aria-label="收起工作台">
+        <span class="sheet-pill"></span>
+        <span class="sheet-handle-label">轻点收起面板</span>
+      </div>
+      <div class="drawer-head">
+        <div class="drawer-tabs" role="tablist" aria-label="四类主工作台分类">
+          <button type="button" class="d-tab" data-studio-tab="waterway" role="tab" aria-selected="false">水路总览</button>
+          <button type="button" class="d-tab active" data-studio-tab="layers" role="tab" aria-selected="true">图层</button>
+          <button type="button" class="d-tab" data-studio-tab="evidence" role="tab" aria-selected="false">证据与资料</button>
+        </div>
+        <button type="button" class="icon-close" id="btn-close-studio" aria-label="关闭面板" title="关闭（Esc）">✕</button>
+      </div>
+      <!-- Focus-preserving Sub-Navigation Strip -->
+      <div class="studio-subnav" id="studio-subnav" hidden aria-label="子视图切换"></div>
+      <div class="drawer-body" id="studio-drawer-body"></div>
+    </aside>
+
+    <!-- 8. On-Demand Unified Location Detail Inspector -->
+    <aside class="floating-drawer inspector-drawer anim-surface" id="inspector-drawer" data-open="false" hidden aria-label="选中地图位置统一详情">
+      <div class="sheet-handle-row mobile-only" id="inspector-sheet-handle" role="button" tabindex="0" aria-label="切换详情面板高度">
+        <span class="sheet-pill"></span>
+        <span class="sheet-handle-label" id="inspector-handle-label">轻点展开 / 恢复半屏</span>
+      </div>
+      <div class="drawer-body" id="inspector-drawer-body"></div>
+    </aside>
+
+    <!-- 8a. Persistent Return-to-Route Floating Pill -->
+    <div class="waterway-return-pill anim-surface" id="waterway-return-pill" hidden role="region" aria-label="返回水路总览原路线">
+      <button type="button" class="return-pill-main" id="btn-return-waterway">
+        <span class="return-arrow" aria-hidden="true">←</span>
+        <span class="return-copy">
+          <strong>返回原路线</strong>
+          <small id="return-waterway-ctx"></small>
+        </span>
+      </button>
+      <button type="button" class="return-pill-dismiss" id="btn-dismiss-return" aria-label="关闭返回提示" title="关闭">✕</button>
+    </div>
+
+
+    <!-- 9. Shared Bottom Floating Temporal & Unified Profile Dock (+ Mobile Thumb 4-Category Bar) -->
+    <section class="chart-deck" id="chart-deck" data-mode="time" data-expanded="false" aria-label="底部共用时序与地形剖面联动栏">
+      <button type="button" id="v74-close-tour-profile" class="deck-btn" hidden>收起剖面</button>
+      <div class="deck-grip" id="deck-grip" role="separator" tabindex="0" aria-orientation="horizontal" aria-label="上下拖动或轻点展开收起图表" aria-expanded="false">
+        <span class="grip-bar"></span>
+        <span class="grip-hint" id="deck-grip-hint">展开图表</span>
+      </div>
+
+      <div class="deck-bar" id="deck-bar">
+        <div class="mode-switch" role="tablist" aria-label="底栏模式：时序与剖面">
+          <button type="button" class="mode-btn active" data-deck-mode="time" role="tab" aria-selected="true">时序</button>
+          <button type="button" class="mode-btn" data-deck-mode="profile" role="tab" aria-selected="false">剖面</button>
+          <button type="button" class="mode-btn" data-deck-mode="feature" role="tab" aria-selected="false" hidden>对象</button>
+        </div>
+
+        <div class="deck-quick-controls" id="deck-quick-controls"></div>
+
+        <span class="mob-row-break" aria-hidden="true"></span>
+
+        <button type="button" class="deck-expand-btn" id="btn-deck-expand" aria-expanded="false">
+          <span id="deck-expand-label">曲线</span>
+          <span class="expand-chevron" aria-hidden="true">▴</span>
+        </button>
+      </div>
+
+      <div class="deck-body-collapse" id="deck-body-collapse">
+        <div class="deck-body" id="deck-body" aria-hidden="true">
+          <div class="deck-subbar" id="deck-subbar"></div>
+          <div class="deck-chart-host" id="deck-chart-host"></div>
+        </div>
+      </div>
+
+      <!-- Mobile Thumb-Reachable 4-Category Navigation Bar (keeps Top Bar strictly 2 slim rows!) -->
+      <nav class="mobile-nav-strip mobile-only" aria-label="移动端四类主入口">
+        <button type="button" class="mob-nav-btn" data-guide-launch aria-controls="guided-tour-panel" disabled>导览</button>
+        <button type="button" class="mob-nav-btn" data-drawer-tab="waterway" aria-controls="studio-drawer" aria-expanded="false">
+          <span>水路总览</span>
+        </button>
+        <button type="button" class="mob-nav-btn" data-drawer-tab="layers" aria-controls="studio-drawer" aria-expanded="false">
+          <span>图层</span>
+        </button>
+        <button type="button" class="mob-nav-btn" data-drawer-tab="evidence" aria-controls="studio-drawer" aria-expanded="false">
+          <span>证据与资料</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- 10. Top-Layer Calm Floating Popovers -->
+    <!-- 10a. Single-Entry Place & Peripheral Comparison Popover (Mobile / quick switch) -->
+    <div class="glass-popover scope-popover anim-surface" id="scope-popover" hidden role="dialog" aria-label="切换主线地点与周边对照">
+      <div class="pop-head">
+        <div class="pop-title">地点与周边对照<small>先看主湖，再沿来水查桥涵与办公院</small></div>
+        <button type="button" class="pop-close" data-close-popover="scope-popover" aria-label="关闭地点切换">✕</button>
+      </div>
+      <div class="scope-pop-list">
+        <button type="button" class="scope-pop-btn" id="btn-fit-all"><strong>全域定位</strong><small>只移动地图，保留图层与日期</small></button>
+      </div>
+      <div class="pop-divider"></div>
+      <div class="pop-subhead">主湖来水主线</div>
+      <div class="scope-pop-list">
+        <button type="button" class="scope-pop-btn" data-focus-scope="main"><strong>呼吉尔诺尔 · 主湖</strong><small>默认视角 · 三处入口线索</small></button>
+        <button type="button" class="scope-pop-btn" data-focus-scope="crossings"><strong>现场桥涵</strong><small>三八水库中桥 / 地方道路圆涵</small></button>
+        <button type="button" class="scope-pop-btn" data-focus-scope="office"><strong>嘎查办公院</strong><small>上下游剖面 · 出水口未确认断口</small></button>
+      </div>
+      <div class="pop-divider"></div>
+      <div class="pop-subhead">周边独立对照（不与主湖合并）</div>
+      <div class="scope-pop-grid">
+        <button type="button" class="scope-pop-btn" data-focus-scope="west"><strong>西长湖</strong><small>独立月度窗</small></button>
+        <button type="button" class="scope-pop-btn" data-focus-scope="north"><strong>北小湖</strong><small>2025-09-22 水斑对照</small></button>
+        <button type="button" class="scope-pop-btn" data-focus-scope="east"><strong>东池</strong><small>2025-09-22 水斑对照</small></button>
+        <button type="button" class="scope-pop-btn" data-focus-scope="marsh"><strong>东部泥沼</strong><small>原图圈注区</small></button>
+      </div>
+    </div>
+
+    <!-- 10b. Basemap & Historical Satellite Imagery Popover -->
+    <div class="glass-popover basemap-popover anim-surface" id="basemap-popover" hidden role="dialog" aria-label="切换背景底图与历史卫星影像">
+      <div class="pop-head">
+        <div class="pop-title">背景影像与历史卫星底图<small>拍摄日独立于 JRC 月度水面统计月</small></div>
+        <button type="button" class="pop-close" data-close-popover="basemap-popover" aria-label="关闭底图选择">✕</button>
+      </div>
+      <div class="basemap-options" id="basemap-options">
+        <label class="bm-sync-row"><input type="checkbox" id="timeline-imagery-sync" checked> <span>跟随时序：只用同年月影像</span></label>
+        <label class="bm-prio-label">
+          <span>同月影像优先</span>
+          <select class="deck-select" id="timeline-imagery-priority">
+            <option value="wide-google">优先大范围 Google Earth</option>
+            <option value="ordinary">优先 Sentinel / Landsat</option>
+          </select>
+        </label>
+        <small id="timeline-imagery-note" class="bm-hint-note" aria-live="polite">单景日期与月度水面独立。</small>
+        <details class="tech-details" id="ge-attribution-detail" hidden>
+          <summary>查看该景原图版权署名</summary>
+          <img alt="Google Earth 原图下缘版权署名" style="max-width:100%;height:auto" loading="lazy">
+        </details>
+      </div>
+
+      <div class="pop-subhead" id="basemap-chronology-title">卫星影像时间线</div>
+      <small class="bm-hint-note">Landsat、Sentinel-2、Google Earth 历史影像按年份同列；从早到晚。</small>
+      <div id="basemap-chronology" class="bm-chronology" role="region" aria-labelledby="basemap-chronology-title" tabindex="0"></div>
+      <template id="basemap-native-scenes">
+        <button type="button" class="bm-opt" aria-pressed="false" data-bm="sentinel2-2026-08-08">
+          <span class="bm-name">Sentinel-2 盛夏真彩</span>
+          <small class="bm-footprint">10m · 核心区裁片</small>
+          <span class="bm-date">2026-08-08</span>
+        </button>
+        <button type="button" class="bm-opt" aria-pressed="false" data-bm="sentinel2-2025-05-28">
+          <span class="bm-name">Sentinel-2 春末真彩</span>
+          <small class="bm-footprint">10m · 核心区裁片</small>
+          <span class="bm-date">2025-05-28</span>
+        </button>
+        <button type="button" class="bm-opt" aria-pressed="false" data-bm="sentinel2-2026-04-01">
+          <span class="bm-name">Sentinel-2 残雪真彩</span>
+          <small class="bm-footprint">10m · 核心区裁片</small>
+          <span class="bm-date">2026-04-01</span>
+        </button>
+        <button type="button" class="bm-opt" aria-pressed="false" data-bm="sentinel2-2026-04-08">
+          <span class="bm-name">Sentinel-2 退雪真彩</span>
+          <small class="bm-footprint">10m · 核心区裁片</small>
+          <span class="bm-date">2026-04-08</span>
+        </button>
+        <button type="button" class="bm-opt" aria-pressed="false" data-bm="LT05_L2SP_123026_19920705_02_T1">
+          <span class="bm-name">Landsat 5 真彩</span>
+          <small class="bm-footprint">30m · 宽幅裁片</small>
+          <span class="bm-date">1992-07-05</span>
+        </button>
+        <button type="button" class="bm-opt" aria-pressed="false" data-bm="LT05_L2SP_123026_20070731_02_T1">
+          <span class="bm-name">Landsat 5 真彩</span>
+          <small class="bm-footprint">30m · 宽幅裁片</small>
+          <span class="bm-date">2007-07-31</span>
+        </button>
+        <button type="button" class="bm-opt" aria-pressed="false" data-bm="LC08_L2SP_123026_20210721_02_T1">
+          <span class="bm-name">Landsat 8 真彩</span>
+          <small class="bm-footprint">30m · 宽幅裁片</small>
+          <span class="bm-date">2021-07-21</span>
+        </button>
+      </template>
+      <div class="bm-current">
+        <small id="fixed-history-note" class="bm-hint-note" aria-live="polite"></small>
+        <button type="button" id="fixed-history-clear" class="bm-opt" disabled>解除固定，恢复当前时序／底图</button>
+      </div>
+      <div class="pop-divider"></div>
+        <button type="button" class="bm-opt" aria-pressed="false" data-bm="dem-relief">
+          <span class="bm-name">高程地形晕渲</span>
+          <span class="bm-date">30m 地表模型</span>
+        </button>
+      <div class="pop-divider"></div>
+      <div class="quick-overlay-toggles">
+        <label class="quick-switch">
+          <span>现代等高线</span>
+          <span class="n-switch">
+            <input type="checkbox" id="quick-contour-toggle">
+            <span class="n-switch-track" aria-hidden="true"></span>
+          </span>
+        </label>
+        <label class="quick-switch"><span>等高距</span>
+          <select class="deck-select" id="quick-contour-distance" aria-label="现代等高线间隔">
+            <option value="10">10 米</option><option value="5" selected>5 米</option><option value="2">2 米</option>
+          </select>
+        </label>
+        <small id="quick-contour-load-state" aria-live="polite"></small>
+        <label class="quick-switch"><span>地形坡向箭头</span><span class="n-switch"><input type="checkbox" id="quick-slope-aspect-toggle"><span class="n-switch-track" aria-hidden="true"></span></span></label>
+        <label class="quick-switch"><span>坡向箭头密度</span><select class="deck-select" id="quick-slope-aspect-density" aria-label="坡向箭头密度"><option value="10">10 米档 · 疏</option><option value="5" selected>5 米档 · 中</option><option value="2">2 米档 · 密</option></select></label>
+        <small id="quick-slope-aspect-status" aria-live="polite"></small>
+        <label class="quick-switch">
+          <span>历史纸图参考 <small>1933–1980</small></span>
+          <span class="n-switch">
+            <input type="checkbox" id="quick-history-toggle">
+            <span class="n-switch-track" aria-hidden="true"></span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 10c. Low-Frequency Tools Popover (Theme Switch + Export + 389 Docs) -->
+    <div class="glass-popover export-popover anim-surface" id="export-menu" hidden role="dialog" aria-label="外观、导出与资料清单">
+      <div class="pop-head">
+        <div class="pop-title">工具与数据导出<small>外观仅改界面主题，不改地图证据色</small></div>
+        <button type="button" class="pop-close" data-close-popover="export-menu" aria-label="关闭工具菜单">✕</button>
+      </div>
+      <div class="tools-theme-row">
+        <span class="tools-theme-lbl">界面外观</span>
+        <div class="tools-theme-seg" role="group" aria-label="选择界面外观">
+          <button type="button" class="tools-seg-btn" data-set-theme="system" aria-pressed="false">跟随系统</button>
+          <button type="button" class="tools-seg-btn active" data-set-theme="dark" aria-pressed="true">深色炭灰</button>
+          <button type="button" class="tools-seg-btn" data-set-theme="light" aria-pressed="false">纸白浅色</button>
+        </div>
+        <button type="button" id="btn-theme-toggle" hidden aria-pressed="false"><span id="theme-toggle-ico">◐</span><span id="theme-toggle-lbl">展厅</span></button>
+      </div>
+      <div class="tools-theme-row" id="atlas-language-settings">
+        <span class="tools-theme-lbl">界面语言</span>
+        <div class="tools-theme-seg" role="group" aria-label="选择界面语言">
+          <button type="button" class="tools-seg-btn" data-set-lang="system" aria-pressed="true">跟随系统</button>
+          <button type="button" class="tools-seg-btn" data-set-lang="zh" aria-pressed="false" lang="zh-CN" data-keep-source>中文</button>
+          <button type="button" class="tools-seg-btn" data-set-lang="en" aria-pressed="false" lang="en" data-keep-source>English</button>
+        </div>
+      </div>
+      <div class="pop-divider"></div>
+      <button type="button" class="exp-item" id="btn-open-guided-tour" aria-controls="guided-tour-panel">
+        <strong>三维导览 · 篇章一</strong><small>水路与形成历史：道路、来水证据及历史对照</small>
+      </button>
+      <div class="pop-divider"></div>
+      <button type="button" class="exp-item" id="btn-export-month">
+        <strong>导出当前月水面数据</strong>
+        <small id="export-month-hint">锁定当前所选月份与湖区 · 保留争议与缺测标记</small>
+      </button>
+      <button type="button" class="exp-item" id="btn-export-all">
+        <strong>导出 40 年全量月度记录</strong>
+        <small>1984–2024 共 489 个月双湖完整档案（离线原始数据）</small>
+      </button>
+      <div class="pop-divider"></div>
+      <button type="button" class="exp-item subtle" id="btn-coverage">
+        <strong>上游资料去向与暂未绘图说明 (389)</strong>
+        <small>查看 389 项研究资料归属与 7 项缺几何说明</small>
+      </button>
+      <button type="button" class="exp-item subtle" id="rm-btn-open-intro">
+        <strong data-i18n="rm.menu.introTitle">关于本图谱与开场序幕</strong>
+        <small data-i18n="rm.menu.introSub">重看展览序言、四类证据与七幕章节</small>
+      </button>
+      <div class="pop-divider"></div>
+      <section class="rm-colophon-card" aria-label="作者署名与版权声明">
+        <div class="rm-colophon-head">
+          <span class="rm-colophon-mark" aria-hidden="true">
+            <img class="rm-brand-logo rm-logo-for-dark" src="brand/logo-light.png" alt="" width="24" height="24" decoding="async">
+            <img class="rm-brand-logo rm-logo-for-light" src="brand/logo-dark.png" alt="" width="24" height="24" decoding="async">
+          </span>
+          <div class="rm-colophon-id">
+            <div class="rm-colophon-name-row">
+              <strong>苏凡 · Fan Sudur</strong>
+              <a class="rm-colophon-link" href="https://fansudur.com" target="_blank" rel="noopener noreferrer" title="访问苏凡 (Fan Sudur) 个人主页">fansudur.com <span aria-hidden="true">↗</span></a>
+            </div>
+            <small data-i18n="rm.colophon.role">实地调查 · 专题制图 · 交互设计</small>
+          </div>
+        </div>
+        <p class="rm-colophon-rights" data-i18n="rm.colophon.rights">© 2026 苏凡（Fan Sudur）版权所有（All Rights Reserved）。本图谱的实地记录、现场影像、专题制图、叙事文稿、语音导览及界面交互均归作者本人所有，未经书面许可禁止任何形式的复制、转载、改编或任何商业及非商业用途。</p>
+        <p class="rm-colophon-third" data-i18n="rm.colophon.third">遥感影像与基础地形数据（Sentinel-2、Landsat、Copernicus GLO-30、Google Earth、Esri）版权归各自原权利方所有。</p>
+      </section>
+      <p class="card-note" style="padding:6px 4px 2px">本地安全提示：现场原片、缩略图、含相机坐标矢量与内部草图仅留本机，不得随对外分享上传。</p>
+    </div>
+
+    <!-- 10d. Visual Taxonomy Legend Popover -->
+    <div class="glass-popover legend-popover anim-surface" id="legend-popover" hidden role="dialog" aria-label="图例与证据分级">
+      <div class="pop-head">
+        <div class="pop-title">图例与证据分级<small>地图证据色由地图模块独立管理</small></div>
+        <button type="button" class="pop-close" id="btn-close-legend" data-close-popover="legend-popover" aria-label="关闭图例">✕</button>
+      </div>
+      <div class="taxonomy-legend-strip" aria-label="四类核心证据速辨">
+        <div class="tax-pill photo"><span class="tax-sym">◉</span><div><strong>实拍</strong><small>现场照片相机点与实拍桥涵</small></div></div>
+        <div class="tax-pill model"><span class="tax-sym">┄</span><div><strong>模型</strong><small>30m 地表推演虚线／剖面</small></div></div>
+        <div class="tax-pill sketch"><span class="tax-sym">✎</span><div><strong>手绘</strong><small>用户蓝／红草图，保留原笔断口</small></div></div>
+        <div class="tax-pill gap"><span class="tax-sym">×</span><div><strong>待核缺口</strong><small>未证连通或办公院未定位出水口</small></div></div>
+      </div>
+      <div class="pop-divider"></div>
+      <div class="legend-grid" id="analysis-semantic-legend"></div>
+      <div class="legend-grid">
+        <div class="legend-row"><span class="swatch zero"></span><span><strong>○ 合格零检出</strong>：有效覆盖达标但未检出水体，不等同地面干。</span></div>
+        <div class="legend-row"><span aria-hidden="true" style="color:#ff81e8">↘</span><span><strong>地形坡向</strong>：局部下坡，不是水流；箭头密度与等高线独立。</span></div>
+        <div class="legend-row"><span class="swatch ctr"></span><span><strong>═ 现代等高线</strong>：<span id="legend-contour-distance">5 米等高距，每 10 米加粗；30 米地表模型生成，不代表测量精度。</span></span></div>
+        <div class="legend-row"><span class="swatch hist"></span><span><strong>◇ 历史图参考</strong>：1933–1980 纸图线索（不随月份变化）</span></div>
+      </div>
+      <details class="legend-tech-fold">
+        <summary>展开专题核查符号（S7 低地与 2013 影像质量）</summary>
+        <div class="legend-grid" style="margin-top:6px">
+          <div class="legend-row"><span class="swatch visual-policy-swatch" data-legend-tone="model"></span><span><strong>★ S7 低地正例 (5)</strong>：两套地形均稳定偏低的候选点</span></div>
+          <div class="legend-row"><span class="swatch visual-policy-swatch" data-legend-tone="candidate"></span><span><strong>⊘ 对照反例 (S7 / S3)</strong>：非稳定低地或高出周边参照</span></div>
+          <div class="legend-row"><span class="swatch visual-policy-swatch" data-legend-tone="reference"></span><span><strong>✓ 2013 影像可用 (4)</strong>：仅表示像元清晰，不代表有水</span></div>
+          <div class="legend-row"><span class="swatch visual-policy-swatch" data-legend-tone="gap"></span><span><strong>✕ 2013 影像排除 (6)</strong>：云或阴影遮挡，不代表干涸</span></div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- 389-Dataset Source & Unmapped Items Modal -->
+  <dialog class="atlas-modal" id="coverage-modal">
+    <div class="modal-head">
+      <div>
+        <h2>上游 389 项研究资料去向与暂未绘图项说明</h2>
+        <p class="modal-sub">完整登记既有研究资料去向；缺少原始几何的条目保持留白，不作推演补画</p>
+      </div>
+      <button type="button" class="icon-close" id="btn-close-coverage" aria-label="关闭窗口">✕</button>
+    </div>
+    <div class="modal-body" id="coverage-modal-body"></div>
+  </dialog>
+
+  <p id="atlas-3d-load" role="status" hidden></p>
+  <script>
+    if(document.documentElement.classList.contains('atlas-phone-first-map')) {
+      const preview=document.getElementById('atlas-first-map');
+      preview.fetchPriority='high';
+      preview.src=document.getElementById('atlas-preview-resource').href;
+    }
+  </script>
+  <script type="module" src="app.js?v=105.19-public8&rev=80716c676799"></script>
+  <script type="module" src="v93-chapter1.js?v=105.19-i18n40&rev=2a9640c887ed"></script>
+  <script type="module" src="redesign-motion.js?v=2026.11.28-ui7&rev=aa3462c31d39"></script>
+</body>
+</html>
