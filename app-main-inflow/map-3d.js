@@ -569,12 +569,17 @@ export class AtlasMap3D {
       const cached = this._textures.get(cacheKey);
       return cached.image?.naturalWidth ? cached : this._demTexture;
     }
-    const loader = new THREE.TextureLoader();
-    const tex = loader.load(spec.url, () => {
-      // Do not bind an incomplete texture: it renders black until decoded.
-      this._dirtyTexture = true;
-      this._invalidate();
-    });
+    // Leave historical and third-party scenes on the existing texture loader.
+    const invalidate = () => { this._dirtyTexture = true; this._invalidate(); };
+    const tex = spec.image ? new THREE.Texture(spec.image) : new THREE.TextureLoader().load(spec.url,invalidate);
+    if(spec.image){
+      const upload = () => { tex.needsUpdate=true; invalidate(); };
+      if(spec.image.naturalWidth) upload();
+      else{
+        spec.image.addEventListener('load',upload,{once:true});
+        if(!spec.image.src)spec.image.src=spec.url;
+      }
+    }
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.flipY = true;
     tex.minFilter = THREE.LinearMipmapLinearFilter;

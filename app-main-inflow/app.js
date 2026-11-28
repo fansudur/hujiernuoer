@@ -61,8 +61,8 @@ import {
 } from './charts.js';
 import { validateFixedHistory, loadHistoryImage, exactGoogleEarthMonth, broadHistoryMonths, isBroadHistoryScene, historySceneMonth, historyMenuEntries } from './fixed-history.js';
 import { normalizeGuidedTours, sampleGuidedTour, softenedTravelProgress, buildCinematicHeightProfile } from './guided-tours.js';
-import { AtlasMap2D } from './map-2d.js?v=105.19-first-paint';
-import { AtlasMap3D } from './map-3d.js?v=105.19-i18n41';
+import { AtlasMap2D } from './map-2d.js?v=105.19-shared-overview';
+import { AtlasMap3D } from './map-3d.js?v=105.19-shared-overview';
 import { WALK_ROAD_ID, WALK_ROAD_PHOTO, WALK_OFFICE_ID, WALK_EYE_M, FREE_FLY_ENTRY_M, WALK_GUIDE_SPEED_MPS, prepareWalkRoad, sampleWalkRoad, beijingSun, adjustFreeLook, stepFreePose, WALK_SPEED_LEVELS, WALK_SPEED_DEFAULT, FLY_SPEED_DEFAULT, walkSpeedMaxLevel, walkHorizontalMps, walkVerticalMps } from './terrain-walk.js';
 import { ANALYSIS_PALETTE, VIEW_SCOPES, PAINT_BACKGROUND_ROADS } from './atlas-visual-policy.js';
 
@@ -242,7 +242,7 @@ function setSlopeEnabled(on){
  slopeEnabled=Boolean(on);syncMapsState();syncSlopeControls();updateActiveLayerBadge();
  if(!slopeEnabled||slopeData||slopeRequest)return;
  slopeError=false;syncSlopeControls();
- slopeRequest=fetch(new URL('./slope-aspect.json?v=87',location.href)).then(r=>{if(!r.ok)throw Error('slope load');return r.json()}).then(raw=>{
+ slopeRequest=fetch(new URL('./slope-aspect.json?v=87',import.meta.url)).then(r=>{if(!r.ok)throw Error('slope load');return r.json()}).then(raw=>{
   if(raw.schema!=='hjn-local-slope-aspect/v1'||![10,5,2].every(key=>Number.isFinite(raw.densities?.[key]?.spacing_m)&&raw.densities[key].arrows?.every(v=>v.length===5&&v.every(Number.isFinite))))throw Error('slope schema');
   slopeData=raw.densities;
  }).catch(()=>{slopeError=true}).finally(()=>{slopeRequest=null;syncMapsState();syncSlopeControls()});
@@ -296,7 +296,7 @@ function loadContours(forceSource=null){
   if(contourLoads.has(src))return contourLoads.get(src);
   contourErrors.delete(src);
   const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),10000);
-  const ready=fetch(new URL(src===2?'./contours-2m.geojson':'./contours.geojson',location.href),{signal:ctrl.signal})
+  const ready=fetch(new URL(src===2?'./contours-2m.geojson':'./contours.geojson',import.meta.url),{signal:ctrl.signal})
     .then(resp=>{if(!resp.ok)throw new Error('等高线读取失败');return resp.json();})
     .then(doc=>{contourBaseCache.set(src,normalizeContours(doc,src));})
     .catch(()=>contourErrors.add(src))
@@ -394,7 +394,7 @@ function ensureHistoricalContext() {
   updateHistoricalControls();
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 10000);
-  historicalLoad = fetch(new URL('./historical-context.geojson', location.href), { signal: ctrl.signal })
+  historicalLoad = fetch(new URL('./historical-context.geojson', import.meta.url), { signal: ctrl.signal })
     .then(response => {
       if (!response.ok) throw new Error('Historical layer request failed');
       return response.json();
@@ -489,7 +489,9 @@ function syncUrl() {
   applyLanguageQuery(p);
   const qs=p.toString();
   try {
-    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+    const url=new URL(location.href);
+    url.search=qs;
+    history.replaceState(null, '', url);
   } catch {
     // Ignore history.replaceState throttling (e.g. iOS Safari)
   }
@@ -514,7 +516,7 @@ let pendingWaybackId = null;
 let last3dFeatures;
 const waybackLoader = createWaybackLoader(
   async signal => {
-    const response = await fetch(new URL('./wayback-context.geojson', location.href), { signal });
+    const response = await fetch(new URL('./wayback-context.geojson', import.meta.url), { signal });
     if (!response.ok) throw new Error('Wayback data unavailable');
     return response.json();
   },
@@ -1229,7 +1231,7 @@ const recentFixedImageUrls=[];
 
 async function fixedHistoryInventory(){
   if(fixedHistory.scenes)return fixedHistory.scenes;
-  fixedHistory.loading ??= fetch(new URL('./google-earth-history.json',location.href),{signal:AbortSignal.timeout?.(4500)})
+  fixedHistory.loading ??= fetch(new URL('./google-earth-history.json',import.meta.url),{signal:AbortSignal.timeout?.(4500)})
     .then(r=>{if(!r.ok)throw new Error('本机历史影像清单未载入');return r.json();})
     .then(doc=>validateFixedHistory(doc,provider.terrainManifest?.bounds_wgs84,registeredImagery));
   try {return fixedHistory.scenes=await fixedHistory.loading;}
@@ -1438,7 +1440,7 @@ function updateHeaderPills() {
 
 const ESRI_PUBLIC_ID='esri-public-online';
 const PUBLIC_GUIDE_BASEMAP='sentinel2-2026-08-08';
-const PHONE_PREVIEW_PATH='terrain/satellite-2026-08-08-display.webp';
+const DISPLAY_OVERVIEW_PATH='terrain/satellite-2026-08-08-display.webp';
 let publicEsriAdaptive=false, esriMapReady=false, esriMobilePreview=false;
 let publicEsri=null,publicEsriStarted=false,bridgeEsri=null,bridgeEsriPending=null,bridgeEsriAttempts=0,bridgeEsriFailed=false;
 const ESRI_BRIDGE_STOP='runoff-bridge', ESRI_BRIDGE_MAX_ATTEMPTS=2;
@@ -6847,7 +6849,7 @@ function renderRouteDetail(step){
  chart.hidden=!linked;
  chart.removeAttribute('href');
  chart.textContent=linked?'展开本站原剖面':'';
- if(linked)chart.href='?'+new URLSearchParams({view:'main',tray:'profile',prof:chartId});
+ if(linked){const url=new URL(location.href);url.search=new URLSearchParams({view:'main',tray:'profile',prof:chartId});chart.href=url.href;}
  view.hidden=!rows.length&&!linked;view.open=false;
  $('#guided-tour-route-summary').textContent=view.hidden?'':title||'本站证据与剖面';
  const body=$('#guided-tour-route-body');
@@ -8121,10 +8123,12 @@ async function boot() {
     onFirstBasemap: () => $('#atlas-first-map')?.remove(),
   });
 
+  const overviewUrl=provider.url(DISPLAY_OVERVIEW_PATH);
+  // One image element feeds both canvases. Keep its lifetime tied to this app instance.
+  const overviewImage=$('#atlas-first-map')?.src ? $('#atlas-first-map') : new Image();
+  if(firstOpen&&!overviewImage.src)overviewImage.src=overviewUrl;
   if(mobilePreview){
-    // Use the same geographically aligned, already-public fallback as the interactive map.
-    const fallback={id:PUBLIC_GUIDE_BASEMAP,bounds_wgs84:AOI_BOUNDS,
-      url:provider.url(PHONE_PREVIEW_PATH)};
+    const fallback={id:PUBLIC_GUIDE_BASEMAP,bounds_wgs84:AOI_BOUNDS,url:overviewUrl,image:overviewImage};
     map2d.setState({basemap:fallback.id,theme:document.documentElement.dataset.theme,
       imageryById:{[fallback.id]:fallback}});
     map2d.resize();
@@ -8154,43 +8158,43 @@ async function boot() {
   if(requestedView&&Object.hasOwn(VIEW_SCOPES,requestedView))chooseScenePreset(requestedView,{boot:true});
   else if(urlPatch.lakeView)state.scenePreset='custom';
 
-  const f1WaterwayPromise=fetch(new URL('./f1-waterway.geojson?v=67',location.href),{
+  const f1WaterwayPromise=fetch(new URL('./f1-waterway.geojson?v=67',import.meta.url),{
     signal:AbortSignal.timeout?.(3500)
   }).then(r=>r.ok?r.json():null).catch(()=>null);
   const wcrossUpstreamUrl='./wcross-upstream.geojson?v=33';
-  const wcrossUpstreamPromise=fetch(new URL(wcrossUpstreamUrl,location.href),{signal:AbortSignal.timeout?.(3500)})
+  const wcrossUpstreamPromise=fetch(new URL(wcrossUpstreamUrl,import.meta.url),{signal:AbortSignal.timeout?.(3500)})
     .then(r=>r.ok?r.json():null).catch(()=>null);
-  const slopeCluePromise=fetch(new URL('./slope-road-clues.geojson?v=48',location.href),{signal:AbortSignal.timeout?.(3500)}).then(r=>r.ok?r.json():null).catch(()=>null);
-  const ownerBluePromise=fetch(new URL('./owner-blue-201909.geojson?v=33',location.href),{signal:AbortSignal.timeout?.(3500)})
+  const slopeCluePromise=fetch(new URL('./slope-road-clues.geojson?v=48',import.meta.url),{signal:AbortSignal.timeout?.(3500)}).then(r=>r.ok?r.json():null).catch(()=>null);
+  const ownerBluePromise=fetch(new URL('./owner-blue-201909.geojson?v=33',import.meta.url),{signal:AbortSignal.timeout?.(3500)})
     .then(r=>r.ok?r.json():null).catch(()=>null);
-  const waterwayOverviewPromise=fetch(new URL('./route-narrative.json?v=71',location.href),{signal:AbortSignal.timeout?.(3500)})
+  const waterwayOverviewPromise=fetch(new URL('./route-narrative.json?v=71',import.meta.url),{signal:AbortSignal.timeout?.(3500)})
     .then(r=>r.ok?r.json():null).catch(()=>null);
-  const nativeTrackPromise=fetch(new URL('./model-line-profiles.json?v=30',location.href),{signal:AbortSignal.timeout?.(3500)})
+  const nativeTrackPromise=fetch(new URL('./model-line-profiles.json?v=30',import.meta.url),{signal:AbortSignal.timeout?.(3500)})
     .then(r=>r.ok?r.json():null).catch(()=>null);
-  const seasonalPromise=fetch(new URL('./seasonal-network.geojson?v=48',location.href),{
+  const seasonalPromise=fetch(new URL('./seasonal-network.geojson?v=48',import.meta.url),{
     signal:AbortSignal.timeout?.(3500)
   }).then(r=>r.ok?r.json():null).catch(()=>null);
-  const officeEvidence = fetch(new URL('./office-corridor.geojson?v=7', location.href), {
+  const officeEvidence = fetch(new URL('./office-corridor.geojson?v=7', import.meta.url), {
     signal: typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(8000) : undefined,
   }).then(async r => {
     if (!r.ok) throw new Error('未载入办公院专题');
     return r.json();
   }).catch(()=>null);
-  const mainProfileEvidence = fetch(new URL('./main-lake-profiles.geojson', location.href), {
+  const mainProfileEvidence = fetch(new URL('./main-lake-profiles.geojson', import.meta.url), {
     signal: typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(8000) : undefined,
   }).then(async r => {
     if (!r.ok) throw new Error('未载入主湖剖面');
     return r.json();
   }).catch(()=>null);
   const fieldPhotosPromise = Promise.resolve(null);
-  const julyPayloadPromise = fetch(new URL('./july2023-review-windows.geojson', location.href), {
+  const julyPayloadPromise = fetch(new URL('./july2023-review-windows.geojson', import.meta.url), {
     signal: AbortSignal.timeout?.(4500),
   }).then(r => r.ok ? r.json() : null).catch(() => null);
-  const northBoundaryPromise = fetch(new URL('./north-boundary-checks.geojson', location.href), {
+  const northBoundaryPromise = fetch(new URL('./north-boundary-checks.geojson', import.meta.url), {
     signal: AbortSignal.timeout?.(4500),
   }).then(r => r.ok ? r.json() : null).catch(() => null);
   const southeastFixturePromise = Promise.resolve(null);
-  const diagnosticBranchesPromise = fetch(new URL('./diagnostic-branches.geojson', location.href), {
+  const diagnosticBranchesPromise = fetch(new URL('./diagnostic-branches.geojson', import.meta.url), {
     signal: AbortSignal.timeout?.(5500),
   }).then(r => r.ok ? r.json() : null).catch(() => null);
   await provider.boot();
@@ -8375,7 +8379,9 @@ async function boot() {
   lastManualBasemap = state.basemap;
   const imageryById = { [TIMELINE_REFERENCE_SCENE.id]: TIMELINE_REFERENCE_SCENE };
   for (const im of provider.terrainManifest?.imagery || []) {
-    imageryById[im.id] = { ...im, url: provider.url(mobilePreview&&im.id===PUBLIC_GUIDE_BASEMAP?PHONE_PREVIEW_PATH:`terrain/${im.path}`) };
+    imageryById[im.id] = im.id===PUBLIC_GUIDE_BASEMAP
+      ? { ...im, url:overviewUrl,image:overviewImage }
+      : { ...im, url:provider.url(`terrain/${im.path}`) };
   }
   for (const sc of extraBridgeScenes) {
     imageryById[sc.basemapId] = {
