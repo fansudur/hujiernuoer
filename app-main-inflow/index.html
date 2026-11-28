@@ -1,14 +1,22 @@
 <!doctype html>
 <html lang="zh-CN" data-theme="dark">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>
     (()=>{let saved;try{saved=localStorage.getItem('hujiernuoer-atlas-theme');}catch{}
       document.documentElement.dataset.theme=['light','dark'].includes(saved)?saved:
         (window.matchMedia?.('(prefers-color-scheme: dark)').matches===false?'light':'dark');
+      if(window.matchMedia('(max-width: 760px)').matches
+        && [...new URLSearchParams(location.search).keys()].every(key=>key==='lang')){
+        document.documentElement.classList.add('atlas-phone-first-map');
+        const preload=document.createElement('link');
+        preload.id='atlas-preview-resource';preload.rel='preload';preload.as='image';preload.fetchPriority='high';
+        preload.href='../hujiernuoer-handoff-v2/terrain/satellite-2026-08-08-display.webp';
+        document.head.append(preload);
+      }
     })();
   </script>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>呼吉尔诺尔 · 水文地貌纪事图谱</title>
   <link rel="icon" type="image/png" href="brand/favicon.png">
   <link rel="stylesheet" href="styles.css?cleanup=92.1&v=105.18.21&rev=440afe4ff3e4">
@@ -23,6 +31,14 @@
   <link rel="stylesheet" href="redesign-minimal-2026.css?v=2026.11.28-ui14&rev=e3441fc783fb">
   <link rel="stylesheet" href="guide-seek.css?v=2026.11.27-walk-ui1&rev=4fd699e78b86">
   <link rel="stylesheet" href="atlas-i18n.css?v=4&rev=2286f9801913">
+  <style>
+    #atlas-first-map{display:none}
+    .atlas-phone-first-map #atlas-first-map{display:block;position:absolute;left:0;top:54.2%;
+      transform:translateY(-50%);width:100%;height:auto;pointer-events:none}
+    #atlas-3d-load{position:fixed;z-index:999;left:50%;bottom:calc(70px + env(safe-area-inset-bottom,0px));
+      transform:translateX(-50%);margin:0;width:max-content;max-width:85vw;padding:.65em 1em;
+      border-radius:12px;background:var(--surface-2,#222);color:var(--ink,#fff);font-size:.85rem}
+  </style>
 </head>
 <body>
   <div class="observatory" id="observatory" data-view-preset="home">
@@ -35,6 +51,7 @@
       <div id="guided-four-map" class="guided-four-map" hidden aria-hidden="true"></div>
       <div id="guided-map-pin" class="guided-map-pin" hidden aria-hidden="true"></div>
       <canvas id="map-2d-canvas" aria-label="二维空间证据地图"></canvas>
+      <img id="atlas-first-map" alt="" aria-hidden="true" width="1166" height="823">
       <div id="map-3d-stage" hidden aria-label="三维地形空间证据视图"></div>
       <div id="map-3d-labels" hidden></div>
       <i id="guided-profile-ground-cursor" hidden aria-hidden="true"></i>
@@ -672,8 +689,15 @@
     <div class="modal-body" id="coverage-modal-body"></div>
   </dialog>
 
-<script src="../hujiernuoer-handoff-v2/vendor/three-r160.1.min.js"></script>
-  <script type="module" src="app.js?v=105.19-public6&rev=ab7f91a89848"></script>
+  <p id="atlas-3d-load" role="status" hidden></p>
+  <script>
+    if(document.documentElement.classList.contains('atlas-phone-first-map')) {
+      const preview=document.getElementById('atlas-first-map');
+      preview.fetchPriority='high';
+      preview.src=document.getElementById('atlas-preview-resource').href;
+    }
+  </script>
+  <script type="module" src="app.js?v=105.19-public7&rev=870ce85642b6"></script>
   <script type="module" src="v93-chapter1.js?v=105.19-i18n40&rev=2a9640c887ed"></script>
   <script type="module" src="redesign-motion.js?v=2026.11.28-ui7&rev=aa3462c31d39"></script>
 </body>
