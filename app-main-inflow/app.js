@@ -42,7 +42,6 @@ import {
   groupProfileIds,
   describeProfileCursorElevation,
   resolveExportMonthPayload,
-  resolveEffectiveView3d,
   buildAllExport,
   encodeAtlasUrl,
   decodeAtlasUrl,
@@ -62,7 +61,7 @@ import {
 } from './charts.js';
 import { validateFixedHistory, loadHistoryImage, exactGoogleEarthMonth, broadHistoryMonths, isBroadHistoryScene, historySceneMonth, historyMenuEntries } from './fixed-history.js';
 import { normalizeGuidedTours, sampleGuidedTour, softenedTravelProgress, buildCinematicHeightProfile } from './guided-tours.js';
-import { AtlasMap2D } from './map-2d.js?v=105.19-i18n39';
+import { AtlasMap2D } from './map-2d.js?v=105.19-first-paint';
 import { AtlasMap3D } from './map-3d.js?v=105.19-i18n41';
 import { WALK_ROAD_ID, WALK_ROAD_PHOTO, WALK_OFFICE_ID, WALK_EYE_M, FREE_FLY_ENTRY_M, WALK_GUIDE_SPEED_MPS, prepareWalkRoad, sampleWalkRoad, beijingSun, adjustFreeLook, stepFreePose, WALK_SPEED_LEVELS, WALK_SPEED_DEFAULT, FLY_SPEED_DEFAULT, walkSpeedMaxLevel, walkHorizontalMps, walkVerticalMps } from './terrain-walk.js';
 import { ANALYSIS_PALETTE, VIEW_SCOPES, PAINT_BACKGROUND_ROADS } from './atlas-visual-policy.js';
@@ -171,6 +170,33 @@ const provider = new HandoffDataProvider('../hujiernuoer-handoff-v2/');
 let map2d = null;
 let map3d = null;
 let ensureMap3d = () => map3d;
+let threeLoad=null, dimensionIntent=0;
+function loadThree(){
+  if(window.THREE)return Promise.resolve(true);
+  if(threeLoad)return threeLoad;
+  const script=document.createElement('script');
+  script.src=new URL('../hujiernuoer-handoff-v2/vendor/three-r160.1.min.js',import.meta.url).href;
+  const pending=new Promise(resolve=>{
+    const finish=ok=>{clearTimeout(timer);script.remove();resolve(ok);};
+    const timer=setTimeout(()=>finish(false),12000);
+    script.onload=()=>finish(Boolean(window.THREE));
+    script.onerror=()=>finish(false);
+    document.head.append(script);
+  });
+  threeLoad=pending;
+  void pending.then(ok=>{if(!ok&&threeLoad===pending)threeLoad=null;});
+  return pending;
+}
+async function requestThree(){
+  const intent=++dimensionIntent, note=$('#atlas-3d-load');
+  note.textContent=atlasLanguage()==='en'?'Loading 3D…':'正在载入三维…';
+  note.hidden=false;
+  const available=await loadThree();
+  if(intent!==dimensionIntent)return 'superseded';
+  note.hidden=available;
+  if(!available)note.textContent=atlasLanguage()==='en'?'3D did not load. The 2D map is still available. Try 3D again.':'三维暂未加载，仍可浏览二维地图。可再点一次重试。';
+  return available?'ready':'failed';
+}
 let preserveEntryUrl = false;
 let monthReqSeq = 0;
 let monthAbortCtrl = null;
@@ -5018,7 +5044,12 @@ function bindEvents() {
   bindDeckGrip();
 
   // 2D / 3D & Exaggeration
-  const changeMapDimension=dim=>{
+  const changeMapDimension=async dim=>{
+    if(dim==='2d'){
+      dimensionIntent++;
+      $('#atlas-3d-load').hidden=true;
+    }else if(!window.THREE&&await requestThree()!=='ready')return;
+    else if(window.THREE)dimensionIntent++;
     setDimension(dim);
     const id=state.activeProfileId, f=provider.analysisById.get(id);
     if(state.bottomTab==='profile'&&state.selectedFeatureId===id&&(state.visibleLayers.has(f?.properties?.layer)||isInScenePreset(id)))
@@ -5415,7 +5446,9 @@ function closeTerrainWalk({lost=false,stay3d=false}={}){
  updateLayoutOffsets();
  if(!lost&&!stay3d)$('#btn-open-walk')?.focus({preventScroll:true});
 }
-function openTerrainWalk(){
+async function openTerrainWalk(){
+ if(!window.THREE&&await requestThree()!=='ready')return;
+ dimensionIntent++;
  if(guidedTour.active)closeGuidedTour();
  if(walkMode.active)return;
  const road=prepareWalkRoad(provider.analysisById.get(WALK_ROAD_ID),provider.analysisById.get(WALK_ROAD_PHOTO)?.geometry?.coordinates);
@@ -7622,9 +7655,12 @@ function restoreGuidedImagery(saved){
    updateHeaderPills();syncMapsState();
  }
 }
-function openGuidedTour(trigger,stepId){
+async function openGuidedTour(trigger,stepId){
  const t=guidedTour;
  if(t.active||!t.book.length)return;
+ if(!window.THREE&&await requestThree()!=='ready')return;
+ dimensionIntent++;
+ if(t.active)return;
  if(walkMode.active)closeTerrainWalk();
  if(!ensureMap3d()||map3d.failed){$('#guided-tour-unavailable').hidden=false;return;}
  t.saved={publicFallback:[ESRI_PUBLIC_ID,PUBLIC_GUIDE_BASEMAP].includes(state.basemap)&&!state.timelineBasemapStatus,view3d:state.view3d,focus2d:{...map2d.getCameraFocus(),pixelsPerMeter:map2d.getCameraScale()},fixed:fixedHistory.active,fixedWanted:fixedHistory.wanted,
@@ -7989,16 +8025,16 @@ function installV93Bridge(){
    const hasMedia=Boolean((!$('#guided-board-media').hidden&&$('#guided-board-media').childElementCount>0)||!$('#guided-tour-photo-link').hidden);
    return {active:true,step:s,route:t.route,globalIdx,totalStops,waterMonth:state.month,imageryLabel,isOverview:isGuideOverview(s),progressRatio,seekDuration,seekSeconds,cueSeconds:guideSpokenSeconds(),canSeek,hasProfile,hasMedia};
   },
-  openAtRoute:(routeId,stepIdx=0,{autoPlay=false}={})=>{
+  openAtRoute:async (routeId,stepIdx=0,{autoPlay=false}={})=>{
    const t=guidedTour;
    const route=t.book.find(r=>r.id===routeId)||t.book[0];
    const index=route?.steps[stepIdx]?stepIdx:0;
    const step=route?.steps[index];
    if(!step)return;
-   if(!t.active)openGuidedTour($('#btn-guide-chapter-one'),step.id);
+   if(!t.active)await openGuidedTour($('#btn-guide-chapter-one'),step.id);
    else if(!isMobileViewport()&&guideStep()?.id!==step.id){moveGuidedChapter(1,{resume:autoPlay,destination:{route,index,step}});return;}
    else {cancelGuideHandoff();setGuidedRoute(route,index);}
-   if(autoPlay)requestAnimationFrame(()=>void playGuidedTour());
+   if(autoPlay&&t.active)requestAnimationFrame(()=>void playGuidedTour());
   },
   jumpTo:(routeId,stepIdx=0)=>{
    const t=guidedTour, route=t.book.find(r=>r.id===routeId);
@@ -8082,6 +8118,7 @@ async function boot() {
     onCursorMove: onCursor,
     onCameraChange: onCam,
     onSelectFeature: onSelect,
+    onFirstBasemap: () => $('#atlas-first-map')?.remove(),
   });
 
   if(mobilePreview){
@@ -8112,6 +8149,8 @@ async function boot() {
   Object.assign(state, urlPatch);
   if(firstOpen)state.view3d=!isMobileViewport();
   if(nwDeepLink){state.view3d=false;for(const id of CATCHMENT_SCREEN.keys())state.visibleLayers.delete(id);state.visibleLayers.add(NW_NETWORK);}
+  const startupIntent=dimensionIntent;
+  const initialThree=state.view3d?loadThree():null;
   if(requestedView&&Object.hasOwn(VIEW_SCOPES,requestedView))chooseScenePreset(requestedView,{boot:true});
   else if(urlPatch.lakeView)state.scenePreset='custom';
 
@@ -8414,16 +8453,9 @@ async function boot() {
       analysisFeatures:last3dFeatures||initPayload.analysisFeatures,labelLanguage:atlasLanguage()});
     return map3d;
   };
-  if(!mobilePreview)ensureMap3d();
   $$('[data-exag]').forEach(b=>b.classList.toggle('active',Number(b.dataset.exag)===state.exag3d));
-  const dimResolution = resolveEffectiveView3d(state.view3d, Boolean(map3d && !map3d.failed));
-  const wantInitial3d = dimResolution.view3d;
+  const wantInitial3d = state.view3d;
   state.view3d = false;
-  state.webglFallbackNotice = dimResolution.fallbackFrom3d ? 'startup' : false;
-  if (dimResolution.fallbackFrom3d) {
-    $('#render-engine-badge').textContent = '2D Canvas（WebGL 不可用已回退）';
-    $('#btn-3d').title = '当前环境 WebGL 不可用，已自动回退 2D Canvas';
-  }
 
   bindEvents();
   wireTerrainWalk();
@@ -8533,9 +8565,11 @@ async function boot() {
   }
 
   if (wantInitial3d && !isWayback2dOnly(provider.analysisById.get(state.selectedFeatureId))) {
-    setDimension('3d');
+    const canStart3d=await initialThree;
+    const startupStillCurrent=startupIntent===dimensionIntent;
+    if(startupStillCurrent&&canStart3d)setDimension('3d');
     const wide=innerWidth>=761&&innerWidth/Math.max(1,innerHeight)>=1.15;
-    if(wide&&!hasExplicitViewOverride&&state.scenePreset==='home'&&is3DActive()){
+    if(startupStillCurrent&&wide&&!hasExplicitViewOverride&&state.scenePreset==='home'&&is3DActive()){
       // Desktop first-open only: lake above center, a shallower oblique scroll of the site.
       map3d.flyTo({lon:119.6894,lat:49.1256,spanKm:6.5,pitchDeg:38.5,azimuthDeg:-3.3,duration:0});
     }
