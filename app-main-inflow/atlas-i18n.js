@@ -1,4 +1,16 @@
-import { english, keyedEnglish } from './atlas-en.js?v=41';
+let english=Object.create(null), keyedEnglish=Object.create(null), englishLoad;
+function ensureEnglish(){
+  englishLoad??=import('./atlas-en.js?v=41').then(dict=>{
+    english=dict.english;
+    keyedEnglish=dict.keyedEnglish;
+    return true;
+  }).catch(error=>{
+    console.warn('Atlas English dictionary unavailable',error);
+    englishLoad=null;
+    return false;
+  });
+  return englishLoad;
+}
 
 const STORAGE_KEY = 'hjn.atlas.language.v1';
 const options = new Set(['system', 'zh', 'en']);
@@ -16,6 +28,8 @@ export const applyLanguageQuery = params => {
 export const atlasLanguage = () => preference === 'system'
   ? (/^zh(?:-|$)/i.test(globalThis.navigator?.languages?.[0] || globalThis.navigator?.language || 'zh') ? 'zh' : 'en')
   : preference;
+
+if(atlasLanguage()==='en')await ensureEnglish();
 
 const patterns = [
   [/^([\d.]+) \/ ([\d.]+) 米 · 加速示意$/, (m,a,b)=>a+' / '+b+' m · Accelerated demonstration'],
@@ -282,19 +296,35 @@ if (typeof window !== "undefined" && typeof document !== "undefined") {
     }
   });
   observer.observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:attributes});
-  document.addEventListener('click',event=>{
+  let languageIntent=0;
+  const effective = choice => choice==='system'
+    ? (/^zh(?:-|$)/i.test(navigator.languages?.[0]||navigator.language||'zh')?'zh':'en')
+    : choice;
+  document.addEventListener('click',async event=>{
     const button=event.target.closest('[data-set-lang]');
-    const next = valid(button?.dataset.setLang);
-    if (!next) return;
-    const previous = document.documentElement.dataset.lang;
+    const next=valid(button?.dataset.setLang);
+    if(!next)return;
+    const intent=++languageIntent;
+    if(effective(next)==='en'){
+      button.setAttribute('aria-busy','true');
+      const ready=await ensureEnglish();
+      button.removeAttribute('aria-busy');
+      if(!ready||intent!==languageIntent)return;
+    }
+    const previous=document.documentElement.dataset.lang;
     preference=next;
-    urlLanguage=next === 'system' ? null : next;
+    urlLanguage=next==='system'?null:next;
     try { localStorage.setItem(STORAGE_KEY,next); } catch {}
     const url=new URL(location.href);
-    if (urlLanguage) url.searchParams.set('lang',urlLanguage);
+    if(urlLanguage)url.searchParams.set('lang',urlLanguage);
     else url.searchParams.delete('lang');
     try { history.replaceState(history.state,'',url); } catch {}
     paintLanguage(previous);
   });
-  window.addEventListener('languagechange',()=>paintLanguage(document.documentElement.dataset.lang));
+  window.addEventListener('languagechange',async ()=>{
+    if(preference!=='system')return;
+    const intent=++languageIntent;
+    if(atlasLanguage()==='en'&&!await ensureEnglish())return;
+    if(intent===languageIntent)paintLanguage(document.documentElement.dataset.lang);
+  });
 }

@@ -127,9 +127,8 @@ export class HandoffDataProvider {
     this.nwScenarios = nwScenarios;
     this.yiminSummary = yiminSummary;
 
-    // Preload both fixed statistical window boundary polygons
-    const boundaryPaths = Object.values(waterIndex.lakes).map(l => l.boundary).filter(Boolean);
-    await Promise.all(boundaryPaths.map(p => this._bootRequest(opts=>this.loadWaterPart(p,opts))));
+    // Boundary geometry belongs to the per-lake month load. Do not gate
+    // the entire app on both boundary files being reachable over a weak link.
   }
 
   async loadWaterPart(relPath, opts = {}) {
